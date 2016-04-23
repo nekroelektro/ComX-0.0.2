@@ -1,0 +1,49 @@
+﻿@using GridMvc.Html
+@using GridMvc.Sorting
+@model IEnumerable<ComX_0._0._2.Models.Articles>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+    </button>
+</p>
+
+@Html.Grid(Model).Named("articleGrid").Columns(columns =>
+{
+columns.Add(o => o.Id, true);
+columns.Add(x => x.Name).SetWidth(750);
+columns.Add(x => x.Category).SetWidth(80);
+columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
+@*columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .RenderValueAs(o => @<button type="button" class="btn btn-danger .btn-sm" onclick="location.href='@Url.Action("Delete", "Articles", new {Id = o.Id})'">
+        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" style="font-size: 0.7em"></span>
+    </button>);*@
+}).WithPaging(20).Sortable(true).Filterable(true)
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model) {
+            <div class="col-xs-6">
+                <h2>@item.Name</h2>
+                <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(function () {
+        pageGrids.articleGrid.onRowSelect(function (e) {
+            var rowArticleId = e.row.Id;
+            window.location.href = '@Url.Action("Details", "Articles")?Id='+rowArticleId;
+        });
+    });
+</script>
+

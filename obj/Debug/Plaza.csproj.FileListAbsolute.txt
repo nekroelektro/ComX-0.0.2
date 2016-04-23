@@ -1,0 +1,12 @@
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\Plaza.csproj.App.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial1.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial2.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial3.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.init00001.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.initial4.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.initial5.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial6.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial7.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\Plaza.csproj.GenerateResource.Cache
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb

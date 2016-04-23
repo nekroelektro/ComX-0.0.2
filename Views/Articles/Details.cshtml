@@ -1,0 +1,28 @@
+﻿@model ComX_0._0._2.Models.Articles
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="topDetailPanel" style ="display: inline-block; width: 100%; height: auto">
+    <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name) detail:</h2>
+    <div class="buttons" style="float: right; margin-top: 1em;">
+        <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles", new {Id = Model.Id})'">
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"> BACK</span>
+        </button>
+        <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"> EDIT</span>
+        </button>
+        <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" style="font-size: 1.1em"> DELETE</span>
+        </button>
+    </div>
+    <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
+        <p style="float: left;">Date added: @Html.DisplayFor(model => model.DateCreated)</p>
+        <p style="float: right;">Date of last modification: @Html.DisplayFor(model => model.DateEdited)</p>   
+    </div>
+</div>
+    <div class="articleDetail">
+        <div style="border: solid black 1px;">
+            @Html.Raw(WebUtility.HtmlDecode(Model.Body))
+        </div>
+    </div>
