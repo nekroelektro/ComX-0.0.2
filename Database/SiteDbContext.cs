@@ -9,6 +9,7 @@ namespace ComX_0._0._2.Database {
         public DbSet<Users> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<ArticleCategories> Categories { get; set; } 
 
         public void AddUser(Users user) {
             user.Id = Guid.NewGuid();

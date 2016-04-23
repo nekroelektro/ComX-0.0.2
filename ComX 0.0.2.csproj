@@ -1202,6 +1202,10 @@
     <Compile Include="Migrations\201604231105344_init10.Designer.cs">
       <DependentUpon>201604231105344_init10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604231248383_init11.cs" />
+    <Compile Include="Migrations\201604231248383_init11.Designer.cs">
+      <DependentUpon>201604231248383_init11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
@@ -1235,6 +1239,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_NavBarTop.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Articles\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1278,6 +1283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604231105344_init10.resx">
       <DependentUpon>201604231105344_init10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604231248383_init11.resx">
+      <DependentUpon>201604231248383_init11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

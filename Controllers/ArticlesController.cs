@@ -3,8 +3,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Security;
 using ComX_0._0._2.Database;
+using ComX_0._0._2.Interfaces;
 using ComX_0._0._2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ComX_0._0._2.Controllers {
     public class ArticlesController : Controller {
@@ -29,6 +32,8 @@ namespace ComX_0._0._2.Controllers {
 
         // GET: Articles/Create
         public ActionResult Create() {
+            var categoryList = db.Categories.ToList();
+            ViewBag.CategoryList = categoryList;
             return View();
         }
 
@@ -38,12 +43,16 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(
-            [Bind(Include = "Id,Name,Prelude,Body,Category,DateCreated,DateEdited")] Articles article) {
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article) {
+            var currentUser = Membership.GetUser().ProviderUserKey.ToString();
+            var currentUserId = User.Identity;
             if (ModelState.IsValid) {
                 article.Id = Guid.NewGuid();
-                article.CategoryId = Guid.NewGuid();
                 article.DateCreated = DateTime.Now;
                 article.DateEdited = DateTime.Now;
+                if (!string.IsNullOrEmpty(currentUser)){
+                    article.UserId = new Guid(currentUser);
+                }
                 db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,6 +122,22 @@ namespace ComX_0._0._2.Controllers {
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Categories() {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Categories(ArticleCategories category) {
+            if (ModelState.IsValid) {
+                category.Id = Guid.NewGuid();
+                db.Categories.Add(category);
+                db.SaveChanges();
+                return View();
+            }
+            return View();
         }
     }
 }

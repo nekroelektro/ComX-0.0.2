@@ -8,7 +8,10 @@
 
 <p>
     <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
+    </button>
+    <button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("Categories", "Articles")'">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add category
     </button>
 </p>
 
@@ -16,7 +19,7 @@
 {
 columns.Add(o => o.Id, true);
 columns.Add(x => x.Name).SetWidth(750);
-columns.Add(x => x.Category).SetWidth(80);
+columns.Add(x => x.CategoryId).SetWidth(80);
 columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
 @*columns.Add()
     .Encoded(false)
