@@ -1154,6 +1154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ArticleHelper.cs" />
     <Compile Include="Helpers\ControlsHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Interfaces\AccountMembershipService.cs" />

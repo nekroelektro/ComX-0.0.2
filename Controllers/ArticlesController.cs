@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using System.Web.Security;
 using ComX_0._0._2.Database;
+using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Interfaces;
 using ComX_0._0._2.Models;
 using Microsoft.AspNet.Identity;
@@ -12,7 +13,7 @@ using Microsoft.AspNet.Identity;
 namespace ComX_0._0._2.Controllers {
     public class ArticlesController : Controller {
         private readonly SiteDbContext db = new SiteDbContext();
-
+        private readonly UserHelper userHelper = new UserHelper();
         // GET: Articles
         public ActionResult Index() {
             return View(db.Articles.ToList());
@@ -44,15 +45,11 @@ namespace ComX_0._0._2.Controllers {
         [ValidateInput(false)]
         public ActionResult Create(
             [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article) {
-            var currentUser = Membership.GetUser().ProviderUserKey.ToString();
-            var currentUserId = User.Identity;
             if (ModelState.IsValid) {
                 article.Id = Guid.NewGuid();
                 article.DateCreated = DateTime.Now;
                 article.DateEdited = DateTime.Now;
-                if (!string.IsNullOrEmpty(currentUser)){
-                    article.UserId = new Guid(currentUser);
-                }
+                article.UserId = userHelper.GetCurrentLoggedUserId();
                 db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
