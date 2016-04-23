@@ -20,10 +20,10 @@
 </head>
 <body>
     @Html.Partial("_NavBarTop")
-    <div class="container body-content">
+    <div class="container body-content bodyLayout">
         @RenderBody()
-        <hr/>
-        @Html.Partial("_Footer")
-    </div>  
+        <div class="push"></div>
+    </div>
+    @Html.Partial("_Footer")
 </body>
 </html>
