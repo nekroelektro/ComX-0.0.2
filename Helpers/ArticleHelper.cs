@@ -42,5 +42,15 @@ namespace ComX_0._0._2.Helpers {
             }
             return listItems;
         }
+
+        public List<Comments> GetCommentsByArticle(Guid id) {
+            var comments = db.Comments.Where(x => x.ArticleId == id);
+            return comments.ToList();
+        }
+
+        public List<Comments> GetCommentsByUser(Guid id) {
+            var comments = db.Comments.Where(x => x.UserId == id);
+            return comments.ToList();
+        }
     }
 }

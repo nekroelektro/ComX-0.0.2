@@ -127,6 +127,31 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
+        public ActionResult _Comments() {
+            var comments = new Comments();
+            return PartialView("_Comments", comments);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult _Comments(Comments comment) {
+            if (ModelState.IsValid) {
+                comment.Id = Guid.NewGuid();
+                comment.UserId = userHelper.GetCurrentLoggedUserId();
+                comment.DateOfCreation = DateTime.Now;
+
+                var currentArticle = Request.Params["Id"];
+                var artId = new Guid(currentArticle);
+
+                comment.ArticleId = artId;
+
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return PartialView();
+            }
+            return PartialView();
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Categories(ArticleCategories category) {

@@ -1,12 +1,11 @@
 ﻿@using ComX_0._0._2.Helpers
-@using ComX_0._0._2.Models
 @using GridMvc.Html
 @using GridMvc.Sorting
 @model IEnumerable<ComX_0._0._2.Models.Articles>
 
 @{
     ViewBag.Title = "Index";
-    ArticleHelper articleHelper = new ArticleHelper();
+    var articleHelper = new ArticleHelper();
 }
 
 <p>
@@ -18,12 +17,11 @@
     </button>
 </p>
 
-@Html.Grid(Model).Named("articleGrid").Columns(columns =>
-{
-columns.Add(o => o.Id, true);
-columns.Add(x => x.Name).SetWidth(750);
+@Html.Grid(Model).Named("articleGrid").Columns(columns => {
+    columns.Add(o => o.Id, true);
+    columns.Add(x => x.Name).SetWidth(750);
 //columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(articleHelper.GetCategoryById()).SetWidth(80);
-columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
+    columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
 @*columns.Add()
     .Encoded(false)
     .Sanitized(false)
@@ -34,9 +32,8 @@ columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCr
 
 
 <div class="container">
-    <div class="row" style="display:table">
-        @foreach (var item in Model)
-        {
+    <div class="row" style="display: table">
+        @foreach (var item in Model) {
             <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
                 <div class="col-xs-5" style="border: solid 2px blueviolet">
                     <h2>@item.Name</h2>
@@ -48,11 +45,10 @@ columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCr
 </div>
 
 <script>
-    $(function () {
-        pageGrids.articleGrid.onRowSelect(function (e) {
+    $(function() {
+        pageGrids.articleGrid.onRowSelect(function(e) {
             var rowArticleId = e.row.Id;
-            window.location.href = '@Url.Action("Details", "Articles")?Id='+rowArticleId;
+            window.location.href = '@Url.Action("Details", "Articles")?Id=' + rowArticleId;
         });
     });
 </script>
-

@@ -1246,6 +1246,7 @@
     <Content Include="Views\Shared\_NavBarTop.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Articles\Categories.cshtml" />
+    <Content Include="Views\Articles\_Comments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

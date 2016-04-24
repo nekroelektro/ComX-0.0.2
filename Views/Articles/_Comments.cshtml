@@ -1,0 +1,41 @@
+﻿@using ComX_0._0._2.Helpers
+@model ComX_0._0._2.Models.Comments
+@{
+    var articleHelper = new ArticleHelper();
+    var userHelper = new UserHelper();
+    var commentList = articleHelper.GetCommentsByArticle(new Guid(Request.Params["Id"]));
+    }
+<div class="commentSection">
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-10" style="margin-left: -1.4em; margin: 0 auto; text-align: center; display: inline-block">
+                    @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
+                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" onclick="location.href='@Url.Action("_Comments", "Articles")'"/>
+                </div>
+            </div>
+            </div>
+            }
+    <hr/>
+    @foreach (var item in commentList) {
+        <div class="singleCommentSection">
+            <p>@userHelper.GetUserById(item.UserId).UserName</p>
+            <p>Date added: @item.DateOfCreation.ToShortDateString()</p>
+            <p>@item.Body</p>
+        </div>
+        <hr/>
+    }
+        </div>
+
+<script>
+    $('.articleEditorTextArea').trumbowyg();
+</script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

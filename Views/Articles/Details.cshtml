@@ -1,7 +1,10 @@
-﻿@model ComX_0._0._2.Models.Articles
+﻿@using ComX_0._0._2.Models
+@model ComX_0._0._2.Models.Articles
 
 @{
     ViewBag.Title = "Details";
+
+    var comments = new Comments();
 }
 <div class="topDetailPanel" style ="display: inline-block; width: 100%; height: auto">
     <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name) detail:</h2>
@@ -26,3 +29,4 @@
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
     </div>
+@Html.Action("_Comments")
