@@ -31,13 +31,11 @@ namespace ComX_0._0._2.Helpers {
 
         public List<SelectListItem> GetCategoriesToCombo() {
             var categoryList = new List<ArticleCategories>();
-            List<SelectListItem> listItems = new List<SelectListItem>();
+            var listItems = new List<SelectListItem>();
 
             categoryList = db.Categories.ToList();
-            foreach (var item in categoryList)
-            {
-                listItems.Add(new SelectListItem
-                {
+            foreach (var item in categoryList) {
+                listItems.Add(new SelectListItem {
                     Text = item.Name,
                     Value = item.Id.ToString()
                 });

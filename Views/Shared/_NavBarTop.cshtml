@@ -11,11 +11,6 @@
             </div>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    @Html.ActionLink("Articles", "Index", "Articles", new {area = ""}, new {@class = "navbar-brand"})
-                </li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (!string.IsNullOrEmpty(User.Identity.Name)) {
                     <li>

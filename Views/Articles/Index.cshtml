@@ -35,11 +35,14 @@ columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCr
 
 <div class="container">
     <div class="row" style="display:table">
-        @foreach (var item in Model) {
-            <div class="col-xs-6">
-                <h2>@item.Name</h2>
-                <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
-            </div>
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                <div class="col-xs-5" style="border: solid 2px blueviolet">
+                    <h2>@item.Name</h2>
+                    <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
+                </div>
+            </a>
         }
     </div>
 </div>
