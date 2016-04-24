@@ -6,26 +6,33 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Future Nekroplaza", "Index", "Articles", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="titleBar">
+                @Html.ActionLink("Future Nekroplaza", "Index", "Articles", new {area = ""}, new {@class = "navbar-brand", @style = "color:red;font-family:\'Walk This Way\';font-size:5em;"})
+            </div>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    @Html.ActionLink("Articles", "Index", "Articles", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("LogIn", "LogOn", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Articles", "Index", "Articles", new {area = ""}, new {@class = "navbar-brand"})
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if (!string.IsNullOrEmpty(User.Identity.Name))
-                {
+                @if (!string.IsNullOrEmpty(User.Identity.Name)) {
                     <li>
-                        @Html.ActionLink("Hello " + Membership.GetUser(User.Identity.Name, true) + "!", "Index", "Articles", routeValues: null, htmlAttributes: new { title = "Manage account of yours" })
+                        @Html.ActionLink("Hello " + Membership.GetUser(User.Identity.Name, true) + "!", "Index", "Articles", null, new {title = "Manage account of yours"})
                     </li>
-                        <li>
-                            @Html.ActionLink("ChangePassword", "ChangePassword", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                        </li>
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    <li>
+                        @Html.ActionLink("ChangePassword", "ChangePassword", "Account", new {area = ""}, new {@class = "navbar-brand"})
+                    </li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    </li>
+                }
+                else {
+                    <li>
+                        @Html.ActionLink("LogIn", "LogOn", "Account", new {area = ""}, new {@class = "navbar-brand"})
+                        @Html.ActionLink("Register", "Register", "Account", new {area = ""}, new {@class = "navbar-brand"})
+                    </li>
                 }
             </ul>
         </div>

@@ -1,9 +1,12 @@
-﻿@using GridMvc.Html
+﻿@using ComX_0._0._2.Helpers
+@using ComX_0._0._2.Models
+@using GridMvc.Html
 @using GridMvc.Sorting
 @model IEnumerable<ComX_0._0._2.Models.Articles>
 
 @{
     ViewBag.Title = "Index";
+    ArticleHelper articleHelper = new ArticleHelper();
 }
 
 <p>
@@ -19,7 +22,7 @@
 {
 columns.Add(o => o.Id, true);
 columns.Add(x => x.Name).SetWidth(750);
-columns.Add(x => x.CategoryId).SetWidth(80);
+//columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(articleHelper.GetCategoryById()).SetWidth(80);
 columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
 @*columns.Add()
     .Encoded(false)
@@ -31,7 +34,7 @@ columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCr
 
 
 <div class="container">
-    <div class="row">
+    <div class="row" style="display:table">
         @foreach (var item in Model) {
             <div class="col-xs-6">
                 <h2>@item.Name</h2>

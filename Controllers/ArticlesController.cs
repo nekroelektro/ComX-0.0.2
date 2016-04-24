@@ -14,6 +14,7 @@ namespace ComX_0._0._2.Controllers {
     public class ArticlesController : Controller {
         private readonly SiteDbContext db = new SiteDbContext();
         private readonly UserHelper userHelper = new UserHelper();
+        private readonly ArticleHelper articleHelper = new ArticleHelper();
         // GET: Articles
         public ActionResult Index() {
             return View(db.Articles.ToList());
@@ -33,8 +34,7 @@ namespace ComX_0._0._2.Controllers {
 
         // GET: Articles/Create
         public ActionResult Create() {
-            var categoryList = db.Categories.ToList();
-            ViewBag.CategoryList = categoryList;
+            ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             return View();
         }
 
@@ -67,6 +67,7 @@ namespace ComX_0._0._2.Controllers {
             if (articles == null) {
                 return HttpNotFound();
             }
+            ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             return View(articles);
         }
 
@@ -75,7 +76,7 @@ namespace ComX_0._0._2.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,Name,Prelude,Body,Category,DateCreated,DateEdited")] Articles article) {
+        public ActionResult Edit([Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article) {
             if (ModelState.IsValid) {
                 //Do poprawki, bo chujowizna straszna
                 var entity = db.Articles.Where(c => c.Id == article.Id).AsQueryable().FirstOrDefault();
@@ -84,6 +85,7 @@ namespace ComX_0._0._2.Controllers {
                     entity.Body = article.Body;
                     entity.Prelude = article.Prelude;
                     entity.DateEdited = DateTime.Now;
+                    entity.CategoryId = article.CategoryId;
                 }
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();

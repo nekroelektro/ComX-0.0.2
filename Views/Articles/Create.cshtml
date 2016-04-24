@@ -3,18 +3,6 @@
 @model ComX_0._0._2.Models.Articles
 @{
     ViewBag.Title = "Create";
-
-    var categoryList = new List<ArticleCategories>();
-    List<SelectListItem> listItems = new List<SelectListItem>();
-
-    categoryList = ViewBag.CategoryList;
-    foreach (var item in categoryList) {
-        listItems.Add(new SelectListItem {
-            Text = item.Name,
-            Value = item.Id.ToString()
-        });
-    }
-
 }
 
 <h2>Create new article</h2>
@@ -50,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-lg-10">
-                @Html.DropDownListFor(model => model.CategoryId, listItems)
+                @Html.DropDownListFor(model => model.CategoryId, new List<SelectListItem>(ViewBag.CategoryList))
                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
