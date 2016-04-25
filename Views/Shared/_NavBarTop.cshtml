@@ -20,7 +20,7 @@
                         @Html.ActionLink("ChangePassword", "ChangePassword", "Account", new {area = ""}, new {@class = "navbar-brand"})
                     </li>
                     <li>
-                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        @Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     </li>
                 }
                 else {
