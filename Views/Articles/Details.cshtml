@@ -1,10 +1,12 @@
-﻿@using ComX_0._0._2.Models
+﻿@using ComX_0._0._2.Helpers
+@using ComX_0._0._2.Models
 @model ComX_0._0._2.Models.Articles
 
 @{
     ViewBag.Title = "Details";
 
     var comments = new Comments();
+    var articleHelper = new ArticleHelper();
 }
 <div class="topDetailPanel" style ="display: inline-block; width: 100%; height: auto">
     <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name) detail:</h2>
@@ -26,6 +28,11 @@
 </div>
     <div class="articleDetail">
         <div style="border: solid black 1px;">
+            @if (articleHelper.GetImageByArticleId(Model.Id) != null){
+                <div class="articleMainImage"  style="width: 90%; text-align: center; margin: 0 auto;">
+                    <img src='@Url.Action("GetImage", "Articles", new {articleId = Model.Id})' style="max-width: 90%;text-align: center; margin: 0 auto;"/>
+                </div>
+            }
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
     </div>

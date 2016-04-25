@@ -45,12 +45,23 @@ namespace ComX_0._0._2.Helpers {
 
         public List<Comments> GetCommentsByArticle(Guid id) {
             var comments = db.Comments.Where(x => x.ArticleId == id);
-            return comments.ToList();
+            return comments.OrderByDescending(x=>x.DateOfCreation).ToList();
         }
 
         public List<Comments> GetCommentsByUser(Guid id) {
             var comments = db.Comments.Where(x => x.UserId == id);
             return comments.ToList();
+        }
+
+        public Images GetImageByArticleId(Guid articleId) {
+            var image = new Images();
+            try {
+                image = db.Images.First(x => x.ArticleId == articleId);
+                return image;
+            }
+            catch (Exception ex) {
+                return null;
+            }
         }
     }
 }

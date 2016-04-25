@@ -187,6 +187,7 @@
     <Content Include="Content\images\icons-black.png" />
     <Content Include="Content\images\icons-white-2x.png" />
     <Content Include="Content\images\icons-white.png" />
+    <Content Include="Content\imgContener\nekroplaza.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\trumbowyg.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1156,6 +1157,7 @@
     </Compile>
     <Compile Include="Helpers\ArticleHelper.cs" />
     <Compile Include="Helpers\ControlsHelper.cs" />
+    <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Interfaces\AccountMembershipService.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />
@@ -1211,6 +1213,18 @@
     <Compile Include="Migrations\201604231847244_init12.Designer.cs">
       <DependentUpon>201604231847244_init12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604251516565_Init13.cs" />
+    <Compile Include="Migrations\201604251516565_Init13.Designer.cs">
+      <DependentUpon>201604251516565_Init13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604251805561_Init14.cs" />
+    <Compile Include="Migrations\201604251805561_Init14.Designer.cs">
+      <DependentUpon>201604251805561_Init14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604251854160_Init15.cs" />
+    <Compile Include="Migrations\201604251854160_Init15.Designer.cs">
+      <DependentUpon>201604251854160_Init15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
@@ -1218,6 +1232,7 @@
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\CustomMembershipProvider.cs" />
     <Compile Include="Models\CustomRoleProvider.cs" />
+    <Compile Include="Models\Images.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\UserIdentity.cs" />
     <Compile Include="Models\UserRoles.cs" />
@@ -1296,6 +1311,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604231847244_init12.resx">
       <DependentUpon>201604231847244_init12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604251516565_Init13.resx">
+      <DependentUpon>201604251516565_Init13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604251805561_Init14.resx">
+      <DependentUpon>201604251805561_Init14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604251854160_Init15.resx">
+      <DependentUpon>201604251854160_Init15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

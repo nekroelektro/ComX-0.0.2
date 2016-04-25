@@ -11,6 +11,7 @@ namespace ComX_0._0._2.Database {
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<ArticleCategories> Categories { get; set; } 
         public DbSet<Comments> Comments { get; set; }
+        public DbSet<Images> Images { get; set; }
 
         public void AddUser(Users user) {
             user.Id = Guid.NewGuid();

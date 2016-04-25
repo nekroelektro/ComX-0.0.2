@@ -4,34 +4,42 @@
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
     var commentList = articleHelper.GetCommentsByArticle(new Guid(Request.Params["Id"]));
-    }
+}
 <div class="commentSection">
-    @using (Html.BeginForm()) {
+    @if (!string.IsNullOrEmpty(User.Identity.Name)) {
+        using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-10" style="margin-left: -1.4em; margin: 0 auto; text-align: center; display: inline-block">
-                    @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
-                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+            <div class="newCommentSection" style="text-align: center; margin: 0 auto;">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-10 center-block" style="display: inline-block; margin: 0 auto; text-align: center;float:none">
+                            @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
+                            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" onclick="location.href = '@Url.Action("_Comments", "Articles")'" />
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" onclick="location.href='@Url.Action("_Comments", "Articles")'"/>
-                </div>
-            </div>
-            </div>
-            }
+        }
+    }
     <hr/>
     @foreach (var item in commentList) {
-        <div class="singleCommentSection">
-            <p>@userHelper.GetUserById(item.UserId).UserName</p>
-            <p>Date added: @item.DateOfCreation.ToShortDateString()</p>
-            <p>@item.Body</p>
-        </div>
+        <div class="singleCommentSection" style="width: 100%; min-height: 5em;">
+            <div class="col-xs-2 commentFooter" style="border-right:solid black 1px">
+                <p>@userHelper.GetUserById(item.UserId).UserName</p>
+                <p>Date added: <br/> @item.DateOfCreation.ToString()</p>
+            </div>
+            <div class="col-xs-10 commentBody">
+                <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
+            </div>
+            </div>
         <hr/>
     }
-        </div>
+</div>
 
 <script>
     $('.articleEditorTextArea').trumbowyg();
