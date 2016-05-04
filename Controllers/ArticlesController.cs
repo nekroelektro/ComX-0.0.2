@@ -49,8 +49,6 @@ namespace ComX_0._0._2.Controllers {
         public ActionResult Create(
             [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article,
             HttpPostedFileBase upload) {
-            //Image to database!
-            //SEEMS TO WORK
             var validImageTypes = new[] {
                 "image/gif",
                 "image/jpeg",
@@ -58,12 +56,10 @@ namespace ComX_0._0._2.Controllers {
                 "image/png"
             };
 
-            //if (upload == null || upload.ContentLength == 0) {
-            //    ModelState.AddModelError("ImageUpload", "This field is required");
-            //}
-            //else if (!validImageTypes.Contains(upload.ContentType)) {
-            //    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-            //}
+            if (!validImageTypes.Contains(upload.ContentType))
+            {
+                ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+            }
             var articleIdentifier = Guid.NewGuid();
             var imgToUpload = new Images();
             if (upload != null)
@@ -93,21 +89,7 @@ namespace ComX_0._0._2.Controllers {
                 article.DateEdited = DateTime.Now;
                 article.UserId = userHelper.GetCurrentLoggedUserId();
                 db.Articles.Add(article);
-
-                //var image = new Images {
-                //    Id = Guid.NewGuid(),
-                //    ArticleId = article.Id,
-                //    DateOfChange = DateTime.Now
-                //};
-
-                //if (upload != null && upload.ContentLength > 0) {
-                //    var uploadDir = "~/Content/imgContener";
-                //    var imagePath = Path.Combine(Server.MapPath(uploadDir), upload.FileName);
-                //    var imageUrl = Path.Combine(uploadDir, upload.FileName);
-                //    upload.SaveAs(imagePath);
-                //    //image.ImageUrl = imageUrl;
-                //}
-                //db.Images.Add(image);
+                
                 db.Images.Add(imgToUpload);
 
                 db.SaveChanges();

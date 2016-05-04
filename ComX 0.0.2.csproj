@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\a02.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -183,11 +184,12 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\images\a02.png" />
     <Content Include="Content\images\icons-black-2x.png" />
     <Content Include="Content\images\icons-black.png" />
     <Content Include="Content\images\icons-white-2x.png" />
     <Content Include="Content\images\icons-white.png" />
-    <Content Include="Content\imgContener\nekroplaza.jpg" />
+    <Content Include="Content\images\loading.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\trumbowyg.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1141,6 +1143,7 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\jssor.slider.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\trumbowyg.min.js" />
     <Content Include="Web.config" />
@@ -1271,6 +1274,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\imgContener\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602241345449_Initial1.resx">

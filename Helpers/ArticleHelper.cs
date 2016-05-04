@@ -9,6 +9,11 @@ namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
         private readonly SiteDbContext db = new SiteDbContext();
 
+        public List<Articles> GetLastArticles(int number) {
+            var articles = db.Articles.OrderByDescending(x=>x.DateCreated).Take(number);
+            return articles.ToList();
+        }
+
         public Articles GetArticleById(Guid id) {
             var article = db.Articles.Find(id);
             return article;
