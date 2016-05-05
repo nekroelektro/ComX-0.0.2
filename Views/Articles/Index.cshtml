@@ -31,17 +31,21 @@
 }).WithPaging(20).Sortable(true).Filterable(true)
 
 
-<div class="container">
+<div class="container" id="pager">
     <div class="row" style="display: table">
-        @foreach (var item in Model) {
-            <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
-                <div class="col-xs-5" style="border: solid 2px blueviolet">
-                    <h2>@item.Name</h2>
-                    <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
-                </div>
-            </a>
-        }
+        <ul class="content">
+            @foreach (var item in Model) {
+                <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                    <div class="col-xs-5" style="border: solid 2px blueviolet">
+                        <h2>@item.Name</h2>
+                        <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
+                    </div>
+                </a>
+            }
+        </ul>
     </div>
+    <hr/>
+    <div class="page_navigation"></div>
 </div>
 
 <script>
@@ -49,6 +53,13 @@
         pageGrids.articleGrid.onRowSelect(function(e) {
             var rowArticleId = e.row.Id;
             window.location.href = '@Url.Action("Details", "Articles")?Id=' + rowArticleId;
+        });
+    });
+
+    $(document).ready(function() {
+        $('#pager').pajinate({
+            num_page_links_to_display: 3,
+            items_per_page: 2
         });
     });
 </script>

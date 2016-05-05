@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
@@ -15,8 +12,8 @@ namespace ComX_0._0._2.Controllers {
     public class ArticlesController : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly SiteDbContext db = new SiteDbContext();
-        private readonly UserHelper userHelper = new UserHelper();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
+        private readonly UserHelper userHelper = new UserHelper();
         // GET: Articles
         public ActionResult Index() {
             return View(db.Articles.ToList());
@@ -49,48 +46,28 @@ namespace ComX_0._0._2.Controllers {
         public ActionResult Create(
             [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article,
             HttpPostedFileBase upload) {
-            var validImageTypes = new[] {
-                "image/gif",
-                "image/jpeg",
-                "image/pjpeg",
-                "image/png"
-            };
-
-            if (!validImageTypes.Contains(upload.ContentType))
-            {
-                ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-            }
             var articleIdentifier = Guid.NewGuid();
-            var imgToUpload = new Images();
-            if (upload != null)
-            {
-                using (Image img = Image.FromStream(upload.InputStream))
-                {
-                    byte[] file = new byte[upload.InputStream.Length];
-                    BinaryReader reader = new BinaryReader(upload.InputStream);
-                    upload.InputStream.Seek(0, SeekOrigin.Begin);
-
-                    file = reader.ReadBytes((int)upload.InputStream.Length);
-
-                    imgToUpload.Id = Guid.NewGuid();
-                    imgToUpload.ArticleId = articleIdentifier;
-                    imgToUpload.Source = file;
-                    imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                    imgToUpload.FileSize = upload.ContentLength;
-                    imgToUpload.FileFormat = upload.ContentType;
-                    imgToUpload.OriginalWidth = img.Width;
-                    imgToUpload.OriginalHeight = img.Height;
-                    imgToUpload.DateOfChange = DateTime.Now;
+            if (upload != null) {
+                var validImageTypes = new[] {
+                    "image/gif",
+                    "image/jpeg",
+                    "image/pjpeg",
+                    "image/png"
+                };
+                if (!validImageTypes.Contains(upload.ContentType)) {
+                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                }
+                else {
+                    articleHelper.UploadImageForArticle(articleIdentifier, upload);
                 }
             }
+
             if (ModelState.IsValid) {
                 article.Id = articleIdentifier;
                 article.DateCreated = DateTime.Now;
                 article.DateEdited = DateTime.Now;
                 article.UserId = userHelper.GetCurrentLoggedUserId();
                 db.Articles.Add(article);
-                
-                db.Images.Add(imgToUpload);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -118,7 +95,22 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article) {
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article,
+            HttpPostedFileBase upload) {
+            if (upload != null) {
+                var validImageTypes = new[] {
+                    "image/gif",
+                    "image/jpeg",
+                    "image/pjpeg",
+                    "image/png"
+                };
+                if (!validImageTypes.Contains(upload.ContentType)) {
+                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                }
+                else {
+                    articleHelper.UploadImageForArticle(article.Id, upload);
+                }
+            }
             if (ModelState.IsValid) {
                 //Do poprawki, bo chujowizna straszna
                 var entity = db.Articles.Where(c => c.Id == article.Id).AsQueryable().FirstOrDefault();
@@ -212,6 +204,12 @@ namespace ComX_0._0._2.Controllers {
                 return File(img.Source, img.FileFormat);
             }
             return null;
+        }
+
+        public ActionResult DeleteImage(Guid articleId) {
+            articleHelper.DeleteImageForGivenArticle(articleId);
+            ViewBag.ArticleId = articleId;
+            return RedirectToAction("Edit", new {id = articleId});
         }
     }
 }

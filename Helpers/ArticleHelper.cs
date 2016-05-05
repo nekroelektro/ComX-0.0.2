@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Models;
@@ -8,9 +11,10 @@ using ComX_0._0._2.Models;
 namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
         private readonly SiteDbContext db = new SiteDbContext();
+        private readonly GeneralHelper generalHelper = new GeneralHelper();
 
         public List<Articles> GetLastArticles(int number) {
-            var articles = db.Articles.OrderByDescending(x=>x.DateCreated).Take(number);
+            var articles = db.Articles.OrderByDescending(x => x.DateCreated).Take(number);
             return articles.ToList();
         }
 
@@ -50,12 +54,37 @@ namespace ComX_0._0._2.Helpers {
 
         public List<Comments> GetCommentsByArticle(Guid id) {
             var comments = db.Comments.Where(x => x.ArticleId == id);
-            return comments.OrderByDescending(x=>x.DateOfCreation).ToList();
+            return comments.OrderByDescending(x => x.DateOfCreation).ToList();
         }
 
         public List<Comments> GetCommentsByUser(Guid id) {
             var comments = db.Comments.Where(x => x.UserId == id);
             return comments.ToList();
+        }
+
+        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload) {
+            var imgToUpload = new Images();
+            if (upload != null) {
+                using (var img = Image.FromStream(upload.InputStream)) {
+                    var file = new byte[upload.InputStream.Length];
+                    var reader = new BinaryReader(upload.InputStream);
+                    upload.InputStream.Seek(0, SeekOrigin.Begin);
+
+                    file = reader.ReadBytes((int) upload.InputStream.Length);
+
+                    imgToUpload.Id = Guid.NewGuid();
+                    imgToUpload.ArticleId = articleIdentifier;
+                    imgToUpload.Source = file;
+                    imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                    imgToUpload.FileSize = upload.ContentLength;
+                    imgToUpload.FileFormat = upload.ContentType;
+                    imgToUpload.OriginalWidth = img.Width;
+                    imgToUpload.OriginalHeight = img.Height;
+                    imgToUpload.DateOfChange = DateTime.Now;
+                }
+            }
+            db.Images.Add(imgToUpload);
+            db.SaveChanges();
         }
 
         public Images GetImageByArticleId(Guid articleId) {
@@ -67,6 +96,12 @@ namespace ComX_0._0._2.Helpers {
             catch (Exception ex) {
                 return null;
             }
+        }
+
+        public void DeleteImageForGivenArticle(Guid articleId) {
+            var articleToDelete = db.Images.First(x => x.ArticleId == articleId);
+            db.Images.Remove(articleToDelete);
+            db.SaveChanges();
         }
     }
 }
