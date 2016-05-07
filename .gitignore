@@ -30,3 +30,10 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 Debug/
+bin/ComX 0.0.2.dll
+bin/ComX 0.0.2.pdb
+obj/Debug/ComX 0.0.2.csproj.FileListAbsolute.txt
+obj/Debug/ComX 0.0.2.csproj.GenerateResource.Cache
+obj/Debug/ComX 0.0.2.csprojResolveAssemblyReference.cache
+obj/Debug/ComX 0.0.2.dll
+obj/Debug/ComX 0.0.2.pdb
