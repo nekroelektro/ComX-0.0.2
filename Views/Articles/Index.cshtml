@@ -6,6 +6,7 @@
 @{
     ViewBag.Title = "Index";
     var articleHelper = new ArticleHelper();
+    var userHelper = new UserHelper();
 }
 
 <p>
@@ -31,21 +32,44 @@
 }).WithPaging(20).Sortable(true).Filterable(true)
 
 
-<div class="container" id="pager">
-    <div class="row" style="display: table">
-        <ul class="content">
-            @foreach (var item in Model) {
-                <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
-                    <div class="col-xs-5" style="border: solid 2px blueviolet">
-                        <h2>@item.Name</h2>
-                        <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
-                    </div>
-                </a>
+<div id="pager" style="width:100%">
+    <div class="grid" style="width: 100%">
+        <ul class="content" style="padding-left: 0; margin-left: 0;">
+            @foreach (var item in Model){
+                <div class="indexElement">
+                    <div class="singleIndexArticle">
+                        <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                            @if (articleHelper.GetImageByArticleId(item.Id) != null) {
+                                <div class="indexArticleImage">
+                                    <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="max-width: 100%; text-align: center; margin: 0 auto;"/>
+                                </div>
+                            }
+                            <div class="indexArticleText">
+                                <div class="indexArticleTitle">
+                                    <h2>@item.Name</h2>
+                                    <div class="indexArticleDate">
+                                        <p>Added: @item.DateCreated</p>
+                                    </div>
+                                </div>
+                                <hr style="border-color: crimson"/>
+                            </div>
+                        </a>
+                                <div class="indexArticleText">
+                                    <div class="indexArticleBody">
+                                        <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
+                                    </div>
+                                </div>
+                            <div class="indexArticleFooter">
+                                <p>by @userHelper.GetUserById(item.UserId).UserName</p>
+                            </div>
+</div>
+                </div>
             }
         </ul>
-    </div>
+</div>
     <hr/>
-    <div class="page_navigation"></div>
+    <p>
+        <div class="page_navigation"></div>
 </div>
 
 <script>
@@ -56,10 +80,35 @@
         });
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
+        // PACKERY
+        var $grid = $('.grid').packery({
+            // options
+            itemSelector: '.singleIndexArticle',
+            gutter: 13,
+            percentPosition: true,
+            transitionDuration: '0.1s'
+        });
+
+
+        $grid.imagesLoaded().progress(function () {
+            $grid.packery();
+        });
+
+
         $('#pager').pajinate({
             num_page_links_to_display: 3,
-            items_per_page: 2
+            items_per_page: 10
+        });
+        
+        $(".page_navigation a").click(function () {
+            $grid.packery();
+        });
+
+        $('.grid').jscroll({
+            padding: 20,
+            nextSelector: 'a.next_link',
+            contentSelector: '.singleIndexArticle'
         });
     });
 </script>

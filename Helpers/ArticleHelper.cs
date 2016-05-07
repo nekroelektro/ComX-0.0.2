@@ -99,9 +99,13 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public void DeleteImageForGivenArticle(Guid articleId) {
-            var articleToDelete = db.Images.First(x => x.ArticleId == articleId);
-            db.Images.Remove(articleToDelete);
+            var imageToDelete = db.Images.First(x => x.ArticleId == articleId);
+            db.Images.Remove(imageToDelete);
             db.SaveChanges();
+        }
+
+        public void GetNextCoupleArticlesForIndex() {
+            var listOfArticles = db.Articles.OrderByDescending(x => x.DateCreated).ToList();
         }
     }
 }

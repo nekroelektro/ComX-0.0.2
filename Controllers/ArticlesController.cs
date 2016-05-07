@@ -16,7 +16,7 @@ namespace ComX_0._0._2.Controllers {
         private readonly UserHelper userHelper = new UserHelper();
         // GET: Articles
         public ActionResult Index() {
-            return View(db.Articles.ToList());
+            return View(db.Articles.OrderByDescending(x=>x.DateCreated).ToList());
         }
 
         // GET: Articles/Details/5

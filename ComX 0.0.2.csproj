@@ -232,6 +232,7 @@
     <Content Include="scripts\bootstrap-datepicker.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\draggabilly.pkgd.min.js" />
     <Content Include="scripts\errors.json" />
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\angular-touch.min.js.map" />
@@ -384,6 +385,7 @@
     <Content Include="Content\less\mixins\text-overflow.less" />
     <Content Include="Content\less\datepicker.less" />
     <None Include="scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="scripts\imagesloaded.pkgd.min.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
@@ -1139,6 +1141,8 @@
     <Content Include="scripts\jquery-2.2.0.min.js" />
     <Content Include="scripts\jquery-2.2.0.min.map" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.jscroll.min.js" />
+    <Content Include="scripts\jquery.layout.balancer.js" />
     <Content Include="scripts\jquery.pajinate.min.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
@@ -1146,6 +1150,7 @@
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\jssor.slider.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\packery.pkgd.min.js" />
     <Content Include="scripts\trumbowyg.min.js" />
     <Content Include="Web.config" />
     <Content Include="scripts\version.json" />
