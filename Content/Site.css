@@ -70,7 +70,7 @@ textarea {
 
 .singleIndexArticle a:hover {
     text-decoration: none;
-    
+    outline: 0;
 }
 
 .indexArticleImage {
@@ -94,6 +94,7 @@ textarea {
 
 .indexArticleBody {
     text-align: justify;
+    text-indent: 0.9em;
 }
 
 .indexArticleFooter {

@@ -198,6 +198,10 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
+        public ActionResult _IndexSlider(){
+            return PartialView("_IndexSlider");
+        }
+
         public ActionResult GetImage(string articleId) {
             var img = articleHelper.GetImageByArticleId(new Guid(articleId));
             if (img != null) {

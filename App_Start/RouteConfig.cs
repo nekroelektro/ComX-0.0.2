@@ -16,7 +16,7 @@ namespace ComX_0._0._2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Comics", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "NekroPlaza", action = "Index666", id = UrlParameter.Optional }
             );
         }
     }
