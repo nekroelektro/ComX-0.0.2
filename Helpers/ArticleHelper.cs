@@ -54,7 +54,10 @@ namespace ComX_0._0._2.Helpers {
 
         public List<Comments> GetCommentsByArticle(Guid id) {
             var comments = db.Comments.Where(x => x.ArticleId == id);
-            return comments.OrderByDescending(x => x.DateOfCreation).ToList();
+            if (comments.Count() != 0) {
+                return comments.OrderByDescending(x => x.DateOfCreation).ToList();
+            }
+            return null;
         }
 
         public List<Comments> GetCommentsByUser(Guid id) {

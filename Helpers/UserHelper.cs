@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Web.Security;
 using ComX_0._0._2.Database;
@@ -12,7 +13,7 @@ using ComX_0._0._2.Models;
 namespace ComX_0._0._2.Helpers {
     public class UserHelper : Controller {
         private readonly SiteDbContext db = new SiteDbContext();
-
+        private readonly ArticleHelper articleHelper = new ArticleHelper();
         public Guid GetCurrentLoggedUserId() {
             var membershipUser = Membership.GetUser();
             var user = membershipUser.ProviderUserKey.ToString();
@@ -43,6 +44,28 @@ namespace ComX_0._0._2.Helpers {
                 }               
                 db.SaveChanges();
             }
+        }
+
+        public byte[] GetAvatarByUserId(Guid userId) {
+            try {
+                var user = this.GetUserById(userId);
+                var avatar = user.Avatar;
+                return avatar;
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
+
+        public bool CheckIfLastCommentWasSameUser(Guid userId, Guid articleId) {
+            var lastCommentForArticle = articleHelper.GetCommentsByArticle(articleId);
+            if (lastCommentForArticle != null) {
+                var lastComment = lastCommentForArticle.First();
+                if (lastComment.UserId == userId) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

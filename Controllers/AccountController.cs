@@ -181,8 +181,7 @@ namespace ComX_0._0._2.Controllers {
 
         public ActionResult GetAvatar(Guid userId) {
             try {
-                var user = userHelper.GetUserById(userId);
-                var avatar = user.Avatar;
+                var avatar = userHelper.GetAvatarByUserId(userId);
                 return File(avatar, "image/jpeg");
             }
             catch (Exception ex) {

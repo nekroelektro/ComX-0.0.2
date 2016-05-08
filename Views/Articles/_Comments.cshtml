@@ -6,17 +6,21 @@
     var commentList = articleHelper.GetCommentsByArticle(new Guid(Request.Params["Id"]));
 }
 <div class="commentSection">
-    @if (!string.IsNullOrEmpty(User.Identity.Name)) {
-        using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    @if (!string.IsNullOrEmpty(User.Identity.Name))
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
             <div class="newCommentSection" style="text-align: center; margin: 0 auto;">
                 <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-md-10 center-block" style="display: inline-block; margin: 0 auto; text-align: center;float:none">
+                    <div class="form-group" style="background: linear-gradient(to top, white, #222,white);">
+                        <div class="col-md-8 center-block" style="display: inline-block; margin: 0 auto; text-align: center; float: none">
                             @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
-                            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
                         </div>
                     </div>
+                    @Html.ValidationMessage("EmptyComment", new { @style = "color: red" })
+                    @Html.ValidationMessage("TwoComments", new { @style = "color: red" })
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Create" class="btn btn-default" onclick="location.href = '@Url.Action("_Comments", "Articles")'" />
@@ -26,19 +30,27 @@
             </div>
         }
     }
-    <hr/>
-    @foreach (var item in commentList) {
-        <div class="singleCommentSection" style="width: 100%; min-height: 5em;">
-            <div class="col-xs-2 commentFooter" style="border-right:solid black 1px">
-                <p>@userHelper.GetUserById(item.UserId).UserName</p>
-                <p>Date added: <br/> @item.DateOfCreation.ToString()</p>
-            </div>
-            <div class="col-xs-10 commentBody">
-                <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
-            </div>
-            </div>
-        <hr/>
-    }
+    <hr />
+    <div class="addedCommentsSection">
+        @if (commentList != null) {
+            foreach (var item in commentList) {
+                 var currentUser = userHelper.GetUserById(item.UserId);
+                 <div class="singleCommentSection col-xs-10" style="width: 100%; min-height: 9em; border: 2px solid #222">
+                     <div class="col-xs-2 commentFooter" style="border-right: solid black 1px">
+                         <p>@currentUser.UserName</p>
+                         @if (userHelper.GetAvatarByUserId(currentUser.Id) != null) {
+                             <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 80%; text-align: center; margin: 0 auto;"/>
+                         }
+                         <p>Date added: <br/> @item.DateOfCreation.ToString()</p>
+                     </div>
+                     <div class="col-xs-10 commentBody">
+                         <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
+                     </div>
+                 </div>
+                 <hr/>
+             }
+        }
+    </div>
 </div>
 
 <script>

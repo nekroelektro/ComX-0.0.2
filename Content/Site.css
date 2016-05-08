@@ -23,7 +23,7 @@ img {
     height: 100%;
     padding-bottom: 3em;
     padding-top: 2em;
-    box-shadow: 0 2px 4px 0 white, 0 3px 10px 0 whitesmoke;
+    /*box-shadow: 0 2px 4px 0 white, 0 3px 10px 0 whitesmoke;*/
 }
 
 /* Set width on the form input elements since they're 100% wide by default */

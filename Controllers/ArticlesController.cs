@@ -168,14 +168,21 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult _Comments(Comments comment) {
-            if (ModelState.IsValid) {
+        public ActionResult _Comments(Comments comment){
+            var currentArticle = Request.Params["Id"];
+            var artId = new Guid(currentArticle);
+            var userId = userHelper.GetCurrentLoggedUserId();
+            if (string.IsNullOrEmpty(comment.Body)) {
+                ModelState.AddModelError("EmptyComment", "You cannot add an empty comment, dumbshit!");
+            }
+            if (userHelper.CheckIfLastCommentWasSameUser(userId, artId)) {
+                ModelState.AddModelError("TwoComments", "You cannot add two comments in the row, douche!");
+            }
+            else if (ModelState.IsValid) {
                 comment.Id = Guid.NewGuid();
-                comment.UserId = userHelper.GetCurrentLoggedUserId();
+                comment.UserId = userId;
                 comment.DateOfCreation = DateTime.Now;
 
-                var currentArticle = Request.Params["Id"];
-                var artId = new Guid(currentArticle);
 
                 comment.ArticleId = artId;
 
