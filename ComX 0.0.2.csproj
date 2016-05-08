@@ -1147,6 +1147,7 @@
     <Content Include="scripts\jquery.jscroll.min.js" />
     <Content Include="scripts\jquery.layout.balancer.js" />
     <Content Include="scripts\jquery.pajinate.min.js" />
+    <Content Include="scripts\jquery.slimscroll.min.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />

@@ -8,6 +8,10 @@
     position: relative;
 }
 
+img {
+    /*image-orientation: from-image;*/
+}
+
 /* Set padding to keep content from hitting the edges */
 .bodyLayout {
     margin: 0 auto;
@@ -28,6 +32,32 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*INDEX SLIDER*/
+
+.slideElementDown {
+    border-top: 0.7em solid black;
+    border-bottom: 0.7em solid black
+}
+
+.slideElementDown:hover {
+    border-top: 0.7em solid white;
+    border-bottom: 0.7em solid white;
+}
+
+.sliderLink {
+    color: white;
+}
+
+.sliderLink:hover {
+    color: crimson;
+}
+
+.sliderLink:hover hr {
+    border-color: crimson;
+}
+
+
 
 /* INDEX PAGINATION*/
 
@@ -63,7 +93,7 @@ textarea {
 
 .singleIndexArticle {
     box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
-    width: 32.5%;
+    width: 31.5%;
     overflow: hidden;
     font-family: 'Amarante', sans-serif;
 }
@@ -126,3 +156,10 @@ textarea {
     height: 3em;
 }
 
+.bottomFooter:hover {
+    color: red;
+}
+
+.bottomFooter p {
+    padding-top: 0.7em;
+}

@@ -72,7 +72,7 @@ namespace ComX_0._0._2.Controllers {
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             return View(article);
         }
 

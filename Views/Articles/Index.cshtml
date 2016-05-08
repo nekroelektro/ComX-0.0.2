@@ -8,31 +8,35 @@
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
 }
-<p>
-    <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
-    </button>
-    <button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("Categories", "Articles")'">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add category
-    </button>
-</p>
+<div style="display: none">
+    <p>
+        <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
+        </button>
+        <button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("Categories", "Articles")'">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add category
+        </button>
+    </p>
 
-@Html.Grid(Model).Named("articleGrid").Columns(columns => {
-    columns.Add(o => o.Id, true);
-    columns.Add(x => x.Name).SetWidth(750);
+    @Html.Grid(Model).Named("articleGrid").Columns(columns =>
+{
+columns.Add(o => o.Id, true);
+columns.Add(x => x.Name).SetWidth(750);
 //columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(articleHelper.GetCategoryById()).SetWidth(80);
-    columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
-@*columns.Add()
-    .Encoded(false)
-    .Sanitized(false)
-    .RenderValueAs(o => @<button type="button" class="btn btn-danger .btn-sm" onclick="location.href='@Url.Action("Delete", "Articles", new {Id = o.Id})'">
-        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" style="font-size: 0.7em"></span>
-    </button>);*@
+columns.Add(x => x.DateCreated).Titled("Date added").RenderValueAs(x => x.DateCreated.ToShortDateString()).SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
+    @*columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(o => @<button type="button" class="btn btn-danger .btn-sm" onclick="location.href='@Url.Action("Delete", "Articles", new {Id = o.Id})'">
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" style="font-size: 0.7em"></span>
+        </button>);*@
 }).WithPaging(20).Sortable(true).Filterable(true)
+</div>
 
 
-<div id="pager" style="width:100%">
-    <div class="grid" style="width: 100%">
+
+<div id="pager" style="width: 100%;">
+    <div class="grid" style="width: 100%; margin-left: 1.7%;">
         <ul class="content" style="padding-left: 0; margin-left: 0;">
             @foreach (var item in Model){
                 <div class="indexElement">
@@ -40,7 +44,7 @@
                         <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
                             @if (articleHelper.GetImageByArticleId(item.Id) != null) {
                                 <div class="indexArticleImage">
-                                    <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="max-width: 100%; text-align: center; margin: 0 auto;"/>
+                                    <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="width: 100%; text-align: center; margin: 0 auto;"/>
                                 </div>
                             }
                             <div class="indexArticleText">

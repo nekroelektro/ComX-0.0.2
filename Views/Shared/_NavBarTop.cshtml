@@ -12,6 +12,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
+                    </button>
+                </li>
                 @if (!string.IsNullOrEmpty(User.Identity.Name)) {
                     <li>
                         @Html.ActionLink("Hello " + Membership.GetUser(User.Identity.Name, true) + "!", "Index", "Articles", null, new {title = "Manage account of yours"})
@@ -20,7 +25,7 @@
                         @Html.ActionLink("ChangePassword", "ChangePassword", "Account", new {area = ""}, new {@class = "navbar-brand"})
                     </li>
                     <li>
-                        @Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Log off", "LogOff", "Account", new {area = ""}, new {@class = "navbar-brand"})
                     </li>
                 }
                 else {
