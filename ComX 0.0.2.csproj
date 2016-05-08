@@ -1239,6 +1239,14 @@
     <Compile Include="Migrations\201604251854160_Init15.Designer.cs">
       <DependentUpon>201604251854160_Init15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605081126432_init16.cs" />
+    <Compile Include="Migrations\201605081126432_init16.Designer.cs">
+      <DependentUpon>201605081126432_init16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605081202539_init17.cs" />
+    <Compile Include="Migrations\201605081202539_init17.Designer.cs">
+      <DependentUpon>201605081202539_init17.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
@@ -1277,6 +1285,7 @@
     <Content Include="Views\Articles\Categories.cshtml" />
     <Content Include="Views\Articles\_Comments.cshtml" />
     <Content Include="Views\Shared\_IndexSlider.cshtml" />
+    <Content Include="Views\Account\UserPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1335,6 +1344,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604251854160_Init15.resx">
       <DependentUpon>201604251854160_Init15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605081126432_init16.resx">
+      <DependentUpon>201605081126432_init16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605081202539_init17.resx">
+      <DependentUpon>201605081202539_init17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

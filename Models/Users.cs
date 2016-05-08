@@ -13,6 +13,9 @@ namespace ComX_0._0._2.Models {
         [DataType(DataType.EmailAddress)]
         public string UserEmail { get; set; }
 
+        public DateTime? DateOfCreation { get; set; }
+        public byte[] Avatar { get; set; }
+
         public virtual ICollection<UserRoles> UserRoles { get; set; } 
     }
 }

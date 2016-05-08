@@ -79,7 +79,7 @@ namespace ComX_0._0._2.Models {
             var user = GetUser(username, true);
 
             if (user == null) {
-                var userObj = new Users {Id = new Guid(), UserName = username, Password = GetMd5Hash(password), UserEmail = email};
+                var userObj = new Users {Id = new Guid(), DateOfCreation = DateTime.Now, UserName = username, Password = GetMd5Hash(password), UserEmail = email};
 
                 using (var usersContext = new SiteDbContext()) {
                     usersContext.AddUser(userObj);

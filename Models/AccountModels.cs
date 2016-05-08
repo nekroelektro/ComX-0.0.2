@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ComX_0._0._2.Models {
     public class ChangePasswordModel {
@@ -53,5 +54,8 @@ namespace ComX_0._0._2.Models {
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public DateTime DateOfCreation { get; set; }
+        public byte[] Avatar { get; set; }
     }
 }

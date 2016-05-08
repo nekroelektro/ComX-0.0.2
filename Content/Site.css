@@ -163,3 +163,8 @@ textarea {
 .bottomFooter p {
     padding-top: 0.7em;
 }
+
+/*USER PANEL*/
+.userPanelContainer {
+    font-family: 'Amarante', sans-serif;
+}

@@ -91,7 +91,6 @@ namespace ComX_0._0._2.Helpers {
             var image = new Images();
             try {
                 image = db.Images.First(x => x.ArticleId == articleId);
-                //var fixedImage = generalHelper.FixImageOrientation(image.Source);
                 return image;
             }
             catch (Exception ex) {

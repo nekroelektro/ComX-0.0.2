@@ -3,13 +3,17 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using System.Linq;
 using ComX_0._0._2.Database;
+using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Interfaces;
 using ComX_0._0._2.Models;
 
 namespace ComX_0._0._2.Controllers {
     public class AccountController : Controller {
         public IMembershipService MembershipService { get; set; }
+
+        private readonly UserHelper userHelper = new UserHelper();
 
         protected override void Initialize(RequestContext requestContext) {
             if (MembershipService == null) {
@@ -129,6 +133,33 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
+        public ActionResult UserPanel() {
+            var user = userHelper.GetUserById(userHelper.GetCurrentLoggedUserId());
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddAvatar(HttpPostedFileBase avatar) {
+            if (avatar != null)
+            {
+                var validImageTypes = new[] {
+                    "image/gif",
+                    "image/jpeg",
+                    "image/pjpeg",
+                    "image/png"
+                };
+                if (!validImageTypes.Contains(avatar.ContentType))
+                {
+                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                }
+                else {
+                    userHelper.UploadAvatarForUser(userHelper.GetCurrentLoggedUserId(), avatar);
+                }
+            }
+            return RedirectToAction("UserPanel");
+        }
+
         private Users SetupFormsAuthTicket(string userName, bool persistanceFlag) {
             Users user;
             using (var usersContext = new SiteDbContext()) {
@@ -146,6 +177,17 @@ namespace ComX_0._0._2.Controllers {
             var encTicket = FormsAuthentication.Encrypt(authTicket);
             Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
             return user;
+        }
+
+        public ActionResult GetAvatar(Guid userId) {
+            try {
+                var user = userHelper.GetUserById(userId);
+                var avatar = user.Avatar;
+                return File(avatar, "image/jpeg");
+            }
+            catch (Exception ex) {
+                return null;
+            }
         }
 
         #region Status Codes
