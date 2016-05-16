@@ -32,14 +32,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Prelude, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" style="margin-left: -0.5em; width:33%">
-                @Html.Custom_DivFor(model => model.Prelude, "form-control articleEditorTextArea")
+                @Html.Custom_DivFor(model => model.Prelude, "form-control articleEditorTextAreaPrelude")
                 @Html.ValidationMessageFor(model => model.Prelude, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Body, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10" style="margin-left: -1.4em;">
-                @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
+                @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextAreaBody")
                 @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
             </div>
         </div>
@@ -62,7 +62,8 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 <script>
-    $('.articleEditorTextArea').trumbowyg();
+    $('.articleEditorTextAreaBody').trumbowyg();
+    $('.articleEditorTextAreaPrelude').trumbowyg();
 </script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

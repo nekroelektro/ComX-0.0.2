@@ -3,7 +3,9 @@
 @{
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
-    var commentList = articleHelper.GetCommentsByArticle(new Guid(Request.Params["Id"]));
+    string comId = "";
+    var artId = new Guid(Request.Params["Id"]);
+    var commentList = articleHelper.GetCommentsByArticle(artId);
 }
 <div class="commentSection">
     @if (!string.IsNullOrEmpty(User.Identity.Name))
@@ -31,31 +33,77 @@
         }
     }
     <hr />
-    <div class="addedCommentsSection">
+    <div class="addedCommentsSection col-xs-12">
         @if (commentList != null) {
             foreach (var item in commentList) {
                  var currentUser = userHelper.GetUserById(item.UserId);
-                 <div class="singleCommentSection col-xs-10" style="width: 100%; min-height: 9em; border: 2px solid #222">
-                     <div class="col-xs-2 commentFooter" style="border-right: solid black 1px">
+                 <div class="singleCommentSection col-xs-10 col-xs-offset-1">
+                     <div class="col-xs-2 commentFooter" style="height: 100%; border-right: solid black 1px; background-color: #222; color: white;">
                          <p>@currentUser.UserName</p>
                          @if (userHelper.GetAvatarByUserId(currentUser.Id) != null) {
                              <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 80%; text-align: center; margin: 0 auto;"/>
                          }
                          <p>Date added: <br/> @item.DateOfCreation.ToString()</p>
                      </div>
-                     <div class="col-xs-10 commentBody">
+                     <div class="col-xs-9 commentBody" style="height: 100%;">
                          <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
                      </div>
+                     <div class="col-xs-1 commentOptions" style="height: 100%;">
+                         <button type="button" class="btn btn-danger .btn-sm popupCommentDelete" data-id ="@item.Id" data-art ="@artId" href="#test-modal" style="padding-top: 1em; padding-right: 1em;">
+                             <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                         </button>
+                     </div>
+
+                     <div id="test-modal" class="mfp-hide white-popup">
+                         <p>Potwierdź</p>
+                         <hr/>
+                         <p>Czy na bank chcesz usunąć swój komentarz?</p>
+                         <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId" >
+                             Ta!
+                         </button>
+                         <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+                     </div>
                  </div>
-                 <hr/>
              }
         }
     </div>
 </div>
 
 <script>
-    $('.articleEditorTextArea').trumbowyg();
+    jQuery(document).ready(function($) {
+        var comIdentificator;
+        var artIdentificator;
+        $('.articleEditorTextArea').trumbowyg();
+        $('.popupCommentDelete').magnificPopup({
+            type: 'inline',
+            preloader: false,
+            modal: true
+        });
+        $('.popupCommentDelete').click(function() {
+            comIdentificator = $(this).data('id').toString();
+            artIdentificator = $(this).data('art').toString();
+            @*@comId = comIdentificator;*@
+            console.log(comIdentificator);
+        });
+        $(document).on('click', '.btnConfirmDeletion', function(e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+            window.location.href = '@Url.Action("DeleteComment", "Articles")?commentId='+comIdentificator+'&articleId='+artIdentificator;
+        });
+        $(document).on('click', '.btnCancelDeletion', function (e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+        });
+    });
 </script>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<style>
+    .white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 40px;
+  width: auto;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+</style>

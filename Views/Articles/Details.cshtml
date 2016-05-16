@@ -27,7 +27,7 @@
     </div>
 </div>
     <div class="articleDetail">
-        <div style="border: solid black 1px;">
+        <div style="">
             @if (articleHelper.GetImageByArticleId(Model.Id) != null){
                 <div class="articleMainImage"  style="width: 90%; text-align: center; margin: 0 auto;">
                     <img src='@Url.Action("GetImage", "Articles", new {articleId = Model.Id})' style="max-width: 90%;text-align: center; margin: 0 auto;"/>

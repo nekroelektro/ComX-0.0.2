@@ -86,6 +86,7 @@ namespace ComX_0._0._2.Controllers {
                 return HttpNotFound();
             }
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
+            ViewBag.ArticleIdentificator = id;
             return View(articles);
         }
 
@@ -202,11 +203,18 @@ namespace ComX_0._0._2.Controllers {
                 db.SaveChanges();
                 return View();
             }
-            return View();
+            return PartialView("_Comments");
         }
 
         public ActionResult _IndexSlider(){
             return PartialView("_IndexSlider");
+        }
+
+        public ActionResult DeleteComment(string commentId, string articleId) {
+            var commentToDelete = db.Comments.Find(new Guid(commentId));
+            db.Comments.Remove(commentToDelete);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         public ActionResult GetImage(string articleId) {

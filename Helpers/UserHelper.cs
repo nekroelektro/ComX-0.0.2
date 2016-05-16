@@ -59,7 +59,7 @@ namespace ComX_0._0._2.Helpers {
 
         public bool CheckIfLastCommentWasSameUser(Guid userId, Guid articleId) {
             var lastCommentForArticle = articleHelper.GetCommentsByArticle(articleId);
-            if (lastCommentForArticle != null) {
+            if (lastCommentForArticle.Count > 0) {
                 var lastComment = lastCommentForArticle.First();
                 if (lastComment.UserId == userId) {
                     return true;

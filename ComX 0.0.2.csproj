@@ -191,6 +191,7 @@
     <Content Include="Content\images\icons-white-2x.png" />
     <Content Include="Content\images\icons-white.png" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\slick-theme.css" />
     <Content Include="Content\slick.css" />
@@ -1146,6 +1147,7 @@
     <None Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.jscroll.min.js" />
     <Content Include="scripts\jquery.layout.balancer.js" />
+    <Content Include="scripts\jquery.magnific-popup.min.js" />
     <Content Include="scripts\jquery.pajinate.min.js" />
     <Content Include="scripts\jquery.slimscroll.min.js" />
     <Content Include="scripts\jquery.validate.js" />
