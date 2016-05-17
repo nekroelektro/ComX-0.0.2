@@ -1,0 +1,33 @@
+﻿@using ComX_0._0._2.Database
+@using ComX_0._0._2.Helpers
+@using GridMvc.Html
+@using GridMvc.Sorting
+@model IEnumerable<ComX_0._0._2.Models.Articles>
+@{
+    Layout = "~/Views/Configuration/_Configuration.cshtml";
+    var articleHelper = new ArticleHelper();
+}
+
+<button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
+</button>
+<button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("Categories", "Articles")'">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add category
+</button>
+
+@Html.Grid(Model).Named("articleGrid").Columns(columns =>
+{
+columns.Add(o => o.Id, true);
+columns.Add(x => x.Name).SetWidth(650);
+columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(x=>articleHelper.GetAllCategories().First(o=>o.Id == x.CategoryId).Name).Filterable(true).SetWidth(130);
+columns.Add(x => x.DateCreated).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+}).WithPaging(20).Sortable(true).Filterable(true)
+
+<script>
+    $(function () {
+        pageGrids.articleGrid.onRowSelect(function (e) {
+            var rowArticleId = e.row.Id;
+            window.location.href = '@Url.Action("Details", "Articles")?Id=' + rowArticleId;
+        });
+    });
+</script>

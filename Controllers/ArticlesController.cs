@@ -230,5 +230,11 @@ namespace ComX_0._0._2.Controllers {
             ViewBag.ArticleId = articleId;
             return RedirectToAction("Edit", new {id = articleId});
         }
+
+        public ActionResult GetCategoryName(Guid categoryId)
+        {
+            var cat = articleHelper.GetCategoryById(categoryId);
+            return Content(cat.Name);
+        }
     }
 }

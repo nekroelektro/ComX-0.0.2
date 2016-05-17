@@ -45,8 +45,8 @@
                          }
                          <p>Date added: <br/> @item.DateOfCreation.ToString()</p>
                      </div>
-                     <div class="col-xs-9 commentBody" style="height: 100%;">
-                         <p>@Html.Raw(WebUtility.HtmlDecode(item.Body))</p>
+                     <div class="col-xs-9 commentBody" style="height: 100%; max-width: 90%">
+                         @Html.Raw(WebUtility.HtmlDecode(item.Body))
                      </div>
                      <div class="col-xs-1 commentOptions" style="height: 100%;">
                          <button type="button" class="btn btn-danger .btn-sm popupCommentDelete" data-id ="@item.Id" data-art ="@artId" href="#test-modal" style="padding-top: 1em; padding-right: 1em;">

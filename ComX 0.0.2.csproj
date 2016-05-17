@@ -1167,6 +1167,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Database\SiteDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1288,6 +1289,9 @@
     <Content Include="Views\Articles\_Comments.cshtml" />
     <Content Include="Views\Shared\_IndexSlider.cshtml" />
     <Content Include="Views\Account\UserPanel.cshtml" />
+    <Content Include="Views\Configuration\_Configuration.cshtml" />
+    <Content Include="Views\Configuration\Articles.cshtml" />
+    <Content Include="Views\Configuration\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

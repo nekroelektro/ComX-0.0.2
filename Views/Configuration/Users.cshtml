@@ -1,0 +1,24 @@
+﻿@using ComX_0._0._2.Helpers
+@using GridMvc.Html
+@using GridMvc.Sorting
+@model IEnumerable<ComX_0._0._2.Models.Users>
+@{
+    Layout = "~/Views/Configuration/_Configuration.cshtml";
+    var articleHelper = new UserHelper();
+}
+
+@Html.Grid(Model).Named("userGrid").Columns(columns =>
+{
+columns.Add(o => o.Id, true);
+columns.Add(x => x.UserName).SetWidth(750);
+columns.Add(x => x.UserRoles).Titled("Role").SetWidth(80);
+columns.Add(x => x.DateOfCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(60);
+    @*columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(o => @<button type="button" class="btn btn-danger .btn-sm" onclick="location.href='@Url.Action("Delete", "Articles", new {Id = o.Id})'">
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" style="font-size: 0.7em"></span>
+        </button>);*@
+}).WithPaging(20).Sortable(true).Filterable(true)
+
+

@@ -38,6 +38,11 @@ namespace ComX_0._0._2.Helpers {
             return category;
         }
 
+        public List<ArticleCategories> GetAllCategories() {
+            var categories = db.Categories.ToList();
+            return categories;
+        } 
+
         public List<SelectListItem> GetCategoriesToCombo() {
             var categoryList = new List<ArticleCategories>();
             var listItems = new List<SelectListItem>();

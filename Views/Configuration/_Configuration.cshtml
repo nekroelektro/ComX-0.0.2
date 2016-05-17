@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="navbar navbar-inverse confTopFooter">
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink("Configuration", "_Configuration", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                </li>
+                <li>
+                    @Html.ActionLink("Articles", "Articles", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                </li>
+                <li>
+                    @Html.ActionLink("Users", "Users", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    @RenderBody()
+    <div class="push"></div>
+</div>

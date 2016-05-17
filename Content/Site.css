@@ -156,6 +156,10 @@ textarea {
     margin: 0 auto;
 }
 
+.commentBody img {
+    max-width: 90%;
+}
+
 /* FOOTERS */
 
 .topFooter {
