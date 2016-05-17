@@ -15,14 +15,15 @@
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add category
 </button>
 
-@Html.Grid(Model).Named("articleGrid").Columns(columns =>
+<div class="col-xs-12 center-block">
+    @Html.Grid(Model).Named("articleGrid").Columns(columns =>
 {
-columns.Add(o => o.Id, true);
-columns.Add(x => x.Name).SetWidth(650);
-columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(x=>articleHelper.GetAllCategories().First(o=>o.Id == x.CategoryId).Name).Filterable(true).SetWidth(130);
-columns.Add(x => x.DateCreated).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
-}).WithPaging(20).Sortable(true).Filterable(true)
-
+    columns.Add(o => o.Id, true);
+    columns.Add(x => x.Name).SetWidth(650);
+    columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(x => articleHelper.GetAllCategories().First(o => o.Id == x.CategoryId).Name).Filterable(true).SetWidth(130);
+    columns.Add(x => x.DateCreated).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+}).WithPaging(10).Sortable(true).Filterable(true)
+</div>
 <script>
     $(function () {
         pageGrids.articleGrid.onRowSelect(function (e) {

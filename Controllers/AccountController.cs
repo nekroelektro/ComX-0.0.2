@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using System.Linq;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Interfaces;
@@ -11,9 +11,8 @@ using ComX_0._0._2.Models;
 
 namespace ComX_0._0._2.Controllers {
     public class AccountController : Controller {
-        public IMembershipService MembershipService { get; set; }
-
         private readonly UserHelper userHelper = new UserHelper();
+        public IMembershipService MembershipService { get; set; }
 
         protected override void Initialize(RequestContext requestContext) {
             if (MembershipService == null) {
@@ -133,24 +132,28 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
-        public ActionResult UserPanel() {
-            var user = userHelper.GetUserById(userHelper.GetCurrentLoggedUserId());
+        public ActionResult UserPanel(Guid? userId) {
+            Users user;
+            if (userId == null) {
+                user = userHelper.GetUserById(userHelper.GetCurrentLoggedUserId());
+            }
+            else {
+                user = userHelper.GetUserById(userId.Value);
+            }
             return View(user);
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddAvatar(HttpPostedFileBase avatar) {
-            if (avatar != null)
-            {
+            if (avatar != null) {
                 var validImageTypes = new[] {
                     "image/gif",
                     "image/jpeg",
                     "image/pjpeg",
                     "image/png"
                 };
-                if (!validImageTypes.Contains(avatar.ContentType))
-                {
+                if (!validImageTypes.Contains(avatar.ContentType)) {
                     ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
                 }
                 else {
