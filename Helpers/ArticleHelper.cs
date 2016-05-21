@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Models;
+using System.Data.Entity;
 
 namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
@@ -55,6 +56,14 @@ namespace ComX_0._0._2.Helpers {
                 });
             }
             return listItems;
+        }
+
+        public void ChangeCategoryDetails(ArticleCategories category) {
+            var categoryToChange = this.GetCategoryById(category.Id);
+            categoryToChange.Name = category.Name;
+            categoryToChange.Description = category.Description;
+            db.Entry(categoryToChange).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public List<Comments> GetCommentsByArticle(Guid id) {
@@ -113,8 +122,15 @@ namespace ComX_0._0._2.Helpers {
             db.SaveChanges();
         }
 
-        public void GetNextCoupleArticlesForIndex() {
-            var listOfArticles = db.Articles.OrderByDescending(x => x.DateCreated).ToList();
+        public void ChangeArticleCategoryIfCategoryDeleted(Guid categoryId) {
+            var allArticlesWithDeletedCategory = db.Articles.Where(x => x.CategoryId == categoryId);
+            if (allArticlesWithDeletedCategory.Count() > 0) {
+                foreach (var item in allArticlesWithDeletedCategory) {
+                    item.CategoryId = this.GetAllCategories().First(x => x.Name == "Misc").Id;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+                db.SaveChanges();
+            }
         }
     }
 }

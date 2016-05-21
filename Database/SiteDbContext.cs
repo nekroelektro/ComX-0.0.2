@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Models;
 
 namespace ComX_0._0._2.Database {
@@ -8,13 +9,14 @@ namespace ComX_0._0._2.Database {
         public DbSet<Articles> Articles { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
-        public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<ArticleCategories> Categories { get; set; } 
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Images> Images { get; set; }
 
         public void AddUser(Users user) {
-            user.Id = Guid.NewGuid();
+        UserHelper userHelper = new UserHelper();
+        user.Id = Guid.NewGuid();
+            user.Role = userHelper.GetAllRoles().First(x=>x.Name == "User").Id;
             Users.Add(user);
             SaveChanges();
         }
@@ -28,16 +30,6 @@ namespace ComX_0._0._2.Database {
             var user = Users.SingleOrDefault(u => u.UserName ==
                                                   userName && u.Password == password);
             return user;
-        }
-
-        public void AddUserRole(UserRoles userRole) {
-            var roleEntry = UserRoles.SingleOrDefault(r => r.UserId == userRole.UserId);
-            if (roleEntry != null) {
-                UserRoles.Remove(roleEntry);
-                SaveChanges();
-            }
-            UserRoles.Add(userRole);
-            SaveChanges();
         }
     }
 }

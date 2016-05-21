@@ -70,12 +70,31 @@ namespace ComX_0._0._2.Helpers {
             return false;
         }
 
-        public void ChangeUserRole(Users user) {
-            var userForRole = this.GetUserById(user.Id);
-            UserRoles role = new UserRoles();
-            role.Id = Guid.NewGuid();
-            role.
+        public List<Roles> GetAllRoles() {
+            var roles = db.Roles.ToList();
+            return roles;
+        }
+
+        public Roles GetRoleById(Guid roleId) {
+            var role = db.Roles.First(x=>x.Id == roleId);
+            return role;
+        }
+        
+        public void ChangeUserRole(Guid userId, Guid roleId)
+        {
+            var userForRole = this.GetUserById(userId);
+            userForRole.Role = this.GetRoleById(roleId).Id;
+            db.Entry(userForRole).State = EntityState.Modified;
             db.SaveChanges();
+        }
+
+        public Roles GetRoleByUserId(Guid userId) {
+            var user = this.GetUserById(userId);
+            if (user.Role != null) {
+                var role = db.Roles.First(x => x.Id == user.Role);
+                return role;
+            }
+            return null;
         }
 
         public List<SelectListItem> GetRolesToCombo()
@@ -93,6 +112,22 @@ namespace ComX_0._0._2.Helpers {
                 });
             }
             return listItems;
+        }
+
+        public bool UserIsAdmin(Guid userId) {
+            var roleOfCurrentUser = this.GetRoleByUserId(userId);
+            if (roleOfCurrentUser.Name == "Admin" || roleOfCurrentUser.Name == "SuperAdmin") {
+                return true;
+            }
+            return false;
+        }
+
+        public bool UserIsSuperAdmin(Guid userId) {
+            var roleOfCurrentUser = this.GetRoleByUserId(userId);
+            if (roleOfCurrentUser.Name == "SuperAdmin"){
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\a02.png" />
+    <Content Include="Content\bootstrap-combobox.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -233,6 +234,7 @@
     <Content Include="scripts\angular-touch.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\bootstrap-combobox.js" />
     <Content Include="scripts\bootstrap-datepicker.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -1250,6 +1252,10 @@
     <Compile Include="Migrations\201605081202539_init17.Designer.cs">
       <DependentUpon>201605081202539_init17.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605211043339_init20.cs" />
+    <Compile Include="Migrations\201605211043339_init20.Designer.cs">
+      <DependentUpon>201605211043339_init20.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
@@ -1260,7 +1266,6 @@
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\UserIdentity.cs" />
-    <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1285,13 +1290,16 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_NavBarTop.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Articles\Categories.cshtml" />
+    <Content Include="Views\Configuration\CategoriesCreate.cshtml" />
     <Content Include="Views\Articles\_Comments.cshtml" />
     <Content Include="Views\Shared\_IndexSlider.cshtml" />
     <Content Include="Views\Account\UserPanel.cshtml" />
     <Content Include="Views\Configuration\_Configuration.cshtml" />
     <Content Include="Views\Configuration\Articles.cshtml" />
     <Content Include="Views\Configuration\Users.cshtml" />
+    <Content Include="Views\Configuration\Roles.cshtml" />
+    <Content Include="Views\Configuration\Categories.cshtml" />
+    <Content Include="Views\Configuration\CategoriesDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1356,6 +1364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605081202539_init17.resx">
       <DependentUpon>201605081202539_init17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605211043339_init20.resx">
+      <DependentUpon>201605211043339_init20.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

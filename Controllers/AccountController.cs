@@ -167,8 +167,8 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ChangeRole(Users user) {
-            userHelper.ChangeUserRole(user);
-            return RedirectToAction("UserPanel");
+            userHelper.ChangeUserRole(user.Id, user.Role.Value);
+            return RedirectToAction("Users", "Configuration");
         }
 
         private Users SetupFormsAuthTicket(string userName, bool persistanceFlag) {

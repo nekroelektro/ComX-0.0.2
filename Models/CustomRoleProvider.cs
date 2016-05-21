@@ -10,15 +10,8 @@ namespace ComX_0._0._2.Models
 {
     public class CustomRoleProvider : RoleProvider
     {
-        public override bool IsUserInRole(string username, string roleName)
-        {
-            using (var usersContext = new SiteDbContext())
-            {
-                var user = usersContext.Users.SingleOrDefault(u => u.UserName == username);
-                if (user == null)
-                    return false;
-                return user.UserRoles != null && user.UserRoles.Select(u => u.Role).Any(r => r.Name == roleName);
-            }
+        public override bool IsUserInRole(string username, string roleName) {
+            return false;
         }
 
         public override string[] GetRolesForUser(string username)
@@ -28,7 +21,7 @@ namespace ComX_0._0._2.Models
                 var user = usersContext.Users.SingleOrDefault(u => u.UserName == username);
                 if (user == null)
                     return new string[] { };
-                return user.UserRoles == null ? new string[] { } : user.UserRoles.Select(u => u.Role).Select(u => u.Name).ToArray();
+                return user.Role == null ? new string[] { } : usersContext.Roles.Where(u=>u.Id == user.Role).Select(u=>u.Name).ToArray();
             }
         }
 

@@ -11,9 +11,6 @@
 <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
 </button>
-<button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("Categories", "Articles")'">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add category
-</button>
 
 <div class="col-xs-12 center-block">
     @Html.Grid(Model).Named("articleGrid").Columns(columns =>

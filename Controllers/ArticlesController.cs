@@ -158,10 +158,6 @@ namespace ComX_0._0._2.Controllers {
             base.Dispose(disposing);
         }
 
-        public ActionResult Categories() {
-            return View();
-        }
-
         public ActionResult _Comments() {
             var comments = new Comments();
             return PartialView("_Comments", comments);
@@ -192,18 +188,6 @@ namespace ComX_0._0._2.Controllers {
                 return PartialView();
             }
             return PartialView();
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Categories(ArticleCategories category) {
-            if (ModelState.IsValid) {
-                category.Id = Guid.NewGuid();
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return View();
-            }
-            return PartialView("_Comments");
         }
 
         public ActionResult _IndexSlider(){
