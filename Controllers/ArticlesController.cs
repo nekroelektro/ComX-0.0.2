@@ -16,7 +16,8 @@ namespace ComX_0._0._2.Controllers {
         private readonly UserHelper userHelper = new UserHelper();
         // GET: Articles
         public ActionResult Index() {
-            return View(db.Articles.OrderByDescending(x=>x.DateCreated).ToList());
+            var publishedArticles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
+            return View(publishedArticles);
         }
 
         // GET: Articles/Details/5
@@ -44,7 +45,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished")] Articles article,
             HttpPostedFileBase upload) {
             var articleIdentifier = Guid.NewGuid();
             if (upload != null) {
@@ -96,7 +97,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished")] Articles article,
             HttpPostedFileBase upload) {
             if (upload != null) {
                 var validImageTypes = new[] {
@@ -121,6 +122,7 @@ namespace ComX_0._0._2.Controllers {
                     entity.Prelude = article.Prelude;
                     entity.DateEdited = DateTime.Now;
                     entity.CategoryId = article.CategoryId;
+                    entity.IsPublished = article.IsPublished;
                 }
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();

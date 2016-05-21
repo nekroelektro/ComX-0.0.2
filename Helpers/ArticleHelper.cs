@@ -15,7 +15,7 @@ namespace ComX_0._0._2.Helpers {
         private readonly GeneralHelper generalHelper = new GeneralHelper();
 
         public List<Articles> GetLastArticles(int number) {
-            var articles = db.Articles.OrderByDescending(x => x.DateCreated).Take(number);
+            var articles = db.Articles.Where(x=>x.IsPublished).OrderByDescending(x => x.DateCreated).Take(number);
             return articles.ToList();
         }
 
