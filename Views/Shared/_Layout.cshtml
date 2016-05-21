@@ -12,6 +12,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="~/Content/datepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
     <link href="@Url.Content("~/Content/trumbowyg.min.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/slick-theme.css")" rel="stylesheet" type="text/css"/>
@@ -38,13 +39,31 @@
 </head>
 <body>
 @Html.Partial("_NavBarTop")
-    @if (currentUrl.Contains("Index")) {
-        @Html.Action("_IndexSlider", "Articles")
-    }
-        <div class="container body-content bodyLayout">
-            @RenderBody()
-            <div class="push"></div>
-        </div>
-        @Html.Partial("_Footer")
+@if (currentUrl.Contains("Index")) {
+    @Html.Action("_IndexSlider", "Articles")
+}
+<div class="container body-content bodyLayout">
+    @RenderBody()
+    <div class="push"></div>
+</div>
+
+<a href="javascript:" id="return-to-top" ><i class="icon-chevron-up" style="border: none !important"></i></a>
+
+@Html.Partial("_Footer")
 </body>
 </html>
+<script>
+    // ===== Scroll to Top ==== 
+    $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#return-to-top').click(function () {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop: 0                       // Scroll to top of body
+        }, 500);
+    });
+</script>
