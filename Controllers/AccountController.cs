@@ -140,6 +140,7 @@ namespace ComX_0._0._2.Controllers {
             else {
                 user = userHelper.GetUserById(userId.Value);
             }
+            ViewBag.RoleList = userHelper.GetRolesToCombo();
             return View(user);
         }
 
@@ -160,6 +161,13 @@ namespace ComX_0._0._2.Controllers {
                     userHelper.UploadAvatarForUser(userHelper.GetCurrentLoggedUserId(), avatar);
                 }
             }
+            return RedirectToAction("UserPanel");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ChangeRole(Users user) {
+            userHelper.ChangeUserRole(user);
             return RedirectToAction("UserPanel");
         }
 

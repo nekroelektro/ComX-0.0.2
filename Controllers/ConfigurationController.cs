@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Helpers;
+using ComX_0._0._2.Models;
 
 namespace ComX_0._0._2.Controllers
 {
@@ -14,13 +15,7 @@ namespace ComX_0._0._2.Controllers
         private readonly SiteDbContext db = new SiteDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
-
-        // GET: Configuration
-        public ActionResult _Configuration()
-        {
-            return View();
-        }
-
+        
         public ActionResult Articles()
         {
             return View(db.Articles.OrderByDescending(x => x.DateCreated).ToList());
@@ -29,6 +24,24 @@ namespace ComX_0._0._2.Controllers
         public ActionResult Users()
         {
             return View(db.Users.OrderByDescending(x=>x.DateOfCreation).ToList());
+        }
+
+        public ActionResult Roles() {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Roles(Roles role)
+        {
+            if (ModelState.IsValid)
+            {
+                role.Id = Guid.NewGuid();
+                db.Roles.Add(role);
+                db.SaveChanges();
+                return RedirectToAction("Users");
+            }
+            return View();
         }
     }
 }

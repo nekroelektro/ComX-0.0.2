@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Models;
+using Roles = ComX_0._0._2.Models.Roles;
 
 namespace ComX_0._0._2.Helpers {
     public class UserHelper : Controller {
@@ -66,6 +68,31 @@ namespace ComX_0._0._2.Helpers {
                 }
             }
             return false;
+        }
+
+        public void ChangeUserRole(Users user) {
+            var userForRole = this.GetUserById(user.Id);
+            UserRoles role = new UserRoles();
+            role.Id = Guid.NewGuid();
+            role.
+            db.SaveChanges();
+        }
+
+        public List<SelectListItem> GetRolesToCombo()
+        {
+            var roleList = new List<Roles>();
+            var listItems = new List<SelectListItem>();
+
+            roleList = db.Roles.ToList();
+            foreach (var item in roleList)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                });
+            }
+            return listItems;
         }
     }
 }
