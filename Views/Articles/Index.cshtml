@@ -8,7 +8,7 @@
 }
 
 <div id="pager" style="width: 100%;">
-    <div class="grid" style="width: 70%;float: left;">
+    <div class="grid" style="width: 70%; float: left;">
         <ul class="content" style="padding-left: 0; margin-left: 0;">
             @foreach (var item in Model) {
                 <div class="indexElement">
@@ -42,16 +42,7 @@
             }
         </ul>
     </div>
-    <div class="sideBar" style="width: 30%; float: right;font-family: 'Amarante', sans-serif; color: crimson; background-color: #222;box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
-        <div class="sideTitle" style="text-align: left; padding-left: 1em; font-size: 2em">
-            Plazlista:
-        </div>
-        <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Ahellthroaster666%3Aplaylist%3A0MlNCcihg1bZkbaFp4pVwJ" style="width: 100%; height: 30em; overflow: hidden;" frameborder="0" allowtransparency="true"></iframe>
-        <div class="faceWidget" style="text-align: center; font-size: 2em;width:100%">
-            Polub mnie trochę:
-            <div class="fb-like" data-href="https://www.facebook.com/soundbastards/?fref=ts" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true" style="width: 100%; text-align: center; margin: 0 auto;"></div>
-        </div>
-    </div>
+    @Html.Partial("_SideBar")
     <hr/>
         <div class="page_navigation" style="clear: both; padding-top: 3em;"></div>
 </div>
@@ -95,12 +86,3 @@
         //}, 2000);
     });
 </script>
-<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>

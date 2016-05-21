@@ -8,7 +8,7 @@
     var comments = new Comments();
     var articleHelper = new ArticleHelper();
 }
-<div class="topDetailPanel" style ="display: inline-block; width: 100%; height: auto">
+<div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
     <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name) detail:</h2>
     <div class="buttons" style="float: right; margin-top: 1em;">
         <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
@@ -23,17 +23,18 @@
     </div>
     <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
         <p style="float: left;">Date added: @Html.DisplayFor(model => model.DateCreated)</p>
-        <p style="float: right;">Date of last modification: @Html.DisplayFor(model => model.DateEdited)</p>   
+        <p style="float: right;">Date of last modification: @Html.DisplayFor(model => model.DateEdited)</p>
     </div>
 </div>
-    <div class="articleDetail">
-        <div style="">
-            @if (articleHelper.GetImageByArticleId(Model.Id) != null){
-                <div class="articleMainImage"  style="width: 90%; text-align: center; margin: 0 auto;">
-                    <img src='@Url.Action("GetImage", "Articles", new {articleId = Model.Id})' style="max-width: 90%;text-align: center; margin: 0 auto;"/>
-                </div>
-            }
-            @Html.Raw(WebUtility.HtmlDecode(Model.Body))
+<div class="articleDetail" style="width: 69%; float: left;">
+    @if (articleHelper.GetImageByArticleId(Model.Id) != null) {
+        <div class="articleMainImage" style="width: 90%; text-align: center; margin: 0 auto;">
+            <img src='@Url.Action("GetImage", "Articles", new {articleId = Model.Id})' style="max-width: 90%; text-align: center; margin: 0 auto;"/>
         </div>
-    </div>
-@Html.Action("_Comments")
+    }
+    @Html.Raw(WebUtility.HtmlDecode(Model.Body))
+</div>
+@Html.Partial("_SideBar")
+<div style="clear:both">
+    @Html.Action("_Comments")
+</div>

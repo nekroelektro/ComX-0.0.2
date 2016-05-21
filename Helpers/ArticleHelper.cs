@@ -132,5 +132,16 @@ namespace ComX_0._0._2.Helpers {
                 db.SaveChanges();
             }
         }
+
+        public List<Articles> GetRandomArticlesForSideBar(int numberOfArticles, Guid? articleId) {
+            var articleList = db.Articles.ToList();
+            if (articleId != Guid.Empty) {
+                var artToDelete = articleList.First(x => x.Id == articleId.Value);
+                articleList.Remove(artToDelete);
+            }
+            Random rnd = new Random();
+            var randomList = articleList.OrderBy(x => rnd.Next()).Take(numberOfArticles);
+            return randomList.ToList();
+        } 
     }
 }
