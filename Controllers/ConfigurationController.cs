@@ -22,19 +22,53 @@ namespace ComX_0._0._2.Controllers {
         }
 
         public ActionResult Roles() {
+            var roles = db.Roles.ToList();
+            return View(roles);
+        }
+
+        public ActionResult RolesCreate() {
             return View();
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Roles(Roles role) {
+        public ActionResult RolesCreate(Roles role) {
             if (ModelState.IsValid) {
                 role.Id = Guid.NewGuid();
                 db.Roles.Add(role);
                 db.SaveChanges();
-                return RedirectToAction("Users");
+                return RedirectToAction("Roles");
             }
             return View();
+        }
+
+        public ActionResult RolesDetails(Guid? roleId) {
+            if (roleId == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var role = db.Roles.Find(roleId);
+            if (role == null) {
+                return HttpNotFound();
+            }
+            return View(role);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult RolesDetails(Roles role) {
+            if (ModelState.IsValid) {
+                userHelper.ChangeRoleDetails(role);
+                return RedirectToAction("Roles");
+            }
+            return View();
+        }
+
+        public ActionResult DeleteRole(string roleId) {
+            var roleToDelete = db.Roles.Find(new Guid(roleId));
+            userHelper.ChangeUserRoleIfRoleIsDeleted(new Guid(roleId));
+            db.Roles.Remove(roleToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Roles");
         }
 
         public ActionResult Categories() {

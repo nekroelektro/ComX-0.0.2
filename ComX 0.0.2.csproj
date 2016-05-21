@@ -1297,9 +1297,11 @@
     <Content Include="Views\Configuration\_Configuration.cshtml" />
     <Content Include="Views\Configuration\Articles.cshtml" />
     <Content Include="Views\Configuration\Users.cshtml" />
-    <Content Include="Views\Configuration\Roles.cshtml" />
+    <Content Include="Views\Configuration\RolesCreate.cshtml" />
     <Content Include="Views\Configuration\Categories.cshtml" />
     <Content Include="Views\Configuration\CategoriesDetails.cshtml" />
+    <Content Include="Views\Configuration\Roles.cshtml" />
+    <Content Include="Views\Configuration\RolesDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

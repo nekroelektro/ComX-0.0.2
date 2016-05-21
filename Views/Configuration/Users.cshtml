@@ -10,9 +10,6 @@
 <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Register", "Account")'">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add user
 </button>
-<button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("Roles", "Configuration")'">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add role
-</button>
 
 <div class="col-xs-12 center-block">
     @Html.Grid(Model).Named("userGrid").Columns(columns => {
