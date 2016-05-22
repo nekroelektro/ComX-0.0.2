@@ -17,5 +17,7 @@ namespace ComX_0._0._2.Models {
         public byte[] Avatar { get; set; }
 
         public Guid? Role { get; set; } 
+
+        public bool IsBlocked { get; set; }
     }
 }

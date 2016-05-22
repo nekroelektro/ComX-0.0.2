@@ -200,6 +200,16 @@ namespace ComX_0._0._2.Controllers {
             }
         }
 
+        public ActionResult DeleteUser(Guid userId) {
+            userHelper.DeleteUser(userId);
+            return RedirectToAction("Users", "Configuration");
+        }
+
+        public ActionResult BlockingUser(Guid userId){
+            userHelper.UserBlockade(userId);
+            return RedirectToAction("Users", "Configuration");
+        }
+
         #region Status Codes
 
         private static string ErrorCodeToString(MembershipCreateStatus createStatus) {

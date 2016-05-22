@@ -8,28 +8,28 @@
     var commentList = articleHelper.GetCommentsByArticle(artId);
 }
 <div class="commentSection">
-    @if (!string.IsNullOrEmpty(User.Identity.Name))
-    {
-        using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div class="newCommentSection" style="text-align: center; margin: 0 auto;">
-                <div class="form-horizontal">
-                    <div class="form-group" style="background: linear-gradient(to top, white, #222,white);">
-                        <div class="col-md-8 center-block" style="display: inline-block; margin: 0 auto; text-align: center; float: none">
-                            @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
-                            @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+    @if (!string.IsNullOrEmpty(User.Identity.Name)){
+        if (!userHelper.GetCurrentLoggedUser().IsBlocked) {
+            using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
+                <div class="newCommentSection" style="text-align: center; margin: 0 auto;">
+                    <div class="form-horizontal">
+                        <div class="form-group" style="background: linear-gradient(to top, white, #222, white);">
+                            <div class="col-md-8 center-block" style="display: inline-block; margin: 0 auto; text-align: center; float: none">
+                                @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
+                                @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+                            </div>
                         </div>
-                    </div>
-                    @Html.ValidationMessage("EmptyComment", new { @style = "color: red" })
-                    @Html.ValidationMessage("TwoComments", new { @style = "color: red" })
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" onclick="location.href = '@Url.Action("_Comments", "Articles")'" />
+                        @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
+                        @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" onclick="location.href = '@Url.Action("_Comments", "Articles")'"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     }
     <hr />

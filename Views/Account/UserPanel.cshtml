@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = "User Panel";
     var userHelper = new UserHelper();
+
+    var str = "";
+    if (Model.IsBlocked) {
+        str = "Unblock user";
+    }
+    else {
+        str = "Block user";
+    }
 }
 
 <div class="userPanelContainer col-md-12">
@@ -35,9 +43,9 @@
         }
     }
     else {
-        <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.Id})' style="max-width: 30%; text-align: center; margin: 0 auto;" />
+        <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.Id})' style="max-width: 30%; text-align: center; margin: 0 auto;"/>
     }
-    @using (Html.BeginForm("ChangeRole","Account")) {
+    @using (Html.BeginForm("ChangeRole", "Account")) {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new {@class = "text-danger"})
@@ -51,9 +59,87 @@
             @Html.HiddenFor(m => m.Id)
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Change" class="btn btn-default" />
+                    <input type="submit" value="Change" class="btn btn-default"/>
                 </div>
             </div>
         </div>
     }
+    <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
+        <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.Id" href="#popupUserBlock">
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
+        </button>
+        <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.Id" href="#popupUserDelete">
+            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Delete user
+        </button>
+    </div>
+        <div id="popupUserDelete" class="mfp-hide white-popup">
+            <p>Potwierdź</p>
+            <hr />
+            <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
+            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+                Ta!
+            </button>
+            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
         </div>
+
+        <div id="popupUserBlock" class="mfp-hide white-popup">
+            <p>Potwierdź</p>
+            <hr />
+            <p>Czy na bank chcesz zablokować tego użytkownika?</p>
+            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+                Ta!
+            </button>
+            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+        </div>
+    </div>
+
+<script>
+    jQuery(document).ready(function($) {
+        var userIdentificator;
+        var blockOrDelete;
+        $('.popupUserDelete').magnificPopup({
+            type: 'inline',
+            preloader: false,
+            modal: true
+        });
+        $('.popupUserDelete').click(function() {
+            userIdentificator = $(this).data('id').toString();
+            blockOrDelete = 'delete';
+        });
+        $(document).on('click', '.btnConfirmDeletion', function(e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+            if (blockOrDelete == 'delete') {
+                window.location.href = '@Url.Action("DeleteUser", "Account")?userId=' + userIdentificator;
+            } else {
+                window.location.href = '@Url.Action("BlockingUser", "Account")?userId=' + userIdentificator;
+            }
+        });
+        $(document).on('click', '.btnCancelDeletion', function (e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+        });
+
+        $('.popupUserBlock').magnificPopup({
+            type: 'inline',
+            preloader: false,
+            modal: true
+        });
+        $('.popupUserBlock').click(function () {
+            userIdentificator = $(this).data('id').toString();
+            blockOrDelete = 'block';
+        });
+    });
+</script>
+<style>
+    .white-popup {
+        position: relative;
+        background: #FFF;
+        padding: 40px;
+        width: auto;
+        max-width: 400px;
+        margin: 20px auto;
+        text-align: center;
+    }
+</style>
+

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -15,6 +16,12 @@ namespace ComX_0._0._2.Helpers {
     public class UserHelper : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly SiteDbContext db = new SiteDbContext();
+
+        public Users GetCurrentLoggedUser() {
+            var userId = this.GetCurrentLoggedUserId();
+            var user = this.GetUserById(userId);
+            return user;
+        }
 
         public Guid GetCurrentLoggedUserId() {
             var membershipUser = Membership.GetUser();
@@ -54,6 +61,28 @@ namespace ComX_0._0._2.Helpers {
             catch (Exception ex) {
                 return null;
             }
+        }
+
+        public void DeleteUser(Guid userId) {
+            var userToDelete = this.GetUserById(userId);
+            db.Users.Remove(userToDelete);
+            db.SaveChanges();
+        }
+
+        public void UserBlockade(Guid userId) {
+            var userToBlock = this.GetUserById(userId);
+            switch (userToBlock.IsBlocked) {
+                case true:
+                    userToBlock.IsBlocked = false;
+                    break;
+                case false:
+                    userToBlock.IsBlocked = true;
+                    break;
+                default:
+                    break;
+            }
+            db.Entry(userToBlock).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public bool CheckIfLastCommentWasSameUser(Guid userId, Guid articleId) {

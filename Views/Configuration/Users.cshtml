@@ -17,6 +17,7 @@
         columns.Add(x => x.UserName).SetWidth(500);
         columns.Add(x => x.Role).Titled("Role").RenderValueAs(x=>userHelper.GetAllRoles().First(o=>o.Id == x.Role).Name).Filterable(true).SetWidth(80);
         columns.Add(x => x.DateOfCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(160);
+        columns.Add(x => x.IsBlocked).Titled("isBlocked").RenderValueAs(x => x.IsBlocked ? "Yes" : "No").SetWidth(50);
     }).WithPaging(20).Sortable(true).Filterable(true)
 </div>
 
