@@ -160,6 +160,11 @@ namespace ComX_0._0._2.Controllers {
             base.Dispose(disposing);
         }
 
+        public ActionResult _LastFromCategory(int amount, Guid categoryId) {
+            var articles = articleHelper.GetLastArticlesFromCategory(amount, categoryId);
+            return View(articles);
+        }
+
         public ActionResult _Comments() {
             var comments = new Comments();
             return PartialView("_Comments", comments);

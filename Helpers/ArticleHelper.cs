@@ -142,6 +142,15 @@ namespace ComX_0._0._2.Helpers {
             Random rnd = new Random();
             var randomList = articleList.OrderBy(x => rnd.Next()).Take(numberOfArticles);
             return randomList.ToList();
-        } 
+        }
+
+        public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId) {
+            var articlesFromCategory = new List<Articles>();
+            articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId).OrderByDescending(x => x.DateCreated).ToList();
+            if (articlesFromCategory.Count() >= numberOfArticles) {
+                articlesFromCategory = articlesFromCategory.Take(numberOfArticles).ToList();
+            }
+            return articlesFromCategory;
+        }
     }
 }

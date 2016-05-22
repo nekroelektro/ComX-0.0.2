@@ -1311,6 +1311,7 @@
     <Content Include="Views\Configuration\Roles.cshtml" />
     <Content Include="Views\Configuration\RolesDetails.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
+    <Content Include="Views\Articles\_LastFromCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
