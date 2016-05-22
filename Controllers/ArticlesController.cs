@@ -207,16 +207,7 @@ namespace ComX_0._0._2.Controllers {
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }
-
-        public ActionResult GetImage(string articleId) {
-            var img = articleHelper.GetImageByArticleId(new Guid(articleId));
-            if (img != null)
-            {
-                return Content(img.ImagePath);
-            }
-            return null;
-        }
-
+        
         public ActionResult DeleteImage(Guid articleId) {
             articleHelper.DeleteImageForGivenArticle(articleId);
             ViewBag.ArticleId = articleId;

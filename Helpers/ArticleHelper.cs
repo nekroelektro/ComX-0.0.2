@@ -123,7 +123,7 @@ namespace ComX_0._0._2.Helpers {
                 var relative = string.Format("~/Content/images/Container/{0}", image.FileName);
                 return relative;
             }
-            return "";
+            return "deafult.jpg";
         }
 
         public void DeleteImageForGivenArticle(Guid articleId) {

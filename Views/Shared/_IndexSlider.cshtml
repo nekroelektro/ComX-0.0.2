@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="sliderCenter" style="z-index: 0; position: relative; height: 100%; width: 100%;">
-                            <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="width: auto; max-width: 100%; height: 100%; text-align: center; margin: 0 auto;" />
+                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: auto; max-width: 100%; height: 100%; text-align: center; margin: 0 auto;" />
                         </div>
                     </div>
                 </a>
@@ -42,7 +42,7 @@
     @foreach (var item in lastArticles)
     {
         <div class="slideElementDown" style="height:10em;">
-            <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="width:auto; height: 100%; text-align: center; margin: 0 auto;" />
+            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width:auto; height: 100%; text-align: center; margin: 0 auto;" />
             @*<div>@item.Name</div>*@
         </div>
     }

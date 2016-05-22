@@ -1,12 +1,13 @@
-﻿@model IEnumerable<ComX_0._0._2.Models.Articles>
+﻿@using ComX_0._0._2.Helpers
+@model IEnumerable<ComX_0._0._2.Models.Articles>
 @{
-
+    ArticleHelper articleHelper = new ArticleHelper();
 }
 <div class="lastFromCategoryContainer">
     @foreach (var item in Model) {
         <div class="singleLastArticle col-xs-1" style="border-top: 1px solid black; border-bottom: 1px solid black;">
             <div class="imageLastFromCategory">
-                <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="max-width: 100%; max-height: 100%;"/>
+                <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="max-width: 100%; max-height: 100%;"/>
             </div>
         </div>
     }
