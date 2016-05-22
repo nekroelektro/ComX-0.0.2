@@ -7,34 +7,43 @@
 
     var comments = new Comments();
     var articleHelper = new ArticleHelper();
+    var userHelper = new UserHelper();
 }
 <div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
-    <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name) detail:</h2>
+    <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name):</h2>
     <div class="buttons" style="float: right; margin-top: 1em;">
         <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
-            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"> BACK</span>
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>BACK
         </button>
         <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"> EDIT</span>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"></span>EDIT
         </button>
         <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
-            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" style="font-size: 1.1em"> DELETE</span>
+            <span class="glyphicon glyphicon-erase" aria-hidden="true" style="font-size: 1.1em"></span>DELETE
         </button>
     </div>
     <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
-        <p style="float: left;">Date added: @Html.DisplayFor(model => model.DateCreated)</p>
+        <p style="float: left;">by @userHelper.GetUserById(Model.UserId).UserName || Date added: @Html.DisplayFor(model => model.DateCreated)</p>
         <p style="float: right;">Date of last modification: @Html.DisplayFor(model => model.DateEdited)</p>
     </div>
 </div>
-<div class="articleDetail" style="width: 69%; float: left;">
-    @if (articleHelper.GetImageByArticleId(Model.Id) != null) {
-        <div class="articleMainImage" style="width: 90%; text-align: center; margin: 0 auto;">
-            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 90%; text-align: center; margin: 0 auto;"/>
+<div class="detailContainer" style="width: 68.6%; float: left;">
+    <div class="articleDetail" style="width: 100%; float: left; padding-bottom: 2em;">
+        @if (articleHelper.GetImageByArticleId(Model.Id) != null) {
+            <div class="articleMainImage" style="width: 100%; text-align: center; margin: 0 auto; background-color: black;">
+                <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 100%; max-height: 30em; text-align: center; margin: 0 auto;"/>
+            </div>
+        }
+        <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em;">
+            @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
-    }
-    @Html.Raw(WebUtility.HtmlDecode(Model.Body))
+        <hr/>
+        <hr/>
+    </div>
+
+    <div style="clear: both">
+        @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId})
+        @Html.Action("_Comments")
+    </div>
 </div>
-@Html.Partial("_SideBar")
-<div style="clear: both">
-    @Html.Action("_Comments")
-</div>
+    @Html.Partial("_SideBar")

@@ -162,7 +162,7 @@ namespace ComX_0._0._2.Controllers {
 
         public ActionResult _LastFromCategory(int amount, Guid categoryId) {
             var articles = articleHelper.GetLastArticlesFromCategory(amount, categoryId);
-            return View(articles);
+            return PartialView(articles);
         }
 
         public ActionResult _Comments() {
