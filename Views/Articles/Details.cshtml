@@ -29,12 +29,12 @@
 <div class="articleDetail" style="width: 69%; float: left;">
     @if (articleHelper.GetImageByArticleId(Model.Id) != null) {
         <div class="articleMainImage" style="width: 90%; text-align: center; margin: 0 auto;">
-            <img src='@Url.Action("GetImage", "Articles", new {articleId = Model.Id})' style="max-width: 90%; text-align: center; margin: 0 auto;"/>
+            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 90%; text-align: center; margin: 0 auto;"/>
         </div>
     }
     @Html.Raw(WebUtility.HtmlDecode(Model.Body))
 </div>
 @Html.Partial("_SideBar")
-<div style="clear:both">
+<div style="clear: both">
     @Html.Action("_Comments")
 </div>

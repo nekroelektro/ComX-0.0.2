@@ -32,7 +32,7 @@
                 @Html.Label("Uploaded main image", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="editImage" style="width: 90%;">
-                        <img src='@Url.Action("GetImage", "Articles", new {articleId = Model.Id})' style="max-width: 30%; text-align: center; margin: 0 auto;"/>
+                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 30%; text-align: center; margin: 0 auto;"/>
                     </div>
                     <div class="buttons">
                         <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("DeleteImage", "Articles", new {articleId = Model.Id})'">

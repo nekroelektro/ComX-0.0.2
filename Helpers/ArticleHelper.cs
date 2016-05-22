@@ -80,26 +80,24 @@ namespace ComX_0._0._2.Helpers {
             return comments.ToList();
         }
 
-        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload) {
+        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload)
+        {
             var imgToUpload = new Images();
-            if (upload != null) {
-                using (var img = Image.FromStream(upload.InputStream)) {
-                    var file = new byte[upload.InputStream.Length];
-                    var reader = new BinaryReader(upload.InputStream);
-                    upload.InputStream.Seek(0, SeekOrigin.Begin);
+            if (upload != null)
+            {
+                imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"), imgToUpload.FileName);
+                upload.SaveAs(path);
 
-                    file = reader.ReadBytes((int) upload.InputStream.Length);
-
-                    imgToUpload.Id = Guid.NewGuid();
-                    imgToUpload.ArticleId = articleIdentifier;
-                    imgToUpload.Source = file;
-                    imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                    imgToUpload.FileSize = upload.ContentLength;
-                    imgToUpload.FileFormat = upload.ContentType;
-                    imgToUpload.OriginalWidth = img.Width;
-                    imgToUpload.OriginalHeight = img.Height;
-                    imgToUpload.DateOfChange = DateTime.Now;
-                }
+                imgToUpload.Id = Guid.NewGuid();
+                imgToUpload.ArticleId = articleIdentifier;
+                imgToUpload.ImagePath = path;
+                imgToUpload.FileSize = upload.ContentLength;
+                imgToUpload.FileFormat = upload.ContentType;
+                imgToUpload.OriginalWidth = 200;
+                imgToUpload.OriginalHeight = 200;
+                imgToUpload.DateOfChange = DateTime.Now;
+                
             }
             db.Images.Add(imgToUpload);
             db.SaveChanges();
@@ -109,11 +107,23 @@ namespace ComX_0._0._2.Helpers {
             var image = new Images();
             try {
                 image = db.Images.First(x => x.ArticleId == articleId);
-                return image;
+                if (image != null) {
+                    return image;
+                }
+                return null;
             }
             catch (Exception ex) {
                 return null;
             }
+        }
+
+        public string GetImageRelativePathByArticleId(Guid articleId) {
+            var image = this.GetImageByArticleId(articleId);
+            if (image != null) {
+                var relative = string.Format("~/Content/images/Container/{0}", image.FileName);
+                return relative;
+            }
+            return "";
         }
 
         public void DeleteImageForGivenArticle(Guid articleId) {

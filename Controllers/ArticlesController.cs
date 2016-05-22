@@ -210,8 +210,9 @@ namespace ComX_0._0._2.Controllers {
 
         public ActionResult GetImage(string articleId) {
             var img = articleHelper.GetImageByArticleId(new Guid(articleId));
-            if (img != null) {
-                return File(img.Source, img.FileFormat);
+            if (img != null)
+            {
+                return Content(img.ImagePath);
             }
             return null;
         }

@@ -16,7 +16,7 @@
                         <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
                             @if (articleHelper.GetImageByArticleId(item.Id) != null) {
                                 <div class="indexArticleImage">
-                                    <img src='@Url.Action("GetImage", "Articles", new {articleId = item.Id})' style="width: 100%; text-align: center; margin: 0 auto;"/>
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto;"/>
                                 </div>
                             }
                             <div class="indexArticleText">
