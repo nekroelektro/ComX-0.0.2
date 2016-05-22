@@ -33,5 +33,7 @@ namespace ComX_0._0._2.Models
         [DisplayName("Date of last modification")]
         [Required]
         public DateTime DateEdited { get; set; }
+
+        public bool IsPublished { get; set; }
     }
 }
