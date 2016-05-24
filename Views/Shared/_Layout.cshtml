@@ -18,6 +18,7 @@
     <link href="@Url.Content("~/Content/slick-theme.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/slick.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/magnific-popup.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Content/horizontalMenu.css")" rel="stylesheet" type="text/css" />
     @*<link href="@Url.Content("~/Content/bootstrap-combobox.css")" rel="stylesheet" type="text/css" />*@
     <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -33,20 +34,25 @@
     <script src="@Url.Content("~/Scripts/slick.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.jscroll.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.magnific-popup.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/cbpHorizontalMenu.min.js")"></script>
     @*<script src="@Url.Content("~/Scripts/bootstrap-combobox.js")"></script>*@
     @*<script src="@Url.Content("~/Scripts/jquery.slimscroll.min.js")"></script>*@
     <meta name="description" content="The description of my page"/>
 </head>
 <body>
 @Html.Partial("_NavBarTop")
-@if (currentUrl.Contains("Index")) {
-    @Html.Action("_IndexSlider", "Articles")
-}
-<div class="container body-content bodyLayout">
-    @RenderBody()
-    <div class="push"></div>
-</div>
+        @Html.Partial("_TopNavigationMenu")
 
+    <div class="elementsToPush">
+        @if (currentUrl.Contains("Index"))
+        {
+            @Html.Action("_IndexSlider", "Articles")
+        }
+        <div class="container body-content bodyLayout">
+            @RenderBody()
+            <div class="push"></div>
+        </div>
+    </div>
 <a href="javascript:" id="return-to-top" ><i class="icon-chevron-up" style="border: none !important"></i></a>
 
 @Html.Partial("_Footer")

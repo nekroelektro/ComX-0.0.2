@@ -185,6 +185,7 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\horizontalMenu.css" />
     <Content Include="Content\images\a02.png" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\icons-black-2x.png" />
@@ -238,6 +239,7 @@
     <Content Include="scripts\bootstrap-datepicker.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\cbpHorizontalMenu.min.js" />
     <Content Include="scripts\draggabilly.pkgd.min.js" />
     <Content Include="scripts\errors.json" />
     <Content Include="scripts\angular.min.js.map" />
@@ -1316,6 +1318,7 @@
     <Content Include="Views\Configuration\RolesDetails.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Articles\_LastFromCategory.cshtml" />
+    <Content Include="Views\Shared\_TopNavigationMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

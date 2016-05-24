@@ -234,3 +234,18 @@ textarea {
     color: #fff;
     top: 5px;
 }
+
+/*LAst Article*/
+
+.singleLastArticle:hover {
+    border: 1px red solid;
+    color: white;
+    background-color: #222;
+}
+
+.topMenuSingleActive {
+    margin-bottom: 200px;
+}
+.topMenuSingleInActive {
+    margin-bottom: 0;
+}
