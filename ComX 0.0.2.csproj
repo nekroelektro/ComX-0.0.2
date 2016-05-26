@@ -1278,10 +1278,15 @@
     <Compile Include="Migrations\201605261214545_init21.Designer.cs">
       <DependentUpon>201605261214545_init21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605261621252_init22.cs" />
+    <Compile Include="Migrations\201605261621252_init22.Designer.cs">
+      <DependentUpon>201605261621252_init22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
     <Compile Include="Models\Articles.cs" />
+    <Compile Include="Models\ArticleSubCategories.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\CustomMembershipProvider.cs" />
     <Compile Include="Models\CustomRoleProvider.cs" />
@@ -1328,6 +1333,9 @@
     <Content Include="Views\Articles\_LastFromCategory.cshtml" />
     <Content Include="Views\Shared\_TopNavigationMenu.cshtml" />
     <Content Include="Views\Shared\_TopLogoPanel.cshtml" />
+    <Content Include="Views\Configuration\_SubCategories.cshtml" />
+    <Content Include="Views\Configuration\SubCategoriesCreate.cshtml" />
+    <Content Include="Views\Configuration\SubCategoriesDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1408,6 +1416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605261214545_init21.resx">
       <DependentUpon>201605261214545_init21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605261621252_init22.resx">
+      <DependentUpon>201605261621252_init22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

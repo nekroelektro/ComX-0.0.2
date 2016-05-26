@@ -36,6 +36,7 @@ namespace ComX_0._0._2.Controllers {
         // GET: Articles/Create
         public ActionResult Create() {
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
+            ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
             return View();
         }
 
@@ -45,7 +46,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId")] Articles article,
             HttpPostedFileBase upload) {
             var articleIdentifier = Guid.NewGuid();
             if (upload != null) {
@@ -74,6 +75,7 @@ namespace ComX_0._0._2.Controllers {
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
+            ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
             return View(article);
         }
 
@@ -87,6 +89,7 @@ namespace ComX_0._0._2.Controllers {
                 return HttpNotFound();
             }
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
+            ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
             ViewBag.ArticleIdentificator = id;
             return View(articles);
         }
@@ -97,7 +100,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId")] Articles article,
             HttpPostedFileBase upload) {
             if (upload != null) {
                 var validImageTypes = new[] {
@@ -122,6 +125,7 @@ namespace ComX_0._0._2.Controllers {
                     entity.Prelude = article.Prelude;
                     entity.DateEdited = DateTime.Now;
                     entity.CategoryId = article.CategoryId;
+                    entity.SubCategoryId = article.SubCategoryId;
                     entity.IsPublished = article.IsPublished;
                 }
                 db.Entry(entity).State = EntityState.Modified;

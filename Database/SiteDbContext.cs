@@ -12,6 +12,7 @@ namespace ComX_0._0._2.Database {
         public DbSet<ArticleCategories> Categories { get; set; } 
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Images> Images { get; set; }
+        public DbSet<ArticleSubCategories> SubCategories { get; set; }
 
         public void AddUser(Users user) {
         UserHelper userHelper = new UserHelper();

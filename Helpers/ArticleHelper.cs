@@ -42,7 +42,12 @@ namespace ComX_0._0._2.Helpers {
         public List<ArticleCategories> GetAllCategories() {
             var categories = db.Categories.ToList();
             return categories;
-        } 
+        }
+
+        public List<ArticleSubCategories> GetAllSubCategories(){
+            var categories = db.SubCategories.ToList();
+            return categories;
+        }
 
         public List<SelectListItem> GetCategoriesToCombo() {
             var categoryList = new List<ArticleCategories>();
@@ -58,8 +63,33 @@ namespace ComX_0._0._2.Helpers {
             return listItems;
         }
 
+        public List<SelectListItem> GetSubCategoriesToCombo()
+        {
+            var categoryList = new List<ArticleSubCategories>();
+            var listItems = new List<SelectListItem>();
+
+            categoryList = db.SubCategories.ToList();
+            foreach (var item in categoryList)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                });
+            }
+            return listItems;
+        }
+
         public void ChangeCategoryDetails(ArticleCategories category) {
             var categoryToChange = this.GetCategoryById(category.Id);
+            categoryToChange.Name = category.Name;
+            categoryToChange.Description = category.Description;
+            db.Entry(categoryToChange).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void ChangeSubCategoryDetails(ArticleSubCategories category){
+            var categoryToChange = db.SubCategories.Find(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
             db.Entry(categoryToChange).State = EntityState.Modified;
@@ -132,11 +162,22 @@ namespace ComX_0._0._2.Helpers {
             db.SaveChanges();
         }
 
-        public void ChangeArticleCategoryIfCategoryDeleted(Guid categoryId) {
-            var allArticlesWithDeletedCategory = db.Articles.Where(x => x.CategoryId == categoryId);
+        public void ChangeArticleCategoryIfCategoryDeleted(Guid categoryId, bool isMainCategory) {
+            List<Articles> allArticlesWithDeletedCategory;
+            if (isMainCategory) {
+                allArticlesWithDeletedCategory = db.Articles.Where(x => x.CategoryId == categoryId).ToList();
+            }
+            else {
+                allArticlesWithDeletedCategory = db.Articles.Where(x => x.SubCategoryId == categoryId).ToList();
+            }
             if (allArticlesWithDeletedCategory.Count() > 0) {
                 foreach (var item in allArticlesWithDeletedCategory) {
-                    item.CategoryId = this.GetAllCategories().First(x => x.Name == "Misc").Id;
+                    if (isMainCategory) {
+                        item.CategoryId = this.GetAllCategories().First(x => x.Name == "Misc").Id;
+                    }
+                    else {
+                        item.CategoryId = this.GetAllSubCategories().First(x => x.Name == "Misc").Id;
+                    }
                     db.Entry(item).State = EntityState.Modified;
                 }
                 db.SaveChanges();

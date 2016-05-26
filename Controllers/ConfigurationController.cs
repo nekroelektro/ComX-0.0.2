@@ -80,12 +80,30 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
+        public ActionResult SubCategoriesCreate(){
+            return View();
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult CategoriesCreate(ArticleCategories category) {
             if (ModelState.IsValid) {
                 category.Id = Guid.NewGuid();
                 db.Categories.Add(category);
+                db.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SubCategoriesCreate(ArticleSubCategories category)
+        {
+            if (ModelState.IsValid)
+            {
+                category.Id = Guid.NewGuid();
+                db.SubCategories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Categories");
             }
@@ -103,6 +121,20 @@ namespace ComX_0._0._2.Controllers {
             return View(category);
         }
 
+        public ActionResult SubCategoriesDetails(Guid? categoryId)
+        {
+            if (categoryId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var category = db.SubCategories.Find(categoryId);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult CategoriesDetails(ArticleCategories category) {
@@ -113,12 +145,38 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SubCategoriesDetails(ArticleSubCategories category)
+        {
+            if (ModelState.IsValid)
+            {
+                articleHelper.ChangeSubCategoryDetails(category);
+                return RedirectToAction("Categories");
+            }
+            return View();
+        }
+
         public ActionResult DeleteCategory(string categoryId) {
             var categoryToDelete = db.Categories.Find(new Guid(categoryId));
-            articleHelper.ChangeArticleCategoryIfCategoryDeleted(new Guid(categoryId));
+            articleHelper.ChangeArticleCategoryIfCategoryDeleted(new Guid(categoryId), true);
             db.Categories.Remove(categoryToDelete);
             db.SaveChanges();
             return RedirectToAction("Categories");
+        }
+
+        public ActionResult DeleteSubCategory(string categoryId)
+        {
+            var categoryToDelete = db.SubCategories.Find(new Guid(categoryId));
+            articleHelper.ChangeArticleCategoryIfCategoryDeleted(new Guid(categoryId), false);
+            db.SubCategories.Remove(categoryToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Categories");
+        }
+
+        public ActionResult _SubCategories(){
+            var categories = db.SubCategories.ToList();
+            return PartialView(categories);
         }
     }
 }
