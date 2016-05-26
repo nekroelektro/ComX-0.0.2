@@ -154,11 +154,15 @@ namespace ComX_0._0._2.Helpers {
             return randomList.ToList();
         }
 
-        public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId) {
+        public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId, Guid articleId) {
             var articlesFromCategory = new List<Articles>();
             articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
             if (articlesFromCategory.Count() >= numberOfArticles) {
                 articlesFromCategory = articlesFromCategory.Take(numberOfArticles).ToList();
+            }
+            if (articleId != Guid.Empty){
+                var artToDelete = articlesFromCategory.First(x => x.Id == articleId);
+                articlesFromCategory.Remove(artToDelete);
             }
             return articlesFromCategory;
         }

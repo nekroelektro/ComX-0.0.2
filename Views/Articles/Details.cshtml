@@ -41,7 +41,7 @@
     </div>
 
     <div style="clear: both">
-        @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId})
+        @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId, articleId = Model.Id})
         @Html.Action("_Comments")
     </div>
 </div>
