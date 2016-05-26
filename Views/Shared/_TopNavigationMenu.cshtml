@@ -1,4 +1,9 @@
-﻿<div class="main">
+﻿<div class="main" style="width: 100%">
+    <div class="absoluteLogo" style="display: none; margin-top: -1.5em; z-index: 5; position: absolute; width: 20%;">
+        <a href="@Url.Action("Index", "Articles")">
+            <img src='~/Content/images/npLogos.png' style="float: left; width: 100%; height: auto; text-align: center;" />
+        </a>
+    </div>
     <nav id="cbp-hrmenu" class="cbp-hrmenu">
         <ul>
             <li>
@@ -197,60 +202,69 @@
 </div>
 
 <script>
-    var cbpHorizontalMenu = (function () {
+    $(document).ready(function () {
 
-        var $listItems = $('#cbp-hrmenu > ul > li'),
-            $menuItems = $listItems.children('a'),
-            $body = $('body'),
-            current = -1;
+        var cbpHorizontalMenu = (function() {
 
-        function init() {
-            $menuItems.on('click', open);
-            $listItems.on('click', function (event) {
-                 event.stopPropagation();
-            });
-        }
+            var $listItems = $('#cbp-hrmenu > ul > li'),
+                $menuItems = $listItems.children('a'),
+                $body = $('body'),
+                current = -1;
 
-        function open(event) {
-            console.log("Otwiera!");
-            if (current !== -1) {
-                $listItems.eq(current).removeClass('cbp-hropen');
-                $(".main").css("margin-bottom", 0);
+            function init() {
+                $menuItems.on('click', open);
+                $listItems.on('click', function(event) {
+                    event.stopPropagation();
+                });
             }
 
-            var $item = $(event.currentTarget).parent('li'),
-                idx = $item.index();
+            function open(event) {
+                if (current !== -1) {
+                    $listItems.eq(current).removeClass('cbp-hropen');
+                    $(".elementsToPush").css("margin-top", 0);
+                }
 
-            if (current === idx) {
-                $item.removeClass('cbp-hropen');
-                $(".main").css("margin-bottom", 0);
+                var $item = $(event.currentTarget).parent('li'),
+                    idx = $item.index();
+
+                if (current === idx) {
+                    $item.removeClass('cbp-hropen');
+                    $(".elementsToPush").css("margin-top", 0);
+                    current = -1;
+                } else {
+                    $item.addClass('cbp-hropen');
+                    var subList = document.getElementsByClassName("cbp-hrsub");
+                    $(".elementsToPush").css("margin-top", $(subList[idx]).height() + 42);
+                    current = idx;
+                    $body.off('click').on('click', close);
+                }
+
+                return false;
+
+            }
+
+            function close(event) {
+                $(".main").classList.remove("topMenuSingleActive");
+                $(".main").toggleClass("topMenuSingleInActive");
+                $listItems.eq(current).removeClass('cbp-hropen');
                 current = -1;
             }
-            else {
-                $item.addClass('cbp-hropen');
-                var subList = document.getElementsByClassName("cbp-hrsub");
-                $(".main").css("margin-bottom", $(subList[idx]).height() + 42);
-                current = idx;
-                $body.off('click').on('click', close);
-            }
 
-            return false;
+            return { init: init };
 
-        }
+        })();
 
-        function close(event) {
-            console.log("Zamyka!!");
-            $(".main").classList.remove("topMenuSingleActive");
-            $(".main").toggleClass("topMenuSingleInActive");
-            $listItems.eq(current).removeClass('cbp-hropen');
-            current = -1;
-        }
+        $(function() {
+            cbpHorizontalMenu.init();
+        });
 
-        return { init: init };
-
-    })();
-
-    $(function() {
-        cbpHorizontalMenu.init();
+        //Sticky top menu:
+        $(".main").sticky({ topSpacing: 0, zIndex: 1 });
+        $('.main').on('sticky-start', function(e) {
+            $('.absoluteLogo').show();
+        });
+        $('.main').on('sticky-end', function() {
+            $('.absoluteLogo').hide();
+        });
     });
 </script>

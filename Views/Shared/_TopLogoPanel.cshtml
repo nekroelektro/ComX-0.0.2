@@ -1,0 +1,35 @@
+﻿<div class="container logoSection" style="padding-left: 0; padding-right: 0;background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(34, 34, 34, 1));">
+    <div class="logo">
+        <a href="@Url.Action("Index", "Articles")">
+            <img src='~/Content/images/npLogos.png' style="float: left; width: 20%; height: auto; text-align: center;" />
+        </a>
+    </div>
+    <div class="rightLogoPanel" style="float: right; width: 20em;">
+        <ul class="logoMenu" style="list-style-type: none;">
+            <li>
+                @Html.ActionLink("Konfiguracja", "Articles", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            @if (!string.IsNullOrEmpty(User.Identity.Name))
+            {
+                <li>
+                    @Html.ActionLink("Witoj " + Membership.GetUser(User.Identity.Name, true) + "!", "UserPanel", "Account", null, new { @class = "navbar-brand" })
+                </li>
+                    <li>
+                        @Html.ActionLink("Zmień hasło", "ChangePassword", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Wyloguj", "LogOff", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+            }
+            else {
+                <li>
+                    @Html.ActionLink("Zaloguj", "LogOn", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                </li>
+                    <li>
+                        @Html.ActionLink("Zarejestruj", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+            }
+        </ul>
+    </div>
+</div>
+

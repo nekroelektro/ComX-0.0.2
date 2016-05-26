@@ -1,15 +1,11 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
     background-color: #222 !important;
     min-height: 100%;
+    min-width: 720px;
     height: auto !important;
     height: 100%;
     position: relative;
-}
-
-img {
-    /*image-orientation: from-image;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -50,7 +46,7 @@ textarea {
 }
 
 .sliderLink:hover {
-    color: crimson;
+    color: #2B823C;
 }
 
 .sliderLink:hover hr {
@@ -239,8 +235,11 @@ textarea {
 
 .singleLastArticle:hover {
     border: 1px red solid;
-    color: white;
-    background-color: #222;
+    background-color: #222;  
+    color: #2B823C !important;
+}
+
+.titleLastFromCategory:hover {  
 }
 
 .topMenuSingleActive {
@@ -248,4 +247,36 @@ textarea {
 }
 .topMenuSingleInActive {
     margin-bottom: 0;
+}
+
+/* Logo Panel*/
+.rightLogoPanel ul li {
+    float: right;
+    font-family: 'Amarante', sans-serif;
+    color: white;
+}
+
+.logoMenu li {
+    display: block;
+    clear: left;
+    padding-left: 2em;
+    height: 25px;
+}
+
+.rightLogoPanel ul li:hover {
+    background: black;
+}
+.logoSection  a{
+    text-decoration: none;
+    outline: 0;
+    color: white;
+    text-transform: uppercase;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.logoSection  a:hover {
+    color: #2B823C;
+    text-decoration: none;
+    outline: 0;    
 }

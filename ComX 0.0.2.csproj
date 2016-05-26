@@ -193,6 +193,9 @@
     <Content Include="Content\images\icons-white-2x.png" />
     <Content Include="Content\images\icons-white.png" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\npLogo.png" />
+    <Content Include="Content\images\npLogos.jpg" />
+    <Content Include="Content\images\npLogos.png" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\slick-theme.css" />
@@ -1154,6 +1157,7 @@
     <Content Include="scripts\jquery.magnific-popup.min.js" />
     <Content Include="scripts\jquery.pajinate.min.js" />
     <Content Include="scripts\jquery.slimscroll.min.js" />
+    <Content Include="scripts\jquery.sticky.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
@@ -1319,6 +1323,7 @@
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Articles\_LastFromCategory.cshtml" />
     <Content Include="Views\Shared\_TopNavigationMenu.cshtml" />
+    <Content Include="Views\Shared\_TopLogoPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

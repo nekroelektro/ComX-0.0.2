@@ -35,18 +35,26 @@
     <script src="@Url.Content("~/Scripts/jquery.jscroll.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.magnific-popup.min.js")"></script>
     <script src="@Url.Content("~/Scripts/cbpHorizontalMenu.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.sticky.js")"></script>
     @*<script src="@Url.Content("~/Scripts/bootstrap-combobox.js")"></script>*@
     @*<script src="@Url.Content("~/Scripts/jquery.slimscroll.min.js")"></script>*@
     <meta name="description" content="The description of my page"/>
 </head>
 <body>
-@Html.Partial("_NavBarTop")
+@*@Html.Partial("_NavBarTop")*@
+@Html.Partial("_TopLogoPanel")
+@if (currentUrl.Contains("Articles/Index") || currentUrl.Contains("Articles/Details?")){
+    <div class="container" style="padding-left: 0; padding-right: 0;">
         @Html.Partial("_TopNavigationMenu")
-
+    </div>
+}
     <div class="elementsToPush">
         @if (currentUrl.Contains("Index"))
         {
-            @Html.Action("_IndexSlider", "Articles")
+            <div class="container" style="padding-left: 0; padding-right: 0;">
+                @Html.Action("_IndexSlider", "Articles")
+            </div>
+
         }
         <div class="container body-content bodyLayout">
             @RenderBody()

@@ -144,7 +144,7 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public List<Articles> GetRandomArticlesForSideBar(int numberOfArticles, Guid? articleId) {
-            var articleList = db.Articles.ToList();
+            var articleList = db.Articles.Where(x=>x.IsPublished).ToList();
             if (articleId != Guid.Empty) {
                 var artToDelete = articleList.First(x => x.Id == articleId.Value);
                 articleList.Remove(artToDelete);
@@ -156,7 +156,7 @@ namespace ComX_0._0._2.Helpers {
 
         public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId) {
             var articlesFromCategory = new List<Articles>();
-            articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId).OrderByDescending(x => x.DateCreated).ToList();
+            articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
             if (articlesFromCategory.Count() >= numberOfArticles) {
                 articlesFromCategory = articlesFromCategory.Take(numberOfArticles).ToList();
             }
