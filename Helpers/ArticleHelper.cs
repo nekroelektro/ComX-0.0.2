@@ -34,8 +34,20 @@ namespace ComX_0._0._2.Helpers {
             return articles;
         }
 
+        public List<Articles> GetArticlesBySubCategory(Guid id)
+        {
+            var articles = db.Articles.Where(x => x.SubCategoryId == id).ToList();
+            return articles;
+        }
+
         public ArticleCategories GetCategoryById(Guid id) {
             var category = db.Categories.Find(id);
+            return category;
+        }
+
+        public ArticleSubCategories GetSubCategoryById(Guid id)
+        {
+            var category = db.SubCategories.Find(id);
             return category;
         }
 

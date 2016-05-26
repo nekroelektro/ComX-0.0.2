@@ -126,7 +126,10 @@ namespace ComX_0._0._2.Controllers {
                     entity.DateEdited = DateTime.Now;
                     entity.CategoryId = article.CategoryId;
                     entity.SubCategoryId = article.SubCategoryId;
-                    entity.IsPublished = article.IsPublished;
+                    if (entity.IsPublished != article.IsPublished) {
+                        entity.IsPublished = article.IsPublished;
+                        entity.DateCreated = DateTime.Now;
+                    }
                 }
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();

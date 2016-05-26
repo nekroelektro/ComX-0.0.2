@@ -17,8 +17,9 @@
 {
     columns.Add(o => o.Id, true);
     columns.Add(x => x.Name).SetWidth(550);
-    columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x=>x.IsPublished? "Yes":"No").SetWidth(50);
+    columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
     columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(x => articleHelper.GetAllCategories().First(o => o.Id == x.CategoryId).Name).Filterable(true).SetWidth(130);
+    columns.Add(x => x.SubCategoryId).Titled("SubCategory").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategoryId).Name).Filterable(true).SetWidth(130);
     columns.Add(x => x.DateCreated).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
 }).WithPaging(10).Sortable(true).Filterable(true)
 </div>
