@@ -1,22 +1,23 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ComX_0._0._2.Models {
     public class ChangePasswordModel {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Obecne hasło")]
         public string OldPassword { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nowe hasło")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Potwierdź nowe hasło")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -27,6 +28,7 @@ namespace ComX_0._0._2.Models {
 
         [Required]
         [DataType(DataType.Password)]
+        [StringLength(100, ErrorMessage = "Hasło musi mieć przynajmniej {2} znaków. Bo ja tak mówię.", MinimumLength = 6)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
@@ -36,23 +38,25 @@ namespace ComX_0._0._2.Models {
 
     public class RegisterModel {
         [Required]
-        [Display(Name = "User name")]
+        [StringLength(15, ErrorMessage = "Twój nick (pol. Mikołajek) musi mieć przynajmniej {2} znaki a do tego nie więcej niż {1}, sory memory.", MinimumLength = 3)]
+        [Remote("UserNameExists", "Account", HttpMethod = "POST", ErrorMessage = "Taki ziomek już istnieje, wymyśl coś innego...")]
+        [Display(Name = "Nazwa użytkownika")]
         public string UserName { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email address")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Zły masz format tego maila, popraw albo zmień albo co...")]
+        [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło musi mieć przynajmniej {2} znaków. Bo ja tak mówię.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Hasło do konta")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Potwierdź hasło")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Hasła się nie... POKRYWAJĄ (hihi)")]
         public string ConfirmPassword { get; set; }
 
         public DateTime DateOfCreation { get; set; }

@@ -22,22 +22,25 @@
             <span class="glyphicon glyphicon-erase" aria-hidden="true" style="font-size: 1.1em"></span>DELETE
         </button>
     </div>
-    <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
-        <p style="float: left;">by @userHelper.GetUserById(Model.UserId).UserName || Date added: @Html.DisplayFor(model => model.DateCreated)</p>
-        <p style="float: right;">Date of last modification: @Html.DisplayFor(model => model.DateEdited)</p>
-    </div>
 </div>
 <div class="detailContainer" style="width: 68.6%; float: left;">
-    <div class="articleDetail" style="width: 100%; float: left; padding-bottom: 2em;">
+    <div class="articleDetail" style="width: 100%; float: left;">
         @if (articleHelper.GetImageByArticleId(Model.Id) != null) {
             <div class="articleMainImage" style="width: 100%; text-align: center; margin: 0 auto; background-color: black;">
                 <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 100%; max-height: 30em; text-align: center; margin: 0 auto;"/>
             </div>
         }
+
+        <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
+            <p style="float: left;">by @userHelper.GetUserById(Model.UserId).UserName || Date added: @Html.DisplayFor(model => model.DateCreated)</p>
+        </div>
+
+        <hr style="border:2px solid #2B823C; height: 3px; background-color: #2B823C; margin-top: 0;" />
+
         <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em;">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
-        <hr/>
+        <hr style="border:2px solid #2B823C; height: 3px; background-color:#2B823C"/>
     </div>
 
     <div style="clear: both">

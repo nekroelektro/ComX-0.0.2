@@ -44,7 +44,7 @@ namespace ComX_0._0._2.Controllers {
                     }
                     return RedirectToAction("Index", "Articles");
                 }
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                ModelState.AddModelError("", "Hasło albo login jest nieprawidłowe - cieżko powiedzieć które z nich.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -74,6 +74,7 @@ namespace ComX_0._0._2.Controllers {
         public ActionResult Register(RegisterModel model) {
             if (ModelState.IsValid) {
                 // Attempt to register the user
+                model.UserName = model.UserName.Replace(" ", "_");
                 var createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
 
                 if (createStatus == MembershipCreateStatus.Success) {
@@ -118,7 +119,7 @@ namespace ComX_0._0._2.Controllers {
                 if (changePasswordSucceeded) {
                     return RedirectToAction("ChangePasswordSuccess");
                 }
-                ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                ModelState.AddModelError("", "Albo stare hasło źle żeś podał, albo nowe jest zbyt koślawe.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -208,6 +209,13 @@ namespace ComX_0._0._2.Controllers {
         public ActionResult BlockingUser(Guid userId){
             userHelper.UserBlockade(userId);
             return RedirectToAction("Users", "Configuration");
+        }
+
+        //To check if user with that username exists during registration
+        [HttpPost]
+        public JsonResult UserNameExists(string userName){
+            var user = Membership.GetUser(userName);
+            return Json(user == null);
         }
 
         #region Status Codes
