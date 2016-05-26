@@ -37,8 +37,9 @@ textarea {
 }
 
 .slideElementDown:hover {
-    border-top: 0.7em solid white;
-    border-bottom: 0.7em solid white;
+    border-top: 0.7em solid #2B823C;
+    border-bottom: 0.7em solid #2B823C;
+    cursor: pointer;
 }
 
 .sliderLink {

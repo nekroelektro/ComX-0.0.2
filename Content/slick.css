@@ -115,3 +115,8 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+
+.slick-center {
+    border-top: 0.7em solid #2B823C;
+    border-bottom: 0.7em solid #2B823C;
+}
