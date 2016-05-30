@@ -8,13 +8,16 @@
 <div class="sliderOne" style="background-color: #222; width: 100%; margin: 0 auto; font-family: 'Amarante', sans-serif; color: white;">
         @foreach (var item in lastArticles)
         {
-
             <div class="slideElementUpper" style="height: 25em; display: block;">
                 <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
-                    <div class="sliderLink" style="height:100%">
+                    <div class="sliderLink" style="height: 100%">
                         <div class="sliderLeft" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; z-index: 1; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; padding-top: 1em;">
                             <div class="sliderArticleDate">
                                 @item.DateCreated
+                            </div>
+                            <div class="sliderArticleCategories" style="display: inline;">
+                                <p>@articleHelper.GetCategoryById(item.CategoryId).Name,
+                                @articleHelper.GetSubCategoryById(item.SubCategoryId).Name</p>
                             </div>
                             <div class="sliderArticleTitle" style="">
                                 <h2>@item.Name</h2>
@@ -24,16 +27,16 @@
                             </div>
                         </div>
                         <div class="sliderCenter" style="z-index: 0; position: relative; height: 100%; width: 100%;">
-                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: auto; max-width: 100%; height: 100%; text-align: center; margin: 0 auto;" />
+                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: auto; max-width: 100%; height: 100%; text-align: center; margin: 0 auto;"/>
                         </div>
                     </div>
                 </a>
-                    <div class="sliderRight" style="background: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; z-index: 1; top: 0; right: 0; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; text-align: justify; text-indent: 0.9em; padding-top: 1em; padding-bottom: 1em;">
-                        <div class="sliderArticlePrelude">
-                            @Html.Raw(WebUtility.HtmlDecode(item.Prelude))
-                        </div>
+                <div class="sliderRight" style="background: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; z-index: 1; top: 0; right: 0; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; text-align: justify; text-indent: 0.9em; padding-top: 1em; padding-bottom: 1em;">
+                    <div class="sliderArticlePrelude">
+                        @Html.Raw(WebUtility.HtmlDecode(item.Prelude))
                     </div>
-</div>
+                </div>
+            </div>
                 }
 </div>
 <div class="sliderSection" style="background-color: #222; width: 100%; margin: 0 auto;">

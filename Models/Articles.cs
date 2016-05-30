@@ -26,6 +26,9 @@ namespace ComX_0._0._2.Models
         [DisplayName("Category")]
         public Guid CategoryId { get; set; }
 
+        [DisplayName("SubCategory")]
+        public Guid SubCategoryId { get; set; }
+
         [DisplayName("Date of creation")]
         [Required]
         public DateTime DateCreated { get; set; }

@@ -30,7 +30,9 @@ textarea {
 }
 
 /*INDEX SLIDER*/
-
+.sliderArticleCategories > p {
+    white-space: nowrap;
+}
 .slideElementDown {
     border-top: 0.7em solid black;
     border-bottom: 0.7em solid black
