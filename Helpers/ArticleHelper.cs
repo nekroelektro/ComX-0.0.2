@@ -52,50 +52,46 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public List<ArticleCategories> GetAllCategories() {
-            var categories = db.Categories.ToList();
+            var categories = db.Categories.OrderByDescending(x=>x.SortCode).ToList();
             return categories;
         }
 
         public List<ArticleSubCategories> GetAllSubCategories(){
-            var categories = db.SubCategories.ToList();
+            var categories = db.SubCategories.OrderByDescending(x => x.SortCode).ToList();
             return categories;
         }
 
+        public List<Articles> GetArticlesByBothCategories(Guid categoryId, Guid subCategoryId, int? amountOfArticles) {
+            var articles =
+                db.Articles.Where(x => x.IsPublished && x.CategoryId == categoryId && x.SubCategoryId == subCategoryId)
+                    .OrderByDescending(x => x.DateCreated).Take(amountOfArticles.Value);
+            return articles.ToList();
+        } 
+
         public List<SelectListItem> GetCategoriesToCombo() {
             var categoryList = new List<ArticleCategories>();
-            var listItems = new List<SelectListItem>();
 
             categoryList = db.Categories.ToList();
-            foreach (var item in categoryList) {
-                listItems.Add(new SelectListItem {
-                    Text = item.Name,
-                    Value = item.Id.ToString()
-                });
-            }
-            return listItems;
+            return categoryList.Select(item => new SelectListItem {
+                Text = item.Name, Value = item.Id.ToString()
+            }).ToList();
         }
 
         public List<SelectListItem> GetSubCategoriesToCombo()
         {
             var categoryList = new List<ArticleSubCategories>();
-            var listItems = new List<SelectListItem>();
 
             categoryList = db.SubCategories.ToList();
-            foreach (var item in categoryList)
-            {
-                listItems.Add(new SelectListItem
-                {
-                    Text = item.Name,
-                    Value = item.Id.ToString()
-                });
-            }
-            return listItems;
+            return categoryList.Select(item => new SelectListItem {
+                Text = item.Name, Value = item.Id.ToString()
+            }).ToList();
         }
 
         public void ChangeCategoryDetails(ArticleCategories category) {
             var categoryToChange = this.GetCategoryById(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
+            categoryToChange.SortCode = category.SortCode;
             db.Entry(categoryToChange).State = EntityState.Modified;
             db.SaveChanges();
         }
@@ -104,6 +100,7 @@ namespace ComX_0._0._2.Helpers {
             var categoryToChange = db.SubCategories.Find(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
+            categoryToChange.SortCode = category.SortCode;
             db.Entry(categoryToChange).State = EntityState.Modified;
             db.SaveChanges();
         }
@@ -210,12 +207,12 @@ namespace ComX_0._0._2.Helpers {
         public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId, Guid articleId) {
             var articlesFromCategory = new List<Articles>();
             articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
-            if (articlesFromCategory.Count() >= numberOfArticles) {
-                articlesFromCategory = articlesFromCategory.Take(numberOfArticles).ToList();
-            }
             if (articleId != Guid.Empty){
                 var artToDelete = articlesFromCategory.First(x => x.Id == articleId);
                 articlesFromCategory.Remove(artToDelete);
+            }
+            if (articlesFromCategory.Count() >= numberOfArticles) {
+                articlesFromCategory = articlesFromCategory.Take(numberOfArticles).ToList();
             }
             return articlesFromCategory;
         }

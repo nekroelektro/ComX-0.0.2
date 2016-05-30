@@ -16,10 +16,11 @@
 <p> Main categories:</p>
 <div class="col-xs-12 center-block">
     @Html.Grid(Model).Named("categoryGrid").Columns(columns => {
-        columns.Add(o => o.Id, true);
-        columns.Add(x => x.Name).SortInitialDirection(GridSortDirection.Descending).SetWidth(200);
-        columns.Add(x => x.Description).SetWidth(460);
-    }).WithPaging(20).Sortable(true).Filterable(true)
+    columns.Add(o => o.Id, true);
+    columns.Add(x => x.Name).SetWidth(200);
+    columns.Add(x => x.SortCode).SortInitialDirection(GridSortDirection.Descending).SetWidth(60);
+    columns.Add(x => x.Description).SetWidth(460);
+}).WithPaging(20).Sortable(true).Filterable(true)
 </div>
 <p> Sub categories:</p>
 @Html.Action("_SubCategories")

@@ -8,5 +8,6 @@ namespace ComX_0._0._2.Models {
 
         public string Name { get; set; }
         public string Description { get; set; }
+        public int SortCode { get; set; }
     }
 }
