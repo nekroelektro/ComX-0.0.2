@@ -5,232 +5,61 @@
     var subCategoryList = articleHelper.GetAllSubCategories();
 }
 <div class="main" style="width: 100%">
-    <div class="absoluteLogo" style="display: none; margin-top: -1.5em; z-index: 5; position: absolute; width: 20%;">
-        <a href="@Url.Action("Index", "Articles")">
-            <img src='~/Content/images/npLogos.png' style="float: left; width: 100%; height: auto; text-align: center;" />
-        </a>
-    </div>
-<nav id="cbp-hrmenu" class="cbp-hrmenu">
-    <ul>
-        @foreach (var item in categoryList)
-        {
-            <li>
-                <a href="#">@item.Name</a>
-                <div class="cbp-hrsub">
-                    <div class="cbp-hrsub-inner">
-                        <h5>@item.Description</h5>
-                        <div>
-                            @foreach (var subItem in subCategoryList) {
-                                <h4>@subItem.Name</h4>
-                                <ul>
-                                    @foreach (var article in articleHelper.GetArticlesByBothCategories(item.Id, subItem.Id, 3)) {
-                                        <li>
-                                            <a href="#">@article.Name</a>
-                                        </li>
+<div class="absoluteLogo" style="display: none; margin-top: -1.5em; z-index: 5; position: absolute; width: 20%;">
+    <a href="@Url.Action("Index", "Articles")">
+        <img src='~/Content/images/npLogos.png' style="float: left; width: 100%; height: auto; text-align: center;"/>
+    </a>
+</div>
+    <nav id="cbp-hrmenu" class="cbp-hrmenu">
+        <ul>
+            @foreach (var item in categoryList) {
+                <li>
+                    <a href="#">@item.Name</a>
+                    <div class="cbp-hrsub">
+                        <div class="cbp-hrsub-inner" style="padding-left: 0; padding-right: 0; width: 80%;">
+                            <h5>@item.Description</h5>
+                            <div class="subCategoriesNavigation" style="width: 100%; display: inline-flex;">
+                                @foreach (var subItem in subCategoryList) {
+                                    <div class="subCategoryListNavigation" style="width: 20%;">
+                                        <h4 style="padding-top: 5px; font-size: 1.3em;">@subItem.Name</h4>
+                                        <ul>
+                                            @foreach (var article in articleHelper.GetArticlesByBothCategories(item.Id, subItem.Id, 3)) {
+                                                <li>
+                                                    <a href="@Url.Action("Details", "Articles")?Id=@article.Id"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                            <div class="lastArticlesFromCategoryTopNavigation" style="width: 100%">
+                                <h4 style="padding-top: 5px; font-size: 1.3em;">Ostatnie posty z kategorii @item.Name:</h4>
+                                <div class="lastArticlesTop" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%">
+                                    @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
+                                        <a class="topNavigationLastAnchor" href="@Url.Action("Details", "Articles")?Id=@lastArticle.Id" style="width: 22%;margin: 0 auto; text-align: center;">
+                                            <div class="singleLastArticleTopNavigation" style="width: 100%; ">
+                                                <div class="imageTopNavigation" style="float: left; width: 50%; max-height: 10em;">
+                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))' style="width: 100%; max-height: 100%;"/>
+                                                </div>
+                                                <div class="titleTopNavigation" style="float: right; width: 48%; text-align: left;">
+                                                    @lastArticle.Name
+                                                </div>
+                                            </div>
+                                        </a>
                                     }
-                                </ul>
-                            }
+                                </div>
+                            </div>
+                            <div class="moreFromCategoryTopNavigation" style="float: right; clear: both; font-size: 1.1em;">
+                                <a class="seeMoreFromCategoryTopNavigation" href="@Url.Action("Categories", "Articles")?Id=@item.Id">
+                                    <p>Zobacz wszystkie z kategorii @item.Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-        }
-    </ul>
-    @*OLD SHIT*@
-    @*<ul>
-        <li>
-            <a href="#">Products</a>
-            <div class="cbp-hrsub">
-                <div class="cbp-hrsub-inner">
-                    <div>
-                        <h4>Learning &amp; Games</h4>
-                        <ul>
-                            <li><a href="#">Catch the Bullet</a></li>
-                            <li><a href="#">Snoopydoo</a></li>
-                            <li><a href="#">Fallen Angel</a></li>
-                            <li><a href="#">Sui Maker</a></li>
-                            <li><a href="#">Wave Master</a></li>
-                            <li><a href="#">Golf Pro</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Utilities</h4>
-                        <ul>
-                            <li><a href="#">Gadget Finder</a></li>
-                            <li><a href="#">Green Tree Express</a></li>
-                            <li><a href="#">Green Tree Pro</a></li>
-                            <li><a href="#">Wobbler 3.0</a></li>
-                            <li><a href="#">Coolkid</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Education</h4>
-                        <ul>
-                            <li><a href="#">Learn Thai</a></li>
-                            <li><a href="#">Math Genius</a></li>
-                            <li><a href="#">Chemokid</a></li>
-                        </ul>
-                        <h4>Professionals</h4>
-                        <ul>
-                            <li><a href="#">Success 1.0</a></li>
-                            <li><a href="#">Moneymaker</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /cbp-hrsub-inner -->
-            </div><!-- /cbp-hrsub -->
-        </li>
-        <li>
-            <a href="#">Downloads</a>
-            <div class="cbp-hrsub">
-                <div class="cbp-hrsub-inner">
-                    <div>
-                        <h4>Education &amp; Learning</h4>
-                        <ul>
-                            <li><a href="#">Learn Thai</a></li>
-                            <li><a href="#">Math Genius</a></li>
-                            <li><a href="#">Chemokid</a></li>
-                        </ul>
-                        <h4>Professionals</h4>
-                        <ul>
-                            <li><a href="#">Success 1.0</a></li>
-                            <li><a href="#">Moneymaker</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Entertainment</h4>
-                        <ul>
-                            <li><a href="#">Gadget Finder</a></li>
-                            <li><a href="#">Green Tree Express</a></li>
-                            <li><a href="#">Green Tree Pro</a></li>
-                            <li><a href="#">Holy Cannoli</a></li>
-                            <li><a href="#">Wobbler 3.0</a></li>
-                            <li><a href="#">Coolkid</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Games</h4>
-                        <ul>
-                            <li><a href="#">Catch the Bullet</a></li>
-                            <li><a href="#">Snoopydoo</a></li>
-                            <li><a href="#">Fallen Angel</a></li>
-                            <li><a href="#">Sui Maker</a></li>
-                            <li><a href="#">Wave Master</a></li>
-                            <li><a href="#">Golf Pro</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /cbp-hrsub-inner -->
-            </div><!-- /cbp-hrsub -->
-        </li>
-        <li>
-            <a href="#">Applications</a>
-            <div class="cbp-hrsub">
-                <div class="cbp-hrsub-inner">
-                    <div>
-                        <h4>Learning &amp; Games</h4>
-                        <ul>
-                            <li><a href="#">Catch the Bullet</a></li>
-                            <li><a href="#">Snoopydoo</a></li>
-                        </ul>
-                        <h4>Utilities</h4>
-                        <ul>
-                            <li><a href="#">Gadget Finder</a></li>
-                            <li><a href="#">Green Tree Express</a></li>
-                            <li><a href="#">Green Tree Pro</a></li>
-                            <li><a href="#">Wobbler 3.0</a></li>
-                            <li><a href="#">Coolkid</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Education</h4>
-                        <ul>
-                            <li><a href="#">Learn Thai</a></li>
-                            <li><a href="#">Math Genius</a></li>
-                            <li><a href="#">Chemokid</a></li>
-                        </ul>
-                        <h4>Professionals</h4>
-                        <ul>
-                            <li><a href="#">Success 1.0</a></li>
-                            <li><a href="#">Moneymaker</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /cbp-hrsub-inner -->
-            </div><!-- /cbp-hrsub -->
-        </li>
-        <li>
-            <a href="#">Projects</a>
-            <div class="cbp-hrsub">
-                <div class="cbp-hrsub-inner">
-                    <div>
-                        <h4>Learning &amp; Games</h4>
-                        <ul>
-                            <li><a href="#">Catch the Bullet</a></li>
-                            <li><a href="#">Snoopydoo</a></li>
-                            <li><a href="#">Fallen Angel</a></li>
-                            <li><a href="#">Sui Maker</a></li>
-                            <li><a href="#">Wave Master</a></li>
-                            <li><a href="#">Golf Pro</a></li>
-                        </ul>
-                        <h4>Utilities</h4>
-                        <ul>
-                            <li><a href="#">Gadget Finder</a></li>
-                            <li><a href="#">Green Tree Express</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Entertainment</h4>
-                        <ul>
-                            <li><a href="#">Gadget Finder</a></li>
-                            <li><a href="#">Green Tree Express</a></li>
-                            <li><a href="#">Green Tree Pro</a></li>
-                            <li><a href="#">Holy Cannoli</a></li>
-                            <li><a href="#">Wobbler 3.0</a></li>
-                            <li><a href="#">Coolkid</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /cbp-hrsub-inner -->
-            </div><!-- /cbp-hrsub -->
-        </li>
-        <li>
-            <a href="#">Freeware</a>
-            <div class="cbp-hrsub">
-                <div class="cbp-hrsub-inner">
-                    <div>
-                        <h4>Utilities</h4>
-                        <ul>
-                            <li><a href="#">Green Tree Pro</a></li>
-                            <li><a href="#">Wobbler 3.0</a></li>
-                            <li><a href="#">Coolkid</a></li>
-                        </ul>
-                        <h4>Education</h4>
-                        <ul>
-                            <li><a href="#">Learn Thai</a></li>
-                            <li><a href="#">Math Genius</a></li>
-                            <li><a href="#">Chemokid</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Professionals</h4>
-                        <ul>
-                            <li><a href="#">Success 1.0</a></li>
-                            <li><a href="#">Moneymaker</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Learning &amp; Games</h4>
-                        <ul>
-                            <li><a href="#">Catch the Bullet</a></li>
-                            <li><a href="#">Snoopydoo</a></li>
-                            <li><a href="#">Fallen Angel</a></li>
-                            <li><a href="#">Sui Maker</a></li>
-                            <li><a href="#">Wave Master</a></li>
-                            <li><a href="#">Golf Pro</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /cbp-hrsub-inner -->
-            </div><!-- /cbp-hrsub -->
-        </li>
-    </ul>*@
-</nav>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>
 
 <script>
@@ -294,9 +123,11 @@
         $(".main").sticky({ topSpacing: 0, zIndex: 1 });
         $('.main').on('sticky-start', function(e) {
             $('.absoluteLogo').show();
+            $(".cbp-hrsub-inner").css("width", "100%");
         });
         $('.main').on('sticky-end', function() {
             $('.absoluteLogo').hide();
+            $(".cbp-hrsub-inner").css("width", "80%");
         });
     });
 </script>
