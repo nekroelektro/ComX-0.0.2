@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Helpers;
@@ -177,6 +178,22 @@ namespace ComX_0._0._2.Controllers {
         public ActionResult _SubCategories(){
             var categories = db.SubCategories.ToList();
             return PartialView(categories);
+        }
+
+        public ActionResult Gallery() {
+            var gallery = db.ImagesGallery.OrderByDescending(x=>x.DateOfCreation).ToList();
+            return View(gallery);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Gallery(HttpPostedFileBase image)
+        {
+            if (ModelState.IsValid) {
+                articleHelper.UploadImageForGallery(image);
+                return RedirectToAction("Gallery");
+            }
+            return View();
         }
     }
 }

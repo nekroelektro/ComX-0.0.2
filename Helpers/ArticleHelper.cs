@@ -142,6 +142,23 @@ namespace ComX_0._0._2.Helpers {
             db.SaveChanges();
         }
 
+        public void UploadImageForGallery(HttpPostedFileBase upload)
+        {
+            var imgToUpload = new ImagesGallery();
+            if (upload != null)
+            {
+                imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
+                upload.SaveAs(path);
+
+                imgToUpload.Id = Guid.NewGuid();
+                imgToUpload.ImagePath = path;
+                imgToUpload.DateOfCreation = DateTime.Now;
+            }
+            db.ImagesGallery.Add(imgToUpload);
+            db.SaveChanges();
+        }
+
         public Images GetImageByArticleId(Guid articleId) {
             var image = new Images();
             try {
@@ -163,6 +180,11 @@ namespace ComX_0._0._2.Helpers {
                 return relative;
             }
             return "deafult.jpg";
+        }
+
+        public string GetGalleryImageRelativePathByName(string name) {
+            var relativePath = string.Format("~/Content/images/Gallery/{0}", name);
+            return relativePath;
         }
 
         public void DeleteImageForGivenArticle(Guid articleId) {

@@ -196,6 +196,7 @@
     <Content Include="Content\images\npLogo.png" />
     <Content Include="Content\images\npLogos.jpg" />
     <Content Include="Content\images\npLogos.png" />
+    <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\slick-theme.css" />
@@ -1152,6 +1153,7 @@
     <Content Include="scripts\jquery-2.2.0.min.js" />
     <Content Include="scripts\jquery-2.2.0.min.map" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery.jscroll.min.js" />
     <Content Include="scripts\jquery.layout.balancer.js" />
     <Content Include="scripts\jquery.magnific-popup.min.js" />
@@ -1286,6 +1288,14 @@
     <Compile Include="Migrations\201605301732451_init23.Designer.cs">
       <DependentUpon>201605301732451_init23.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606031331088_Init24.cs" />
+    <Compile Include="Migrations\201606031331088_Init24.Designer.cs">
+      <DependentUpon>201606031331088_Init24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606031602047_Init25.cs" />
+    <Compile Include="Migrations\201606031602047_Init25.Designer.cs">
+      <DependentUpon>201606031602047_Init25.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
@@ -1295,6 +1305,7 @@
     <Compile Include="Models\CustomMembershipProvider.cs" />
     <Compile Include="Models\CustomRoleProvider.cs" />
     <Compile Include="Models\Images.cs" />
+    <Compile Include="Models\ImagesGallery.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\UserIdentity.cs" />
     <Compile Include="Models\Users.cs" />
@@ -1341,6 +1352,7 @@
     <Content Include="Views\Configuration\SubCategoriesCreate.cshtml" />
     <Content Include="Views\Configuration\SubCategoriesDetails.cshtml" />
     <Content Include="Views\Articles\Categories.cshtml" />
+    <Content Include="Views\Configuration\Gallery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1351,6 +1363,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\Container\" />
+    <Folder Include="Content\images\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602241345449_Initial1.resx">
@@ -1427,6 +1440,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605301732451_init23.resx">
       <DependentUpon>201605301732451_init23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606031331088_Init24.resx">
+      <DependentUpon>201606031331088_Init24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606031602047_Init25.resx">
+      <DependentUpon>201606031602047_Init25.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

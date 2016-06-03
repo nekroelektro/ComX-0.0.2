@@ -304,3 +304,28 @@ textarea {
     text-decoration: none;
     outline: 0;    
 }
+
+/* Top Navigation*/
+.seeMoreFromCategoryTopNavigation {   
+    text-decoration: none;
+    outline: 0;
+    color: #222 !important;
+}
+
+.seeMoreFromCategoryTopNavigation:hover {
+    color: white !important;
+    text-decoration: none;
+    outline: 0;
+}
+
+.topNavigationLastAnchor {
+    color: white !important;
+    text-decoration: none;
+    outline: 0; 
+}
+
+.topNavigationLastAnchor:hover {
+    color: #222 !important;
+    text-decoration: none;
+    outline: 0;
+}
