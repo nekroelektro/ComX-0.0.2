@@ -13,7 +13,7 @@
     <h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name):</h2>
     <div class="buttons" style="float: right; margin-top: 1em;">
         <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
-            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>BACK
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>DO GÓRY
         </button>
         <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
             <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"></span>EDIT
@@ -21,6 +21,9 @@
         <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
             <span class="glyphicon glyphicon-erase" aria-hidden="true" style="font-size: 1.1em"></span>DELETE
         </button>
+    </div>
+    <div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both;">
+        <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
     </div>
 </div>
 <div class="detailContainer" style="width: 68.6%; float: left;">
@@ -31,16 +34,15 @@
             </div>
         }
 
-        <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
-            <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
+        <div class="articleDetailsIntro" style="text-align: justify; font-size: 1.4em; background-color: #222; border-left: 0.5em #2B823C solid;border-right: 0.5em #2B823C solid; width: 100%; color: white; padding: 2px 5px 2px 5px;">
+            @Html.Raw(WebUtility.HtmlDecode(Model.Prelude))
         </div>
-
-        <hr style="border:2px solid #2B823C; height: 3px; background-color: #2B823C; margin-top: 0;" />
+        <hr style="border:2px solid #2B823C; background-color: #2B823C; margin-top: 0;" />
 
         <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em;">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
-        <hr style="border:2px solid #2B823C; height: 3px; background-color:#2B823C"/>
+        <hr style="border:2px solid #2B823C; background-color:#2B823C"/>
     </div>
 
     <div style="clear: both">

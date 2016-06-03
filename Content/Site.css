@@ -150,6 +150,16 @@ textarea {
 
 /* ARTICLE DETAILS*/
 
+.seeMoreFromCategory{
+    text-decoration: none;
+    outline: 0;
+    color: crimson !important;
+}
+
+.seeMoreFromCategory:hover {
+    color: #2B823C !important;
+}
+
 /* COMMENT SECTION */
 
 .addedCommentsSection {

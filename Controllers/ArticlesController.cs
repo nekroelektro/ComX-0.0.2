@@ -179,7 +179,7 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult _Comments(Comments comment){
+        public ActionResult _Comments(Comments comment) {
             var currentArticle = Request.Params["Id"];
             var artId = new Guid(currentArticle);
             var userId = userHelper.GetCurrentLoggedUserId();
@@ -204,7 +204,7 @@ namespace ComX_0._0._2.Controllers {
             return PartialView();
         }
 
-        public ActionResult _IndexSlider(){
+        public ActionResult _IndexSlider() {
             return PartialView("_IndexSlider");
         }
 
@@ -214,17 +214,30 @@ namespace ComX_0._0._2.Controllers {
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }
-        
+
         public ActionResult DeleteImage(Guid articleId) {
             articleHelper.DeleteImageForGivenArticle(articleId);
             ViewBag.ArticleId = articleId;
             return RedirectToAction("Edit", new {id = articleId});
         }
 
-        public ActionResult GetCategoryName(Guid categoryId)
-        {
+        public ActionResult GetCategoryName(Guid categoryId) {
             var cat = articleHelper.GetCategoryById(categoryId);
             return Content(cat.Name);
+        }
+
+        public ActionResult Categories(Guid? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var articlesByCategory =
+                db.Articles.Where(x => x.IsPublished && x.CategoryId == id)
+                    .OrderByDescending(x => x.DateCreated)
+                    .ToList();
+            if (articlesByCategory == null) {
+                return HttpNotFound();
+            }
+            return View(articlesByCategory);
         }
     }
 }

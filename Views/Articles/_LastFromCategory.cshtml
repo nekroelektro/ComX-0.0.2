@@ -4,6 +4,7 @@
     ArticleHelper articleHelper = new ArticleHelper();
 }
 
+@if (Model.Any()){
 <div class="lastFromCategoryLabel" style="font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.4em; width: 99.9%; border-radius: 0 20px 0 0;">
     Zobacz ostatnie z tej kategorii:
 </div>
@@ -21,8 +22,9 @@
         </a>
     }
 </div>
-@if (Model.Any()) {
     <div class="lastFromCategoryLabel" style="float: right; font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.3em; padding-left: 1em; width: 99.9%;">
+        <a class="seeMoreFromCategory" href="@Url.Action("Categories", "Articles")?Id=@Model.First().CategoryId">
         <p style="float: right;"> Zobacz wszystkie z kategorii @articleHelper.GetCategoryById(Model.First().CategoryId).Name>>>></p>
-    </div>
+            </a>
+</div>
 }

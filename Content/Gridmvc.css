@@ -14,8 +14,12 @@ table.grid-table { margin: 0;font-size: 18px;}
         table.grid-table .grid-header > .grid-header-title { width: 100%; margin-right: 15px; white-space: nowrap; }
 
     /* Grid body */
-    table.grid-table tr.grid-row-selected td, table.grid-table tr.grid-row:hover { background: #4888C2 !important; color: white; }
+    table.grid-table tr.grid-row-selected td, table.grid-table tr.grid-row:hover { background: #222 !important; color: white;}
     table.grid-table tr.grid-row-selected a { color: white; }
+
+    .grid-cell:hover {
+        cursor: pointer;
+    }
 
 /* Grid filtering */
 input.grid-filter-input { padding: 4px; font-size: 13px; }

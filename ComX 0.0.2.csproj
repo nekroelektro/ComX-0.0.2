@@ -1340,6 +1340,7 @@
     <Content Include="Views\Configuration\_SubCategories.cshtml" />
     <Content Include="Views\Configuration\SubCategoriesCreate.cshtml" />
     <Content Include="Views\Configuration\SubCategoriesDetails.cshtml" />
+    <Content Include="Views\Articles\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

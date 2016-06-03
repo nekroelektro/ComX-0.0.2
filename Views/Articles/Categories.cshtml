@@ -1,0 +1,32 @@
+﻿@using ComX_0._0._2.Helpers
+@using GridMvc.Html
+@using GridMvc.Sorting
+@model IEnumerable<ComX_0._0._2.Models.Articles>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ArticleHelper articleHelper = new ArticleHelper();
+    var category = articleHelper.GetCategoryById(Model.FirstOrDefault().CategoryId);
+}
+<div class="categoryArticleContainer" style="width: 70%; float: left;font-family: 'Amarante', sans-serif;">
+    <div class="categoryArticleTitle">
+        <h2>Posty z kategorii @category.Name:</h2>
+    </div>
+    <div class="col-xs-12 center-block">
+        @Html.Grid(Model).Named("categoryArticleGrid").Columns(columns => {
+       columns.Add(o => o.Id, true);
+       columns.Add(x => x.Name).Titled("Tytuł").SetWidth(400);
+       columns.Add(x => x.SubCategoryId).Titled("Sub-kategoria").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategoryId).Name).SetWidth(60);
+       columns.Add(x => x.DateCreated).Titled("Data dodania").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+   }).WithPaging(20).Sortable(true)
+    </div>
+</div>
+
+    @Html.Partial("_SideBar")
+    <script>
+        $(function () {
+            pageGrids.categoryArticleGrid.onRowSelect(function (e) {
+                var rowArticleId = e.row.Id;
+                window.location.href = '@Url.Action("Details", "Articles")?Id=' + rowArticleId;
+            });
+        });
+    </script>
