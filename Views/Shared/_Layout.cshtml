@@ -45,30 +45,37 @@
     <meta name="description" content="The description of my page"/>
 </head>
 <body>
-@*@Html.Partial("_NavBarTop")*@
-@Html.Partial("_TopLogoPanel")
-@if (currentUrl.Contains("Articles/Index") || currentUrl.Contains("Articles/Details?") || currentUrl.Contains("Articles/Categories?"))
-{
-    <div class="container" style="padding-left: 0; padding-right: 0;">
-        @Html.Partial("_TopNavigationMenu")
-    </div>
-}
+    @*@Html.Partial("_NavBarTop")*@
+    @Html.Partial("_TopLogoPanel")
+    @if (currentUrl.Contains("Articles/Index") || currentUrl.Contains("Articles/Details?") || currentUrl.Contains("Articles/Categories?"))
+    {
+        <div class="container" style="padding-left: 0; padding-right: 0;">
+            @Html.Partial("_TopNavigationMenu")
+        </div>
+    }
     <div class="elementsToPush">
         @if (currentUrl.Contains("Index"))
         {
             <div class="container" style="padding-left: 0; padding-right: 0;">
                 @Html.Action("_IndexSlider", "Articles")
             </div>
-
+            <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; background-color: white; border-bottom: 1em solid #222;font-family: 'Amarante', sans-serif;text-align: justify">
+                <h2 style="color: red;">Uważej!</h2>
+                <h4>
+                    Portaleta na ktorą właśnie się wprosiłeś/aś może zawierać całkiem sporawe ilości brzydkich wyrazów, nagości i niepoprawnej polszczyzny,
+                    więc jeśli czujesz się dotknięty/a w krocze przy obcowaniu z którymś z powyższych znamion plebejskiego pochodzenia - zawróć i wróć po
+                    studniówce!
+                </h4>
+            </div>
         }
         <div class="container body-content bodyLayout">
             @RenderBody()
             <div class="push"></div>
         </div>
     </div>
-<a href="javascript:" id="return-to-top" ><i class="icon-chevron-up" style="border: none !important"></i></a>
+    <a href="javascript:" id="return-to-top"><i class="icon-chevron-up" style="border: none !important"></i></a>
 
-@Html.Partial("_Footer")
+    @Html.Partial("_Footer")
 </body>
 </html>
 <script>

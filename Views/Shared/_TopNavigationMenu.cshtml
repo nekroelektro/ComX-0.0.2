@@ -34,6 +34,7 @@
                             </div>
                             <div class="lastArticlesFromCategoryTopNavigation" style="width: 100%">
                                 <h4 style="padding-top: 5px; font-size: 1.3em;">Ostatnie posty z kategorii @item.Name:</h4>
+                                <hr style="margin-top: 0; margin-bottom: 0;"/>
                                 <div class="lastArticlesTop" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%; padding-top: 1em;">
                                     @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
                                         <a class="topNavigationLastAnchor" href="@Url.Action("Details", "Articles")?Id=@lastArticle.Id" style="width: 22%;margin: 0 auto; text-align: center;">
