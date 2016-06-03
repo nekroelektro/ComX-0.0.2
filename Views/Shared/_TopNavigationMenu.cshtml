@@ -37,8 +37,8 @@
                                 <div class="lastArticlesTop" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%">
                                     @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
                                         <a class="topNavigationLastAnchor" href="@Url.Action("Details", "Articles")?Id=@lastArticle.Id" style="width: 22%;margin: 0 auto; text-align: center;">
-                                            <div class="singleLastArticleTopNavigation" style="width: 100%; ">
-                                                <div class="imageTopNavigation" style="float: left; width: 50%; max-height: 10em;">
+                                            <div class="singleLastArticleTopNavigation" style="width: 90%; ">
+                                                <div class="imageTopNavigation" style="float: left; width: 40%; max-height: 10em;">
                                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))' style="width: 100%; max-height: 100%;"/>
                                                 </div>
                                                 <div class="titleTopNavigation" style="float: right; width: 48%; text-align: left;">
