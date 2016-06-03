@@ -13,7 +13,7 @@
             @foreach (var item in Model) {
                 <div class="indexElement">
                     <div class="singleIndexArticle">
-                        <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                        <a  class="singleIndexAnchor" href="@Url.Action("Details", "Articles")?Id=@item.Id">
                             @if (articleHelper.GetImageByArticleId(item.Id) != null) {
                                 <div class="indexArticleImage">
                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto;"/>
@@ -23,7 +23,7 @@
                                 <div class="indexArticleTitle">
                                     <h2>@item.Name</h2>
                                     <div class="indexArticleDate">
-                                        <p>Added: @item.DateCreated</p>
+                                        <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated</p>
                                     </div>
                                 </div>
                                 <hr style="border-color: crimson"/>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="indexArticleFooter">
-                            <p>by @userHelper.GetUserById(item.UserId).UserName</p>
+                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
                         </div>
                     </div>
                 </div>

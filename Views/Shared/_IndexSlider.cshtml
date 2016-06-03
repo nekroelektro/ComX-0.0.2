@@ -13,17 +13,17 @@
                     <div class="sliderLink" style="height: 100%">
                         <div class="sliderLeft" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; z-index: 1; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; padding-top: 1em;">
                             <div class="sliderArticleDate">
-                                @item.DateCreated
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated
                             </div>
-                            <div class="sliderArticleCategories" style="display: inline;">
-                                <p>@articleHelper.GetCategoryById(item.CategoryId).Name,
-                                @articleHelper.GetSubCategoryById(item.SubCategoryId).Name</p>
-                            </div>
-                            <div class="sliderArticleTitle" style="">
-                                <h2>@item.Name</h2>
+                            <div class="sliderArticleCategories" style="display: inline; float: left;">
+                                <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
+                                    @articleHelper.GetSubCategoryById(item.SubCategoryId).Name</p>
                             </div>
                             <div class="sliderArticleAuthor" style="float: right;">
-                                by @userHelper.GetUserById(item.UserId).UserName
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName
+                            </div>
+                            <div class="sliderArticleTitle" style="float: left; width: 100%;">
+                                <h2>@item.Name</h2>
                             </div>
                         </div>
                         <div class="sliderCenter" style="z-index: 0; position: relative; height: 100%; width: 100%;">

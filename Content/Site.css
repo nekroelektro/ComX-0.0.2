@@ -117,6 +117,16 @@ textarea {
     font-size: 1.3em !important;
 }
 
+.singleIndexAnchor {
+    text-decoration: none;
+    outline: 0;
+    color: black !important;
+}
+
+.singleIndexAnchor:hover {
+    color: #2B823C !important;
+}
+
 .indexArticleDate {
     font-size: 0.8em;
 }

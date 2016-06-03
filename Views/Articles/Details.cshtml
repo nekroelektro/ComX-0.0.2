@@ -32,7 +32,7 @@
         }
 
         <div class="datesDetailsArticles" style="display: inline-block; width: 100%">
-            <p style="float: left;">by @userHelper.GetUserById(Model.UserId).UserName || Date added: @Html.DisplayFor(model => model.DateCreated)</p>
+            <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
         </div>
 
         <hr style="border:2px solid #2B823C; height: 3px; background-color: #2B823C; margin-top: 0;" />
