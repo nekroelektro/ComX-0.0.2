@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Models;
-using System.Data.Entity;
 
 namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
@@ -15,7 +14,7 @@ namespace ComX_0._0._2.Helpers {
         private readonly GeneralHelper generalHelper = new GeneralHelper();
 
         public List<Articles> GetLastArticles(int number) {
-            var articles = db.Articles.Where(x=>x.IsPublished).OrderByDescending(x => x.DateCreated).Take(number);
+            var articles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(number);
             return articles.ToList();
         }
 
@@ -34,8 +33,7 @@ namespace ComX_0._0._2.Helpers {
             return articles;
         }
 
-        public List<Articles> GetArticlesBySubCategory(Guid id)
-        {
+        public List<Articles> GetArticlesBySubCategory(Guid id) {
             var articles = db.Articles.Where(x => x.SubCategoryId == id).ToList();
             return articles;
         }
@@ -45,18 +43,17 @@ namespace ComX_0._0._2.Helpers {
             return category;
         }
 
-        public ArticleSubCategories GetSubCategoryById(Guid id)
-        {
+        public ArticleSubCategories GetSubCategoryById(Guid id) {
             var category = db.SubCategories.Find(id);
             return category;
         }
 
         public List<ArticleCategories> GetAllCategories() {
-            var categories = db.Categories.OrderByDescending(x=>x.SortCode).ToList();
+            var categories = db.Categories.OrderByDescending(x => x.SortCode).ToList();
             return categories;
         }
 
-        public List<ArticleSubCategories> GetAllSubCategories(){
+        public List<ArticleSubCategories> GetAllSubCategories() {
             var categories = db.SubCategories.OrderByDescending(x => x.SortCode).ToList();
             return categories;
         }
@@ -66,29 +63,30 @@ namespace ComX_0._0._2.Helpers {
                 db.Articles.Where(x => x.IsPublished && x.CategoryId == categoryId && x.SubCategoryId == subCategoryId)
                     .OrderByDescending(x => x.DateCreated).Take(amountOfArticles.Value);
             return articles.ToList();
-        } 
+        }
 
         public List<SelectListItem> GetCategoriesToCombo() {
             var categoryList = new List<ArticleCategories>();
 
             categoryList = db.Categories.ToList();
             return categoryList.Select(item => new SelectListItem {
-                Text = item.Name, Value = item.Id.ToString()
+                Text = item.Name,
+                Value = item.Id.ToString()
             }).ToList();
         }
 
-        public List<SelectListItem> GetSubCategoriesToCombo()
-        {
+        public List<SelectListItem> GetSubCategoriesToCombo() {
             var categoryList = new List<ArticleSubCategories>();
 
             categoryList = db.SubCategories.ToList();
             return categoryList.Select(item => new SelectListItem {
-                Text = item.Name, Value = item.Id.ToString()
+                Text = item.Name,
+                Value = item.Id.ToString()
             }).ToList();
         }
 
         public void ChangeCategoryDetails(ArticleCategories category) {
-            var categoryToChange = this.GetCategoryById(category.Id);
+            var categoryToChange = GetCategoryById(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
             categoryToChange.SortCode = category.SortCode;
@@ -96,7 +94,7 @@ namespace ComX_0._0._2.Helpers {
             db.SaveChanges();
         }
 
-        public void ChangeSubCategoryDetails(ArticleSubCategories category){
+        public void ChangeSubCategoryDetails(ArticleSubCategories category) {
             var categoryToChange = db.SubCategories.Find(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
@@ -106,7 +104,7 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public List<Comments> GetCommentsByArticle(Guid id) {
-            List<Comments> comments = new List<Comments>();
+            var comments = new List<Comments>();
             comments = db.Comments.Where(x => x.ArticleId == id).ToList();
             if (comments.Count() != 0) {
                 return comments.OrderByDescending(x => x.DateOfCreation).ToList();
@@ -119,13 +117,12 @@ namespace ComX_0._0._2.Helpers {
             return comments.ToList();
         }
 
-        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload)
-        {
+        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload) {
             var imgToUpload = new Images();
-            if (upload != null)
-            {
+            if (upload != null) {
                 imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"), imgToUpload.FileName);
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"),
+                    imgToUpload.FileName);
                 upload.SaveAs(path);
 
                 imgToUpload.Id = Guid.NewGuid();
@@ -136,19 +133,16 @@ namespace ComX_0._0._2.Helpers {
                 imgToUpload.OriginalWidth = 200;
                 imgToUpload.OriginalHeight = 200;
                 imgToUpload.DateOfChange = DateTime.Now;
-                
             }
             db.Images.Add(imgToUpload);
             db.SaveChanges();
         }
 
-        public void UploadImageForGallery(HttpPostedFileBase upload)
-        {
+        public void UploadImageForGallery(HttpPostedFileBase upload) {
             var imgToUpload = new ImagesGallery();
-            if (upload != null)
-            {
+            if (upload != null) {
                 imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
                 upload.SaveAs(path);
 
                 imgToUpload.Id = Guid.NewGuid();
@@ -174,7 +168,7 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public string GetImageRelativePathByArticleId(Guid articleId) {
-            var image = this.GetImageByArticleId(articleId);
+            var image = GetImageByArticleId(articleId);
             if (image != null) {
                 var relative = string.Format("~/Content/images/Container/{0}", image.FileName);
                 return relative;
@@ -204,10 +198,10 @@ namespace ComX_0._0._2.Helpers {
             if (allArticlesWithDeletedCategory.Count() > 0) {
                 foreach (var item in allArticlesWithDeletedCategory) {
                     if (isMainCategory) {
-                        item.CategoryId = this.GetAllCategories().First(x => x.Name == "Misc").Id;
+                        item.CategoryId = GetAllCategories().First(x => x.Name == "Misc").Id;
                     }
                     else {
-                        item.CategoryId = this.GetAllSubCategories().First(x => x.Name == "Misc").Id;
+                        item.CategoryId = GetAllSubCategories().First(x => x.Name == "Misc").Id;
                     }
                     db.Entry(item).State = EntityState.Modified;
                 }
@@ -216,20 +210,23 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public List<Articles> GetRandomArticlesForSideBar(int numberOfArticles, Guid? articleId) {
-            var articleList = db.Articles.Where(x=>x.IsPublished).ToList();
+            var articleList = db.Articles.Where(x => x.IsPublished).ToList();
             //if (articleId != Guid.Empty) {
             //    var artToDelete = articleList.First(x => x.Id == articleId.Value);
             //    articleList.Remove(artToDelete);
             //}
-            Random rnd = new Random();
+            var rnd = new Random();
             var randomList = articleList.OrderBy(x => rnd.Next()).Take(numberOfArticles);
             return randomList.ToList();
         }
 
         public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId, Guid articleId) {
             var articlesFromCategory = new List<Articles>();
-            articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
-            if (articleId != Guid.Empty){
+            articlesFromCategory =
+                db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished)
+                    .OrderByDescending(x => x.DateCreated)
+                    .ToList();
+            if (articleId != Guid.Empty) {
                 var artToDelete = articlesFromCategory.First(x => x.Id == articleId);
                 articlesFromCategory.Remove(artToDelete);
             }

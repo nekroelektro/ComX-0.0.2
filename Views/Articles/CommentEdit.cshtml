@@ -1,0 +1,36 @@
+﻿@using ComX_0._0._2.Helpers
+@model ComX_0._0._2.Models.Comments
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+    <div class="newCommentSection">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-xs-12 center-block" style="display: inline-block;">
+                    @Html.Custom_DivFor(model => model.Body, "form-control comEditorTextArea")
+                    @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
+            @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
+            @Html.HiddenFor(model=>model.ArticleId)
+            <div class="form-group">
+                <div style="padding-left: 2.2em;">
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+<script>
+    jQuery(document).ready(function($) {
+        var preludeValue = $('#Body').attr('value');
+        var decodedPrelude = $('<textarea/>').html(preludeValue).text();
+        $('.comEditorTextArea').trumbowyg();
+        $('.comEditorTextArea').trumbowyg('html', decodedPrelude);
+    });
+</script>

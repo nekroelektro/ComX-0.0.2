@@ -4,27 +4,30 @@
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
     string comId = "";
-    var artId = new Guid(Request.Params["Id"]);
+    var artId = ViewBag.ReturnArticleId;
     var commentList = articleHelper.GetCommentsByArticle(artId);
 }
 <div class="commentSection">
     @if (!string.IsNullOrEmpty(User.Identity.Name)){
-        if (!userHelper.GetCurrentLoggedUser().IsBlocked) {
-            using (Html.BeginForm()) {
+        if (!userHelper.GetCurrentLoggedUser().IsBlocked){
+            using (Html.BeginForm("_Comments", "Articles", FormMethod.Post)) {
                 @Html.AntiForgeryToken()
-                <div class="newCommentSection" style="text-align: center; margin: 0 auto;">
+                <div class="newCommentSection">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-md-8 center-block" style="display: inline-block; margin: 0 auto; text-align: center; float: none">
+                            <div class="col-xs-12 center-block" style="display: inline-block;">
                                 @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
                                 @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
                             </div>
                         </div>
                         @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
                         @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
+                        @Html.HiddenFor(x=>x.ArticleId)
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" onclick="location.href = '@Url.Action("_Comments", "Articles")'"/>
+                            <div style="padding-left: 2.2em;">
+                                <button type="submit" class="btn btn-info" >
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -33,38 +36,50 @@
         }
     }
     <hr />
-    <div class="addedCommentsSection col-xs-12">
+    <div class="addedCommentsSection col-xs-12" style="padding-bottom: 4em;">
+        <h2>Komentarze(@commentList.Count)</h2>
         @if (commentList != null) {
             foreach (var item in commentList) {
-                 var currentUser = userHelper.GetUserById(item.UserId);
-                 <div class="singleCommentSection col-xs-10 col-xs-offset-1">
-                     <div class="col-xs-2 commentFooter" style="height: 100%; border-right: solid black 1px; background-color: #222; color: white;">
-                         <p>@currentUser.UserName</p>
-                         @if (userHelper.GetAvatarByUserId(currentUser.Id) != null) {
-                             <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 80%; text-align: center; margin: 0 auto;"/>
-                         }
-                         <p>Date added: <br/> @item.DateOfCreation.ToString()</p>
-                     </div>
-                     <div class="col-xs-9 commentBody" style="height: 100%; max-width: 90%">
-                         @Html.Raw(WebUtility.HtmlDecode(item.Body))
-                     </div>
-                     <div class="col-xs-1 commentOptions" style="height: 100%;">
-                         <button type="button" class="btn btn-danger .btn-sm popupCommentDelete" data-id ="@item.Id" data-art ="@artId" href="#test-modal" style="padding-top: 1em; padding-right: 1em;">
-                             <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                         </button>
-                     </div>
+                var currentUser = userHelper.GetUserById(item.UserId);
+                <div class="singleCommentSection col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 commentFooter" style="height: 100%; color: black;">
+                        @if (userHelper.GetAvatarByUserId(currentUser.Id) != null) {
+                            <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 100%; text-align: center; margin: 0 auto;"/>
+                        }
+                    </div>
+                    <div class="col-xs-9 commentBody" style="height: 100%; max-width: 100%;">
+                        <div class="readyCommentDetails" style="width: 100%; border-bottom: solid 1px black; display: inline-block;">
+                            <div style="float: left;">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @currentUser.UserName &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateOfCreation.ToString()
+                            </div>
+                            <div style="float: right;">
+                                <a href='@Url.Action("CommentEdit", "Articles", new {id = item.Id, artId = item.ArticleId})'><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                <a class="popupCommentDelete" data-id="@item.Id" data-art="@artId" href="#test-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                            </div>
+                        </div>
+                        <div class="readyCommentBody" style="width: 100%; text-align: justify">
+                            @Html.Raw(WebUtility.HtmlDecode(item.Body))
+                        </div>
+                    </div>
 
-                     <div id="test-modal" class="mfp-hide white-popup">
-                         <p>Potwierdź</p>
-                         <hr/>
-                         <p>Czy na bank chcesz usunąć swój komentarz?</p>
-                         <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId" >
-                             Ta!
-                         </button>
-                         <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-                     </div>
-                 </div>
-             }
+                    <div id="test-modal" class="mfp-hide white-popup">
+                        <p>Potwierdź</p>
+                        <hr/>
+                        <p>Czy na bank chcesz usunąć swój komentarz?</p>
+                        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+                            Ta!
+                        </button>
+                        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+                    </div>
+
+                    @*<div id="test-modal-edit" class="mfp-hide white-popup">
+                        <p>Edytuj komentarz</p>
+                        <hr />
+                        @Html.Action("_CommentEdit", "Articles", new {id = item.Id})
+                    </div>*@
+                </div>
+            }
         }
     </div>
 </div>
@@ -82,7 +97,6 @@
         $('.popupCommentDelete').click(function() {
             comIdentificator = $(this).data('id').toString();
             artIdentificator = $(this).data('art').toString();
-            @*@comId = comIdentificator;*@
             console.log(comIdentificator);
         });
         $(document).on('click', '.btnConfirmDeletion', function(e) {

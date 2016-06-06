@@ -47,7 +47,7 @@
 <body>
     @*@Html.Partial("_NavBarTop")*@
     @Html.Partial("_TopLogoPanel")
-    @if (currentUrl.Contains("Articles/Index") || currentUrl.Contains("Articles/Details?") || currentUrl.Contains("Articles/Categories?"))
+    @if (currentUrl.Contains("Articles/Index") || currentUrl.Contains("Articles/Details?") || currentUrl.Contains("Articles/Categories?") || currentUrl.Contains("CommentEdit"))
     {
         <div class="container" style="padding-left: 0; padding-right: 0;">
             @Html.Partial("_TopNavigationMenu")

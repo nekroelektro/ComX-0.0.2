@@ -30,6 +30,7 @@ namespace ComX_0._0._2.Controllers {
             if (articles == null) {
                 return HttpNotFound();
             }
+            ViewBag.ReturnArticleId = id;
             return View(articles);
         }
 
@@ -172,23 +173,27 @@ namespace ComX_0._0._2.Controllers {
             return PartialView(articles);
         }
 
-        public ActionResult _Comments() {
-            var comments = new Comments();
+        public ActionResult _Comments(Guid? id, Guid? artId) {
+            Comments comments = new Comments();
+            if (id != null) {
+                comments = db.Comments.Find(id);
+            }
+            ViewBag.ReturnArticleId = artId;
             return PartialView("_Comments", comments);
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult _Comments(Comments comment) {
-            var currentArticle = Request.Params["Id"];
-            var artId = new Guid(currentArticle);
+            //var currentArticle = Request.Params["Id"];
+            var artId = comment.ArticleId;
             var userId = userHelper.GetCurrentLoggedUserId();
             if (string.IsNullOrEmpty(comment.Body)) {
-                ModelState.AddModelError("EmptyComment", "You cannot add an empty comment, dumbshit!");
+                ModelState.AddModelError("EmptyComment", "Oszalałeś? Nie możesz dodać pustego komentarza...");
             }
-            if (userHelper.CheckIfLastCommentWasSameUser(userId, artId)) {
-                ModelState.AddModelError("TwoComments", "You cannot add two comments in the row, douche!");
-            }
+            //if (userHelper.CheckIfLastCommentWasSameUser(userId, artId)) {
+            //    ModelState.AddModelError("TwoComments", "You cannot add two comments in the row, douche!");
+            //}
             else if (ModelState.IsValid) {
                 comment.Id = Guid.NewGuid();
                 comment.UserId = userId;
@@ -202,6 +207,33 @@ namespace ComX_0._0._2.Controllers {
                 return PartialView();
             }
             return PartialView();
+        }
+
+        public ActionResult CommentEdit(Guid? id, Guid? articleId) {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var articles = db.Comments.Find(id);
+            if (articles == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ReturnArticleId = articleId;
+            return PartialView(articles);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CommentEdit(Comments comment)
+        {
+            if (ModelState.IsValid) {
+                var commentToChange = db.Comments.Find(comment.Id);
+                commentToChange.Body = comment.Body;
+                db.Entry(commentToChange).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", new {id = comment.ArticleId});
         }
 
         public ActionResult _IndexSlider() {

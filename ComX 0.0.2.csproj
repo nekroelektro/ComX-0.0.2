@@ -1353,6 +1353,7 @@
     <Content Include="Views\Configuration\SubCategoriesDetails.cshtml" />
     <Content Include="Views\Articles\Categories.cshtml" />
     <Content Include="Views\Configuration\Gallery.cshtml" />
+    <Content Include="Views\Articles\CommentEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
