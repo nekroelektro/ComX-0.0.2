@@ -31,7 +31,7 @@
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Losowe posty:
         <div class="sidePostsBody" style="padding-top: 1em;">
             @foreach (var item in randomPosts) {
-                <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                <a href="@Url.Action("Details", "Articles", new {@id = item.Id})">
                     <div class="sideArt" style="display: block; width: 100%; height: 3em; padding-bottom: 1em;">
                         @if (articleHelper.GetImageByArticleId(item.Id) != null) {
                             <div class="sidebarArticleImage" style="width: 30%; height: 100%; float: left; text-align: center; margin: 0 auto;">

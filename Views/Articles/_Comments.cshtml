@@ -3,39 +3,42 @@
 @{
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
-    string comId = "";
-    var artId = ViewBag.ReturnArticleId;
+    var generalHelper = new GeneralHelper();
+    var artId = generalHelper.GetIdFromCurrentUrl();
     var commentList = articleHelper.GetCommentsByArticle(artId);
 }
 <div class="commentSection">
-    @if (!string.IsNullOrEmpty(User.Identity.Name)){
-        if (!userHelper.GetCurrentLoggedUser().IsBlocked){
-            using (Html.BeginForm("_Comments", "Articles", FormMethod.Post)) {
-                @Html.AntiForgeryToken()
-                <div class="newCommentSection">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-xs-12 center-block" style="display: inline-block;">
-                                @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
-                                @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+    <div class="addComment hidden">
+        @if (!string.IsNullOrEmpty(User.Identity.Name)) {
+            if (!userHelper.GetCurrentLoggedUser().IsBlocked) {
+                using (Html.BeginForm()) {
+                    @Html.AntiForgeryToken()
+                    <div class="newCommentSection">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-xs-12 center-block" style="display: inline-block;">
+                                    @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
+                                    @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+                                </div>
                             </div>
-                        </div>
-                        @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
-                        @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
-                        @Html.HiddenFor(x=>x.ArticleId)
-                        <div class="form-group">
-                            <div style="padding-left: 2.2em;">
-                                <button type="submit" class="btn btn-info" >
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
-                                </button>
+                            @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
+                            @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
+                            @*@Html.HiddenFor(x=>x.ArticleId, new {@class = "commentAddFormArtId"})*@
+                            <input type="text" class="commentAddFormArtId" name="articleId" value="@generalHelper.GetIdFromCurrentUrl()"/>
+                            <div class="form-group">
+                                <div style="padding-left: 2.2em;">
+                                    <button type="submit" class="btn btn-info addCommentButton">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             }
         }
-    }
-    <hr />
+    </div>
+    <hr/>
     <div class="addedCommentsSection col-xs-12" style="padding-bottom: 4em;">
         <h2>Komentarze(@commentList.Count)</h2>
         @if (commentList != null) {
@@ -107,6 +110,12 @@
         $(document).on('click', '.btnCancelDeletion', function (e) {
             e.preventDefault();
             $.magnificPopup.close();
+        });
+
+        $('.addCommentButton').click(function() {
+            var articleIdentificator = $('.commentAddFormArtId').val();
+            $("form").submit();
+            window.location.href = '@Url.Action("Details", "Articles")/' + articleIdentificator;
         });
     });
 </script>

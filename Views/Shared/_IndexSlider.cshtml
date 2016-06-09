@@ -9,7 +9,7 @@
         @foreach (var item in lastArticles)
         {
             <div class="slideElementUpper" style="height: 25em; display: block;">
-                <a href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                <a href="@Url.Action("Details", "Articles", new {@id = item.Id})">
                     <div class="sliderLink" style="height: 100%">
                         <div class="sliderLeft" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; z-index: 1; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; padding-top: 1em;">
                             <div class="sliderArticleDate">

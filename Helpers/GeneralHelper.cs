@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Web;
 using ComX_0._0._2.Models;
 
 namespace ComX_0._0._2.Helpers {
@@ -46,6 +48,19 @@ namespace ComX_0._0._2.Helpers {
                 img.RemovePropertyItem(274);
             }
             return img;
+        }
+
+        public string GetCurrentPageUrl() {
+            var url = HttpContext.Current.Request.Url.AbsoluteUri;
+            return url;
+        }
+
+        public Guid GetIdFromCurrentUrl() {
+            var url = this.GetCurrentPageUrl();
+            var urlArray = url.Split('/');
+            var urlGuid = urlArray.Last();
+            var id = new Guid(urlGuid);
+            return id;
         }
     }
 }

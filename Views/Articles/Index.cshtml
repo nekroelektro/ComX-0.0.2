@@ -13,7 +13,7 @@
             @foreach (var item in Model) {
                 <div class="indexElement">
                     <div class="singleIndexArticle">
-                        <a  class="singleIndexAnchor" href="@Url.Action("Details", "Articles")?Id=@item.Id">
+                        <a  class="singleIndexAnchor" href="@Url.Action("Details", "Articles", new {@id = item.Id})">
                             @if (articleHelper.GetImageByArticleId(item.Id) != null) {
                                 <div class="indexArticleImage">
                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto;"/>

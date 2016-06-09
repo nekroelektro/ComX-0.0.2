@@ -25,7 +25,7 @@
                                         <ul>
                                             @foreach (var article in articleHelper.GetArticlesByBothCategories(item.Id, subItem.Id, 3)) {
                                                 <li>
-                                                    <a href="@Url.Action("Details", "Articles")?Id=@article.Id"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
+                                                    <a href="@Url.Action("Details", "Articles", new {@id = article.Id})"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
                                                 </li>
                                             }
                                         </ul>
@@ -37,7 +37,7 @@
                                 <hr style="margin-top: 0; margin-bottom: 0;"/>
                                 <div class="lastArticlesTop" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%; padding-top: 1em;">
                                     @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
-                                        <a class="topNavigationLastAnchor" href="@Url.Action("Details", "Articles")?Id=@lastArticle.Id" style="width: 22%;margin: 0 auto; text-align: center;">
+                                        <a class="topNavigationLastAnchor" href="@Url.Action("Details", "Articles", new {@id = lastArticle.Id})" style="width: 22%;margin: 0 auto; text-align: center;">
                                             <div class="singleLastArticleTopNavigation" style="width: 90%; ">
                                                 <div class="imageTopNavigation" style="float: left; width: 40%; max-height: 10em;">
                                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))' style="width: 100%; max-height: 100%;"/>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="moreFromCategoryTopNavigation" style="float: right; clear: both; font-size: 1.1em;">
-                                <a class="seeMoreFromCategoryTopNavigation" href="@Url.Action("Categories", "Articles")?Id=@item.Id">
+                                <a class="seeMoreFromCategoryTopNavigation" href="@Url.Action("Categories", "Articles", new {@id = item.Id})">
                                     <p>Zobacz wszystkie z kategorii @item.Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
                                 </a>
                             </div>

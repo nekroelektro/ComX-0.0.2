@@ -27,7 +27,7 @@
     $(function () {
         pageGrids.articleGrid.onRowSelect(function (e) {
             var rowArticleId = e.row.Id;
-            window.location.href = '@Url.Action("Details", "Articles")?Id=' + rowArticleId;
+            window.location.href = '@Url.Action("Details", "Articles")/' + rowArticleId;
         });
     });
 </script>
