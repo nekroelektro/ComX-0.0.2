@@ -327,3 +327,7 @@ textarea {
     text-decoration: none;
     outline: 0;
 }
+
+.longEditor {
+    min-height: 400px !important;
+}

@@ -14,6 +14,7 @@ namespace ComX_0._0._2.Models
         public string Name { get; set; }
 
         [DisplayName("Intro")]
+        [Required(ErrorMessage = "Intro is required field!")]
         public string Prelude { get; set; }
 
         [DisplayName("Body")]
