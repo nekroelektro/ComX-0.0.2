@@ -6,27 +6,115 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ArticleHelper articleHelper = new ArticleHelper();
     var category = articleHelper.GetCategoryById(Model.FirstOrDefault().CategoryId);
+    UserHelper userHelper = new UserHelper();
 }
-<div class="categoryArticleContainer" style="width: 70%; float: left;font-family: 'Amarante', sans-serif;">
-    <div class="categoryArticleTitle">
-        <h2>Posty z kategorii @category.Name:</h2>
-    </div>
-    <div class="col-xs-12 center-block">
-        @Html.Grid(Model).Named("categoryArticleGrid").Columns(columns => {
-       columns.Add(o => o.Id, true);
-       columns.Add(x => x.Name).Titled("Tytuł").SetWidth(400);
-       columns.Add(x => x.SubCategoryId).Titled("Sub-kategoria").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategoryId).Name).SetWidth(60);
-       columns.Add(x => x.DateCreated).Titled("Data dodania").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
-   }).WithPaging(20).Sortable(true)
+
+<div class="categoryArticleTitle" style="width: 70%; float: left;">
+    <h2 style="float: left;">Posty z kategorii @category.Name:</h2>
+    <div class="categoryViewType" style="float: right; margin-top: 1.5em; padding-right: 1.4em;">
+        <button type="button" class="btn btn-default .btn-sm miniaturesView">
+            <span class="glyphicon glyphicon-th" aria-hidden="true" style="font-size: 1.1em"></span>
+        </button>
+        <button type="button" class="btn btn-default .btn-sm listView">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size: 1.1em"></span>
+        </button>
     </div>
 </div>
 
-    @Html.Partial("_SideBar")
-    <script>
-        $(function () {
-            pageGrids.categoryArticleGrid.onRowSelect(function (e) {
+<div class="categoryArticleContainer" style="width: 70%; float: left; font-family: 'Amarante', sans-serif; display: none;">
+    <div class="col-xs-12 center-block">
+        @Html.Grid(Model).Named("categoryArticleGrid").Columns(columns => {
+            columns.Add(o => o.Id, true);
+            columns.Add(x => x.Name).Titled("Tytuł").SetWidth(400);
+            columns.Add(x => x.SubCategoryId).Titled("Sub-kategoria").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategoryId).Name).SetWidth(60);
+            columns.Add(x => x.DateCreated).Titled("Data dodania").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+        }).WithPaging(20).Sortable(true)
+    </div>
+</div>
+
+<div id="pager" style="width: 70%; float: left;">
+    <div class="grid" style="width: 100%; float: left;">
+        <ul class="content" style="padding-left: 0; margin-left: 0;">
+            @foreach (var item in Model)
+            {
+                <div class="indexElement">
+                    <div class="singleIndexArticle">
+                        <a class="singleIndexAnchor" href="@Url.Action("Details", "Articles", new {@id = item.Id})">
+                            @if (articleHelper.GetImageByArticleId(item.Id) != null)
+                            {
+                                <div class="indexArticleImage">
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto;" />
+                                </div>
+                            }
+                            <div class="indexArticleText">
+                                <div class="indexArticleTitle">
+                                    <h2>@item.Name</h2>
+                                    <div class="indexArticleDate">
+                                        <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated</p>
+                                    </div>
+                                </div>
+                                <hr style="border-color: crimson" />
+                            </div>
+                        </a>
+                        <div class="indexArticleText">
+                            <div class="indexArticleBody">
+                                <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
+                            </div>
+                        </div>
+                        <div class="indexArticleFooter">
+                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </ul>
+    </div>
+    <hr />
+    <div class="page_navigation" style="clear: both; padding-top: 3em;"></div>
+</div>
+
+@Html.Partial("_SideBar")
+<script>
+    $(document).ready(function() {
+        $(function() {
+            pageGrids.categoryArticleGrid.onRowSelect(function(e) {
                 var rowArticleId = e.row.Id;
                 window.location.href = '@Url.Action("Details", "Articles")/' + rowArticleId;
             });
         });
-    </script>
+
+        // PACKERY
+        var $grid = $('.grid').packery({
+            // options
+            itemSelector: '.singleIndexArticle',
+            gutter: 13,
+            percentPosition: true,
+            transitionDuration: '0.1s'
+        });
+
+
+        $grid.imagesLoaded().progress(function () {
+            $grid.packery();
+        });
+
+
+        $('#pager').pajinate({
+            num_page_links_to_display: 3,
+            items_per_page: 10
+        });
+
+        $(".page_navigation a").click(function () {
+            $grid.packery();
+        });
+
+        $('.miniaturesView').click(function() {
+            $('#pager').show();
+            $('.categoryArticleContainer').hide();
+        });
+
+        $('.listView').click(function() {
+            $('#pager').hide();
+            $('.categoryArticleContainer').show();
+        });
+    });
+</script>
