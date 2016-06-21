@@ -204,7 +204,7 @@ namespace ComX_0._0._2.Controllers {
                 if (user != null) {
                     await SignInManager.SignInAsync(user, false, false);
                 }
-                return RedirectToAction("Index", new {Message = ManageMessageId.ChangePasswordSuccess});
+                return RedirectToAction("UserPanel", "Account", new {Message = ManageMessageId.ChangePasswordSuccess});
             }
             AddErrors(result);
             return View(model);

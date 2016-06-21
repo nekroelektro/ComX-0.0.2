@@ -398,7 +398,7 @@ namespace ComX_0._0._2.Controllers {
             userProfile.Roles = user.Roles;
             userProfile.UserMail = user.Email;
             userProfile.UserAvatar = userInfo.Avatar;
-
+            
             ViewBag.RoleList = userHelper.GetRolesToCombo();
             return View(userProfile);
         }
