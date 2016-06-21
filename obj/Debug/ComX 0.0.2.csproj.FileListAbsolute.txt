@@ -90,8 +90,8 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\S
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig1.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig1.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache

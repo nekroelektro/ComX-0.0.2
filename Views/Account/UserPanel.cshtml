@@ -1,0 +1,185 @@
+﻿@using ComX_0._0._2.Helpers
+@model ComX_0._0._2.Models.DtoModels.UserProfile
+@{
+    ViewBag.Title = "User Panel";
+    var userHelper = new UserHelper();
+
+    var str = "";
+    if (Model.IsBlocked)
+    {
+        str = "Unblock user";
+    }
+    else {
+        str = "Block user";
+    }
+}
+
+<div class="userPanelContainer col-md-12">
+    <div class="greetUserPanel">
+        <h2>Witojcie, @Model.UserName!!!</h2>
+    </div>
+    <div class="infoUserPanel" style="padding-top: 1em; padding-bottom: 1em;">
+        <div class="col-md-12">
+            <b>Zarejestrowany od: @Model.DateOfCreation.ToShortDateString()</b>
+        </div>
+    </div>
+    @if (Model.UserAvatar == null)
+    {
+        <h3>Dodaj sobie avatar!</h3>
+        <p>Info:</p>
+        <p>Abyśmy sobie nie utrudniali życia - jest kilka warunków, które taki awatr spełnić musi, a są to kolejno:</p>
+        <p>- musi mieć rozszerzenie .jpg albo .png</p>
+        <p>- najlepiej, żeby miał rozmiar do... powiedzmy 400px z obu stron, jak będzie większy - będzie przeskalowany przez moich murzynów, jakość może ucierpieć</p>
+        using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post,
+            new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Upload image", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="imgUp" name="avatar" />
+                    </div>
+                    @*@Html.ValidationMessage("ImageUpload", new {@style = "color: red"})*@
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Upload" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else {
+        <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em;">
+            <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.UserId})' style="max-width: 30%; text-align: center; margin: 0 auto;"/>
+        </div>
+        <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em;">
+            <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupAvatarDelete">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Usuń awatara
+            </button>
+        </div>
+    }
+    @Html.ActionLink("Change your password", "ChangePassword", "Manage")
+            @using (Html.BeginForm("ChangeRole", "Account"))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Roles, htmlAttributes: new {@class = "control-label col-md-3"})
+                        <div class="col-lg-9 col-md-offset-3">
+                            @Html.DropDownListFor(model => model.Roles, new List<SelectListItem>(ViewBag.RoleList), new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Roles, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.UserId)
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Change" class="btn btn-default"/>
+                        </div>
+                    </div>
+                </div>
+            }
+    <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
+        <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
+        </button>
+        <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupUserDelete">
+            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Delete user
+        </button>
+    </div>
+
+    <div id="popupUserDelete" class="mfp-hide white-popup">
+        <p>Potwierdź</p>
+        <hr/>
+        <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
+        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+            Ta!
+        </button>
+        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+    </div>
+
+    <div id="popupUserBlock" class="mfp-hide white-popup">
+        <p>Potwierdź</p>
+        <hr/>
+        <p>Czy na bank chcesz zablokować tego użytkownika?</p>
+        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+            Ta!
+        </button>
+        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+    </div>
+
+    <div id="popupAvatarDelete" class="mfp-hide white-popup">
+        <p>Potwierdź</p>
+        <hr />
+        <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
+        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletionAvatar" id="commId">
+            Ta!
+        </button>
+        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+    </div>
+</div>
+
+        <script>
+            jQuery(document).ready(function ($) {
+                var userIdentificator;
+                var blockOrDelete;
+                $('.popupUserDelete').magnificPopup({
+                    type: 'inline',
+                    preloader: false,
+                    modal: true
+                });
+                $('.popupUserDelete').click(function () {
+                    userIdentificator = $(this).data('id').toString();
+                    blockOrDelete = 'delete';
+                });
+                $(document).on('click', '.btnConfirmDeletion', function (e) {
+                    e.preventDefault();
+                    $.magnificPopup.close();
+                    if (blockOrDelete == 'delete') {
+                        window.location.href = '@Url.Action("DeleteUser", "Account")?userId=' + userIdentificator;
+                    } else {
+                        window.location.href = '@Url.Action("BlockingUser", "Account")?userId=' + userIdentificator;
+                    }
+                });
+                $(document).on('click', '.btnCancelDeletion', function (e) {
+                    e.preventDefault();
+                    $.magnificPopup.close();
+                });
+
+                $('.popupUserBlock').magnificPopup({
+                    type: 'inline',
+                    preloader: false,
+                    modal: true
+                });
+                $('.popupUserBlock').click(function () {
+                    userIdentificator = $(this).data('id').toString();
+                    blockOrDelete = 'block';
+                });
+                $('.popupAvatarDelete').click(function () {
+                    userIdentificator = $(this).data('id').toString();
+                    blockOrDelete = 'deleteAvatar';
+                });
+
+                $(document).on('click', '.btnConfirmDeletionAvatar', function (e) {
+                    e.preventDefault();
+                    $.magnificPopup.close();
+                    window.location.href = '@Url.Action("DeleteAvatar", "Account")?userId=' + userIdentificator;
+                });
+            });
+        </script>
+        <style>
+            .white-popup {
+                position: relative;
+                background: #FFF;
+                padding: 40px;
+                width: auto;
+                max-width: 400px;
+                margin: 20px auto;
+                text-align: center;
+            }
+        </style>
+

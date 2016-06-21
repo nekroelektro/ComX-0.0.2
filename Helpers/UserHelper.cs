@@ -86,6 +86,13 @@ namespace ComX_0._0._2.Helpers {
             db.SaveChanges();
         }
 
+        public void DeleteAvatarByUserId(Guid userId) {
+            var avatarToDelete = db.UserProfileInfo.Find(userId);
+            avatarToDelete.Avatar = null;
+            db.Entry(avatarToDelete).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
         public void UserBlockade(Guid userId) {
             var userToBlock = GetProfileInfoById(userId);
             switch (userToBlock.IsBlocked) {

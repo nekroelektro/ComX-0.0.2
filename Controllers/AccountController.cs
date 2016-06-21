@@ -3,7 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using ComX_0._0._2.Helpers;
+using ComX_0._0._2.Models;
 using ComX_0._0._2.Models.AccountModels;
+using ComX_0._0._2.Models.DtoModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -12,6 +16,7 @@ namespace ComX_0._0._2.Controllers {
     [Authorize]
     public class AccountController : Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly UserHelper userHelper = new UserHelper();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -373,6 +378,88 @@ namespace ComX_0._0._2.Controllers {
             }
 
             base.Dispose(disposing);
+        }
+
+        public ActionResult UserPanel(Guid? userId) {
+            ApplicationUser user;
+            if (userId == null) {
+                user = userHelper.GetUserById(userHelper.GetCurrentLoggedUserId());
+            }
+            else {
+                user = userHelper.GetUserById(userId.Value);
+            }
+
+            var userInfo = db.UserProfileInfo.Find(new Guid(user.Id));
+            var userProfile = new UserProfile();
+            userProfile.UserId = new Guid(user.Id);
+            userProfile.UserName = user.UserName;
+            userProfile.DateOfCreation = userInfo.DateOfCreation.Value;
+            userProfile.IsBlocked = userInfo.IsBlocked;
+            userProfile.Roles = user.Roles;
+            userProfile.UserMail = user.Email;
+            userProfile.UserAvatar = userInfo.Avatar;
+
+            ViewBag.RoleList = userHelper.GetRolesToCombo();
+            return View(userProfile);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddAvatar(HttpPostedFileBase avatar) {
+            if (avatar != null) {
+                var validImageTypes = new[] {
+                    "image/gif",
+                    "image/jpeg",
+                    "image/pjpeg",
+                    "image/png"
+                };
+                if (!validImageTypes.Contains(avatar.ContentType)) {
+                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                }
+                else {
+                    userHelper.UploadAvatarForUser(userHelper.GetCurrentLoggedUserId(), avatar);
+                }
+            }
+            return RedirectToAction("UserPanel");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ChangeRole(Users user) {
+            userHelper.ChangeUserRole(user.Id, user.Role.Value);
+            return RedirectToAction("Users", "Configuration");
+        }
+
+        public ActionResult GetAvatar(Guid userId) {
+            try {
+                var avatar = userHelper.GetAvatarByUserId(userId);
+                return File(avatar, "image/jpeg");
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
+
+        public ActionResult DeleteAvatar(Guid userId) {
+            userHelper.DeleteAvatarByUserId(userId);
+            return RedirectToAction("UserPanel");
+        }
+
+        public ActionResult DeleteUser(Guid userId) {
+            userHelper.DeleteUser(userId);
+            return RedirectToAction("Users", "Configuration");
+        }
+
+        public ActionResult BlockingUser(Guid userId) {
+            userHelper.UserBlockade(userId);
+            return RedirectToAction("Users", "Configuration");
+        }
+
+        //To check if user with that username exists during registration
+        [HttpPost]
+        public JsonResult UserNameExists(string userName) {
+            var user = Membership.GetUser(userName);
+            return Json(user == null);
         }
 
         #region Helpers

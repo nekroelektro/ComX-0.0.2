@@ -1295,6 +1295,7 @@
     <Content Include="Views\Account3\LogOn.cshtml" />
     <Content Include="Views\Account3\Register.cshtml" />
     <Content Include="Views\Account3\UserPanel.cshtml" />
+    <Content Include="Views\Account\UserPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
