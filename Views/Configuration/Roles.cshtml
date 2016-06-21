@@ -1,6 +1,6 @@
 ﻿@using GridMvc.Html
 @using GridMvc.Sorting
-@model IEnumerable<ComX_0._0._2.Models.Roles>
+@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
 @{
     Layout = "~/Views/Configuration/_Configuration.cshtml";
 }
@@ -12,8 +12,7 @@
     @Html.Grid(Model).Named("roleGrid").Columns(columns =>
 {
     columns.Add(o => o.Id, true);
-    columns.Add(x => x.Name).SortInitialDirection(GridSortDirection.Descending).SetWidth(200);
-    columns.Add(x => x.Description).SetWidth(460);
+    columns.Add(x => x.Name).SortInitialDirection(GridSortDirection.Descending);
 }).WithPaging(20).Sortable(true).Filterable(true)
 </div>
 

@@ -19,11 +19,11 @@ namespace ComX_0._0._2.Database {
         public DbSet<UserProfileInfo> UserProfileInfo { get; set; }
 
         public void AddUser(Users user) {
-        UserHelper userHelper = new UserHelper();
-        user.Id = Guid.NewGuid();
-            user.Role = userHelper.GetAllRoles().First(x=>x.Name == "User").Id;
-            Users.Add(user);
-            SaveChanges();
+            //UserHelper userHelper = new UserHelper();
+            //user.Id = Guid.NewGuid();
+            //user.Role = userHelper.GetAllRoles().First(x=>x.Name == "User").Id;
+            //Users.Add(user);
+            //SaveChanges();
         }
 
         public Users GetUser(string userName) {

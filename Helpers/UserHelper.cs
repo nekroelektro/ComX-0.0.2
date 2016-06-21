@@ -6,38 +6,50 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using ComX_0._0._2.Database;
 using ComX_0._0._2.Models;
-using Roles = ComX_0._0._2.Models.Roles;
+using ComX_0._0._2.Models.AccountModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ComX_0._0._2.Helpers {
     public class UserHelper : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
-        private readonly SiteDbContext db = new SiteDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
-        public Users GetCurrentLoggedUser() {
-            var userId = this.GetCurrentLoggedUserId();
+        public ApplicationUser GetCurrentLoggedUser() {
+            var userId = GetCurrentLoggedUserId();
             if (userId != Guid.Empty) {
-                var user = this.GetUserById(userId);
+                var user = GetUserById(userId);
                 return user;
             }
             return null;
         }
 
         public Guid GetCurrentLoggedUserId() {
-            var membershipUser = Membership.GetUser();
-            if (membershipUser != null) {
-                var user = membershipUser.ProviderUserKey.ToString();
-                var userId = new Guid(user);
-                return userId;
+            if (System.Web.HttpContext.Current.Request.IsAuthenticated) {
+                var user = System.Web.HttpContext.Current.User.Identity;
+                return new Guid(user.GetUserId());
             }
             return Guid.Empty;
         }
 
-        public Users GetUserById(Guid id) {
-            var user = db.Users.Find(id);
+        public ApplicationUser GetUserById(Guid id) {
+            var user = db.Users.Find(id.ToString());
             return user;
+        }
+
+        public UserProfileInfo GetCurrentUserProfileInfo() {
+            var userId = GetCurrentLoggedUserId();
+            if (userId != Guid.Empty) {
+                var user = GetProfileInfoById(userId);
+                return user;
+            }
+            return null;
+        }
+
+        public UserProfileInfo GetProfileInfoById(Guid id) {
+            var userProfile = db.UserProfileInfo.Find(id);
+            return userProfile;
         }
 
         public void UploadAvatarForUser(Guid userId, HttpPostedFileBase upload) {
@@ -49,7 +61,7 @@ namespace ComX_0._0._2.Helpers {
 
                     file = reader.ReadBytes((int) upload.InputStream.Length);
 
-                    var user = db.Users.Where(c => c.Id == userId).AsQueryable().FirstOrDefault();
+                    var user = db.UserProfileInfo.Where(c => c.Id == userId).AsQueryable().FirstOrDefault();
                     user.Avatar = file;
                     db.Entry(user).State = EntityState.Modified;
                 }
@@ -59,7 +71,7 @@ namespace ComX_0._0._2.Helpers {
 
         public byte[] GetAvatarByUserId(Guid userId) {
             try {
-                var user = GetUserById(userId);
+                var user = GetProfileInfoById(userId);
                 var avatar = user.Avatar;
                 return avatar;
             }
@@ -69,13 +81,13 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public void DeleteUser(Guid userId) {
-            var userToDelete = this.GetUserById(userId);
+            var userToDelete = GetUserById(userId);
             db.Users.Remove(userToDelete);
             db.SaveChanges();
         }
 
         public void UserBlockade(Guid userId) {
-            var userToBlock = this.GetUserById(userId);
+            var userToBlock = GetProfileInfoById(userId);
             switch (userToBlock.IsBlocked) {
                 case true:
                     userToBlock.IsBlocked = false;
@@ -101,69 +113,72 @@ namespace ComX_0._0._2.Helpers {
             return false;
         }
 
-        public List<Roles> GetAllRoles() {
+        public List<IdentityRole> GetAllRoles() {
             var roles = db.Roles.ToList();
             return roles;
         }
 
-        public Roles GetRoleById(Guid roleId) {
+        public IdentityRole GetRoleById(string roleId) {
             var role = db.Roles.First(x => x.Id == roleId);
             return role;
         }
 
-        public void ChangeUserRole(Guid userId, Guid roleId) {
-            var userForRole = GetUserById(userId);
-            userForRole.Role = GetRoleById(roleId).Id;
-            db.Entry(userForRole).State = EntityState.Modified;
-            db.SaveChanges();
+        public IList<string> GetRolesByUserId(Guid userId) {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var rolesList = userManager.GetRoles(userId.ToString());
+            return rolesList;
         }
 
-        public Roles GetRoleByUserId(Guid userId) {
-            var user = GetUserById(userId);
-            if (user.Role != null) {
-                var role = db.Roles.First(x => x.Id == user.Role);
-                return role;
-            }
-            return null;
+        public string GetRoleNamesByUserId(Guid userId) {
+            var roles = GetRolesByUserId(userId);
+            var roleString = string.Join(",", roles.ToArray());
+            return roleString;
+        } 
+
+        public void ChangeUserRole(Guid userId, Guid roleId) {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            userManager.RemoveFromRoles(userId.ToString());
+            var role = db.Roles.Find(roleId.ToString());
+            userManager.AddToRole(userId.ToString(), role.Name);
         }
 
         public List<SelectListItem> GetRolesToCombo() {
-            var roleList = new List<Roles>();
+            var roleList = new List<IdentityRole>();
             var listItems = new List<SelectListItem>();
 
             roleList = db.Roles.ToList();
             foreach (var item in roleList) {
                 listItems.Add(new SelectListItem {
                     Text = item.Name,
-                    Value = item.Id.ToString()
+                    Value = item.Id
                 });
             }
             return listItems;
         }
 
-        public void ChangeRoleDetails(Roles role) {
+        public void ChangeRoleDetails(IdentityRole role) {
             var roleToChange = GetRoleById(role.Id);
             roleToChange.Name = role.Name;
-            roleToChange.Description = role.Description;
             db.Entry(roleToChange).State = EntityState.Modified;
             db.SaveChanges();
         }
 
-        public void ChangeUserRoleIfRoleIsDeleted(Guid roleId) {
-            var allUsersWithDeletedRole = db.Users.Where(x => x.Role.Value == roleId);
-            if (allUsersWithDeletedRole.Count() > 0) {
-                foreach (var item in allUsersWithDeletedRole) {
-                    item.Role = GetAllRoles().First(x => x.Name == "User").Id;
-                    db.Entry(item).State = EntityState.Modified;
-                }
-                db.SaveChanges();
-            }
-        }
+        //public void ChangeUserRoleIfRoleIsDeleted(Guid roleId) {
+        //    var allUsersWithDeletedRole = db.Roles.Where(x => x.Role.Value == roleId);
+        //    //if (allUsersWithDeletedRole.Count() > 0) {
+        //    //    foreach (var item in allUsersWithDeletedRole) {
+        //    //        item.Role = GetAllRoles().First(x => x.Name == "User").Id;
+        //    //        db.Entry(item).State = EntityState.Modified;
+        //    //    }
+        //    //    db.SaveChanges();
+        //    //}
+        //}
 
         public bool UserIsAdmin(Guid userId) {
             if (userId != Guid.Empty) {
-                var roleOfCurrentUser = GetRoleByUserId(userId);
-                if (roleOfCurrentUser.Name == "Admin" || roleOfCurrentUser.Name == "SuperAdmin") {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var rolesList = userManager.GetRoles(userId.ToString());
+                if (rolesList.Contains("Admin") || rolesList.Contains("SuperAdmin")) {
                     return true;
                 }
                 return false;
@@ -173,11 +188,36 @@ namespace ComX_0._0._2.Helpers {
 
         public bool UserIsSuperAdmin(Guid userId) {
             if (userId != Guid.Empty) {
-                var roleOfCurrentUser = GetRoleByUserId(userId);
-                if (roleOfCurrentUser.Name == "SuperAdmin") {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var rolesList = userManager.GetRoles(userId.ToString());
+                if (rolesList.Contains("SuperAdmin")) {
                     return true;
                 }
                 return false;
+            }
+            return false;
+        }
+
+        public bool IsAdminUser() {
+            if (User.Identity.IsAuthenticated) {
+                var user = User.Identity;
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var rolesList = userManager.GetRoles(user.GetUserId());
+                if (rolesList.Contains("Admin") || rolesList.Contains("SuperAdmin")) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool IsSuperAdminUser() {
+            if (User.Identity.IsAuthenticated) {
+                var user = User.Identity;
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var rolesList = userManager.GetRoles(user.GetUserId());
+                if (rolesList.Contains("SuperAdmin")) {
+                    return true;
+                }
             }
             return false;
         }

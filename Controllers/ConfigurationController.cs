@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -6,11 +7,14 @@ using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Models;
+using ComX_0._0._2.Models.AccountModels;
+using ComX_0._0._2.Models.DtoModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ComX_0._0._2.Controllers {
     public class ConfigurationController : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
-        private readonly SiteDbContext db = new SiteDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
 
@@ -19,7 +23,19 @@ namespace ComX_0._0._2.Controllers {
         }
 
         public ActionResult Users() {
-            return View(db.Users.OrderByDescending(x => x.DateOfCreation).ToList());
+            var users = new List<UserProfile>();
+            foreach (var item in db.Users) {
+                var userInfo = db.UserProfileInfo.Find(new Guid(item.Id));
+                var user = new UserProfile();
+                user.UserId = new Guid(item.Id);
+                user.UserName = item.UserName;
+                user.UserAvatar = userInfo.Avatar;
+                user.DateOfCreation = userInfo.DateOfCreation.Value;
+                user.IsBlocked = userInfo.IsBlocked;
+                user.Roles = item.Roles;
+                users.Add(user);
+            }
+            return View(users.OrderByDescending(x => x.DateOfCreation).ToList());
         }
 
         public ActionResult Roles() {
@@ -33,9 +49,11 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult RolesCreate(Roles role) {
-            if (ModelState.IsValid) {
-                role.Id = Guid.NewGuid();
+        public ActionResult RolesCreate(IdentityRole role)
+        {
+            if (ModelState.IsValid)
+            {
+                role.Id = Guid.NewGuid().ToString();
                 db.Roles.Add(role);
                 db.SaveChanges();
                 return RedirectToAction("Roles");
@@ -43,12 +61,15 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
-        public ActionResult RolesDetails(Guid? roleId) {
-            if (roleId == null) {
+        public ActionResult RolesDetails(Guid? roleId)
+        {
+            if (roleId == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = db.Roles.Find(roleId);
-            if (role == null) {
+            var role = db.Roles.Find(roleId.ToString());
+            if (role == null)
+            {
                 return HttpNotFound();
             }
             return View(role);
@@ -56,7 +77,7 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult RolesDetails(Roles role) {
+        public ActionResult RolesDetails(IdentityRole role) {
             if (ModelState.IsValid) {
                 userHelper.ChangeRoleDetails(role);
                 return RedirectToAction("Roles");
@@ -65,8 +86,8 @@ namespace ComX_0._0._2.Controllers {
         }
 
         public ActionResult DeleteRole(string roleId) {
-            var roleToDelete = db.Roles.Find(new Guid(roleId));
-            userHelper.ChangeUserRoleIfRoleIsDeleted(new Guid(roleId));
+            var roleToDelete = db.Roles.Find(roleId);
+            //userHelper.ChangeUserRoleIfRoleIsDeleted(new Guid(roleId));
             db.Roles.Remove(roleToDelete);
             db.SaveChanges();
             return RedirectToAction("Roles");
