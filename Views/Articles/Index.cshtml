@@ -24,6 +24,10 @@
                                     <h2>@item.Name</h2>
                                     <div class="indexArticleDate">
                                         <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated</p>
+                                        <p>
+                                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
+                                            @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
+                                        </p>
                                     </div>
                                 </div>
                                 <hr style="border-color: crimson"/>

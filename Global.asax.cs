@@ -13,6 +13,7 @@ namespace ComX_0._0._2 {
         private void Application_Start(object sender, EventArgs e) {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

@@ -20,7 +20,9 @@
         </button>
     </div>
 </div>
-
+<div style="padding-top: 1em;">
+    @Html.Partial("_SideBar")
+</div>
 <div class="categoryArticleContainer" style="width: 70%; float: left; font-family: 'Amarante', sans-serif; display: none;">
     <div class="col-xs-12 center-block">
         @Html.Grid(Model).Named("categoryArticleGrid").Columns(columns => {
@@ -51,6 +53,10 @@
                                     <h2>@item.Name</h2>
                                     <div class="indexArticleDate">
                                         <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated</p>
+                                        <p>
+                                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
+                                            @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
+                                        </p>
                                     </div>
                                 </div>
                                 <hr style="border-color: crimson" />
@@ -73,7 +79,6 @@
     <div class="page_navigation" style="clear: both; padding-top: 3em;"></div>
 </div>
 
-@Html.Partial("_SideBar")
 <script>
     $(document).ready(function() {
         $(function() {

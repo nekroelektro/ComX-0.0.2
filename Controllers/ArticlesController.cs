@@ -7,16 +7,23 @@ using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Models;
+using ComX_0._0._2.Models.AccountModels;
 
 namespace ComX_0._0._2.Controllers {
     public class ArticlesController : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
-        private readonly SiteDbContext db = new SiteDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
+
         // GET: Articles
         public ActionResult Index() {
             var publishedArticles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
+            if (publishedArticles.Count > 0) {
+                for (int i = 0; i < 6; i++) {
+                    publishedArticles.Remove(publishedArticles[i]);
+                }
+            }
             return View(publishedArticles);
         }
 

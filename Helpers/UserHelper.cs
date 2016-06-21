@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -19,15 +18,21 @@ namespace ComX_0._0._2.Helpers {
 
         public Users GetCurrentLoggedUser() {
             var userId = this.GetCurrentLoggedUserId();
-            var user = this.GetUserById(userId);
-            return user;
+            if (userId != Guid.Empty) {
+                var user = this.GetUserById(userId);
+                return user;
+            }
+            return null;
         }
 
         public Guid GetCurrentLoggedUserId() {
             var membershipUser = Membership.GetUser();
-            var user = membershipUser.ProviderUserKey.ToString();
-            var userId = new Guid(user);
-            return userId;
+            if (membershipUser != null) {
+                var user = membershipUser.ProviderUserKey.ToString();
+                var userId = new Guid(user);
+                return userId;
+            }
+            return Guid.Empty;
         }
 
         public Users GetUserById(Guid id) {
@@ -156,17 +161,23 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public bool UserIsAdmin(Guid userId) {
-            var roleOfCurrentUser = GetRoleByUserId(userId);
-            if (roleOfCurrentUser.Name == "Admin" || roleOfCurrentUser.Name == "SuperAdmin") {
-                return true;
+            if (userId != Guid.Empty) {
+                var roleOfCurrentUser = GetRoleByUserId(userId);
+                if (roleOfCurrentUser.Name == "Admin" || roleOfCurrentUser.Name == "SuperAdmin") {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
 
         public bool UserIsSuperAdmin(Guid userId) {
-            var roleOfCurrentUser = GetRoleByUserId(userId);
-            if (roleOfCurrentUser.Name == "SuperAdmin") {
-                return true;
+            if (userId != Guid.Empty) {
+                var roleOfCurrentUser = GetRoleByUserId(userId);
+                if (roleOfCurrentUser.Name == "SuperAdmin") {
+                    return true;
+                }
+                return false;
             }
             return false;
         }

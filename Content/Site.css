@@ -332,7 +332,7 @@ textarea {
     min-height: 400px !important;
 }
 
-.singleLastArticleTopNavigation img, .detailsBannerPanel img {
+.singleLastArticleTopNavigation img, .detailsBannerPanel img, .sideArt img {
     position: absolute;
     top: 50%;
     left: 50%;

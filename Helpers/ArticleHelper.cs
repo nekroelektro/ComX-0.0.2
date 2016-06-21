@@ -7,10 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Database;
 using ComX_0._0._2.Models;
+using ComX_0._0._2.Models.AccountModels;
 
 namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
-        private readonly SiteDbContext db = new SiteDbContext();
+        //private readonly SiteDbContext db = new SiteDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
 
         public List<Articles> GetLastArticles(int number) {

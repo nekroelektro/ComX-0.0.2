@@ -1,23 +1,13 @@
-using ComX_0._0._2.Models;
+using System.Data.Entity.Migrations;
+using ComX_0._0._2.Models.AccountModels;
 
-namespace ComX_0._0._2.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<ComX_0._0._2.Database.SiteDbContext>
-    {
-        public Configuration()
-        {
+namespace ComX_0._0._2.Migrations {
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext> {
+        public Configuration() {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ComX_0._0._2.Database.SiteDbContext context)
-        {
+        protected override void Seed(ApplicationDbContext context) {
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

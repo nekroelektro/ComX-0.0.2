@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -17,7 +17,8 @@
     <AssemblyName>ComX 0.0.2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -91,6 +92,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -100,8 +105,16 @@
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -109,7 +122,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -228,6 +241,8 @@
     <Content Include="scripts\angular-messages.js" />
     <Content Include="scripts\angular-messages.min.js" />
     <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular-parse-ext.js" />
+    <Content Include="scripts\angular-parse-ext.min.js" />
     <Content Include="scripts\angular-resource.js" />
     <Content Include="scripts\angular-resource.min.js" />
     <Content Include="scripts\angular-route.js" />
@@ -245,18 +260,6 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\cbpHorizontalMenu.min.js" />
     <Content Include="scripts\draggabilly.pkgd.min.js" />
-    <Content Include="scripts\errors.json" />
-    <Content Include="scripts\angular.min.js.map" />
-    <Content Include="scripts\angular-touch.min.js.map" />
-    <Content Include="scripts\angular-sanitize.min.js.map" />
-    <Content Include="scripts\angular-route.min.js.map" />
-    <Content Include="scripts\angular-resource.min.js.map" />
-    <Content Include="scripts\angular-messages.min.js.map" />
-    <Content Include="scripts\angular-message-format.min.js.map" />
-    <Content Include="scripts\angular-loader.min.js.map" />
-    <Content Include="scripts\angular-cookies.min.js.map" />
-    <Content Include="scripts\angular-aria.min.js.map" />
-    <Content Include="scripts\angular-animate.min.js.map" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -396,15 +399,6 @@
     <Content Include="Content\less\mixins\text-emphasis.less" />
     <Content Include="Content\less\mixins\text-overflow.less" />
     <Content Include="Content\less\datepicker.less" />
-    <None Include="scripts\jquery-1.10.2-vsdoc.js" />
-    <Content Include="scripts\imagesloaded.pkgd.min.js" />
-    <Content Include="scripts\jquery-1.10.2.js" />
-    <Content Include="scripts\jquery-1.10.2.min.js" />
-    <Content Include="scripts\jquery-1.10.2.min.map" />
-    <None Include="scripts\jquery-2.2.0.intellisense.js" />
-    <Content Include="scripts\gridmvc.js" />
-    <Content Include="scripts\gridmvc.lang.ru.js" />
-    <Content Include="scripts\gridmvc.min.js" />
     <Content Include="scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="scripts\i18n\angular-locale_aa-et.js" />
@@ -1149,10 +1143,30 @@
     <Content Include="scripts\i18n\angular-locale_zh.js" />
     <Content Include="scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="scripts\i18n\angular-locale_zu.js" />
+    <Content Include="scripts\imagesloaded.pkgd.min.js" />
+    <Content Include="scripts\errors.json" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-touch.min.js.map" />
+    <Content Include="scripts\angular-sanitize.min.js.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular-resource.min.js.map" />
+    <Content Include="scripts\angular-parse-ext.min.js.map" />
+    <Content Include="scripts\angular-messages.min.js.map" />
+    <Content Include="scripts\angular-message-format.min.js.map" />
+    <Content Include="scripts\angular-loader.min.js.map" />
+    <Content Include="scripts\angular-cookies.min.js.map" />
+    <Content Include="scripts\angular-aria.min.js.map" />
+    <Content Include="scripts\angular-animate.min.js.map" />
+    <None Include="scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="scripts\gridmvc.js" />
+    <Content Include="scripts\gridmvc.lang.ru.js" />
+    <Content Include="scripts\gridmvc.min.js" />
     <Content Include="scripts\jquery-2.2.0.js" />
     <Content Include="scripts\jquery-2.2.0.min.js" />
     <Content Include="scripts\jquery-2.2.0.min.map" />
-    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <None Include="scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="scripts\jquery-2.2.3.js" />
+    <Content Include="scripts\jquery-2.2.3.min.js" />
     <Content Include="scripts\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery.jscroll.min.js" />
     <Content Include="scripts\jquery.layout.balancer.js" />
@@ -1160,24 +1174,28 @@
     <Content Include="scripts\jquery.pajinate.min.js" />
     <Content Include="scripts\jquery.slimscroll.min.js" />
     <Content Include="scripts\jquery.sticky.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\jssor.slider.min.js" />
-    <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="scripts\packery.pkgd.min.js" />
     <Content Include="scripts\slick.min.js" />
     <Content Include="scripts\trumbowyg.min.js" />
     <Content Include="Web.config" />
-    <Content Include="scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Database\SiteDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1188,120 +1206,16 @@
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Interfaces\AccountMembershipService.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />
-    <Compile Include="Migrations\201602241345449_Initial1.cs" />
-    <Compile Include="Migrations\201602241345449_Initial1.Designer.cs">
-      <DependentUpon>201602241345449_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602241359280_Initial2.cs" />
-    <Compile Include="Migrations\201602241359280_Initial2.Designer.cs">
-      <DependentUpon>201602241359280_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602252026110_Initial3.cs" />
-    <Compile Include="Migrations\201602252026110_Initial3.Designer.cs">
-      <DependentUpon>201602252026110_Initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603012050071_init00001.cs" />
-    <Compile Include="Migrations\201603012050071_init00001.Designer.cs">
-      <DependentUpon>201603012050071_init00001.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603121031472_initial4.cs" />
-    <Compile Include="Migrations\201603121031472_initial4.Designer.cs">
-      <DependentUpon>201603121031472_initial4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603121033543_initial5.cs" />
-    <Compile Include="Migrations\201603121033543_initial5.Designer.cs">
-      <DependentUpon>201603121033543_initial5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603122143343_Initial6.cs" />
-    <Compile Include="Migrations\201603122143343_Initial6.Designer.cs">
-      <DependentUpon>201603122143343_Initial6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603131147365_Initial7.cs" />
-    <Compile Include="Migrations\201603131147365_Initial7.Designer.cs">
-      <DependentUpon>201603131147365_Initial7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603131318393_Initial8.cs" />
-    <Compile Include="Migrations\201603131318393_Initial8.Designer.cs">
-      <DependentUpon>201603131318393_Initial8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603141923466_Initial9.cs" />
-    <Compile Include="Migrations\201603141923466_Initial9.Designer.cs">
-      <DependentUpon>201603141923466_Initial9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604231105344_init10.cs" />
-    <Compile Include="Migrations\201604231105344_init10.Designer.cs">
-      <DependentUpon>201604231105344_init10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604231248383_init11.cs" />
-    <Compile Include="Migrations\201604231248383_init11.Designer.cs">
-      <DependentUpon>201604231248383_init11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604231847244_init12.cs" />
-    <Compile Include="Migrations\201604231847244_init12.Designer.cs">
-      <DependentUpon>201604231847244_init12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604251516565_Init13.cs" />
-    <Compile Include="Migrations\201604251516565_Init13.Designer.cs">
-      <DependentUpon>201604251516565_Init13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604251805561_Init14.cs" />
-    <Compile Include="Migrations\201604251805561_Init14.Designer.cs">
-      <DependentUpon>201604251805561_Init14.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604251854160_Init15.cs" />
-    <Compile Include="Migrations\201604251854160_Init15.Designer.cs">
-      <DependentUpon>201604251854160_Init15.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605081126432_init16.cs" />
-    <Compile Include="Migrations\201605081126432_init16.Designer.cs">
-      <DependentUpon>201605081126432_init16.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605081202539_init17.cs" />
-    <Compile Include="Migrations\201605081202539_init17.Designer.cs">
-      <DependentUpon>201605081202539_init17.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605211043339_init20.cs" />
-    <Compile Include="Migrations\201605211043339_init20.Designer.cs">
-      <DependentUpon>201605211043339_init20.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605211637154_init18.cs" />
-    <Compile Include="Migrations\201605211637154_init18.Designer.cs">
-      <DependentUpon>201605211637154_init18.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605221032494_init119.cs" />
-    <Compile Include="Migrations\201605221032494_init119.Designer.cs">
-      <DependentUpon>201605221032494_init119.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605221325131_init19.cs" />
-    <Compile Include="Migrations\201605221325131_init19.Designer.cs">
-      <DependentUpon>201605221325131_init19.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605261214545_init21.cs" />
-    <Compile Include="Migrations\201605261214545_init21.Designer.cs">
-      <DependentUpon>201605261214545_init21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605261621252_init22.cs" />
-    <Compile Include="Migrations\201605261621252_init22.Designer.cs">
-      <DependentUpon>201605261621252_init22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605301732451_init23.cs" />
-    <Compile Include="Migrations\201605301732451_init23.Designer.cs">
-      <DependentUpon>201605301732451_init23.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606031331088_Init24.cs" />
-    <Compile Include="Migrations\201606031331088_Init24.Designer.cs">
-      <DependentUpon>201606031331088_Init24.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606031602047_Init25.cs" />
-    <Compile Include="Migrations\201606031602047_Init25.Designer.cs">
-      <DependentUpon>201606031602047_Init25.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606121607365_Init26.cs" />
-    <Compile Include="Migrations\201606121607365_Init26.Designer.cs">
-      <DependentUpon>201606121607365_Init26.cs</DependentUpon>
+    <Compile Include="Migrations\201606201616264_mig1.cs" />
+    <Compile Include="Migrations\201606201616264_mig1.Designer.cs">
+      <DependentUpon>201606201616264_mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AccountModels\AccountViewModels.cs" />
+    <Compile Include="Models\AccountModels\IdentityModels.cs" />
+    <Compile Include="Models\AccountModels\ManageViewModels.cs" />
+    <Compile Include="Models\AccountModels\UserProfileInfo.cs" />
     <Compile Include="Models\ArticleCategories.cs" />
     <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\ArticleSubCategories.cs" />
@@ -1314,6 +1228,7 @@
     <Compile Include="Models\UserIdentity.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -1330,16 +1245,12 @@
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_NavBarTop.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Configuration\CategoriesCreate.cshtml" />
     <Content Include="Views\Articles\_Comments.cshtml" />
     <Content Include="Views\Shared\_IndexSlider.cshtml" />
-    <Content Include="Views\Account\UserPanel.cshtml" />
     <Content Include="Views\Configuration\_Configuration.cshtml" />
     <Content Include="Views\Configuration\Articles.cshtml" />
     <Content Include="Views\Configuration\Users.cshtml" />
@@ -1358,6 +1269,31 @@
     <Content Include="Views\Articles\Categories.cshtml" />
     <Content Include="Views\Configuration\Gallery.cshtml" />
     <Content Include="Views\Articles\CommentEdit.cshtml" />
+    <Content Include="Views\Shared\_HumanumErrareEst.cshtml" />
+    <Content Include="scripts\version.json" />
+    <Content Include="scripts\jquery-2.2.3.min.map" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account3\ChangePassword.cshtml" />
+    <Content Include="Views\Account3\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account3\LogOn.cshtml" />
+    <Content Include="Views\Account3\Register.cshtml" />
+    <Content Include="Views\Account3\UserPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1369,91 +1305,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
+    <Folder Include="Views\Account2\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602241345449_Initial1.resx">
-      <DependentUpon>201602241345449_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602241359280_Initial2.resx">
-      <DependentUpon>201602241359280_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602252026110_Initial3.resx">
-      <DependentUpon>201602252026110_Initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603012050071_init00001.resx">
-      <DependentUpon>201603012050071_init00001.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603121031472_initial4.resx">
-      <DependentUpon>201603121031472_initial4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603121033543_initial5.resx">
-      <DependentUpon>201603121033543_initial5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603122143343_Initial6.resx">
-      <DependentUpon>201603122143343_Initial6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603131147365_Initial7.resx">
-      <DependentUpon>201603131147365_Initial7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603131318393_Initial8.resx">
-      <DependentUpon>201603131318393_Initial8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603141923466_Initial9.resx">
-      <DependentUpon>201603141923466_Initial9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604231105344_init10.resx">
-      <DependentUpon>201604231105344_init10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604231248383_init11.resx">
-      <DependentUpon>201604231248383_init11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604231847244_init12.resx">
-      <DependentUpon>201604231847244_init12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604251516565_Init13.resx">
-      <DependentUpon>201604251516565_Init13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604251805561_Init14.resx">
-      <DependentUpon>201604251805561_Init14.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604251854160_Init15.resx">
-      <DependentUpon>201604251854160_Init15.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605081126432_init16.resx">
-      <DependentUpon>201605081126432_init16.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605081202539_init17.resx">
-      <DependentUpon>201605081202539_init17.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605211043339_init20.resx">
-      <DependentUpon>201605211043339_init20.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605211637154_init18.resx">
-      <DependentUpon>201605211637154_init18.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605221032494_init119.resx">
-      <DependentUpon>201605221032494_init119.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605221325131_init19.resx">
-      <DependentUpon>201605221325131_init19.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605261214545_init21.resx">
-      <DependentUpon>201605261214545_init21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605261621252_init22.resx">
-      <DependentUpon>201605261621252_init22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605301732451_init23.resx">
-      <DependentUpon>201605301732451_init23.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606031331088_Init24.resx">
-      <DependentUpon>201606031331088_Init24.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606031602047_Init25.resx">
-      <DependentUpon>201606031602047_Init25.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606121607365_Init26.resx">
-      <DependentUpon>201606121607365_Init26.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">
+      <DependentUpon>201606201616264_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -1471,7 +1327,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56315</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56315/</IISUrl>
+          <IISUrl>http://localhost:56314/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -1485,8 +1341,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

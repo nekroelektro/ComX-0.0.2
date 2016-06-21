@@ -1,87 +1,97 @@
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ApplicationInsights.config
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csc.exe
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CSharp.Core.targets
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.VisualBasic.Core.targets
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Collections.Immutable.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Reflection.Metadata.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.exe
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\VBCSCompiler.exe
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\VBCSCompiler.exe.config
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.dll.config
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.pdb
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.SqlServer.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.Agent.Intercept.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.DependencyCollector.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.PerfCounterCollector.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.ServerTelemetryChannel.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.Web.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.WindowsServer.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.ApplicationInsights.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Web.Infrastructure.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Newtonsoft.Json.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Formatting.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Helpers.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Mvc.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Razor.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Deployment.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Razor.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.SqlServer.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.DependencyCollector.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.ServerTelemetryChannel.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.Web.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.WindowsServer.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.ApplicationInsights.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Razor.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Deployment.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Razor.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Helpers.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Mvc.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Newtonsoft.Json.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Formatting.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial1.resources
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial2.resources
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.Core.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Primitives.dll
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.Core.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Primitives.xml
-c:\users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\GridMvc.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial3.resources
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.init00001.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.initial4.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.initial5.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ApplicationInsights.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csc.exe
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csc.exe.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csc.rsp
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csi.exe
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csi.rsp
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.AppContext.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.exe
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.exe.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.rsp
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\VBCSCompiler.exe
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.dll.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.pdb
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.SqlServer.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\GridMvc.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.Web.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.ApplicationInsights.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.Cookies.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Newtonsoft.Json.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Owin.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Formatting.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Primitives.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Helpers.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Mvc.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Razor.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Deployment.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Razor.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.SqlServer.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.Web.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.ApplicationInsights.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial6.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial7.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial8.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.Initial9.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.init10.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Newtonsoft.Json.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Primitives.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Razor.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Deployment.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Razor.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Helpers.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Mvc.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Formatting.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig1.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
