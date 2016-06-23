@@ -13,6 +13,7 @@
         {
             if (!userHelper.GetCurrentUserProfileInfo().IsBlocked)
             {
+                <h3>Napisz komentarz trzęsityłku:</h3>
                 using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -42,8 +43,8 @@
         }
     </div>
     <hr />
+    <h3>Komentarze(@commentList.Count)</h3>
     <div class="addedCommentsSection col-xs-12" style="padding-bottom: 4em;">
-        <h2>Komentarze(@commentList.Count)</h2>
         @if (commentList != null)
         {
             foreach (var item in commentList)

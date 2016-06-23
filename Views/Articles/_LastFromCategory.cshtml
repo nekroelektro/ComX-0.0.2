@@ -4,27 +4,31 @@
     ArticleHelper articleHelper = new ArticleHelper();
 }
 
-@if (Model.Any()){
-<div class="lastFromCategoryLabel" style="font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.4em; width: 99.9%; border-radius: 0 20px 0 0;">
-    Zobacz ostatnie z tej kategorii:
-</div>
-<div class="lastFromCategoryContainer" style="width: 100%; height: 11em;">
-    @foreach (var item in Model) {
-        <a href="@Url.Action("Details", "Articles", new {@id = item.Id})">
-            <div class="singleLastArticle col-xs-3" style="color: crimson; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 1px solid gray; border-right: 1px solid gray; height: 100%; padding: 0;">
-                <div class="imageLastFromCategory" style="width: 100%; height: 45%; text-align: center; margin: 0 auto; background-color: black;">
-                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="max-width: 100%; height: 100%;"/>
-                </div>
-                <div class="titleLastFromCategory" style="font-family: 'Amarante', sans-serif; padding-left: 10px; padding-right: 10px;">
-                    @item.Name
-                </div>
-            </div>
-        </a>
-    }
-</div>
-    <div class="lastFromCategoryLabel" style="float: right; font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.3em; padding-left: 1em; width: 99.9%;">
-        <a class="seeMoreFromCategory" href="@Url.Action("Categories", "Articles", new {@id = Model.First().CategoryId})">
-        <p style="float: right;"> Zobacz wszystkie z kategorii @articleHelper.GetCategoryById(Model.First().CategoryId).Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
+@if (Model.Any())
+{
+    <div class="lastFromCategoryPanel" style="padding-bottom: 2em;">
+        <div class="lastFromCategoryLabel" style="font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.4em; width: 99.9%; border-radius: 0 20px 0 0;">
+            Zobacz ostatnie z tej kategorii:
+        </div>
+        <div class="lastFromCategoryContainer" style="width: 100%; height: 11em;">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Details", "Articles", new {@id = item.Id})">
+                    <div class="singleLastArticle col-xs-3" style="color: crimson; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 1px solid gray; border-right: 1px solid gray; height: 100%; padding: 0;">
+                        <div class="imageLastFromCategory" style="width: 100%; height: 45%; text-align: center; margin: 0 auto; background-color: black;">
+                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="max-width: 100%; height: 100%;" />
+                        </div>
+                        <div class="titleLastFromCategory" style="font-family: 'Amarante', sans-serif; padding-left: 10px; padding-right: 10px;">
+                            @item.Name
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+        <div class="lastFromCategoryLabel" style="float: right; font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.3em; padding-left: 1em; width: 99.9%;">
+            <a class="seeMoreFromCategory" href="@Url.Action("Categories", "Articles", new {@id = Model.First().CategoryId})">
+                <p style="float: right;"> Zobacz wszystkie z kategorii @articleHelper.GetCategoryById(Model.First().CategoryId).Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
             </a>
-</div>
+        </div>
+    </div>
 }
