@@ -147,13 +147,14 @@ namespace ComX_0._0._2.Helpers {
             userManager.RemoveFromRoles(userId.ToString());
             var role = db.Roles.Find(roleId.ToString());
             userManager.AddToRole(userId.ToString(), role.Name);
+            userManager.AddToRole(userId.ToString(), "User");
         }
 
         public List<SelectListItem> GetRolesToCombo() {
             var roleList = new List<IdentityRole>();
             var listItems = new List<SelectListItem>();
 
-            roleList = db.Roles.ToList();
+            roleList = db.Roles.Where(x=>x.Name != "User").ToList();
             foreach (var item in roleList) {
                 listItems.Add(new SelectListItem {
                     Text = item.Name,
@@ -180,6 +181,15 @@ namespace ComX_0._0._2.Helpers {
         //    //    db.SaveChanges();
         //    //}
         //}
+
+        public void DegradeToUser(Guid userId) {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var userRoles = this.GetRolesByUserId(userId);
+            foreach (var item in userRoles) {
+                userManager.RemoveFromRole(userId.ToString(), item);
+            }
+            userManager.AddToRole(userId.ToString(), "User");
+        }
 
         public bool UserIsAdmin(Guid userId) {
             if (userId != Guid.Empty) {

@@ -395,7 +395,7 @@ namespace ComX_0._0._2.Controllers {
             userProfile.UserName = user.UserName;
             userProfile.DateOfCreation = userInfo.DateOfCreation.Value;
             userProfile.IsBlocked = userInfo.IsBlocked;
-            userProfile.Roles = user.Roles;
+            userProfile.Roles = Guid.Empty;
             userProfile.UserMail = user.Email;
             userProfile.UserAvatar = userInfo.Avatar;
             
@@ -425,8 +425,9 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ChangeRole(Users user) {
-            userHelper.ChangeUserRole(user.Id, user.Role.Value);
+        public ActionResult ChangeRole(UserProfile user) {
+            //var userRole = db.Roles.First(x => x.Name == role);
+            userHelper.ChangeUserRole(user.UserId, user.Roles);
             return RedirectToAction("Users", "Configuration");
         }
 
@@ -452,6 +453,12 @@ namespace ComX_0._0._2.Controllers {
 
         public ActionResult BlockingUser(Guid userId) {
             userHelper.UserBlockade(userId);
+            return RedirectToAction("Users", "Configuration");
+        }
+
+        public ActionResult DegradeUser(string userId)
+        {
+            userHelper.DegradeToUser(new Guid(userId));
             return RedirectToAction("Users", "Configuration");
         }
 

@@ -32,7 +32,7 @@ namespace ComX_0._0._2.Controllers {
                 user.UserAvatar = userInfo.Avatar;
                 user.DateOfCreation = userInfo.DateOfCreation.Value;
                 user.IsBlocked = userInfo.IsBlocked;
-                user.Roles = item.Roles;
+                user.Roles = new Guid(item.Roles.First().RoleId);
                 users.Add(user);
             }
             return View(users.OrderByDescending(x => x.DateOfCreation).ToList());

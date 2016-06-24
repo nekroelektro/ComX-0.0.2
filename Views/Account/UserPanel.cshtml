@@ -24,7 +24,8 @@
         </button>
     </div>
     <div class="infoUserPanel" style="padding-top: 1em; padding-bottom: 1em; width: 100%; clear: both;">
-            <b>Zarejestrowany od: @Model.DateOfCreation.ToShortDateString()</b>
+        <p>Zarejestrowany od: @Model.DateOfCreation.ToShortDateString()</p>
+        <p>Rangi: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
     </div>
     @if (Model.UserAvatar == null)
     {
@@ -72,26 +73,32 @@
         Jeśli Ci życie miłe, możesz @Html.ActionLink("zmienić hasło tutej.", "ChangePassword", "Manage")
     </div>
     <div class="userPanelAdministratorSection col-md-12">
-        @using (Html.BeginForm("ChangeRole", "Account"))
-            {
+        <p>Aktualne rangi usera: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
+        @if (userHelper.GetRolesByUserId(Model.UserId).Count > 1) {
+            <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("DegradeUser", "Account", new {@userId = Model.UserId})'">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>Zdegraduj do usera
+            </button>
+        }
+        @using (Html.BeginForm("ChangeRole", "Account")) {
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Roles, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-lg-9 col-md-offset-3">
-                        @Html.DropDownListFor(model => model.Roles, new List<SelectListItem>(ViewBag.RoleList), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Roles, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.Roles, htmlAttributes: new {@class = "control-label col-md-1"})
+                    <div class="col-lg-11 col-md-offset-1">
+                        @Html.DropDownListFor(x=>x.Roles, new List<SelectListItem>(ViewBag.RoleList), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Roles, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 @Html.HiddenFor(m => m.UserId)
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-9">
-                        <input type="submit" value="Change" class="btn btn-default" />
+                        <input type="submit" value="Change" class="btn btn-default"/>
                     </div>
                 </div>
             </div>
         }
+    </div>
         <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
             <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
@@ -103,7 +110,7 @@
 
         <div id="popupUserDelete" class="mfp-hide white-popup">
             <p>Potwierdź</p>
-            <hr />
+            <hr/>
             <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
             <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
                 Ta!
@@ -113,7 +120,7 @@
 
         <div id="popupUserBlock" class="mfp-hide white-popup">
             <p>Potwierdź</p>
-            <hr />
+            <hr/>
             <p>Czy na bank chcesz zablokować tego użytkownika?</p>
             <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
                 Ta!
@@ -123,14 +130,14 @@
 
         <div id="popupAvatarDelete" class="mfp-hide white-popup">
             <p>Potwierdź</p>
-            <hr />
+            <hr/>
             <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
             <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletionAvatar" id="commId">
                 Ta!
             </button>
             <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
         </div>
-    </div>
+    <p style="width: 100%; margin: 0 auto; text-align: center; clear: both; color: #C5C8C9;">...the horror...the horror...</p>
 </div>
 
         <script>

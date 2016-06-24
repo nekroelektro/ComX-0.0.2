@@ -10,6 +10,6 @@ namespace ComX_0._0._2.Models.DtoModels {
         public DateTime DateOfCreation { get; set; }
         public byte[] UserAvatar { get; set; }
         public bool IsBlocked { get; set; }
-        public ICollection<IdentityUserRole> Roles { get; set; }
+        public Guid Roles { get; set; }
     }
 }
