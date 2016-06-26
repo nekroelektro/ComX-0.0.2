@@ -237,5 +237,13 @@ namespace ComX_0._0._2.Helpers {
             }
             return articlesFromCategory;
         }
+
+        public bool SubCategoryIsEmpty(Guid subId, Guid catId) {
+            var articleList = db.Articles.Where(x => x.SubCategoryId == subId && x.CategoryId == catId).ToList();
+            if (articleList.Count == 0) {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -49,21 +49,22 @@ namespace ComX_0._0._2.Models.AccountModels {
         //public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Nazwa użytkownika")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Zapamiętaj mnie")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel {
         [Required]
-        [StringLength(25, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
-        [Display(Name = "Username")]
+        [StringLength(25, ErrorMessage = "{0} musi mieć przynajmniej {2} znaki, maks {1}, bo ja tak mówie.", MinimumLength = 3)]
+        [Display(Name = "Nazwa użytkownika")]
         public string Username { get; set; }
 
         [Required]
@@ -72,15 +73,15 @@ namespace ComX_0._0._2.Models.AccountModels {
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} musi mieć przynajmniej {2} znaków, a maks {1}, bo tak.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Potwierdź hasło")]
         [System.ComponentModel.DataAnnotations.Compare("Password",
-            ErrorMessage = "The password and confirmation password do not match.")]
+            ErrorMessage = "Jakby je porównać, to hasło i jego potwierdzenie nie są takie same jednak...")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -91,15 +92,15 @@ namespace ComX_0._0._2.Models.AccountModels {
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} musi mieć przynajmniej {2} znaków, a maks {1}, bo tak.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Potwierdź hasło")]
         [System.ComponentModel.DataAnnotations.Compare("Password",
-            ErrorMessage = "The password and confirmation password do not match.")]
+            ErrorMessage = "Jakby je porównać, to hasło i jego potwierdzenie nie są takie same jednak...")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

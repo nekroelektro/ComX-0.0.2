@@ -31,16 +31,16 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Prelude, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10" style="margin-left: -0.5em; width:33%">
-                @Html.Custom_DivFor(model => model.Prelude, "form-control articleEditorTextAreaPrelude")
+            <div class="col-md-10" style="margin-left: -0.5em; width:60%">
+                @Html.TextAreaFor(model => model.Prelude, new { @class = "form-control articleEditor" })
                 @Html.ValidationMessageFor(model => model.Prelude, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10" style="margin-left: -1.4em;">
-                @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextAreaBody longEditor")
-                @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-left: -0.5em;">
+                @Html.TextAreaFor(model => model.Body, new { @class = "form-control articleEditor" })
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -78,8 +78,15 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 <script>
-    $('.articleEditorTextAreaBody').trumbowyg();
-    $('.articleEditorTextAreaPrelude').trumbowyg();
+    $(document).ready(function() {
+        window.tinymce.init({
+            selector: '.articleEditor',
+            plugins: 'advlist autolink link image lists charmap print preview'
+        });
+
+        //$('.articleEditorTextAreaBody').trumbowyg();
+        //$('.articleEditorTextAreaPrelude').trumbowyg();
+    });
 </script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
