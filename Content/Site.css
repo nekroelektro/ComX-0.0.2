@@ -160,6 +160,10 @@ textarea {
     color: #2B823C !important;
 }
 
+.articleDetailsBody a, .articleDetailsIntro a, .sliderArticlePrelude a, .indexArticleBody a, .readyCommentBody a {
+    color: #2B823C !important;
+}
+
 /* COMMENT SECTION */
 
 .addedCommentsSection {
@@ -332,7 +336,7 @@ textarea {
     min-height: 400px !important;
 }
 
-.singleLastArticleTopNavigation img, .detailsBannerPanel img, .sideArt img {
+.singleLastArticleTopNavigation img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img {
     position: absolute;
     top: 50%;
     left: 50%;

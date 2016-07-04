@@ -43,7 +43,7 @@
     </div>
 </div>
 <div class="detailContainer" style="width: 68.6%; float: left;">
-    <div class="articleDetail" style="width: 100%; float: left;">
+    <div class="articleDetail" style="width: 100%; float: left; border-left: 1px solid #2B823C; border-right: 1px solid #2B823C; border-bottom: 2px solid #2B823C">
         @*@if (articleHelper.GetImageByArticleId(Model.Id) != null) {
                 <div class="articleMainImage" style="width: 100%; text-align: center; margin: 0 auto; background-color: black;">
                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 100%; max-height: 30em; text-align: center; margin: 0 auto;"/>
@@ -55,10 +55,10 @@
         </div>
         <hr style="border:2px solid #2B823C; background-color: #2B823C; margin-top: 0;" />
 
-        <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em;">
+        <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em; padding: 1em;">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
-        <hr style="border:2px solid #2B823C; background-color:#2B823C" />
+        @*<hr style="border:2px solid #2B823C; background-color:#2B823C" />*@
     </div>
 
     <div style="clear: both">
