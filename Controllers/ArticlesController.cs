@@ -29,11 +29,12 @@ namespace ComX_0._0._2.Controllers {
 
         // GET: Articles/Details/5
         [ValidateInput(false)]
-        public ActionResult Details(Guid? id) {
+        public ActionResult Details(string id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var articles = db.Articles.Find(id);
+            var articleFullName = generalHelper.AddSpecialCharsForString(id);
+            var articles = db.Articles.First(x => x.Name == articleFullName);
             if (articles == null) {
                 return HttpNotFound();
             }

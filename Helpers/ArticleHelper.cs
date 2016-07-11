@@ -40,6 +40,11 @@ namespace ComX_0._0._2.Helpers {
             return articles;
         }
 
+        public Articles GetArticleByName(string name) {
+            var article = db.Articles.First(x => x.Name == name);
+            return article;
+        }
+
         public ArticleCategories GetCategoryById(Guid id) {
             var category = db.Categories.Find(id);
             return category;
@@ -228,7 +233,7 @@ namespace ComX_0._0._2.Helpers {
                 db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished)
                     .OrderByDescending(x => x.DateCreated)
                     .ToList();
-            if (articleId != Guid.Empty) {
+            if (articleId != Guid.Empty && articlesFromCategory.Count() != 0) {
                 var artToDelete = articlesFromCategory.First(x => x.Id == articleId);
                 articlesFromCategory.Remove(artToDelete);
             }

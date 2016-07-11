@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Web;
-using ComX_0._0._2.Models;
 
 namespace ComX_0._0._2.Helpers {
     public class GeneralHelper {
+
         public string GenerateRandomNumber() {
             var random = new Random();
             var randomNumber = random.Next(100000, 99999999);
@@ -14,11 +13,9 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public Image FixImageOrientation(Image img) {
-            if (Array.IndexOf(img.PropertyIdList, 274) > -1)
-            {
-                var orientation = (int)img.GetPropertyItem(274).Value[0];
-                switch (orientation)
-                {
+            if (Array.IndexOf(img.PropertyIdList, 274) > -1) {
+                var orientation = (int) img.GetPropertyItem(274).Value[0];
+                switch (orientation) {
                     case 1:
                         // No rotation required.
                         break;
@@ -56,11 +53,34 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public Guid GetIdFromCurrentUrl() {
-            var url = this.GetCurrentPageUrl();
+            var url = GetCurrentPageUrl();
             var urlArray = url.Split('/');
             var urlGuid = urlArray.Last();
             var id = new Guid(urlGuid);
             return id;
+        }
+
+        public Guid GetIdFromCurrentUrlForArticle()
+        {
+            ArticleHelper articleHelper = new ArticleHelper();
+            var url = GetCurrentPageUrl();
+            var urlDecoded = HttpUtility.UrlDecode(url);
+            var urlArray = urlDecoded.Split('/');
+            var urlName = urlArray.Last();
+            var text = this.AddSpecialCharsForString(urlName);
+            var id = articleHelper.GetArticleByName(text).Id;
+            return id;
+        }
+
+        public string RemoveSpecialCharsFromString(string text) {
+            var html = text.Replace(" ", "+");
+            //var pureText = Regex.Replace(text, "[^a-zA-Z0-9_.]+", "_", RegexOptions.Compiled);
+            return html;
+        }
+
+        public string AddSpecialCharsForString(string text) {
+            var textToPass = text.Replace("+", " ");
+            return textToPass;
         }
     }
 }

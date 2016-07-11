@@ -343,3 +343,7 @@ textarea {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.rightLogoPanel .navbar-brand {
+    height: auto;
+}

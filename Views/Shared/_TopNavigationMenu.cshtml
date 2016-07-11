@@ -26,7 +26,7 @@
                                             <ul>
                                                 @foreach (var article in articleHelper.GetArticlesByBothCategories(item.Id, subItem.Id, 3)) {
                                                     <li>
-                                                        <a href="@Url.Action("Details", "Articles", new {@id = article.Id})" style="font-size: 0.8em;"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
+                                                        <a href="@Url.Action("Details", "Articles", new {@id = article.Id})" style="font-size: 1em;"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
                                                     </li>
                                                 }
                                             </ul>
@@ -105,7 +105,7 @@
                 } else {
                     $item.addClass('cbp-hropen');
                     var subList = document.getElementsByClassName("cbp-hrsub");
-                    $(".elementsToPush").css("margin-top", $(subList[idx]).height());
+                    $(".elementsToPush").css("margin-top", $(subList[idx]).height() + 20);
                     current = idx;
                     $body.off('click').on('click', close);
                 }
@@ -139,7 +139,6 @@
         $('.main').on('sticky-end', function() {
             $('.absoluteLogo').hide();
             $(".cbp-hrsub-inner").css("width", "80%");
-            //$(".cbp-hrsub-inner").css("box-shadow", "0 0 10px 10px #222222");
         });
 
         $('.singleLastArticleTopNavigation')

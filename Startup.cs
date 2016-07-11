@@ -31,18 +31,18 @@ namespace ComX_0._0._2 {
 
                 //Here we create a Admin super user who will maintain the website                  
 
-                var user = new ApplicationUser();
-                user.UserName = "Nekro";
-                user.Email = "bluttrommel@gmail.com";
+                //var user = new ApplicationUser();
+                //user.UserName = "Nekro";
+                //user.Email = "bluttrommel@gmail.com";
 
-                var userPWD = "hellthroaster1";
+                //var userPWD = "hellthroaster1";
 
-                var chkUser = UserManager.Create(user, userPWD);
+                //var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded) {
-                    UserManager.AddToRole(user.Id, "SuperAdmin");
-                }
+                ////Add default User to Role Admin   
+                //if (chkUser.Succeeded) {
+                //    UserManager.AddToRole(user.Id, "SuperAdmin");
+                //}
             }
 
             // creating Creating Manager role    

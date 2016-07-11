@@ -4,7 +4,7 @@
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
     var generalHelper = new GeneralHelper();
-    var artId = generalHelper.GetIdFromCurrentUrl();
+    var artId = generalHelper.GetIdFromCurrentUrlForArticle();
     var commentList = articleHelper.GetCommentsByArticle(artId);
 }
 <div class="commentSection">
@@ -28,7 +28,7 @@
                             @Html.ValidationMessage("EmptyComment", new { @style = "color: red" })
                             @Html.ValidationMessage("TwoComments", new { @style = "color: red" })
                             @*@Html.HiddenFor(x=>x.ArticleId, new {@class = "commentAddFormArtId"})*@
-                            <input style="display: none;" type="text" class="commentAddFormArtId" name="articleId" value="@generalHelper.GetIdFromCurrentUrl()" />
+                            <input style="display: none;" type="text" class="commentAddFormArtId" name="articleId" value="@generalHelper.GetIdFromCurrentUrlForArticle()" />
                             <div class="form-group">
                                 <div style="padding-left: 2.2em;">
                                     <button type="submit" class="btn btn-info addCommentButton">

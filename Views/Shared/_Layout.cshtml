@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="~/Content/datepicker.css" rel="stylesheet" type="text/css"/>
@@ -19,7 +19,8 @@
     <link href="@Url.Content("~/Content/slick.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/magnific-popup.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/horizontalMenu.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/jquery.fancybox.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/jquery.fancybox.css")" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" type="image/ico" href="@Url.Content("~/Content/favNp.ico")"/>
     @*<link href="@Url.Content("~/Content/bootstrap-combobox.css")" rel="stylesheet" type="text/css" />*@
     <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -55,19 +56,20 @@
         </div>
     }
     <div class="elementsToPush">
-        @if (currentUrl.Contains("Index"))
+        @*@if (!currentUrl.Contains("Account") && !currentUrl.Contains("Configuration") && !currentUrl.Contains("Details") && !currentUrl.Contains("Comment") && !currentUrl.Contains("Categories"))*@
+        @if(currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/"))
         {
-            <div class="container" style="padding-left: 0; padding-right: 0;">
-                @Html.Action("_IndexSlider", "Articles")
-            </div>
-            <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; background-color: white; border-bottom: 1em solid #222;font-family: 'Amarante', sans-serif;text-align: justify">
-                <h2 style="color: red;">Uważej!</h2>
-                <h4>
-                    Portaleta na ktorą właśnie się wprosiłeś/aś może zawierać całkiem sporawe ilości brzydkich wyrazów, nagości i niepoprawnej polszczyzny,
-                    więc jeśli czujesz się dotknięty/a w krocze przy obcowaniu z którymś z powyższych znamion plebejskiego pochodzenia - zawróć i wróć po
-                    studniówce!
-                </h4>
-            </div>
+        <div class="container" style="padding-left: 0; padding-right: 0;">
+            @Html.Action("_IndexSlider", "Articles")
+        </div>
+        <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; background-color: white; border-bottom: 1em solid #222;font-family: 'Amarante', sans-serif;text-align: justify">
+            <h2 style="color: red;">Uważej!</h2>
+            <h4>
+                Portaleta na ktorą właśnie się wprosiłeś/aś może zawierać całkiem sporawe ilości brzydkich wyrazów, nagości i niepoprawnej polszczyzny,
+                więc jeśli czujesz się dotknięty/a w krocze przy obcowaniu z którymś z powyższych znamion plebejskiego pochodzenia - zawróć i wróć po
+                studniówce!
+            </h4>
+        </div>
         }
         <div class="container body-content bodyLayout">
             @RenderBody()

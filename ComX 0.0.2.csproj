@@ -196,6 +196,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="Content\favNp.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\horizontalMenu.css" />
@@ -1210,6 +1211,10 @@
     <Compile Include="Migrations\201606201616264_mig1.Designer.cs">
       <DependentUpon>201606201616264_mig1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607041925147_mig2.cs" />
+    <Compile Include="Migrations\201607041925147_mig2.Designer.cs">
+      <DependentUpon>201607041925147_mig2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountModels\AccountViewModels.cs" />
@@ -1312,6 +1317,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">
       <DependentUpon>201606201616264_mig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607041925147_mig2.resx">
+      <DependentUpon>201607041925147_mig2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
