@@ -239,7 +239,7 @@ namespace ComX_0._0._2.Controllers {
                 db.Entry(commentToChange).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Details", new {id = comment.ArticleId});
+            return RedirectToAction("Details", new {id = articleHelper.GetArticleById(comment.ArticleId).Name});
         }
 
         public ActionResult _IndexSlider() {

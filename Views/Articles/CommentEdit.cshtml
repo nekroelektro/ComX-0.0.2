@@ -3,6 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     UserHelper userHelper = new UserHelper();
+    ArticleHelper articleHelper = new ArticleHelper();
 }
 @if (Model.UserId == userHelper.GetCurrentLoggedUserId() || userHelper.UserIsAdmin(userHelper.GetCurrentLoggedUserId())) {
     using (Html.BeginForm()) {
@@ -23,7 +24,7 @@
                         <button type="submit" class="btn btn-info submitEditCommentForm">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                         </button>
-                        <button type="button" data-artId="@Model.ArticleId" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                        <button type="button" data-artId="@articleHelper.GetArticleById(Model.ArticleId).Name" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
                     </div>
                 </div>
             </div>

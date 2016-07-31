@@ -3,13 +3,14 @@
     @{
         var articleHelper = new ArticleHelper();
         var userHelper = new UserHelper();
+        var generalHelper = new GeneralHelper();
         var lastArticles = articleHelper.GetLastArticles(6);
     }
 <div class="sliderOne" style="background-color: #222; width: 100%; margin: 0 auto; font-family: 'Amarante', sans-serif; color: white;">
         @foreach (var item in lastArticles)
         {
             <div class="slideElementUpper" style="height: 25em; display: block;">
-                <a href="@Url.Action("Details", "Articles", new {@id = item.Id})">
+                <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
                     <div class="sliderLink" style="height: 100%">
                         <div class="sliderLeft" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; z-index: 1; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; padding-top: 1em; z-index: 4;">
                             <div class="sliderArticleDate">

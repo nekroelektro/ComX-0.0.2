@@ -2,6 +2,7 @@
 @model IEnumerable<ComX_0._0._2.Models.Articles>
 @{
     ArticleHelper articleHelper = new ArticleHelper();
+    GeneralHelper generalHelper = new GeneralHelper();
 }
 
 @if (Model.Any()){
@@ -12,7 +13,7 @@
         <div class="lastFromCategoryContainer" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%; padding-top: 1em;">
             @foreach (var item in Model)
             {
-                <a href="@Url.Action("Details", "Articles", new {@id = item.Id})" style="width: 25%; margin: 0 auto; text-align: center;">
+                <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))" style="width: 25%; margin: 0 auto; text-align: center;">
                     <div class="singleLastArticleTopNavigation" style="width: 100%; height: 15em; overflow: hidden; position: relative; border: 1px solid white;">
                         <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); z-index: 2;"></div>
                         <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
