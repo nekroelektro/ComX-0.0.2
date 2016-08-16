@@ -72,6 +72,7 @@
     <div class="userPanelOthersSection col-md-6">
         Jeśli Ci życie miłe, możesz @Html.ActionLink("zmienić hasło tutej.", "ChangePassword", "Manage")
     </div>
+@if (userHelper.IsAdminUser(User)) {
     <div class="userPanelAdministratorSection col-md-12">
         <p>Aktualne rangi usera: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
         @if (userHelper.GetRolesByUserId(Model.UserId).Count > 1) {
@@ -86,7 +87,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Roles, htmlAttributes: new {@class = "control-label col-md-1"})
                     <div class="col-lg-11 col-md-offset-1">
-                        @Html.DropDownListFor(x=>x.Roles, new List<SelectListItem>(ViewBag.RoleList), new { @class = "form-control" })
+                        @Html.DropDownListFor(x => x.Roles, new List<SelectListItem>(ViewBag.RoleList), new {@class = "form-control"})
                         @Html.ValidationMessageFor(model => model.Roles, "", new {@class = "text-danger"})
                     </div>
                 </div>
@@ -99,44 +100,45 @@
             </div>
         }
     </div>
-        <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
-            <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
-                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
-            </button>
-            <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupUserDelete">
-                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Delete user
-            </button>
-        </div>
+    <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
+        <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
+        </button>
+        <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupUserDelete">
+            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Delete user
+        </button>
+    </div>
 
-        <div id="popupUserDelete" class="mfp-hide white-popup">
-            <p>Potwierdź</p>
-            <hr/>
-            <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
-            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
-                Ta!
-            </button>
-            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-        </div>
+    <div id="popupUserDelete" class="mfp-hide white-popup">
+        <p>Potwierdź</p>
+        <hr/>
+        <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
+        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+            Ta!
+        </button>
+        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+    </div>
 
-        <div id="popupUserBlock" class="mfp-hide white-popup">
-            <p>Potwierdź</p>
-            <hr/>
-            <p>Czy na bank chcesz zablokować tego użytkownika?</p>
-            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
-                Ta!
-            </button>
-            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-        </div>
+    <div id="popupUserBlock" class="mfp-hide white-popup">
+        <p>Potwierdź</p>
+        <hr/>
+        <p>Czy na bank chcesz zablokować tego użytkownika?</p>
+        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+            Ta!
+        </button>
+        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+    </div>
 
-        <div id="popupAvatarDelete" class="mfp-hide white-popup">
-            <p>Potwierdź</p>
-            <hr/>
-            <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
-            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletionAvatar" id="commId">
-                Ta!
-            </button>
-            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-        </div>
+    <div id="popupAvatarDelete" class="mfp-hide white-popup">
+        <p>Potwierdź</p>
+        <hr/>
+        <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
+        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletionAvatar" id="commId">
+            Ta!
+        </button>
+        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+    </div>
+}
     <p style="width: 100%; margin: 0 auto; text-align: center; clear: both; color: #C5C8C9;">...the horror...the horror...</p>
 </div>
 

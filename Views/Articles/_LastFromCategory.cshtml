@@ -6,6 +6,7 @@
 }
 
 @if (Model.Any()){
+    var categoryName = articleHelper.GetCategoryById(Model.First().CategoryId).Name;
     <div class="lastFromCategoryPanel" style="padding-bottom: 2em; padding-top: 1em;">
         <div class="lastFromCategoryLabel" style="font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.4em; width: 99.9%; border-radius: 0 20px 0 0;">
             Zobacz ostatnie z tej kategorii:
@@ -30,7 +31,7 @@
             }
         </div>
         <div class="lastFromCategoryLabel" style="float: right; font-family: 'Amarante', sans-serif; color: crimson; font-size: 1.3em; padding-left: 1em; width: 99.9%;">
-            <a class="seeMoreFromCategory" href="@Url.Action("Categories", "Articles", new {@id = Model.First().CategoryId})">
+            <a class="seeMoreFromCategory" href="@Url.Action("Categories", "Articles", new {@id = categoryName})">
                 <p style="float: right;"> Zobacz wszystkie z kategorii @articleHelper.GetCategoryById(Model.First().CategoryId).Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
             </a>
         </div>

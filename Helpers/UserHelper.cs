@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Models;
@@ -35,6 +36,11 @@ namespace ComX_0._0._2.Helpers {
 
         public ApplicationUser GetUserById(Guid id) {
             var user = db.Users.Find(id.ToString());
+            return user;
+        }
+
+        public ApplicationUser GetUserByName(string name) {
+            var user = db.Users.First(x => x.UserName == name);
             return user;
         }
 
@@ -215,26 +221,16 @@ namespace ComX_0._0._2.Helpers {
             return false;
         }
 
-        public bool IsAdminUser() {
-            if (User.Identity.IsAuthenticated) {
-                var user = User.Identity;
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-                var rolesList = userManager.GetRoles(user.GetUserId());
-                if (rolesList.Contains("Admin") || rolesList.Contains("SuperAdmin")) {
-                    return true;
-                }
+        public bool IsAdminUser(IPrincipal user) {
+            if (user.Identity.IsAuthenticated) {
+                return UserIsAdmin(new Guid(GetUserByName(user.Identity.Name).Id));
             }
             return false;
         }
 
-        public bool IsSuperAdminUser() {
-            if (User.Identity.IsAuthenticated) {
-                var user = User.Identity;
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-                var rolesList = userManager.GetRoles(user.GetUserId());
-                if (rolesList.Contains("SuperAdmin")) {
-                    return true;
-                }
+        public bool IsSuperAdminUser(IPrincipal user) {
+            if (user.Identity.IsAuthenticated){
+                return UserIsSuperAdmin(new Guid(GetUserByName(user.Identity.Name).Id));
             }
             return false;
         }

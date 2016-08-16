@@ -69,7 +69,7 @@ namespace ComX_0._0._2.Controllers {
                     return RedirectToAction("SendCode", new {ReturnUrl = returnUrl, model.RememberMe});
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("LoginError", "Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!");
                     return View(model);
             }
         }

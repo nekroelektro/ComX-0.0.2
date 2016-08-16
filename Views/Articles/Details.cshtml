@@ -8,24 +8,26 @@
     var userHelper = new UserHelper();
     ViewBag.Title = @Model.Name + " " + articleHelper.GetCategoryById(@Model.CategoryId) + " - NekroPlaza";
 }
-<div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
-    @*<h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name):</h2>*@
-    <div class="buttons" style="float: right; margin-top: 1em;">
-        <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
-            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>DO GÓRY
-        </button>
-        <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"></span>EDIT
-        </button>
-        <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
-            <span class="glyphicon glyphicon-erase" aria-hidden="true" style="font-size: 1.1em"></span>DELETE
-        </button>
-    </div>
-    @*<div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both;">
+@if (userHelper.IsAdminUser(User)) {
+    <div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
+        @*<h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name):</h2>*@
+        <div class="buttons" style="float: right; margin-top: 1em;">
+            <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>DO GÓRY
+            </button>
+            <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"></span>EDIT
+            </button>
+            <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true" style="font-size: 1.1em"></span>DELETE
+            </button>
+        </div>
+        @*<div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both;">
             <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
         </div>*@
-</div>
-<div class="detailsBannerPanel" style="width: 100%; height: 40em; margin-bottom: 1em; position: relative; z-index: 5; overflow: hidden;">
+    </div>
+}
+<div class="detailsBannerPanel" style="width: 102.7%; margin-left: -1.1em !important; height: 40em; margin-bottom: 1em; position: relative; z-index: 5; overflow: hidden;">
     <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
         <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
     </div>
@@ -42,19 +44,19 @@
     </div>
 </div>
 <div class="detailContainer" style="width: 68.6%; float: left;">
-    <div class="articleDetail" style="width: 100%; float: left; border-left: 1px solid #2B823C; border-right: 1px solid #2B823C; border-bottom: 2px solid #2B823C">
+    <div class="articleDetail" style="width: 100%; float: left; border-bottom: 2px solid #2B823C;">
         @*@if (articleHelper.GetImageByArticleId(Model.Id) != null) {
                 <div class="articleMainImage" style="width: 100%; text-align: center; margin: 0 auto; background-color: black;">
                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 100%; max-height: 30em; text-align: center; margin: 0 auto;"/>
                 </div>
             }*@
 
-        <div class="articleDetailsIntro" style="text-align: justify; font-size: 1.3em; text-indent: 0.9em; background-color: #222; border-left: 0.5em #2B823C solid;border-right: 0.5em #2B823C solid; width: 100%; color: white; padding: 2px 5px 2px 5px; padding-left: 1em; padding-right: 1em;">
+        <div class="articleDetailsIntro" style="text-align: justify; font-size: 1.3em; text-indent: 0.9em; border-left: 0.5em #2B823C solid;border-right: 0.5em #2B823C solid; width: 100%; padding: 2px 5px 2px 5px; padding-left: 1em; padding-right: 1em; font-family: 'Krona One', sans-serif;">
             @Html.Raw(WebUtility.HtmlDecode(Model.Prelude))
         </div>
-        <hr style="border:2px solid #2B823C; background-color: #2B823C; margin-top: 0;" />
+        <hr style="margin-top: 0;" />
 
-        <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em; padding: 1em;">
+        <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em; padding: 1em; font-family: 'Coda', sans-serif;">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
         @*<hr style="border:2px solid #2B823C; background-color:#2B823C" />*@

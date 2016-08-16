@@ -239,7 +239,7 @@ namespace ComX_0._0._2.Controllers {
                 db.Entry(commentToChange).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Details", new {id = articleHelper.GetArticleById(comment.ArticleId).Name});
+            return RedirectToAction("Details", new {id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(comment.ArticleId).Name)});
         }
 
         public ActionResult _IndexSlider() {
@@ -264,17 +264,19 @@ namespace ComX_0._0._2.Controllers {
             return Content(cat.Name);
         }
 
-        public ActionResult Categories(Guid? id) {
+        public ActionResult Categories(string id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var cat = articleHelper.GetCategoryByName(id);
             var articlesByCategory =
-                db.Articles.Where(x => x.IsPublished && x.CategoryId == id)
+                db.Articles.Where(x => x.IsPublished && x.CategoryId == cat.Id)
                     .OrderByDescending(x => x.DateCreated)
                     .ToList();
             if (articlesByCategory == null) {
                 return HttpNotFound();
             }
+            ViewBag.CategoryIdentificator = cat.Id;
             return View(articlesByCategory);
         }
     }

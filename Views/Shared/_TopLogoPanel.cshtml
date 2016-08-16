@@ -1,5 +1,8 @@
-﻿@using Microsoft.AspNet.Identity
-
+﻿@using ComX_0._0._2.Helpers
+@using Microsoft.AspNet.Identity
+@{
+    UserHelper userHelper = new UserHelper();
+}
 <div class="container logoSection" style="padding-left: 0; padding-right: 0;background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(34, 34, 34, 1));">
     <div class="logo">
         <a href="@Url.Action("Index", "Articles")">
@@ -8,24 +11,23 @@
     </div>
     <div class="rightLogoPanel" style="float: right; width: 20em;">
         <ul class="logoMenu" style="list-style-type: none; padding-left: 0; width: 100%; text-align: right;">
-            <li>
-                @Html.ActionLink("Konfiguracja", "Articles", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
-            </li>
-            @if (Request.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-brand", @style= "float:none !important; padding-top: 1.5em;" }))
-                {
+            @if (userHelper.IsAdminUser(User)) {
+                <li>
+                    @Html.ActionLink("Konfiguracja", "Articles", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                </li>
+            }
+            @if (Request.IsAuthenticated) {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-brand", @style = "float:none !important; padding-top: 1.5em;"})) {
                     @Html.AntiForgeryToken()
-                        <li>
-                            @Html.ActionLink("Witojcie, " + User.Identity.GetUserName() + "!", "UserPanel", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-                        </li>
+                    <li>
+                        @Html.ActionLink("Witojcie, " + User.Identity.GetUserName() + "!", "UserPanel", "Account", routeValues: null, htmlAttributes: new {title = "Manage"})
+                    </li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 }
             }
-            else
-            {
-                    <li>@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class= "navbar-brand" })</li>
-                    <li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "navbar-brand" })</li>
+            else {
+                <li>@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "navbar-brand"})</li>
+                <li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "navbar-brand"})</li>
             }
             @*@if (!string.IsNullOrEmpty(User.Identity.Name))
             {

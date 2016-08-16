@@ -2,8 +2,10 @@
 @model ComX_0._0._2.Models.Comments
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Rozedytuj swój (słaby) komentarz - NEKROPLAZA";
     UserHelper userHelper = new UserHelper();
     ArticleHelper articleHelper = new ArticleHelper();
+    GeneralHelper generalHelper = new GeneralHelper();
 }
 @if (Model.UserId == userHelper.GetCurrentLoggedUserId() || userHelper.UserIsAdmin(userHelper.GetCurrentLoggedUserId())) {
     using (Html.BeginForm()) {
@@ -24,7 +26,7 @@
                         <button type="submit" class="btn btn-info submitEditCommentForm">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                         </button>
-                        <button type="button" data-artId="@articleHelper.GetArticleById(Model.ArticleId).Name" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                        <button type="button" onclick="location.href = '@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(Model.ArticleId).Name)}))'" data-artId="@generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(Model.ArticleId).Name)'" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
                     </div>
                 </div>
             </div>
@@ -41,9 +43,9 @@ else {
         $('.comEditorTextArea').trumbowyg();
         $('.comEditorTextArea').trumbowyg('html', decodedPrelude);
 
-        $('.btnCancelEdit').click(function () {
+        @*$('.btnCancelEdit').click(function () {
             var articleIdentificator = $(this).data('artid').toString();
             window.location.href = '@Url.Action("Details", "Articles")/' + articleIdentificator;
-        });
+        });*@
     });
 </script>

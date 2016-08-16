@@ -23,6 +23,8 @@
     <link rel="shortcut icon" type="image/ico" href="@Url.Content("~/Content/favNp.ico")"/>
     @*<link href="@Url.Content("~/Content/bootstrap-combobox.css")" rel="stylesheet" type="text/css" />*@
     <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Coda&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Krona+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -57,19 +59,26 @@
     }
     <div class="elementsToPush">
         @*@if (!currentUrl.Contains("Account") && !currentUrl.Contains("Configuration") && !currentUrl.Contains("Details") && !currentUrl.Contains("Comment") && !currentUrl.Contains("Categories"))*@
-        @if(currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/"))
+        @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/"))
         {
-        <div class="container" style="padding-left: 0; padding-right: 0;">
-            @Html.Action("_IndexSlider", "Articles")
-        </div>
-        <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; background-color: white; border-bottom: 1em solid #222;font-family: 'Amarante', sans-serif;text-align: justify">
-            <h2 style="color: red;">Uważej!</h2>
-            <h4>
-                Portaleta na ktorą właśnie się wprosiłeś/aś może zawierać całkiem sporawe ilości brzydkich wyrazów, nagości i niepoprawnej polszczyzny,
-                więc jeśli czujesz się dotknięty/a w krocze przy obcowaniu z którymś z powyższych znamion plebejskiego pochodzenia - zawróć i wróć po
-                studniówce!
-            </h4>
-        </div>
+            <div class="container" style="padding-left: 0; padding-right: 0;">
+                @Html.Action("_IndexSlider", "Articles")
+            </div>
+            <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; background-color: white; border-bottom: 1em solid #222;font-family: 'Amarante', sans-serif;text-align: justify">
+                <div class="warningMessageLayout" style="width: 90%; margin-top: -1em; padding-right: 1em; float:left">
+                    <h2 style="color: red;">Uważej!</h2>
+                    <h4>
+                        Portaleta na ktorą właśnie się wprosiłeś/aś może zawierać całkiem sporawe ilości brzydkich wyrazów, nagości i niepoprawnej polszczyzny,
+                        więc jeśli czujesz się dotknięty/a w krocze przy obcowaniu z którymś z powyższych znamion plebejskiego pochodzenia - zawróć i wróć po
+                        studniówce!
+                    </h4>
+                </div>
+                <div class="socialMessageLayout" style="width: 10%; float: right;">
+                    <a target="_blank" href="https://www.facebook.com/nekroplaza/">
+                        <img src='~/Content/images/fbk.png' style="float: left; width: 100%; height: auto; text-align: center; padding-top: 0.25em;" />
+                    </a>
+                </div>
+            </div>
         }
         <div class="container body-content bodyLayout">
             @RenderBody()

@@ -347,3 +347,7 @@ textarea {
 .rightLogoPanel .navbar-brand {
     height: auto;
 }
+
+.topPanelSingleContainer {
+    background-color: crimson;
+}
