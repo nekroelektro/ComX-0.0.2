@@ -46,6 +46,7 @@ namespace ComX_0._0._2.Controllers {
         public ActionResult Create() {
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
+            ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series")] Articles article,
             HttpPostedFileBase upload) {
             var articleIdentifier = Guid.NewGuid();
             if (upload != null) {
@@ -85,6 +86,7 @@ namespace ComX_0._0._2.Controllers {
             }
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
+            ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
             return View(article);
         }
 
@@ -99,6 +101,7 @@ namespace ComX_0._0._2.Controllers {
             }
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
+            ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
             ViewBag.ArticleIdentificator = id;
             return View(articles);
         }
@@ -109,7 +112,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series")] Articles article,
             HttpPostedFileBase upload) {
             if (upload != null) {
                 var validImageTypes = new[] {
@@ -135,6 +138,7 @@ namespace ComX_0._0._2.Controllers {
                     entity.DateEdited = DateTime.Now;
                     entity.CategoryId = article.CategoryId;
                     entity.SubCategoryId = article.SubCategoryId;
+                    entity.Series = article.Series;
                     if (entity.IsPublished != article.IsPublished) {
                         entity.IsPublished = article.IsPublished;
                         entity.DateCreated = DateTime.Now;

@@ -1,0 +1,15 @@
+﻿@using GridMvc.Html
+@using GridMvc.Sorting
+@model IEnumerable<ComX_0._0._2.Models.Series>
+@{
+
+}
+<div class="col-xs-12 center-block">
+    @Html.Grid(Model).Named("seriesGrid").Columns(columns =>
+{
+    columns.Add(o => o.Id, true);
+    columns.Add(x => x.Name).SetWidth(200);
+    columns.Add(x => x.SortCode).SortInitialDirection(GridSortDirection.Descending).SetWidth(60);
+    columns.Add(x => x.Description).SetWidth(460);
+}).WithPaging(20).Sortable(true).Filterable(true)
+</div>

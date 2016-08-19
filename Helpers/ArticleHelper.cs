@@ -106,6 +106,18 @@ namespace ComX_0._0._2.Helpers {
             }).ToList();
         }
 
+        public List<SelectListItem> GetSeriesToCombo()
+        {
+            var categoryList = new List<Series>();
+
+            categoryList = db.Series.ToList();
+            return categoryList.Select(item => new SelectListItem
+            {
+                Text = item.Name,
+                Value = item.Id.ToString()
+            }).ToList();
+        }
+
         public void ChangeCategoryDetails(ArticleCategories category) {
             var categoryToChange = GetCategoryById(category.Id);
             categoryToChange.Name = category.Name;
@@ -117,6 +129,15 @@ namespace ComX_0._0._2.Helpers {
 
         public void ChangeSubCategoryDetails(ArticleSubCategories category) {
             var categoryToChange = db.SubCategories.Find(category.Id);
+            categoryToChange.Name = category.Name;
+            categoryToChange.Description = category.Description;
+            categoryToChange.SortCode = category.SortCode;
+            db.Entry(categoryToChange).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void ChangeSeriesDetails(ArticleSubCategories category) {
+            var categoryToChange = db.Series.Find(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
             categoryToChange.SortCode = category.SortCode;
@@ -230,6 +251,15 @@ namespace ComX_0._0._2.Helpers {
             }
         }
 
+        public void DeleteSeriesForArticles(Guid seriesId) {
+            var allArticlesFromSelectedSeries = db.Articles.Where(x => x.Series == seriesId).ToList();
+            foreach (var item in allArticlesFromSelectedSeries) {
+                item.Series = Guid.Empty;
+                db.Entry(item).State = EntityState.Modified; 
+            }
+            db.SaveChanges();
+        }
+
         public List<Articles> GetRandomArticlesForSideBar(int numberOfArticles, Guid? articleId) {
             var articleList = db.Articles.Where(x => x.IsPublished).ToList();
             //if (articleId != Guid.Empty) {
@@ -263,6 +293,11 @@ namespace ComX_0._0._2.Helpers {
                 return true;
             }
             return false;
+        }
+
+        public Series GetSeriesById(Guid seriesId) {
+            var series = db.Series.Find(seriesId);
+            return series;
         }
     }
 }

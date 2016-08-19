@@ -1218,9 +1218,13 @@
     <Compile Include="Migrations\201606201616264_mig1.Designer.cs">
       <DependentUpon>201606201616264_mig1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201607041925147_mig2.cs" />
-    <Compile Include="Migrations\201607041925147_mig2.Designer.cs">
-      <DependentUpon>201607041925147_mig2.cs</DependentUpon>
+    <Compile Include="Migrations\201608191357329_mig2.cs" />
+    <Compile Include="Migrations\201608191357329_mig2.Designer.cs">
+      <DependentUpon>201608191357329_mig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608191404059_mig3.cs" />
+    <Compile Include="Migrations\201608191404059_mig3.Designer.cs">
+      <DependentUpon>201608191404059_mig3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -1238,6 +1242,7 @@
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\ImagesGallery.cs" />
     <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\Series.cs" />
     <Compile Include="Models\UserIdentity.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1308,6 +1313,9 @@
     <Content Include="Views\Account3\Register.cshtml" />
     <Content Include="Views\Account3\UserPanel.cshtml" />
     <Content Include="Views\Account\UserPanel.cshtml" />
+    <Content Include="Views\Configuration\_Series.cshtml" />
+    <Content Include="Views\Configuration\SeriesCreate.cshtml" />
+    <Content Include="Views\Configuration\SeriesDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1325,8 +1333,11 @@
     <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">
       <DependentUpon>201606201616264_mig1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607041925147_mig2.resx">
-      <DependentUpon>201607041925147_mig2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608191357329_mig2.resx">
+      <DependentUpon>201608191357329_mig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608191404059_mig3.resx">
+      <DependentUpon>201608191404059_mig3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,10 @@
 <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("SubCategoriesCreate", "Configuration")'">
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add subcategory
 </button>
-<p> Main categories:</p>
+<button type="button" class="btn btn-primary btn-m" onclick="location.href = '@Url.Action("SeriesCreate", "Configuration")'">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add series
+</button>
+<h2> Main categories:</h2>
 <div class="col-xs-12 center-block">
     @Html.Grid(Model).Named("categoryGrid").Columns(columns => {
     columns.Add(o => o.Id, true);
@@ -22,8 +25,10 @@
     columns.Add(x => x.Description).SetWidth(460);
 }).WithPaging(20).Sortable(true).Filterable(true)
 </div>
-<p> Sub categories:</p>
+<h2> Sub categories:</h2>
 @Html.Action("_SubCategories")
+<h2> Series: </h2>
+@Html.Action("_Series")
 <script>
     $(function () {
         pageGrids.categoryGrid.onRowSelect(function (e) {
@@ -33,6 +38,10 @@
         pageGrids.subCategoryGrid.onRowSelect(function (e) {
             var rowCategoryId = e.row.Id;
             window.location.href = '@Url.Action("SubCategoriesDetails", "Configuration")?categoryId=' + rowCategoryId;
+        });
+        pageGrids.seriesGrid.onRowSelect(function (e) {
+            var rowCategoryId = e.row.Id;
+            window.location.href = '@Url.Action("SeriesDetails", "Configuration")?categoryId=' + rowCategoryId;
         });
     });
 </script>

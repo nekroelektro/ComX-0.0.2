@@ -39,5 +39,11 @@ namespace ComX_0._0._2.Models
         public DateTime DateEdited { get; set; }
 
         public bool IsPublished { get; set; }
+
+        [DisplayName("Short description for Index")]
+        public string IndexDescription { get; set; }
+
+        [DisplayName("Series")]
+        public Guid Series { get; set; }
     }
 }

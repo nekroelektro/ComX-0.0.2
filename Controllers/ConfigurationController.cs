@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ComX_0._0._2.Database;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Models;
 using ComX_0._0._2.Models.AccountModels;
@@ -49,10 +48,8 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult RolesCreate(IdentityRole role)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult RolesCreate(IdentityRole role) {
+            if (ModelState.IsValid) {
                 role.Id = Guid.NewGuid().ToString();
                 db.Roles.Add(role);
                 db.SaveChanges();
@@ -61,15 +58,12 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
-        public ActionResult RolesDetails(Guid? roleId)
-        {
-            if (roleId == null)
-            {
+        public ActionResult RolesDetails(Guid? roleId) {
+            if (roleId == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var role = db.Roles.Find(roleId.ToString());
-            if (role == null)
-            {
+            if (role == null) {
                 return HttpNotFound();
             }
             return View(role);
@@ -102,7 +96,11 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
-        public ActionResult SubCategoriesCreate(){
+        public ActionResult SubCategoriesCreate() {
+            return View();
+        }
+
+        public ActionResult SeriesCreate(){
             return View();
         }
 
@@ -120,12 +118,22 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SubCategoriesCreate(ArticleSubCategories category)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult SubCategoriesCreate(ArticleSubCategories category) {
+            if (ModelState.IsValid) {
                 category.Id = Guid.NewGuid();
                 db.SubCategories.Add(category);
+                db.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SeriesCreate(Series category) {
+            if (ModelState.IsValid) {
+                category.Id = Guid.NewGuid();
+                db.Series.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Categories");
             }
@@ -143,15 +151,23 @@ namespace ComX_0._0._2.Controllers {
             return View(category);
         }
 
-        public ActionResult SubCategoriesDetails(Guid? categoryId)
-        {
-            if (categoryId == null)
-            {
+        public ActionResult SubCategoriesDetails(Guid? categoryId) {
+            if (categoryId == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var category = db.SubCategories.Find(categoryId);
-            if (category == null)
-            {
+            if (category == null) {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
+        public ActionResult SeriesDetails(Guid? categoryId) {
+            if (categoryId == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var category = db.Series.Find(categoryId);
+            if (category == null) {
                 return HttpNotFound();
             }
             return View(category);
@@ -169,11 +185,19 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SubCategoriesDetails(ArticleSubCategories category)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult SubCategoriesDetails(ArticleSubCategories category) {
+            if (ModelState.IsValid) {
                 articleHelper.ChangeSubCategoryDetails(category);
+                return RedirectToAction("Categories");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SeriesDetails(ArticleSubCategories category) {
+            if (ModelState.IsValid) {
+                articleHelper.ChangeSeriesDetails(category);
                 return RedirectToAction("Categories");
             }
             return View();
@@ -187,8 +211,7 @@ namespace ComX_0._0._2.Controllers {
             return RedirectToAction("Categories");
         }
 
-        public ActionResult DeleteSubCategory(string categoryId)
-        {
+        public ActionResult DeleteSubCategory(string categoryId) {
             var categoryToDelete = db.SubCategories.Find(new Guid(categoryId));
             articleHelper.ChangeArticleCategoryIfCategoryDeleted(new Guid(categoryId), false);
             db.SubCategories.Remove(categoryToDelete);
@@ -196,19 +219,32 @@ namespace ComX_0._0._2.Controllers {
             return RedirectToAction("Categories");
         }
 
-        public ActionResult _SubCategories(){
+        public ActionResult DeleteSeries(string categoryId) {
+            var categoryToDelete = db.Series.Find(new Guid(categoryId));
+            articleHelper.DeleteSeriesForArticles(new Guid(categoryId));
+            db.Series.Remove(categoryToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Categories");
+        }
+
+        public ActionResult _SubCategories() {
             var categories = db.SubCategories.ToList();
             return PartialView(categories);
         }
 
+        public ActionResult _Series() {
+            var series = db.Series.ToList();
+            return PartialView(series);
+        }
+
         public ActionResult Gallery() {
-            var gallery = db.ImagesGallery.OrderByDescending(x=>x.DateOfCreation).ToList();
+            var gallery = db.ImagesGallery.OrderByDescending(x => x.DateOfCreation).ToList();
             return View(gallery);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Gallery(HttpPostedFileBase image){
+        public ActionResult Gallery(HttpPostedFileBase image) {
             if (ModelState.IsValid) {
                 articleHelper.UploadImageForGallery(image);
                 return RedirectToAction("Gallery");

@@ -141,11 +141,11 @@ a {
     min-height: 6em;
 }
 
-.indexArticleBody p {
+/*.indexArticleBody p {
     white-space: nowrap;
     overflow:hidden !important;
     text-overflow: ellipsis;
-}
+}*/
 
 .indexArticleFooter {
     background-color: black;
