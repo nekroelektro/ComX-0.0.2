@@ -208,8 +208,7 @@ namespace ComX_0._0._2.Controllers {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Gallery(HttpPostedFileBase image)
-        {
+        public ActionResult Gallery(HttpPostedFileBase image){
             if (ModelState.IsValid) {
                 articleHelper.UploadImageForGallery(image);
                 return RedirectToAction("Gallery");

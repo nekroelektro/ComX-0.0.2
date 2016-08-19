@@ -33,7 +33,7 @@
         <p>Info:</p>
         <p>Abyśmy sobie nie utrudniali życia - jest kilka warunków, które taki awatar spełnić musi, a są to kolejno:</p>
         <p>- musi mieć rozszerzenie .jpg albo .png albo i .gif</p>
-        <p>- najlepiej, żeby miał rozmiar do... powiedzmy 400px z obu stron, coby mi nie śmiecił za bardzo.</p>
+        <p>- najlepiej, żeby miał rozmiar do... powiedzmy 80kb, żeby nie śmiecił.</p>
         using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post,
             new { enctype = "multipart/form-data" }))
         {
@@ -44,9 +44,8 @@
                 <div class="form-group">
                     @Html.Label("Załaduj fotę", new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="file" id="imgUp" name="avatar" />
+                        <input type="file" id="imgUp" name="avatar" accept=".gif, .jpg, .png"/>
                     </div>
-                    @*@Html.ValidationMessage("ImageUpload", new {@style = "color: red"})*@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -54,6 +53,7 @@
                     </div>
                 </div>
             </div>
+            @Html.ValidationMessage("ImageUpload", new { @style = "color: red" })
         }
     }
     else {

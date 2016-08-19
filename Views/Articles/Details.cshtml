@@ -5,8 +5,10 @@
 @{
     var comments = new Comments();
     var articleHelper = new ArticleHelper();
+    var generalHelper = new GeneralHelper();
     var userHelper = new UserHelper();
-    ViewBag.Title = @Model.Name + " " + articleHelper.GetCategoryById(@Model.CategoryId) + " - NekroPlaza";
+    ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId).Name + " - NekroPlaza";
+    var currentUrl = generalHelper.GetCurrentPageUrl();
 }
 @if (userHelper.IsAdminUser(User)) {
     <div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
@@ -59,13 +61,28 @@
         <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em; padding: 1em; font-family: 'Coda', sans-serif;">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
+        <!-- Your like button code -->
+        <div class="fb-like" style="padding: 2em;" data-href="@currentUrl" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+
         @*<hr style="border:2px solid #2B823C; background-color:#2B823C" />*@
     </div>
 
     <div style="clear: both">
         @Html.Action("_LastFromCategory", new { amount = 4, categoryId = Model.CategoryId, articleId = Model.Id })
-        <hr style="border:2px solid #2B823C; background-color: #2B823C; width: 100%;" />
-        @Html.Action("_Comments", new { id = Guid.Empty, artId = Model.Id })
+        <hr style="border: 2px solid #2B823C; background-color: #2B823C; width: 100%;"/>
+        <div id="detailsCommentSection">
+            @Html.Action("_Comments", new { id = Guid.Empty, artId = Model.Id })
+        </div>
     </div>
 </div>
 @Html.Partial("_SideBar")
+
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

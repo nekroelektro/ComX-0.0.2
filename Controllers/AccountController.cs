@@ -17,6 +17,7 @@ namespace ComX_0._0._2.Controllers {
     public class AccountController : Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly UserHelper userHelper = new UserHelper();
+        private readonly  GeneralHelper generalHelper = new GeneralHelper();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -414,7 +415,10 @@ namespace ComX_0._0._2.Controllers {
                     "image/png"
                 };
                 if (!validImageTypes.Contains(avatar.ContentType)) {
-                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                    ModelState.AddModelError("ImageUpload", "Nie ma tak - dostępne rozszerzenia masz u góry.");
+                }
+                else if (avatar.ContentLength > 80000) {
+                    ModelState.AddModelError("ImageUpload", "Za duże!");
                 }
                 else {
                     userHelper.UploadAvatarForUser(userHelper.GetCurrentLoggedUserId(), avatar);
@@ -431,6 +435,8 @@ namespace ComX_0._0._2.Controllers {
             return RedirectToAction("Users", "Configuration");
         }
 
+        [AllowAnonymous]
+        [ValidateInput(false)]
         public ActionResult GetAvatar(Guid userId) {
             try {
                 var avatar = userHelper.GetAvatarByUserId(userId);
@@ -466,7 +472,8 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         public JsonResult UserNameExists(string userName) {
             var user = Membership.GetUser(userName);
-            return Json(user == null);
+            var usr = userHelper.GetUserByName(userName);
+            return Json(usr == null);
         }
 
         #region Helpers

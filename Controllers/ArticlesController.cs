@@ -194,7 +194,7 @@ namespace ComX_0._0._2.Controllers {
         [ValidateInput(false)]
         public ActionResult _Comments([Bind(Include = "Id,Body,ArticleId")] Comments comment) {
             var artId = comment.ArticleId;
-            var userId = userHelper.GetCurrentLoggedUserId(); ;
+            var userId = userHelper.GetCurrentLoggedUserId();
             if (string.IsNullOrEmpty(comment.Body)) {
                 ModelState.AddModelError("EmptyComment", "Oszalałeś? Nie możesz dodać pustego komentarza...");
             }
@@ -212,6 +212,7 @@ namespace ComX_0._0._2.Controllers {
                 db.Comments.Add(comment);
                 db.SaveChanges();
             }
+            ViewBag.ReturnArticleId = artId;
             return PartialView("_Comments", new Comments());
         }
 
@@ -250,7 +251,9 @@ namespace ComX_0._0._2.Controllers {
             var commentToDelete = db.Comments.Find(new Guid(commentId));
             db.Comments.Remove(commentToDelete);
             db.SaveChanges();
-            return Redirect(Request.UrlReferrer.ToString());
+            //return Redirect(Request.UrlReferrer.ToString());
+            ViewBag.ReturnArticleId = new Guid(articleId);
+            return PartialView("_Comments", new Comments());
         }
 
         public ActionResult DeleteImage(Guid articleId) {

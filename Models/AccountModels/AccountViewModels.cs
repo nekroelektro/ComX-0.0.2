@@ -63,7 +63,7 @@ namespace ComX_0._0._2.Models.AccountModels {
 
     public class RegisterViewModel {
         [Required]
-        [StringLength(25, ErrorMessage = "{0} musi mieć przynajmniej {2} znaki, maks {1}, bo ja tak mówie.", MinimumLength = 3)]
+        [StringLength(25, ErrorMessage = "Twój nick (pol. Mikołajek) musi mieć przynajmniej {2} znaki a do tego nie więcej niż {1}, sory memory.", MinimumLength = 3)]
         [Display(Name = "Nazwa użytkownika")]
         public string Username { get; set; }
 

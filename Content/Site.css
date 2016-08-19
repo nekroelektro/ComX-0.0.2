@@ -29,6 +29,10 @@ textarea {
     max-width: 280px;
 }
 
+a {
+    outline: 0 !important;
+}
+
 /*INDEX SLIDER*/
 .sliderArticleCategories > p {
     white-space: nowrap;
@@ -134,6 +138,13 @@ textarea {
 .indexArticleBody {
     text-align: justify;
     text-indent: 0.9em;
+    min-height: 6em;
+}
+
+.indexArticleBody p {
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
 }
 
 .indexArticleFooter {
