@@ -10,7 +10,8 @@
     ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId).Name + " - NekroPlaza";
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
-@if (userHelper.IsAdminUser(User)) {
+@if (userHelper.IsAdminUser(User))
+{
     <div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
         @*<h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name):</h2>*@
         <div class="buttons" style="float: right; margin-top: 1em;">
@@ -25,8 +26,8 @@
             </button>
         </div>
         @*<div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both;">
-            <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
-        </div>*@
+                <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
+            </div>*@
     </div>
 }
 <div class="detailsBannerPanel" style="width: 102.7%; margin-left: -1.1em !important; height: 40em; margin-bottom: 1em; position: relative; z-index: 5; overflow: hidden;">
@@ -38,10 +39,16 @@
     </div>
     <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); z-index: 2;"></div>
     <div class="bannerPanelInfo" style="max-width: 50%;font-family: 'Amarante', sans-serif;position: absolute; bottom: 3em; left: 2em; color: black; padding: 1em;background: rgba(255, 255, 255, 0.7); z-index: 4;">
-        <h2 style="width: 100%; float: left">@Html.DisplayFor(model => model.Name)</h2>
+        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series).Name != "Default")
+        {
+            <h3 style="background-color: #2B823C; color: black;">@articleHelper.GetSeriesById(Model.Series).Name</h3>
+        }
+        <h2 style="width: 100%; float: left; margin-top: 0;">@Html.DisplayFor(model => model.Name)</h2>
         <div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both; ">
-            <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated) &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(Model.CategoryId).Name,
-            @articleHelper.GetSubCategoryById(Model.SubCategoryId).Name</p>
+            <p style="float: left;">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated) &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(Model.CategoryId).Name,
+                @articleHelper.GetSubCategoryById(Model.SubCategoryId).Name
+            </p>
         </div>
     </div>
 </div>
@@ -69,7 +76,7 @@
 
     <div style="clear: both">
         @Html.Action("_LastFromCategory", new { amount = 4, categoryId = Model.CategoryId, articleId = Model.Id })
-        <hr style="border: 2px solid #2B823C; background-color: #2B823C; width: 100%;"/>
+        <hr style="border: 2px solid #2B823C; background-color: #2B823C; width: 100%;" />
         <div id="detailsCommentSection">
             @Html.Action("_Comments", new { id = Guid.Empty, artId = Model.Id })
         </div>
@@ -79,10 +86,10 @@
 
 <div id="fb-root"></div>
 <script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>

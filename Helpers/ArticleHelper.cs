@@ -159,6 +159,11 @@ namespace ComX_0._0._2.Helpers {
             return comments.ToList();
         }
 
+        public List<Comments> GetLastComments(int numberOfComments) {
+            var comments = db.Comments.OrderByDescending(x => x.DateOfCreation).Take(numberOfComments).ToList();
+            return comments;
+        } 
+
         public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload) {
             var imgToUpload = new Images();
             if (upload != null) {

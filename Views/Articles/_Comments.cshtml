@@ -50,14 +50,14 @@
     </div>
     <hr />
     <h3>Komentarze(@commentList.Count)</h3>
-    <div class="addedCommentsSection col-xs-12" style="padding-bottom: 4em;">
+    <div class="addedCommentsSection col-xs-12" style="padding-bottom: 4em;" id="commentSection">
         @if (commentList != null)
         {
             foreach (var item in commentList)
             {
                 var currentUser = userHelper.GetUserById(item.UserId);
                 <div class="singleCommentSection col-xs-11 col-xs-offset-1">
-                    <div class="col-xs-2 commentFooter" style="height: 100%; color: black;">
+                    <div class="col-xs-2 commentFooter" style="height: 100%; color: black; padding-right: 0;">
                         @*@if (!string.IsNullOrEmpty(User.Identity.Name)) {*@
                             @if (userHelper.GetAvatarByUserId(new Guid(currentUser.Id)) != null) {
                                  <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 100%; text-align: center; margin: 0 auto;"/>

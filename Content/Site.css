@@ -337,6 +337,29 @@ a {
     outline: 0; 
 }
 
+.sideLastCommentAnchor{
+    color: white !important;
+    text-decoration: none;
+    outline: 0; 
+}
+
+.sideRandomPostsAnchor {
+    color: white !important;
+    text-decoration: none;
+    outline: 0; 
+}
+
+.sideRandomPostsAnchor:hover {
+    color: #2B823C !important;
+    text-decoration: none;
+    outline: 0;
+}
+
+.sideLastCommentAnchor:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
 .topNavigationLastAnchor:hover {
     color: #222 !important;
     text-decoration: none;
@@ -361,4 +384,9 @@ a {
 
 .topPanelSingleContainer {
     background-color: crimson;
+}
+
+.sideLastCommentsBodySingle:hover {
+    background-color: #2B823C;
+    color: whitesmoke;
 }

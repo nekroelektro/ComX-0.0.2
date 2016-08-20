@@ -31,10 +31,11 @@
                             <div class="sliderArticleTitle" style="float: left; width: 100%;">
                                 <h2 style="margin-top: 0;">@item.Name</h2>
                             </div>
+                            <hr style="width: 85%; text-align: center; margin: 0 auto; clear: both;"/>
+                            <div class="sliderArticleIndexDescription" style="text-align: justify; text-indent: 1em;">
+                                <p>@Html.Raw(WebUtility.HtmlDecode(item.IndexDescription))</p>
+                            </div>
                         </div>
-                        @*<div class="sliderCenter" style="z-index: 0; position: relative; height: 100%; width: 100%;">
-                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: auto; max-width: 100%; height: 100%; text-align: center; margin: 0 auto;"/>
-                        </div>*@
                         <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.6); z-index: 2;"></div>
                         <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
                             <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
@@ -69,7 +70,7 @@
         $('.sliderOne').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: false,
+            arrows: true,
             fade: true,
             asNavFor: '.sliderSection'
         });
@@ -79,12 +80,13 @@
             centerMode: true,
             asNavFor: '.sliderOne',
             slidesToShow: 3,
-            autoplay: true,
+            autoplay: false,
             autoplaySpeed: 7000,
             focusOnSelect: true,
             slidesToScroll: 2,
             variableWidth: true,
             draggable: false,
+            arrows: false,
             responsive: [
     {
         breakpoint: 1024,

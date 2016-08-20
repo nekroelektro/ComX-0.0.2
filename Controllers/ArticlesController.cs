@@ -56,7 +56,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription")] Articles article,
             HttpPostedFileBase upload) {
             var articleIdentifier = Guid.NewGuid();
             if (upload != null) {
@@ -112,7 +112,7 @@ namespace ComX_0._0._2.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(
-            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series")] Articles article,
+            [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription")] Articles article,
             HttpPostedFileBase upload) {
             if (upload != null) {
                 var validImageTypes = new[] {
@@ -139,6 +139,7 @@ namespace ComX_0._0._2.Controllers {
                     entity.CategoryId = article.CategoryId;
                     entity.SubCategoryId = article.SubCategoryId;
                     entity.Series = article.Series;
+                    entity.IndexDescription = article.IndexDescription;
                     if (entity.IsPublished != article.IsPublished) {
                         entity.IsPublished = article.IsPublished;
                         entity.DateCreated = DateTime.Now;
