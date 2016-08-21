@@ -14,27 +14,24 @@
 }
 <div class="commentSection">
     <div class="addComment">
-        @if (!string.IsNullOrEmpty(User.Identity.Name))
-        {
-            if (!userHelper.GetCurrentUserProfileInfo().IsBlocked)
-            {
+        @if (!string.IsNullOrEmpty(User.Identity.Name)) {
+            if (!userHelper.GetCurrentUserProfileInfo().IsBlocked) {
                 <h3>Napisz komentarz trzęsityłku:</h3>
                 //using (Html.BeginForm())
-                using (Ajax.BeginForm("_Comments", new AjaxOptions { UpdateTargetId = "detailsCommentSection" }))
-                {
+                using (Ajax.BeginForm("_Comments", new AjaxOptions {UpdateTargetId = "detailsCommentSection"})) {
                     @Html.AntiForgeryToken()
                     <div class="newCommentSection">
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-xs-12 center-block" style="display: inline-block;">
                                     @Html.Custom_DivFor(model => model.Body, "form-control articleEditorTextArea")
-                                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
                                 </div>
                             </div>
-                            @Html.ValidationMessage("EmptyComment", new { @style = "color: red" })
-                            @Html.ValidationMessage("TwoComments", new { @style = "color: red" })
+                            @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
+                            @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
                             @*@Html.HiddenFor(x=>x.ArticleId, new {@class = "commentAddFormArtId"})*@
-                            <input style="display: none;" type="text" class="commentAddFormArtId" name="articleId" value="@artId" />
+                            <input style="display: none;" type="text" class="commentAddFormArtId" name="articleId" value="@artId"/>
                             <div class="form-group">
                                 <div style="padding-left: 2.2em;">
                                     <button type="submit" class="btn btn-info addCommentButton">
@@ -46,6 +43,11 @@
                     </div>
                 }
             }
+        }
+        else {
+            <div class="newCommentnotLogged" style="text-align: center; margin: 0 auto; font-family: 'Coda', sans-serif;">
+                <h4>Jak chcesz skomentować, to się zaloguj - opłaci Ci się, koleżko!</h4>
+            </div>
         }
     </div>
     <hr />

@@ -106,13 +106,11 @@ namespace ComX_0._0._2.Helpers {
             }).ToList();
         }
 
-        public List<SelectListItem> GetSeriesToCombo()
-        {
+        public List<SelectListItem> GetSeriesToCombo() {
             var categoryList = new List<Series>();
 
             categoryList = db.Series.ToList();
-            return categoryList.Select(item => new SelectListItem
-            {
+            return categoryList.Select(item => new SelectListItem {
                 Text = item.Name,
                 Value = item.Id.ToString()
             }).ToList();
@@ -162,7 +160,7 @@ namespace ComX_0._0._2.Helpers {
         public List<Comments> GetLastComments(int numberOfComments) {
             var comments = db.Comments.OrderByDescending(x => x.DateOfCreation).Take(numberOfComments).ToList();
             return comments;
-        } 
+        }
 
         public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload) {
             var imgToUpload = new Images();
@@ -228,6 +226,15 @@ namespace ComX_0._0._2.Helpers {
             return relativePath;
         }
 
+        public string GetImageAbsolutePathByArticleId(Guid articleId) {
+            var image = GetImageByArticleId(articleId);
+            if (image != null) {
+                var absolute = string.Format("http://" + "nekroplaza.pl/Content/images/Container/{0}", image.FileName);
+                return absolute;
+            }
+            return "deafult.jpg";
+        }
+
         public void DeleteImageForGivenArticle(Guid articleId) {
             var imageToDelete = db.Images.First(x => x.ArticleId == articleId);
             db.Images.Remove(imageToDelete);
@@ -260,7 +267,7 @@ namespace ComX_0._0._2.Helpers {
             var allArticlesFromSelectedSeries = db.Articles.Where(x => x.Series == seriesId).ToList();
             foreach (var item in allArticlesFromSelectedSeries) {
                 item.Series = Guid.Empty;
-                db.Entry(item).State = EntityState.Modified; 
+                db.Entry(item).State = EntityState.Modified;
             }
             db.SaveChanges();
         }

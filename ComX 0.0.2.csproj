@@ -215,6 +215,7 @@
     <Content Include="Content\images\npLogo.png" />
     <Content Include="Content\images\npLogos.jpg" />
     <Content Include="Content\images\npLogos.png" />
+    <Content Include="Content\images\npLogosBeta.png" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Site.css" />

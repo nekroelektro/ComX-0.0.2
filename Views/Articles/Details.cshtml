@@ -1,4 +1,5 @@
-﻿@using ComX_0._0._2.Helpers
+﻿@using System.Text.RegularExpressions
+@using ComX_0._0._2.Helpers
 @using ComX_0._0._2.Models
 @model ComX_0._0._2.Models.Articles
 
@@ -8,6 +9,8 @@
     var generalHelper = new GeneralHelper();
     var userHelper = new UserHelper();
     ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId).Name + " - NekroPlaza";
+    ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
+    ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
 @if (userHelper.IsAdminUser(User))
