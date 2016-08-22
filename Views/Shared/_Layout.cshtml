@@ -1,6 +1,7 @@
 ﻿@using ComX_0._0._2.Helpers
 @{
     var articleHelper = new ArticleHelper();
+    var generalHelper = new GeneralHelper();
     string currentUrl = Request.Url?.AbsoluteUri;
 }
 <!DOCTYPE html>
@@ -70,9 +71,7 @@
                 <div class="warningMessageLayout" style="width: 90%; margin-top: -1em; padding-right: 1em; float:left">
                     <h2 style="color: red;">Uważej!</h2>
                     <h4>
-                        Portaleta na ktorą właśnie się wprosiłeś/aś może zawierać całkiem sporawe ilości brzydkich wyrazów, nagości i niepoprawnej polszczyzny,
-                        więc jeśli czujesz się dotknięty/a w krocze przy obcowaniu z którymś z powyższych znamion plebejskiego pochodzenia - zawróć i wróć po
-                        studniówce!
+                        @generalHelper.GetSettings().JumboIndexText
                     </h4>
                 </div>
                 <div class="socialMessageLayout" style="width: 10%; float: right;">

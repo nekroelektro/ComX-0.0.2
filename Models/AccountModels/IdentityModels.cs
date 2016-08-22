@@ -26,6 +26,7 @@ namespace ComX_0._0._2.Models.AccountModels {
         public DbSet<ImagesGallery> ImagesGallery { get; set; }
         public DbSet<UserProfileInfo> UserProfileInfo { get; set; }
         public DbSet<Series> Series { get; set; }
+        public DbSet<SiteSettings> SiteSettings { get; set; } 
 
         public ApplicationDbContext(): base("DefaultConnection", false) {
         }

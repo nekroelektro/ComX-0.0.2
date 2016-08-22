@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,6 +12,7 @@ using ComX_0._0._2.Models.DtoModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ComX_0._0._2.Controllers {
+    [Authorize(Roles = "Admin, SuperAdmin")]
     public class ConfigurationController : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
@@ -100,7 +102,7 @@ namespace ComX_0._0._2.Controllers {
             return View();
         }
 
-        public ActionResult SeriesCreate(){
+        public ActionResult SeriesCreate() {
             return View();
         }
 
@@ -248,6 +250,27 @@ namespace ComX_0._0._2.Controllers {
             if (ModelState.IsValid) {
                 articleHelper.UploadImageForGallery(image);
                 return RedirectToAction("Gallery");
+            }
+            return View();
+        }
+
+        public ActionResult SiteSettings() {
+            return View(generalHelper.GetSettings());
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SiteSettings(SiteSettings settings) {
+            if (ModelState.IsValid) {
+                var set = generalHelper.GetSettings();
+                set.IsMaintenance = settings.IsMaintenance;
+                set.CommentsAvailable = settings.CommentsAvailable;
+                set.Quote = settings.Quote;
+                set.JumboIndexText = settings.JumboIndexText;
+                set.Playlist = settings.Playlist;
+                db.Entry(set).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("SiteSettings");
             }
             return View();
         }

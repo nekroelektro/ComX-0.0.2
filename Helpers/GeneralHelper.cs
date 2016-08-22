@@ -2,9 +2,12 @@
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using ComX_0._0._2.Models;
+using ComX_0._0._2.Models.AccountModels;
 
 namespace ComX_0._0._2.Helpers {
     public class GeneralHelper {
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         public string GenerateRandomNumber() {
             var random = new Random();
@@ -81,6 +84,11 @@ namespace ComX_0._0._2.Helpers {
         public string AddSpecialCharsForString(string text) {
             var textToPass = text.Replace("+", " ");
             return textToPass;
+        }
+
+        public SiteSettings GetSettings() {
+            var settings = db.SiteSettings.First();
+            return settings;
         }
     }
 }
