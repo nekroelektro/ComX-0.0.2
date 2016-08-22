@@ -3,7 +3,7 @@
 @using GridMvc.Sorting
 @model IEnumerable<ComX_0._0._2.Models.Articles>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Articles/_Articles.cshtml";
     ArticleHelper articleHelper = new ArticleHelper();
     GeneralHelper generalHelper = new GeneralHelper();
     var catId = ViewBag.CategoryIdentificator;
@@ -12,7 +12,7 @@
     ViewBag.Title = string.Format("{0} - NekroPlaza - doświadcz dobroci", category.Name);
 }
 
-<div class="categoryArticleTitle" style="width: 70%; float: left;">
+<div class="categoryArticleTitle" style="width: 100%; float: left;">
     <h2 style="float: left;">Posty z kategorii @category.Name:</h2>
 @if (Model.Any()) {
     <div class="categoryViewType" style="float: right; margin-top: 1.5em; padding-right: 1.4em;">
@@ -25,12 +25,9 @@
     </div>
 }
 </div>
-<div style="padding-top: 1em;">
-    @Html.Partial("_SideBar")
-</div>
 @if (Model.Any())
 {
-    <div class="articlesIndexContainer" style="width: 69%; float: left; display: none;">
+    <div class="articlesIndexContainer" style="width: 100%; float: left; display: none;">
         <ul class="content" style="padding-left: 0; margin-left: 0;">
             @foreach (var item in Model)
             {
@@ -77,7 +74,7 @@
         </ul>
     </div>
 
-    <div id="pager" style="width: 70%; float: left;">
+    <div id="pager" style="width: 100%; float: left;">
         <div class="grid" style="width: 100%; float: left;">
             <ul class="content" style="padding-left: 0; margin-left: 0;">
                 @foreach (var item in Model) {
@@ -119,7 +116,7 @@
         <div class="page_navigation" style="clear: both; padding-top: 3em;"></div>
     </div>
 }else {
-    <div class="noItemsInCategorySection" style="width: 70%; float: left; color: #2B823C; text-align: center; margin: 0 auto;">
+    <div class="noItemsInCategorySection" style="width: 100%; float: left; color: #2B823C; text-align: center; margin: 0 auto;">
         <h3 style="width: 65%; margin: 0 auto;">:( <br/>Nie bój, nie bój, jeszcze żadnych dobroci tu nie ma. Pewnikiem będą niebawem.</h3>
     </div>
 }

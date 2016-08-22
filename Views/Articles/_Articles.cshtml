@@ -1,0 +1,21 @@
+﻿@using ComX_0._0._2.Helpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string currentUrl = Request.Url?.AbsoluteUri;
+    var articleHelper = new ArticleHelper();
+    var generalHelper = new GeneralHelper();
+}
+<div class="body-content">
+    @if (currentUrl.Contains("+")){
+        @Html.Action("_TopDetailPanel")
+    }
+    <div class="mainBodyContainer" style="float: left; width: 69%;">
+        @RenderBody()
+    </div>
+@if (!currentUrl.Contains("Create") && !currentUrl.Contains("Edit")) {
+    <div class="mainSideBar" style="float: right; width: 30%;">
+        @Html.Partial("_SideBar")
+    </div>
+}
+    <div class="push"></div>
+</div>

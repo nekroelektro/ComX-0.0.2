@@ -3,6 +3,7 @@
     var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
     string currentUrl = Request.Url?.AbsoluteUri;
+    string currentActionName = (string)ViewContext.RouteData.Values["action"];
 }
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,6 @@
     <link href="@Url.Content("~/Content/horizontalMenu.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/jquery.fancybox.css")" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" type="image/ico" href="@Url.Content("~/Content/favNp.ico")"/>
-    @*<link href="@Url.Content("~/Content/bootstrap-combobox.css")" rel="stylesheet" type="text/css" />*@
     <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Coda&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Krona+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -46,13 +46,10 @@
     <script src="@Url.Content("~/Scripts/jquery.sticky.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.fancybox.pack.js")"></script>
     <script src="@Url.Content("//cdn.tinymce.com/4/tinymce.min.js")"></script>
-    @*<script src="@Url.Content("~/Scripts/bootstrap-combobox.js")"></script>*@
-    @*<script src="@Url.Content("~/Scripts/jquery.slimscroll.min.js")"></script>*@
     <meta name="description" content="@ViewBag.Description"/>
     <meta name="og:image" content="@ViewBag.MetaImage"/>
 </head>
 <body>
-    @*@Html.Partial("_NavBarTop")*@
     @Html.Partial("_TopLogoPanel")
     @if (!currentUrl.Contains("Configuration"))
     {
@@ -61,13 +58,12 @@
         </div>
     }
     <div class="elementsToPush">
-        @*@if (!currentUrl.Contains("Account") && !currentUrl.Contains("Configuration") && !currentUrl.Contains("Details") && !currentUrl.Contains("Comment") && !currentUrl.Contains("Categories"))*@
         @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/"))
         {
             <div class="container" style="padding-left: 0; padding-right: 0;">
                 @Html.Action("_IndexSlider", "Articles")
             </div>
-            <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; background-color: white; border-bottom: 1em solid #222;font-family: 'Amarante', sans-serif;text-align: justify">
+            <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; padding-bottom: 1em; background-color: white; font-family: 'Amarante', sans-serif;text-align: justify">
                 <div class="warningMessageLayout" style="width: 90%; margin-top: -1em; padding-right: 1em; float:left">
                     <h2 style="color: red;">Uważej!</h2>
                     <h4>
@@ -76,7 +72,7 @@
                 </div>
                 <div class="socialMessageLayout" style="width: 10%; float: right;">
                     <a target="_blank" href="https://www.facebook.com/nekroplaza/">
-                        <img src='~/Content/images/fbk.png' style="float: left; width: 100%; height: auto; text-align: center; padding-top: 0.25em;" />
+                        <img src='~/Content/images/fbk.png' style="float: left; width: 100%; height: auto; text-align: center; padding-top: 1em;" />
                     </a>
                 </div>
             </div>

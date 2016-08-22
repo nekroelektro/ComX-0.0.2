@@ -4,6 +4,7 @@
 @model ComX_0._0._2.Models.Articles
 
 @{
+    Layout = "~/Views/Articles/_Articles.cshtml";
     var comments = new Comments();
     var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
@@ -13,49 +14,7 @@
     ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
-@if (userHelper.IsAdminUser(User))
-{
-    <div class="topDetailPanel" style="display: inline-block; width: 100%; height: auto">
-        @*<h2 style="width: 60%; float: left">@Html.DisplayFor(model => model.Name):</h2>*@
-        <div class="buttons" style="float: right; margin-top: 1em;">
-            <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
-                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>DO GÓRY
-            </button>
-            <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 1.1em"></span>EDIT
-            </button>
-            <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
-                <span class="glyphicon glyphicon-erase" aria-hidden="true" style="font-size: 1.1em"></span>DELETE
-            </button>
-        </div>
-        @*<div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both;">
-                <p style="float: left;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated)</p>
-            </div>*@
-    </div>
-}
-<div class="detailsBannerPanel" style="width: 102.7%; margin-left: -1.1em !important; height: 40em; margin-bottom: 1em; position: relative; z-index: 5; overflow: hidden;">
-    <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
-        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
-    </div>
-    <div class="bannerPanelImageMain" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; z-index: 3; overflow: hidden; position: absolute; top: 0;">
-        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="height:100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
-    </div>
-    <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); z-index: 2;"></div>
-    <div class="bannerPanelInfo" style="max-width: 50%;font-family: 'Amarante', sans-serif;position: absolute; bottom: 3em; left: 2em; color: black; padding: 1em;background: rgba(255, 255, 255, 0.7); z-index: 4;">
-        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series).Name != "Default")
-        {
-            <h3 style="background-color: #2B823C; color: black;">@articleHelper.GetSeriesById(Model.Series).Name</h3>
-        }
-        <h2 style="width: 100%; float: left; margin-top: 0;">@Html.DisplayFor(model => model.Name)</h2>
-        <div class="datesDetailsArticles" style="display: inline-block; float: left; clear: both; ">
-            <p style="float: left;">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated) &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(Model.CategoryId).Name,
-                @articleHelper.GetSubCategoryById(Model.SubCategoryId).Name
-            </p>
-        </div>
-    </div>
-</div>
-<div class="detailContainer" style="width: 68.6%; float: left;">
+<div class="detailContainer" style="width: 100%; float: left;">
     <div class="articleDetail" style="width: 100%; float: left; border-bottom: 2px solid #2B823C;">
         @*@if (articleHelper.GetImageByArticleId(Model.Id) != null) {
                 <div class="articleMainImage" style="width: 100%; text-align: center; margin: 0 auto; background-color: black;">
@@ -85,8 +44,6 @@
         </div>
     </div>
 </div>
-@Html.Partial("_SideBar")
-
 <div id="fb-root"></div>
 <script>
     (function(d, s, id) {

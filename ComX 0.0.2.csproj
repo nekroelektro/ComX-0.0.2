@@ -1323,6 +1323,8 @@
     <Content Include="Views\Configuration\SeriesCreate.cshtml" />
     <Content Include="Views\Configuration\SeriesDetails.cshtml" />
     <Content Include="Views\Configuration\SiteSettings.cshtml" />
+    <Content Include="Views\Articles\_TopDetailPanel.cshtml" />
+    <Content Include="Views\Articles\_Articles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

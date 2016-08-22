@@ -17,14 +17,13 @@ namespace ComX_0._0._2.Controllers {
         private readonly UserHelper userHelper = new UserHelper();
 
         // GET: Articles
-        public ActionResult Index() {
+        public ActionResult Index(string category) {
             var publishedArticles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
-            //if (publishedArticles.Count > 0) {
-            //    for (int i = 0; i < 6; i++) {
-            //        publishedArticles.Remove(publishedArticles[i]);
-            //    }
-            //}
-            return View(publishedArticles);
+            if (!string.IsNullOrEmpty(category)) {
+                publishedArticles = publishedArticles.Where(x => x.CategoryId == new Guid(category)).ToList();
+                return PartialView("Index", publishedArticles);
+            }
+            return PartialView("Index", publishedArticles);
         }
 
         // GET: Articles/Details/5
@@ -292,6 +291,11 @@ namespace ComX_0._0._2.Controllers {
             }
             ViewBag.CategoryIdentificator = cat.Id;
             return View(articlesByCategory);
+        }
+
+        public ActionResult _TopDetailPanel() {
+            var article = db.Articles.Find(articleHelper.GetArticleById(generalHelper.GetIdFromCurrentUrlForArticle()).Id);
+            return PartialView(article);
         }
     }
 }

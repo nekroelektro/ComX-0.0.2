@@ -2,16 +2,23 @@
 @model IEnumerable<ComX_0._0._2.Models.Articles>
 
 @{
+    Layout = "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "NekroPlaza - doświadcz dobroci";
     ViewBag.Description = "Najnowsze smakowitości, dobrocie najbardziej trendy, kontrowersje, wybuchy atomowych laserów i nieumarli - NEKROPLAZA.PL - zakosztuj dobroci.";
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
     var generalHelper = new GeneralHelper();
 }
-
+@*<ul class="indexListMenu list-inline">
+    <li><a class="indexListMenuItem" data-id="" href="#pager">Wszystkie</a></li>
+    @foreach (var category in articleHelper.GetAllCategories().Take(6))
+    {
+        <li><a class="indexListMenuItem" data-id="@category.Id" href="#pager">@category.Name</a></li>
+    }
+</ul>*@
 <div id="pager" style="width: 100%;">
-    <div class="articlesIndexContainer" style="width: 69%; float: left;">
-        <ul class="content" style="padding-left: 0; margin-left: 0;">
+    <div class="articlesIndexContainer" style="width: 100%; float: left; margin-top: -1.4em;">
+        <ul class="content" id="content" style="padding-left: 0; margin-left: 0;">
             @foreach (var item in Model)
             {
                 <div class="articlesIndexSingle" style="border-top: #222 0.5em solid; height: 15em; margin-bottom: 1em; font-family: 'Amarante', sans-serif;">
@@ -58,54 +65,15 @@
             }
         </ul>
 </div>
-    @Html.Partial("_SideBar")
-    @*<div class="grid" style="width: 70%; float: left;">
-        <ul class="content" style="padding-left: 0; margin-left: 0;">
-            @foreach (var item in Model) {
-                <div class="indexElement">
-                    <div class="singleIndexArticle">
-                        <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
-                            @if (articleHelper.GetImageByArticleId(item.Id) != null) {
-                                <div class="indexArticleImage">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto;"/>
-                                </div>
-                            }
-                            <div class="indexArticleText">
-                                <div class="indexArticleTitle">
-                                    <h2>@item.Name</h2>
-                                    <div class="indexArticleDate">
-                                        <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated</p>
-                                        <p>
-                                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
-                                            @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
-                                        </p>
-                                    </div>
-                                </div>
-                                <hr style="border-color: crimson"/>
-                            </div>
-                        </a>
-                        <div class="indexArticleText">
-                            <div class="indexArticleBody">
-                                <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
-                            </div>
-                        </div>
-                        <div class="indexArticleFooter">
-                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </ul>
-    </div>*@
     <hr/>
     <div class="page_navigation" style="clear: both; margin-top: 3em; padding-top: 1em; width: 70%; float: left; border-top: 1px solid #2B823C"></div>
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         // PACKERY
-        var $grid = $('.grid').packery({
+        var $grid = $('.content').packery({
             // options
             itemSelector: '.singleIndexArticle',
             gutter: 13,
@@ -114,7 +82,7 @@
         });
 
 
-        $grid.imagesLoaded().progress(function() {
+        $grid.imagesLoaded().progress(function () {
             $grid.packery();
         });
 
@@ -124,7 +92,7 @@
             items_per_page: 15
         });
 
-        $(".page_navigation a").click(function() {
+        $(".page_navigation a").click(function () {
             $grid.packery();
         });
 
@@ -134,9 +102,24 @@
             contentSelector: '.singleIndexArticle'
         });
 
-        //setTimeout(function() {
-        //    var spotWidgetTrackList = document.getElementsByClassName("track-list");
-        //    spotWidgetTrackList.style.overflowY = "hidden";
-        //}, 2000);
+        //$('.indexListMenuItem').click(function () {
+        //});
+
+        @*$(document).on('click', '.indexListMenuItem', function (e) {
+            catIdentificator = $(this).data('id').toString();
+            console.log(catIdentificator);
+
+            $.ajax({
+                url: '@Url.Action("Index", "Articles")',
+                type: "GET",
+                data: { 'category': catIdentificator }
+                //success: function (data, textStatus, jqXHR) {
+                //    $('#pager').html(data);
+                //}
+            })
+            .done(function (partialViewResult) {
+                $(".articlesIndexContainer").html(partialViewResult);
+            });
+        });*@
     });
 </script>

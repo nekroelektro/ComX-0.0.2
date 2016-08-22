@@ -6,7 +6,7 @@
     var currentArticle = Request.Params["Id"];
     var randomPosts = articleHelper.GetRandomArticlesForSideBar(5, currentArticle != null ? new Guid(currentArticle) : Guid.Empty);
 }
-<div class="sideBar" style="width: 30%; float: right; font-size: 1.6em; font-family: 'Amarante', sans-serif; color: #2B823C; ">
+<div class="sideBar" style="width: 100%; float: right; font-size: 1.6em; font-family: 'Amarante', sans-serif; color: #2B823C; ">
     <div clas="sideIntro" style="padding-left: 1em; padding-right: 1em; padding-bottom: 1em; margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Intro:
         <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-bottom: 0.3em;" />

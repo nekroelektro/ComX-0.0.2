@@ -3,6 +3,7 @@
 @model ComX_0._0._2.Models.Articles
 
 @{
+    Layout = "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "Edit";
     ArticleHelper articleHelper = new ArticleHelper();
     if (Model.Id == Guid.Empty) {
