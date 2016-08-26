@@ -289,7 +289,7 @@ namespace ComX_0._0._2.Helpers {
                 db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished)
                     .OrderByDescending(x => x.DateCreated)
                     .ToList();
-            if (articleId != Guid.Empty && articlesFromCategory.Count() != 0) {
+            if (articleId != Guid.Empty && articlesFromCategory.Count() != 0 && GetArticleById(articleId).IsPublished) {
                 var artToDelete = articlesFromCategory.First(x => x.Id == articleId);
                 articlesFromCategory.Remove(artToDelete);
             }

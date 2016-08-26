@@ -12,7 +12,7 @@ using ComX_0._0._2.Models.DtoModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ComX_0._0._2.Controllers {
-    [Authorize(Roles = "Admin, SuperAdmin")]
+    //[Authorize(Roles = "Admin, SuperAdmin")]
     public class ConfigurationController : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();

@@ -1,24 +1,28 @@
-﻿@{
+﻿@using ComX_0._0._2.Helpers
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    UserHelper userHelper = new UserHelper();
 }
+@if (userHelper.IsAdminUser(User))
+{
 <div class="navbar navbar-inverse confTopFooter">
     <div class="container">
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    @Html.ActionLink("Articles", "Articles", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                    @Html.ActionLink("Articles", "Articles", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
                 </li>
                 <li>
-                    @Html.ActionLink("Users", "Users", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                    @Html.ActionLink("Users", "Users", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
                 </li>
                 <li>
-                    @Html.ActionLink("Categories", "Categories", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                    @Html.ActionLink("Categories", "Categories", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
                 </li>
                 <li>
-                    @Html.ActionLink("Roles", "Roles", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                    @Html.ActionLink("Roles", "Roles", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
                 </li>
                 <li>
-                    @Html.ActionLink("Gallery", "Gallery", "Configuration", new {area = ""}, new {@class = "navbar-brand"})
+                    @Html.ActionLink("Gallery", "Gallery", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
                 </li>
                 <li>
                     @Html.ActionLink("Site settings", "SiteSettings", "Configuration", new { area = "" }, new { @class = "navbar-brand" })
@@ -32,3 +36,4 @@
     @RenderBody()
     <div class="push"></div>
 </div>
+}

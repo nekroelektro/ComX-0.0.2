@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using ComX_0._0._2.Helpers;
+using ComX_0._0._2.Helpers.SmtpHelpers;
 using ComX_0._0._2.Models;
 using ComX_0._0._2.Models.AccountModels;
 using ComX_0._0._2.Models.DtoModels;
@@ -130,7 +131,6 @@ namespace ComX_0._0._2.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
-                model.Username = model.Username.Replace(" ", "_");
                 var user = new ApplicationUser {UserName = model.Username, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
@@ -143,6 +143,20 @@ namespace ComX_0._0._2.Controllers {
                     await SignInManager.SignInAsync(user, false, false);
 
                     await UserManager.AddToRoleAsync(user.Id, "User");
+
+                    var message = new EmailMessage();
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                    message.ToEmail = model.Email;
+                    message.Subject = "Potwierdź rejestrację na NEKROPLAZA.PL";
+                    message.IsHtml = false;
+                    message.Body =
+                        String.Format("Serwus, {0}!!! Jeśli to czytasz, to znaczy, że założyłeś konto na nekroplaza.pl i jesteś przygotowany na potężną dawkę dobroci! Jeszcze jedno małe 'ale' - kliknij w ten link:\n " + callbackUrl + "\naby potwierdzić rejestrację!\nPozdrawiam serdecznie!\nNekro", model.Username);
+
+                    var emailService = new Helpers.SmtpHelpers.EmailService();
+                    var status = emailService.SendEmailMessage(message);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -399,6 +413,7 @@ namespace ComX_0._0._2.Controllers {
             userProfile.Roles = Guid.Empty;
             userProfile.UserMail = user.Email;
             userProfile.UserAvatar = userInfo.Avatar;
+            userProfile.AccoutConfirmed = user.EmailConfirmed;
             
             ViewBag.RoleList = userHelper.GetRolesToCombo();
             return View(userProfile);

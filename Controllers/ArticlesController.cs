@@ -41,7 +41,7 @@ namespace ComX_0._0._2.Controllers {
             return View(articles);
         }
 
-        [Authorize(Roles = "Admin, SuperAdmin")]
+        //[Authorize(Roles = "Admin, SuperAdmin")]
         // GET: Articles/Create
         public ActionResult Create() {
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
@@ -55,7 +55,7 @@ namespace ComX_0._0._2.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        [Authorize(Roles = "Admin, SuperAdmin")]
+        //[Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Create(
             [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription")] Articles article,
             HttpPostedFileBase upload) {
@@ -92,7 +92,7 @@ namespace ComX_0._0._2.Controllers {
         }
 
         // GET: Articles/Edit/5
-        [Authorize(Roles = "Admin, SuperAdmin")]
+        //[Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(Guid? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -113,7 +113,7 @@ namespace ComX_0._0._2.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        [Authorize(Roles = "Admin, SuperAdmin")]
+        //[Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(
             [Bind(Include = "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription")] Articles article,
             HttpPostedFileBase upload) {
@@ -156,7 +156,7 @@ namespace ComX_0._0._2.Controllers {
         }
 
         // GET: Articles/Delete/5
-        [Authorize(Roles = "Admin, SuperAdmin")]
+        //[Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Delete(Guid? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -171,7 +171,7 @@ namespace ComX_0._0._2.Controllers {
         // POST: Articles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin, SuperAdmin")]
+        //[Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult DeleteConfirmed(Guid id) {
             var articles = db.Articles.Find(id);
             db.Articles.Remove(articles);

@@ -1,9 +1,7 @@
 ﻿@using ComX_0._0._2.Helpers
 @{
-    var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
     string currentUrl = Request.Url?.AbsoluteUri;
-    string currentActionName = (string)ViewContext.RouteData.Values["action"];
 }
 <!DOCTYPE html>
 <html>
@@ -26,7 +24,7 @@
     <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Coda&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Krona+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.js"></script>

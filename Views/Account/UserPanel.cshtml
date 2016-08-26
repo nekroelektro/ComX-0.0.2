@@ -26,6 +26,9 @@
     <div class="infoUserPanel" style="padding-top: 1em; padding-bottom: 1em; width: 100%; clear: both;">
         <p>Zarejestrowany od: @Model.DateOfCreation.ToShortDateString()</p>
         <p>Rangi: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
+        @if (!Model.AccoutConfirmed) {
+            <h3 style="color: red">Nie potwierdziłeś rejestracji linkiem z mejla!</h3>
+        }
     </div>
     @if (Model.UserAvatar == null)
     {
