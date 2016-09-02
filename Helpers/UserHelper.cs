@@ -44,6 +44,11 @@ namespace ComX_0._0._2.Helpers {
             return user;
         }
 
+        public ApplicationUser GetUserByMail(string userMail) {
+            var user = db.Users.First(x => x.Email == userMail);
+            return user;
+        }
+
         public UserProfileInfo GetCurrentUserProfileInfo() {
             var userId = GetCurrentLoggedUserId();
             if (userId != Guid.Empty) {

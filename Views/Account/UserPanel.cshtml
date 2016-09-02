@@ -28,6 +28,7 @@
         <p>Rangi: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
         @if (!Model.AccoutConfirmed) {
             <h3 style="color: red">Nie potwierdziłeś rejestracji linkiem z mejla!</h3>
+            <p>Nie dostałeś mejla? Kliknij @Html.ActionLink("TUTEJ", "SendConfirmationMail", new {userId = Model.UserId, userMail = Model.UserMail})</p>
         }
     </div>
     @if (Model.UserAvatar == null)

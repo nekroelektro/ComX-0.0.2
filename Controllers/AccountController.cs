@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -156,13 +157,6 @@ namespace ComX_0._0._2.Controllers {
 
                     var emailService = new Helpers.SmtpHelpers.EmailService();
                     var status = emailService.SendEmailMessage(message);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
                     return RedirectToAction("Index", "Articles");
                 }
                 AddErrors(result);
@@ -170,6 +164,23 @@ namespace ComX_0._0._2.Controllers {
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> SendConfirmationMail(string userId, string userMail) {
+            var message = new EmailMessage();
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userId, code = code }, protocol: Request.Url.Scheme);
+
+            message.ToEmail = userMail;
+            message.Subject = "Potwierdź rejestrację na NEKROPLAZA.PL";
+            message.IsHtml = false;
+            message.Body =
+                String.Format("Kliknij w ten link:\n " + callbackUrl + "\naby potwierdzić rejestrację!\nPozdrawiam serdecznie!\nNekro");
+
+            var emailService = new Helpers.SmtpHelpers.EmailService();
+            var status = emailService.SendEmailMessage(message);
+            return RedirectToAction("UserPanel", new {userId = new Guid(userId)});
         }
 
         //
@@ -197,18 +208,24 @@ namespace ComX_0._0._2.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model) {
             if (ModelState.IsValid) {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
+                //var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !await UserManager.IsEmailConfirmedAsync(user.Id)) {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
+                var message = new EmailMessage();
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                message.ToEmail = model.Email;
+                message.Subject = "Przypomnienie hasła na NEKROPLAZA.PL";
+                message.IsHtml = false;
+                message.Body =
+                    String.Format("Serwus, {0}!!!\n Jeśli to czytasz, to znaczy, że zapomniałeś hasła do logowania, och Ty bidulo - kliknij w ten link:\n " + callbackUrl + "\naby przypomnieć hasło!\nPozdrawiam serdecznie!\nNekro", user.UserName);
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                var emailService = new Helpers.SmtpHelpers.EmailService();
+                var status = emailService.SendEmailMessage(message);
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -238,7 +255,8 @@ namespace ComX_0._0._2.Controllers {
             if (!ModelState.IsValid) {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
+            //var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null) {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
