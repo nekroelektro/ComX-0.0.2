@@ -17,3 +17,7 @@
   background-color: #31b0d5;
   border-color: #1b6d85;
 }
+
+.navbar-brand {
+    font-family: 'Coda', sans-serif !important;
+}

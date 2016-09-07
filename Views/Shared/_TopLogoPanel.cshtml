@@ -11,7 +11,7 @@
             <img src='~/Content/images/npLogosBeta.png' style="float: left; width: 20%; height: auto; text-align: center;" />
         </a>
     </div>
-    <div class="rightLogoPanel" style="float: right; width: 20em;">
+    <div class="rightLogoPanel" style="float: right; width: 20em;font-family: 'Coda', sans-serif;">
         <ul class="logoMenu" style="list-style-type: none; padding-left: 0; width: 100%; text-align: right;">
             @if (userHelper.IsAdminUser(User)) {
                 <li>
@@ -31,29 +31,6 @@
                 <li>@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "navbar-brand"})</li>
                 <li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new {returnUrl = currentUrl, @class = "navbar-brand"})</li>
             }
-            @*@if (!string.IsNullOrEmpty(User.Identity.Name))
-            {
-                <li>
-                    @Html.ActionLink("Witoj, " + Membership.GetUser(User.Identity.Name, true) + "!", "Index", "Manage", null, new { @class = "navbar-brand" })
-                </li>
-                <li>
-                    @Html.ActionLink("Zmień hasło", "ChangePassword", "Account", new {area = ""}, new {@class = "navbar-brand"})
-                </li>
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"})) {
-                     <li>
-                         <a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
-                         @Html.ActionLink("Wyloguj", "LogOff", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                     </li>
-                 }
-            }
-            else {
-                <li>
-                    @Html.ActionLink("Zaloguj", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                </li>
-                    <li>
-                        @Html.ActionLink("Zarejestruj", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                    </li>
-            }*@
         </ul>
     </div>
 </div>

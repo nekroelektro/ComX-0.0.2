@@ -6,7 +6,7 @@
         var generalHelper = new GeneralHelper();
         var lastArticles = articleHelper.GetLastArticles(7);
     }
-<div class="sliderOne" style="background-color: #222; width: 100%; margin: 0 auto; font-family: 'Amarante', sans-serif; color: white;">
+<div class="sliderOne" style="background-color: #222; width: 100%; margin: 0 auto; font-family: 'Coda', sans-serif; color: white;">
         @foreach (var item in lastArticles)
         {
             <div class="slideElementUpper" style="height: 25em; display: block;">
@@ -45,11 +45,6 @@
                         </div>
                     </div>
                 </a>
-                @*<div class="sliderRight" style="background: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); position: absolute; top: 0; right: 0; width: 25%; height: 100%; padding-left: 1em; padding-right: 1em; text-align: justify; text-indent: 0.9em; padding-top: 1em; padding-bottom: 1em; z-index: 3;">
-                    <div class="sliderArticlePrelude">
-                        @Html.Raw(WebUtility.HtmlDecode(item.Prelude))
-                    </div>
-                </div>*@
             </div>
                 }
 </div>
@@ -58,7 +53,6 @@
     {
         <div class="slideElementDown" style="height:10em;">
             <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width:auto; height: 100%; text-align: center; margin: 0 auto;" />
-            @*<div>@item.Name</div>*@
         </div>
     }
 </div>

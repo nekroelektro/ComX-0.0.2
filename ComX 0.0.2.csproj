@@ -1287,7 +1287,6 @@
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_NavBarTop.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Configuration\CategoriesCreate.cshtml" />
     <Content Include="Views\Articles\_Comments.cshtml" />
@@ -1330,11 +1329,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account3\ChangePassword.cshtml" />
-    <Content Include="Views\Account3\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account3\LogOn.cshtml" />
-    <Content Include="Views\Account3\Register.cshtml" />
-    <Content Include="Views\Account3\UserPanel.cshtml" />
     <Content Include="Views\Account\UserPanel.cshtml" />
     <Content Include="Views\Configuration\_Series.cshtml" />
     <Content Include="Views\Configuration\SeriesCreate.cshtml" />
@@ -1353,7 +1347,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
-    <Folder Include="Views\Account2\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">
