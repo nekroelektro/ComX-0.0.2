@@ -5,6 +5,10 @@ using System.Web.Mvc;
 namespace ComX_0._0._2.Models.AccountModels {
     public class ExternalLoginConfirmationViewModel {
         [Required]
+        [Display(Name = "Login")]
+        public string UserName { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }

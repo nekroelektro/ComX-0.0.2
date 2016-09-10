@@ -342,7 +342,6 @@ namespace ComX_0._0._2.Controllers {
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation",
                         new ExternalLoginConfirmationViewModel {Email = loginInfo.Email});
             }
@@ -356,7 +355,7 @@ namespace ComX_0._0._2.Controllers {
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model,
             string returnUrl) {
             if (User.Identity.IsAuthenticated) {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("Index", "Articles");
             }
 
             if (ModelState.IsValid) {
@@ -365,7 +364,7 @@ namespace ComX_0._0._2.Controllers {
                 if (info == null) {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
+                var user = new ApplicationUser {UserName = info.DefaultUserName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded) {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
