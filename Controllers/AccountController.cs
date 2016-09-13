@@ -10,6 +10,7 @@ using ComX_0._0._2.Helpers.SmtpHelpers;
 using ComX_0._0._2.Models;
 using ComX_0._0._2.Models.AccountModels;
 using ComX_0._0._2.Models.DtoModels;
+using Facebook;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -22,6 +23,66 @@ namespace ComX_0._0._2.Controllers {
         private readonly  GeneralHelper generalHelper = new GeneralHelper();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Facebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = "1780363828875340",
+                client_secret = "f8257a6183b1f5b99a23302dece07449",
+                redirect_uri = RedirectUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email"
+            });
+
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = "1780363828875340",
+                client_secret = "f8257a6183b1f5b99a23302dece07449",
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
+
+            var accessToken = result.access_token;
+
+            // Store the access token in the session for farther use
+            Session["AccessToken"] = accessToken;
+
+            // update the facebook client with the access token so
+            // we can make requests on behalf of the user
+            fb.AccessToken = accessToken;
+
+            // Get the user's information, like email, first name, middle name etc
+            dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+            string email = me.email;
+            string firstname = me.first_name;
+            string middlename = me.middle_name;
+            string lastname = me.last_name;
+
+            // Set the auth cookie
+            FormsAuthentication.SetAuthCookie(email, false);
+            return RedirectToAction("Index", "Articles");
+        }
 
         public AccountController() {
         }
@@ -333,7 +394,7 @@ namespace ComX_0._0._2.Controllers {
             var result = await SignInManager.ExternalSignInAsync(loginInfo, false);
             switch (result) {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Articles");
                 case SignInStatus.LockedOut:
                     return View("_HumanumErrareEst");
                 case SignInStatus.RequiresVerification:
@@ -377,7 +438,7 @@ namespace ComX_0._0._2.Controllers {
             }
 
             ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+            return View("~/Views/Articles/Index.cshtml");
         }
 
         //
