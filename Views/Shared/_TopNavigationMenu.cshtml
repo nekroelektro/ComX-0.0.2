@@ -15,7 +15,7 @@
         <ul>
             @foreach (var item in categoryList) {
                 <li>
-                    <a href="#">@item.Name</a>
+                    <a class="topNavigationItem" href="#">@item.Name</a>
                     <div class="cbp-hrsub">
                         <div class="cbp-hrsub-inner" style="padding-left: 0; padding-right: 0; width: 80%;">
                             <h5>@item.Description</h5>
@@ -140,11 +140,11 @@
         });
 
         $('.singleLastArticleTopNavigation')
-            .mouseover(function () {
-            $(this).find('.titleTopNavigation').show();
+            .mouseover(function() {
+                $(this).find('.titleTopNavigation').show();
             })
-            .mouseout(function () {
+            .mouseout(function() {
                 $(this).find('.titleTopNavigation').hide();
-            })
+            });
     });
 </script>

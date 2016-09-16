@@ -13,7 +13,7 @@ namespace ComX_0._0._2.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201607041925147_mig2"; }
+            get { return "201608191357329_mig2"; }
         }
         
         string IMigrationMetadata.Source

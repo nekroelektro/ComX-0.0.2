@@ -36,16 +36,6 @@
 else {
     @Html.Partial("_HumanumErrareEst");
 }
-<script>
-    jQuery(document).ready(function ($) {
-        var preludeValue = $('#Body').attr('value');
-        var decodedPrelude = $('<textarea/>').html(preludeValue).text();
-        $('.comEditorTextArea').trumbowyg();
-        $('.comEditorTextArea').trumbowyg('html', decodedPrelude);
 
-        @*$('.btnCancelEdit').click(function () {
-            var articleIdentificator = $(this).data('artid').toString();
-            window.location.href = '@Url.Action("Details", "Articles")/' + articleIdentificator;
-        });*@
-    });
-</script>
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="./Scripts/ArticlesCommentEdit.js"></script>

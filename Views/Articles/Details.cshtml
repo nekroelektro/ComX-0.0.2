@@ -1,14 +1,11 @@
 ﻿@using System.Text.RegularExpressions
 @using ComX_0._0._2.Helpers
-@using ComX_0._0._2.Models
 @model ComX_0._0._2.Models.Articles
 
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
-    var comments = new Comments();
     var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
-    var userHelper = new UserHelper();
     ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId).Name + " - NekroPlaza";
     ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
     ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
@@ -45,11 +42,6 @@
     </div>
 </div>
 <div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="./Scripts/ArticlesDetails.js"></script>

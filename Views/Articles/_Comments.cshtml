@@ -50,22 +50,18 @@
             </div>
         }
     </div>
-    <hr />
+    <hr/>
     <h3>Komentarze(@commentList.Count)</h3>
     <div class="addedCommentsSection col-xs-12" style="padding-bottom: 4em;" id="commentSection">
-        @if (commentList != null)
-        {
-            foreach (var item in commentList)
-            {
+        @if (commentList != null) {
+            foreach (var item in commentList) {
                 var currentUser = userHelper.GetUserById(item.UserId);
                 <div class="singleCommentSection col-xs-11 col-xs-offset-1">
                     <div class="col-xs-2 commentFooter" style="height: 100%; color: black; padding-right: 0;">
                         @*@if (!string.IsNullOrEmpty(User.Identity.Name)) {*@
-                            @if (userHelper.GetAvatarByUserId(new Guid(currentUser.Id)) != null) {
-                                 <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 100%; text-align: center; margin: 0 auto;"/>
-                             }
-                        @*}*@
-                    </div>
+                        @if (userHelper.GetAvatarByUserId(new Guid(currentUser.Id)) != null) {
+                            <img src='@Url.Action("GetAvatar", "Account", new {userId = item.UserId})' style="max-width: 100%; text-align: center; margin: 0 auto;"/>
+                        }@*}*@</div>
                     <div class="col-xs-9 commentBody" style="height: 100%; max-width: 100%;">
                         <div class="readyCommentDetails" style="width: 100%; border-bottom: solid 1px black; display: inline-block;">
                             <div style="float: left;">
@@ -87,7 +83,7 @@
 
                     <div id="test-modal" class="mfp-hide white-popup">
                         <p>Potwierdź</p>
-                        <hr />
+                        <hr/>
                         <p>Czy na bank chcesz usunąć swój komentarz?</p>
                         <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
                             Ta!
@@ -107,86 +103,9 @@
         }
     </div>
 </div>
-@*href='@Url.Action("CommentEdit", "Articles", new { id = item.Id, artId = item.ArticleId })'*@
-<script>
-    jQuery(document).ready(function ($) {
-        var comIdentificator;
-        var artIdentificator;
-        $('.articleEditorTextArea').trumbowyg();
 
-        //For deleting single comment
-        $('.popupCommentDelete').magnificPopup({
-            type: 'inline',
-            preloader: false,
-            modal: true
-        });
-        $('.popupCommentDelete').click(function () {
-            comIdentificator = $(this).data('id').toString();
-            artIdentificator = $(this).data('art').toString();
-        });
-        $(document).on('click', '.btnConfirmDeletion', function (e) {
-            $.ajax({
-                url: '@Url.Action("DeleteComment", "Articles")',
-                type: "POST",
-                data: { 'commentId': comIdentificator, 'articleId': artIdentificator }
-            })
-                .done(function (partialViewResult) {
-                    $.magnificPopup.close();
-                    $("#detailsCommentSection").html(partialViewResult);
-                });
-        });
-        $(document).on('click', '.btnCancelDeletion', function (e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-        });
-
-        //For editing single comment
-        @*$('.popupCommentEdit').magnificPopup({
-            type: 'inline',
-            preloader: false,
-            modal: true
-        });
-        $('.popupCommentEdit').click(function () {
-            comIdentificator = $(this).data('id').toString();
-            artIdentificator = $(this).data('art').toString();
-            @*$('.dupa').html(data)('@Html.Action("CommentEdit", "Articles")/id=' + comIdentificator + 'artId=' + artIdentificator);*@
-            @*var partialEdit = $(this).data('content');
-            console.log(partialEdit);
-
-            var url = partialEdit;
-
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(data) {
-                    $('.dupa').html(data);
-                }
-            });
-            $.ajax({
-                url: url,
-                data: {}, //parameters go here in object literal form
-                type: 'GET',
-                datatype: 'json',
-                success: function (data) {
-                    $('.dupa').html(data);
-                },
-                error: function () { alert('something bad happened'); }
-            });*@
-        $(document).on('click', '.submitEditCommentForm', function (e) {
-            e.preventDefault();
-            $(".test-modal-edit > form").submit();
-            $.magnificPopup.close();
-            location.reload();
-        });
-
-        //Helper for adding new comment
-        @*$('.addCommentButton').click(function () {
-            var articleIdentificator = $('.commentAddFormArtId').val();
-            $("form").submit();
-            window.location.href = '@Url.Action("Details", "Articles")/' + articleIdentificator;
-        });*@
-    });
-</script>
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="./Scripts/ArticlesComments.js"></script>
 <style>
     .white-popup {
         position: relative;

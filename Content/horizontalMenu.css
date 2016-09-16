@@ -99,7 +99,7 @@
 
 /* Examples for media queries */
 
-@media screen and (max-width: 52.75em) { 
+/*@media screen and (max-width: 52.75em) { 
 
 	.cbp-hrmenu {
 		font-size: 80%;
@@ -151,7 +151,7 @@
 		float: none;
 		padding: 0 2em;
 	}
-}
+}*/
 
 
 

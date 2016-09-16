@@ -129,14 +129,9 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-<script>
-    $(document).ready(function() {
-        window.tinymce.init({
-            selector: '.articleEditor',
-            plugins: 'advlist autolink link image lists charmap print preview'
-        });
-    });
-</script>
+
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="./Scripts/ArticlesEditCreate.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

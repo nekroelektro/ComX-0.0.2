@@ -1211,6 +1211,12 @@
     <Content Include="scripts\packery.pkgd.min.js" />
     <Content Include="scripts\slick.min.js" />
     <Content Include="scripts\trumbowyg.min.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesCategories.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesCommentEdit.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesComments.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesDetails.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesEditCreate.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesIndex.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1350,7 +1356,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
   </ItemGroup>
