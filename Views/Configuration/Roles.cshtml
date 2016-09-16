@@ -9,19 +9,12 @@
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add role
 </button>
 <div class="col-xs-12 center-block">
-    @Html.Grid(Model).Named("roleGrid").Columns(columns =>
-{
-    columns.Add(o => o.Id, true);
-    columns.Add(x => x.Name).SortInitialDirection(GridSortDirection.Descending);
-}).WithPaging(20).Sortable(true).Filterable(true)
+    @Html.Grid(Model).Named("roleGrid").Columns(columns => {
+        columns.Add(o => o.Id, true);
+        columns.Add(x => x.Name).SortInitialDirection(GridSortDirection.Descending);
+    }).WithPaging(20).Sortable(true).Filterable(true)
 </div>
 
-<script>
-    $(function () {
-        pageGrids.roleGrid.onRowSelect(function (e) {
-            var rowRoleId = e.row.Id;
-            window.location.href = '@Url.Action("RolesDetails", "Configuration")?roleId=' + rowRoleId;
-        });
-    });
-</script>
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationRoles.js"></script>
 

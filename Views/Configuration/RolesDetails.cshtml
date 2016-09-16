@@ -39,28 +39,10 @@
     <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
 </div>
 
-<script>
-    jQuery(document).ready(function($) {
-        var roleIdentificator;
-        $('.popupRoleDelete').magnificPopup({
-            type: 'inline',
-            preloader: false,
-            modal: true
-        });
-        $('.popupRoleDelete').click(function () {
-            roleIdentificator = $(this).data('id').toString();
-        });
-        $(document).on('click', '.btnConfirmDeletion', function(e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-            window.location.href = '@Url.Action("DeleteRole", "Configuration")?roleId=' + roleIdentificator;
-        });
-        $(document).on('click', '.btnCancelDeletion', function (e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-        });
-    });
-</script>
+
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationRolesDetails.js"></script>
+
 <style>
     .white-popup {
         position: relative;

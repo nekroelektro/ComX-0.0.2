@@ -51,28 +51,9 @@
     <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
 </div>
 
-<script>
-    jQuery(document).ready(function($) {
-        var categoryIdentificator;
-        $('.popupSeriesDelete').magnificPopup({
-            type: 'inline',
-            preloader: false,
-            modal: true
-        });
-        $('.popupSeriesDelete').click(function () {
-            categoryIdentificator = $(this).data('id').toString();
-        });
-        $(document).on('click', '.btnConfirmDeletion', function(e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-            window.location.href = '@Url.Action("DeleteSeries", "Configuration")?categoryId=' + categoryIdentificator;
-        });
-        $(document).on('click', '.btnCancelDeletion', function (e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-        });
-    });
-</script>
+
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationSeriesDetails.js"></script>
 <style>
     .white-popup {
         position: relative;

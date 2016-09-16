@@ -31,31 +31,29 @@
             <p>Nie dostałeś mejla? Kliknij @Html.ActionLink("TUTEJ", "SendConfirmationMail", new {userId = Model.UserId, userMail = Model.UserMail})</p>
         }
     </div>
-    @if (Model.UserAvatar == null)
-    {
+    @if (Model.UserAvatar == null) {
         <h4>Dodaj sobie awatar!</h4>
         <p>Info:</p>
         <p>Abyśmy sobie nie utrudniali życia - jest kilka warunków, które taki awatar spełnić musi, a są to kolejno:</p>
         <p>- musi mieć rozszerzenie .jpg albo .png albo i .gif</p>
         <p>- najlepiej, żeby miał rozmiar do... powiedzmy 80kb, żeby nie śmiecił.</p>
         using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post,
-            new { enctype = "multipart/form-data" }))
-        {
+            new {enctype = "multipart/form-data"})) {
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <hr/>
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                 <div class="form-group">
-                    @Html.Label("Załaduj fotę", new { @class = "control-label col-md-2" })
+                    @Html.Label("Załaduj fotę", new {@class = "control-label col-md-2"})
                     <div class="col-md-10">
                         <input type="file" id="imgUp" name="avatar" accept=".gif, .jpg, .png"/>
                     </div>
-                    @Html.ValidationMessage("ImageUpload", new { @style = "color: red" })
+                    @Html.ValidationMessage("ImageUpload", new {@style = "color: red"})
                     @Html.ValidationSummary(true)
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Upload" class="btn btn-default" />
+                        <input type="submit" value="Upload" class="btn btn-default"/>
                     </div>
                 </div>
             </div>
@@ -65,7 +63,7 @@
         <div class="userPanelAvatarSection col-md-6">
             <div class="col-md-12" style="padding-bottom: 1em;">
                 <p>Twój aktualny awatar wygląda tak:</p>
-                <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.UserId})' style="max-width: 50%; text-align: center; margin: 0 auto;" />
+                <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.UserId})' style="max-width: 50%; text-align: center; margin: 0 auto;"/>
             </div>
             <div class="col-md-12" style="padding-bottom: 1em;">
                 <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupAvatarDelete">
@@ -77,124 +75,78 @@
     <div class="userPanelOthersSection col-md-6">
         Jeśli Ci życie miłe, możesz @Html.ActionLink("zmienić hasło tutej.", "ChangePassword", "Manage")
     </div>
-@if (userHelper.IsAdminUser(User)) {
-    <div class="userPanelAdministratorSection col-md-12">
-        <p>Aktualne rangi usera: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
-        @if (userHelper.GetRolesByUserId(Model.UserId).Count > 1) {
-            <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("DegradeUser", "Account", new {@userId = Model.UserId})'">
-                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>Zdegraduj do usera
+    @if (userHelper.IsAdminUser(User)) {
+        <div class="userPanelAdministratorSection col-md-12">
+            <p>Aktualne rangi usera: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
+            @if (userHelper.GetRolesByUserId(Model.UserId).Count > 1) {
+                <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("DegradeUser", "Account", new {@userId = Model.UserId})'">
+                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>Zdegraduj do usera
+                </button>
+            }
+            @using (Html.BeginForm("ChangeRole", "Account")) {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Roles, htmlAttributes: new {@class = "control-label col-md-1"})
+                        <div class="col-lg-11 col-md-offset-1">
+                            @Html.DropDownListFor(x => x.Roles, new List<SelectListItem>(ViewBag.RoleList), new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Roles, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.UserId)
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Change" class="btn btn-default"/>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
+            <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
             </button>
-        }
-        @using (Html.BeginForm("ChangeRole", "Account")) {
-            @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Roles, htmlAttributes: new {@class = "control-label col-md-1"})
-                    <div class="col-lg-11 col-md-offset-1">
-                        @Html.DropDownListFor(x => x.Roles, new List<SelectListItem>(ViewBag.RoleList), new {@class = "form-control"})
-                        @Html.ValidationMessageFor(model => model.Roles, "", new {@class = "text-danger"})
-                    </div>
-                </div>
-                @Html.HiddenFor(m => m.UserId)
-                <div class="form-group">
-                    <div class="col-md-offset-3 col-md-9">
-                        <input type="submit" value="Change" class="btn btn-default"/>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-    <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
-        <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
-            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
-        </button>
-        <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupUserDelete">
-            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Delete user
-        </button>
-    </div>
+            <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupUserDelete">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Delete user
+            </button>
+        </div>
 
-    <div id="popupUserDelete" class="mfp-hide white-popup">
-        <p>Potwierdź</p>
-        <hr/>
-        <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
-        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
-            Ta!
-        </button>
-        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-    </div>
+        <div id="popupUserDelete" class="mfp-hide white-popup">
+            <p>Potwierdź</p>
+            <hr/>
+            <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
+            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+                Ta!
+            </button>
+            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+        </div>
 
-    <div id="popupUserBlock" class="mfp-hide white-popup">
-        <p>Potwierdź</p>
-        <hr/>
-        <p>Czy na bank chcesz zablokować tego użytkownika?</p>
-        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
-            Ta!
-        </button>
-        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-    </div>
+        <div id="popupUserBlock" class="mfp-hide white-popup">
+            <p>Potwierdź</p>
+            <hr/>
+            <p>Czy na bank chcesz zablokować tego użytkownika?</p>
+            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
+                Ta!
+            </button>
+            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+        </div>
 
-    <div id="popupAvatarDelete" class="mfp-hide white-popup">
-        <p>Potwierdź</p>
-        <hr/>
-        <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
-        <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletionAvatar" id="commId">
-            Ta!
-        </button>
-        <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-    </div>
-}
+        <div id="popupAvatarDelete" class="mfp-hide white-popup">
+            <p>Potwierdź</p>
+            <hr/>
+            <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
+            <button type="button" class="btn btn-danger .btn-sm btnConfirmDeletionAvatar" id="commId">
+                Ta!
+            </button>
+            <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+        </div>
+    }
     <p style="width: 100%; margin: 0 auto; text-align: center; clear: both; color: #C5C8C9;">...the horror...the horror...</p>
 </div>
 
-        <script>
-            jQuery(document).ready(function ($) {
-                var userIdentificator;
-                var blockOrDelete;
-                $('.popupUserDelete').magnificPopup({
-                    type: 'inline',
-                    preloader: false,
-                    modal: true
-                });
-                $('.popupUserDelete').click(function () {
-                    userIdentificator = $(this).data('id').toString();
-                    blockOrDelete = 'delete';
-                });
-                $(document).on('click', '.btnConfirmDeletion', function (e) {
-                    e.preventDefault();
-                    $.magnificPopup.close();
-                    if (blockOrDelete == 'delete') {
-                        window.location.href = '@Url.Action("DeleteUser", "Account")?userId=' + userIdentificator;
-                    } else {
-                        window.location.href = '@Url.Action("BlockingUser", "Account")?userId=' + userIdentificator;
-                    }
-                });
-                $(document).on('click', '.btnCancelDeletion', function (e) {
-                    e.preventDefault();
-                    $.magnificPopup.close();
-                });
-
-                $('.popupUserBlock').magnificPopup({
-                    type: 'inline',
-                    preloader: false,
-                    modal: true
-                });
-                $('.popupUserBlock').click(function () {
-                    userIdentificator = $(this).data('id').toString();
-                    blockOrDelete = 'block';
-                });
-                $('.popupAvatarDelete').click(function () {
-                    userIdentificator = $(this).data('id').toString();
-                    blockOrDelete = 'deleteAvatar';
-                });
-
-                $(document).on('click', '.btnConfirmDeletionAvatar', function (e) {
-                    e.preventDefault();
-                    $.magnificPopup.close();
-                    window.location.href = '@Url.Action("DeleteAvatar", "Account")?userId=' + userIdentificator;
-                });
-            });
-        </script>
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Articles/Scripts/AccountUserPanel.js"></script>
         <style>
             .white-popup {
                 position: relative;

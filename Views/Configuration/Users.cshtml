@@ -21,12 +21,6 @@
 }).WithPaging(20).Sortable(true).Filterable(true)
 </div>
 
-<script>
-    $(function () {
-        pageGrids.userGrid.onRowSelect(function (e) {
-            var rowUserId = e.row.UserId;
-            window.location.href = '@Url.Action("UserPanel", "Account")?userId=' + rowUserId;
-        });
-    });
-</script>
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationUsers.js"></script>
 

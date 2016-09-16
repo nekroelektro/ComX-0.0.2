@@ -1211,12 +1211,27 @@
     <Content Include="scripts\packery.pkgd.min.js" />
     <Content Include="scripts\slick.min.js" />
     <Content Include="scripts\trumbowyg.min.js" />
+    <Content Include="Views\Account\Scripts\AccountUserPanel.js" />
+    <Content Include="Views\Articles\Scripts\Articles.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCategories.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCommentEdit.js" />
     <Content Include="Views\Articles\Scripts\ArticlesComments.js" />
     <Content Include="Views\Articles\Scripts\ArticlesDetails.js" />
     <Content Include="Views\Articles\Scripts\ArticlesEditCreate.js" />
     <Content Include="Views\Articles\Scripts\ArticlesIndex.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationCategories.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationArticles.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationSubCategoriesDetails.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationSeriesDetails.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationRolesDetails.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationCategoriesDetails.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationGallery.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationRoles.js" />
+    <Content Include="Views\Configuration\Scripts\ConfigurationUsers.js" />
+    <Content Include="Views\Shared\Scripts\SharedIndexSlider.js" />
+    <Content Include="Views\Shared\Scripts\SharedLayout.js" />
+    <Content Include="Views\Shared\Scripts\SharedSideBar.js" />
+    <Content Include="Views\Shared\Scripts\SharedTopNavigationMenu.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

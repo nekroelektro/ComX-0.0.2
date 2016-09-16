@@ -6,20 +6,20 @@
     var currentArticle = Request.Params["Id"];
     var randomPosts = articleHelper.GetRandomArticlesForSideBar(5, currentArticle != null ? new Guid(currentArticle) : Guid.Empty);
 }
-<div class="sideBar" style="width: 100%; float: right; font-size: 1.6em; font-family: 'Coda', sans-serif; color: #2B823C; ">
+<div class="sideBar" style="width: 100%; float: right; font-size: 1.6em; font-family: 'Coda', sans-serif; color: #2B823C;">
     <div clas="sideIntro" style="padding-left: 1em; padding-right: 1em; padding-bottom: 1em; margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Intro:
-        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-bottom: 0.3em;" />
+        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-bottom: 0.3em;"/>
         <div class="sideIntroBody" style="font-size: 0.7em; color: white; text-align: justify;">
             Jak już tutaj trafiłoś, to się rozgość i zakosztuj w dobroci i smakowitościach. Quasi-blog o wszystkiem co dobre. Jak nie będzie prowadzony regularnie, to będę umartwiać kończyny, więc motywacja jest silna. Jeśli masz jakieś uwagi, a może chcesz wysmażyc jakiegoś tekst-balasa, daj znać - no problemo.
         </div>
     </div>
-    <div class="faceWidget" style="width: 100%; padding-left: 1em; margin-bottom: 1em; background-color: #222;box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
+    <div class="faceWidget" style="width: 100%; padding-left: 1em; margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Kontakt:
-        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-right: 1em; margin-bottom: 0.3em;" />
+        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-right: 1em; margin-bottom: 0.3em;"/>
         <h3 style="text-align: center; padding-bottom: 1em; color: whitesmoke">nekro@nekroplaza.pl</h3>
     </div>
-    <div class="plazlistSide" style="margin-bottom: 1em; background-color: #222;box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
+    <div class="plazlistSide" style="margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <div class="sideTitle" style="text-align: left; padding-left: 1em; margin-right: 1em;">
             <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Plazlista:
             <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-bottom: 0.3em;"/>
@@ -27,19 +27,18 @@
         <div class="plazlistTitle" style="font-family: 'Bangers', cursive; text-align: center; margin: 0 auto;">DEATH METAL VARIETES I</div>
         <iframe src="@generalHelper.GetSettings().Playlist" style="width: 100%; height: 15em; overflow: hidden;" frameborder="0" allowtransparency="true"></iframe>
     </div>
-    <div class="quoteDay" style="background-color: black; padding-left: 1em; padding-bottom: 1em; padding-right: 1em; margin-bottom: 1em; background-color: #222;box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
+    <div class="quoteDay" style="background-color: black; padding-left: 1em; padding-bottom: 1em; padding-right: 1em; margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Cytat dnia:
-        <hr style="border:1px solid #2B823C; background-color: #2B823C; margin: 0;" />
+        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0;"/>
         <div class="quoteBody" style="font-family: 'Times New Roman', Georgia, Serif; font-size: 0.7em; color: gray; padding: 5px; text-align: center;">
             "@generalHelper.GetSettings().Quote"
         </div>
     </div>
-    <div clas="sideLastComments" style="padding-left: 1em; padding-right: 1em; padding-bottom: 1em; margin-bottom: 1em; background-color: #222;box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
+    <div clas="sideLastComments" style="padding-left: 1em; padding-right: 1em; padding-bottom: 1em; margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Ostatnie komentarze:
-        <hr style="border:1px solid #2B823C; background-color: #2B823C; margin: 0;margin-bottom: 0.3em;" />
-        <div class="sideLastCommentsBody" style="font-size: 0.7em; color: white; text-align: justify;font-family: 'Coda', sans-serif; font-size: small;">
-            @foreach (var item in articleHelper.GetLastComments(10))
-            {
+        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0; margin-bottom: 0.3em;"/>
+        <div class="sideLastCommentsBody" style="font-size: 0.7em; color: white; text-align: justify; font-family: 'Coda', sans-serif; font-size: small;">
+            @foreach (var item in articleHelper.GetLastComments(10)) {
                 <a class="sideLastCommentAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(item.ArticleId).Name)}))#commentSection">
                     <div class="sideLastCommentsBodySingle" style="display: block;">
                         <div class="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @articleHelper.GetArticleById(item.ArticleId).Name</div>
@@ -51,23 +50,21 @@
             }
         </div>
     </div>
-    <div class="sideRandomPosts" style="padding-left: 1em; padding-right: 1em; padding-bottom: 1em; margin-bottom: 1em; background-color: #222;box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
+    <div class="sideRandomPosts" style="padding-left: 1em; padding-right: 1em; padding-bottom: 1em; margin-bottom: 1em; background-color: #222; box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Losowe posty:
-        <hr style="border:1px solid #2B823C; background-color: #2B823C; margin: 0;" />
+        <hr style="border: 1px solid #2B823C; background-color: #2B823C; margin: 0;"/>
         <div class="sidePostsBody" style="padding-top: 1em;">
-            @foreach (var item in randomPosts)
-            {
+            @foreach (var item in randomPosts) {
                 <a class="sideRandomPostsAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
-                    <div class="sideArt" style="display: block; width: 100%; height: 4em; padding-bottom: 1em;overflow: hidden; position: relative;">
-                        @if (articleHelper.GetImageByArticleId(item.Id) != null)
-                        {
+                    <div class="sideArt" style="display: block; width: 100%; height: 4em; padding-bottom: 1em; overflow: hidden; position: relative;">
+                        @if (articleHelper.GetImageByArticleId(item.Id) != null) {
                             <div class="sidebarRandomArtImg" style="float: left; width: 30%; height: 100%; position: relative; overflow: hidden; border: solid 1px #2B823C;">
                                 <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.6); z-index: 2;"></div>
                                 <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="min-width: 100%; min-height: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="min-width: 100%; min-height: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;"/>
                                 </div>
                                 <div class="bannerPanelImageMain" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; z-index: 3; overflow: hidden; position: absolute; top: 0;">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="max-height: 100%; max-width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="max-height: 100%; max-width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;"/>
                                 </div>
                             </div>
                         }
@@ -80,17 +77,6 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
 
-        $(".sideRandomPosts").sticky({ topSpacing: 55, zIndex: 4 });
-    });
-</script>
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Shared/Scripts/SharedSideBar.js"></script>
