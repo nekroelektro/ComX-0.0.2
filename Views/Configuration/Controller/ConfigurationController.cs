@@ -11,9 +11,9 @@ using ComX_0._0._2.Models.AccountModels;
 using ComX_0._0._2.Models.DtoModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace ComX_0._0._2.Controllers {
+namespace ComX_0._0._2.Views.Configuration.Controller {
     //[Authorize(Roles = "Admin, SuperAdmin")]
-    public class ConfigurationController : Controller {
+    public class ConfigurationController : System.Web.Mvc.Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();

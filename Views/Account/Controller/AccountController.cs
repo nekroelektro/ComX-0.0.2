@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -7,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Helpers.SmtpHelpers;
-using ComX_0._0._2.Models;
 using ComX_0._0._2.Models.AccountModels;
 using ComX_0._0._2.Models.DtoModels;
 using Facebook;
@@ -15,9 +13,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
-namespace ComX_0._0._2.Controllers {
+namespace ComX_0._0._2.Views.Account.Controller {
     [Authorize]
-    public class AccountController : Controller {
+    public class AccountController : System.Web.Mvc.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly UserHelper userHelper = new UserHelper();
         private readonly  GeneralHelper generalHelper = new GeneralHelper();

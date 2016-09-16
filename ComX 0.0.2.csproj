@@ -1240,11 +1240,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ArticlesController.cs" />
-    <Compile Include="Controllers\ConfigurationController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Database\SiteDbContext.cs" />
+    <Compile Include="Views\Account\Controller\AccountController.cs" />
+    <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
+    <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />
+    <Compile Include="Views\Manage\Controller\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1256,8 +1255,6 @@
     <Compile Include="Helpers\SmtpHelpers\EmailTests.cs" />
     <Compile Include="Helpers\SmtpHelpers\IEmailService.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
-    <Compile Include="Interfaces\AccountMembershipService.cs" />
-    <Compile Include="Interfaces\IMembershipService.cs" />
     <Compile Include="Migrations\201606201616264_mig1.cs" />
     <Compile Include="Migrations\201606201616264_mig1.Designer.cs">
       <DependentUpon>201606201616264_mig1.cs</DependentUpon>
@@ -1284,8 +1281,6 @@
     <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\ArticleSubCategories.cs" />
     <Compile Include="Models\Comments.cs" />
-    <Compile Include="Models\CustomMembershipProvider.cs" />
-    <Compile Include="Models\CustomRoleProvider.cs" />
     <Compile Include="Models\DtoModels\UserProfile.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\ImagesGallery.cs" />
@@ -1373,6 +1368,7 @@
   <ItemGroup>
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
+    <Folder Include="Views\Shared\Controller\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">

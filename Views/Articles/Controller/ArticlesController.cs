@@ -8,8 +8,8 @@ using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Models;
 using ComX_0._0._2.Models.AccountModels;
 
-namespace ComX_0._0._2.Controllers {
-    public class ArticlesController : Controller {
+namespace ComX_0._0._2.Views.Articles.Controller {
+    public class ArticlesController : System.Web.Mvc.Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
@@ -51,7 +51,7 @@ namespace ComX_0._0._2.Controllers {
             [Bind(
                 Include =
                     "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription"
-                )] Articles article,
+                )] Models.Articles article,
             HttpPostedFileBase upload) {
             var articleIdentifier = Guid.NewGuid();
             if (upload != null) {
@@ -111,7 +111,7 @@ namespace ComX_0._0._2.Controllers {
             [Bind(
                 Include =
                     "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription"
-                )] Articles article,
+                )] Models.Articles article,
             HttpPostedFileBase upload) {
             if (upload != null) {
                 var validImageTypes = new[] {
