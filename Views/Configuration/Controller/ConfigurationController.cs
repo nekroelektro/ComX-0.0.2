@@ -6,9 +6,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
-using ComX_0._0._2.Models;
-using ComX_0._0._2.Models.AccountModels;
-using ComX_0._0._2.Models.DtoModels;
+using ComX_0._0._2.Views.Account.Models;
+using ComX_0._0._2.Views.Account.Models.DtoModels;
+using ComX_0._0._2.Views.Articles.Models;
+using ComX_0._0._2.Views.Configuration.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ComX_0._0._2.Views.Configuration.Controller {

@@ -15,7 +15,7 @@
         });
         $(document).on('click', '.btnConfirmDeletion', function (e) {
             $.ajax({
-                url: '@Url.Action("DeleteComment", "Articles")',
+                url: "/Articles/DeleteComment/",
                 type: "POST",
                 data: { 'commentId': comIdentificator, 'articleId': artIdentificator }
             })

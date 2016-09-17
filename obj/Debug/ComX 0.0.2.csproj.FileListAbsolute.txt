@@ -46,6 +46,7 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\M
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.Cookies.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.Facebook.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Newtonsoft.Json.dll
@@ -76,6 +77,7 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\M
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.Facebook.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Newtonsoft.Json.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.xml
@@ -91,7 +93,18 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\S
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig1.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig2.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig3.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.mig4.resources
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\nunit.framework.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\nunit.framework.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Autofac.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Autofac.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Autofac.Integration.Mvc.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Autofac.Integration.Mvc.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Facebook.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Facebook.xml

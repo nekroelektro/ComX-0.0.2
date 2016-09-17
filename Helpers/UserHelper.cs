@@ -7,8 +7,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
-using ComX_0._0._2.Models;
-using ComX_0._0._2.Models.AccountModels;
+using ComX_0._0._2.Views.Account.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

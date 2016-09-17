@@ -14,9 +14,9 @@
         e.preventDefault();
         $.magnificPopup.close();
         if (blockOrDelete == 'delete') {
-            window.location.href = '@Url.Action("DeleteUser", "Account")?userId=' + userIdentificator;
+            window.location.href = "/Account/DeleteUser/?userId=" + userIdentificator;
         } else {
-            window.location.href = '@Url.Action("BlockingUser", "Account")?userId=' + userIdentificator;
+            window.location.href = "/Account/BlockingUser/?userId=" + userIdentificator;
         }
     });
     $(document).on('click', '.btnCancelDeletion', function (e) {
@@ -41,6 +41,6 @@
     $(document).on('click', '.btnConfirmDeletionAvatar', function (e) {
         e.preventDefault();
         $.magnificPopup.close();
-        window.location.href = '@Url.Action("DeleteAvatar", "Account")?userId=' + userIdentificator;
+        window.location.href = "/Account/DeleteAvatar/?userId=" + userIdentificator;
     });
 });

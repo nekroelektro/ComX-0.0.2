@@ -5,7 +5,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using ComX_0._0._2.Models;
+using ComX_0._0._2.Views.Account.Models;
 using Roles = System.Web.Security.Roles;
 
 namespace ComX_0._0._2 {

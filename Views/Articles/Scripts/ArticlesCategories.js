@@ -2,7 +2,7 @@
     $(function () {
         pageGrids.categoryArticleGrid.onRowSelect(function (e) {
             var rowArticleId = e.row.Id;
-            window.location.href = '@Url.Action("Details", "Articles")/' + rowArticleId;
+            window.location.href = "/Articles/Details/" + rowArticleId;
         });
     });
 

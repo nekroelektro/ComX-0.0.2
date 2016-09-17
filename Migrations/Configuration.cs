@@ -1,5 +1,5 @@
 using System.Data.Entity.Migrations;
-using ComX_0._0._2.Models.AccountModels;
+using ComX_0._0._2.Views.Account.Models;
 
 namespace ComX_0._0._2.Migrations {
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext> {

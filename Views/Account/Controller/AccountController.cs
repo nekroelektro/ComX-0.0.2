@@ -6,8 +6,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Helpers.SmtpHelpers;
-using ComX_0._0._2.Models.AccountModels;
-using ComX_0._0._2.Models.DtoModels;
+using ComX_0._0._2.Views.Account.Models;
+using ComX_0._0._2.Views.Account.Models.DtoModels;
 using Facebook;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -17,15 +17,21 @@ namespace ComX_0._0._2.Views.Account.Controller {
     [Authorize]
     public class AccountController : System.Web.Mvc.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
-        private readonly  GeneralHelper generalHelper = new GeneralHelper();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        private Uri RedirectUri
-        {
-            get
-            {
+        public AccountController() {
+        }
+
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager) {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+
+        private Uri RedirectUri {
+            get {
                 var uriBuilder = new UriBuilder(Request.Url);
                 uriBuilder.Query = null;
                 uriBuilder.Fragment = null;
@@ -34,12 +40,20 @@ namespace ComX_0._0._2.Views.Account.Controller {
             }
         }
 
+        public ApplicationSignInManager SignInManager {
+            get { return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
+            private set { _signInManager = value; }
+        }
+
+        public ApplicationUserManager UserManager {
+            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { _userManager = value; }
+        }
+
         [AllowAnonymous]
-        public ActionResult Facebook()
-        {
+        public ActionResult Facebook() {
             var fb = new FacebookClient();
-            var loginUrl = fb.GetLoginUrl(new
-            {
+            var loginUrl = fb.GetLoginUrl(new {
                 client_id = "1780363828875340",
                 client_secret = "f8257a6183b1f5b99a23302dece07449",
                 redirect_uri = RedirectUri.AbsoluteUri,
@@ -50,15 +64,13 @@ namespace ComX_0._0._2.Views.Account.Controller {
             return Redirect(loginUrl.AbsoluteUri);
         }
 
-        public ActionResult FacebookCallback(string code)
-        {
+        public ActionResult FacebookCallback(string code) {
             var fb = new FacebookClient();
-            dynamic result = fb.Post("oauth/access_token", new
-            {
+            dynamic result = fb.Post("oauth/access_token", new {
                 client_id = "1780363828875340",
                 client_secret = "f8257a6183b1f5b99a23302dece07449",
                 redirect_uri = RedirectUri.AbsoluteUri,
-                code = code
+                code
             });
 
             var accessToken = result.access_token;
@@ -80,24 +92,6 @@ namespace ComX_0._0._2.Views.Account.Controller {
             // Set the auth cookie
             FormsAuthentication.SetAuthCookie(email, false);
             return RedirectToAction("Index", "Articles");
-        }
-
-        public AccountController() {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager) {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager {
-            get { return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
-            private set { _signInManager = value; }
-        }
-
-        public ApplicationUserManager UserManager {
-            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-            private set { _userManager = value; }
         }
 
         //
@@ -131,7 +125,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
                     return RedirectToAction("SendCode", new {ReturnUrl = returnUrl, model.RememberMe});
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("LoginError", "Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!");
+                    ModelState.AddModelError("LoginError",
+                        "Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!");
                     return View(model);
             }
         }
@@ -205,14 +200,18 @@ namespace ComX_0._0._2.Views.Account.Controller {
                     await UserManager.AddToRoleAsync(user.Id, "User");
 
                     var message = new EmailMessage();
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId = user.Id, code},
+                        Request.Url.Scheme);
 
                     message.ToEmail = model.Email;
                     message.Subject = "Potwierdź rejestrację na NEKROPLAZA.PL";
                     message.IsHtml = false;
                     message.Body =
-                        String.Format("Serwus, {0}!!! Jeśli to czytasz, to znaczy, że założyłeś konto na nekroplaza.pl i jesteś przygotowany na potężną dawkę dobroci! Jeszcze jedno małe 'ale' - kliknij w ten link:\n " + callbackUrl + "\naby potwierdzić rejestrację!\nPozdrawiam serdecznie!\nNekro", model.Username);
+                        string.Format(
+                            "Serwus, {0}!!! Jeśli to czytasz, to znaczy, że założyłeś konto na nekroplaza.pl i jesteś przygotowany na potężną dawkę dobroci! Jeszcze jedno małe 'ale' - kliknij w ten link:\n " +
+                            callbackUrl + "\naby potwierdzić rejestrację!\nPozdrawiam serdecznie!\nNekro",
+                            model.Username);
 
                     var emailService = new Helpers.SmtpHelpers.EmailService();
                     var status = emailService.SendEmailMessage(message);
@@ -228,14 +227,15 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public async Task<ActionResult> SendConfirmationMail(string userId, string userMail) {
             var message = new EmailMessage();
-            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userId, code = code }, protocol: Request.Url.Scheme);
+            var code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId, code}, Request.Url.Scheme);
 
             message.ToEmail = userMail;
             message.Subject = "Potwierdź rejestrację na NEKROPLAZA.PL";
             message.IsHtml = false;
             message.Body =
-                String.Format("Kliknij w ten link:\n " + callbackUrl + "\naby potwierdzić rejestrację!\nPozdrawiam serdecznie!\nNekro");
+                string.Format("Kliknij w ten link:\n " + callbackUrl +
+                              "\naby potwierdzić rejestrację!\nPozdrawiam serdecznie!\nNekro");
 
             var emailService = new Helpers.SmtpHelpers.EmailService();
             var status = emailService.SendEmailMessage(message);
@@ -274,13 +274,16 @@ namespace ComX_0._0._2.Views.Account.Controller {
                     return View("ForgotPasswordConfirmation");
                 }
                 var message = new EmailMessage();
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new {userId = user.Id, code},
+                    Request.Url.Scheme);
                 message.ToEmail = model.Email;
                 message.Subject = "Przypomnienie hasła na NEKROPLAZA.PL";
                 message.IsHtml = false;
                 message.Body =
-                    String.Format("Serwus, {0}!!!\n Jeśli to czytasz, to znaczy, że zapomniałeś hasła do logowania, och Ty bidulo - kliknij w ten link:\n " + callbackUrl + "\naby przypomnieć hasło!\nPozdrawiam serdecznie!\nNekro", user.UserName);
+                    string.Format(
+                        "Serwus, {0}!!!\n Jeśli to czytasz, to znaczy, że zapomniałeś hasła do logowania, och Ty bidulo - kliknij w ten link:\n " +
+                        callbackUrl + "\naby przypomnieć hasło!\nPozdrawiam serdecznie!\nNekro", user.UserName);
 
                 var emailService = new Helpers.SmtpHelpers.EmailService();
                 var status = emailService.SendEmailMessage(message);
@@ -490,7 +493,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
             userProfile.UserMail = user.Email;
             userProfile.UserAvatar = userInfo.Avatar;
             userProfile.AccoutConfirmed = user.EmailConfirmed;
-            
+
             ViewBag.RoleList = userHelper.GetRolesToCombo();
             return View(userProfile);
         }
@@ -553,18 +556,21 @@ namespace ComX_0._0._2.Views.Account.Controller {
             return RedirectToAction("Users", "Configuration");
         }
 
-        public ActionResult DegradeUser(string userId)
-        {
+        public ActionResult DegradeUser(string userId) {
             userHelper.DegradeToUser(new Guid(userId));
             return RedirectToAction("Users", "Configuration");
         }
 
         //To check if user with that username exists during registration
-        [HttpPost]
-        public JsonResult UserNameExists(string userName) {
-            var user = Membership.GetUser(userName);
-            var usr = userHelper.GetUserByName(userName);
-            return Json(usr == null);
+        [AllowAnonymous]
+        public async Task<JsonResult> UserNameExists(string userName) {
+            var result =
+                await UserManager.FindByNameAsync(userName) ??
+                await UserManager.FindByEmailAsync(userName);
+            return Json(result == null, JsonRequestBehavior.AllowGet);
+            //var user = Membership.GetUser(userName);
+            //var usr = userHelper.GetUserByName(userName);
+            //return Json(usr == null);
         }
 
         #region Helpers

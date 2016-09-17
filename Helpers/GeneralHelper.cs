@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Linq;
 using System.Web;
-using ComX_0._0._2.Models;
-using ComX_0._0._2.Models.AccountModels;
+using ComX_0._0._2.Views.Account.Models;
+using ComX_0._0._2.Views.Configuration.Models;
 
 namespace ComX_0._0._2.Helpers {
     public class GeneralHelper {

@@ -11,7 +11,7 @@
     $(document).on('click', '.btnConfirmDeletion', function (e) {
         e.preventDefault();
         $.magnificPopup.close();
-        window.location.href = '@Url.Action("DeleteSubCategory", "Configuration")?categoryId=' + categoryIdentificator;
+        window.location.href = "/Configuration/DeleteSubCategory?categoryId=" + categoryIdentificator;
     });
     $(document).on('click', '.btnCancelDeletion', function (e) {
         e.preventDefault();

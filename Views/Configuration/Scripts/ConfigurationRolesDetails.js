@@ -11,7 +11,7 @@
     $(document).on('click', '.btnConfirmDeletion', function (e) {
         e.preventDefault();
         $.magnificPopup.close();
-        window.location.href = '@Url.Action("DeleteRole", "Configuration")?roleId=' + roleIdentificator;
+        window.location.href = "/Configuration/DeleteRole?roleId=" + roleIdentificator;
     });
     $(document).on('click', '.btnCancelDeletion', function (e) {
         e.preventDefault();

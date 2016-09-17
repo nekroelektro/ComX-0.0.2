@@ -5,8 +5,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
-using ComX_0._0._2.Models;
-using ComX_0._0._2.Models.AccountModels;
+using ComX_0._0._2.Views.Account.Models;
+using ComX_0._0._2.Views.Articles.Models;
 
 namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
