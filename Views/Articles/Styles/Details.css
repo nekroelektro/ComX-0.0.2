@@ -1,0 +1,48 @@
+﻿.detailContainer {
+    width: 100%; 
+    float: left;
+}
+
+.articleDetail {
+    width: 100%; 
+    float: left; 
+    border-bottom: 2px solid #2B823C;
+}
+
+.articleDetailsIntro {
+    text-align: justify; 
+    font-size: 1.3em; 
+    text-indent: 0.9em; 
+    border-left: 0.5em #2B823C solid;
+    border-right: 0.5em #2B823C solid; 
+    width: 100%; 
+    padding: 2px 5px 2px 5px; 
+    padding-left: 1em; 
+    padding-right: 1em; 
+    font-family: 'Krona One', sans-serif;
+}
+
+.articleDetailsBody {
+    text-align: justify; 
+    font-size: 1.2em; 
+    padding: 1em; 
+    font-family: 'Coda', sans-serif;
+}
+
+.articleDetailsLine {
+    margin-top: 0;
+}
+
+.fb-like {
+    padding: 2em;
+}
+
+.articleDetailsBottomSection {
+    clear: both
+}
+
+.articleDetailsBottomLine {
+    border: 2px solid #2B823C; 
+    background-color: #2B823C; 
+    width: 100%;
+}

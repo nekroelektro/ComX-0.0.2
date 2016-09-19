@@ -1,0 +1,194 @@
+﻿.sideBar {
+    width: 100%; 
+    float: right; 
+    font-size: 1.6em; 
+    font-family: 'Coda', sans-serif; 
+    color: #2B823C;
+}
+
+.sideIntro {
+    padding-left: 1em; 
+    padding-right: 1em; 
+    padding-bottom: 1em; 
+    margin-bottom: 1em; 
+    background-color: #222; 
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+}
+
+.sideIntroBody {
+    font-size: 0.7em; 
+    color: white; 
+    text-align: justify;
+}
+
+.sideContact {
+    width: 100%; 
+    padding-left: 1em; 
+    margin-bottom: 1em; 
+    background-color: #222; 
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+}
+
+.sideContactTitle {
+    text-align: center; 
+    padding-bottom: 1em;
+    color: whitesmoke;
+    font-size: 1em;
+}
+
+.sidePlazlist {
+    margin-bottom: 1em; 
+    background-color: #222; 
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+}
+
+.sideTitle {
+    text-align: left; 
+    padding-left: 1em; 
+    margin-right: 1em;
+}
+
+.sidePlazlistTitle {
+    font-family: 'Bangers', cursive; 
+    text-align: center; 
+    margin: 0 auto;
+}
+
+.sidePlazlistWidget {
+    width: 100%; 
+    height: 15em; 
+    overflow: hidden;
+}
+
+.sideQuote {
+    background-color: black; 
+    padding-left: 1em; 
+    padding-bottom: 1em; 
+    padding-right: 1em; 
+    margin-bottom: 1em; 
+    background-color: #222; 
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+}
+
+.sideQuoteBody {
+    font-family: 'Times New Roman', Georgia, Serif; 
+    font-size: 0.7em; 
+    color: gray; 
+    padding: 5px; 
+    text-align: center;
+}
+
+.sideLastComments {
+    padding-left: 1em; 
+    padding-right: 1em; 
+    padding-bottom: 1em; 
+    margin-bottom: 1em; 
+    background-color: #222; 
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+}
+
+.sideLastCommentsBody {
+    font-size: 0.7em; 
+    color: white; 
+    text-align: justify; 
+    font-family: 'Coda', sans-serif; 
+    font-size: small;
+}
+
+.sideLastCommentsBodySingle {
+    display: block;
+}
+
+.sideRandomPosts {
+    padding-left: 1em; 
+    padding-right: 1em; 
+    padding-bottom: 1em; 
+    margin-bottom: 1em; 
+    background-color: #222; 
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+}
+
+.sidePostsBody {
+    padding-top: 1em;
+}
+
+.sideArt {
+    display: block; 
+    width: 100%; 
+    height: 4em; 
+    padding-bottom: 1em; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.sidebarRandomArtImg {
+    float: left; 
+    width: 30%; 
+    height: 100%; 
+    position: relative; 
+    overflow: hidden; 
+    border: solid 1px #2B823C;
+}
+
+.imageOverlayColor {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 2;
+}
+
+.bannerPanelImageContainer {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.bannerPanelImageContainer img {
+    min-width: 100%; 
+    min-height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.bannerPanelImageMain {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 3; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0;
+}
+
+.bannerPanelImageMain img {
+    max-height: 100%; 
+    max-width: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.sidebarRandomArtBody {
+    float: right; 
+    width: 70%; 
+    font-size: 0.6em; 
+    padding-left: 0.6em;
+}
+
+.sideGreenLine {
+    border: 1px solid #2B823C; 
+    background-color: #2B823C; 
+    margin: 0; 
+    margin-bottom: 0.3em;
+}

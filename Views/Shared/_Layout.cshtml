@@ -13,6 +13,7 @@
     <link href="~/Content/CustomControls.css" rel="stylesheet" type="text/css"/>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="~/Content/datepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Views/Shared/Styles/_Layout.css" rel="stylesheet" type="text/css" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
     <link href="@Url.Content("~/Content/trumbowyg.min.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css"/>
@@ -53,25 +54,25 @@
 <body>
 @Html.Partial("_TopLogoPanel")
 @if (!currentUrl.Contains("Configuration")) {
-    <div class="container" style="padding-left: 0; padding-right: 0;">
+    <div class="containerTop container">
         @Html.Partial("_TopNavigationMenu")
     </div>
 }
 <div class="elementsToPush">
     @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/")) {
-        <div class="container" style="padding-left: 0; padding-right: 0;">
+        <div class="containerMiddle container">
             @Html.Action("_IndexSlider", "Articles")
         </div>
-        <div class="indexExplicitInfo container" style="padding-left: 2em; padding-right: 2em; padding-bottom: 1em; background-color: white; font-family: 'Amarante', sans-serif; text-align: justify">
-            <div class="warningMessageLayout" style="width: 90%; margin-top: -1em; padding-right: 1em; float: left">
-                <h2 style="color: red;">Uważej!</h2>
+        <div class="indexExplicitInfo container">
+            <div class="warningMessageLayout">
+                <h2 class="warningLayoutTitle">Uważej!</h2>
                 <h4>
                     @generalHelper.GetSettings().JumboIndexText
                 </h4>
             </div>
-            <div class="socialMessageLayout" style="width: 10%; float: right;">
+            <div class="socialMessageLayout">
                 <a target="_blank" href="https://www.facebook.com/nekroplaza/">
-                    <img src='~/Content/images/fbk.png' style="float: left; width: 100%; height: auto; text-align: center; padding-top: 1em;"/>
+                    <img src='~/Content/images/fbk.png'/>
                 </a>
             </div>
         </div>
@@ -81,7 +82,7 @@
         <div class="push"></div>
     </div>
 </div>
-<a href="javascript:" id="return-to-top"><i class="icon-chevron-up" style="border: none !important"></i></a>
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
 
 @Html.Partial("_Footer")
 </body>

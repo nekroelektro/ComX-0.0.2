@@ -1,6 +1,4 @@
 ﻿@using ComX_0._0._2.Helpers
-@using GridMvc.Html
-@using GridMvc.Sorting
 @model IEnumerable<ComX_0._0._2.Views.Articles.Models.Articles>
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
@@ -12,60 +10,58 @@
     ViewBag.Title = string.Format("{0} - NekroPlaza - doświadcz dobroci", category.Name);
 }
 
-<div class="categoryArticleTitle" style="width: 100%; float: left;">
-    <h2 style="float: left;">Posty z kategorii @category.Name:</h2>
+<div class="categoryArticleTitle">
+    <h2>Posty z kategorii @category.Name:</h2>
 @if (Model.Any()) {
-    <div class="categoryViewType" style="float: right; margin-top: 1.5em; padding-right: 1.4em;">
+    <div class="categoryViewType">
         <button type="button" class="btn btn-default .btn-sm miniaturesView">
-            <span class="glyphicon glyphicon-th" aria-hidden="true" style="font-size: 1.1em"></span>
+            <span class="glyphicon glyphicon-th categoryBtn" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-default .btn-sm listView">
-            <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size: 1.1em"></span>
+            <span class="glyphicon glyphicon-th-list categoryBtn" aria-hidden="true"></span>
         </button>
     </div>
 }
 </div>
-@if (Model.Any())
-{
-    <div class="articlesIndexContainer" style="width: 100%; float: left; display: none;">
-        <ul class="content" style="padding-left: 0; margin-left: 0;">
-            @foreach (var item in Model)
-            {
-                <div class="articlesIndexSingle" style="border-top: #222 0.5em solid; height: 15em; margin-bottom: 1em; font-family: 'Coda', sans-serif;">
+@if (Model.Any()){
+    <div class="articlesIndexContainer">
+        <ul class="content articlesCategoryTable">
+            @foreach (var item in Model){
+                <div class="articlesIndexSingle">
                     <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
                         @if (articleHelper.GetImageByArticleId(item.Id) != null)
                         {
-                            <div class="articlesIndexSingleImage" style="width: 38%; height: 100%; margin-bottom: 1em; position: relative; z-index: 5; overflow: hidden; float: left;">
-                                <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
+                            <div class="articlesIndexSingleImage">
+                                <div class="bannerPanelImageContainer">
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                                 </div>
-                                <div class="bannerPanelImageMain" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; z-index: 3; overflow: hidden; position: absolute; top: 0;">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="height:100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
+                                <div class="bannerPanelImageMain">
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                                 </div>
-                                <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); z-index: 2;"></div>
+                                <div class="imageOverlayColor"></div>
                             </div>
                         }
                     </a>
-                    <div class="articlesIndexSingleBody" style="width: 62%; min-height: 100%; float: right; padding-left: 0.7em; position: relative;">
+                    <div class="articlesIndexSingleBody">
                         <div class="indexArticleTitle">
-                            <div class="indexArticleTitleTopSection" style="width: 100%; padding-bottom: 1em;">
-                                <div class="articlesIndexSingleCategories" style="float: left;">
+                            <div class="indexArticleTitleTopSection">
+                                <div class="articlesIndexSingleCategories">
                                     <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
                                     @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
                                 </div>
-                                <div class="articlesIndexSingleDate" style="float: right;">
+                                <div class="articlesIndexSingleDate">
                                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated.ToShortDateString()
                                 </div>
                             </div>
-                            <h4 style="width: 100% !important; clear: both;">@item.Name</h4>
+                            <h4 class="articlesIndexName">@item.Name</h4>
                         </div>
-                        <hr style="border-color: crimson; margin: 1em;" />
+                        <hr class="indexAlternativeViewLine"/>
                         <div class="articleIndexSingleText">
                             <div class="indexArticleBody">
                                 <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
                             </div>
                         </div>
-                        <div class="articlesIndexSingleFooter" style="background-color: black; color: white; width: 30%;border-radius: 30px 0 0 0; float: right;text-align: center;max-height: 1.5em;min-width: 6em;font-size: 1em; position: absolute; bottom: 0; right: 0;">
+                        <div class="articlesIndexSingleFooter">
                             <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
                         </div>
                     </div>
@@ -74,38 +70,48 @@
         </ul>
     </div>
 
-    <div id="pager" style="width: 100%; float: left;">
-        <div class="grid" style="width: 100%; float: left;">
-            <ul class="content" style="padding-left: 0; margin-left: 0;">
-                @foreach (var item in Model) {
-                    <div class="indexElement">
-                        <div class="singleIndexArticle">
-                            <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
-                                @if (articleHelper.GetImageByArticleId(item.Id) != null) {
-                                    <div class="indexArticleImage">
-                                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%; text-align: center; margin: 0 auto;"/>
+    <div id="pager">
+        <div class="articlesIndexContainer">
+            <ul class="content" id="content">
+                @foreach (var item in Model)
+                {
+                    <div class="articlesIndexSingle">
+                        <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
+                            @if (articleHelper.GetImageByArticleId(item.Id) != null)
+                            {
+                                <div class="articlesIndexSingleImage">
+                                    <div class="bannerPanelImageContainer">
+                                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
                                     </div>
-                                }
-                                <div class="indexArticleText">
-                                    <div class="indexArticleTitle">
-                                        <h2>@item.Name</h2>
-                                        <div class="indexArticleDate">
-                                            <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated</p>
-                                            <p>
-                                                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
-                                                @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
-                                            </p>
+                                    <div class="bannerPanelImageMain">
+                                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
+                                    </div>
+                                    <div class="imageOverlayColor"></div>
+                                </div>
+                            }
+                        </a>
+                        <div class="articlesIndexSingleBody">
+                            <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
+                                <div class="indexArticleTitle">
+                                    <div class="indexArticleTitleTopSection">
+                                        <div class="articlesIndexSingleCategories">
+                                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
+                                            @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
+                                        </div>
+                                        <div class="articlesIndexSingleDate">
+                                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated.ToShortDateString()
                                         </div>
                                     </div>
-                                    <hr style="border-color: crimson"/>
+                                    <h4 class="singleIndexTitle">@item.Name</h4>
                                 </div>
                             </a>
-                            <div class="indexArticleText">
+                            <hr class="singleIndexLine" />
+                            <div class="articleIndexSingleText">
                                 <div class="indexArticleBody">
                                     <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
                                 </div>
                             </div>
-                            <div class="indexArticleFooter">
+                            <div class="articlesIndexSingleFooter">
                                 <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
                             </div>
                         </div>
@@ -113,13 +119,16 @@
                 }
             </ul>
         </div>
-        <div class="page_navigation" style="clear: both; padding-top: 3em;"></div>
+        <hr />
+        <div class="page_navigation"></div>
     </div>
-}else {
-    <div class="noItemsInCategorySection" style="width: 100%; float: left; color: #2B823C; text-align: center; margin: 0 auto;">
-        <h3 style="width: 65%; margin: 0 auto;">:( <br/>Nie bój, nie bój, jeszcze żadnych dobroci tu nie ma. Pewnikiem będą niebawem.</h3>
+}
+else {
+    <div class="noItemsInCategorySection">
+        <h3>:( <br/>Nie bój, nie bój, jeszcze żadnych dobroci tu nie ma. Pewnikiem będą niebawem.</h3>
     </div>
 }
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesCategories.js"></script>
+<link href="~/Views/Articles/Styles/Categories.css" rel="stylesheet" type="text/css" />

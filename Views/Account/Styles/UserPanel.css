@@ -1,0 +1,56 @@
+﻿.greetUserPanel {
+    float: left;
+}
+
+.userPanelButtons {
+    float: right; 
+    margin-top: 1em;
+}
+
+.userPanelBackButton {
+    font-size: 1.1em;
+}
+
+.infoUserPanel {
+    padding-top: 1em; 
+    padding-bottom: 1em; 
+    width: 100%; 
+    clear: both;
+}
+
+.userPanelAvatarContainer {
+    padding-bottom: 1em;
+}
+
+.userPanelAvatarContainer img {
+    max-width: 50%; 
+    text-align: center; 
+    margin: 0 auto;
+}
+
+.userPanelAvatarTitlesContainer {
+    padding-bottom: 1em;
+}
+
+.userPanelBlockSection {
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.subConcious {
+    width: 100%; 
+    margin: 0 auto; 
+    text-align: center; 
+    clear: both; 
+    color: #C5C8C9;
+}
+
+.white-popup {
+    position: relative;
+    background: #FFF;
+    padding: 40px;
+    width: auto;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}

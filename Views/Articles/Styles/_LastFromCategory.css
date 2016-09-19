@@ -1,0 +1,116 @@
+﻿.lastFromCategoryPanel {
+    padding-bottom: 2em; 
+    padding-top: 1em;
+    font-family: 'Coda', sans-serif;
+}
+
+.lastFromCategoryLabel {
+    color: crimson; 
+    font-size: 1.4em; 
+    width: 99.9%; 
+    border-radius: 0 20px 0 0;
+}
+
+.lastFromCategoryContainer {
+    display: inline-flex; 
+    margin: 0 auto; 
+    text-align: center; 
+    width: 100%; 
+    padding-top: 1em;
+}
+
+.lastFromCategoryContainer a {
+    width: 25%; 
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.singleLastArticleTopNavigation {
+    width: 100%; 
+    height: 15em; 
+    overflow: hidden; 
+    position: relative; 
+    border: 1px solid white;
+}
+
+.imageOverlayColor {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 2;
+}
+
+.bannerPanelImageContainer {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.bannerPanelImageContainer img {
+    min-width: 100%; 
+    min-height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.bannerPanelImageMain {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 3; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0;
+}
+
+.bannerPanelImageMain img {
+    max-height: 100%; 
+    max-width: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.titleTopNavigation {
+    display: none; 
+    width: 100%; 
+    height: 45%; 
+    font-size: 0.9em; 
+    color: black; 
+    text-align: center; 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 7; 
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.titleTopNavigation p {
+    padding: 0.5em;
+}
+
+.lastFromCategoryLabelLinkContainer {
+    float: right; 
+    color: crimson; 
+    font-size: 1.3em; 
+    padding-left: 1em; 
+    width: 99.9%;
+}
+
+.seeMoreFromCategory {
+    
+}
+
+.seeMoreFromCategory p {
+    float: right;
+}

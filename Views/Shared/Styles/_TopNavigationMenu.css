@@ -1,0 +1,148 @@
+﻿.main {
+    width: 100%;
+    font-family: 'Coda', sans-serif;
+}
+
+.absoluteLogo {
+    display: none; 
+    margin-top: -1.5em; 
+    z-index: 5; 
+    position: absolute; 
+    width: 20%;
+}
+
+.absoluteLogo img {
+    float: left; 
+    width: 100%; 
+    height: auto; 
+    text-align: center;
+}
+
+.cbp-hrsub-inner {
+    padding-left: 0; 
+    padding-right: 0; 
+    width: 80%;
+}
+
+.subCategoriesNavigation {
+    width: 100% !important; 
+    display: inline-flex; 
+    padding-bottom: 1em !important;
+}
+
+.subCategoryListNavigation {
+    width: 20%;
+}
+
+.topNavigationNameTitle {
+    padding-top: 5px; 
+    font-size: 1.3em;
+}
+
+.topNavigationForeachAnchor {
+    font-size: 1em;
+}
+
+.lastArticlesFromCategoryTopNavigation {
+    width: 100% !important;
+}
+
+.topNavigationBigLine {
+    margin-top: 0; 
+    margin-bottom: 0;
+}
+
+.lastArticlesTop {
+    display: inline-flex; 
+    margin: 0 auto; 
+    text-align: center; 
+    width: 100%; 
+    padding-top: 1em;
+}
+
+.topNavigationLastAnchor {
+    width: 22%;
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.singleLastArticleTopNavigation {
+    width: 100%; 
+    height: 15em; 
+    overflow: hidden; 
+    position: relative; 
+    border: 1px solid white;
+}
+
+.imageOverlayColor {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 2;
+}
+
+.bannerPanelImageContainer {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.bannerPanelImageContainer img {
+    min-width: 100%; 
+    min-height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.bannerPanelImageMain {
+   width: 100%; 
+   height: 100%; 
+   text-align: center; 
+   margin: 0 auto; 
+   z-index: 3; 
+   overflow: hidden; 
+   position: absolute; 
+   top: 0; 
+}
+
+.bannerPanelImageMain img {
+    max-height:100%; 
+    max-width: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.titleTopNavigation {
+    display: none; 
+    width: 100%; 
+    height: 45%; 
+    font-size: 0.9em; 
+    color: black; 
+    text-align: center; 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 7; 
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.titleTopNavigation p {
+    padding: 0.5em;
+}
+
+.moreFromCategoryTopNavigation {
+    float: right !important; 
+    clear: both; 
+    font-size: 1.1em;
+}
+

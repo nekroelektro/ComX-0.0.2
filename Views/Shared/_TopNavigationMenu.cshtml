@@ -5,10 +5,10 @@
     var categoryList = articleHelper.GetAllCategories();
     var subCategoryList = articleHelper.GetAllSubCategories();
 }
-<div class="main" style="width: 100%;font-family: 'Coda', sans-serif;">
-    <div class="absoluteLogo" style="display: none; margin-top: -1.5em; z-index: 5; position: absolute; width: 20%;">
+<div class="main">
+    <div class="absoluteLogo">
         <a href="@Url.Action("Index", "Articles")">
-            <img src='~/Content/images/npLogosBeta.png' style="float: left; width: 100%; height: auto; text-align: center;"/>
+            <img src='~/Content/images/npLogosBeta.png'/>
         </a>
     </div>
     <nav id="cbp-hrmenu" class="cbp-hrmenu">
@@ -17,17 +17,17 @@
                 <li>
                     <a class="topNavigationItem" href="#">@item.Name</a>
                     <div class="cbp-hrsub">
-                        <div class="cbp-hrsub-inner" style="padding-left: 0; padding-right: 0; width: 80%;">
+                        <div class="cbp-hrsub-inner">
                             <h5>@item.Description</h5>
-                            <div class="subCategoriesNavigation" style="width: 100%; display: inline-flex; padding-bottom: 1em;">
+                            <div class="subCategoriesNavigation">
                                 @foreach (var subItem in subCategoryList) {
                                     if (!articleHelper.SubCategoryIsEmpty(subItem.Id, item.Id)) {
-                                        <div class="subCategoryListNavigation" style="width: 20%;">
-                                            <h4 style="padding-top: 5px; font-size: 1.3em;">@subItem.Name:</h4>
+                                        <div class="subCategoryListNavigation">
+                                            <h4 class="topNavigationNameTitle">@subItem.Name:</h4>
                                             <ul>
                                                 @foreach (var article in articleHelper.GetArticlesByBothCategories(item.Id, subItem.Id, 3)) {
                                                     <li>
-                                                        <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(article.Name)}))" style="font-size: 1em;"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
+                                                        <a class="topNavigationForeachAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(article.Name)}))"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
                                                     </li>
                                                 }
                                             </ul>
@@ -35,29 +35,29 @@
                                     }
                                 }
                             </div>
-                            <div class="lastArticlesFromCategoryTopNavigation" style="width: 100%">
-                                <h4 style="padding-top: 5px; font-size: 1.3em;">Ostatnie posty z kategorii @item.Name:</h4>
-                                <hr style="margin-top: 0; margin-bottom: 0;"/>
-                                <div class="lastArticlesTop" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%; padding-top: 1em;">
+                            <div class="lastArticlesFromCategoryTopNavigation">
+                                <h4 class="topNavigationNameTitle">Ostatnie posty z kategorii @item.Name:</h4>
+                                <hr class="topNavigationBigLine"/>
+                                <div class="lastArticlesTop">
                                     @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
-                                        <a class="topNavigationLastAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(lastArticle.Name)}))" style="width: 22%;margin: 0 auto; text-align: center;">
-                                            <div class="singleLastArticleTopNavigation" style="width: 100%; height: 15em; overflow: hidden; position: relative; border: 1px solid white;">
-                                                <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); z-index: 2;"></div>
-                                                <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
-                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))' style="min-width: 100%; min-height: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
+                                        <a class="topNavigationLastAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(lastArticle.Name)}))">
+                                            <div class="singleLastArticleTopNavigation">
+                                                <div class="imageOverlayColor"></div>
+                                                <div class="bannerPanelImageContainer">
+                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
-                                                <div class="bannerPanelImageMain" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; z-index: 3; overflow: hidden; position: absolute; top: 0;">
-                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))' style="max-height:100%; max-width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;" />
+                                                <div class="bannerPanelImageMain">
+                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
-                                                <div class="titleTopNavigation" style="display: none; width: 100%; height: 45%; font-size: 0.9em; color: black; text-align: center; position: absolute; bottom: 0; z-index: 7; background: rgba(255, 255, 255, 0.6);">
-                                                    <p style="padding: 0.5em;">@lastArticle.Name</p>
+                                                <div class="titleTopNavigation">
+                                                    <p>@lastArticle.Name</p>
                                                 </div>
                                             </div>
                                         </a>
                                     }
                                 </div>
                             </div>
-                            <div class="moreFromCategoryTopNavigation" style="float: right; clear: both; font-size: 1.1em;">
+                            <div class="moreFromCategoryTopNavigation">
                                 <a class="seeMoreFromCategoryTopNavigation" href="@Url.Action("Categories", "Articles", new {@id = item.Name})">
                                     <p>Zobacz wszystkie z kategorii @item.Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
                                 </a>
@@ -72,3 +72,4 @@
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Shared/Scripts/SharedTopNavigationMenu.js"></script>
+<link href="~/Views/Shared/Styles/_TopNavigationMenu.css" rel="stylesheet" type="text/css" />

@@ -24,7 +24,7 @@
     </div>
 }
 @if (Model.Name != "User") {
-    <button type="button" class="btn btn-danger .btn-sm popupRoleDelete" data-id="@Model.Id" href="#test-modal" style="padding-top: 1em; padding-right: 1em;">
+    <button type="button" class="btn btn-danger .btn-sm popupRoleDelete" data-id="@Model.Id" href="#test-modal">
         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Delete role
     </button>
 }
@@ -42,15 +42,3 @@
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationRolesDetails.js"></script>
-
-<style>
-    .white-popup {
-        position: relative;
-        background: #FFF;
-        padding: 40px;
-        width: auto;
-        max-width: 400px;
-        margin: 20px auto;
-        text-align: center;
-    }
-</style>

@@ -1,0 +1,9 @@
+﻿.mainBodyContainer {
+    float: left; 
+    width: 69%;
+}
+
+.mainSideBar {
+    float: right; 
+    width: 30%;
+}

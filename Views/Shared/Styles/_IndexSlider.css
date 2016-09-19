@@ -1,0 +1,132 @@
+﻿.sliderOne {
+    background-color: #222; 
+    width: 100%; 
+    margin: 0 auto; 
+    font-family: 'Coda', sans-serif; 
+    color: white;
+}
+
+.slideElementUpper {
+    height: 25em; 
+    display: block;
+}
+
+.sliderLink {
+    height: 100%;
+}
+
+.sliderLeft {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.5)); 
+    position: absolute; 
+    z-index: 1; 
+    width: 25%; 
+    height: 100%; 
+    padding-left: 1em; 
+    padding-right: 1em; 
+    padding-top: 1em; 
+    z-index: 4;
+}
+
+.sliderArticleCategories {
+    display: inline; 
+    float: left;
+}
+
+.sliderArticleAuthor {
+    float: right;
+}
+
+.sliderArticleSeries {
+    float: left; 
+    width: 100%;
+}
+
+.sliderArticleSeriesTitle {
+    background-color: #2B823C; 
+    color: black;
+}
+
+.sliderArticleTitle {
+    float: left; 
+    width: 100%;
+}
+
+.sliderArticleNameTitle {
+    margin-top: 0;
+}
+
+.sliderArticleLine {
+    width: 85%; 
+    text-align: center; 
+    margin: 0 auto; 
+    clear: both;
+}
+
+.sliderArticleIndexDescription {
+    text-align: justify; 
+    text-indent: 1em;
+}
+
+.imageOverlayColor {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 2;
+}
+
+.bannerPanelImageContainer {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.bannerPanelImageContainer img {
+    width: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.bannerPanelImageMain {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 3; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0;
+}
+
+.bannerPanelImageMain img {
+    height:100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.sliderSection {
+    background-color: #222; 
+    width: 100%; 
+    margin: 0 auto;
+}
+
+.slideElementDown {
+    height:10em;
+}
+
+.slideElementDown img {
+    width:auto; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto;
+}

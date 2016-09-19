@@ -1,0 +1,71 @@
+﻿.commentInputBlock {
+    display: inline-block;
+}
+
+.commentAddFormArtId {
+    display: none;
+}
+
+.addcommentButtonContainer {
+    padding-left: 2.2em;
+}
+
+.newCommentnotLogged {
+    text-align: center; 
+    margin: 0 auto; 
+    font-family: 'Coda', sans-serif;
+}
+
+#commentSection {
+    padding-bottom: 4em;
+}
+
+.commentFooter {
+    height: 100%; 
+    color: black; 
+    padding-right: 0;
+}
+
+.commentFooter img {
+    max-width: 100%; 
+    text-align: center; 
+    margin: 0 auto;
+}
+
+.commentBody {
+    height: 100%; 
+    max-width: 100%;
+}
+
+.readyCommentDetails {
+    width: 100%; 
+    border-bottom: solid 1px black; 
+    display: inline-block;
+}
+
+.commentDetailsLeftContainer {
+    float: left;
+}
+
+.commentDetailsRightContainer {
+    float: right;
+}
+
+.readyCommentBody {
+    width: 100%; 
+    text-align: justify
+}
+
+.white-popup {
+    position: relative;
+    background: #FFF;
+    padding: 40px;
+    width: auto;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.widerPopup {
+    max-width: 650px !important;
+}

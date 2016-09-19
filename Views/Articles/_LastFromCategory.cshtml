@@ -7,33 +7,36 @@
 
 @if (Model.Any()){
     var categoryName = articleHelper.GetCategoryById(Model.First().CategoryId).Name;
-    <div class="lastFromCategoryPanel" style="padding-bottom: 2em; padding-top: 1em;font-family: 'Coda', sans-serif">
-        <div class="lastFromCategoryLabel" style="color: crimson; font-size: 1.4em; width: 99.9%; border-radius: 0 20px 0 0;">
+    <div class="lastFromCategoryPanel">
+        <div class="lastFromCategoryLabel">
             Zobacz ostatnie z tej kategorii:
         </div>
-        <div class="lastFromCategoryContainer" style="display: inline-flex; margin: 0 auto; text-align: center; width: 100%; padding-top: 1em;">
+        <div class="lastFromCategoryContainer">
             @foreach (var item in Model)
             {
-                <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))" style="width: 25%; margin: 0 auto; text-align: center;">
-                    <div class="singleLastArticleTopNavigation" style="width: 100%; height: 15em; overflow: hidden; position: relative; border: 1px solid white;">
-                        <div class="imageOverlayColor" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); z-index: 2;"></div>
-                        <div class="bannerPanelImageContainer" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; background-color: black; z-index: 1; overflow: hidden;">
-                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="min-width: 100%; min-height: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;"/>
+                <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
+                    <div class="singleLastArticleTopNavigation">
+                        <div class="imageOverlayColor"></div>
+                        <div class="bannerPanelImageContainer">
+                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                         </div>
-                        <div class="bannerPanelImageMain" style="width: 100%; height: 100%; text-align: center; margin: 0 auto; z-index: 3; overflow: hidden; position: absolute; top: 0;">
-                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="max-height: 100%; max-width: 100%; text-align: center; margin: 0 auto; z-index: 0; vertical-align: middle;"/>
+                        <div class="bannerPanelImageMain">
+                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                         </div>
-                        <div class="titleTopNavigation" style="display: none; width: 100%; height: 45%; font-size: 0.9em; color: black; text-align: center; position: absolute; bottom: 0; z-index: 7; background: rgba(255, 255, 255, 0.6);">
-                            <p style="padding: 0.5em;">@item.Name</p>
+                        <div class="titleTopNavigation">
+                            <p>@item.Name</p>
                         </div>
                     </div>
                 </a>
             }
         </div>
-        <div class="lastFromCategoryLabel" style="float: right; color: crimson; font-size: 1.3em; padding-left: 1em; width: 99.9%;">
+        <div class="lastFromCategoryLabelLinkContainer">
             <a class="seeMoreFromCategory" href="@Url.Action("Categories", "Articles", new {@id = categoryName})">
-                <p style="float: right;"> Zobacz wszystkie z kategorii @articleHelper.GetCategoryById(Model.First().CategoryId).Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
+                <p> Zobacz wszystkie z kategorii @articleHelper.GetCategoryById(Model.First().CategoryId).Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
             </a>
         </div>
     </div>
 }
+
+@*SCRIPTS FOR VIEW*@
+<link href="~/Views/Articles/Styles/_LastFromCategory.css" rel="stylesheet" type="text/css" />

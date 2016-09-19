@@ -1,0 +1,41 @@
+﻿.containerTop, .containerMiddle {
+    padding-left: 0; 
+    padding-right: 0;
+}
+
+.indexExplicitInfo {
+    padding-left: 2em; 
+    padding-right: 2em; 
+    padding-bottom: 1em; 
+    background-color: white; 
+    font-family: 'Amarante', sans-serif;
+    text-align: justify;
+}
+
+.warningMessageLayout {
+    width: 90%; 
+    margin-top: -1em; 
+    padding-right: 1em;
+    float: left;
+}
+
+.warningLayoutTitle {
+    color: red;
+}
+
+.socialMessageLayout {
+    width: 10%; 
+    float: right;
+}
+
+.socialMessageLayout img {
+    float: left; 
+    width: 100%; 
+    height: auto; 
+    text-align: center; 
+    padding-top: 1em;
+}
+
+#return-to-top {
+    border: none !important;
+}

@@ -11,31 +11,20 @@
     ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
-<div class="detailContainer" style="width: 100%; float: left;">
-    <div class="articleDetail" style="width: 100%; float: left; border-bottom: 2px solid #2B823C;">
-        @*@if (articleHelper.GetImageByArticleId(Model.Id) != null) {
-                <div class="articleMainImage" style="width: 100%; text-align: center; margin: 0 auto; background-color: black;">
-                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(Model.Id))' style="max-width: 100%; max-height: 30em; text-align: center; margin: 0 auto;"/>
-                </div>
-            }*@
-
-        <div class="articleDetailsIntro" style="text-align: justify; font-size: 1.3em; text-indent: 0.9em; border-left: 0.5em #2B823C solid;border-right: 0.5em #2B823C solid; width: 100%; padding: 2px 5px 2px 5px; padding-left: 1em; padding-right: 1em; font-family: 'Krona One', sans-serif;">
+<div class="detailContainer">
+    <div class="articleDetail">
+        <div class="articleDetailsIntro">
             @Html.Raw(WebUtility.HtmlDecode(Model.Prelude))
         </div>
-        <hr style="margin-top: 0;" />
-
-        <div class="articleDetailsBody" style="text-align: justify; font-size: 1.2em; padding: 1em; font-family: 'Coda', sans-serif;">
+        <hr class="articleDetailsLine" />
+        <div class="articleDetailsBody">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
-        <!-- Your like button code -->
-        <div class="fb-like" style="padding: 2em;" data-href="@currentUrl" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
-
-        @*<hr style="border:2px solid #2B823C; background-color:#2B823C" />*@
+        <div class="fb-like" data-href="@currentUrl" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
     </div>
-
-    <div style="clear: both">
+    <div class="articleDetailsBottomSection">
         @Html.Action("_LastFromCategory", new { amount = 4, categoryId = Model.CategoryId, articleId = Model.Id })
-        <hr style="border: 2px solid #2B823C; background-color: #2B823C; width: 100%;" />
+        <hr class="articleDetailsBottomLine"/>
         <div id="detailsCommentSection">
             @Html.Action("_Comments", new { id = Guid.Empty, artId = Model.Id })
         </div>
@@ -45,3 +34,4 @@
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesDetails.js"></script>
+<link href="~/Views/Articles/Styles/Details.css" rel="stylesheet" type="text/css" />

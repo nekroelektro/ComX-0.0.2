@@ -15,15 +15,15 @@
 }
 
 <div class="userPanelContainer col-md-12">
-    <div class="greetUserPanel" style="float: left;">
+    <div class="greetUserPanel">
         <h2>Witojcie, @Model.UserName!!!</h2>
     </div>
-    <div class="buttons" style="float: right; margin-top: 1em;">
+    <div class="userPanelButtons">
         <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
-            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>DO GÓRY
+            <span class="glyphicon glyphicon-arrow-up userPanelBackButton" aria-hidden="true"></span>DO GÓRY
         </button>
     </div>
-    <div class="infoUserPanel" style="padding-top: 1em; padding-bottom: 1em; width: 100%; clear: both;">
+    <div class="infoUserPanel">
         <p>Zarejestrowany od: @Model.DateOfCreation.ToShortDateString()</p>
         <p>Rangi: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
         @if (!Model.AccoutConfirmed) {
@@ -61,11 +61,11 @@
     }
     else {
         <div class="userPanelAvatarSection col-md-6">
-            <div class="col-md-12" style="padding-bottom: 1em;">
+            <div class="col-md-12 userPanelAvatarContainer">
                 <p>Twój aktualny awatar wygląda tak:</p>
-                <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.UserId})' style="max-width: 50%; text-align: center; margin: 0 auto;"/>
+                <img src='@Url.Action("GetAvatar", "Account", new {userId = Model.UserId})'/>
             </div>
-            <div class="col-md-12" style="padding-bottom: 1em;">
+            <div class="col-md-12 userPanelAvatarTitlesContainer">
                 <button type="button" class="btn btn-danger btn-m popupUserDelete" data-id="@Model.UserId" href="#popupAvatarDelete">
                     <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Usuń awatara
                 </button>
@@ -80,7 +80,7 @@
             <p>Aktualne rangi usera: @userHelper.GetRoleNamesByUserId(Model.UserId)</p>
             @if (userHelper.GetRolesByUserId(Model.UserId).Count > 1) {
                 <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("DegradeUser", "Account", new {@userId = Model.UserId})'">
-                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="font-size: 1.1em"></span>Zdegraduj do usera
+                    <span class="glyphicon glyphicon-arrow-up userPanelBackButton" aria-hidden="true"></span>Zdegraduj do usera
                 </button>
             }
             @using (Html.BeginForm("ChangeRole", "Account")) {
@@ -103,7 +103,7 @@
                 </div>
             }
         </div>
-        <div class="col-md-offset-2 col-md-12" style="margin: 0 auto; text-align: center;">
+        <div class="col-md-offset-2 col-md-12 userPanelBlockSection">
             <button type="button" class="btn btn-warning btn-m popupUserBlock" data-id="@Model.UserId" href="#popupUserBlock">
                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>@str
             </button>
@@ -142,20 +142,10 @@
             <button type="button" class="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
         </div>
     }
-    <p style="width: 100%; margin: 0 auto; text-align: center; clear: both; color: #C5C8C9;">...the horror...the horror...</p>
+    <p class="subConcious">...the horror...the horror...</p>
 </div>
 
 @*SCRIPTS FOR VIEW*@
-<script type="text/javascript" src="~/Views/Articles/Scripts/AccountUserPanel.js"></script>
-        <style>
-            .white-popup {
-                position: relative;
-                background: #FFF;
-                padding: 40px;
-                width: auto;
-                max-width: 400px;
-                margin: 20px auto;
-                text-align: center;
-            }
-        </style>
+<script type="text/javascript" src="~/Views/Account/Scripts/AccountUserPanel.js"></script>
+<link href="~/Views/Account/Styles/UserPanel.css" rel="stylesheet" type="text/css" />
 

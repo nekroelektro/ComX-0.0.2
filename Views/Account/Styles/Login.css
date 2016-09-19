@@ -1,0 +1,13 @@
+﻿.loginContainer {
+    width: 50%; 
+    margin: 0 auto;
+}
+
+.loginTopLabel {
+    color: #2B823C;
+}
+
+.forgotPasswordLogin {
+    margin: 0 auto; 
+    text-align: center;
+}

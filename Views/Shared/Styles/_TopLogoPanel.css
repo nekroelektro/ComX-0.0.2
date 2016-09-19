@@ -1,0 +1,25 @@
+﻿.logoSection {
+    padding-left: 0; 
+    padding-right: 0; 
+    background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(34, 34, 34, 1));
+}
+
+.logo img {
+    float: left; 
+    width: 20%; 
+    height: auto; 
+    text-align: center;
+}
+
+.rightLogoPanel {
+    float: right; 
+    width: 20em; 
+    font-family: 'Coda', sans-serif;
+}
+
+.logoMenu {
+    list-style-type: none; 
+    padding-left: 0; 
+    width: 100%; 
+    text-align: right;
+}

@@ -13,7 +13,7 @@
         <div class="newCommentSection">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <div class="col-xs-12 center-block" style="display: inline-block;">
+                    <div class="col-xs-12 center-block editCommentWindowContainer">
                         @Html.Custom_DivFor(model => model.Body, "form-control comEditorTextArea")
                         @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
                     </div>
@@ -22,7 +22,7 @@
                 @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
                 @Html.HiddenFor(model => model.ArticleId)
                 <div class="form-group">
-                    <div style="padding-left: 2.2em;">
+                    <div class="commentEditButtons">
                         <button type="submit" class="btn btn-info submitEditCommentForm">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                         </button>
@@ -39,3 +39,4 @@ else {
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesCommentEdit.js"></script>
+<link href="~/Views/Articles/Styles/CommentEdit.css" rel="stylesheet" type="text/css" />

@@ -1,0 +1,152 @@
+﻿.categoryArticleTitle {
+    width: 100%; 
+    float: left;
+}
+
+.categoryArticleTitle h2 {
+    float: left;
+}
+
+.categoryViewType {
+    float: right; 
+    margin-top: 1.5em; 
+    padding-right: 1.4em;
+}
+
+.categoryBtn {
+    font-size: 1.1em;
+}
+
+.articlesIndexContainer {
+    width: 100%; 
+    float: left; 
+    display: none;
+}
+
+.articlesCategoryTable {
+    padding-left: 0; 
+    margin-left: 0;
+}
+
+.articlesIndexSingle {
+    border-top: #222 0.5em solid; 
+    height: 15em; 
+    margin-bottom: 1em; 
+    font-family: 'Coda', sans-serif;
+}
+
+.noItemsInCategorySection {
+    width: 100%; 
+    float: left; 
+    color: #2B823C; 
+    text-align: center;
+    margin: 0 auto;
+}
+
+.noItemsInCategorySection h3 {
+    width: 65%; 
+    margin: 0 auto;
+}
+
+.articlesIndexSingleImage {
+    width: 38%; 
+    height: 100%; 
+    margin-bottom: 1em; 
+    position: relative; 
+    z-index: 5; 
+    overflow: hidden; 
+    float: left;
+}
+
+.bannerPanelImageContainer {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.bannerPanelImageContainer img {
+    width: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.bannerPanelImageMain {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 3; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0;
+}
+
+.bannerPanelImageMain img {
+    height:100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.imageOverlayColor {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 2;
+}
+
+.articlesIndexSingleBody {
+    width: 62%; 
+    min-height: 100%; 
+    float: right; 
+    padding-left: 0.7em; 
+    position: relative;
+}
+
+.indexArticleTitleTopSection {
+    width: 100%; 
+    padding-bottom: 1em;
+}
+
+.articlesIndexSingleCategories {
+    float: left;
+}
+
+.articlesIndexSingleDate {
+    float: right;
+}
+
+.articlesIndexName {
+    width: 100% !important; 
+    clear: both;
+}
+
+.indexAlternativeViewLine {
+    border-color: crimson; 
+    margin: 1em;
+}
+
+.articlesIndexSingleFooter {
+    background-color: black; 
+    color: white; 
+    width: 30%;
+    border-radius: 30px 0 0 0; 
+    float: right;
+    text-align: center;
+    max-height: 1.5em;
+    min-width: 6em;
+    font-size: 1em; 
+    position: absolute; 
+    bottom: 0; 
+    right: 0;
+}
