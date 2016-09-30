@@ -4,48 +4,44 @@
     font-size: 1.6em; 
     font-family: 'Coda', sans-serif; 
     color: #2B823C;
+    background-color: #f7f7f7;
 }
 
 .sideIntro {
     padding-left: 1em; 
     padding-right: 1em; 
     padding-bottom: 1em; 
-    margin-bottom: 1em; 
-    background-color: #222; 
-    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+    margin-bottom: 1em;
 }
 
 .sideIntroBody {
     font-size: 0.7em; 
-    color: white; 
+    color: black; 
     text-align: justify;
 }
 
 .sideContact {
     width: 100%; 
     padding-left: 1em; 
+    padding-right: 1em; 
     margin-bottom: 1em; 
-    background-color: #222; 
-    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
 }
 
 .sideContactTitle {
     text-align: center; 
     padding-bottom: 1em;
-    color: whitesmoke;
+    color: black;
     font-size: 1em;
 }
 
 .sidePlazlist {
     margin-bottom: 1em; 
-    background-color: #222; 
-    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+    padding-left: 1em; 
+    padding-right: 1em;
 }
 
 .sideTitle {
-    text-align: left; 
-    padding-left: 1em; 
-    margin-right: 1em;
+    text-align: left;
 }
 
 .sidePlazlistTitle {
@@ -61,19 +57,16 @@
 }
 
 .sideQuote {
-    background-color: black; 
     padding-left: 1em; 
     padding-bottom: 1em; 
     padding-right: 1em; 
     margin-bottom: 1em; 
-    background-color: #222; 
-    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
 }
 
 .sideQuoteBody {
     font-family: 'Times New Roman', Georgia, Serif; 
     font-size: 0.7em; 
-    color: gray; 
+    color: black; 
     padding: 5px; 
     text-align: center;
 }
@@ -83,13 +76,11 @@
     padding-right: 1em; 
     padding-bottom: 1em; 
     margin-bottom: 1em; 
-    background-color: #222; 
-    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
 }
 
 .sideLastCommentsBody {
     font-size: 0.7em; 
-    color: white; 
+    color: black; 
     text-align: justify; 
     font-family: 'Coda', sans-serif; 
     font-size: small;
@@ -99,13 +90,34 @@
     display: block;
 }
 
+.sideRandomPostsAnchor:hover {
+    color: #2B823C !important;
+    text-decoration: none;
+    outline: 0;
+}
+
+.sideLastCommentAnchor {
+    color: black !important;
+    text-decoration: none;
+    outline: 0;
+}
+
+.sideLastCommentAnchor:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
+.sideLastCommentsBodySingle:hover {
+    background-color: #2B823C;
+    color: whitesmoke;
+}
+
 .sideRandomPosts {
     padding-left: 1em; 
     padding-right: 1em; 
     padding-bottom: 1em; 
     margin-bottom: 1em; 
-    background-color: #222; 
-    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+    background-color: #f7f7f7;
 }
 
 .sidePostsBody {
@@ -130,7 +142,7 @@
     border: solid 1px #2B823C;
 }
 
-.imageOverlayColor {
+.imageOverlayColorSide {
     width: 100%; 
     height: 100%; 
     position: absolute; 
@@ -140,7 +152,7 @@
     z-index: 2;
 }
 
-.bannerPanelImageContainer {
+.bannerPanelImageContainerSide {
     width: 100%; 
     height: 100%; 
     text-align: center; 
@@ -150,7 +162,7 @@
     overflow: hidden;
 }
 
-.bannerPanelImageContainer img {
+.bannerPanelImageContainerSide img {
     min-width: 100%; 
     min-height: 100%; 
     text-align: center; 
@@ -159,7 +171,7 @@
     vertical-align: middle;
 }
 
-.bannerPanelImageMain {
+.bannerPanelImageMainSide {
     width: 100%; 
     height: 100%; 
     text-align: center; 
@@ -170,7 +182,7 @@
     top: 0;
 }
 
-.bannerPanelImageMain img {
+.bannerPanelImageMainSide img {
     max-height: 100%; 
     max-width: 100%; 
     text-align: center; 
@@ -191,4 +203,10 @@
     background-color: #2B823C; 
     margin: 0; 
     margin-bottom: 0.3em;
+}
+
+.sideRandomPostsAnchor {
+    color: black !important;
+    text-decoration: none;
+    outline: 0;
 }

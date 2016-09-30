@@ -155,6 +155,7 @@ a {
     text-align: justify;
     text-indent: 0.9em;
     min-height: 6em;
+    font-size: 0.9em;
 }
 
 /*.indexArticleBody p {
@@ -350,29 +351,6 @@ a {
     outline: 0; 
 }
 
-.sideLastCommentAnchor{
-    color: white !important;
-    text-decoration: none;
-    outline: 0; 
-}
-
-.sideRandomPostsAnchor {
-    color: white !important;
-    text-decoration: none;
-    outline: 0; 
-}
-
-.sideRandomPostsAnchor:hover {
-    color: #2B823C !important;
-    text-decoration: none;
-    outline: 0;
-}
-
-.sideLastCommentAnchor:hover {
-    text-decoration: none;
-    outline: 0;
-}
-
 .topNavigationLastAnchor:hover {
     color: #222 !important;
     text-decoration: none;
@@ -383,7 +361,7 @@ a {
     min-height: 400px !important;
 }
 
-.singleLastArticleTopNavigation img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img {
+.singleLastArticleTopNavigation img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img, .articlesIndexSingleImage img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -399,15 +377,26 @@ a {
     background-color: crimson;
 }
 
-.sideLastCommentsBodySingle:hover {
-    background-color: #2B823C;
-    color: whitesmoke;
-}
-
 .maintenanceImage img {
     width: 100%; 
     text-align: center; 
     margin: 0 auto; 
     z-index: 0; 
     vertical-align: middle;
+}
+
+/* RESPONSIVES */
+
+@media screen and (max-width: 900px) { 
+
+	.mainSideBar {
+	    display: none;
+	}
+    .mainBodyContainer {
+        width: 100% !important;
+    }
+
+    .containerMiddle {
+        display: none;
+    }
 }

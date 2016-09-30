@@ -428,6 +428,9 @@
     <Content Include="scripts\slick.min.js" />
     <Content Include="scripts\trumbowyg.min.js" />
     <Content Include="Views\Account\Scripts\AccountUserPanel.js" />
+    <Content Include="Views\Account\Styles\UserPanel.css" />
+    <Content Include="Views\Account\Styles\Register.css" />
+    <Content Include="Views\Account\Styles\Login.css" />
     <Content Include="Views\Articles\Scripts\Articles.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCategories.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCommentEdit.js" />
@@ -435,6 +438,14 @@
     <Content Include="Views\Articles\Scripts\ArticlesDetails.js" />
     <Content Include="Views\Articles\Scripts\ArticlesEditCreate.js" />
     <Content Include="Views\Articles\Scripts\ArticlesIndex.js" />
+    <Content Include="Views\Articles\Styles\Details.css" />
+    <Content Include="Views\Articles\Styles\CommentEdit.css" />
+    <Content Include="Views\Articles\Styles\Categories.css" />
+    <Content Include="Views\Articles\Styles\_TopDetailPanel.css" />
+    <Content Include="Views\Articles\Styles\_Comments.css" />
+    <Content Include="Views\Articles\Styles\_LastFromCategory.css" />
+    <Content Include="Views\Articles\Styles\_Articles.css" />
+    <Content Include="Views\Articles\Styles\Index.css" />
     <Content Include="Views\Configuration\Scripts\ConfigurationCategories.js" />
     <Content Include="Views\Configuration\Scripts\ConfigurationArticles.js" />
     <Content Include="Views\Configuration\Scripts\ConfigurationSubCategoriesDetails.js" />
@@ -448,6 +459,11 @@
     <Content Include="Views\Shared\Scripts\SharedLayout.js" />
     <Content Include="Views\Shared\Scripts\SharedSideBar.js" />
     <Content Include="Views\Shared\Scripts\SharedTopNavigationMenu.js" />
+    <Content Include="Views\Shared\Styles\_IndexSlider.css" />
+    <Content Include="Views\Shared\Styles\_Layout.css" />
+    <Content Include="Views\Shared\Styles\_SideBar.css" />
+    <Content Include="Views\Shared\Styles\_TopLogoPanel.css" />
+    <Content Include="Views\Shared\Styles\_TopNavigationMenu.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -456,6 +472,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Migrations\201609271659527_mig5.cs" />
+    <Compile Include="Migrations\201609271659527_mig5.Designer.cs">
+      <DependentUpon>201609271659527_mig5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
     <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />
@@ -581,7 +601,7 @@
   <ItemGroup>
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
-    <Folder Include="Views\Shared\Controller\" />
+    <Folder Include="Views\Configuration\Styles\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">
@@ -595,6 +615,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608211315086_mig4.resx">
       <DependentUpon>201608211315086_mig4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271659527_mig5.resx">
+      <DependentUpon>201609271659527_mig5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

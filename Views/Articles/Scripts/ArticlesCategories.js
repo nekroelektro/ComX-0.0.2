@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
-    $(function () {
-        pageGrids.categoryArticleGrid.onRowSelect(function (e) {
-            var rowArticleId = e.row.Id;
-            window.location.href = "/Articles/Details/" + rowArticleId;
-        });
-    });
+    //$(function () {
+    //    pageGrids.categoryArticleGrid.onRowSelect(function (e) {
+    //        var rowArticleId = e.row.Id;
+    //        window.location.href = "/Articles/Details/" + rowArticleId;
+    //    });
+    //});
 
     // PACKERY
     var $grid = $('.grid').packery({

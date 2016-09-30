@@ -8,7 +8,7 @@
         asNavFor: '.sliderSection'
     });
     $(".sliderSection").slick({
-        dots: true,
+        dots: false,
         infinite: true,
         centerMode: true,
         asNavFor: '.sliderOne',

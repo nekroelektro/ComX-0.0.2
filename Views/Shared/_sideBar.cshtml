@@ -11,7 +11,7 @@
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Intro:
         <hr class="sideGreenLine" />
         <div class="sideIntroBody">
-            Jak już tutaj trafiłoś, to się rozgość i zakosztuj w dobroci i smakowitościach. Quasi-blog o wszystkiem co dobre. Jak nie będzie prowadzony regularnie, to będę umartwiać kończyny, więc motywacja jest silna. Jeśli masz jakieś uwagi, a może chcesz wysmażyc jakiegoś tekst-balasa, daj znać - no problemo.
+            Jak już tutaj trafiłoś, to się rozgość i zakosztuj w dobroci i smakowitościach. NekroPlaza ma być doświadczeniem - nie kolejnym anonimowym blogiem z recenzjami chujwijakich pierdół - to miejsce zabaw, spijania śmietanki z przeróżnych dobroci i bojkotu pesymizmu i połkniętego kija. Doświadcz tego.
         </div>
     </div>
     <div class="sideContact">
@@ -26,7 +26,7 @@
             <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Plazlista:
             <hr class="sideGreenLine" />
         </div>
-        <div class="sidePlazlistTitle">DEATH METAL VARIETES I</div>
+        <div class="sidePlazlistTitle">@generalHelper.GetSettings().ListName</div>
         <iframe class="sidePlazlistWidget" src="@generalHelper.GetSettings().Playlist" frameborder="0" allowtransparency="true"></iframe>
     </div>
     <div class="sideQuote">
@@ -38,9 +38,10 @@
     </div>
     <div class="sideLastComments">
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Ostatnie komentarze:
-        <hr class="sideGreenLine"/>
+        <hr class="sideGreenLine" />
         <div class="sideLastCommentsBody">
-            @foreach (var item in articleHelper.GetLastComments(10)) {
+            @foreach (var item in articleHelper.GetLastComments(10))
+            {
                 <a class="sideLastCommentAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(item.ArticleId).Name)}))#commentSection">
                     <div class="sideLastCommentsBodySingle">
                         <div class="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @articleHelper.GetArticleById(item.ArticleId).Name</div>
@@ -56,17 +57,19 @@
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Losowe posty:
         <hr class="sideGreenLine" />
         <div class="sidePostsBody">
-            @foreach (var item in randomPosts) {
+            @foreach (var item in randomPosts)
+            {
                 <a class="sideRandomPostsAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
                     <div class="sideArt">
-                        @if (articleHelper.GetImageByArticleId(item.Id) != null) {
+                        @if (articleHelper.GetImageByArticleId(item.Id) != null)
+                        {
                             <div class="sidebarRandomArtImg">
-                                <div class="imageOverlayColor"></div>
-                                <div class="bannerPanelImageContainer">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                                <div class="imageOverlayColorSide"></div>
+                                <div class="bannerPanelImageContainerSide">
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
                                 </div>
-                                <div class="bannerPanelImageMain">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                                <div class="bannerPanelImageMainSide">
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
                                 </div>
                             </div>
                         }

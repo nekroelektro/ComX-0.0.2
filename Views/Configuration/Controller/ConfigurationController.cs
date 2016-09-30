@@ -268,6 +268,7 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
                 set.CommentsAvailable = settings.CommentsAvailable;
                 set.Quote = settings.Quote;
                 set.JumboIndexText = settings.JumboIndexText;
+                set.ListName = settings.ListName;
                 set.Playlist = settings.Playlist;
                 db.Entry(set).State = EntityState.Modified;
                 db.SaveChanges();

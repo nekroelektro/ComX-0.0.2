@@ -21,6 +21,9 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 publishedArticles = publishedArticles.Where(x => x.CategoryId == new Guid(category)).ToList();
                 return PartialView("Index", publishedArticles);
             }
+            for (var i = 0; i < 7; i++) {
+                publishedArticles.RemoveAt(0);
+            }
             return PartialView("Index", publishedArticles);
         }
 

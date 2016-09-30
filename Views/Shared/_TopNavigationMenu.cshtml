@@ -42,11 +42,11 @@
                                     @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
                                         <a class="topNavigationLastAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(lastArticle.Name)}))">
                                             <div class="singleLastArticleTopNavigation">
-                                                <div class="imageOverlayColor"></div>
-                                                <div class="bannerPanelImageContainer">
+                                                <div class="imageOverlayColorNav"></div>
+                                                <div class="bannerPanelImageContainerNav">
                                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
-                                                <div class="bannerPanelImageMain">
+                                                <div class="bannerPanelImageMainNav">
                                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
                                                 <div class="titleTopNavigation">
@@ -71,5 +71,4 @@
 </div>
 
 @*SCRIPTS FOR VIEW*@
-<script type="text/javascript" src="~/Views/Shared/Scripts/SharedTopNavigationMenu.js"></script>
 <link href="~/Views/Shared/Styles/_TopNavigationMenu.css" rel="stylesheet" type="text/css" />
