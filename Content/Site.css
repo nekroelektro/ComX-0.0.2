@@ -144,6 +144,11 @@ a {
 }
 
 .singleIndexAnchor:hover {
+    text-decoration: none;
+    outline: 0;  
+}
+
+.singleIndexAnchor:hover .singleIndexTitle{
     color: #2B823C !important;
 }
 
@@ -228,6 +233,7 @@ a {
 
 .bottomFooter:hover {
     color: red;
+    cursor: not-allowed;
 }
 
 .bottomFooter p {
@@ -336,11 +342,11 @@ a {
 .seeMoreFromCategoryTopNavigation {   
     text-decoration: none;
     outline: 0;
-    color: #222 !important;
+    color: white !important;
 }
 
 .seeMoreFromCategoryTopNavigation:hover {
-    color: white !important;
+    color: #2B823C!important;
     text-decoration: none;
     outline: 0;
 }
@@ -385,6 +391,10 @@ a {
     vertical-align: middle;
 }
 
+.diaryCreateComponent {
+    display: none;
+}
+
 /* RESPONSIVES */
 
 @media screen and (max-width: 900px) { 
@@ -396,7 +406,7 @@ a {
         width: 100% !important;
     }
 
-    .containerMiddle {
+    .sliderSection {
         display: none;
     }
 }

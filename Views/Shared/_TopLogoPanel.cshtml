@@ -11,6 +11,11 @@
             <img src='~/Content/images/npLogosBeta.png'/>
         </a>
     </div>
+    <div class="logo recrutation">
+        <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString("NekroPlaza rekrutuje!")}))">
+            <img src='~/Content/images/rekrutacja.png' />
+        </a>
+    </div>
     <div class="rightLogoPanel">
         <ul class="logoMenu">
             @if (userHelper.IsAdminUser(User)) {

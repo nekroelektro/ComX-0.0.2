@@ -8,14 +8,14 @@
 }
 <div class="sideBar">
     <div class="sideIntro">
-        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Intro:
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Intro:
         <hr class="sideGreenLine" />
         <div class="sideIntroBody">
             Jak już tutaj trafiłoś, to się rozgość i zakosztuj w dobroci i smakowitościach. NekroPlaza ma być doświadczeniem - nie kolejnym anonimowym blogiem z recenzjami chujwijakich pierdół - to miejsce zabaw, spijania śmietanki z przeróżnych dobroci i bojkotu pesymizmu i połkniętego kija. Doświadcz tego.
         </div>
     </div>
     <div class="sideContact">
-        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Kontakt:
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
         <hr class="sideGreenLine" />
         <div class="sideContactTitle">
             nekro@nekroplaza.pl
@@ -23,21 +23,21 @@
     </div>
     <div class="sidePlazlist">
         <div class="sideTitle">
-            <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Plazlista:
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
             <hr class="sideGreenLine" />
         </div>
         <div class="sidePlazlistTitle">@generalHelper.GetSettings().ListName</div>
         <iframe class="sidePlazlistWidget" src="@generalHelper.GetSettings().Playlist" frameborder="0" allowtransparency="true"></iframe>
     </div>
     <div class="sideQuote">
-        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Cytat dnia:
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Cytat dnia:
         <hr class="sideGreenLine" />
         <div class="sideQuoteBody">
             "@generalHelper.GetSettings().Quote"
         </div>
     </div>
     <div class="sideLastComments">
-        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Ostatnie komentarze:
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
         <hr class="sideGreenLine" />
         <div class="sideLastCommentsBody">
             @foreach (var item in articleHelper.GetLastComments(10))
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="sideRandomPosts">
-        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Losowe posty:
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
         <hr class="sideGreenLine" />
         <div class="sidePostsBody">
             @foreach (var item in randomPosts)

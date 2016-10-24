@@ -16,8 +16,9 @@
 
     $('#pager').pajinate({
         num_page_links_to_display: 3,
-        items_per_page: 10
-    });
+        items_per_page: 5,
+        show_first_last: false
+});
 
     $(".page_navigation a").click(function () {
         $('html, body').animate({
@@ -30,6 +31,14 @@
         nextSelector: 'a.next_link',
         contentSelector: '.singleIndexArticle'
     });
+
+    $('.singleIndexAnchor')
+        .mouseover(function () {
+            $(this).parent().find('h4').css('color', "#2B823C");
+        })
+        .mouseout(function () {
+            $(this).parent().find('h4').css('color', 'black');
+        });
 
     //$('.indexListMenuItem').click(function () {
     //});
@@ -50,4 +59,13 @@
     //        $(".articlesIndexContainer").html(partialViewResult);
     //    });
     //});
+
+    $('.indexSingleReview')
+        .mouseover(function () {
+            //$(this).find('.titleTopNavigation').show(500);
+            $(this).find('.indexReviewTitle').stop().fadeTo("slow", 1);
+        })
+        .mouseout(function () {
+            $(this).find('.indexReviewTitle').stop().fadeTo("slow", 0);
+        });
 });

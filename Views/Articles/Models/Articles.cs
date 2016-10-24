@@ -7,7 +7,7 @@ namespace ComX_0._0._2.Views.Articles.Models {
         [Required]
         public Guid Id { get; set; }
 
-        [DisplayName("Title")]
+        [DisplayName("Tytuł")]
         [Required(ErrorMessage = "Title is required field!")]
         public string Name { get; set; }
 
@@ -22,10 +22,10 @@ namespace ComX_0._0._2.Views.Articles.Models {
         [DisplayName("Author")]
         public Guid UserId { get; set; }
 
-        [DisplayName("Category")]
+        [DisplayName("Kategoria")]
         public Guid CategoryId { get; set; }
 
-        [DisplayName("SubCategory")]
+        [DisplayName("Subkategoria")]
         public Guid SubCategoryId { get; set; }
 
         [DisplayName("Date of creation")]
@@ -41,7 +41,7 @@ namespace ComX_0._0._2.Views.Articles.Models {
         [DisplayName("Short description for Index")]
         public string IndexDescription { get; set; }
 
-        [DisplayName("Series")]
+        [DisplayName("Cykl")]
         public Guid Series { get; set; }
     }
 }

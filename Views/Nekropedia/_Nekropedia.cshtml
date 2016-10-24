@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string currentUrl = Request.Url?.AbsoluteUri;
+}
+<div class="body-content">
+    @if (currentUrl.Contains("+"))
+    {
+        @Html.Action("_TopDetailPanel")
+    }
+    <div class="mainBodyContainer">
+        @RenderBody()
+    </div>
+    @if (!currentUrl.Contains("Create") && !currentUrl.Contains("Edit"))
+    {
+        <div class="mainSideBar">
+            @Html.Partial("_SideBar")
+        </div>
+    }
+    <div class="push"></div>
+</div>

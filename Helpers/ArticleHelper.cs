@@ -65,6 +65,16 @@ namespace ComX_0._0._2.Helpers {
             }
         }
 
+        public ArticleSubCategories GetSubCategoryByName(string name) {
+            try{
+                var category = db.SubCategories.First(x => x.Name == name);
+                return category;
+            }
+            catch (Exception ex){
+                return null;
+            }
+        }
+
         public ArticleSubCategories GetSubCategoryById(Guid id) {
             var category = db.SubCategories.Find(id);
             return category;
@@ -285,11 +295,9 @@ namespace ComX_0._0._2.Helpers {
         }
 
         public List<Articles> GetLastArticlesFromCategory(int numberOfArticles, Guid categoryId, Guid articleId) {
-            var articlesFromCategory = new List<Articles>();
-            articlesFromCategory =
-                db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished)
-                    .OrderByDescending(x => x.DateCreated)
-                    .ToList();
+            var articlesFromCategory = db.Articles.Where(x => x.CategoryId == categoryId && x.IsPublished)
+                .OrderByDescending(x => x.DateCreated)
+                .ToList();
             if (articleId != Guid.Empty && articlesFromCategory.Count() != 0 && GetArticleById(articleId).IsPublished) {
                 var artToDelete = articlesFromCategory.First(x => x.Id == articleId);
                 articlesFromCategory.Remove(artToDelete);
@@ -312,5 +320,17 @@ namespace ComX_0._0._2.Helpers {
             var series = db.Series.Find(seriesId);
             return series;
         }
+
+        public List<Articles> GetLastMusicReviews(int numberOfReviews) {
+            var reviews = db.Articles.Where(
+                x =>
+                    x.CategoryId == new Guid("70beb869-0d4f-4744-9cfe-56232cf85906") &&
+                    x.SubCategoryId == new Guid("2b0b214b-371d-4ba6-b420-16254bb05388") &&
+                    x.IsPublished).OrderByDescending(x=>x.DateCreated).ToList();
+            if (reviews.Count() >= numberOfReviews) {
+                reviews = reviews.Take(numberOfReviews).ToList();
+            }
+            return reviews;
+        } 
     }
 }

@@ -29,6 +29,7 @@ namespace ComX_0._0._2.Views.Account.Models {
         public DbSet<UserProfileInfo> UserProfileInfo { get; set; }
         public DbSet<Series> Series { get; set; }
         public DbSet<SiteSettings> SiteSettings { get; set; } 
+        public DbSet<Diary> Diary { get; set; }
 
         public ApplicationDbContext(): base("DefaultConnection", false) {
         }

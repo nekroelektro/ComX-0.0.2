@@ -234,6 +234,7 @@
     <Content Include="Content\images\npLogos.jpg" />
     <Content Include="Content\images\npLogos.png" />
     <Content Include="Content\images\npLogosBeta.png" />
+    <Content Include="Content\images\rekrutacja.png" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Site.css" />
@@ -476,8 +477,30 @@
     <Compile Include="Migrations\201609271659527_mig5.Designer.cs">
       <DependentUpon>201609271659527_mig5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610221818492_mig6.cs" />
+    <Compile Include="Migrations\201610221818492_mig6.Designer.cs">
+      <DependentUpon>201610221818492_mig6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610221840007_mig7.cs" />
+    <Compile Include="Migrations\201610221840007_mig7.Designer.cs">
+      <DependentUpon>201610221840007_mig7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241440371_mig8.cs" />
+    <Compile Include="Migrations\201610241440371_mig8.Designer.cs">
+      <DependentUpon>201610241440371_mig8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241617105_mig9.cs" />
+    <Compile Include="Migrations\201610241617105_mig9.Designer.cs">
+      <DependentUpon>201610241617105_mig9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241644038_mig10.cs" />
+    <Compile Include="Migrations\201610241644038_mig10.Designer.cs">
+      <DependentUpon>201610241644038_mig10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
+    <Compile Include="Views\Articles\Models\Diary.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\CreateModelDto.cs" />
     <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />
     <Compile Include="Views\Manage\Controller\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -525,6 +548,14 @@
     <Compile Include="Views\Account\Models\UserIdentity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Nekropedia\Controller\NekropediaController.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdBands.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdBandsGenres.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdCovers.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdGenres.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdLabels.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdPersons.cs" />
+    <Compile Include="Views\Nekropedia\Models\NpdReleases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -591,6 +622,7 @@
     <Content Include="Views\Articles\_TopDetailPanel.cshtml" />
     <Content Include="Views\Articles\_Articles.cshtml" />
     <Content Include="Views\Shared\Maintenance.cshtml" />
+    <Content Include="Views\Nekropedia\_Nekropedia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -602,6 +634,8 @@
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
     <Folder Include="Views\Configuration\Styles\" />
+    <Folder Include="Views\Nekropedia\Scripts\" />
+    <Folder Include="Views\Nekropedia\Styles\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606201616264_mig1.resx">
@@ -618,6 +652,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609271659527_mig5.resx">
       <DependentUpon>201609271659527_mig5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610221818492_mig6.resx">
+      <DependentUpon>201610221818492_mig6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610221840007_mig7.resx">
+      <DependentUpon>201610221840007_mig7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241440371_mig8.resx">
+      <DependentUpon>201610241440371_mig8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241617105_mig9.resx">
+      <DependentUpon>201610241617105_mig9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241644038_mig10.resx">
+      <DependentUpon>201610241644038_mig10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

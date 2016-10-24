@@ -68,9 +68,10 @@
 
     $('.singleLastArticleTopNavigation')
         .mouseover(function () {
-            $(this).find('.titleTopNavigation').show();
+            //$(this).find('.titleTopNavigation').show(500);
+            $(this).find('.titleTopNavigation').stop().fadeTo("slow", 1);
         })
         .mouseout(function () {
-            $(this).find('.titleTopNavigation').hide();
+            $(this).find('.titleTopNavigation').stop().fadeTo("slow", 0);
         });
 });

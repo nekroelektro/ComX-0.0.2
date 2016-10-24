@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
+using ComX_0._0._2.Views.Articles.Models.DtoModels;
 
 namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
@@ -50,47 +51,72 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(
-            [Bind(
-                Include =
-                    "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription"
-                )] Models.Articles article,
-            HttpPostedFileBase upload) {
-            var articleIdentifier = Guid.NewGuid();
-            if (upload != null) {
-                var validImageTypes = new[] {
-                    "image/gif",
-                    "image/jpeg",
-                    "image/pjpeg",
-                    "image/png"
-                };
-                if (!validImageTypes.Contains(upload.ContentType)) {
-                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-                }
-                else {
-                    articleHelper.UploadImageForArticle(articleIdentifier, upload);
-                }
-            }
+        public ActionResult Create(CreateModelDto document, HttpPostedFileBase upload) {
+            var documentIdentifier = Guid.NewGuid();
 
             if (ModelState.IsValid) {
-                article.Id = articleIdentifier;
-                article.DateCreated = DateTime.Now;
-                article.DateEdited = DateTime.Now;
-                article.UserId = userHelper.GetCurrentLoggedUserId();
-                db.Articles.Add(article);
+                if (document.IsDiary) {
+                    var diaryObject = new Diary {
+                        Id = documentIdentifier,
+                        Name = document.Name,
+                        Body = document.Body,
+                        DateCreated = DateTime.Now,
+                        Label = document.Label,
+                        ReleaseYear = Convert.ToInt32(document.ReleaseYear),
+                        AlbumYear = Convert.ToInt32(document.AlbumYear),
+                        Genre = document.Genre,
+                        CatalogueNumber = document.CatalogueNumber,
+                        IsPublished = document.IsPublished,
+                        UserId = userHelper.GetCurrentLoggedUserId()
+                    };
+                    db.Diary.Add(diaryObject);
+                }
+                else
+                {
+                    if (upload != null)
+                    {
+                        var validImageTypes = new[] {
+                            "image/gif",
+                            "image/jpeg",
+                            "image/pjpeg",
+                            "image/png"
+                            };
+                        if (!validImageTypes.Contains(upload.ContentType))
+                        {
+                            ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                        }
+                        else {
+                            articleHelper.UploadImageForArticle(documentIdentifier, upload);
+                        }
+                    }
+                    var articleObject = new Models.Articles {
+                        Id = documentIdentifier,
+                        Name = document.Name,
+                        IndexDescription = document.IndexDescription,
+                        Prelude = document.Prelude,
+                        Body = document.Body,
+                        CategoryId = document.CategoryId.Value,
+                        SubCategoryId = document.SubCategoryId.Value,
+                        Series = document.Series.Value,
+                        DateCreated = DateTime.Now,
+                        DateEdited = DateTime.Now,
+                        UserId = userHelper.GetCurrentLoggedUserId()
+                    };
+                    db.Articles.Add(articleObject);
+                }
 
                 db.SaveChanges();
                 return RedirectToAction("Details",
                     new {
                         id =
                             generalHelper.RemoveSpecialCharsFromString(
-                                articleHelper.GetArticleById(articleIdentifier).Name)
+                                articleHelper.GetArticleById(documentIdentifier).Name)
                     });
             }
-            ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
-            ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
-            ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
-            return View(article);
+            //ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
+            //ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
+            //ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
+            return View(document);
         }
 
         public ActionResult Edit(Guid? id) {
@@ -271,7 +297,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return Content(cat.Name);
         }
 
-        public ActionResult Categories(string id) {
+        public ActionResult Categories(string id, string subId) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -280,6 +306,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 db.Articles.Where(x => x.IsPublished && x.CategoryId == cat.Id)
                     .OrderByDescending(x => x.DateCreated)
                     .ToList();
+            if (!string.IsNullOrEmpty(subId)) {
+                var subCat = articleHelper.GetSubCategoryByName(subId);
+                articlesByCategory = articlesByCategory.Where(x => x.SubCategoryId == subCat.Id).ToList();
+            }
             ViewBag.CategoryIdentificator = cat.Id;
             return View(articlesByCategory);
         }
