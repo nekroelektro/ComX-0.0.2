@@ -8,6 +8,7 @@ using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
+using ComX_0._0._2.Views.Articles.Services;
 
 namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
@@ -15,6 +16,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
+        private readonly IArticleService articleService = new ArticleService();
 
         public ActionResult Index(string category) {
             var publishedArticles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
@@ -29,17 +31,18 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         [ValidateInput(false)]
-        public ActionResult Details(string id) {
+        public ActionResult Details(string id, bool isDiary = false) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var articleFullName = generalHelper.AddSpecialCharsForString(id);
-            var articles = db.Articles.First(x => x.Name == articleFullName);
-            if (articles == null) {
+            var documentFullName = generalHelper.AddSpecialCharsForString(id);
+            //var document = articleHelper.GetDocumentByName(documentFullName, isDiary);
+            var document = articleService.GetDocumentForDetails(documentFullName, isDiary, false);
+            if (document == null) {
                 return HttpNotFound();
             }
             ViewBag.ReturnArticleId = id;
-            return View(articles);
+            return View(document);
         }
 
         public ActionResult Create() {
@@ -53,6 +56,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         [ValidateInput(false)]
         public ActionResult Create(CreateModelDto document, HttpPostedFileBase upload) {
             var documentIdentifier = Guid.NewGuid();
+            bool isDiary = false;
+            var documentName = document.Name;
 
             if (ModelState.IsValid) {
                 if (document.IsDiary) {
@@ -70,6 +75,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                         UserId = userHelper.GetCurrentLoggedUserId()
                     };
                     db.Diary.Add(diaryObject);
+                    isDiary = true;
                 }
                 else
                 {
@@ -108,9 +114,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 db.SaveChanges();
                 return RedirectToAction("Details",
                     new {
-                        id =
-                            generalHelper.RemoveSpecialCharsFromString(
-                                articleHelper.GetArticleById(documentIdentifier).Name)
+                        id = documentName,
+                        isDiary
                     });
             }
             //ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
@@ -314,10 +319,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(articlesByCategory);
         }
 
-        public ActionResult _TopDetailPanel() {
-            var article =
-                db.Articles.Find(articleHelper.GetArticleById(generalHelper.GetIdFromCurrentUrlForArticle()).Id);
-            return PartialView(article);
+        public ActionResult _TopDetailPanel(bool isDiary) {
+            var document = articleService.GetDocumentForDetails(generalHelper.GetNameFromUrl(), isDiary, true);
+            //var article =
+            //    db.Articles.Find(articleHelper.GetArticleById(generalHelper.GetIdFromCurrentUrlForArticle()).Id);
+            return PartialView(document);
         }
     }
 }

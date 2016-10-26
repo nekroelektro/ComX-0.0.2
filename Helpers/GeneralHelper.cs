@@ -55,24 +55,29 @@ namespace ComX_0._0._2.Helpers {
             return url;
         }
 
-        public Guid GetIdFromCurrentUrl() {
+        public string GetNameFromCurrentUrl() {
             var url = GetCurrentPageUrl();
             var urlArray = url.Split('/');
-            var urlGuid = urlArray.Last();
-            var id = new Guid(urlGuid);
-            return id;
+            var urlName = urlArray.Last();
+            var name = this.AddSpecialCharsForString(urlName);
+            return name;
         }
 
         public Guid GetIdFromCurrentUrlForArticle()
         {
             ArticleHelper articleHelper = new ArticleHelper();
+            var text = this.GetNameFromUrl();
+            var id = articleHelper.GetArticleByName(text).Id;
+            return id;
+        }
+
+        public string GetNameFromUrl() {
             var url = GetCurrentPageUrl();
             var urlDecoded = HttpUtility.UrlDecode(url);
             var urlArray = urlDecoded.Split('/');
             var urlName = urlArray.Last();
             var text = this.AddSpecialCharsForString(urlName);
-            var id = articleHelper.GetArticleByName(text).Id;
-            return id;
+            return text;
         }
 
         public string RemoveSpecialCharsFromString(string text) {

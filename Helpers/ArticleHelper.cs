@@ -7,11 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
+using ComX_0._0._2.Views.Articles.Models.DtoModels;
 using ComX_0._0._2.Views.Configuration.Models;
 
 namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
-        //private readonly SiteDbContext db = new SiteDbContext();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
 
@@ -331,6 +331,34 @@ namespace ComX_0._0._2.Helpers {
                 reviews = reviews.Take(numberOfReviews).ToList();
             }
             return reviews;
-        } 
+        }
+
+        public DetailsModelDto GetDocumentByName(string name, bool isDiary) {
+            var documentObject = new DetailsModelDto();
+            if (!isDiary) {
+                var article = db.Articles.First(x=>x.Name == name);
+                documentObject.Id = article.Id;
+                documentObject.Name = article.Name;
+                documentObject.Body = article.Body;
+                documentObject.IndexDescription = article.IndexDescription;
+                documentObject.CategoryId = article.CategoryId;
+                documentObject.Prelude = article.Prelude;
+                documentObject.IsDiary = false;
+            }
+            else {
+                var article = db.Diary.First(x => x.Name == name);
+                documentObject.Id = article.Id;
+                documentObject.Body = article.Body;
+                documentObject.IsDiary = true;
+                documentObject.AlbumYear = article.AlbumYear;
+                documentObject.ReleaseYear = article.ReleaseYear;
+                documentObject.CatalogueNumber = article.CatalogueNumber;
+                documentObject.Label = article.Label;
+                documentObject.Genre = article.Genre;
+
+                documentObject.Series = new Guid("d86d5afe-93c9-4562-a577-4273ecdb1a58");
+            }
+            return documentObject;
+        }
     }
 }

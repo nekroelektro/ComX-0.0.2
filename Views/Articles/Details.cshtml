@@ -1,34 +1,41 @@
 ﻿@using System.Text.RegularExpressions
 @using ComX_0._0._2.Helpers
-@model ComX_0._0._2.Views.Articles.Models.Articles
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.DetailsModelDto
 
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
     var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
-    ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId).Name + " - NekroPlaza";
-    ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
-    ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
+    bool isDiary = Model.IsDiary;
+    if (!isDiary) {
+        ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId.Value).Name + " - NekroPlaza";
+        ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
+        ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
+    }
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
 <div class="detailContainer">
     <div class="articleDetail">
-        <div class="articleDetailsIntro">
-            @Html.Raw(WebUtility.HtmlDecode(Model.Prelude))
-        </div>
-        <hr class="articleDetailsLine" />
+        @if (!isDiary) {
+            <div class="articleDetailsIntro">
+                @Html.Raw(WebUtility.HtmlDecode(Model.Prelude))
+            </div>
+        }
+        <hr class="articleDetailsLine"/>
         <div class="articleDetailsBody">
             @Html.Raw(WebUtility.HtmlDecode(Model.Body))
         </div>
         <div class="fb-like" data-href="@currentUrl" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
     </div>
+@if (!isDiary) {
     <div class="articleDetailsBottomSection">
-        @Html.Action("_LastFromCategory", new { amount = 4, categoryId = Model.CategoryId, articleId = Model.Id })
+        @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId, articleId = Model.Id})
         <hr class="articleDetailsBottomLine"/>
         <div id="detailsCommentSection">
-            @Html.Action("_Comments", new { id = Guid.Empty, artId = Model.Id })
+            @Html.Action("_Comments", new {id = Guid.Empty, artId = Model.Id})
         </div>
     </div>
+}
 </div>
 <div id="fb-root"></div>
 

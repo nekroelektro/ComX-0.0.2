@@ -1,5 +1,5 @@
 ﻿@using ComX_0._0._2.Helpers
-@model ComX_0._0._2.Views.Articles.Models.Articles
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.DetailsModelDto
 @{
     var userHelper = new UserHelper();
     var articleHelper = new ArticleHelper();
@@ -28,14 +28,14 @@
     </div>
     <div class="imageOverlayColor"></div>
     <div class="bannerPanelInfo">
-        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series).Name != "Default"){
-            <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(Model.Series).Name</h3>
+        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series.Value).Name != "Default"){
+            <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(Model.Series.Value).Name</h3>
         }
         <h2 class="bannerArticleName">@Html.DisplayFor(model => model.Name)</h2>
         <div class="datesDetailsArticles">
             <p>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated) &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(Model.CategoryId).Name,
-                @articleHelper.GetSubCategoryById(Model.SubCategoryId).Name
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated) &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(Model.CategoryId.Value).Name,
+                @articleHelper.GetSubCategoryById(Model.SubCategoryId.Value).Name
             </p>
         </div>
     </div>

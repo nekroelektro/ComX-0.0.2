@@ -15,7 +15,7 @@ using Microsoft.Owin.Security;
 
 namespace ComX_0._0._2.Views.Account.Controller {
     [Authorize]
-    public class AccountController : System.Web.Mvc.Controller {
+    public class AccountController : global::System.Web.Mvc.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();

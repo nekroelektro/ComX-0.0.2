@@ -1,10 +1,11 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     string currentUrl = Request.Url?.AbsoluteUri;
+    bool isDiaryDocument = currentUrl.Contains("#");
 }
 <div class="body-content">
-    @if (currentUrl.Contains("+")) {
-        @Html.Action("_TopDetailPanel")
+    @if (currentUrl.Contains("+") || currentUrl.Contains("#")) {
+        @Html.Action("_TopDetailPanel", new {isDiary = isDiaryDocument})
     }
     <div class="mainBodyContainer">
         @RenderBody()
