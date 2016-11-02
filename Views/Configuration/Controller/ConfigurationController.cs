@@ -9,6 +9,7 @@ using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Account.Models.DtoModels;
 using ComX_0._0._2.Views.Articles.Models;
+using ComX_0._0._2.Views.Articles.Services;
 using ComX_0._0._2.Views.Configuration.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -19,9 +20,11 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
+        private readonly IArticleService articleService = new ArticleService();
 
         public ActionResult Articles() {
-            return View(db.Articles.OrderByDescending(x => x.DateCreated).ToList());
+            var documents = articleService.GetDocumentForIndex(false);
+            return View(documents);
         }
 
         public ActionResult Users() {

@@ -1,7 +1,7 @@
 ﻿@using ComX_0._0._2.Helpers
 @using GridMvc.Html
 @using GridMvc.Sorting
-@model IEnumerable<ComX_0._0._2.Views.Articles.Models.Articles>
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexModelDto>
 @{
     Layout = "~/Views/Configuration/_Configuration.cshtml";
     var articleHelper = new ArticleHelper();
@@ -10,20 +10,29 @@
 <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
 </button>
-<button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add diary
-</button>
-
+<h2>Artykuły:</h2>
 <div class="col-xs-12 center-block">
-    @Html.Grid(Model).Named("articleGrid").Columns(columns => {
+    @Html.Grid(Model.Where(x=>x.IsDiary == false)).Named("articleGrid").Columns(columns => {
         columns.Add(o => o.Id, true);
         columns.Add(x => x.Name).SetWidth(550);
         columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
-        columns.Add(x => x.CategoryId).Titled("Category").RenderValueAs(x => articleHelper.GetAllCategories().First(o => o.Id == x.CategoryId).Name).Filterable(true).SetWidth(130);
-        columns.Add(x => x.SubCategoryId).Titled("SubCategory").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategoryId).Name).Filterable(true).SetWidth(130);
-        columns.Add(x => x.DateCreated).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+        columns.Add(x => x.Categories).Titled("Category").RenderValueAs(x => articleHelper.GetAllCategories().First(o => o.Id == x.Categories.Value).Name).Filterable(true).SetWidth(130);
+        columns.Add(x => x.SubCategories).Titled("SubCategory").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategories.Value).Name).Filterable(true).SetWidth(130);
+        columns.Add(x => x.DateCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
     }).WithPaging(10).Sortable(true).Filterable(true)
 </div>
+<h2>Pamiętniki:</h2>
+<div class="col-xs-12 center-block">
+    @Html.Grid(Model.Where(x=>x.IsDiary)).Named("diariesGrid").Columns(columns =>
+{
+    columns.Add(o => o.Id, true);
+    columns.Add(x => x.Name).SetWidth(550);
+    columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
+    columns.Add(x => x.DateCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+}).WithPaging(10).Sortable(true).Filterable(true)
+</div>
+
+
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationArticles.js"></script>

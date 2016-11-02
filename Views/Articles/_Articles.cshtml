@@ -4,7 +4,7 @@
     bool isDiaryDocument = currentUrl.Contains("#");
 }
 <div class="body-content">
-    @if (currentUrl.Contains("+") || currentUrl.Contains("#")) {
+    @if (currentUrl.Contains("+") && !currentUrl.Contains("isDiary=True")) {
         @Html.Action("_TopDetailPanel", new {isDiary = isDiaryDocument})
     }
     <div class="mainBodyContainer">

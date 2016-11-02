@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
@@ -6,7 +7,7 @@ using ComX_0._0._2.Views.Articles.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
 
 namespace ComX_0._0._2.Views.Articles.Services {
-    public class ArticleService:IArticleService {
+    public class ArticleService : IArticleService {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
@@ -22,6 +23,40 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 documentObject = GetArticle(documentObject, article, isDetailPanel);
             }
             return documentObject;
+        }
+
+        public List<IndexModelDto> GetDocumentForIndex(bool onlyArticles, int number = 0) {
+            var documents = GetIndexDocuments(onlyArticles, number);
+            return documents;
+        }
+
+        private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number) {
+            var articles = (number == 0 ? db.Articles.Where(x => x.IsPublished) : db.Articles.Where(x=>x.IsPublished).Take(number)).OrderByDescending(x=>x.DateCreated).ToList();
+            var documents = articles.Select(item => new IndexModelDto {
+                Id = item.Id,
+                Name = item.Name,
+                IndexPrologue = item.IndexDescription,
+                Prologue = item.Prelude,
+                DateCreation = item.DateCreated,
+                Series = item.Series,
+                Categories = item.CategoryId,
+                SubCategories = item.SubCategoryId,
+                UserId = item.UserId,
+                IsDiary = false,
+                IsPublished = item.IsPublished
+            }).ToList();
+            if (!onlyArticles) {
+                var diary = (number == 0 ? db.Diary.Where(x => x.IsPublished) : db.Diary.Where(x=>x.IsPublished).Take(number)).OrderByDescending(x=>x.DateCreated).ToList();
+                documents.AddRange(diary.Select(item => new IndexModelDto {
+                    Id = item.Id,
+                    Name = item.Name,
+                    DateCreation = item.DateCreated,
+                    UserId = item.UserId,
+                    IsDiary = true,
+                    IsPublished = item.IsPublished
+                }));
+            }
+            return documents.OrderByDescending(x => x.DateCreation).ToList();
         }
 
         private DetailsModelDto GetDiary(DetailsModelDto documentObject, Diary diary, bool isDetailPanel) {

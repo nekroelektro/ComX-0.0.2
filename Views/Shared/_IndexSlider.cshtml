@@ -1,39 +1,28 @@
 ﻿@using ComX_0._0._2.Helpers
-@model ComX_0._0._2.Views.Articles.Models.Articles
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexModelDto>
     @{
         var articleHelper = new ArticleHelper();
         var userHelper = new UserHelper();
         var generalHelper = new GeneralHelper();
-        var lastArticles = articleHelper.GetLastArticles(7);
+        var articles = Model.Where(x => x.IsDiary == false).OrderByDescending(x => x.DateCreation).ToList();
+        var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).Take(5).ToList();
     }
-<div class="sliderOne">
-        @foreach (var item in lastArticles)
-        {
+<div class="slidersContainer">
+    <div class="sliderOne">
+        @foreach (var item in articles) {
             <div class="slideElementUpper">
                 <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
                     <div class="sliderLink">
-                        <div class="sliderLeft">
-                            <div class="sliderArticleDate">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated
-                            </div>
-                            <div class="sliderArticleCategories">
-                                <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
-                                    @articleHelper.GetSubCategoryById(item.SubCategoryId).Name</p>
-                            </div>
-                            <div class="sliderArticleAuthor">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName
-                            </div>
-                            @if (item.Series != Guid.Empty && articleHelper.GetSeriesById(item.Series).Name != "Default") {
-                                <div class="sliderArticleSeries">
-                                    <h4 class="sliderArticleSeriesTitle">@articleHelper.GetSeriesById(item.Series).Name</h4>
-                                </div>
+                        <div class="bannerPanelInfo">
+                            @if (item.Series != Guid.Empty && articleHelper.GetSeriesById(item.Series.Value).Name != "Default") {
+                                <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(item.Series.Value).Name</h3>
                             }
-                            <div class="sliderArticleTitle">
-                                <h2 class="sliderArticleNameTitle">@item.Name</h2>
-                            </div>
-                            <hr class="sliderArticleLine"/>
-                            <div class="sliderArticleIndexDescription">
-                                <p>@Html.Raw(WebUtility.HtmlDecode(item.IndexDescription))</p>
+                            <h2 class="bannerArticleName">@item.Name</h2>
+                            <div class="datesDetailsArticles">
+                                <p>
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreation &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
+                                    @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name
+                                </p>
                             </div>
                         </div>
                         <div class="imageOverlayColor"></div>
@@ -46,15 +35,40 @@
                     </div>
                 </a>
             </div>
-                }
+        }
+    </div>
+    <div class="sliderSection">
+        @foreach (var item in articles) {
+            <div class="slideElementDown">
+                <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+            </div>
+        }
+    </div>
 </div>
-<div class="sliderSection">
-    @foreach (var item in lastArticles)
-    {
-        <div class="slideElementDown">
-            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
-        </div>
-    }
+<div class="indexDiaryContainer">
+    <div class="indexDiaryListHeader">
+        <h3>Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
+        <hr class="indexDiaryLine"/>
+    </div>
+    <ul class="indexDiaryList">
+        @foreach (var item in diaries)
+        {
+            <a class="indexSingleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
+                <li>
+                    <h4 class="indexDiaryName">@item.Name</h4>
+                </li>
+            </a>
+        }
+    </ul>
+    <div class="moreMusicReviews">
+        <a class="seeMoreReviewsFromIndex seeMoreDiaries" href="@Url.Action("Categories", "Articles", new {@id = "Recenzje", @subId = "Muzyka"})">
+            <p>Przejdź do pamiętnika <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
+        </a>
+    </div>
+    <div class="indexDisclaimer">
+        <h3>UWAŻEJ!</h3>
+        <p>@generalHelper.GetSettings().JumboIndexText</p>
+    </div>
 </div>
 
 @*SCRIPTS FOR VIEW*@

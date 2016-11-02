@@ -205,12 +205,15 @@
     float: right !important; 
     clear: both; 
     font-size: 1.1em;
+    text-decoration: none;
+    outline: 0;
+    color: whitesmoke;
 }
 
 .seeMoreReviewsFromIndex {
     text-decoration: none;
     outline: 0;
-    color: black !important;
+    color: black;
 }
 
 .seeMoreReviewsFromIndex:hover {

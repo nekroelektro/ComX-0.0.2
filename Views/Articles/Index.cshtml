@@ -1,5 +1,5 @@
 ﻿@using ComX_0._0._2.Helpers
-@model IEnumerable<ComX_0._0._2.Views.Articles.Models.Articles>
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexModelDto>
 
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
@@ -42,11 +42,11 @@
                             <div class="indexArticleTitle">
                                 <div class="indexArticleTitleTopSection">
                                     <div class="articlesIndexSingleCategories">
-                                        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
-                                        @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
+                                        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
+                                        @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name
                                     </div>
                                     <div class="articlesIndexSingleDate">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated.ToShortDateString()
+                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreation.Value.ToShortDateString()
                                     </div>
                                 </div>
                                 <h4 class="singleIndexTitle">@item.Name</h4>
@@ -55,11 +55,11 @@
                         <hr class="singleIndexLine"/>
                         <div class="articleIndexSingleText">
                             <div class="indexArticleBody">
-                                <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
+                                <p>@Html.Raw(WebUtility.HtmlDecode(item.Prologue))</p>
                             </div>
                         </div>
                         <div class="articlesIndexSingleFooter">
-                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
+                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId.Value).UserName</p>
                         </div>
                     </div>
                 </div>

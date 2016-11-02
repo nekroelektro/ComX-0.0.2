@@ -3,7 +3,7 @@
     $('.sliderOne').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: true,
+        arrows: false,
         fade: true,
         asNavFor: '.sliderSection'
     });
@@ -13,7 +13,7 @@
         centerMode: true,
         asNavFor: '.sliderOne',
         slidesToShow: 3,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 7000,
         focusOnSelect: true,
         slidesToScroll: 2,

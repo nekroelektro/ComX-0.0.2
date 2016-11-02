@@ -1,7 +1,11 @@
-﻿.sliderOne {
+﻿.slidersContainer {
+    width: 66%;
+    float: left;
+}
+
+.sliderOne {
     background-color: #222; 
     width: 100%; 
-    margin: 0 auto; 
     font-family: 'Coda', sans-serif; 
     color: white;
 }
@@ -129,4 +133,103 @@
     height: 100%; 
     text-align: center; 
     margin: 0 auto;
+}
+
+.bannerPanelInfo {
+    max-width: 90%; 
+    font-family: 'Coda', sans-serif; 
+    position: absolute; 
+    bottom: 1em; 
+    color: black; 
+    padding: 1em;
+    background: rgba(255, 255, 255, 0.7); 
+    z-index: 4;
+}
+
+.bannerSeriesTitle {
+    background-color: #2B823C; 
+    color: black;
+    margin-top: 0;
+    font-size: large;
+}
+
+.bannerArticleName {
+    width: 100%; 
+    float: left; 
+    margin-top: 0;
+    font-size: x-large;
+}
+
+.datesDetailsArticles {
+    display: inline-block; 
+    float: left; 
+    clear: both;
+}
+
+.datesDetailsArticles p {
+    float: left;
+}
+
+.indexDiaryContainer {
+    width: 34%;
+    float: right;
+    background-color: black;
+    height: 35em;
+    margin-right: 0;
+    font-family: 'Coda', sans-serif; 
+}
+
+.indexDiaryList {
+    margin-left: 1em;
+    margin-right: 1em;
+    color: whitesmoke;
+    padding-left: 1em !important;
+}
+
+.indexSingleDiaryAnchor {
+    color: whitesmoke !important;
+    text-decoration: none;
+    outline: 0;
+}
+
+.indexSingleDiaryAnchor:hover {
+    color: #2B823C !important;
+    text-decoration: none;
+    outline: 0;
+}
+
+.indexDiaryListHeader {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.indexDiaryLine {
+    margin: 0 !important;
+    border: 1px solid crimson; 
+}
+
+.indexDiaryName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.seeMoreDiaries {
+    color: whitesmoke !important;
+}
+
+.indexDisclaimer {
+    padding-top: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: justify;
+}
+
+.indexDisclaimer h3 {
+    color: crimson;
+}
+
+.indexDisclaimer p {
+    font-size: medium;
+    color: whitesmoke;
 }

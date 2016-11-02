@@ -332,33 +332,5 @@ namespace ComX_0._0._2.Helpers {
             }
             return reviews;
         }
-
-        public DetailsModelDto GetDocumentByName(string name, bool isDiary) {
-            var documentObject = new DetailsModelDto();
-            if (!isDiary) {
-                var article = db.Articles.First(x=>x.Name == name);
-                documentObject.Id = article.Id;
-                documentObject.Name = article.Name;
-                documentObject.Body = article.Body;
-                documentObject.IndexDescription = article.IndexDescription;
-                documentObject.CategoryId = article.CategoryId;
-                documentObject.Prelude = article.Prelude;
-                documentObject.IsDiary = false;
-            }
-            else {
-                var article = db.Diary.First(x => x.Name == name);
-                documentObject.Id = article.Id;
-                documentObject.Body = article.Body;
-                documentObject.IsDiary = true;
-                documentObject.AlbumYear = article.AlbumYear;
-                documentObject.ReleaseYear = article.ReleaseYear;
-                documentObject.CatalogueNumber = article.CatalogueNumber;
-                documentObject.Label = article.Label;
-                documentObject.Genre = article.Genre;
-
-                documentObject.Series = new Guid("d86d5afe-93c9-4562-a577-4273ecdb1a58");
-            }
-            return documentObject;
-        }
     }
 }

@@ -1,4 +1,4 @@
-﻿.containerTop, .containerMiddle {
+﻿.containerTop, .sliderLatestIndexContainer {
     padding-left: 0; 
     padding-right: 0;
 }
@@ -21,19 +21,6 @@
 
 .warningLayoutTitle {
     color: red;
-}
-
-.socialMessageLayout {
-    width: 10%; 
-    float: right;
-}
-
-.socialMessageLayout img {
-    float: left; 
-    width: 100%; 
-    height: auto; 
-    text-align: center; 
-    padding-top: 1em;
 }
 
 #return-to-top {

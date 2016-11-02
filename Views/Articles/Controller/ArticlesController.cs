@@ -18,12 +18,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly UserHelper userHelper = new UserHelper();
         private readonly IArticleService articleService = new ArticleService();
 
-        public ActionResult Index(string category) {
-            var publishedArticles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
-            if (!string.IsNullOrEmpty(category)) {
-                publishedArticles = publishedArticles.Where(x => x.CategoryId == new Guid(category)).ToList();
-                return PartialView("Index", publishedArticles);
-            }
+        public ActionResult Index() {
+            var publishedArticles = articleService.GetDocumentForIndex(true);
             for (var i = 0; i < 7; i++) {
                 publishedArticles.RemoveAt(0);
             }
@@ -43,6 +39,15 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             }
             ViewBag.ReturnArticleId = id;
             return View(document);
+        }
+
+        public ActionResult DetailDiaryHelper(string id) {
+            return RedirectToAction("Details",
+                    new
+                    {
+                        id = id,
+                        isDiary = true
+                    });
         }
 
         public ActionResult Create() {
@@ -280,7 +285,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult _IndexSlider() {
-            return PartialView("_IndexSlider");
+            var lastDocuments = articleService.GetDocumentForIndex(false, 7);
+            return PartialView("_IndexSlider", lastDocuments);
         }
 
         public ActionResult DeleteComment(string commentId, string articleId) {

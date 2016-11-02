@@ -488,6 +488,8 @@
     <Compile Include="Views\Articles\Models\Diary.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CreateModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DetailsModelDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\DocumentModel.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\IndexModelDto.cs" />
     <Compile Include="Views\Articles\Services\ArticleService.cs" />
     <Compile Include="Views\Articles\Services\IArticleService.cs" />
     <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />
