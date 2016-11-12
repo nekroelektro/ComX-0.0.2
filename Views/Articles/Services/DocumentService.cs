@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
+using ComX_0._0._2.Views.Configuration.Models;
 
 namespace ComX_0._0._2.Views.Articles.Services {
-    public class ArticleService : IArticleService {
+    public class DocumentService : IDocumentService {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
@@ -30,8 +33,77 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return documents;
         }
 
+        public DocumentModelDto GetDocument(Guid id, bool isDiary) {
+            var document = new DocumentModelDto();
+            if (isDiary) {
+                var diary = db.Diary.Find(id);
+                document.Id = diary.Id;
+                document.Name = diary.Name;
+                document.DateCreated = diary.DateCreated;
+                document.IsDiary = true;
+            }
+            else {
+                var article = db.Articles.Find(id);
+                document.Id = article.Id;
+                document.Name = article.Name;
+                document.DateCreated = article.DateCreated;
+                document.IsDiary = false;
+            }
+            return document;
+        }
+
+        public void DeleteDocument(Guid id, bool isDiary) {
+            if (isDiary) {
+                db.Diary.Remove(db.Diary.Find(id));
+            }
+            else {
+                db.Articles.Remove(db.Articles.Find(id));
+            }
+            db.SaveChanges();
+        }
+
+        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload, bool isDiary) {
+            var imgToUpload = new Images();
+            if (upload != null) {
+                imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"),
+                    imgToUpload.FileName);
+                upload.SaveAs(path);
+
+                imgToUpload.Id = Guid.NewGuid();
+                imgToUpload.ArticleId = articleIdentifier;
+                imgToUpload.ImagePath = path;
+                imgToUpload.FileSize = upload.ContentLength;
+                imgToUpload.FileFormat = upload.ContentType;
+                imgToUpload.OriginalWidth = 200;
+                imgToUpload.OriginalHeight = 200;
+                imgToUpload.DateOfChange = DateTime.Now;
+                imgToUpload.IsDiary = isDiary;
+            }
+            db.Images.Add(imgToUpload);
+            db.SaveChanges();
+        }
+
+        public void UploadImageForGallery(HttpPostedFileBase upload) {
+            var imgToUpload = new ImagesGallery();
+            if (upload != null) {
+                imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
+                upload.SaveAs(path);
+
+                imgToUpload.Id = Guid.NewGuid();
+                imgToUpload.ImagePath = path;
+                imgToUpload.DateOfCreation = DateTime.Now;
+            }
+            db.ImagesGallery.Add(imgToUpload);
+            db.SaveChanges();
+        }
+
         private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number) {
-            var articles = (number == 0 ? db.Articles.Where(x => x.IsPublished) : db.Articles.Where(x=>x.IsPublished).Take(number)).OrderByDescending(x=>x.DateCreated).ToList();
+            var articles =
+                (number == 0
+                    ? db.Articles.Where(x => x.IsPublished)
+                    : db.Articles.Where(x => x.IsPublished).Take(number)).OrderByDescending(x => x.DateCreated).ToList();
             var documents = articles.Select(item => new IndexModelDto {
                 Id = item.Id,
                 Name = item.Name,
@@ -46,7 +118,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 IsPublished = item.IsPublished
             }).ToList();
             if (!onlyArticles) {
-                var diary = (number == 0 ? db.Diary.Where(x => x.IsPublished) : db.Diary.Where(x=>x.IsPublished).Take(number)).OrderByDescending(x=>x.DateCreated).ToList();
+                var diary =
+                    (number == 0 ? db.Diary.Where(x => x.IsPublished) : db.Diary.Where(x => x.IsPublished).Take(number))
+                        .OrderByDescending(x => x.DateCreated).ToList();
                 documents.AddRange(diary.Select(item => new IndexModelDto {
                     Id = item.Id,
                     Name = item.Name,
@@ -63,6 +137,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             if (!isDetailPanel) {
                 documentObject.Id = diary.Id;
                 documentObject.Body = diary.Body;
+                documentObject.Name = diary.Name;
                 documentObject.IsDiary = true;
                 documentObject.AlbumYear = diary.AlbumYear;
                 documentObject.ReleaseYear = diary.ReleaseYear;

@@ -11,5 +11,6 @@ namespace ComX_0._0._2.Views.Articles.Models {
         public int OriginalWidth { get; set; }
         public int OriginalHeight { get; set; }
         public DateTime DateOfChange { get; set; }
+        public bool IsDiary { get; set; }
     }
 }

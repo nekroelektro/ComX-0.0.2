@@ -3,17 +3,19 @@
 @{
     var userHelper = new UserHelper();
     var articleHelper = new ArticleHelper();
+    var category = Model.IsDiary ? " Pamiętnik" : articleHelper.GetCategoryById(Model.CategoryId.Value).Name;
+    var subCategory = Model.IsDiary ? "" : ", " + articleHelper.GetSubCategoryById(Model.SubCategoryId.Value).Name;
 }
 @if (userHelper.IsAdminUser(User)){
     <div class="topDetailPanel">
         <div class="topDetailPanelButtons">
-            <button type="button" class="btn btn-default .btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
+            <button type="button" class="btn btn-default btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
                 <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO GÓRY
             </button>
-            <button type="button" class="btn btn-success .btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
+            <button type="button" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>EDIT
             </button>
-            <button type="button" class="btn btn-danger .btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id})'">
+            <button type="button" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id, isDiary = Model.IsDiary})'">
                 <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>DELETE
             </button>
         </div>
@@ -28,14 +30,14 @@
     </div>
     <div class="imageOverlayColor"></div>
     <div class="bannerPanelInfo">
-        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series.Value).Name != "Default"){
+        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series.Value).Name != "Default")
+        {
             <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(Model.Series.Value).Name</h3>
         }
-        <h2 class="bannerArticleName">@Html.DisplayFor(model => model.Name)</h2>
+        <h2 class="bannerArticleName">@Model.Name</h2>
         <div class="datesDetailsArticles">
             <p>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Html.DisplayFor(model => model.DateCreated) &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(Model.CategoryId.Value).Name,
-                @articleHelper.GetSubCategoryById(Model.SubCategoryId.Value).Name
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Model.DateCreated &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @category@subCategory
             </p>
         </div>
     </div>

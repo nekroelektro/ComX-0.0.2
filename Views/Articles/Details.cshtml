@@ -14,6 +14,7 @@
     }
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
+@Html.Action("_TopDetailPanel", new { @id = Model.Name, isDiary = Model.IsDiary })
 <div class="detailContainer">
     <div class="articleDetail">
         @if (!isDiary) {

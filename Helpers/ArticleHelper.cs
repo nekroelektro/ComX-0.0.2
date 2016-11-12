@@ -173,42 +173,6 @@ namespace ComX_0._0._2.Helpers {
             return comments;
         }
 
-        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload) {
-            var imgToUpload = new Images();
-            if (upload != null) {
-                imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"),
-                    imgToUpload.FileName);
-                upload.SaveAs(path);
-
-                imgToUpload.Id = Guid.NewGuid();
-                imgToUpload.ArticleId = articleIdentifier;
-                imgToUpload.ImagePath = path;
-                imgToUpload.FileSize = upload.ContentLength;
-                imgToUpload.FileFormat = upload.ContentType;
-                imgToUpload.OriginalWidth = 200;
-                imgToUpload.OriginalHeight = 200;
-                imgToUpload.DateOfChange = DateTime.Now;
-            }
-            db.Images.Add(imgToUpload);
-            db.SaveChanges();
-        }
-
-        public void UploadImageForGallery(HttpPostedFileBase upload) {
-            var imgToUpload = new ImagesGallery();
-            if (upload != null) {
-                imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
-                upload.SaveAs(path);
-
-                imgToUpload.Id = Guid.NewGuid();
-                imgToUpload.ImagePath = path;
-                imgToUpload.DateOfCreation = DateTime.Now;
-            }
-            db.ImagesGallery.Add(imgToUpload);
-            db.SaveChanges();
-        }
-
         public Images GetImageByArticleId(Guid articleId) {
             var image = new Images();
             try {

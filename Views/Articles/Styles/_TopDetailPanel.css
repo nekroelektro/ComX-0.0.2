@@ -16,7 +16,7 @@
 .detailsBannerPanel {
     width: 102.7%; 
     margin-left: -1.1em !important; 
-    height: 40em; 
+    height: 35em; 
     margin-bottom: 1em; 
     position: relative; 
     z-index: 5; 
@@ -71,11 +71,10 @@
 }
 
 .bannerPanelInfo {
-    max-width: 50%; 
+    max-width: 90%; 
     font-family: 'Coda', sans-serif; 
     position: absolute; 
-    bottom: 3em; 
-    left: 2em; 
+    bottom: 1em; 
     color: black; 
     padding: 1em;
     background: rgba(255, 255, 255, 0.7); 
@@ -85,12 +84,15 @@
 .bannerSeriesTitle {
     background-color: #2B823C; 
     color: black;
+    margin-top: 0;
+    font-size: large;
 }
 
 .bannerArticleName {
     width: 100%; 
     float: left; 
     margin-top: 0;
+    font-size: x-large;
 }
 
 .datesDetailsArticles {

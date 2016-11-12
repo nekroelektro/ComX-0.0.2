@@ -20,10 +20,10 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
-        private readonly IArticleService articleService = new ArticleService();
+        private readonly IDocumentService documentService = new DocumentService();
 
         public ActionResult Articles() {
-            var documents = articleService.GetDocumentForIndex(false);
+            var documents = documentService.GetDocumentForIndex(false);
             return View(documents);
         }
 
@@ -252,7 +252,7 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         [ValidateInput(false)]
         public ActionResult Gallery(HttpPostedFileBase image) {
             if (ModelState.IsValid) {
-                articleHelper.UploadImageForGallery(image);
+                documentService.UploadImageForGallery(image);
                 return RedirectToAction("Gallery");
             }
             return View();

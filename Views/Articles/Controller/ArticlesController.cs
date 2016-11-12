@@ -14,12 +14,12 @@ namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IDocumentService documentService = new DocumentService();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
-        private readonly IArticleService articleService = new ArticleService();
 
         public ActionResult Index() {
-            var publishedArticles = articleService.GetDocumentForIndex(true);
+            var publishedArticles = documentService.GetDocumentForIndex(true);
             for (var i = 0; i < 7; i++) {
                 publishedArticles.RemoveAt(0);
             }
@@ -33,7 +33,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             }
             var documentFullName = generalHelper.AddSpecialCharsForString(id);
             //var document = articleHelper.GetDocumentByName(documentFullName, isDiary);
-            var document = articleService.GetDocumentForDetails(documentFullName, isDiary, false);
+            var document = documentService.GetDocumentForDetails(documentFullName, isDiary, false);
             if (document == null) {
                 return HttpNotFound();
             }
@@ -43,11 +43,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         public ActionResult DetailDiaryHelper(string id) {
             return RedirectToAction("Details",
-                    new
-                    {
-                        id = id,
-                        isDiary = true
-                    });
+                new {
+                    id,
+                    isDiary = true
+                });
         }
 
         public ActionResult Create() {
@@ -61,10 +60,24 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         [ValidateInput(false)]
         public ActionResult Create(CreateModelDto document, HttpPostedFileBase upload) {
             var documentIdentifier = Guid.NewGuid();
-            bool isDiary = false;
+            var isDiary = false;
             var documentName = document.Name;
 
             if (ModelState.IsValid) {
+                if (upload != null) {
+                    var validImageTypes = new[] {
+                        "image/gif",
+                        "image/jpeg",
+                        "image/pjpeg",
+                        "image/png"
+                    };
+                    if (!validImageTypes.Contains(upload.ContentType)) {
+                        ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
+                    }
+                    else {
+                        documentService.UploadImageForArticle(documentIdentifier, upload, document.IsDiary);
+                    }
+                }
                 if (document.IsDiary) {
                     var diaryObject = new Diary {
                         Id = documentIdentifier,
@@ -82,24 +95,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     db.Diary.Add(diaryObject);
                     isDiary = true;
                 }
-                else
-                {
-                    if (upload != null)
-                    {
-                        var validImageTypes = new[] {
-                            "image/gif",
-                            "image/jpeg",
-                            "image/pjpeg",
-                            "image/png"
-                            };
-                        if (!validImageTypes.Contains(upload.ContentType))
-                        {
-                            ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-                        }
-                        else {
-                            articleHelper.UploadImageForArticle(documentIdentifier, upload);
-                        }
-                    }
+                else {
                     var articleObject = new Models.Articles {
                         Id = documentIdentifier,
                         Name = document.Name,
@@ -115,7 +111,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     };
                     db.Articles.Add(articleObject);
                 }
-
                 db.SaveChanges();
                 return RedirectToAction("Details",
                     new {
@@ -123,9 +118,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                         isDiary
                     });
             }
-            //ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
-            //ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
-            //ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
             return View(document);
         }
 
@@ -163,7 +155,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
                 }
                 else {
-                    articleHelper.UploadImageForArticle(article.Id, upload);
+                    documentService.UploadImageForArticle(article.Id, upload, false);
                 }
             }
             if (ModelState.IsValid) {
@@ -191,24 +183,16 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(article);
         }
 
-        public ActionResult Delete(Guid? id) {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var articles = db.Articles.Find(id);
-            if (articles == null) {
-                return HttpNotFound();
-            }
-            return View(articles);
+        public ActionResult Delete(Guid? id, bool isDiary = false) {
+            var document = documentService.GetDocument(id.Value, isDiary);
+            return View(document);
         }
 
         // POST: Articles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id) {
-            var articles = db.Articles.Find(id);
-            db.Articles.Remove(articles);
-            db.SaveChanges();
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Guid id, bool isDiary) {
+            documentService.DeleteDocument(id, isDiary);
             return RedirectToAction("Index");
         }
 
@@ -285,7 +269,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult _IndexSlider() {
-            var lastDocuments = articleService.GetDocumentForIndex(false, 7);
+            var lastDocuments = documentService.GetDocumentForIndex(false, 7);
             return PartialView("_IndexSlider", lastDocuments);
         }
 
@@ -325,8 +309,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(articlesByCategory);
         }
 
-        public ActionResult _TopDetailPanel(bool isDiary) {
-            var document = articleService.GetDocumentForDetails(generalHelper.GetNameFromUrl(), isDiary, true);
+        public ActionResult _TopDetailPanel(string id, bool isDiary) {
+            if (isDiary) {
+                id = id.Split('?').First();
+            }
+            var document = documentService.GetDocumentForDetails(id, isDiary, true);
             //var article =
             //    db.Articles.Find(articleHelper.GetArticleById(generalHelper.GetIdFromCurrentUrlForArticle()).Id);
             return PartialView(document);
