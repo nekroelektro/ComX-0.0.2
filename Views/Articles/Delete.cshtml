@@ -24,10 +24,9 @@
             @Html.DisplayFor(model => model.DateCreated)
         </dd>
     </dl>
-
-    <a class="btn btn-danger btn-sm btnDeleteDocument" data-id="@Model.Id" data-diary="@Model.IsDiary">
+    <button type="button" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("DeleteConfirmed", "Articles", new {Id = Model.Id, isDiary = Model.IsDiary})'">
         <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>DELETE
-    </a>
+    </button>
 </div>
 
 @*SCRIPTS FOR VIEW*@

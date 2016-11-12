@@ -12,7 +12,7 @@
             <button type="button" class="btn btn-default btn-sm" onclick="location.href = '@Url.Action("Index", "Articles")'">
                 <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO GÓRY
             </button>
-            <button type="button" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id})'">
+            <button type="button" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Edit", "Articles", new {Id = Model.Id, IsDiary = Model.IsDiary})'">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>EDIT
             </button>
             <button type="button" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Articles", new {Id = Model.Id, isDiary = Model.IsDiary})'">

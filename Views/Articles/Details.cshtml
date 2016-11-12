@@ -12,6 +12,10 @@
         ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
         ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
     }
+    else {
+        var diaryName = Model.Name.Split('?').First();
+        ViewBag.Title = "# " + diaryName + " - Z pamiętnika płytoholika - " + "NekroPlaza";
+    }
     var currentUrl = generalHelper.GetCurrentPageUrl();
 }
 @Html.Action("_TopDetailPanel", new { @id = Model.Name, isDiary = Model.IsDiary })

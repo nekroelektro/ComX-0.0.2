@@ -13,4 +13,14 @@
             $('.articleCreateComponent').show();
         }
     });
+
+    if ($('#IsDiaryEdit').attr('checked')) {
+        console.log("a");
+        $('.diaryCreateComponent').show();
+        $('.articleCreateComponent').hide();
+    } else {
+        console.log("ab");
+        $('.diaryCreateComponent').hide();
+        $('.articleCreateComponent').show();
+    }
 });

@@ -11,5 +11,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
         void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload, bool isDiary);
         void UploadImageForGallery(HttpPostedFileBase upload);
         void DeleteDocument(Guid id, bool isDiary);
+        void CreateDocument(CreateModelDto document, HttpPostedFileBase upload);
+        CreateModelDto GetDocumentForEdit(Guid id, bool isDiary);
+        void UpdateDocument(CreateModelDto document, HttpPostedFileBase upload);
+        void DeleteImageForGivenDocument(Guid id);
     }
 }

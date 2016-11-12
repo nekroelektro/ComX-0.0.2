@@ -59,10 +59,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(CreateModelDto document, HttpPostedFileBase upload) {
-            var documentIdentifier = Guid.NewGuid();
-            var isDiary = false;
-            var documentName = document.Name;
-
             if (ModelState.IsValid) {
                 if (upload != null) {
                     var validImageTypes = new[] {
@@ -74,76 +70,29 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     if (!validImageTypes.Contains(upload.ContentType)) {
                         ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
                     }
-                    else {
-                        documentService.UploadImageForArticle(documentIdentifier, upload, document.IsDiary);
-                    }
                 }
-                if (document.IsDiary) {
-                    var diaryObject = new Diary {
-                        Id = documentIdentifier,
-                        Name = document.Name,
-                        Body = document.Body,
-                        DateCreated = DateTime.Now,
-                        Label = document.Label,
-                        ReleaseYear = Convert.ToInt32(document.ReleaseYear),
-                        AlbumYear = Convert.ToInt32(document.AlbumYear),
-                        Genre = document.Genre,
-                        CatalogueNumber = document.CatalogueNumber,
-                        IsPublished = document.IsPublished,
-                        UserId = userHelper.GetCurrentLoggedUserId()
-                    };
-                    db.Diary.Add(diaryObject);
-                    isDiary = true;
-                }
-                else {
-                    var articleObject = new Models.Articles {
-                        Id = documentIdentifier,
-                        Name = document.Name,
-                        IndexDescription = document.IndexDescription,
-                        Prelude = document.Prelude,
-                        Body = document.Body,
-                        CategoryId = document.CategoryId.Value,
-                        SubCategoryId = document.SubCategoryId.Value,
-                        Series = document.Series.Value,
-                        DateCreated = DateTime.Now,
-                        DateEdited = DateTime.Now,
-                        UserId = userHelper.GetCurrentLoggedUserId()
-                    };
-                    db.Articles.Add(articleObject);
-                }
-                db.SaveChanges();
+                documentService.CreateDocument(document, upload);
                 return RedirectToAction("Details",
                     new {
-                        id = documentName,
-                        isDiary
+                        id = document.Name,
+                        document.IsDiary
                     });
             }
             return View(document);
         }
 
-        public ActionResult Edit(Guid? id) {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var articles = db.Articles.Find(id);
-            if (articles == null) {
-                return HttpNotFound();
-            }
+        public ActionResult Edit(Guid? id, bool isDiary) {
+            var document = documentService.GetDocumentForEdit(id.Value, isDiary);
             ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
             ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
             ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
             ViewBag.ArticleIdentificator = id;
-            return View(articles);
+            return View(document);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(
-            [Bind(
-                Include =
-                    "Id,Name,Prelude,Body,CategoryId,DateCreated,DateEdited,IsPublished,SubCategoryId,Series,IndexDescription"
-                )] Models.Articles article,
-            HttpPostedFileBase upload) {
+        public ActionResult Edit(CreateModelDto document, HttpPostedFileBase upload) {
             if (upload != null) {
                 var validImageTypes = new[] {
                     "image/gif",
@@ -154,45 +103,25 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 if (!validImageTypes.Contains(upload.ContentType)) {
                     ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
                 }
-                else {
-                    documentService.UploadImageForArticle(article.Id, upload, false);
-                }
             }
             if (ModelState.IsValid) {
-                //Do poprawki, bo chujowizna straszna
-                var entity = db.Articles.Where(c => c.Id == article.Id).AsQueryable().FirstOrDefault();
-                if (entity != null) {
-                    entity.Name = article.Name;
-                    entity.Body = article.Body;
-                    entity.Prelude = article.Prelude;
-                    entity.DateEdited = DateTime.Now;
-                    entity.CategoryId = article.CategoryId;
-                    entity.SubCategoryId = article.SubCategoryId;
-                    entity.Series = article.Series;
-                    entity.IndexDescription = article.IndexDescription;
-                    if (entity.IsPublished != article.IsPublished) {
-                        entity.IsPublished = article.IsPublished;
-                        entity.DateCreated = DateTime.Now;
-                    }
-                }
-                db.Entry(entity).State = EntityState.Modified;
-                db.SaveChanges();
+                documentService.UpdateDocument(document, upload);
                 return RedirectToAction("Details",
-                    new {id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(article.Id).Name)});
+                    new {
+                        id = document.Name,
+                        document.IsDiary
+                    });
             }
-            return View(article);
+            return View(document);
         }
 
         public ActionResult Delete(Guid? id, bool isDiary = false) {
             var document = documentService.GetDocument(id.Value, isDiary);
             return View(document);
         }
-
-        // POST: Articles/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id, bool isDiary) {
-            documentService.DeleteDocument(id, isDiary);
+        
+        public ActionResult DeleteConfirmed(string id, bool isDiary) {
+            documentService.DeleteDocument(new Guid(id), isDiary);
             return RedirectToAction("Index");
         }
 
@@ -281,10 +210,13 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("_Comments", new Comments());
         }
 
-        public ActionResult DeleteImage(Guid articleId) {
-            articleHelper.DeleteImageForGivenArticle(articleId);
+        public ActionResult DeleteImage(Guid articleId, bool isDiary) {
+            documentService.DeleteImageForGivenDocument(articleId);
             ViewBag.ArticleId = articleId;
-            return RedirectToAction("Edit", new {id = articleId});
+            return RedirectToAction("Edit", new {
+                id = articleId,
+                isDiary
+            });
         }
 
         public ActionResult GetCategoryName(Guid categoryId) {

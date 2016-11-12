@@ -210,12 +210,6 @@ namespace ComX_0._0._2.Helpers {
             return "deafult.jpg";
         }
 
-        public void DeleteImageForGivenArticle(Guid articleId) {
-            var imageToDelete = db.Images.First(x => x.ArticleId == articleId);
-            db.Images.Remove(imageToDelete);
-            db.SaveChanges();
-        }
-
         public void ChangeArticleCategoryIfCategoryDeleted(Guid categoryId, bool isMainCategory) {
             List<Articles> allArticlesWithDeletedCategory;
             if (isMainCategory) {

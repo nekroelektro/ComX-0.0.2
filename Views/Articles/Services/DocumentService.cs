@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,125 @@ namespace ComX_0._0._2.Views.Articles.Services {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
+        private readonly UserHelper userHelper = new UserHelper();
+
+        public void CreateDocument(CreateModelDto document, HttpPostedFileBase upload) {
+            var documentIdentifier = Guid.NewGuid();
+            if (upload != null) {
+                UploadImageForArticle(documentIdentifier, upload, document.IsDiary);
+            }
+            if (document.IsDiary) {
+                var diaryObject = new Diary {
+                    Id = documentIdentifier,
+                    Name = document.Name,
+                    Body = document.Body,
+                    DateCreated = DateTime.Now,
+                    Label = document.Label,
+                    ReleaseYear = Convert.ToInt32(document.ReleaseYear),
+                    AlbumYear = Convert.ToInt32(document.AlbumYear),
+                    Genre = document.Genre,
+                    CatalogueNumber = document.CatalogueNumber,
+                    IsPublished = document.IsPublished,
+                    UserId = userHelper.GetCurrentLoggedUserId()
+                };
+                db.Diary.Add(diaryObject);
+            }
+            else {
+                var articleObject = new Models.Articles {
+                    Id = documentIdentifier,
+                    Name = document.Name,
+                    IndexDescription = document.IndexDescription,
+                    Prelude = document.Prelude,
+                    Body = document.Body,
+                    CategoryId = document.CategoryId.Value,
+                    SubCategoryId = document.SubCategoryId.Value,
+                    Series = document.Series.Value,
+                    DateCreated = DateTime.Now,
+                    DateEdited = DateTime.Now,
+                    UserId = userHelper.GetCurrentLoggedUserId()
+                };
+                db.Articles.Add(articleObject);
+            }
+            db.SaveChanges();
+        }
+
+        public CreateModelDto GetDocumentForEdit(Guid id, bool isDiary) {
+            var document = new CreateModelDto();
+            if (isDiary) {
+                var diary = db.Diary.Find(id);
+                document.Id = diary.Id;
+                document.Name = diary.Name;
+                document.Body = diary.Body;
+                document.IsDiary = true;
+                document.AlbumYear = diary.AlbumYear;
+                document.ReleaseYear = diary.ReleaseYear;
+                document.DateCreated = diary.DateCreated;
+                document.Genre = diary.Genre;
+                document.Label = diary.Label;
+                document.IsPublished = diary.IsPublished;
+                document.CatalogueNumber = diary.CatalogueNumber;
+                document.UserId = diary.UserId;
+            }
+            else {
+                var article = db.Articles.Find(id);
+                document.Id = article.Id;
+                document.Name = article.Name;
+                document.Body = article.Body;
+                document.IsDiary = false;
+                document.DateCreated = article.DateCreated;
+                document.IsPublished = article.IsPublished;
+                document.UserId = article.UserId;
+                document.Prelude = document.Prelude;
+                document.IndexDescription = document.IndexDescription;
+                document.DateEdited = document.DateEdited;
+                document.CategoryId = document.CategoryId;
+                document.SubCategoryId = document.SubCategoryId;
+                document.Series = document.Series;
+            }
+            return document;
+        }
+
+        public void UpdateDocument(CreateModelDto document, HttpPostedFileBase upload) {
+            if (upload != null) {
+                UploadImageForArticle(document.Id, upload, document.IsDiary);
+            }
+            if (document.IsDiary) {
+                var entity = db.Diary.Where(c => c.Id == document.Id).AsQueryable().FirstOrDefault();
+                if (entity != null) {
+                    entity.Name = document.Name;
+                    entity.Body = document.Body;
+                    entity.AlbumYear = document.AlbumYear.Value;
+                    entity.CatalogueNumber = document.CatalogueNumber;
+                    entity.Genre = document.Genre;
+                    entity.ReleaseYear = document.ReleaseYear.Value;
+                    entity.Label = document.Label;
+                    if (entity.IsPublished != document.IsPublished) {
+                        entity.IsPublished = document.IsPublished;
+                        entity.DateCreated = DateTime.Now;
+                    }
+                }
+                db.Entry(entity).State = EntityState.Modified;
+            }
+            else {
+                var entity = db.Articles.Where(c => c.Id == document.Id).AsQueryable().FirstOrDefault();
+                if (entity != null) {
+                    entity.Name = document.Name;
+                    entity.Body = document.Body;
+                    entity.Prelude = document.Prelude;
+                    entity.DateEdited = DateTime.Now;
+                    entity.CategoryId = document.CategoryId.Value;
+                    entity.SubCategoryId = document.SubCategoryId.Value;
+                    entity.Series = document.Series.Value;
+                    entity.IndexDescription = document.IndexDescription;
+                    if (entity.IsPublished != document.IsPublished) {
+                        entity.IsPublished = document.IsPublished;
+                        entity.DateCreated = DateTime.Now;
+                    }
+                }
+                db.Entry(entity).State = EntityState.Modified;
+            }
+            db.SaveChanges();
+        }
 
         public DetailsModelDto GetDocumentForDetails(string name, bool isDiary, bool isDetailPanel) {
             var documentObject = new DetailsModelDto();
@@ -177,6 +297,12 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 documentObject.IsDiary = false;
             }
             return documentObject;
+        }
+
+        public void DeleteImageForGivenDocument(Guid id){
+            var imageToDelete = db.Images.First(x => x.ArticleId == id);
+            db.Images.Remove(imageToDelete);
+            db.SaveChanges();
         }
     }
 }
