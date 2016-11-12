@@ -11,6 +11,7 @@ using ComX_0._0._2.Views.Account.Models.DtoModels;
 using ComX_0._0._2.Views.Articles.Models;
 using ComX_0._0._2.Views.Articles.Services;
 using ComX_0._0._2.Views.Configuration.Models;
+using ComX_0._0._2.Views.Configuration.Services;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ComX_0._0._2.Views.Configuration.Controller {
@@ -21,6 +22,7 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
         private readonly IDocumentService documentService = new DocumentService();
+        private readonly IConfigurationService configurationService = new ConfigurationService();
 
         public ActionResult Articles() {
             var documents = documentService.GetDocumentForIndex(false);
@@ -256,6 +258,13 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
                 return RedirectToAction("Gallery");
             }
             return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult GalleryDeleteImages(string[] imagesList) {
+            configurationService.DeleteSelectedGalleryImages(imagesList);
+            return RedirectToAction("Gallery");
         }
 
         public ActionResult SiteSettings() {

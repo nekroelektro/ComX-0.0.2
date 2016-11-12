@@ -31,8 +31,10 @@
             <a class="fancybox" rel="gallery1" href='@Url.Content(articleHelper.GetGalleryImageRelativePathByName(item.Name))'>
                 <img src='@Url.Content(articleHelper.GetGalleryImageRelativePathByName(item.Name))' style="max-height: 100%; max-width: 100%; text-align: center; margin: 0 auto;"/>
             </a>
+            <input type="checkbox" class="galleryCheck" id="@item.Id" aria-label="Usuń">
         </div>
     }
+    <button class="btnConfirmDeletion">Submit</button>
 </div>
 
 @*SCRIPTS FOR VIEW*@
