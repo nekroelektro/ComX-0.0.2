@@ -46,3 +46,9 @@
     background-color: #2B823C; 
     width: 100%;
 }
+
+.diaryElementsContainer {
+    font-size: large;
+    padding: 1em; 
+    font-family: 'Coda', sans-serif;
+}

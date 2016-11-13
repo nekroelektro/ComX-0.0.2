@@ -5,7 +5,7 @@
         var userHelper = new UserHelper();
         var generalHelper = new GeneralHelper();
         var articles = Model.Where(x => x.IsDiary == false).OrderByDescending(x => x.DateCreation).ToList();
-        var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).Take(5).ToList();
+        var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).ToList();
     }
 <div class="slidersContainer">
     <div class="sliderOne">
@@ -36,6 +36,9 @@
                 </a>
             </div>
         }
+        <div class="slider-progress">
+            <div class="progress"></div>
+        </div>
     </div>
     <div class="sliderSection">
         @foreach (var item in articles) {
@@ -46,24 +49,25 @@
     </div>
 </div>
 <div class="indexDiaryContainer">
-    <div class="indexDiaryListHeader">
-        <h3>Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
-        <hr class="indexDiaryLine"/>
-    </div>
-    <ul class="indexDiaryList">
-        @foreach (var item in diaries)
-        {
-            <a class="indexSingleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
-                <li>
-                    <h4 class="indexDiaryName"># @item.Name</h4>
-                </li>
+    <div class="indexLastDiariesContainer">
+        <div class="indexDiaryListHeader">
+            <h3>Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
+            <hr class="indexDiaryLine"/>
+        </div>
+        <ul class="indexDiaryList">
+            @foreach (var item in diaries) {
+                <a class="indexSingleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
+                    <li>
+                        <h4 class="indexDiaryName"># @item.Name</h4>
+                    </li>
+                </a>
+            }
+        </ul>
+        <div class="moreMusicReviews moreDiaries">
+            <a class="seeMoreReviewsFromIndex seeMoreDiaries" href="@Url.Action("Diary", "Articles")">
+                <p>Przejdź do pamiętnika <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
             </a>
-        }
-    </ul>
-    <div class="moreMusicReviews">
-        <a class="seeMoreReviewsFromIndex seeMoreDiaries" href="@Url.Action("Categories", "Articles", new {@id = "Recenzje", @subId = "Muzyka"})">
-            <p>Przejdź do pamiętnika <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
-        </a>
+        </div>
     </div>
     <div class="indexDisclaimer">
         <h3>UWAŻEJ!</h3>
@@ -73,4 +77,4 @@
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Shared/Scripts/SharedIndexSlider.js"></script>
-<link href="~/Views/Shared/Styles/_IndexSlider.css" rel="stylesheet" type="text/css" />
+<link href="~/Views/Shared/Styles/_IndexSlider.css" rel="stylesheet" type="text/css"/>

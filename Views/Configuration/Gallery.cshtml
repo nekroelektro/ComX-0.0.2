@@ -24,6 +24,9 @@
         </div>
     </div>
 }
+<button type="button" class="btn btn-danger btn-sm btnConfirmDeletion">
+    <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>Usuń zaznaczone
+</button>
 <div class="galleryContainer">
     <h3>NekroPlaza gallery:</h3>
     @foreach (var item in Model) {
@@ -34,7 +37,6 @@
             <input type="checkbox" class="galleryCheck" id="@item.Id" aria-label="Usuń">
         </div>
     }
-    <button class="btnConfirmDeletion">Submit</button>
 </div>
 
 @*SCRIPTS FOR VIEW*@

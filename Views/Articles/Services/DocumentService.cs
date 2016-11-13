@@ -172,6 +172,20 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return document;
         }
 
+        public List<DocumentModelDto> GetDiaries() {
+            var diariesList = new List<DocumentModelDto>();
+            var diaries = db.Diary.ToList();
+            foreach (var diary in diaries) {
+                var document = new DocumentModelDto();
+                document.Id = diary.Id;
+                document.Name = diary.Name;
+                document.DateCreated = diary.DateCreated;
+                document.IsDiary = true;
+                diariesList.Add(document);
+            }
+            return diariesList;
+        } 
+
         public void DeleteDocument(Guid id, bool isDiary) {
             if (isDiary) {
                 db.Diary.Remove(db.Diary.Find(id));
@@ -179,6 +193,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             else {
                 db.Articles.Remove(db.Articles.Find(id));
             }
+            this.DeleteImageForGivenDocument(id);
             db.SaveChanges();
         }
 

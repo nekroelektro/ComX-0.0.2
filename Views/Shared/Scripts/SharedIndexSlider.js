@@ -1,5 +1,13 @@
 ﻿jQuery(document).ready(function ($) {
     //SLICK SLIDER
+    var time = 2;
+    var $bar,
+        $slick,
+        isPause,
+        tick,
+        percentTime;
+    $slick = $('.sliderOne');
+
     $('.sliderOne').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -13,8 +21,8 @@
         centerMode: true,
         asNavFor: '.sliderOne',
         slidesToShow: 3,
-        autoplay: true,
-        autoplaySpeed: 7000,
+        //autoplay: true,
+        //autoplaySpeed: 7000,
         focusOnSelect: true,
         slidesToScroll: 2,
         variableWidth: true,
@@ -47,17 +55,42 @@
         ]
     });
 
-    //$('.sliderSection').on('afterChange', function (slick, currentSlide) {
-    //    console.log(currentSlide);
-    //    currentSlide.css("border-top", "#2B823C");
-    //    currentSlide.css("border-bottom", "#2B823C");
-    //});
+    $bar = $('.slider-progress .progress');
+    $('.sliderOne').on({
+        mouseenter: function() {
+            isPause = true;
+        },
+        mouseleave: function() {
+            isPause = false;
+        }
+    });
 
-    //var currentSlide = $('.sliderSection').slick('slickCurrentSlide');
-    //currentSlide.style.borderTop = "#2B823C";
-    //currentSlide.style.borderBottom = "#2B823C";
-    //SCROLL
-    //$('.sliderRight').slimScroll({
-    //    height: '250px'
-    //});
+    function startProgressbar() {
+        resetProgressbar();
+        percentTime = 0;
+        isPause = false;
+        tick = setInterval(interval, 10);
+    }
+
+    function interval() {
+        if (isPause === false) {
+            percentTime += 0.4 / (time + 0.1);
+            $bar.css({
+                width: percentTime + "%"
+            });
+            if (percentTime >= 100) {
+                $slick.slick('slickNext');
+                startProgressbar();
+            }
+        }
+    }
+
+    function resetProgressbar() {
+        $bar.css({
+            width: 0 + '%'
+        });
+        clearTimeout(tick);
+    }
+
+    startProgressbar();
 });

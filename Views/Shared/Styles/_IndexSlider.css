@@ -179,6 +179,10 @@
     font-family: 'Coda', sans-serif; 
 }
 
+.indexLastDiariesContainer {
+    height: 50%;
+}
+
 .indexDiaryList {
     margin-left: 1em;
     margin-right: 1em;
@@ -218,8 +222,11 @@
     color: whitesmoke !important;
 }
 
+.moreDiaries {
+    padding-right: 1em;
+}
+
 .indexDisclaimer {
-    padding-top: 3em;
     margin-left: 1em;
     margin-right: 1em;
     text-align: justify;
@@ -232,4 +239,16 @@
 .indexDisclaimer p {
     font-size: medium;
     color: whitesmoke;
+}
+
+.slider-progress {
+  width: 100%;
+  height: 3px;
+  background: #eee;
+  z-index: 99999;
+}
+.slider-progress .progress {
+  width: 0%;
+  height: 3px;
+  background: #2B823C !important;;
 }

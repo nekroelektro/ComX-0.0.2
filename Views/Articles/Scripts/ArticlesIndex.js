@@ -40,29 +40,8 @@
             $(this).parent().find('h4').css('color', 'black');
         });
 
-    //$('.indexListMenuItem').click(function () {
-    //});
-
-    //$(document).on('click', '.indexListMenuItem', function (e) {
-    //    catIdentificator = $(this).data('id').toString();
-    //    console.log(catIdentificator);
-
-    //    $.ajax({
-    //        url: '@Url.Action("Index", "Articles")',
-    //        type: "GET",
-    //        data: { 'category': catIdentificator }
-    //        //success: function (data, textStatus, jqXHR) {
-    //        //    $('#pager').html(data);
-    //        //}
-    //    })
-    //    .done(function (partialViewResult) {
-    //        $(".articlesIndexContainer").html(partialViewResult);
-    //    });
-    //});
-
     $('.indexSingleReview')
         .mouseover(function () {
-            //$(this).find('.titleTopNavigation').show(500);
             $(this).find('.indexReviewTitle').stop().fadeTo("slow", 1);
         })
         .mouseout(function () {

@@ -1,0 +1,63 @@
+﻿.articlesIndexReviewsContainer {
+    width: 100%; 
+    float: left;
+    margin-bottom: 1em;
+}
+
+.diaryContainer {
+    /*display: inline-flex;*/ 
+    margin: 0 auto; 
+    text-align: center; 
+    width: 100%; 
+    padding-top: 1em;
+}
+
+.singleDiaryAnchor {
+    width: 33.3%; 
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.singleDiary {
+    height: 18.5em;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    /*width: 100%; 
+    overflow: hidden; 
+    position: relative;*/
+}
+
+.singleDiaryImageContainer {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+.singleDiaryImageContainer img{
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.diaryTitle {
+    display: none; 
+    width: 100%; 
+    height: 45%; 
+    font-size: 1.2em; 
+    color: black; 
+    text-align: center; 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 7; 
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.diaryTitle p {
+    padding: 0.5em;
+}

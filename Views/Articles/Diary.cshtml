@@ -1,0 +1,32 @@
+﻿@using ComX_0._0._2.Helpers
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.DocumentModelDto>
+@{
+    Layout = "~/Views/Articles/_Articles.cshtml";
+    var generalHelper = new GeneralHelper();
+    var articleHelper = new ArticleHelper();
+}
+<div class="categoryArticleTitle">
+    <h2>Witaj w pamiętniku płytoholika, wędrowcze!</h2>
+    <hr/>
+    <p>Pamiętnik to właściwie zapis katalogowy moich muzycznych nabytków. Zdecydowanie jestem nałogowym, płytowym kolekcjonerem, a nałóg ten nasila się w sposób regularny. Witaj w moim świecie, świecie!</p>
+    <hr/>
+</div>
+<div class="diaryContainer">
+    @foreach (var item in Model) {
+        <a class="singleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
+            <div class="singleDiary col-xs-4">
+                <div class="singleDiaryImageContainer">
+                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                </div>
+                <div class="diaryTitle">
+                    <p>#@item.Name</p>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+@*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Articles/Scripts/ArticleDiary.js"></script>
+<link href="~/Views/Articles/Styles/Diary.css" rel="stylesheet" type="text/css" />
+

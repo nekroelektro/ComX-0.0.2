@@ -44,7 +44,7 @@
                 @Html.ValidationMessageFor(model => model.IndexDescription, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group articleCreateComponent">
             @Html.LabelFor(model => model.Prelude, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Prelude, new { @class = "form-control articleEditor" })

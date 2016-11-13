@@ -440,6 +440,7 @@
     <Content Include="Views\Account\Styles\UserPanel.css" />
     <Content Include="Views\Account\Styles\Register.css" />
     <Content Include="Views\Account\Styles\Login.css" />
+    <Content Include="Views\Articles\Scripts\ArticleDiary.js" />
     <Content Include="Views\Articles\Scripts\Articles.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCategories.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCommentEdit.js" />
@@ -451,6 +452,7 @@
     <Content Include="Views\Articles\Styles\Details.css" />
     <Content Include="Views\Articles\Styles\CommentEdit.css" />
     <Content Include="Views\Articles\Styles\Categories.css" />
+    <Content Include="Views\Articles\Styles\Diary.css" />
     <Content Include="Views\Articles\Styles\_TopDetailPanel.css" />
     <Content Include="Views\Articles\Styles\_Comments.css" />
     <Content Include="Views\Articles\Styles\_LastFromCategory.css" />
@@ -605,6 +607,7 @@
     <Content Include="Views\Articles\_Articles.cshtml" />
     <Content Include="Views\Shared\Maintenance.cshtml" />
     <Content Include="Views\Nekropedia\_Nekropedia.cshtml" />
+    <Content Include="Views\Articles\Diary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

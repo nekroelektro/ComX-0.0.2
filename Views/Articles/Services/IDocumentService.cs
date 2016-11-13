@@ -15,5 +15,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
         CreateModelDto GetDocumentForEdit(Guid id, bool isDiary);
         void UpdateDocument(CreateModelDto document, HttpPostedFileBase upload);
         void DeleteImageForGivenDocument(Guid id);
+        List<DocumentModelDto> GetDiaries();
     }
 }

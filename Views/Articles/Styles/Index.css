@@ -163,7 +163,6 @@
 }
 
 .indexReviewsContainer {
-    display: inline-flex; 
     margin: 0 auto; 
     text-align: center; 
     width: 100%; 
@@ -177,10 +176,12 @@
 }
 
 .indexSingleReview {
-    width: 100%; 
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     height: 15em; 
-    overflow: hidden; 
+    /*overflow: hidden; 
     position: relative;
+    width: 100%; */
 }
 
 .indexSingleReviewImageContainer {

@@ -20,7 +20,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         public ActionResult Index() {
             var publishedArticles = documentService.GetDocumentForIndex(true);
-            for (var i = 0; i < 7; i++) {
+            for (var i = 0; i < 5; i++) {
                 publishedArticles.RemoveAt(0);
             }
             return PartialView("Index", publishedArticles);
@@ -198,7 +198,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult _IndexSlider() {
-            var lastDocuments = documentService.GetDocumentForIndex(false, 7);
+            var lastDocuments = documentService.GetDocumentForIndex(false, 5);
             return PartialView("_IndexSlider", lastDocuments);
         }
 
@@ -217,6 +217,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 id = articleId,
                 isDiary
             });
+        }
+
+        public ActionResult Diary() {
+            var diaries = documentService.GetDiaries();
+            return View(diaries);
         }
 
         public ActionResult GetCategoryName(Guid categoryId) {

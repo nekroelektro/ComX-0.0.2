@@ -17,7 +17,6 @@
             type: "POST",
             data: { 'imagesList': idList },
             success: function(data) {
-                //window.location.reload();
                 window.location.href = "/Configuration/Gallery";
             }
         });
