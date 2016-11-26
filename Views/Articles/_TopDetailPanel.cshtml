@@ -34,7 +34,12 @@
         {
             <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(Model.Series.Value).Name</h3>
         }
-        <h2 class="bannerArticleName">#@Model.Name</h2>
+        @if (Model.IsDiary) {
+            <h2 class="bannerArticleName">#@Model.Name</h2>
+        }
+        else {
+            <h2 class="bannerArticleName">@Model.Name</h2>
+        }
         <div class="datesDetailsArticles">
             <p>
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(Model.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @Model.DateCreated &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @category@subCategory

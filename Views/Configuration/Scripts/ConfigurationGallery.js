@@ -11,7 +11,6 @@
             idList.push(item);
         });
 
-        console.log(idList);
         $.ajax({
             url: "/Configuration/GalleryDeleteImages/",
             type: "POST",

@@ -43,15 +43,15 @@
         </div>
         <div class="fb-like" data-href="@currentUrl" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
     </div>
-@if (!isDiary) {
     <div class="articleDetailsBottomSection">
-        @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId, articleId = Model.Id})
+@if (!isDiary) {
+    @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId, articleId = Model.Id})
+}
         <hr class="articleDetailsBottomLine"/>
         <div id="detailsCommentSection">
-            @Html.Action("_Comments", new {id = Guid.Empty, artId = Model.Id})
+            @Html.Action("_Comments", new {id = Guid.Empty, artId = Model.Id, isDiary})
         </div>
     </div>
-}
 </div>
 <div id="fb-root"></div>
 

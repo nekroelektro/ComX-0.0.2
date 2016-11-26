@@ -137,63 +137,53 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView(articles);
         }
 
-        public ActionResult _Comments(Guid? id, Guid? artId) {
-            var comments = new Comments();
+        public ActionResult _Comments(Guid? id, Guid? artId, bool isDiary) {
+            var comments = new CommentModelDto();
             if (id != null) {
-                comments = db.Comments.Find(id);
+                comments = documentService.GetCommentDetails(id.Value);
             }
             ViewBag.ReturnArticleId = artId;
+            ViewBag.IsDocumentDiary = isDiary;
             return PartialView("_Comments", comments);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult _Comments([Bind(Include = "Id,Body,ArticleId")] Comments comment) {
-            var artId = comment.ArticleId;
-            var userId = userHelper.GetCurrentLoggedUserId();
+        public ActionResult _Comments(CommentModelDto comment) {
             if (string.IsNullOrEmpty(comment.Body)) {
                 ModelState.AddModelError("EmptyComment", "Oszalałeś? Nie możesz dodać pustego komentarza...");
             }
             else if (ModelState.IsValid) {
-                comment.Id = Guid.NewGuid();
-                comment.UserId = userId;
-                comment.DateOfCreation = DateTime.Now;
-
-
-                comment.ArticleId = artId;
-
-                db.Comments.Add(comment);
-                db.SaveChanges();
+                documentService.CreateComment(comment);
             }
-            ViewBag.ReturnArticleId = artId;
-            return PartialView("_Comments", new Comments());
+            ViewBag.ReturnArticleId = comment.ArticleId;
+            ViewBag.IsDocumentDiary = comment.IsDiary;
+            return PartialView("_Comments", new CommentModelDto());
         }
 
         public ActionResult CommentEdit(Guid? id, Guid? articleId) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var articles = db.Comments.Find(id);
+            var articles = documentService.GetCommentDetails(id.Value);
             if (articles == null) {
                 return HttpNotFound();
             }
-            ViewBag.ReturnArticleId = articleId;
+            ViewBag.ReturnArticleId = articles.ArticleId;
+            ViewBag.IsDocumentDiary = articles.IsDiary;
             return PartialView(articles);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CommentEdit(Comments comment) {
+        public ActionResult CommentEdit(CommentModelDto comment) {
             if (ModelState.IsValid) {
-                var commentToChange = db.Comments.Find(comment.Id);
-                commentToChange.Body = comment.Body;
-                db.Entry(commentToChange).State = EntityState.Modified;
-                db.SaveChanges();
+                documentService.UpdateComment(comment);
             }
             return RedirectToAction("Details",
                 new {
                     id =
-                        generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(comment.ArticleId).Name)
+                        generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(comment.ArticleId, comment.IsDiary).Name)
                 });
         }
 
@@ -202,12 +192,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("_IndexSlider", lastDocuments);
         }
 
-        public ActionResult DeleteComment(string commentId, string articleId) {
-            var commentToDelete = db.Comments.Find(new Guid(commentId));
-            db.Comments.Remove(commentToDelete);
-            db.SaveChanges();
+        public ActionResult DeleteComment(string commentId, string articleId, bool isDiary) {
+            documentService.DeleteComment(new Guid(commentId));
             ViewBag.ReturnArticleId = new Guid(articleId);
-            return PartialView("_Comments", new Comments());
+            ViewBag.IsDocumentDiary = isDiary;
+            return PartialView("_Comments", new CommentModelDto());
         }
 
         public ActionResult DeleteImage(Guid articleId, bool isDiary) {
@@ -220,7 +209,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult Diary() {
-            var diaries = documentService.GetDiaries();
+            var diaries = documentService.GetDiaries().OrderByDescending(x=>x.Name);
             return View(diaries);
         }
 

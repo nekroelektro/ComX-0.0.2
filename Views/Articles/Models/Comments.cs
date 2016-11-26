@@ -7,5 +7,6 @@ namespace ComX_0._0._2.Views.Articles.Models {
         public Guid UserId { get; set; }
         public Guid ArticleId { get; set; }
         public DateTime DateOfCreation { get; set; }
+        public bool IsDiary { get; set; }
     }
 }

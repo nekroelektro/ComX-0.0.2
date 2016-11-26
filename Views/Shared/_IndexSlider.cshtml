@@ -8,6 +8,9 @@
         var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).ToList();
     }
 <div class="slidersContainer">
+    <div class="slider-progress">
+        <div class="progress"></div>
+    </div>
     <div class="sliderOne">
         @foreach (var item in articles) {
             <div class="slideElementUpper">
@@ -36,9 +39,6 @@
                 </a>
             </div>
         }
-        <div class="slider-progress">
-            <div class="progress"></div>
-        </div>
     </div>
     <div class="sliderSection">
         @foreach (var item in articles) {

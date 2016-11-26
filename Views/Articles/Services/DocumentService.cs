@@ -83,12 +83,12 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 document.DateCreated = article.DateCreated;
                 document.IsPublished = article.IsPublished;
                 document.UserId = article.UserId;
-                document.Prelude = document.Prelude;
-                document.IndexDescription = document.IndexDescription;
-                document.DateEdited = document.DateEdited;
-                document.CategoryId = document.CategoryId;
-                document.SubCategoryId = document.SubCategoryId;
-                document.Series = document.Series;
+                document.Prelude = article.Prelude;
+                document.IndexDescription = article.IndexDescription;
+                document.DateEdited = article.DateEdited;
+                document.CategoryId = article.CategoryId;
+                document.SubCategoryId = article.SubCategoryId;
+                document.Series = article.Series;
             }
             return document;
         }
@@ -148,8 +148,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return documentObject;
         }
 
-        public List<IndexModelDto> GetDocumentForIndex(bool onlyArticles, int number = 0) {
-            var documents = GetIndexDocuments(onlyArticles, number);
+        public List<IndexModelDto> GetDocumentForIndex(bool onlyArticles, int number = 0, bool isConfiguration = false) {
+            var documents = GetIndexDocuments(onlyArticles, number, isConfiguration);
             return documents;
         }
 
@@ -184,7 +184,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 diariesList.Add(document);
             }
             return diariesList;
-        } 
+        }
 
         public void DeleteDocument(Guid id, bool isDiary) {
             if (isDiary) {
@@ -193,7 +193,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             else {
                 db.Articles.Remove(db.Articles.Find(id));
             }
-            this.DeleteImageForGivenDocument(id);
+            DeleteImageForGivenDocument(id);
             db.SaveChanges();
         }
 
@@ -234,11 +234,105 @@ namespace ComX_0._0._2.Views.Articles.Services {
             db.SaveChanges();
         }
 
-        private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number) {
-            var articles =
-                (number == 0
-                    ? db.Articles.Where(x => x.IsPublished)
-                    : db.Articles.Where(x => x.IsPublished).Take(number)).OrderByDescending(x => x.DateCreated).ToList();
+        public void DeleteImageForGivenDocument(Guid id) {
+            var imageToDelete = db.Images.First(x => x.ArticleId == id);
+            if (File.Exists(imageToDelete.ImagePath)) {
+                File.Delete(imageToDelete.ImagePath);
+            }
+            db.Images.Remove(imageToDelete);
+            db.SaveChanges();
+        }
+
+        public List<CommentModelDto> GetCommentsForDocument(Guid articleId) {
+            var commentList = new List<CommentModelDto>();
+            var document = db.Comments.Where(x => x.ArticleId == articleId);
+            foreach (var item in document) {
+                var comment = new CommentModelDto {
+                    Id = item.Id,
+                    Body = item.Body,
+                    UserId = item.UserId,
+                    DateCreated = item.DateOfCreation,
+                    ArticleId = item.ArticleId,
+                    IsDiary = item.IsDiary
+                };
+                commentList.Add(comment);
+            }
+            if (commentList.Count > 0) {
+                commentList.OrderByDescending(x => x.DateCreated).ToList();
+            }
+            return commentList;
+        }
+
+        public CommentModelDto GetCommentDetails(Guid commentId) {
+            var comment = new CommentModelDto();
+            var document = db.Comments.Find(commentId);
+            if (document != null) {
+                comment = new CommentModelDto {
+                    Id = document.Id,
+                    Body = document.Body,
+                    UserId = document.UserId,
+                    DateCreated = document.DateOfCreation,
+                    ArticleId = document.ArticleId,
+                    IsDiary = document.IsDiary
+                };
+            }
+            return comment;
+        }
+
+        public void CreateComment(CommentModelDto comment) {
+            var newComment = new Comments {
+                Id = Guid.NewGuid(),
+                Body = comment.Body,
+                UserId = userHelper.GetCurrentLoggedUserId(),
+                ArticleId = comment.ArticleId,
+                DateOfCreation = DateTime.Now,
+                IsDiary = comment.IsDiary
+            };
+            db.Comments.Add(newComment);
+            db.SaveChanges();
+        }
+
+        public void UpdateComment(CommentModelDto comment) {
+            var entity = db.Comments.Where(c => c.Id == comment.Id).AsQueryable().FirstOrDefault();
+            if (entity != null) {
+                entity.Body = comment.Body;
+            }
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void DeleteComment(Guid commentId) {
+            var comment = db.Comments.Find(commentId);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+        }
+
+        public List<CommentModelDto> GetComments(int? number) {
+            List<Comments> comments;
+            comments = number != null ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(number.Value).ToList() : db.Comments.ToList();
+
+            return comments.Select(comment => new CommentModelDto {
+                Id = comment.Id,
+                Body = comment.Body,
+                UserId = comment.UserId,
+                DateCreated = comment.DateOfCreation,
+                ArticleId = comment.ArticleId,
+                IsDiary = comment.IsDiary
+            }).ToList();
+        }
+
+        private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number, bool isConfiguration) {
+            var articles = new List<Models.Articles>();
+            if (isConfiguration) {
+                articles = db.Articles.ToList();
+            }
+            else {
+                articles =
+                    (number == 0
+                        ? db.Articles.Where(x => x.IsPublished)
+                        : db.Articles.Where(x => x.IsPublished).Take(number)).OrderByDescending(x => x.DateCreated)
+                        .ToList();
+            }
             var documents = articles.Select(item => new IndexModelDto {
                 Id = item.Id,
                 Name = item.Name,
@@ -253,9 +347,17 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 IsPublished = item.IsPublished
             }).ToList();
             if (!onlyArticles) {
-                var diary =
-                    (number == 0 ? db.Diary.Where(x => x.IsPublished) : db.Diary.Where(x => x.IsPublished).Take(number))
-                        .OrderByDescending(x => x.DateCreated).ToList();
+                var diary = new List<Diary>();
+                if (isConfiguration) {
+                    diary = db.Diary.ToList();
+                }
+                else {
+                    diary =
+                        (number == 0
+                            ? db.Diary.Where(x => x.IsPublished)
+                            : db.Diary.Where(x => x.IsPublished).Take(number))
+                            .OrderByDescending(x => x.DateCreated).ToList();
+                }
                 documents.AddRange(diary.Select(item => new IndexModelDto {
                     Id = item.Id,
                     Name = item.Name,
@@ -312,15 +414,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 documentObject.IsDiary = false;
             }
             return documentObject;
-        }
-
-        public void DeleteImageForGivenDocument(Guid id){
-            var imageToDelete = db.Images.First(x => x.ArticleId == id);
-            if (File.Exists(imageToDelete.ImagePath)) {
-                File.Delete(imageToDelete.ImagePath);
-            }
-            db.Images.Remove(imageToDelete);
-            db.SaveChanges();
         }
     }
 }

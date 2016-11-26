@@ -1,11 +1,14 @@
 ﻿@using ComX_0._0._2.Helpers
-@model ComX_0._0._2.Views.Articles.Models.Comments
+@using ComX_0._0._2.Views.Articles.Services
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.CommentModelDto
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "Rozedytuj swój (słaby) komentarz - NEKROPLAZA";
     UserHelper userHelper = new UserHelper();
     ArticleHelper articleHelper = new ArticleHelper();
     GeneralHelper generalHelper = new GeneralHelper();
+    IDocumentService documentService = new DocumentService();
+    Model.ArticleId = ViewBag.ReturnArticleId;
 }
 @if (Model.UserId == userHelper.GetCurrentLoggedUserId() || userHelper.UserIsAdmin(userHelper.GetCurrentLoggedUserId())) {
     using (Html.BeginForm()) {
@@ -18,18 +21,20 @@
                         @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
                     </div>
                 </div>
-                @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
-                @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
-                @Html.HiddenFor(model => model.ArticleId)
                 <div class="form-group">
-                    <div class="commentEditButtons">
-                        <button type="submit" class="btn btn-info submitEditCommentForm">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
-                        </button>
-                        <button type="button" onclick="location.href = '@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(Model.ArticleId).Name)}))'" data-artId="@generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(Model.ArticleId).Name)'" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                    @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
+                    @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
+                    @Html.HiddenFor(model => model.ArticleId)
+                </div>
+                    <div class="form-group">
+                        <div class="commentEditButtons">
+                            <button type="submit" class="btn btn-info submitEditCommentForm">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
+                            </button>
+                            <button type="button" onclick="location.href = '@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(Model.ArticleId, Model.IsDiary).Name), Model.IsDiary}))'" data-artId="@generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(Model.ArticleId, Model.IsDiary).Name)'" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     }
 }

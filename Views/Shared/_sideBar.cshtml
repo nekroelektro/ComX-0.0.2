@@ -1,8 +1,10 @@
 ﻿@using ComX_0._0._2.Helpers
+@using ComX_0._0._2.Views.Articles.Services
 @{
     ArticleHelper articleHelper = new ArticleHelper();
     GeneralHelper generalHelper = new GeneralHelper();
     UserHelper userHelper = new UserHelper();
+    IDocumentService documentService = new DocumentService();
     var currentArticle = Request.Params["Id"];
     var randomPosts = articleHelper.GetRandomArticlesForSideBar(5, currentArticle != null ? new Guid(currentArticle) : Guid.Empty);
     string currentUrl = Request.Url?.AbsoluteUri;
@@ -38,10 +40,10 @@
         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
         <hr class="sideGreenLine"/>
         <div class="sideLastCommentsBody">
-            @foreach (var item in articleHelper.GetLastComments(10)) {
-                <a class="sideLastCommentAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(articleHelper.GetArticleById(item.ArticleId).Name)}))#commentSection">
+            @foreach (var item in documentService.GetComments(10)) {
+                <a class="sideLastCommentAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(item.ArticleId, item.IsDiary).Name), @isDiary = item.IsDiary}))#commentSection">
                     <div class="sideLastCommentsBodySingle">
-                        <div class="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @articleHelper.GetArticleById(item.ArticleId).Name</div>
+                        <div class="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @documentService.GetDocument(item.ArticleId, item.IsDiary).Name</div>
                         <div class="sideLastCommentsUser">
                             <b>by @userHelper.GetUserById(item.UserId).UserName</b>
                         </div>

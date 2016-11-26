@@ -8,6 +8,16 @@
     position: relative;
 }
 
+p:selection {
+    color: white;
+    background: #2B823C;
+}
+
+p:-moz-selection {
+    color: white;
+    background: #2B823C;
+}
+
 /* Set padding to keep content from hitting the edges */
 .bodyLayout {
     margin: 0 auto;

@@ -25,7 +25,7 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         private readonly IConfigurationService configurationService = new ConfigurationService();
 
         public ActionResult Articles() {
-            var documents = documentService.GetDocumentForIndex(false);
+            var documents = documentService.GetDocumentForIndex(false, 0, true);
             return View(documents);
         }
 

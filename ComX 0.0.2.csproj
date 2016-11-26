@@ -490,9 +490,14 @@
     <Compile Include="Migrations\201611111219045_np0201.Designer.cs">
       <DependentUpon>201611111219045_np0201.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611261249266_np0202.cs" />
+    <Compile Include="Migrations\201611261249266_np0202.Designer.cs">
+      <DependentUpon>201611261249266_np0202.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
     <Compile Include="Views\Articles\Models\Diary.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\CommentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CreateModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DetailsModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DocumentModelDto.cs" />
@@ -625,6 +630,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611111219045_np0201.resx">
       <DependentUpon>201611111219045_np0201.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611261249266_np0202.resx">
+      <DependentUpon>201611261249266_np0202.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

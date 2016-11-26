@@ -59,6 +59,9 @@ namespace ComX_0._0._2.Helpers {
             var url = GetCurrentPageUrl();
             var urlArray = url.Split('/');
             var urlName = urlArray.Last();
+            if (urlName.Contains("?")) {
+                urlName = urlName.Split('?').First();
+            }
             var name = this.AddSpecialCharsForString(urlName);
             return name;
         }
@@ -76,6 +79,9 @@ namespace ComX_0._0._2.Helpers {
             var urlDecoded = HttpUtility.UrlDecode(url);
             var urlArray = urlDecoded.Split('/');
             var urlName = urlArray.Last();
+            if (urlName.Contains("?")){
+                urlName = urlName.Split('?').First();
+            }
             var text = this.AddSpecialCharsForString(urlName);
             return text;
         }

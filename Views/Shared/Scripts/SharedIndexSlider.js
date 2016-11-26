@@ -6,7 +6,7 @@
         isPause,
         tick,
         percentTime;
-    $slick = $('.sliderOne');
+    $slick = $('.sliderSection');
 
     $('.sliderOne').slick({
         slidesToShow: 1,
@@ -63,6 +63,10 @@
         mouseleave: function() {
             isPause = false;
         }
+    });
+
+    $(document).on('click', '.sliderSection', function (e) {
+        startProgressbar();
     });
 
     function startProgressbar() {

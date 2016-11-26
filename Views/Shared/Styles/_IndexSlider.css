@@ -180,7 +180,8 @@
 }
 
 .indexLastDiariesContainer {
-    height: 50%;
+    height: 55%;
+    margin-top: -1.5em;
 }
 
 .indexDiaryList {
@@ -244,7 +245,7 @@
 .slider-progress {
   width: 100%;
   height: 3px;
-  background: #eee;
+  background: black;
   z-index: 99999;
 }
 .slider-progress .progress {
