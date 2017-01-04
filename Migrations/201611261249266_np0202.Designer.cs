@@ -7,13 +7,13 @@ namespace ComX_0._0._2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class mig1 : IMigrationMetadata
+    public sealed partial class np0202 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mig1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(np0202));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606201616264_mig1"; }
+            get { return "201611261249266_np0202"; }
         }
         
         string IMigrationMetadata.Source
