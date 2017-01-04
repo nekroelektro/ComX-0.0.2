@@ -113,6 +113,14 @@
     margin: 1em;
 }
 
+.articlesIndexLine {
+    margin: 0;
+    border: 1px solid chocolate;
+    width: 100%;
+    float: left;
+    margin-bottom: 0.7em;
+}
+
 .articlesIndexSingleFooter {
     background-color: black; 
     color: white; 
@@ -179,9 +187,6 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     height: 15em; 
-    /*overflow: hidden; 
-    position: relative;
-    width: 100%; */
 }
 
 .indexSingleReviewImageContainer {
@@ -238,4 +243,51 @@
 
 .indexReviewTitle p {
     padding: 0.5em;
+}
+
+.bannerPanelInfoIndex {
+    width: 100%; 
+    font-family: 'Coda', sans-serif; 
+    position: absolute; 
+    bottom: 1em; 
+    color: black; 
+    padding: 1em;
+    background: rgba(16, 17, 17, 0.7); 
+    z-index: 4;    
+    color: white;
+}
+
+.bannerArticleTagsIndex {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(16, 17, 17, 0.7);
+    z-index: 4;  
+    color: white;
+}
+
+.bannerArticleNameIndex {
+    width: 100%; 
+    float: left; 
+    margin-top: 0;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.datesDetailsArticlesIndex {
+    display: inline-block; 
+    float: left; 
+    clear: both;
+}
+
+.datesDetailsArticlesIndex p {
+    float: left;
+}
+
+.singleIndexAnchor:hover .bannerArticleNameIndex{
+    color: #2B823C !important;
+}
+
+.bannerArticlePreludeIndex {
+    text-align: justify;
 }

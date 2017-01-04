@@ -17,6 +17,50 @@
     }
 </ul>*@
 <div id="pager">
+    <div class="articlesIndexHeader">
+        <h3>POSTY:</h3>
+    </div>
+    <ul class="content articlesIndexTable" id="content">
+        @foreach (var item in Model) {
+            <div class="indexSingleArticleContainer col-md-6 col-sm-12" style="height: 16em; padding-left: 0; padding-right: 0; border: 1px solid #474a4f;">
+                <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
+                    @if (articleHelper.GetImageByArticleId(item.Id) != null) {
+                        <div class="articlesIndexSingleImage" style="width: 100%;">
+                            <p class="bannerArticleTagsIndex"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
+                            @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name</p>
+                            <div class="bannerPanelImageContainerIndex">
+                                <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                            </div>
+                            <div class="bannerPanelImageMainIndex">
+                                <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                            </div>
+                            <div class="imageOverlayColorIndex"></div>
+                            <div class="bannerPanelInfoIndex">
+                                @*@if (item.Series != Guid.Empty && articleHelper.GetSeriesById(item.Series.Value).Name != "Default"){
+                                    <h3 class="bannerSeriesTitleIndex">@articleHelper.GetSeriesById(item.Series.Value).Name</h3>
+                                }*@
+                                <h3 class="bannerArticleNameIndex">@item.Name</h3>
+                                @*<div class="datesDetailsArticlesIndex">
+                                    <p>
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreation &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
+                                        @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name
+                                    </p>
+                                </div>*@
+                                <hr class="articlesIndexLine"/>
+                                <div class="bannerArticlePreludeIndex">
+                                    @Html.Raw(WebUtility.HtmlDecode(item.IndexPrologue))
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </a>
+            </div>
+        }
+    </ul>
+    <hr/>
+    <div class="page_navigation"></div>
+</div>
+@*<div id="pager">
     <div class="articlesIndexContainer">
         <div class="articlesIndexHeader">
             <h3>POSTY:</h3>
@@ -68,7 +112,7 @@
         <hr/>
         <div class="page_navigation"></div>
     </div>
-</div>
+</div>*@
 <div class="articlesIndexReviewsContainer">
     <div class="articlesIndexReviewsHeader">
         <h3>OSTATNIE RECKI PŁYTOWE:</h3>
