@@ -15,8 +15,8 @@
 
 
     $('#pager').pajinate({
-        num_page_links_to_display: 3,
-        items_per_page: 6,
+        //num_page_links_to_display: 3,
+        items_per_page: 8,
         show_first_last: false
 });
 

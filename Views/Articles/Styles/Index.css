@@ -80,6 +80,10 @@
     z-index: 2;
 }
 
+.imageOverlayColorIndexNoOverlay {
+    background: none !important;
+}
+
 .articlesIndexSingleBody {
     width: 62%; 
     min-height: 100%; 
@@ -260,7 +264,7 @@
 .bannerArticleTagsIndex {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     background: rgba(16, 17, 17, 0.7);
     z-index: 4;  
     color: white;

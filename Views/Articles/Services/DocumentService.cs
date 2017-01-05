@@ -50,6 +50,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     Series = document.Series.Value,
                     DateCreated = DateTime.Now,
                     DateEdited = DateTime.Now,
+                    IsPublished = document.IsPublished,
                     UserId = userHelper.GetCurrentLoggedUserId()
                 };
                 db.Articles.Add(articleObject);

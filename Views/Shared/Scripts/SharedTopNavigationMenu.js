@@ -28,9 +28,10 @@
                 $(".elementsToPush").css("margin-top", 0);
                 current = -1;
             } else {
+                //for pushing elements during top menu displaying
                 $item.addClass('cbp-hropen');
                 var subList = document.getElementsByClassName("cbp-hrsub");
-                $(".elementsToPush").css("margin-top", $(subList[idx]).height() + 20);
+                //$(".elementsToPush").css("margin-top", $(subList[idx]).height() + 20);
                 current = idx;
                 $body.off('click').on('click', close);
             }
@@ -59,7 +60,7 @@
     $('.main').on('sticky-start', function (e) {
         $('.absoluteLogo').show();
         $(".cbp-hrsub-inner").css("width", "100%");
-        $(".main").css("box-shadow", "0 0 10px 10px #222222");
+        //$(".main").css("box-shadow", "0 0 10px 10px #222222");
     });
     $('.main').on('sticky-end', function () {
         $('.absoluteLogo').hide();

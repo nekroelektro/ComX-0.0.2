@@ -11,7 +11,7 @@
 
 .articleDetailsIntro {
     text-align: justify; 
-    font-size: 1.3em; 
+    font-size: 1.6em; 
     text-indent: 0.9em; 
     border-left: 0.5em #2B823C solid;
     border-right: 0.5em #2B823C solid; 
@@ -19,7 +19,8 @@
     padding: 2px 5px 2px 5px; 
     padding-left: 1em; 
     padding-right: 1em; 
-    font-family: 'Krona One', sans-serif;
+    font-family: 'Coda', sans-serif;
+    font-weight: bolder;
 }
 
 .articleDetailsBody {

@@ -1,6 +1,7 @@
 ﻿.main {
     width: 100%;
     font-family: 'Coda', sans-serif;
+    border-top: 1px solid #3d3f42;
 }
 
 .absoluteLogo {

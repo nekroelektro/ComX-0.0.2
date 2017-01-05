@@ -1,4 +1,14 @@
 ﻿jQuery(document).ready(function ($) {
+    $('.indexSingleDiaryAnchor')
+        .mouseover(function () {
+            $(this).find('.imageOverlayColorIndex ').addClass('imageOverlayColorIndexNoOverlay');
+            $(this).find('h4').css('background', "black");
+        })
+        .mouseout(function () {
+            $(this).find('.imageOverlayColorIndex ').removeClass('imageOverlayColorIndexNoOverlay');
+            $(this).find('h4').css('background', "none");
+        });
+
     //SLICK SLIDER
     var time = 2;
     var $bar,
