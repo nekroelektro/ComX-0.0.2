@@ -243,6 +243,7 @@
     <Content Include="Content\images\npLogos.png" />
     <Content Include="Content\images\npLogosBeta.png" />
     <Content Include="Content\images\rekrutacja.png" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\Site.css" />
@@ -417,6 +418,7 @@
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
+    <Content Include="scripts\jquery-ui.min.js" />
     <Content Include="scripts\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery.jscroll.min.js" />
     <Content Include="scripts\jquery.layout.balancer.js" />

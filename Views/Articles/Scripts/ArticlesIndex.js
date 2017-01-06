@@ -44,7 +44,15 @@
         .mouseover(function () {
             $(this).find('.indexReviewTitle').stop().fadeTo("slow", 1);
         })
-        .mouseout(function () {
+        .mouseleave(function () {
             $(this).find('.indexReviewTitle').stop().fadeTo("slow", 0);
+        });
+
+    $('.articlesIndexSingleImage')
+        .hover(function () {
+            $(this).find('.bannerPanelImageMainIndex ').stop(true, true).addClass('indexBiggerSize', 1000);
+        })
+        .mouseleave(function () {
+            $(this).find('.bannerPanelImageMainIndex ').stop(true, true).removeClass('indexBiggerSize', 400);
         });
 });

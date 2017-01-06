@@ -28,11 +28,11 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="imageOverlayColor"></div>
+                        <div class="imageOverlayColorDiary"></div>
                         <div class="bannerPanelImageContainer">
                             <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                         </div>
-                        <div class="bannerPanelImageMain">
+                        <div class="bannerPanelImageMainSlider">
                             <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                         </div>
                     </div>
@@ -56,16 +56,18 @@
         </div>
         <ul class="indexDiaryList">
             @foreach (var item in diaries){
-                <div class="indexSingleArticleContainer col-sm-12" style="height: 6em; padding-left: 0; padding-right: 0;">
+                <div class="indexSingleArticleContainerDiary col-sm-12" style="height: 6em; padding-left: 0; padding-right: 0;">
                     <a class="indexSingleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
                         @*<li>
                                 <h4 class="indexDiaryName"># @item.Name</h4>
                             </li>*@
-                        <h4 class="indexDiaryName"># @item.Name</h4>
+                        <div>
+                            <h4 class="indexDiaryName"># @item.Name</h4>
+                        </div>
                         <div class="bannerPanelImageContainerIndex">
                             <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
                         </div>
-                        <div class="imageOverlayColorIndex"></div>
+                        <div class="imageOverlayColorDiary"></div>
                     </a>
                 </div>
                     }

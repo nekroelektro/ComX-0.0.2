@@ -190,7 +190,7 @@
 .indexSingleReview {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    height: 15em; 
+    height: 19em; 
 }
 
 .indexSingleReviewImageContainer {
@@ -294,4 +294,27 @@
 
 .bannerArticlePreludeIndex {
     text-align: justify;
+}
+
+.indexBiggerSize {
+    /* Firefox */
+height: -moz-calc(100% + 20%);
+/* WebKit */
+height: -webkit-calc(100% + 20%);
+/* Opera */
+height: -o-calc(100% + 20%);
+/* Standard */
+height: calc(100% + 20%);
+
+    /* Firefox */
+width: -moz-calc(100% + 20%);
+/* WebKit */
+width: -webkit-calc(100% + 20%);
+/* Opera */
+width: -o-calc(100% + 20%);
+/* Standard */
+width: calc(100% + 20%);
+
+    position: absolute;
+    left: 0;
 }
