@@ -496,6 +496,10 @@
     <Compile Include="Migrations\201611261249266_np0202.Designer.cs">
       <DependentUpon>201611261249266_np0202.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701081208279_np0203.cs" />
+    <Compile Include="Migrations\201701081208279_np0203.Designer.cs">
+      <DependentUpon>201701081208279_np0203.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
     <Compile Include="Views\Articles\Models\Diary.cs" />
@@ -615,6 +619,7 @@
     <Content Include="Views\Shared\Maintenance.cshtml" />
     <Content Include="Views\Nekropedia\_Nekropedia.cshtml" />
     <Content Include="Views\Articles\Diary.cshtml" />
+    <Content Include="Views\Configuration\_Restricted.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -635,6 +640,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611261249266_np0202.resx">
       <DependentUpon>201611261249266_np0202.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701081208279_np0203.resx">
+      <DependentUpon>201701081208279_np0203.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

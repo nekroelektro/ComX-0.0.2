@@ -1,17 +1,20 @@
-﻿@using GridMvc.Html
+﻿@using ComX_0._0._2.Helpers
+@using GridMvc.Html
 @using GridMvc.Sorting
 @model IEnumerable<ComX_0._0._2.Views.Articles.Models.ArticleCategories>
 
 @{
     Layout = "~/Views/Configuration/_Configuration.cshtml";
+    UserHelper userHelper = new UserHelper();
 }
-
-<button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("CategoriesCreate", "Configuration")'">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add category
-</button>
-<button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("SubCategoriesCreate", "Configuration")'">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add subcategory
-</button>
+@if (userHelper.IsSuperAdminUser(User)) {
+    <button type="button" class="btn btn-info btn-m" onclick="location.href = '@Url.Action("CategoriesCreate", "Configuration")'">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add category
+    </button>
+    <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("SubCategoriesCreate", "Configuration")'">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add subcategory
+    </button>
+}
 <button type="button" class="btn btn-primary btn-m" onclick="location.href = '@Url.Action("SeriesCreate", "Configuration")'">
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add series
 </button>

@@ -1,6 +1,8 @@
-﻿@model ComX_0._0._2.Views.Articles.Models.ArticleSubCategories
+﻿@using ComX_0._0._2.Helpers
+@model ComX_0._0._2.Views.Articles.Models.ArticleSubCategories
 @{
     Layout = "~/Views/Configuration/_Configuration.cshtml";
+    UserHelper userHelper = new UserHelper();
 }
 
 @using (Html.BeginForm())
@@ -30,16 +32,20 @@
             </div>
         </div>
         @Html.HiddenFor(m => m.Id)
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save changes" class="btn btn-default" />
-            </div>
+@if (userHelper.IsSuperAdminUser(User)) {
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save changes" class="btn btn-default"/>
         </div>
     </div>
 }
-<button type="button" class="btn btn-danger .btn-sm popupCategoryDelete" data-id="@Model.Id" href="#test-modal">
-    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Delete category
-</button>
+    </div>
+}
+@if (userHelper.IsSuperAdminUser(User)) {
+    <button type="button" class="btn btn-danger .btn-sm popupCategoryDelete" data-id="@Model.Id" href="#test-modal">
+        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Delete category
+    </button>
+}
 
 <div id="test-modal" class="mfp-hide white-popup">
     <p>Potwierdź</p>

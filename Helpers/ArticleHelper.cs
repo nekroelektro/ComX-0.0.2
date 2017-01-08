@@ -13,7 +13,6 @@ using ComX_0._0._2.Views.Configuration.Models;
 namespace ComX_0._0._2.Helpers {
     public class ArticleHelper {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
-        private readonly GeneralHelper generalHelper = new GeneralHelper();
 
         public List<Articles> GetLastArticles(int number) {
             var articles = db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(number);
@@ -145,11 +144,12 @@ namespace ComX_0._0._2.Helpers {
             db.SaveChanges();
         }
 
-        public void ChangeSeriesDetails(ArticleSubCategories category) {
+        public void ChangeSeriesDetails(ArticleSubCategories category, bool isSuperAdmin) {
             var categoryToChange = db.Series.Find(category.Id);
             categoryToChange.Name = category.Name;
             categoryToChange.Description = category.Description;
             categoryToChange.SortCode = category.SortCode;
+            categoryToChange.BuildIn = isSuperAdmin;
             db.Entry(categoryToChange).State = EntityState.Modified;
             db.SaveChanges();
         }

@@ -236,11 +236,11 @@ namespace ComX_0._0._2.Views.Articles.Services {
         }
 
         public void DeleteImageForGivenDocument(Guid id) {
-            var imageToDelete = db.Images.First(x => x.ArticleId == id);
-            if (File.Exists(imageToDelete.ImagePath)) {
+            var imageToDelete = db.Images.FirstOrDefault(x => x.ArticleId == id);
+            if (imageToDelete != null && File.Exists(imageToDelete.ImagePath)) {
                 File.Delete(imageToDelete.ImagePath);
+                db.Images.Remove(imageToDelete);
             }
-            db.Images.Remove(imageToDelete);
             db.SaveChanges();
         }
 

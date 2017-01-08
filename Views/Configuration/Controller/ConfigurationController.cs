@@ -18,36 +18,42 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
     //[Authorize(Roles = "Admin, SuperAdmin")]
     public class ConfigurationController : System.Web.Mvc.Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
+        private readonly IConfigurationService configurationService = new ConfigurationService();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IDocumentService documentService = new DocumentService();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
-        private readonly IDocumentService documentService = new DocumentService();
-        private readonly IConfigurationService configurationService = new ConfigurationService();
 
         public ActionResult Articles() {
             var documents = documentService.GetDocumentForIndex(false, 0, true);
-            return View(documents);
+            return View(documents.Where(x => x.UserId == userHelper.GetCurrentLoggedUserId()));
         }
 
         public ActionResult Users() {
-            var users = new List<UserProfile>();
-            foreach (var item in db.Users) {
-                var userInfo = db.UserProfileInfo.Find(new Guid(item.Id));
-                var user = new UserProfile();
-                user.UserId = new Guid(item.Id);
-                user.UserName = item.UserName;
-                user.UserAvatar = userInfo.Avatar;
-                user.DateOfCreation = userInfo.DateOfCreation.Value;
-                user.IsBlocked = userInfo.IsBlocked;
-                user.Roles = new Guid(item.Roles.First().RoleId);
-                users.Add(user);
+            if (userHelper.IsSuperAdminUser(User)) {
+                var users = new List<UserProfile>();
+                foreach (var item in db.Users) {
+                    var userInfo = db.UserProfileInfo.Find(new Guid(item.Id));
+                    var user = new UserProfile();
+                    user.UserId = new Guid(item.Id);
+                    user.UserName = item.UserName;
+                    user.UserAvatar = userInfo.Avatar;
+                    user.DateOfCreation = userInfo.DateOfCreation.Value;
+                    user.IsBlocked = userInfo.IsBlocked;
+                    user.Roles = new Guid(item.Roles.First().RoleId);
+                    users.Add(user);
+                }
+                return View(users.OrderByDescending(x => x.DateOfCreation).ToList());
             }
-            return View(users.OrderByDescending(x => x.DateOfCreation).ToList());
+            return View("_Restricted");
         }
 
         public ActionResult Roles() {
-            var roles = db.Roles.ToList();
-            return View(roles);
+            if (userHelper.IsSuperAdminUser(User)) {
+                var roles = db.Roles.ToList();
+                return View(roles);
+            }
+            return View("_Restricted");
         }
 
         public ActionResult RolesCreate() {
@@ -141,6 +147,7 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         public ActionResult SeriesCreate(Series category) {
             if (ModelState.IsValid) {
                 category.Id = Guid.NewGuid();
+                category.BuildIn = userHelper.IsSuperAdminUser(User);
                 db.Series.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Categories");
@@ -205,7 +212,7 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         [ValidateInput(false)]
         public ActionResult SeriesDetails(ArticleSubCategories category) {
             if (ModelState.IsValid) {
-                articleHelper.ChangeSeriesDetails(category);
+                articleHelper.ChangeSeriesDetails(category, userHelper.IsSuperAdminUser(User));
                 return RedirectToAction("Categories");
             }
             return View();
@@ -268,7 +275,10 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         }
 
         public ActionResult SiteSettings() {
-            return View(generalHelper.GetSettings());
+            if (userHelper.IsSuperAdminUser(User)) {
+                return View(generalHelper.GetSettings());
+            }
+            return View("_Restricted");
         }
 
         [HttpPost]

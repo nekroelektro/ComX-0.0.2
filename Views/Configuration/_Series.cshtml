@@ -11,5 +11,6 @@
     columns.Add(x => x.Name).SetWidth(200);
     columns.Add(x => x.SortCode).SortInitialDirection(GridSortDirection.Descending).SetWidth(60);
     columns.Add(x => x.Description).SetWidth(460);
+    columns.Add(x => x.BuildIn).Titled("Build in").RenderValueAs(x => x.BuildIn ? "Yes" : "No").SetWidth(50);
 }).WithPaging(20).Sortable(true).Filterable(true)
 </div>

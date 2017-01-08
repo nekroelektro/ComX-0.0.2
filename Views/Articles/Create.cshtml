@@ -1,7 +1,9 @@
-﻿@model ComX_0._0._2.Views.Articles.Models.DtoModels.CreateModelDto
+﻿@using ComX_0._0._2.Helpers
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.CreateModelDto
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Articles/_Articles.cshtml";
+    UserHelper userHelper = new UserHelper();
 }
 
 <h2>Create new document:</h2>
@@ -14,15 +16,17 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox-inline">
-                    <label>
-                        @Html.CheckBoxFor(model => model.IsDiary, new {@id="IsDiary" }) Czy to wpis do pamiętnika płytoholika?
-                    </label>
-                </div>
+@if (userHelper.IsSuperAdminUser(User)) {
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="checkbox-inline">
+                <label>
+                    @Html.CheckBoxFor(model => model.IsDiary, new {@id = "IsDiary"}) Czy to wpis do pamiętnika płytoholika?
+                </label>
             </div>
         </div>
+    </div>
+}
         <div class="form-group">
             @Html.Label("Upload image", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
