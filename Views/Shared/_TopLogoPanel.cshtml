@@ -13,7 +13,7 @@
     </div>
     <div class="logo recrutation">
         <a href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString("NekroPlaza rekrutuje!")}))">
-            <img src='~/Content/images/rekrutacja.png' />
+            <img src='~/Content/images/rekrutacja.png'/>
         </a>
     </div>
     <div class="rightLogoPanel">
@@ -34,12 +34,19 @@
             }
             else {
                 <li>@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "navbar-brand"})</li>
-                <li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new {returnUrl = currentUrl, @class = "navbar-brand"})</li>
+                @*<li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new {returnUrl = currentUrl, @class = "navbar-brand"})</li>*@
+                <a class="popupLoginModal navbar-brand" href="#login-modal">Zaloguj</a>
             }
         </ul>
     </div>
 </div>
+<div id="login-modal" class="mfp-hide white-popup wide-popup">
+    <a class="popupClose"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+    <div class="loginContentInModal"></div>
+</div>
+
 
 @*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Shared/Scripts/SharedTopLogoPanel.js"></script>
 <link href="~/Views/Shared/Styles/_TopLogoPanel.css" rel="stylesheet" type="text/css" />
 

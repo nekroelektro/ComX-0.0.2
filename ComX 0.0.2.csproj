@@ -472,6 +472,7 @@
     <Content Include="Views\Shared\Scripts\SharedIndexSlider.js" />
     <Content Include="Views\Shared\Scripts\SharedLayout.js" />
     <Content Include="Views\Shared\Scripts\SharedSideBar.js" />
+    <Content Include="Views\Shared\Scripts\SharedTopLogoPanel.js" />
     <Content Include="Views\Shared\Scripts\SharedTopNavigationMenu.js" />
     <Content Include="Views\Shared\Styles\_IndexSlider.css" />
     <Content Include="Views\Shared\Styles\_Layout.css" />

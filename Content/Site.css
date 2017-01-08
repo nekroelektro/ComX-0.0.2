@@ -59,6 +59,12 @@ a {
     text-align: center;
 }
 
+.wide-popup {
+    max-width: 600px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 /*INDEX SLIDER*/
 .sliderArticleCategories > p {
     white-space: nowrap;
@@ -403,6 +409,17 @@ a {
 
 .diaryCreateComponent {
     display: none;
+}
+
+.popupClose {
+    text-decoration: none;
+    outline: 0;
+    color: black !important;
+    font-size: x-large;
+    top: 1em;
+    position: absolute;
+    right: 1em;
+    cursor: pointer;
 }
 
 /* RESPONSIVES */

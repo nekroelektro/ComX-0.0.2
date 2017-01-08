@@ -98,7 +98,12 @@ namespace ComX_0._0._2.Views.Account.Controller {
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl) {
+            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null) {
+                returnUrl = generalHelper.GetPreviousPageUrl();
+            }
+            
             ViewBag.ReturnUrl = returnUrl;
+            
             return View();
         }
 
@@ -118,7 +123,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
             switch (result) {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return Redirect(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("_HumanumErrareEst");
                 case SignInStatus.RequiresVerification:
@@ -127,7 +132,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 default:
                     ModelState.AddModelError("LoginError",
                         "Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!");
-                    return View(model);
+                    return PartialView(model);
             }
         }
 

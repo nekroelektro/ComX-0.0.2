@@ -55,6 +55,11 @@ namespace ComX_0._0._2.Helpers {
             return url;
         }
 
+        public string GetPreviousPageUrl() {
+            var url = HttpContext.Current.Request.UrlReferrer.AbsoluteUri;
+            return url;
+        }
+
         public string GetNameFromCurrentUrl() {
             var url = GetCurrentPageUrl();
             var urlArray = url.Split('/');

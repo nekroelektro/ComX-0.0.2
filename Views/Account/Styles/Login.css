@@ -1,5 +1,10 @@
 ﻿.loginContainer {
-    width: 50%; 
+    width: 90%; 
+    margin: 0 auto;
+}
+
+#loginFormCustom {
+    text-align: center;
     margin: 0 auto;
 }
 
