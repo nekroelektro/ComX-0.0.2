@@ -69,3 +69,9 @@
 .widerPopup {
     max-width: 650px !important;
 }
+
+.loginComments {
+    text-decoration: none;
+    outline: 0;
+    color: #2B823C !important;
+}

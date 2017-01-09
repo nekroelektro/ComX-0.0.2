@@ -65,34 +65,6 @@ a {
     padding-right: 0 !important;
 }
 
-/*INDEX SLIDER*/
-.sliderArticleCategories > p {
-    white-space: nowrap;
-}
-.slideElementDown {
-    border-top: 0.7em solid black;
-    border-bottom: 0.7em solid black
-}
-
-.slideElementDown:hover {
-    border-top: 0.7em solid #2B823C;
-    border-bottom: 0.7em solid #2B823C;
-    cursor: pointer;
-}
-
-.sliderLink {
-    color: white;
-}
-
-.sliderLink:hover {
-    color: #2B823C;
-}
-
-.sliderLink:hover hr {
-    border-color: crimson;
-}
-
-
 
 /* INDEX PAGINATION*/
 
