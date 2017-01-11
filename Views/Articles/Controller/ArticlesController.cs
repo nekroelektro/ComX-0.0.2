@@ -19,10 +19,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly UserHelper userHelper = new UserHelper();
 
         public ActionResult Index() {
-            var publishedArticles = documentService.GetDocumentForIndex(true);
-            for (var i = 0; i < 5; i++) {
-                publishedArticles.RemoveAt(0);
-            }
+            var publishedArticles = documentService.GetDocumentForIndex(false);
+            //for (var i = 0; i < 5; i++) {
+            //    publishedArticles.RemoveAt(0);
+            //}
             return PartialView("Index", publishedArticles);
         }
 

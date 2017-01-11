@@ -1,14 +1,4 @@
 ﻿jQuery(document).ready(function ($) {
-    $('.indexSingleArticleContainerDiary')
-        .mouseover(function () {
-            $(this).find('.imageOverlayColorDiary ').stop(true, true).addClass('imageOverlayColorIndexNoOverlay', 400);
-            $(this).find('h4').css('background', "black");
-        })
-        .mouseleave(function () {
-            $(this).find('.imageOverlayColorDiary ').removeClass('imageOverlayColorIndexNoOverlay', 0);
-            $(this).find('h4').css('background', "none");
-        });
-
     //$('.sliderLink')
     //    .mouseover(function () {
     //        $(this).find('.bannerPanelImageMainSlider img').stop(true, true).addClass('indexBiggerSize', 1000);

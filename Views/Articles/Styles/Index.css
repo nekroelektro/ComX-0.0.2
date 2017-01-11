@@ -318,3 +318,19 @@ width: calc(100% + 20%);
     position: absolute;
     left: 0;
 }
+
+.indexSingleDiaryAnchorFocus {
+    padding-right: 0;
+    color: crimson !important;
+    text-decoration: none !important;
+    outline: 0 !important;
+    /*margin-left: 0;
+    margin-right: 0;
+    margin: 0 auto !important;
+    text-align: center;*/
+    background: black !important;
+}
+
+.diaryNameContainer {
+    width: 100% !important;
+}
