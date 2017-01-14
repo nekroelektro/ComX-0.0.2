@@ -237,6 +237,9 @@
     <Content Include="Content\images\icons-white-2x.png" />
     <Content Include="Content\images\icons-white.png" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\logoBlack.jpg" />
+    <Content Include="Content\images\logoWhite.jpg" />
+    <Content Include="Content\images\logoWhiteSMALL.jpg" />
     <Content Include="Content\images\maintenanceImage.jpg" />
     <Content Include="Content\images\npLogo.png" />
     <Content Include="Content\images\npLogos.jpg" />

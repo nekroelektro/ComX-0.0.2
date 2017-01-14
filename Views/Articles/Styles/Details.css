@@ -30,6 +30,10 @@
     font-family: 'Coda', sans-serif;
 }
 
+.articleDetailsBody img {
+    max-width: 100%;
+}
+
 .articleDetailsLine {
     margin-top: 0;
 }

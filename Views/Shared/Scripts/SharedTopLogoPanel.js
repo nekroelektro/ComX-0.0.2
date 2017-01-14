@@ -1,5 +1,5 @@
 ﻿jQuery(document).ready(function($) {
-    $('.popupLoginModal').magnificPopup({
+    $('.popupLoginModal, .popupRegisterModal').magnificPopup({
         type: 'inline',
         preloader: false,
         modal: true,
@@ -13,6 +13,16 @@
             method: 'GET',
             success: function (data) {
                 $('.loginContentInModal').html(data);
+            }
+        });
+    });
+
+    $('.popupRegisterModal').click(function () {
+        $.ajax({
+            url: "/Account/Register/",
+            method: 'GET',
+            success: function (data) {
+                $('.registerContentInModal').html(data);
             }
         });
     });
