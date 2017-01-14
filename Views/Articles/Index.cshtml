@@ -8,7 +8,10 @@
     var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
     var articles = Model.Where(x => x.IsDiary == false).OrderByDescending(x => x.DateCreation).ToList();
-    var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).ToList();
+    for (var i = 0; i < 5; i++){
+        articles.RemoveAt(0);
+    }
+    var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).Take(5).ToList();
 }
 @*<ul class="indexListMenu list-inline">
     <li><a class="indexListMenuItem" data-id="" href="#pager">Wszystkie</a></li>

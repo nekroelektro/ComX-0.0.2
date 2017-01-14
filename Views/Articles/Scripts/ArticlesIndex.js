@@ -50,10 +50,10 @@
 
     $('.articlesIndexSingleImage')
         .hover(function () {
-            $(this).find('.bannerPanelImageMainIndex ').stop(true, true).addClass('indexBiggerSize', 1000);
+            $(this).find('.bannerPanelImageMainIndex ').stop(true, false).removeAttr('style').addClass('indexBiggerSize', { duration: 700 });
         })
         .mouseleave(function () {
-            $(this).find('.bannerPanelImageMainIndex ').stop(true, true).removeClass('indexBiggerSize', 400);
+            $(this).find('.bannerPanelImageMainIndex ').stop(true, false).removeAttr('style').removeClass('indexBiggerSize', { duration: 350 });
         });
 
     $('.indexSingleArticleContainerDiary')

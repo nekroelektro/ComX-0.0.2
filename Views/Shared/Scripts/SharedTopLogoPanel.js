@@ -1,4 +1,6 @@
-﻿jQuery(document).ready(function($) {
+﻿jQuery(document).ready(function ($) {
+    var $loading = $('#loader').hide();
+
     $('.popupLoginModal, .popupRegisterModal').magnificPopup({
         type: 'inline',
         preloader: false,
@@ -22,7 +24,7 @@
             url: "/Account/Register/",
             method: 'GET',
             success: function (data) {
-                $('.registerContentInModal').html(data);
+                $('.loginContentInModal').html(data);
             }
         });
     });
@@ -31,4 +33,13 @@
         e.preventDefault();
         $.magnificPopup.close();
     });
+
+    
+    $(document)
+      .ajaxStart(function () {
+          $loading.show();
+      })
+      .ajaxStop(function () {
+          $loading.hide();
+      });
 });

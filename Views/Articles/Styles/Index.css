@@ -146,6 +146,17 @@
     width: 100%; 
     float: left;
     border-top: 1px solid #2B823C;
+    font-family: 'Eater', sans-serif;
+}
+
+.page_navigation a {
+    outline: 0 !important;
+    text-decoration: none !important;
+}
+
+.page_navigation a:focus, .page_navigation a:active {
+    outline: 0 !important;
+    text-decoration: none !important;
 }
 
 .articlesIndexHeader {
@@ -370,4 +381,6 @@ width: calc(100% + 20%);
     padding-left: 0; 
     padding-right: 0; 
     width: 100% !important;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }

@@ -21,7 +21,7 @@
             @if (userHelper.IsAdminUser(User))
             {
                 <div class="logoConfiguration logoComponent">
-                    <a class="topNavigationLastAnchor logoComponentAnchor" href="@Url.Action("Articles", "Configuration")">
+                    <a class="topLogoLastAnchor logoComponentAnchor" href="@Url.Action("Articles", "Configuration")">
                         <div class="logoComponentIcon">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         </div>
@@ -37,7 +37,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <div class="logoUserPanel logoComponent">
-                        <a class="topNavigationLastAnchor logoComponentAnchor" href="@Url.Action("UserPanel", "Account")">
+                        <a class="topLogoLastAnchor logoComponentAnchor" href="@Url.Action("UserPanel", "Account")">
                             <div class="logoComponentIcon">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </div>
@@ -47,9 +47,9 @@
                         </a>
                     </div>
                     <div class="logoLogout logoComponent">
-                        <a class="topNavigationLastAnchor logoComponentAnchor" href="javascript:document.getElementById('logoutForm').submit()">
+                        <a class="topLogoLastAnchor logoComponentAnchor" href="javascript:document.getElementById('logoutForm').submit()">
                             <div class="logoComponentIcon">
-                                <span class="glyphicon glyphicon-eject" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                             </div>
                             <div class="logoComponentText">
                                 WYLOGUJ
@@ -60,7 +60,7 @@
             }
             else {
                 <div class="logoRegistration logoComponent">
-                    <a class="topNavigationLastAnchor popupRegisterModal logoComponentAnchor" href="#register-modal">
+                    <a class="topLogoLastAnchor popupRegisterModal logoComponentAnchor" href="#login-modal">
                         <div class="logoComponentIcon">
                             <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
                         </div>
@@ -70,7 +70,7 @@
                     </a>
                 </div>
                 <div class="logoLogin logoComponent">
-                    <a class="topNavigationLastAnchor popupLoginModal logoComponentAnchor" href="#login-modal">
+                    <a class="topLogoLastAnchor popupLoginModal logoComponentAnchor" href="#login-modal">
                         <div class="logoComponentIcon">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </div>
@@ -85,12 +85,13 @@
 </div>
 <div id="login-modal" class="mfp-hide white-popup wide-popup">
     <a class="popupClose"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+    <div id="loader"><img src="../../Content/images/loader.gif" /></div>
     <div class="loginContentInModal"></div>
 </div>
-<div id="register-modal" class="mfp-hide white-popup wide-popup">
+@*<div id="register-modal" class="mfp-hide white-popup wide-popup">
     <a class="popupClose"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
     <div class="registerContentInModal"></div>
-</div>
+</div>*@
 
 
 @*SCRIPTS FOR VIEW*@

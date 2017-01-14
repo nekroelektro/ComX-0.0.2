@@ -60,11 +60,11 @@
     padding-top: 1em;
 }
 
-/*.topNavigationLastAnchor {
+.topNavigationLastAnchor {
     width: 22%;
     margin: 0 auto; 
     text-align: center;
-}*/
+}
 
 .singleLastArticleTopNavigation {
     width: 100%; 

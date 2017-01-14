@@ -339,21 +339,28 @@ a {
     outline: 0;
 }
 
-.topNavigationLastAnchor {
+.topNavigationLastAnchor, .topLogoLastAnchor {
     color: white !important;
     text-decoration: none;
     outline: 0; 
 }
 
-.topNavigationLastAnchor:focus, .topNavigationLastAnchor:active {
+.topLogoLastAnchor:focus, .topLogoLastAnchor:active {
     outline: 0;
     text-decoration: none;
 }
 
 .topNavigationLastAnchor:hover {
-    color: #2B823C !important;
+    color: #222 !important;
     text-decoration: none;
     outline: 0;
+}
+
+.topLogoLastAnchor:hover {
+    color: #2B823C!important;
+    text-decoration: none;
+    outline: 0;
+}
 }
 
 .longEditor {
@@ -402,15 +409,15 @@ a {
 /* RESPONSIVES */
 
 @media screen and (max-width: 900px) { 
-
-	.mainSideBar {
-	    display: none;
-	}
     .mainBodyContainer {
         width: 100% !important;
     }
 
-    .sliderSection {
+    .recrutation, .absoluteLogo, .mainSideBar, .sliderSection {
         display: none;
+    }
+
+    .logo img {
+        width: 65% !important;
     }
 }
