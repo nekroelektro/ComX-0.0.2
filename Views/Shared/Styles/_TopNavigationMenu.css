@@ -6,9 +6,10 @@
 
 .absoluteLogo {
     display: none; 
-    margin-top: -1.5em; 
+    margin-top: 0; 
     z-index: 999; 
     position: absolute;
+    margin-top: -6em;
 }
 
 .absoluteLogo img {
@@ -61,7 +62,7 @@
 }
 
 .topNavigationLastAnchor {
-    width: 22%;
+    width: 24.5%;
     margin: 0 auto; 
     text-align: center;
 }
@@ -143,5 +144,13 @@
     float: right !important; 
     clear: both; 
     font-size: 1.1em;
+}
+
+.bannerArticleNameIndexTopMenu {
+    width: 100%; 
+    float: left; 
+    margin-top: 0;
+    font-size: 1em;
+    text-align: center;
 }
 

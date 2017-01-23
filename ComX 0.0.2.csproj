@@ -236,6 +236,7 @@
     <Content Include="Content\images\icons-black.png" />
     <Content Include="Content\images\icons-white-2x.png" />
     <Content Include="Content\images\icons-white.png" />
+    <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logoBlack.jpg" />
     <Content Include="Content\images\logoWhite.jpg" />
@@ -421,6 +422,7 @@
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
+    <Content Include="scripts\jquery-3.1.1.min.js" />
     <Content Include="scripts\jquery-ui.min.js" />
     <Content Include="scripts\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery.jscroll.min.js" />
@@ -505,6 +507,8 @@
       <DependentUpon>201701081208279_np0203.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
+    <Compile Include="Views\Account\Models\DtoModels\UserMessageDto.cs" />
+    <Compile Include="Views\Account\Models\UserMessage.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
     <Compile Include="Views\Articles\Models\Diary.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CommentModelDto.cs" />
@@ -624,6 +628,7 @@
     <Content Include="Views\Nekropedia\_Nekropedia.cshtml" />
     <Content Include="Views\Articles\Diary.cshtml" />
     <Content Include="Views\Configuration\_Restricted.cshtml" />
+    <Content Include="Views\Account\UserMailBox.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

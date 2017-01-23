@@ -40,16 +40,7 @@
                             </div>
                             <div class="imageOverlayColorIndex"></div>
                             <div class="bannerPanelInfoIndex">
-                                @*@if (item.Series != Guid.Empty && articleHelper.GetSeriesById(item.Series.Value).Name != "Default"){
-                                    <h3 class="bannerSeriesTitleIndex">@articleHelper.GetSeriesById(item.Series.Value).Name</h3>
-                                }*@
                                 <h3 class="bannerArticleNameIndex">@item.Name</h3>
-                                @*<div class="datesDetailsArticlesIndex">
-                                    <p>
-                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreation &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
-                                        @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name
-                                    </p>
-                                </div>*@
                                 <hr class="articlesIndexLine"/>
                                 <div class="bannerArticlePreludeIndex">
                                     @Html.Raw(WebUtility.HtmlDecode(item.IndexPrologue))

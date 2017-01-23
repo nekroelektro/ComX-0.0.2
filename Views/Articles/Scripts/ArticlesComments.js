@@ -30,6 +30,11 @@
             e.preventDefault();
             $.magnificPopup.close();
         });
+        
+        $(document).on('click', '.btnCancelEdit', function (e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+        });      
 
         //For editing single comment
         $('.popupCommentEdit').magnificPopup({
@@ -40,28 +45,13 @@
         $('.popupCommentEdit').click(function () {
             comIdentificator = $(this).data('id').toString();
             artIdentificator = $(this).data('art').toString();
-            $('.dupa').html(data)('@Html.Action("CommentEdit", "Articles")/id=' + comIdentificator + 'artId=' + artIdentificator);
-            var partialEdit = $(this).data('content');
-            console.log(partialEdit);
-
-            var url = partialEdit;
 
             $.ajax({
-                url: url,
+                url: "/Articles/CommentEdit?id=" + comIdentificator + '&artId=' + artIdentificator,
                 method: 'GET',
-                success: function(data) {
-                    $('.dupa').html(data);
-                }
-            });
-            $.ajax({
-                url: url,
-                data: {}, //parameters go here in object literal form
-                type: 'GET',
-                datatype: 'json',
                 success: function (data) {
-                    $('.dupa').html(data);
-                },
-                error: function () { alert('something bad happened'); }
+                    $('.editCommentContentInModal').html(data);
+                }
             });
 
         $(document).on('click', '.submitEditCommentForm', function (e) {

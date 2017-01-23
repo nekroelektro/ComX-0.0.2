@@ -12,14 +12,14 @@
         </a>
     </div>
     <nav id="cbp-hrmenu" class="cbp-hrmenu">
-        <ul>
+        <ul class="topNavigationItemsContainer">
             @foreach (var item in categoryList) {
                 <li>
                     <a class="topNavigationItem" href="#">@item.Name</a>
                     <div class="cbp-hrsub">
                         <div class="cbp-hrsub-inner">
-                            <h5>@item.Description</h5>
-                            <div class="subCategoriesNavigation">
+                            <h5 style="display: none;">@item.Description</h5>
+                            <div class="subCategoriesNavigation" style="display: none;">
                                 @foreach (var subItem in subCategoryList) {
                                     if (!articleHelper.SubCategoryIsEmpty(subItem.Id, item.Id)) {
                                         <div class="subCategoryListNavigation">
@@ -49,8 +49,12 @@
                                                 <div class="bannerPanelImageMainNav">
                                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
-                                                <div class="titleTopNavigation">
+                                                @*<div class="titleTopNavigation">
                                                     <p>@lastArticle.Name</p>
+                                                </div>*@
+                                                <div class="bannerPanelInfoIndex">
+                                                    <h3 class="bannerArticleNameIndexTopMenu">@lastArticle.Name</h3>
+                                                    <hr class="articlesIndexLine" />
                                                 </div>
                                             </div>
                                         </a>

@@ -2,7 +2,7 @@
 @using ComX_0._0._2.Views.Articles.Services
 @model ComX_0._0._2.Views.Articles.Models.DtoModels.CommentModelDto
 @{
-    Layout = "~/Views/Articles/_Articles.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "Rozedytuj swój (słaby) komentarz - NEKROPLAZA";
     UserHelper userHelper = new UserHelper();
     ArticleHelper articleHelper = new ArticleHelper();
@@ -31,7 +31,7 @@
                             <button type="submit" class="btn btn-info submitEditCommentForm">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                             </button>
-                            <button type="button" onclick="location.href = '@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(Model.ArticleId, Model.IsDiary).Name), Model.IsDiary}))'" data-artId="@generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(Model.ArticleId, Model.IsDiary).Name)'" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                            <button type="button" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
                         </div>
                     </div>
                 </div>

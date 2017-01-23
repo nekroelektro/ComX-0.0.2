@@ -59,20 +59,28 @@
     $(".main").sticky({ topSpacing: 0, zIndex: 6 });
     $('.main').on('sticky-start', function (e) {
         $('.absoluteLogo').show();
+        $(this).find('.absoluteLogo').animate({
+            marginTop: '-1.5em'
+        }, 400);
         $(".cbp-hrsub-inner").css("width", "100%");
+        $(".cbp-hrmenu").css("padding-left", "8em");
         //$(".main").css("box-shadow", "0 0 10px 10px #222222");
     });
     $('.main').on('sticky-end', function () {
+        $('.absoluteLogo').css("margin-top", "-6em");
         $('.absoluteLogo').hide();
         $(".cbp-hrsub-inner").css("width", "80%");
+        $(".cbp-hrmenu").css("padding-left", "0em");
     });
 
     $('.singleLastArticleTopNavigation')
         .mouseover(function () {
             //$(this).find('.titleTopNavigation').show(500);
-            $(this).find('.titleTopNavigation').stop().fadeTo("slow", 1);
+            $(this).find('.articlesIndexLine').css("border", "1px solid #2B823C");
         })
         .mouseout(function () {
-            $(this).find('.titleTopNavigation').stop().fadeTo("slow", 0);
+            $(this).find('.articlesIndexLine').css("border", "1px solid chocolate");
         });
+
+    
 });

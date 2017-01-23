@@ -331,6 +331,7 @@ a {
     text-decoration: none;
     outline: 0;
     color: white !important;
+    float: right;
 }
 
 .seeMoreFromCategoryTopNavigation:hover {
