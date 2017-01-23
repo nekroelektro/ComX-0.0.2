@@ -368,7 +368,7 @@ a {
     min-height: 400px !important;
 }
 
-.singleLastArticleTopNavigation img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img, .articlesIndexSingleImage img {
+.bannerPanelImageContainerNav img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img, .bannerPanelImageContainerIndex img{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -405,6 +405,29 @@ a {
     position: absolute;
     right: 1em;
     cursor: pointer;
+}
+
+/* TRANSITIONS */
+
+.transition {
+    -webkit-transform: scale(1.6); 
+    -moz-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    transform: scale(1.6);
+}
+
+#reviewIndexImage, #articleIndexImage, #articleTopNavigationImage {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.singleIndexAnchor:hover #articleIndexImage{
+    -webkit-transform: scale(1.6); 
+    -moz-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    transform: scale(1.6);
 }
 
 /* RESPONSIVES */

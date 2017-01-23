@@ -32,28 +32,12 @@
         contentSelector: '.singleIndexArticle'
     });
 
-    $('.singleIndexAnchor')
+    $('.indexSingleReviewAnchor')
         .mouseover(function () {
-            $(this).parent().find('h4').css('color', "#2B823C");
-        })
-        .mouseout(function () {
-            $(this).parent().find('h4').css('color', 'black');
-        });
-
-    $('.indexSingleReview')
-        .mouseover(function () {
-            $(this).find('.indexReviewTitle').stop().fadeTo("slow", 1);
+            $(this).find("#reviewIndexImage").addClass('transition');
         })
         .mouseleave(function () {
-            $(this).find('.indexReviewTitle').stop().fadeTo("slow", 0);
-        });
-
-    $('.articlesIndexSingleImage')
-        .hover(function () {
-            $(this).find('.bannerPanelImageMainIndex ').stop(true, false).removeAttr('style').addClass('indexBiggerSize', { duration: 700 });
-        })
-        .mouseleave(function () {
-            $(this).find('.bannerPanelImageMainIndex ').stop(true, false).removeAttr('style').removeClass('indexBiggerSize', { duration: 350 });
+            $(this).find("#reviewIndexImage").removeClass('transition');
         });
 
     $('.indexSingleArticleContainerDiary')

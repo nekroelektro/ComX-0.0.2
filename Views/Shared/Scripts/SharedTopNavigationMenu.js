@@ -73,12 +73,13 @@
         $(".cbp-hrmenu").css("padding-left", "0em");
     });
 
-    $('.singleLastArticleTopNavigation')
+    $('.topNavigationLastAnchor')
         .mouseover(function () {
-            //$(this).find('.titleTopNavigation').show(500);
+            $(this).find("#articleTopNavigationImage").addClass('transition');
             $(this).find('.articlesIndexLine').css("border", "1px solid #2B823C");
         })
         .mouseout(function () {
+            $(this).find("#articleTopNavigationImage").removeClass('transition');
             $(this).find('.articlesIndexLine').css("border", "1px solid chocolate");
         });
 

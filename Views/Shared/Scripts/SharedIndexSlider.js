@@ -1,12 +1,4 @@
 ﻿jQuery(document).ready(function ($) {
-    //$('.sliderLink')
-    //    .mouseover(function () {
-    //        $(this).find('.bannerPanelImageMainSlider img').stop(true, true).addClass('indexBiggerSize', 1000);
-    //    })
-    //    .mouseleave(function () {
-    //        $(this).find('.bannerPanelImageMainSlider img').stop(true, true).removeClass('indexBiggerSize', 400);
-    //    });
-
     //SLICK SLIDER
     var time = 2;
     var $bar,

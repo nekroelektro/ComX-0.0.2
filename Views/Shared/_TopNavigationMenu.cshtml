@@ -47,12 +47,9 @@
                                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
                                                 <div class="bannerPanelImageMainNav">
-                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
+                                                    <img id="articleTopNavigationImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
                                                 </div>
-                                                @*<div class="titleTopNavigation">
-                                                    <p>@lastArticle.Name</p>
-                                                </div>*@
-                                                <div class="bannerPanelInfoIndex">
+                                                <div class="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
                                                     <h3 class="bannerArticleNameIndexTopMenu">@lastArticle.Name</h3>
                                                     <hr class="articlesIndexLine" />
                                                 </div>
