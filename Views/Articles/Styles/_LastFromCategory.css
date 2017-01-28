@@ -114,3 +114,172 @@
 .seeMoreFromCategory p {
     float: right;
 }
+
+/* AAAAAAAAAAAAAAAAAA */
+
+#content {
+    padding-left: 0; 
+    margin-left: 0;
+}
+
+.articlesIndexContainer {
+    width: 100%; 
+    float: left;
+    margin-bottom: 1em;
+    /*margin-top: -1.4em;*/
+}
+
+.articlesIndexSingle {
+    border-top: #222 0.5em solid; 
+    height: 15em; 
+    margin-bottom: 1em; 
+    font-family: 'Coda', sans-serif;
+}
+
+.articlesIndexSingleImage {
+    width: 38%; 
+    height: 100%; 
+    margin-bottom: 1em; 
+    position: relative; 
+    z-index: 5; 
+    overflow: hidden; 
+    float: left;
+}
+
+.bannerPanelImageContainerIndex, .bannerPanelImageContainerIndexDiary {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    background-color: black; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.bannerPanelImageContainerIndex img, .bannerPanelImageContainerIndexDiary img {
+    min-width: 100%; 
+    min-height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.bannerPanelImageMainIndex {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 3; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0; 
+}
+
+.bannerPanelImageMainIndex img {
+    max-height:100%; 
+    max-width: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 0; 
+    vertical-align: middle;
+}
+
+.imageOverlayColorIndex {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 2;
+}
+
+.imageOverlayColorIndexNoOverlay {
+    background: none !important;
+}
+
+.articlesIndexSingleBody {
+    width: 62%; 
+    min-height: 100%; 
+    max-height: 100%; 
+    float: right; 
+    padding-left: 0.7em; 
+    position: relative;
+}
+
+.indexArticleTitleTopSection {
+    width: 100%; 
+    padding-bottom: 1em;
+}
+
+.articlesIndexSingleCategories {
+    float: left;
+}
+
+.articlesIndexSingleDate {
+    float: right;
+}
+
+.singleIndexTitle {
+    width: 100% !important; 
+    clear: both; 
+    font-weight: bold
+}
+
+.singleIndexLine {
+    border-color: crimson; 
+    margin: 1em;
+}
+
+.articlesIndexSingleFooter {
+    background-color: black; 
+    color: white; 
+    width: 30%; 
+    border-radius: 30px 0 0 0; 
+    float: right; 
+    text-align: center; 
+    max-height: 1.5em; 
+    min-width: 6em; 
+    font-size: 1em; 
+    position: absolute; 
+    bottom: 0; 
+    right: 0;
+}
+
+.articlesIndexHeader {
+    width: 100%;
+    font-family: 'Coda', sans-serif;
+    margin-bottom: 1em;
+    padding-top: 0.2em;
+    border-bottom: solid 1px #2B823C;
+    background-color: #f7f7f7;
+    padding-left: 1em;
+}
+
+.bannerArticleTagsIndex {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(16, 17, 17, 0.7);
+    z-index: 4;  
+    color: white;
+}
+
+.bannerArticleNameIndex {
+    width: 100%; 
+    float: left; 
+    margin-top: 0;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.datesDetailsArticlesIndex {
+    display: inline-block; 
+    float: left; 
+    clear: both;
+}
+
+.datesDetailsArticlesIndex p {
+    float: left;
+}

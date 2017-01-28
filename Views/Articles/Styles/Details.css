@@ -51,6 +51,7 @@
     border: 2px solid #2B823C; 
     background-color: #2B823C; 
     width: 100%;
+    clear: both;
 }
 
 .diaryElementsContainer {

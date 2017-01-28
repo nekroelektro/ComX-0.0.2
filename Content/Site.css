@@ -362,10 +362,46 @@ a {
     text-decoration: none;
     outline: 0;
 }
-}
 
 .longEditor {
     min-height: 400px !important;
+}
+
+.bannerPanelInfoIndex {
+    width: 100%; 
+    font-family: 'Coda', sans-serif; 
+    position: absolute; 
+    bottom: 1em; 
+    color: black; 
+    padding: 1em;
+    background: rgba(16, 17, 17, 0.7); 
+    z-index: 4;    
+    color: white;
+}
+
+.bannerPanelInfoIndexTopNavigation {
+    padding-bottom: 0 !important;
+}
+
+.articlesIndexLine {
+    margin: 0;
+    border: 1px solid chocolate;
+    width: 100%;
+    float: left;
+    margin-bottom: 0.7em;
+}
+
+.singleIndexAnchor:hover .articlesIndexLine, .indexSingleReviewAnchor:hover .articlesIndexLine{
+    border: 1px solid #2B823C !important;
+}
+
+
+.bannerArticleNameIndexTopMenu {
+    width: 100%; 
+    float: left; 
+    margin-top: 0;
+    font-size: 1em;
+    text-align: center;
 }
 
 .bannerPanelImageContainerNav img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img, .bannerPanelImageContainerIndex img{
@@ -443,5 +479,13 @@ a {
 
     .logo img {
         width: 65% !important;
+    }
+
+    .cbp-hrmenu > ul > li > a {
+        font-size: x-small;
+    }
+
+    .indexSingleReview {
+        height: 14em !important;
     }
 }
