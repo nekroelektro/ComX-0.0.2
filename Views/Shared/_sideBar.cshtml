@@ -29,13 +29,6 @@
         <div class="sidePlazlistTitle">@generalHelper.GetSettings().ListName</div>
         <iframe class="sidePlazlistWidget" src="@generalHelper.GetSettings().Playlist" frameborder="0" allowtransparency="true"></iframe>
     </div>
-    @*<div class="sideQuote">
-        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Cytat dnia:
-        <hr class="sideGreenLine"/>
-        <div class="sideQuoteBody">
-            "@generalHelper.GetSettings().Quote"
-        </div>
-    </div>*@
     <div class="sideLastComments">
         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
         <hr class="sideGreenLine"/>
@@ -67,6 +60,13 @@
                                 </div>
                                 <div class="bannerPanelImageMainSide">
                                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                                </div>
+                                <div class="bannerPanelInfoIndex infoIndexSide">
+                                    <h3 class="bannerArticleNameIndex">@item.Name</h3>
+                                    <hr class="articlesIndexLineGreen" />
+                                    <div class="bannerArticlePreludeIndex">
+                                        @Html.Raw(WebUtility.HtmlDecode(item.IndexDescription))
+                                    </div>
                                 </div>
                             </div>
                         }

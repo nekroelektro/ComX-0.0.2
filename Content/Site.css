@@ -383,12 +383,16 @@ a {
     padding-bottom: 0 !important;
 }
 
-.articlesIndexLine {
+.articlesIndexLine, .articlesIndexLineGreen {
     margin: 0;
     border: 1px solid chocolate;
     width: 100%;
     float: left;
     margin-bottom: 0.7em;
+}
+
+.articlesIndexLineGreen {
+    border: 1px solid #2B823C !important;
 }
 
 .singleIndexAnchor:hover .articlesIndexLine, .indexSingleReviewAnchor:hover .articlesIndexLine{
@@ -481,8 +485,8 @@ a {
         width: 65% !important;
     }
 
-    .cbp-hrmenu > ul > li > a {
-        font-size: x-small;
+    .topNavigationItemsContainer, .sticky-wrapper {
+        display: none;
     }
 
     .indexSingleReview {
