@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Castle.Core.Internal;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Helpers.SmtpHelpers;
 using ComX_0._0._2.Views.Account.Models;
@@ -124,7 +123,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
             switch (result) {
                 case SignInStatus.Success:
-                    if (returnUrl.IsNullOrEmpty()) {
+                    if (string.IsNullOrEmpty(returnUrl)) {
                         return RedirectToAction("Index", "Articles");
                     }
                     return Redirect(returnUrl);

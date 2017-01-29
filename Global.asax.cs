@@ -5,28 +5,16 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using Castle.Windsor;
-using Castle.Windsor.Installer;
-using ComX_0._0._2.InversionControl;
 using ComX_0._0._2.Views.Account.Models;
 
 namespace ComX_0._0._2 {
     public class Global : HttpApplication {
-        private static IWindsorContainer container;
-
         private void Application_Start(object sender, EventArgs e) {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-        }
-
-        private static void BootstrapContainer() {
-            container = new WindsorContainer()
-                .Install(FromAssembly.This());
-            var controllerFactory = new WindsorControllerFactory(container.Kernel);
-            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
 
         public override void Init() {
@@ -46,10 +34,6 @@ namespace ComX_0._0._2 {
                     HttpContext.Current.User = prin;
                 }
             }
-        }
-
-        protected void Application_End() {
-            container.Dispose();
         }
     }
 }
