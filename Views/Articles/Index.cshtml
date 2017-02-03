@@ -89,7 +89,7 @@
         <h3>OSTATNIE RECKI PŁYTOWE:</h3>
     </div>
     <div class="indexReviewsContainer">
-        @foreach (var review in articleHelper.GetLastMusicReviews(8)) {
+        @foreach (var review in articleHelper.GetLastMusicReviews(6)) {
             <a class="indexSingleReviewAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(review.Name)}))">
                 <div class="indexSingleReview col-xs-4">
                     <div class="indexSingleReviewImageContainer">

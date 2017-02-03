@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
@@ -20,10 +21,14 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         public ActionResult Index() {
             var publishedArticles = documentService.GetDocumentForIndex(false);
-            //for (var i = 0; i < 5; i++) {
-            //    publishedArticles.RemoveAt(0);
-            //}
             return PartialView("Index", publishedArticles);
+        }
+
+        //Preventing caching by browser
+        //[OutputCache(Location = OutputCacheLocation.None)]
+        public ActionResult IndexReact() {
+            var publishedArticles = documentService.GetDocumentForIndex(false);
+            return Json(publishedArticles, JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]

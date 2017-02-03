@@ -16,8 +16,9 @@
 .detailsBannerPanel {
     width: 102.7%; 
     margin-left: -1.1em !important; 
-    height: 35em; 
+    height: 45em; 
     margin-bottom: 1em; 
+    margin-top: -1em;
     position: relative; 
     z-index: 5; 
     overflow: hidden;
@@ -43,7 +44,7 @@
 
 .bannerPanelImageMain {
     width: 100%; 
-    height: 100%; 
+    height: 78%; 
     text-align: center; 
     margin: 0 auto; 
     z-index: 3; 
@@ -71,10 +72,10 @@
 }
 
 .bannerPanelInfo {
-    max-width: 90%; 
+    width: 100%; 
     font-family: 'Coda', sans-serif; 
     position: absolute; 
-    bottom: 1em; 
+    bottom: 0; 
     color: black; 
     padding: 1em;
     background: rgba(255, 255, 255, 0.7); 
@@ -86,13 +87,14 @@
     color: black;
     margin-top: 0;
     font-size: large;
+    width: 44%;
 }
 
 .bannerArticleName {
     width: 100%; 
     float: left; 
     margin-top: 0;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 .datesDetailsArticles {

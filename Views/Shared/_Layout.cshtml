@@ -29,6 +29,11 @@
     <link href='http://fonts.googleapis.com/css?family=Krona+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Eater&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    @*TUTEJ SIE SKRYPTY ZACZYNAJOM*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+    <script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -65,27 +70,27 @@
             </div>
         }
         <div class="elementsToPush">
-            @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/"))
-            {
+            @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/")) {
                 <div class="sliderLatestIndexContainer container">
                     <div class="containerMiddle">
                         @Html.Action("_IndexSlider", "Articles")
                     </div>
                 </div>
-                    }
-                    <div class="container body-content bodyLayout">
-                        @RenderBody()
-                        <div class="push"></div>
-                    </div>
-                </div>
+            }
+            <div class="container body-content bodyLayout">
+                <div id="componentDemo" style="display: none;"></div>
+                @RenderBody()
+                <div class="push"></div>
+            </div>
+        </div>
         <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
-
         @Html.Partial("_Footer")
     </div>
 </body>
 </html>
+<script src="@Url.Content("~/Scripts/Components/Component.jsx")"></script>
 <script>
-    $('#return-to-top').click(function () { // When arrow is clicked
+    $('#return-to-top').click(function() { // When arrow is clicked
         $('body,html').animate({
             scrollTop: 0 // Scroll to top of body
         }, 500);
