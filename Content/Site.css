@@ -395,7 +395,9 @@ a {
     border: 1px solid #2B823C !important;
 }
 
-.singleIndexAnchor:hover .articlesIndexLine, .indexSingleReviewAnchor:hover .articlesIndexLine{
+.singleIndexAnchor:hover .articlesIndexLine, .indexSingleReviewAnchor:hover .articlesIndexLine, 
+.sliderLink:hover .articlesIndexLine, .slideElementDown:hover .articlesIndexLine,
+.slick-current .articlesIndexLineSliderRight{
     border: 1px solid #2B823C !important;
 }
 

@@ -716,6 +716,7 @@
     <Content Include="Views\Articles\Scripts\ArticlesDetails.js" />
     <Content Include="Views\Articles\Scripts\ArticlesEditCreate.js" />
     <Content Include="Views\Articles\Scripts\ArticlesIndex.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesTopDetailPanel.js" />
     <Content Include="Views\Articles\Styles\Details.css" />
     <Content Include="Views\Articles\Styles\CommentEdit.css" />
     <Content Include="Views\Articles\Styles\Categories.css" />

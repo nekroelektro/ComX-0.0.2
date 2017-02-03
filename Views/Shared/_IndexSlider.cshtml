@@ -21,6 +21,7 @@
                                 <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(item.Series.Value).Name</h3>
                             }
                             <h2 class="bannerArticleName">@item.Name</h2>
+                            <hr class="articlesIndexLine"/>
                             <div class="datesDetailsArticles">
                                 <p>
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId.Value).UserName &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreation &nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
@@ -40,13 +41,23 @@
             </div>
         }
     </div>
-    <div class="sliderSection">
-        @foreach (var item in articles) {
-            <div class="slideElementDown">
-                <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+</div>
+<div class="sliderSection">
+    @foreach (var item in articles)
+    {
+        <div class="slideElementDown">
+            @*<img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />*@
+            <div class="articlesIndexSingleImage" style="width: 100%;">
+                <div class="bannerPanelImageContainerIndex">
+                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
+                </div>
+                <div class="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
+                    <h3 class="bannerArticleNameIndexTopMenu">@item.Name</h3>
+                    <hr class="articlesIndexLine articlesIndexLineSliderRight" />
+                </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
 @*<div class="indexDiaryContainer">
     <div class="indexLastDiariesContainer">

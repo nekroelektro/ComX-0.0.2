@@ -193,7 +193,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult _IndexSlider() {
-            var lastDocuments = documentService.GetDocumentForIndex(false, 5);
+            var lastDocuments = documentService.GetDocumentForIndex(false, 4);
             return PartialView("_IndexSlider", lastDocuments);
         }
 

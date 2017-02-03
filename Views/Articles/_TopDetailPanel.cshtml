@@ -30,10 +30,12 @@
     </div>
     <div class="imageOverlayColor"></div>
     <div class="bannerPanelInfo">
-        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series.Value).Name != "Default")
-        {
+        @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series.Value).Name != "Default") {
             <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(Model.Series.Value).Name</h3>
         }
+        @*else {
+            <h3 class="bannerSeriesTitle" style="visibility: hidden">NONE</h3>
+        }*@
         @if (Model.IsDiary) {
             <h1 class="bannerArticleName">#@Model.Name</h1>
         }
@@ -49,4 +51,5 @@
 </div>
 
 @*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesTopDetailPanel.js"></script>
 <link href="~/Views/Articles/Styles/_TopDetailPanel.css" rel="stylesheet" type="text/css" />

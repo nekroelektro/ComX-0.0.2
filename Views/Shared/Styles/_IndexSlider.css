@@ -1,5 +1,5 @@
 ﻿.slidersContainer {
-    width: 100%;
+    width: 65%;
     float: left;
 }
 
@@ -18,10 +18,6 @@
 .sliderLink {
     height: 100%;
     color: white;
-}
-
-.sliderLink:hover .bannerArticleName {
-    color: #2b823c;
 }
 
 .sliderLeft {
@@ -125,15 +121,17 @@
 
 .sliderSection {
     background-color: black; 
-    width: 100%; 
+    width: 35%; 
     margin: 0 auto;
+    float: right;
 }
 
 .slideElementDown {
-    height:10em; 
+    height:15.6em; 
     /*border-top: 0.7em solid transparent;
     border-bottom: 0.7em solid transparent;*/
-    padding: 0.7em 2.4em 0.7em 2.4em;
+    padding: 0.5em;
+    width: 50% !important;
 }
 
 .slideElementDown:focus {
@@ -199,6 +197,12 @@
 .sliderLink:hover hr {
     border-color: crimson;
 }
+
+.slick-current {
+    -webkit-box-shadow: 0 0 10px #fff;
+    -moz-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #fff;
+} 
 
 /*PASEK POSTĘPU*/
 

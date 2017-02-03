@@ -82,7 +82,7 @@ var Comment = React.createClass({
 
 
 
-ReactDOM.render(
-    <CommentBox url={urlD} pollInterval={700000}/>,
-  document.getElementById('componentDemo')
-);
+//ReactDOM.render(
+//    <CommentBox url={urlD} pollInterval={700000}/>,
+//  document.getElementById('componentDemo')
+//);

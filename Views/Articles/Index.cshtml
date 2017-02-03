@@ -8,7 +8,7 @@
     var articleHelper = new ArticleHelper();
     var generalHelper = new GeneralHelper();
     var articles = Model.Where(x => x.IsDiary == false).OrderByDescending(x => x.DateCreation).ToList();
-    for (var i = 0; i < 5; i++){
+    for (var i = 0; i < 4; i++){
         articles.RemoveAt(0);
     }
     var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).Take(5).ToList();
