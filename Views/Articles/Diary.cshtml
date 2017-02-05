@@ -12,7 +12,7 @@
     <hr/>
 </div>
 <div class="diaryContainer">
-    @foreach (var item in Model) {
+    @*@foreach (var item in Model) {
         <a class="singleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
             <div class="singleDiary col-xs-4">
                 <div class="singleDiaryImageContainer">
@@ -23,10 +23,28 @@
                 </div>
             </div>
         </a>
-    }
+    }*@
+    <div class="indexReviewsContainer">
+        @foreach (var review in Model)
+        {
+            <a class="indexSingleReviewAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(review.Name)}))">
+                <div class="indexSingleReview col-xs-4">
+                    <div class="indexSingleReviewImageContainer">
+                        <img id="reviewIndexImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(review.Id))' />
+                    </div>
+                    <div class="bannerPanelInfoIndex">
+                        <h3 class="bannerArticleNameIndex">@review.Name</h3>
+                        <hr class="articlesIndexLine" />
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
 </div>
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticleDiary.js"></script>
 <link href="~/Views/Articles/Styles/Diary.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesIndex.js"></script>
+<link href="~/Views/Articles/Styles/Index.css" rel="stylesheet" type="text/css" />
 

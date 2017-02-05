@@ -1,5 +1,5 @@
 ﻿@using ComX_0._0._2.Helpers
-@model IEnumerable<ComX_0._0._2.Views.Articles.Models.Articles>
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexModelDto>
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
     ArticleHelper articleHelper = new ArticleHelper();
@@ -13,51 +13,44 @@
 <div class="categoryArticleTitle">
     <h2>Przeglądasz posty z kategorii <b>@category.Name</b>:</h2>
 </div>
-@if (Model.Any()){
-    <div class="articlesIndexContainer">
-        <ul class="content articlesCategoryTable">
-            @foreach (var item in Model){
-                <div class="articlesIndexSingle">
+<hr/>
+@if (Model.Any())
+{
+    <div id="pager">
+        <ul class="content articlesIndexTable" id="content">
+            @foreach (var item in Model)
+            {
+                <div class="indexSingleArticleContainer col-md-6 col-sm-12" style="height: 16em; padding-left: 0; padding-right: 0; border: 1px solid #474a4f;">
                     <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
                         @if (articleHelper.GetImageByArticleId(item.Id) != null)
                         {
-                            <div class="articlesIndexSingleImage">
-                                <div class="bannerPanelImageContainer">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                            <div class="articlesIndexSingleImage" style="width: 100%;">
+                                <p class="bannerArticleTagsIndex">
+                                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
+                                    @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name
+                                </p>
+                                <div class="bannerPanelImageContainerIndex">
+                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
                                 </div>
-                                <div class="bannerPanelImageMain">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
+                                <div class="bannerPanelImageMainIndex">
+                                    <img id="articleIndexImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
                                 </div>
-                                <div class="imageOverlayColor"></div>
+                                <div class="imageOverlayColorIndex"></div>
+                                <div class="bannerPanelInfoIndex">
+                                    <h3 class="bannerArticleNameIndex">@item.Name</h3>
+                                    <hr class="articlesIndexLine" />
+                                    <div class="bannerArticlePreludeIndex">
+                                        @Html.Raw(WebUtility.HtmlDecode(item.IndexPrologue))
+                                    </div>
+                                </div>
                             </div>
                         }
                     </a>
-                    <div class="articlesIndexSingleBody">
-                        <div class="indexArticleTitle">
-                            <div class="indexArticleTitleTopSection">
-                                <div class="articlesIndexSingleCategories">
-                                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.CategoryId).Name,
-                                    @articleHelper.GetSubCategoryById(item.SubCategoryId).Name
-                                </div>
-                                <div class="articlesIndexSingleDate">
-                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> @item.DateCreated.ToShortDateString()
-                                </div>
-                            </div>
-                            <h4 class="articlesIndexName">@item.Name</h4>
-                        </div>
-                        <hr class="indexAlternativeViewLine"/>
-                        <div class="articleIndexSingleText">
-                            <div class="indexArticleBody">
-                                <p>@Html.Raw(WebUtility.HtmlDecode(item.Prelude))</p>
-                            </div>
-                        </div>
-                        <div class="articlesIndexSingleFooter">
-                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @userHelper.GetUserById(item.UserId).UserName</p>
-                        </div>
-                    </div>
                 </div>
             }
         </ul>
+        <hr />
+        <div class="page_navigation"></div>
     </div>
 }
 else {
@@ -68,4 +61,6 @@ else {
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesCategories.js"></script>
+<script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesIndex.js"></script>
+<link href="~/Views/Articles/Styles/Index.css" rel="stylesheet" type="text/css" />
 <link href="~/Views/Articles/Styles/Categories.css" rel="stylesheet" type="text/css" />

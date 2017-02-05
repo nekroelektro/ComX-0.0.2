@@ -228,13 +228,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var cat = articleHelper.GetCategoryByName(id);
-            var articlesByCategory =
-                db.Articles.Where(x => x.IsPublished && x.CategoryId == cat.Id)
-                    .OrderByDescending(x => x.DateCreated)
-                    .ToList();
+            var articlesByCategory = documentService.GetDocumentForIndex(true).Where(x=>x.Categories.Value == cat.Id).OrderByDescending(x => x.DateCreation).ToList();
             if (!string.IsNullOrEmpty(subId)) {
                 var subCat = articleHelper.GetSubCategoryByName(subId);
-                articlesByCategory = articlesByCategory.Where(x => x.SubCategoryId == subCat.Id).ToList();
+                articlesByCategory = articlesByCategory.Where(x => x.SubCategories.Value == subCat.Id).ToList();
             }
             ViewBag.CategoryIdentificator = cat.Id;
             return View(articlesByCategory);
