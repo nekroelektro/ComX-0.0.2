@@ -322,6 +322,47 @@ namespace ComX_0._0._2.Views.Articles.Services {
             }).ToList();
         }
 
+        public SideBarDetailsDto GetSideBarDetails(int? numberOfComments) {
+            SideBarDetailsDto details = new SideBarDetailsDto();
+            details.PlazlistName = generalHelper.GetSettings().ListName;
+            details.PlazlistCode = generalHelper.GetSettings().Playlist;
+
+            // Fetches last comments for sidebar
+            var comments = numberOfComments != null ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(numberOfComments.Value).ToList() : db.Comments.ToList();
+            foreach (var item in comments) {
+                var comment = new IndexCommentModelDto {
+                    UserName = userHelper.GetUserById(item.UserId).UserName,
+                    ArticleName = GetArticleName(item.ArticleId),
+                    isDiary = item.IsDiary
+                };
+                details.Comments.Add(comment);
+            }
+
+            // Fetches random posts for sidebar
+            var rnd = new Random();
+            var randomList = db.Articles.Where(x => x.IsPublished).OrderBy(x => rnd.Next()).Take(5); // for now number of posts is fixed
+            foreach (var item in randomList) {
+                var article = new IndexRandomPostsDto {
+                    Name = item.Name,
+                    Body = item.IndexDescription,
+                    ImageUrl = GetArticleMainImageUrl(item.Id)
+                };
+                details.RandomPosts.Add(article);
+            }
+
+            return details;
+        }
+
+        private string GetArticleName(Guid id) {
+            var name = db.Articles.Where(x => x.Id == id).Select(x => x.Name).ToString();
+            return name;
+        }
+
+        private string GetArticleMainImageUrl(Guid id) {
+            var imageUrl = db.Images.Where(x => x.ArticleId == id).Select(x => x.ImagePath).ToString();
+            return imageUrl;
+        }
+
         private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number, bool isConfiguration) {
             var articles = new List<Models.Articles>();
             if (isConfiguration) {

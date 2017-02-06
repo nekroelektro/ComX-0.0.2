@@ -778,6 +778,8 @@
     <Compile Include="Views\Articles\Models\DtoModels\DocumentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexCommentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexModelDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\IndexRandomPostsDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\SideBarDetailsDto.cs" />
     <Compile Include="Views\Articles\Services\DocumentService.cs" />
     <Compile Include="Views\Articles\Services\IDocumentService.cs" />
     <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />

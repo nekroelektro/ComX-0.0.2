@@ -31,6 +31,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return Json(publishedArticles, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult SideBarDetails(int? number) {
+            return Json(documentService.GetSideBarDetails(number), JsonRequestBehavior.AllowGet);
+        }
+
         [ValidateInput(false)]
         public ActionResult Details(string id, bool isDiary = false) {
             if (id == null) {

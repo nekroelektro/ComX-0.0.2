@@ -23,5 +23,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         void CreateComment(CommentModelDto comment);
         void DeleteComment(Guid commentId);
         void UpdateComment(CommentModelDto comment);
+
+        SideBarDetailsDto GetSideBarDetails(int? numberOfComments);
     }
 }
