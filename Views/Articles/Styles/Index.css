@@ -1,4 +1,9 @@
-﻿#pager {
+﻿.indexContainer {
+    margin-left: -1em;
+    margin-top: -0.9em;
+}
+
+#pager {
     width: 100%;
 }
 
@@ -143,6 +148,7 @@
     float: left;
     border-top: 1px solid #2B823C;
     font-family: 'Eater', sans-serif;
+    background-color: black;
 }
 
 .page_navigation a {
@@ -156,36 +162,48 @@
 }
 
 .articlesIndexHeader {
+    color: whitesmoke;
     width: 100%;
     font-family: 'Coda', sans-serif;
-    margin-bottom: 1em;
-    padding-top: 0.2em;
+    padding-top: 1px;
     border-bottom: solid 1px #2B823C;
-    background-color: #f7f7f7;
+    /*background-color: black;*/
     padding-left: 1em;
+    text-shadow: 6px 6px 4px rgba(0, 0, 0, 1);
+
+    background: #45484d; /* Old browsers */
+    background: -moz-linear-gradient(left, #45484d 0%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #45484d 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
+
+    -webkit-transition: all 0.8s ease-out;
+    -moz-transition: all 0.8s ease-out;
+    -o-transition: all 0.8s ease-out;
+    transition: all 0.8s ease-out;
+}
+
+.articlesIndexHeader h3 {
+    font-weight: bolder !important;
+    margin-top: 10px !important;
+    cursor: default;
+}
+
+.articlesIndexHeader:hover {
+    color: #2B823C;
+    text-shadow: 6px 6px 4px rgba(0, 0, 0, 1);
 }
 
 .articlesIndexReviewsContainer {
     width: 100%; 
     float: left;
-    margin-bottom: 1em;
-}
-
-.articlesIndexReviewsHeader {
-    width: 100%;
-    font-family: 'Coda', sans-serif;
-    margin-bottom: 1em;
-    padding-top: 0.2em;
-    border-bottom: solid 1px #2B823C;
-    background-color: #f7f7f7;
-    padding-left: 1em;
+    margin-top: 0.1em;
 }
 
 .indexReviewsContainer {
     margin: 0 auto; 
     text-align: center; 
-    width: 100%; 
-    padding-top: 1em;
+    width: 100%;
 }
 
 .indexSingleReviewAnchor {
@@ -219,18 +237,24 @@
 }
 
 .moreMusicReviews {
+    width: 100%;
     float: right !important; 
     clear: both; 
     font-size: 1.1em;
     text-decoration: none;
     outline: 0;
     color: whitesmoke;
+    background-color: black;
+    border-top: #2b823c 1px solid;
 }
 
 .seeMoreReviewsFromIndex {
     text-decoration: none;
     outline: 0;
-    color: black;
+    color: whitesmoke;
+    float: right;
+    font-family: 'Coda', sans-serif;
+    padding-right: 1em;
 }
 
 .seeMoreReviewsFromIndex:hover {
@@ -263,6 +287,8 @@
     background: rgba(16, 17, 17, 0.7);
     z-index: 4;  
     color: white;
+    padding-right: 0.4em;
+    padding-left: 0.2em;
 }
 
 .bannerArticleNameIndex {
@@ -322,10 +348,6 @@
     transition: all 0.8s ease-out;
 }
 
-.seeMoreDiaries {
-    color: #222 !important;
-}
-
 .indexSingleDiaryAnchorFocus {
     padding-right: 0;
     color: black !important;
@@ -343,8 +365,6 @@
     padding-left: 0; 
     padding-right: 0; 
     width: 100% !important;
-    padding-top: 1px;
-    padding-bottom: 1px;
 }
 
 .flyingWindow {

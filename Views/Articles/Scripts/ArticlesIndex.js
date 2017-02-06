@@ -49,9 +49,6 @@
                 left: e.clientX + 15,
                 top: e.clientY + 15
             });
-            if (flyingWindow.style.bottom <= 0) {
-                flyingWindow.css('bottom', 0);
-            }
         })
         .mouseover(function () {
             //$(this).find('.imageOverlayColorDiary ').addClass('imageOverlayColorIndexNoOverlay', 400);

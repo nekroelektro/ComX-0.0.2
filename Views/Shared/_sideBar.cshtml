@@ -1,5 +1,6 @@
 ﻿@using ComX_0._0._2.Helpers
 @using ComX_0._0._2.Views.Articles.Services
+@using React.AspNet
 @{
     ArticleHelper articleHelper = new ArticleHelper();
     GeneralHelper generalHelper = new GeneralHelper();
@@ -7,9 +8,9 @@
     IDocumentService documentService = new DocumentService();
     var currentArticle = Request.Params["Id"];
     var randomPosts = articleHelper.GetRandomArticlesForSideBar(5, currentArticle != null ? new Guid(currentArticle) : Guid.Empty);
-    string currentUrl = Request.Url?.AbsoluteUri;
 }
-<div class="sideBar">
+@*@Html.React("SideBarReact", new {random = randomPosts, comments = documentService.GetComments(10), plazlistName = generalHelper.GetSettings().ListName, plazlist = generalHelper.GetSettings().Playlist})
+*@<div class="sideBar">
     <div class="sideContact">
         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
         <hr class="sideGreenLine"/>
@@ -80,8 +81,9 @@
     </div>
 </div>
     <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
+<script>
+    $(document).ready(function() {
+        (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s);
@@ -89,7 +91,8 @@
             js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8&appId=1780363828875340";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-    </script>
+    });
+</script>
 
     @*SCRIPTS FOR VIEW*@
     <script type="text/javascript" src="~/Views/Shared/Scripts/SharedSideBar.js"></script>

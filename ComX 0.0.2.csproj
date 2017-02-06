@@ -669,6 +669,7 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
     <Content Include="scripts\gridmvc.lang.ru.js" />
@@ -775,6 +776,7 @@
     <Compile Include="Views\Articles\Models\DtoModels\CreateModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DetailsModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DocumentModelDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\IndexCommentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexModelDto.cs" />
     <Compile Include="Views\Articles\Services\DocumentService.cs" />
     <Compile Include="Views\Articles\Services\IDocumentService.cs" />

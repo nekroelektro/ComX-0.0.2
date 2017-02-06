@@ -77,7 +77,6 @@
                 </div>
             }
             <div class="container body-content bodyLayout">
-                <div id="componentDemo" style="display: none;"></div>
                 @RenderBody()
                 <div class="push"></div>
             </div>
@@ -87,7 +86,6 @@
     </div>
 </body>
 </html>
-<script src="@Url.Content("~/Scripts/Components/Component.jsx")"></script>
 <script>
     $('#return-to-top').click(function() { // When arrow is clicked
         $('body,html').animate({

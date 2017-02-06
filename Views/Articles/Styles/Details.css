@@ -1,6 +1,7 @@
 ﻿.detailContainer {
     width: 100%; 
     float: left;
+    margin-left: -0.5em;
 }
 
 .articleDetail {
@@ -59,4 +60,10 @@
     padding: 1em; 
     font-family: 'Coda', sans-serif;
     background-color: whitesmoke;
+}
+
+.detailsCommentSection {
+    width: 100% !important;
+    clear: both;
+    padding-top: 1em;
 }

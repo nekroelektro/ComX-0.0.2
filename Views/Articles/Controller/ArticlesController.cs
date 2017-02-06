@@ -37,13 +37,19 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var documentFullName = generalHelper.AddSpecialCharsForString(id);
-            //var document = articleHelper.GetDocumentByName(documentFullName, isDiary);
             var document = documentService.GetDocumentForDetails(documentFullName, isDiary, false);
             if (document == null) {
                 return HttpNotFound();
             }
             ViewBag.ReturnArticleId = id;
             return View(document);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult DetailsJson(string id, bool isDiary = false) {
+            var documentFullName = generalHelper.AddSpecialCharsForString(id);
+            var document = documentService.GetDocumentForDetails(documentFullName, isDiary, false);
+            return Json(document, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DetailDiaryHelper(string id) {
