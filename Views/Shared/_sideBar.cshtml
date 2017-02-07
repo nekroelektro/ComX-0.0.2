@@ -1,98 +1,103 @@
 ﻿@using ComX_0._0._2.Helpers
 @using ComX_0._0._2.Views.Articles.Services
 @using React.AspNet
-@{
-    ArticleHelper articleHelper = new ArticleHelper();
-    GeneralHelper generalHelper = new GeneralHelper();
-    UserHelper userHelper = new UserHelper();
-    IDocumentService documentService = new DocumentService();
-    var currentArticle = Request.Params["Id"];
-    var randomPosts = articleHelper.GetRandomArticlesForSideBar(5, currentArticle != null ? new Guid(currentArticle) : Guid.Empty);
-}
-@*@Html.React("SideBarReact", new {random = randomPosts, comments = documentService.GetComments(10), plazlistName = generalHelper.GetSettings().ListName, plazlist = generalHelper.GetSettings().Playlist})
-*@<div class="sideBar">
-    <div class="sideContact">
-        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
-        <hr class="sideGreenLine"/>
-        <div class="sideContactTitle">
-            nekro@nekroplaza.pl
-        </div>
-        <div class="sideSocial">
-            <div class="fb-page" data-href="https://www.facebook.com/nekroplaza/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/nekroplaza/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nekroplaza/">NekroPlaza</a></blockquote>
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.SideBarDetailsDto
+    @{
+        ArticleHelper articleHelper = new ArticleHelper();
+        GeneralHelper generalHelper = new GeneralHelper();
+        UserHelper userHelper = new UserHelper();
+        IDocumentService documentService = new DocumentService();
+        //var currentArticle = Request.Params["Id"];
+        //var randomPosts = articleHelper.GetRandomArticlesForSideBar(5, currentArticle != null ? new Guid(currentArticle) : Guid.Empty);
+    }
+    @Html.React("SideBarReact", new {model = Model})
+    @*<div class="sideBar">
+        <div class="sideContact">
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
+            <hr class="sideGreenLine" />
+            <div class="sideContactTitle">
+                nekro@nekroplaza.pl
+            </div>
+            <div class="sideSocial">
+                <div class="fb-page" data-href="https://www.facebook.com/nekroplaza/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/nekroplaza/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nekroplaza/">NekroPlaza</a></blockquote>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="sidePlazlist">
-        <div class="sideTitle">
-            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
-            <hr class="sideGreenLine"/>
+        <div class="sidePlazlist">
+            <div class="sideTitle">
+                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
+                <hr class="sideGreenLine" />
+            </div>
+            <div class="sidePlazlistTitle">@generalHelper.GetSettings().ListName</div>
+            <iframe class="sidePlazlistWidget" src="@generalHelper.GetSettings().Playlist" frameborder="0" allowtransparency="true"></iframe>
         </div>
-        <div class="sidePlazlistTitle">@generalHelper.GetSettings().ListName</div>
-        <iframe class="sidePlazlistWidget" src="@generalHelper.GetSettings().Playlist" frameborder="0" allowtransparency="true"></iframe>
-    </div>
-    <div class="sideLastComments">
-        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
-        <hr class="sideGreenLine"/>
-        <div class="sideLastCommentsBody">
-            @foreach (var item in documentService.GetComments(10)) {
-                <a class="sideLastCommentAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(item.ArticleId, item.IsDiary).Name), @isDiary = item.IsDiary}))#commentSection">
-                    <div class="sideLastCommentsBodySingle">
-                        <div class="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @documentService.GetDocument(item.ArticleId, item.IsDiary).Name</div>
-                        <div class="sideLastCommentsUser">
-                            <b>by @userHelper.GetUserById(item.UserId).UserName</b>
+        <div class="sideLastComments">
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
+            <hr class="sideGreenLine" />
+            <div class="sideLastCommentsBody">
+                @foreach (var item in documentService.GetComments(10))
+                {
+                    <a class="sideLastCommentAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(item.ArticleId, item.IsDiary).Name), @isDiary = item.IsDiary}))#commentSection">
+                        <div class="sideLastCommentsBodySingle">
+                            <div class="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @documentService.GetDocument(item.ArticleId, item.IsDiary).Name</div>
+                            <div class="sideLastCommentsUser">
+                                <b>by @userHelper.GetUserById(item.UserId).UserName</b>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            }
+                    </a>
+                }
+            </div>
         </div>
-    </div>
-    <div class="sideRandomPosts">
-        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
-        <hr class="sideGreenLine"/>
-        <div class="sidePostsBody">
-            @foreach (var item in randomPosts) {
-                <a class="sideRandomPostsAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
-                    <div class="sideArt">
-                        @if (articleHelper.GetImageByArticleId(item.Id) != null) {
-                            <div class="sidebarRandomArtImg">
-                                <div class="imageOverlayColorSide"></div>
-                                <div class="bannerPanelImageContainerSide">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
-                                </div>
-                                <div class="bannerPanelImageMainSide">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
-                                </div>
-                                <div class="bannerPanelInfoIndex infoIndexSide">
-                                    <h3 class="bannerArticleNameIndex">@item.Name</h3>
-                                    <hr class="articlesIndexLineGreen" />
-                                    <div class="bannerArticlePreludeIndex">
-                                        @Html.Raw(WebUtility.HtmlDecode(item.IndexDescription))
+        <div class="sideRandomPosts">
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
+            <hr class="sideGreenLine" />
+            <div class="sidePostsBody">
+                @foreach (var item in randomPosts)
+                {
+                    <a class="sideRandomPostsAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
+                        <div class="sideArt">
+                            @if (articleHelper.GetImageByArticleId(item.Id) != null)
+                            {
+                                <div class="sidebarRandomArtImg">
+                                    <div class="imageOverlayColorSide"></div>
+                                    <div class="bannerPanelImageContainerSide">
+                                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
+                                    </div>
+                                    <div class="bannerPanelImageMainSide">
+                                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
+                                    </div>
+                                    <div class="bannerPanelInfoIndex infoIndexSide">
+                                        <h3 class="bannerArticleNameIndex">@item.Name</h3>
+                                        <hr class="articlesIndexLineGreen" />
+                                        <div class="bannerArticlePreludeIndex">
+                                            @Html.Raw(WebUtility.HtmlDecode(item.IndexDescription))
+                                        </div>
                                     </div>
                                 </div>
+                            }
+                            <div class="sidebarRandomArtBody">
+                                <p>@item.Name</p>
                             </div>
-                        }
-                        <div class="sidebarRandomArtBody">
-                            <p>@item.Name</p>
                         </div>
-                    </div>
-                </a>
-            }
+                    </a>
+                }
+            </div>
         </div>
-    </div>
-</div>
+    </div>*@
     <div id="fb-root"></div>
-<script>
-    $(document).ready(function() {
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8&appId=1780363828875340";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8&appId=1780363828875340";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        });
+    </script>
 
     @*SCRIPTS FOR VIEW*@
     <script type="text/javascript" src="~/Views/Shared/Scripts/SharedSideBar.js"></script>

@@ -2,6 +2,7 @@
     public class IndexCommentModelDto {
         public string UserName { get; set; }
         public string ArticleName { get; set; }
+        public string ArticleCodedName { get; set; }
         public bool isDiary { get; set; }
     }
 }

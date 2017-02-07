@@ -190,7 +190,7 @@ namespace ComX_0._0._2.Helpers {
         public string GetImageRelativePathByArticleId(Guid articleId) {
             var image = GetImageByArticleId(articleId);
             if (image != null) {
-                var relative = string.Format("~/Content/images/Container/{0}", image.FileName);
+                var relative = string.Format("/Content/images/Container/{0}", image.FileName);
                 return relative;
             }
             return "deafult.jpg";

@@ -1,16 +1,10 @@
 ﻿var SideBarReact = React.createClass({
 	propTypes: {
-	    random: React.PropTypes.array.isRequired,
-	    comments: React.PropTypes.array.isRequired,
-	    plazlistName: React.PropTypes.string.isRequired,
-	    plazlist: React.PropTypes.string.isRequired
+	    model: React.PropTypes.object.isRequired
 	},
 	getInitialState: function() {
 		return {
-		    randomPosts: this.props.random,
-		    lastComments: this.props.comments,
-		    playName: this.props.plazlistName,
-            play: this.props.plazlist
+		    model: this.props.model
 		};
 	},
 	render: function() {
@@ -21,7 +15,9 @@
 		return (
 			<div className="sideBar">
 				<SideContact></SideContact>
-                <SidePlazlist name={this.state.playName} code={this.state.play}></SidePlazlist>
+                <SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>
+                <SideLastComments comments={this.state.model.Comments}></SideLastComments>
+                <SideRandomPosts posts={this.state.model.RandomPosts}></SideRandomPosts>
 			</div>
 		);
 	}
@@ -72,16 +68,16 @@ var SidePlazlist = React.createClass({
 
 var SideLastComments = React.createClass({
     propTypes: {
-        randomComments: React.PropTypes.object,
+        comments: React.PropTypes.object
     },
     getInitialState: function () {
         return {
-            comments: this.props.randomComments
+            lastComments: this.props.comments
         };
     },
     render: function() {
-        var commentNodes = this.state.comments.map(function (comment) {
-            return <Comment id={comment.Id} articleId={comment.ArticleId} userId={comment.UserId} isDiary={comment.isDiary}></Comment>;
+        var commentNodes = this.state.lastComments.map(function (comment) {
+            return <Comment article={comment.ArticleName} articleCode={comment.ArticleCodedName} user={comment.UserName} isDiary={comment.isDiary}></Comment>;
         });
 
         return (
@@ -98,21 +94,84 @@ var SideLastComments = React.createClass({
 
 var Comment = React.createClass({
     propTypes: {
-        comment: React.PropTypes.object.isRequired
+        user: React.PropTypes.string,
+        article: React.PropTypes.string,
+        articleCode: React.PropTypes.string,
+        isDiary: React.PropTypes.bool
     },
-    render: function() {
-        //var url = Router.action("Details", "Articles", );
+    render: function () {
         return(
             <div className="singleComment">
-            <a className="sideLastCommentAnchor" href="#commentSection">
+                <a className="sideLastCommentAnchor" href={"/" + this.props.articleCode}>
                     <div className="sideLastCommentsBodySingle">
-                        <div className="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @documentService.GetDocument(item.ArticleId, item.IsDiary).Name</div>
+                        <div className="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {this.props.article}</div>
                         <div className="sideLastCommentsUser">
-                            <b>by @userHelper.GetUserById(item.UserId).UserName</b>
+                            <b>by {this.props.user}</b>
                         </div>
                     </div>
                 </a>
             </div>
+        );
+    }
+});
+
+var SideRandomPosts = React.createClass({
+    propTypes: {
+        posts: React.PropTypes.object
+    },
+    getInitialState: function () {
+        return {
+            randomPosts: this.props.posts
+        };
+    },
+    render: function() {
+        var postNodes = this.state.randomPosts.map(function (post) {
+            return <RandomPosts name={post.Name} code={post.CodedName} body={post.Body} imagePath={post.ImageUrl}></RandomPosts>;
+        });
+        return(
+            <div className="sideRandomPosts">
+                <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
+                <hr className="sideGreenLine" />
+                <div className="sidePostsBody">
+                    {postNodes}
+                </div>
+            </div>
+            );
+    }
+});
+
+var RandomPosts = React.createClass({
+    propTypes: {
+        name: React.PropTypes.string,
+        code: React.PropTypes.string,
+        body: React.PropTypes.string,
+        imagePath: React.PropTypes.string
+    },
+    render: function() {
+        return(
+            <a className="sideRandomPostsAnchor" href={"/" + this.props.code}>
+                        <div className="sideArt">
+                                <div className="sidebarRandomArtImg">
+                                    <div className="imageOverlayColorSide"></div>
+                                    <div className="bannerPanelImageContainerSide">
+                                        <img src={this.props.imagePath} />
+                                    </div>
+                                    <div className="bannerPanelImageMainSide">
+                                        <img src={this.props.imagePath} />
+                                    </div>
+                                    <div className="bannerPanelInfoIndex infoIndexSide">
+                                        <h3 className="bannerArticleNameIndex">{this.props.name}</h3>
+                                        <hr className="articlesIndexLineGreen" />
+                                        <div className="bannerArticlePreludeIndex">
+                                            <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+                                        </div>
+                                    </div>
+                                </div>
+                            <div className="sidebarRandomArtBody">
+                                <p>{this.props.name}</p>
+                            </div>
+                        </div>
+                    </a>
             );
     }
 });

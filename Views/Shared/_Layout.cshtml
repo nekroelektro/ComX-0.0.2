@@ -1,6 +1,5 @@
 ﻿@using ComX_0._0._2.Helpers
 @{
-    var generalHelper = new GeneralHelper();
     string currentUrl = Request.Url?.AbsoluteUri;
 }
 <!DOCTYPE html>
@@ -33,7 +32,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-    <script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -56,6 +54,7 @@
     <script src="@Url.Content("~/Scripts/jquery.sticky.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.fancybox.pack.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui.min.js")"></script>
+    <script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
     <meta name="description" content="@ViewBag.Description"/>
     <meta name="og:image" content="@ViewBag.MetaImage"/>
 </head>

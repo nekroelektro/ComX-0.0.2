@@ -31,8 +31,9 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return Json(publishedArticles, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SideBarDetails(int? number) {
-            return Json(documentService.GetSideBarDetails(number), JsonRequestBehavior.AllowGet);
+        public ActionResult _SideBar(int? number) {
+            var model = documentService.GetSideBarDetails(number);
+            return PartialView(model);
         }
 
         [ValidateInput(false)]

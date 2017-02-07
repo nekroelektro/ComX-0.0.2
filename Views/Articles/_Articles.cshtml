@@ -8,7 +8,7 @@
     </div>
     @if (!currentUrl.Contains("Create") && !currentUrl.Contains("Edit")) {
         <div class="mainSideBar">
-            @Html.Partial("_SideBar")
+            @Html.Action("_SideBar", new {number = 10})
         </div>
     }
     <div class="push"></div>
