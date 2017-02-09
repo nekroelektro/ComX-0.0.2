@@ -4,31 +4,54 @@
     font-size: 1.6em; 
     font-family: 'Coda', sans-serif; 
     color: #2B823C;
-    margin-right: -0.5em;
+    background-color: #000000;
 }
 
-.sideContact {
-    width: 100%; 
-    padding-left: 1em; 
-    padding-right: 1em; 
-    margin-bottom: 1em; 
+.sideBarComponent {
+    width: 100%;
+    border-bottom: 2px white solid;
 }
 
 .sideContactTitle {
     text-align: center; 
     padding-bottom: 0.15em;
-    color: black;
-    font-size: 1em;
-}
-
-.sidePlazlist {
-    margin-bottom: 1em; 
-    padding-left: 1em; 
-    padding-right: 1em;
+    color: #2B823C;
+    font-size: 1.2em;
+    font-family: 'Eater', sans-serif;
 }
 
 .sideTitle {
-    text-align: left;
+    /*text-align: left;*/
+    color: whitesmoke;
+    width: 100%;
+    font-family: 'Coda', sans-serif;
+    padding-top: 1px;
+    border-bottom: solid 1px #2B823C;
+    /*background-color: black;*/
+    padding-left: 1em;
+    text-shadow: 6px 6px 4px rgba(0, 0, 0, 1);
+
+    background: #000000; /* Old browsers */
+    background: -moz-linear-gradient(left, #000000 0%, #45484d 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #000000 0%,#45484d 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #000000 0%,#45484d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#45484d',GradientType=1 ); /* IE6-9 */
+
+    -webkit-transition: all 0.8s ease-out;
+    -moz-transition: all 0.8s ease-out;
+    -o-transition: all 0.8s ease-out;
+    transition: all 0.8s ease-out;
+}
+
+.sideTitle h3 {
+    font-weight: bolder !important;
+    margin-top: 10px !important;
+    cursor: default;
+}
+
+.sideTitle:hover {
+    color: #2B823C;
+    text-shadow: 6px 6px 4px rgba(0, 0, 0, 1);
 }
 
 .sidePlazlistTitle {
@@ -43,38 +66,21 @@
     overflow: hidden;
 }
 
-.sideQuote {
-    padding-left: 1em; 
-    padding-bottom: 1em; 
-    padding-right: 1em; 
-    margin-bottom: 1em; 
-}
-
-.sideQuoteBody {
-    font-family: 'Times New Roman', Georgia, Serif; 
-    font-size: 0.7em; 
-    color: black; 
-    padding: 5px; 
-    text-align: center;
-}
-
-.sideLastComments {
-    padding-left: 1em; 
-    padding-right: 1em; 
-    padding-bottom: 1em; 
-    margin-bottom: 1em; 
-}
-
 .sideLastCommentsBody {
     font-size: 0.7em; 
     color: black; 
     text-align: justify; 
     font-family: 'Coda', sans-serif; 
     font-size: small;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .sideLastCommentsBodySingle {
     display: block;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: whitesmoke;
 }
 
 .sideRandomPostsAnchor:hover {
@@ -99,15 +105,9 @@
     color: whitesmoke;
 }
 
-.sideRandomPosts {
-    padding-left: 1em; 
-    padding-right: 1em; 
-    padding-bottom: 1em; 
-    margin-bottom: 1em;
-}
-
 .sidePostsBody {
     padding-top: 1em;
+    background-color: black;
 }
 
 .infoIndexSide {
@@ -124,9 +124,12 @@
     display: block; 
     width: 100%; 
     height: 4em; 
-    padding-bottom: 1em; 
+    padding-bottom: 0.9em; 
     overflow: hidden; 
     position: relative;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    color: whitesmoke;
 
     -webkit-transition: all 0.6s ease-out;
     -moz-transition: all 0.6s ease-out;
@@ -224,7 +227,7 @@
     position: absolute;
     right: 0;
 
-    width: 70%; 
+    width: 67%; 
     font-size: 0.6em; 
     padding-left: 0.6em;
     -webkit-transition: all 0.8s ease-out;
@@ -248,4 +251,20 @@
 
 .sideSocial {
     margin-bottom: 1em;
+}
+
+.recrutation {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: -1em;
+}
+
+.recrutation img {
+    width: 90% !important;
+    text-align: center;
+}
+
+.singleComment {
+    width: 100%;
+    margin: 0 auto;
 }

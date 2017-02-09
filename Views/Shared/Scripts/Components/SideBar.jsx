@@ -8,10 +8,6 @@
 		};
 	},
 	render: function() {
-		//var commentNodes = this.state.articles.map(function (comment) {
-		//	return <Comment author={comment.Name}>{comment.Prologue}</Comment>;
-		//});
-
 		return (
 			<div className="sideBar">
 				<SideContact></SideContact>
@@ -26,9 +22,12 @@
 var SideContact = React.createClass({
     render: function() {
         return(
-            <div className="sideContact">
-                <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
-                <hr className="sideGreenLine" />
+            <div className="sideBarComponent">
+                <div className="sideTitle">
+                    <h3>
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
+                    </h3>
+                </div>
                 <div className="sideContactTitle">
                     nekro@nekroplaza.pl
                 </div>
@@ -42,7 +41,12 @@ var SideContact = React.createClass({
                          data-show-posts="false">
                     </div>
                 </div>
-            </div>
+                <div className="recrutation">
+                    <a href='/NekroPlaza+rekrutuje!'>
+                        <img src='/Content/images/rekrutacja.png' />
+                    </a>
+                </div>
+                </div>
             );
     }
 });
@@ -54,10 +58,11 @@ var SidePlazlist = React.createClass({
     },
     render: function () {
         return (
-            <div className="sidePlazlist">
+            <div className="sideBarComponent">
                 <div className="sideTitle">
-                    <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
-                    <hr className="sideGreenLine" />
+                    <h3>
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
+                    </h3>
                 </div>
                 <div className="sidePlazlistTitle">{this.props.name}</div>
                 <iframe className="sidePlazlistWidget" src={this.props.code} frameborder="0" allowtransparency="true"></iframe>
@@ -81,13 +86,16 @@ var SideLastComments = React.createClass({
         });
 
         return (
-            <div className="sideLastComments">
-                <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
-                <hr className="sideGreenLine"/>
+            <div className="sideBarComponent">
+                <div className="sideTitle">
+                    <h3>
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
+                    </h3>
+                </div>
                 <div className="sideLastCommentsBody">
                     {commentNodes}
                 </div>
-            </div>
+                </div>
             );
     }
 });
@@ -129,13 +137,16 @@ var SideRandomPosts = React.createClass({
             return <RandomPosts name={post.Name} code={post.CodedName} body={post.Body} imagePath={post.ImageUrl}></RandomPosts>;
         });
         return(
-            <div className="sideRandomPosts">
-                <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
-                <hr className="sideGreenLine" />
+            <div className="sideBarComponent sideRandomPosts">
+                <div className="sideTitle">
+                    <h3>
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
+                    </h3>
+                </div>
                 <div className="sidePostsBody">
                     {postNodes}
                 </div>
-            </div>
+                </div>
             );
     }
 });

@@ -1,12 +1,13 @@
 ﻿@using ComX_0._0._2.Helpers
+@using React.AspNet
 @model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexModelDto>
     @{
         var articleHelper = new ArticleHelper();
         var userHelper = new UserHelper();
         var generalHelper = new GeneralHelper();
         var articles = Model.Where(x => x.IsDiary == false).OrderByDescending(x => x.DateCreation).ToList();
-        var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).ToList();
     }
+@*@Html.React("IndexSlider", new {model = Model})*@
 <div class="slidersContainer">
     <div class="slider-progress">
         <div class="progress"></div>
@@ -46,7 +47,6 @@
     @foreach (var item in articles)
     {
         <div class="slideElementDown">
-            @*<img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />*@
             <div class="articlesIndexSingleImage" style="width: 100%;">
                 <div class="bannerPanelImageContainerIndex">
                     <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
@@ -59,34 +59,6 @@
         </div>
     }
 </div>
-@*<div class="indexDiaryContainer">
-    <div class="indexLastDiariesContainer">
-        <div class="indexDiaryListHeader">
-            <h3>Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
-            <hr class="indexDiaryLine"/>
-        </div>
-        <ul class="indexDiaryList">
-            @foreach (var item in diaries) {
-                <div class="indexSingleArticleContainerDiary col-sm-12" style="height: 6em; padding-left: 0; padding-right: 0;">
-                    <a class="indexSingleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
-                        <div>
-                            <h4 class="indexDiaryName"># @item.Name</h4>
-                        </div>
-                        <div class="bannerPanelImageContainerIndex">
-                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))'/>
-                        </div>
-                        <div class="imageOverlayColorDiary"></div>
-                    </a>
-                </div>
-            }
-        </ul>
-        <div class="moreMusicReviews moreDiaries">
-            <a class="seeMoreReviewsFromIndex seeMoreDiaries" href="@Url.Action("Diary", "Articles")">
-                <p>Przejdź do pamiętnika <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
-            </a>
-        </div>
-    </div>
-</div>*@
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Shared/Scripts/SharedIndexSlider.js"></script>

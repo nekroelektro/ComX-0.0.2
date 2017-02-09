@@ -1,6 +1,5 @@
 ﻿.indexContainer {
-    margin-left: -1em;
-    margin-top: -0.9em;
+    /*margin-top: -0.9em;*/
 }
 
 #pager {
@@ -141,26 +140,6 @@
     right: 0;
 }
 
-.page_navigation {
-    clear: both;
-    padding-top: 1em; 
-    width: 100%; 
-    float: left;
-    border-top: 1px solid #2B823C;
-    font-family: 'Eater', sans-serif;
-    background-color: black;
-}
-
-.page_navigation a {
-    outline: 0 !important;
-    text-decoration: none !important;
-}
-
-.page_navigation a:focus, .page_navigation a:active {
-    outline: 0 !important;
-    text-decoration: none !important;
-}
-
 .articlesIndexHeader {
     color: whitesmoke;
     width: 100%;
@@ -246,6 +225,10 @@
     color: whitesmoke;
     background-color: black;
     border-top: #2b823c 1px solid;
+}
+
+.moreMusicReviews h4 {
+    margin: 0.3em !important;
 }
 
 .seeMoreReviewsFromIndex {

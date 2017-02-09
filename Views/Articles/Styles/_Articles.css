@@ -1,15 +1,18 @@
 ﻿.mainBodyContainer {
     float: left; 
-    width: 70%;
+    width: 71.6%;
+
+    margin-left: -1.1em;
 
     /*-moz-border-radius: 5px;
 border-radius: 5px;*/
--moz-box-shadow: 7px 5px 5px black;
+/*-moz-box-shadow: 6px 5px 11px black;
 -webkit-box-shadow: 7px 5px 5px black;
-box-shadow: 7px 5px 5px black;
+box-shadow: 6px 5px 11px black;*/
 }
 
 .mainSideBar {
     float: right; 
-    width: 30%;
+    width: 31%;
+    margin-right: -1.1em;
 }

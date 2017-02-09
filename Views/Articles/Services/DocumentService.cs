@@ -175,7 +175,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public List<DocumentModelDto> GetDiaries() {
             var diariesList = new List<DocumentModelDto>();
-            var diaries = db.Diary.ToList();
+            var diaries = db.Diary.Where(x=>x.IsPublished).ToList();
             foreach (var diary in diaries) {
                 var document = new DocumentModelDto();
                 document.Id = diary.Id;

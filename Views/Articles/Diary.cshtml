@@ -15,13 +15,13 @@
     <div class="indexReviewsContainer">
         @foreach (var review in Model)
         {
-            <a class="indexSingleReviewAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(review.Name)}))">
+            <a class="indexSingleReviewAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(review.Name), @isDiary = true}))">
                 <div class="indexSingleReview col-xs-4">
                     <div class="indexSingleReviewImageContainer">
                         <img id="reviewIndexImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(review.Id))' />
                     </div>
                     <div class="bannerPanelInfoIndex">
-                        <h3 class="bannerArticleNameIndex">@review.Name</h3>
+                        <h3 class="bannerArticleNameIndex">#@review.Name</h3>
                         <hr class="articlesIndexLine" />
                     </div>
                 </div>

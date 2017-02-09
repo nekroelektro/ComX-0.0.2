@@ -1,6 +1,7 @@
 ﻿.logoSection {
     padding-left: 0; 
-    padding-right: 0; 
+    padding-right: 0;
+    background-color: black;
 }
 
 .logo img {
@@ -19,11 +20,6 @@
     width: 100%; 
     text-align: right;
     display: table;
-}
-
-.recrutation img {
-    width: 22% !important;
-    margin-left: 6em;
 }
 
 /* Icons for logo panel*/

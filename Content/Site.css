@@ -1,6 +1,6 @@
 ﻿body {
     padding-bottom: 20px;
-    background-color: black !important;
+    background-color: #2B823C !important;
     min-height: 100%;
     min-width: 600px;
     height: auto !important;
@@ -27,8 +27,9 @@ p:-moz-selection {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    padding-bottom: 3em;
-    padding-top: 1em;
+    padding-bottom: 1.7em;
+    padding-top: 0;
+    margin-top: 1px;
     /*box-shadow: 0 2px 4px 0 white, 0 3px 10px 0 whitesmoke;*/
 }
 
@@ -68,6 +69,26 @@ a {
 
 /* INDEX PAGINATION*/
 
+.page_navigation {
+    clear: both;
+    padding-top: 0.6em; 
+    width: 100%; 
+    float: left;
+    border-top: 1px solid #2B823C;
+    font-family: 'Eater', sans-serif;
+    background-color: black;
+}
+
+.page_navigation a {
+    outline: 0 !important;
+    text-decoration: none !important;
+}
+
+.page_navigation a:focus, .page_navigation a:active {
+    outline: 0 !important;
+    text-decoration: none !important;
+}
+
 .page_navigation , .alt_page_navigation{
 	padding-bottom: 10px;
     margin: 0 auto;
@@ -75,12 +96,11 @@ a {
 }
 
 .page_navigation a, .alt_page_navigation a{
-	padding:3px 5px;
+	padding:1px 5px;
 	margin:2px;
 	color:white;
 	text-decoration:none;
 	font-size: 16px;
-	background-color:#222;
 }
 
 .page_navigation a:hover {
@@ -217,6 +237,8 @@ a {
     text-align: center;
     margin: 0 auto;
     height: 3em;
+    
+    font-family: 'Eater', sans-serif;
 }
 
 .bottomFooter:hover {
@@ -334,7 +356,7 @@ a {
     float: right;
 }
 
-.seeMoreFromCategoryTopNavigation:hover {
+.seeMoreFromCategoryTopNavigation:hover, .seeMoreReviewsFromIndex:focus, .seeMoreReviewsFromIndex:active {
     color: #2B823C!important;
     text-decoration: none;
     outline: 0;
@@ -346,7 +368,7 @@ a {
     outline: 0; 
 }
 
-.topLogoLastAnchor:focus, .topLogoLastAnchor:active {
+.topLogoLastAnchor:focus, .topLogoLastAnchor:active, .seeMoreReviewsFromIndex:focus, .seeMoreReviewsFromIndex:active {
     outline: 0;
     text-decoration: none;
 }
@@ -493,5 +515,17 @@ a {
 
     .indexSingleReview {
         height: 14em !important;
+    }
+
+    .sliderSection {
+        display: none !important;
+    }
+
+    .slidersContainer {
+        width: 100%;
+    }
+
+    .slideElementUpper {
+        height: 20em !important;   
     }
 }

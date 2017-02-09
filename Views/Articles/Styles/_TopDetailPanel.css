@@ -14,11 +14,7 @@
 }
 
 .detailsBannerPanel {
-    width: 102.7%; 
-    margin-left: -1.1em !important; 
-    height: 45em; 
-    margin-bottom: 1em; 
-    margin-top: -1em;
+    height: 45em;
     position: relative; 
     z-index: 5; 
     overflow: hidden;

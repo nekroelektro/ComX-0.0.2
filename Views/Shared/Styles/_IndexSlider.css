@@ -1,5 +1,5 @@
 ﻿.slidersContainer {
-    width: 65%;
+    width: 64.9%;
     float: left;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .slideElementUpper {
-    height: 31em; 
+    height: 32em; 
     display: block;
 }
 
@@ -127,9 +127,7 @@
 }
 
 .slideElementDown {
-    height:15.6em; 
-    /*border-top: 0.7em solid transparent;
-    border-bottom: 0.7em solid transparent;*/
+    height:16.3em; 
     padding: 0.5em;
     width: 50% !important;
 }
@@ -208,12 +206,12 @@
 
 .slider-progress {
   width: 100%;
-  height: 3px;
+  height: 8px;
   background: black;
   z-index: 99999;
 }
 .slider-progress .progress {
-  width: 0%;
-  height: 3px;
+  width: 65%;
+  height: 8px;
   background: #2B823C !important;;
 }
