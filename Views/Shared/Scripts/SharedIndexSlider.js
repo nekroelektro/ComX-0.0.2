@@ -1,4 +1,4 @@
-﻿jQuery(document).ready(function ($) {
+﻿//jQuery(document).ready(function () {
     //SLICK SLIDER
     var time = 2;
     var $bar,
@@ -68,4 +68,4 @@
     }
 
     startProgressbar();
-});
+//});

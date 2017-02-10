@@ -268,3 +268,9 @@
     width: 100%;
     margin: 0 auto;
 }
+
+/* FACEBOOK WIDGET */
+.fbUserContent{
+    background-color: #222 !important;
+    color: white;
+}

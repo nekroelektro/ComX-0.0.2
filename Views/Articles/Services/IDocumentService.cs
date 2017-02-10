@@ -25,5 +25,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
         void UpdateComment(CommentModelDto comment);
 
         SideBarDetailsDto GetSideBarDetails(int? numberOfComments);
+        List<IndexPostsDto> GetSliderDetails();
     }
 }

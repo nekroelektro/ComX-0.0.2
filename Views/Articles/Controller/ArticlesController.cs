@@ -33,7 +33,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         public ActionResult _SideBar(int? number) {
             var model = documentService.GetSideBarDetails(number);
-            return PartialView(model);
+            return PartialView("_SideBar", model);
         }
 
         [ValidateInput(false)]
@@ -204,8 +204,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult _IndexSlider() {
-            var lastDocuments = documentService.GetDocumentForIndex(false, 4);
-            return PartialView("_IndexSlider", lastDocuments);
+            var model = documentService.GetSliderDetails();
+            return PartialView("_IndexSlider", model);
         }
 
         public ActionResult DeleteComment(string commentId, string articleId, bool isDiary) {

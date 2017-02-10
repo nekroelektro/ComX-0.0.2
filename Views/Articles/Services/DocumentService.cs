@@ -19,9 +19,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public void CreateDocument(CreateModelDto document, HttpPostedFileBase upload) {
             var documentIdentifier = Guid.NewGuid();
-            if (upload != null) {
-                UploadImageForArticle(documentIdentifier, upload, document.IsDiary);
-            }
+            if (upload != null) UploadImageForArticle(documentIdentifier, upload, document.IsDiary);
             if (document.IsDiary) {
                 var diaryObject = new Diary {
                     Id = documentIdentifier,
@@ -95,9 +93,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         }
 
         public void UpdateDocument(CreateModelDto document, HttpPostedFileBase upload) {
-            if (upload != null) {
-                UploadImageForArticle(document.Id, upload, document.IsDiary);
-            }
+            if (upload != null) UploadImageForArticle(document.Id, upload, document.IsDiary);
             if (document.IsDiary) {
                 var entity = db.Diary.Where(c => c.Id == document.Id).AsQueryable().FirstOrDefault();
                 if (entity != null) {
@@ -175,7 +171,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public List<DocumentModelDto> GetDiaries() {
             var diariesList = new List<DocumentModelDto>();
-            var diaries = db.Diary.Where(x=>x.IsPublished).ToList();
+            var diaries = db.Diary.Where(x => x.IsPublished).ToList();
             foreach (var diary in diaries) {
                 var document = new DocumentModelDto();
                 document.Id = diary.Id;
@@ -188,12 +184,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
         }
 
         public void DeleteDocument(Guid id, bool isDiary) {
-            if (isDiary) {
-                db.Diary.Remove(db.Diary.Find(id));
-            }
-            else {
-                db.Articles.Remove(db.Articles.Find(id));
-            }
+            if (isDiary) db.Diary.Remove(db.Diary.Find(id));
+            else db.Articles.Remove(db.Articles.Find(id));
             DeleteImageForGivenDocument(id);
             db.SaveChanges();
         }
@@ -258,16 +250,14 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 };
                 commentList.Add(comment);
             }
-            if (commentList.Count > 0) {
-                commentList.OrderByDescending(x => x.DateCreated).ToList();
-            }
+            if (commentList.Count > 0) commentList.OrderByDescending(x => x.DateCreated).ToList();
             return commentList;
         }
 
         public CommentModelDto GetCommentDetails(Guid commentId) {
             var comment = new CommentModelDto();
             var document = db.Comments.Find(commentId);
-            if (document != null) {
+            if (document != null)
                 comment = new CommentModelDto {
                     Id = document.Id,
                     Body = document.Body,
@@ -276,7 +266,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     ArticleId = document.ArticleId,
                     IsDiary = document.IsDiary
                 };
-            }
             return comment;
         }
 
@@ -295,9 +284,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public void UpdateComment(CommentModelDto comment) {
             var entity = db.Comments.Where(c => c.Id == comment.Id).AsQueryable().FirstOrDefault();
-            if (entity != null) {
-                entity.Body = comment.Body;
-            }
+            if (entity != null) entity.Body = comment.Body;
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
         }
@@ -310,7 +297,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public List<CommentModelDto> GetComments(int? number) {
             List<Comments> comments;
-            comments = number != null ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(number.Value).ToList() : db.Comments.ToList();
+            comments = number != null
+                ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(number.Value).ToList()
+                : db.Comments.ToList();
 
             return comments.Select(comment => new CommentModelDto {
                 Id = comment.Id,
@@ -323,12 +312,14 @@ namespace ComX_0._0._2.Views.Articles.Services {
         }
 
         public SideBarDetailsDto GetSideBarDetails(int? numberOfComments) {
-            SideBarDetailsDto details = new SideBarDetailsDto();
+            var details = new SideBarDetailsDto();
             details.PlazlistName = generalHelper.GetSettings().ListName;
             details.PlazlistCode = generalHelper.GetSettings().Playlist;
 
             // Fetches last comments for sidebar
-            var comments = numberOfComments != null ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(numberOfComments.Value).ToList() : db.Comments.ToList();
+            var comments = numberOfComments != null
+                ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(numberOfComments.Value).ToList()
+                : db.Comments.ToList();
             var commentList = new List<IndexCommentModelDto>();
             foreach (var item in comments) {
                 var comment = new IndexCommentModelDto {
@@ -347,9 +338,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
             // LINQ to Entities does not recognize the method 'Int32 Next()' method, and this method cannot be translated into a store expression.
             var articleList = db.Articles.Where(x => x.IsPublished).ToList();
             var randomList = articleList.OrderBy(x => rnd.Next()).Take(5); // for now number of posts is fixed
-            var postList = new List<IndexRandomPostsDto>();
+            var postList = new List<IndexPostsDto>();
             foreach (var item in randomList) {
-                var article = new IndexRandomPostsDto {
+                var article = new IndexPostsDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
                     Body = item.IndexDescription,
@@ -362,6 +353,27 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return details;
         }
 
+        public List<IndexPostsDto> GetSliderDetails() {
+            var articleList =
+                    db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(4).ToList();
+                // Fixed number of articles for slider
+            var postList = new List<IndexPostsDto>();
+            foreach (var item in articleList) {
+                var article = new IndexPostsDto {
+                    Name = item.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
+                    UserName = userHelper.GetUserById(item.UserId).UserName,
+                    Date = item.DateCreated.ToLongDateString(),
+                    Category = articleHelper.GetCategoryById(item.CategoryId).Name,
+                    Subcategory = articleHelper.GetSubCategoryById(item.SubCategoryId).Name,
+                    Series = articleHelper.GetSeriesById(item.Series).Name != "Default" ? articleHelper.GetSeriesById(item.Series).Name : null
+                };
+                postList.Add(article);
+            }
+            return postList;
+        }
+
         private string GetArticleName(Guid id) {
             var name = db.Articles.Where(x => x.Id == id).Select(x => x.Name).Single();
             return name;
@@ -369,16 +381,13 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number, bool isConfiguration) {
             var articles = new List<Models.Articles>();
-            if (isConfiguration) {
-                articles = db.Articles.ToList();
-            }
-            else {
+            if (isConfiguration) articles = db.Articles.ToList();
+            else
                 articles =
                     (number == 0
                         ? db.Articles.Where(x => x.IsPublished)
                         : db.Articles.Where(x => x.IsPublished).Take(number)).OrderByDescending(x => x.DateCreated)
-                        .ToList();
-            }
+                    .ToList();
             var documents = articles.Select(item => new IndexModelDto {
                 Id = item.Id,
                 Name = item.Name,
@@ -394,16 +403,13 @@ namespace ComX_0._0._2.Views.Articles.Services {
             }).ToList();
             if (!onlyArticles) {
                 var diary = new List<Diary>();
-                if (isConfiguration) {
-                    diary = db.Diary.ToList();
-                }
-                else {
+                if (isConfiguration) diary = db.Diary.ToList();
+                else
                     diary =
                         (number == 0
                             ? db.Diary.Where(x => x.IsPublished)
                             : db.Diary.Where(x => x.IsPublished).Take(number))
-                            .OrderByDescending(x => x.DateCreated).ToList();
-                }
+                        .OrderByDescending(x => x.DateCreated).ToList();
                 documents.AddRange(diary.Select(item => new IndexModelDto {
                     Id = item.Id,
                     Name = item.Name,
