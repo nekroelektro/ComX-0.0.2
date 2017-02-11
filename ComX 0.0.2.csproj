@@ -683,6 +683,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Views\Shared\Scripts\Components\IndexSlider.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\IndexMain.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
@@ -792,8 +793,11 @@
     <Compile Include="Views\Articles\Models\DtoModels\DetailsModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DocumentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexCommentModelDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\IndexDiaryDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\IndexMainDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexPostsDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\IndexReviewsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\SideBarDetailsDto.cs" />
     <Compile Include="Views\Articles\Services\DocumentService.cs" />
     <Compile Include="Views\Articles\Services\IDocumentService.cs" />
@@ -907,7 +911,6 @@
     <Content Include="Views\Articles\Diary.cshtml" />
     <Content Include="Views\Configuration\_Restricted.cshtml" />
     <Content Include="Views\Account\UserMailBox.cshtml" />
-    <Content Include="Views\Shared\Scripts\Components\Component.jsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -355,8 +355,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public List<IndexPostsDto> GetSliderDetails() {
             var articleList =
-                    db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(4).ToList();
-                // Fixed number of articles for slider
+                db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(4).ToList();
+            // Fixed number of articles for slider
             var postList = new List<IndexPostsDto>();
             foreach (var item in articleList) {
                 var article = new IndexPostsDto {
@@ -367,11 +367,67 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     Date = item.DateCreated.ToLongDateString(),
                     Category = articleHelper.GetCategoryById(item.CategoryId).Name,
                     Subcategory = articleHelper.GetSubCategoryById(item.SubCategoryId).Name,
-                    Series = articleHelper.GetSeriesById(item.Series).Name != "Default" ? articleHelper.GetSeriesById(item.Series).Name : null
+                    Series =
+                        articleHelper.GetSeriesById(item.Series).Name != "Default"
+                            ? articleHelper.GetSeriesById(item.Series).Name
+                            : null
                 };
                 postList.Add(article);
             }
             return postList;
+        }
+
+        public IndexMainDto GetIndexDetails() {
+            var details = new IndexMainDto();
+            var articleList =
+                db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
+
+            var reviewList = new List<IndexReviewsDto>();
+            foreach (
+                var item in
+                articleList.Where(
+                    x =>
+                        x.CategoryId == articleHelper.GetCategoryByName("Recenzje").Id &&
+                        x.SubCategoryId == articleHelper.GetSubCategoryByName("Muzyka").Id).Take(6).ToList()) {
+                var review = new IndexReviewsDto {
+                    Name = item.Name,
+                    Code = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id)
+                };
+                reviewList.Add(review);
+            }
+            details.Reviews = reviewList;
+
+            var postList = new List<IndexPostsDto>();
+            // Cut first 4 articles (they are on slider)
+            var posts = articleList;
+            for (var i = 0; i < 4; i++) posts.RemoveAt(0);
+            foreach (var item in posts) {
+                var article = new IndexPostsDto {
+                    Name = item.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    Body = item.IndexDescription,
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
+                    Category = articleHelper.GetCategoryById(item.CategoryId).Name,
+                    Subcategory = articleHelper.GetSubCategoryById(item.SubCategoryId).Name
+                };
+                postList.Add(article);
+            }
+            details.Articles = postList;
+
+            var diaries = db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(5).ToList();
+            var diaryList = new List<IndexDiaryDto>();
+            foreach (var item in diaries) {
+                var diary = new IndexDiaryDto {
+                    Name = item.Name,
+                    Code = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id)
+                };
+                diaryList.Add(diary);
+            }
+            details.Diaries = diaryList;
+
+            return details;
         }
 
         private string GetArticleName(Guid id) {

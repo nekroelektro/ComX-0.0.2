@@ -26,5 +26,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         SideBarDetailsDto GetSideBarDetails(int? numberOfComments);
         List<IndexPostsDto> GetSliderDetails();
+        IndexMainDto GetIndexDetails();
     }
 }

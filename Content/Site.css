@@ -471,6 +471,13 @@ a {
     cursor: pointer;
 }
 
+.indexSingleArticleContainer {
+    height: 16em; 
+    padding-left: 0 !important; 
+    padding-right: 0 !important; 
+    border: 1px solid #474a4f;
+}
+
 /* TRANSITIONS */
 
 .transition {

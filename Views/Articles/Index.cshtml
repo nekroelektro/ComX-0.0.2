@@ -1,123 +1,12 @@
-﻿@using ComX_0._0._2.Helpers
-@using React.AspNet
-@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexModelDto>
+﻿@using React.AspNet
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.IndexMainDto
 
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "NekroPlaza - doświadcz dobroci";
     ViewBag.Description = "Najnowsze smakowitości, dobrocie najbardziej trendy, kontrowersje, wybuchy atomowych laserów i nieumarli - NEKROPLAZA.PL - zakosztuj dobroci.";
-    var articleHelper = new ArticleHelper();
-    var generalHelper = new GeneralHelper();
-    var articles = Model.Where(x => x.IsDiary == false).OrderByDescending(x => x.DateCreation).ToList();
-    for (var i = 0; i < 4; i++){
-        articles.RemoveAt(0);
-    }
-    var diaries = Model.Where(x => x.IsDiary).OrderByDescending(x => x.DateCreation).Take(5).ToList();
 }
-@*<ul class="indexListMenu list-inline">
-    <li><a class="indexListMenuItem" data-id="" href="#pager">Wszystkie</a></li>
-    @foreach (var category in articleHelper.GetAllCategories().Take(6))
-    {
-        <li><a class="indexListMenuItem" data-id="@category.Id" href="#pager">@category.Name</a></li>
-    }
-</ul>*@
-<div class="indexContainer">
-    <div id="pager">
-        <div class="articlesIndexHeader">
-            <h3><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> POSTY:</h3>
-        </div>
-        <ul class="content articlesIndexTable" id="content">
-            @foreach (var item in articles)
-            {
-                <div class="indexSingleArticleContainer col-md-6 col-sm-12" style="height: 16em; padding-left: 0; padding-right: 0; border: 1px solid #474a4f;">
-                    <a class="singleIndexAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name)}))">
-                        @if (articleHelper.GetImageByArticleId(item.Id) != null)
-                        {
-                            <div class="articlesIndexSingleImage" style="width: 100%;">
-                                <p class="bannerArticleTagsIndex">
-                                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> @articleHelper.GetCategoryById(item.Categories.Value).Name,
-                                    @articleHelper.GetSubCategoryById(item.SubCategories.Value).Name
-                                </p>
-                                <div class="bannerPanelImageContainerIndex">
-                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
-                                </div>
-                                <div class="bannerPanelImageMainIndex">
-                                    <img id="articleIndexImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
-                                </div>
-                                <div class="imageOverlayColorIndex"></div>
-                                <div class="bannerPanelInfoIndex">
-                                    <h3 class="bannerArticleNameIndex">@item.Name</h3>
-                                    <hr class="articlesIndexLine" />
-                                    <div class="bannerArticlePreludeIndex">
-                                        @Html.Raw(WebUtility.HtmlDecode(item.IndexPrologue))
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </a>
-                </div>
-            }
-        </ul>
-        <hr />
-        <div class="page_navigation"></div>
-    </div>
-    <div class="indexDiary articlesIndexReviewsContainer">
-        <div class="articlesIndexHeader">
-            <h3><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
-        </div>
-        <ul class="indexDiaryList">
-            @foreach (var item in diaries)
-            {
-                <div class="indexSingleArticleContainerDiary col-sm-12">
-                    <a class="indexSingleDiaryAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(item.Name), @isDiary = true}))">
-                        <div class="diaryNameContainer">
-                            <h4 class="indexDiaryName"># @item.Name</h4>
-                        </div>
-                        <div class="bannerPanelImageContainerIndexDiary">
-                            <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' />
-                        </div>
-                        <div class="imageOverlayColorDiaryIndex"></div>
-                    </a>
-                    @*TU TO LATAJACE*@
-                    <div class="flyingWindow" style="width: 24em; height: 24em;">
-                        <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(item.Id))' style="width: 100%;" />
-                    </div>
-                </div>
-            }
-        </ul>
-        <div class="moreMusicReviews moreDiaries">
-            <a class="seeMoreReviewsFromIndex seeMoreDiaries" href="@Url.Action("Diary", "Articles")">
-                <h4>PRZEJDŹ DO PAMIĘTNIKA <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
-            </a>
-        </div>
-    </div>
-    <div class="articlesIndexReviewsContainer">
-        <div class="articlesIndexHeader">
-            <h3><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> OSTATNIE RECKI PŁYTOWE:</h3>
-        </div>
-        <div class="indexReviewsContainer">
-            @foreach (var review in articleHelper.GetLastMusicReviews(6))
-            {
-                <a class="indexSingleReviewAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(review.Name)}))">
-                    <div class="indexSingleReview col-xs-4">
-                        <div class="indexSingleReviewImageContainer">
-                            <img id="reviewIndexImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(review.Id))' />
-                        </div>
-                        <div class="bannerPanelInfoIndex">
-                            <h3 class="bannerArticleNameIndex">@review.Name</h3>
-                            <hr class="articlesIndexLine" />
-                        </div>
-                    </div>
-                </a>
-            }
-        </div>
-        <div class="moreMusicReviews">
-            <a class="seeMoreReviewsFromIndex" href="@Url.Action("Categories", "Articles", new {@id = "Recenzje", @subId = "Muzyka"})">
-                <h4>ZOBACZ WSZYSTKIE RECKI MUZYCZNE <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
-            </a>
-        </div>
-    </div>
-</div>
+@Html.React("IndexMain", new {model = Model})
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesIndex.js"></script>

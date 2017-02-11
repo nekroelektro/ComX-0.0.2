@@ -20,8 +20,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly UserHelper userHelper = new UserHelper();
 
         public ActionResult Index() {
-            var publishedArticles = documentService.GetDocumentForIndex(false);
-            return PartialView("Index", publishedArticles);
+            var model = documentService.GetIndexDetails();
+            return PartialView("Index", model);
         }
 
         //Preventing caching by browser

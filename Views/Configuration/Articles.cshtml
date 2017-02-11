@@ -11,7 +11,7 @@
 <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
 </button>
-<h2>Twoje artykuły:</h2>
+<h2>Twoje artykuły (@Model.Where(x=>x.IsPublished).Count().ToString())/@Model.Count().ToString() opublikowane):</h2>
 <div class="col-xs-12 center-block">
     @Html.Grid(Model.Where(x => x.IsDiary == false)).Named("articleGrid").Columns(columns => {
         columns.Add(o => o.Id, true);
