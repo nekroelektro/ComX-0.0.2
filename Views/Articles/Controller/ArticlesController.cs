@@ -226,15 +226,5 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             ViewBag.CategoryIdentificator = cat.Id;
             return View(articlesByCategory);
         }
-
-        public ActionResult _TopDetailPanel(string id, bool isDiary) {
-            if (isDiary) {
-                id = id.Split('?').First();
-            }
-            var document = documentService.GetDocumentForDetails(id, isDiary, true);
-            //var article =
-            //    db.Articles.Find(articleHelper.GetArticleById(generalHelper.GetIdFromCurrentUrlForArticle()).Id);
-            return PartialView(document);
-        }
     }
 }
