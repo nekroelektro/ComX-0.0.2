@@ -2,6 +2,9 @@
     padding-bottom: 2em; 
     padding-top: 1em;
     font-family: 'Coda', sans-serif;
+    clear: both;
+    width: 100%; 
+    float: left;
 }
 
 .lastFromCategoryLabel {

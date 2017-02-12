@@ -338,9 +338,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
             // LINQ to Entities does not recognize the method 'Int32 Next()' method, and this method cannot be translated into a store expression.
             var articleList = db.Articles.Where(x => x.IsPublished).ToList();
             var randomList = articleList.OrderBy(x => rnd.Next()).Take(5); // for now number of posts is fixed
-            var postList = new List<IndexPostsDto>();
+            var postList = new List<ArticleDto>();
             foreach (var item in randomList) {
-                var article = new IndexPostsDto {
+                var article = new ArticleDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
                     Body = item.IndexDescription,
@@ -353,13 +353,13 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return details;
         }
 
-        public List<IndexPostsDto> GetSliderDetails() {
+        public List<ArticleDto> GetSliderDetails() {
             var articleList =
                 db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(4).ToList();
             // Fixed number of articles for slider
-            var postList = new List<IndexPostsDto>();
+            var postList = new List<ArticleDto>();
             foreach (var item in articleList) {
-                var article = new IndexPostsDto {
+                var article = new ArticleDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
                     ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
@@ -398,12 +398,12 @@ namespace ComX_0._0._2.Views.Articles.Services {
             }
             details.Reviews = reviewList;
 
-            var postList = new List<IndexPostsDto>();
+            var postList = new List<ArticleDto>();
             // Cut first 4 articles (they are on slider)
             var posts = articleList;
             for (var i = 0; i < 4; i++) posts.RemoveAt(0);
             foreach (var item in posts) {
-                var article = new IndexPostsDto {
+                var article = new ArticleDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
                     Body = item.IndexDescription,
@@ -426,6 +426,72 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 diaryList.Add(diary);
             }
             details.Diaries = diaryList;
+
+            return details;
+        }
+
+        public ArticleDto GetArticleDetails(string name, bool isDiary) {
+            var documentName = generalHelper.AddSpecialCharsForString(name);
+            var details = new ArticleDto();
+
+            if (isDiary) {
+                var article = db.Diary.First(x => x.Name == documentName);
+                details.Id = article.Id;
+                details.CodedName = generalHelper.RemoveSpecialCharsFromString(article.Name);
+                details.Name = "# " + article.Name;
+                details.Body = article.Body;
+                details.Date = article.DateCreated.ToLongDateString();
+                details.UserName = userHelper.GetUserById(article.UserId).UserName;
+                details.ImageUrl = articleHelper.GetImageRelativePathByArticleId(article.Id);
+
+                details.AlbumYear = article.AlbumYear.ToString();
+                details.ReleaseYear = article.ReleaseYear.ToString();
+                details.Label = article.Label;
+                details.CatalogueNumber = article.CatalogueNumber;
+                details.Genre = article.Genre;
+                details.Series = "Z pamiętnika płytoholika";
+
+                details.IsDiary = true;
+                return details;
+            }
+
+            var articleModel = db.Articles.First(x => x.Name == documentName);
+            details.Id = articleModel.Id;
+            details.CodedName = generalHelper.RemoveSpecialCharsFromString(articleModel.Name);
+            details.Name = articleModel.Name;
+            details.Body = articleModel.Body;
+            details.Date = articleModel.DateCreated.ToLongDateString();
+            details.UserName = userHelper.GetUserById(articleModel.UserId).UserName;
+            details.ImageUrl = articleHelper.GetImageRelativePathByArticleId(articleModel.Id);
+
+            details.Category = articleHelper.GetCategoryById(articleModel.CategoryId).Name;
+            details.Subcategory = articleHelper.GetSubCategoryById(articleModel.SubCategoryId).Name;
+            details.Prelude = articleModel.Prelude;
+            details.IndexDescription = articleModel.IndexDescription;
+            details.Series = articleHelper.GetSeriesById(articleModel.Series).Name != "Default"
+                ? articleHelper.GetSeriesById(articleModel.Series).Name
+                : null;
+
+            details.IsDiary = false;
+            return details;
+        }
+
+        public LastFromCategoryDto GetLastFromCategoryDetails(string name, Guid id) {
+            var details = new LastFromCategoryDto();
+            details.CategoryName = name;
+            var categoryId = articleHelper.GetCategoryByName(name).Id;
+            var articleList = new List<ArticleDto>();
+            var categoryElements =
+                db.Articles.Where(x => x.CategoryId == categoryId && x.Id != id).OrderByDescending(x=>x.DateCreated).Take(4).ToList();
+            foreach (var item in categoryElements) {
+                var element = new ArticleDto {
+                    Name = item.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id)
+                };
+                articleList.Add(element);
+            }
+            details.Articles = articleList;
 
             return details;
         }

@@ -35,10 +35,6 @@
     float: left;
 }
 
-.sliderRightPanelElement {
-    width: 100% !important;
-}
-
 .bannerPanelImageContainerIndex, .bannerPanelImageContainerIndexDiary {
     width: 100%; 
     height: 100%; 

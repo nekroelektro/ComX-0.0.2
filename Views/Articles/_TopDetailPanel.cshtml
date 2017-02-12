@@ -33,9 +33,6 @@
         @if (Model.Series != Guid.Empty && articleHelper.GetSeriesById(Model.Series.Value).Name != "Default") {
             <h3 class="bannerSeriesTitle">@articleHelper.GetSeriesById(Model.Series.Value).Name</h3>
         }
-        @*else {
-            <h3 class="bannerSeriesTitle" style="visibility: hidden">NONE</h3>
-        }*@
         @if (Model.IsDiary) {
             <h1 class="bannerArticleName">#@Model.Name</h1>
         }

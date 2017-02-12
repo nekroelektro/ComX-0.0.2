@@ -1,60 +1,34 @@
 ﻿@using System.Text.RegularExpressions
 @using ComX_0._0._2.Helpers
-@model ComX_0._0._2.Views.Articles.Models.DtoModels.DetailsModelDto
+@using React.AspNet
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.ArticleDto
 
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
     var articleHelper = new ArticleHelper();
-    var generalHelper = new GeneralHelper();
+    var userHelper = new UserHelper();
     bool isDiary = Model.IsDiary;
     if (!isDiary) {
-        ViewBag.Title = @Model.Name + " - " + articleHelper.GetCategoryById(@Model.CategoryId.Value).Name + " - NekroPlaza";
+        ViewBag.Title = @Model.Name + " - " + @Model.Category + " - NekroPlaza";
         ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
-        ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id);
+        ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id.Value);
     }
     else {
         var diaryName = Model.Name.Split('?').First();
-        ViewBag.Title = "# " + diaryName + " - Z pamiętnika płytoholika - " + "NekroPlaza";
+        ViewBag.Title = diaryName + " - Z pamiętnika płytoholika - " + "NekroPlaza";
     }
-    var currentUrl = generalHelper.GetCurrentPageUrl();
+    bool AdminPanel = userHelper.IsSuperAdminUser(User) || (userHelper.IsAdminUser(User) && new Guid(userHelper.GetUserByName(Model.UserName).Id) == userHelper.GetCurrentLoggedUserId());
 }
-@Html.Action("_TopDetailPanel", new { @id = Model.Name, isDiary = Model.IsDiary })
-<div class="detailContainer">
-    <div class="articleDetail">
-        @if (!isDiary) {
-            <div class="articleDetailsIntro">
-                @Html.Raw(WebUtility.HtmlDecode(Model.Prelude))
-            </div>
-            <hr class="articleDetailsLine" />
-        }
-        @if (isDiary)
-        {
-            <div class="diaryElementsContainer">
-                <b>Label: </b>@Model.Label<br />
-                <b>Katalog: </b>@Model.CatalogueNumber<br />
-                <b>Rok produkcji: </b>@Model.AlbumYear<br />
-                <b>Rok wydania: </b>@Model.ReleaseYear<br />
-                <b>Gatunek: </b>@Model.Genre<br />
-            </div>
-            <br />
-        }
-        <div class="articleDetailsBody">
-            @Html.Raw(WebUtility.HtmlDecode(Model.Body))
-        </div>
-        <div class="fb-like" data-href="@currentUrl" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
-    </div>
-    <div class="articleDetailsBottomSection">
+@*@Html.Action("_TopDetailPanel", new { @id = Model.Name, isDiary = Model.IsDiary })*@
+@Html.React("Details", new {model = Model, admin = AdminPanel, decodedBody = Html.Raw(WebUtility.HtmlDecode(Model.Body)).ToString() })
 @if (!isDiary) {
-    @Html.Action("_LastFromCategory", new {amount = 4, categoryId = Model.CategoryId, articleId = Model.Id})
+    @Html.Action("_LastFromCategory", new {categoryName = Model.Category, articleId = Model.Id})
 }
-        <hr class="articleDetailsBottomLine"/>
-        <div id="detailsCommentSection">
-            @Html.Action("_Comments", new {id = Guid.Empty, artId = Model.Id, isDiary})
-        </div>
-    </div>
-</div>
+@Html.Action("_Comments", new {id = Guid.Empty, artId = Model.Id, isDiary})
 <div id="fb-root"></div>
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesDetails.js"></script>
 <link href="~/Views/Articles/Styles/Details.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesTopDetailPanel.js"></script>
+<link href="~/Views/Articles/Styles/_TopDetailPanel.css" rel="stylesheet" type="text/css" />

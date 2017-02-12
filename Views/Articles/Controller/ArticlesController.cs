@@ -24,13 +24,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("Index", model);
         }
 
-        //Preventing caching by browser
-        //[OutputCache(Location = OutputCacheLocation.None)]
-        public ActionResult IndexReact() {
-            var publishedArticles = documentService.GetDocumentForIndex(false);
-            return Json(publishedArticles, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult _SideBar(int? number) {
             var model = documentService.GetSideBarDetails(number);
             return PartialView("_SideBar", model);
@@ -38,23 +31,14 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         [ValidateInput(false)]
         public ActionResult Details(string id, bool isDiary = false) {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var documentFullName = generalHelper.AddSpecialCharsForString(id);
-            var document = documentService.GetDocumentForDetails(documentFullName, isDiary, false);
-            if (document == null) {
-                return HttpNotFound();
-            }
+            var document = documentService.GetArticleDetails(id, isDiary);
             ViewBag.ReturnArticleId = id;
             return View(document);
         }
 
-        [ValidateInput(false)]
-        public ActionResult DetailsJson(string id, bool isDiary = false) {
-            var documentFullName = generalHelper.AddSpecialCharsForString(id);
-            var document = documentService.GetDocumentForDetails(documentFullName, isDiary, false);
-            return Json(document, JsonRequestBehavior.AllowGet);
+        public ActionResult _LastFromCategory(string categoryName, Guid articleId){
+            var model = documentService.GetLastFromCategoryDetails(categoryName, articleId);
+            return PartialView(model);
         }
 
         public ActionResult DetailDiaryHelper(string id) {
@@ -146,11 +130,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult _LastFromCategory(int amount, Guid categoryId, Guid articleId) {
-            var articles = articleHelper.GetLastArticlesFromCategory(amount, categoryId, articleId);
-            return PartialView(articles);
         }
 
         public ActionResult _Comments(Guid? id, Guid? artId, bool isDiary) {

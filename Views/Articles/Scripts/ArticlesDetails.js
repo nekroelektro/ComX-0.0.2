@@ -13,3 +13,7 @@
 
 ga('create', 'UA-82687708-1', 'auto');
 ga('send', 'pageview');
+
+$(document).ready(function() {
+    $(".topDetailPanelButtons").sticky({ topSpacing: 60, zIndex: 15 });
+});
