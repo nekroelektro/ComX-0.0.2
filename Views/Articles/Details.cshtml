@@ -8,10 +8,11 @@
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
     bool isDiary = Model.IsDiary;
+
+    ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id.Value);
     if (!isDiary) {
         ViewBag.Title = @Model.Name + " - " + @Model.Category + " - NekroPlaza";
         ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
-        ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id.Value);
     }
     else {
         var diaryName = Model.Name.Split('?').First();
@@ -19,12 +20,11 @@
     }
     bool AdminPanel = userHelper.IsSuperAdminUser(User) || (userHelper.IsAdminUser(User) && new Guid(userHelper.GetUserByName(Model.UserName).Id) == userHelper.GetCurrentLoggedUserId());
 }
-@*@Html.Action("_TopDetailPanel", new { @id = Model.Name, isDiary = Model.IsDiary })*@
 @Html.React("Details", new {model = Model, admin = AdminPanel, decodedBody = Html.Raw(WebUtility.HtmlDecode(Model.Body)).ToString() })
 @if (!isDiary) {
     @Html.Action("_LastFromCategory", new {categoryName = Model.Category, articleId = Model.Id})
 }
-@Html.Action("_Comments", new {id = Guid.Empty, artId = Model.Id, isDiary})
+@Html.Action("_Comments", new {articleId = Model.Id, diary = isDiary})
 <div id="fb-root"></div>
 
 @*SCRIPTS FOR VIEW*@

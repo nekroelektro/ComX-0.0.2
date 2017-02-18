@@ -1,7 +1,8 @@
-﻿.editCommentWindowContainer {
-    display: inline-block;
+﻿.commentInputBlock {
+    margin: 0 auto;
+    width: 80%;
 }
 
-.commentEditButtons {
-    padding-left: 2.2em;
+#bodyCommentEditContainer {
+    display: none;
 }

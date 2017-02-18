@@ -12,6 +12,10 @@
     border-bottom: 2px white solid;
 }
 
+.sideRandomPosts {
+    border-bottom: none !important;
+}
+
 .sideContactTitle {
     text-align: center; 
     padding-bottom: 0.15em;
@@ -257,6 +261,7 @@
     margin: 0 auto;
     text-align: center;
     margin-top: -1em;
+    display: none;
 }
 
 .recrutation img {

@@ -478,6 +478,10 @@ a {
     border: 1px solid #474a4f;
 }
 
+.sliderRightPanelElement {
+    width: 100% !important;
+}
+
 /* TRANSITIONS */
 
 .transition {

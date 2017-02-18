@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
-using ComX_0._0._2.Views.Articles.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
 using ComX_0._0._2.Views.Articles.Services;
+using ComX_0._0._2.Views.Configuration.Models;
 
 namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
@@ -29,6 +27,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("_SideBar", model);
         }
 
+        public ActionResult _IndexSlider() {
+            var model = documentService.GetSliderDetails();
+            return PartialView("_IndexSlider", model);
+        }
+
         [ValidateInput(false)]
         public ActionResult Details(string id, bool isDiary = false) {
             var document = documentService.GetArticleDetails(id, isDiary);
@@ -36,7 +39,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(document);
         }
 
-        public ActionResult _LastFromCategory(string categoryName, Guid articleId){
+        public ActionResult _LastFromCategory(string categoryName, Guid articleId) {
             var model = documentService.GetLastFromCategoryDetails(categoryName, articleId);
             return PartialView(model);
         }
@@ -67,9 +70,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                         "image/pjpeg",
                         "image/png"
                     };
-                    if (!validImageTypes.Contains(upload.ContentType)) {
+                    if (!validImageTypes.Contains(upload.ContentType))
                         ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-                    }
                 }
                 documentService.CreateDocument(document, upload);
                 return RedirectToAction("Details",
@@ -100,9 +102,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     "image/pjpeg",
                     "image/png"
                 };
-                if (!validImageTypes.Contains(upload.ContentType)) {
+                if (!validImageTypes.Contains(upload.ContentType))
                     ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-                }
             }
             if (ModelState.IsValid) {
                 documentService.UpdateDocument(document, upload);
@@ -119,79 +120,47 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             var document = documentService.GetDocument(id.Value, isDiary);
             return View(document);
         }
-        
+
         public ActionResult DeleteConfirmed(string id, bool isDiary) {
             documentService.DeleteDocument(new Guid(id), isDiary);
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing) {
-            if (disposing) {
-                db.Dispose();
-            }
+            if (disposing) db.Dispose();
             base.Dispose(disposing);
         }
 
-        public ActionResult _Comments(Guid? id, Guid? artId, bool isDiary) {
-            var comments = new CommentModelDto();
-            if (id != null) {
-                comments = documentService.GetCommentDetails(id.Value);
-            }
-            ViewBag.ReturnArticleId = artId;
-            ViewBag.IsDocumentDiary = isDiary;
-            return PartialView("_Comments", comments);
+        public ActionResult _Comments(Guid articleId, bool diary) {
+            var model = documentService.GetCommentsDetails(articleId, diary);
+            return PartialView("_Comments", model);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult _Comments(CommentModelDto comment) {
-            if (string.IsNullOrEmpty(comment.Body)) {
-                ModelState.AddModelError("EmptyComment", "Oszalałeś? Nie możesz dodać pustego komentarza...");
-            }
-            else if (ModelState.IsValid) {
-                documentService.CreateComment(comment);
-            }
-            ViewBag.ReturnArticleId = comment.ArticleId;
-            ViewBag.IsDocumentDiary = comment.IsDiary;
-            return PartialView("_Comments", new CommentModelDto());
+        public ActionResult _Comments(string body, Guid articleId, bool isDiary) {
+            documentService.CreateComment(body, articleId, isDiary);
+            var model = documentService.GetCommentsDetails(articleId, isDiary);
+            return PartialView("_Comments", model);
         }
 
-        public ActionResult CommentEdit(Guid? id, Guid? articleId) {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var articles = documentService.GetCommentDetails(id.Value);
-            if (articles == null) {
-                return HttpNotFound();
-            }
-            ViewBag.ReturnArticleId = articles.ArticleId;
-            ViewBag.IsDocumentDiary = articles.IsDiary;
+        public ActionResult CommentEdit(string id) {
+            var articles = documentService.GetCommentDetails(new Guid(id));
             return PartialView(articles);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CommentEdit(CommentModelDto comment) {
-            if (ModelState.IsValid) {
-                documentService.UpdateComment(comment);
-            }
-            return RedirectToAction("Details",
-                new {
-                    id =
-                        generalHelper.RemoveSpecialCharsFromString(documentService.GetDocument(comment.ArticleId, comment.IsDiary).Name)
-                });
+        public ActionResult CommentEdit(string bodyText, string commentId, string articleId, string isDiary) {
+            documentService.UpdateComment(bodyText, new Guid(commentId));
+            var model = documentService.GetCommentsDetails(new Guid(articleId), Convert.ToBoolean(isDiary));
+            return PartialView("_Comments", model);
         }
 
-        public ActionResult _IndexSlider() {
-            var model = documentService.GetSliderDetails();
-            return PartialView("_IndexSlider", model);
-        }
-
-        public ActionResult DeleteComment(string commentId, string articleId, bool isDiary) {
+        public ActionResult DeleteComment(string commentId, string articleId, string isDiary) {
             documentService.DeleteComment(new Guid(commentId));
-            ViewBag.ReturnArticleId = new Guid(articleId);
-            ViewBag.IsDocumentDiary = isDiary;
-            return PartialView("_Comments", new CommentModelDto());
+            var model = documentService.GetCommentsDetails(new Guid(articleId), Convert.ToBoolean(isDiary));
+            return PartialView("_Comments", model);
         }
 
         public ActionResult DeleteImage(Guid articleId, bool isDiary) {
@@ -204,7 +173,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult Diary() {
-            var diaries = documentService.GetDiaries().OrderByDescending(x=>x.Name);
+            var diaries = documentService.GetDiaries().OrderByDescending(x => x.DateCreated);
             return View(diaries);
         }
 
@@ -214,11 +183,13 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult Categories(string id, string subId) {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var cat = articleHelper.GetCategoryByName(id);
-            var articlesByCategory = documentService.GetDocumentForIndex(true).Where(x=>x.Categories.Value == cat.Id).OrderByDescending(x => x.DateCreation).ToList();
+            var articlesByCategory =
+                documentService.GetDocumentForIndex(true)
+                    .Where(x => x.Categories.Value == cat.Id)
+                    .OrderByDescending(x => x.DateCreation)
+                    .ToList();
             if (!string.IsNullOrEmpty(subId)) {
                 var subCat = articleHelper.GetSubCategoryByName(subId);
                 articlesByCategory = articlesByCategory.Where(x => x.SubCategories.Value == subCat.Id).ToList();

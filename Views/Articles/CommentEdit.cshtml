@@ -5,30 +5,22 @@
     Layout = Request.IsAjaxRequest() ? null : "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "Rozedytuj swój (słaby) komentarz - NEKROPLAZA";
     UserHelper userHelper = new UserHelper();
-    ArticleHelper articleHelper = new ArticleHelper();
-    GeneralHelper generalHelper = new GeneralHelper();
-    IDocumentService documentService = new DocumentService();
-    Model.ArticleId = ViewBag.ReturnArticleId;
+    bool canEdit = Model.UserId == userHelper.GetCurrentLoggedUserId() || userHelper.UserIsAdmin(userHelper.GetCurrentLoggedUserId());
 }
-@if (Model.UserId == userHelper.GetCurrentLoggedUserId() || userHelper.UserIsAdmin(userHelper.GetCurrentLoggedUserId())) {
+@if (canEdit) {
     using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <div class="newCommentSection">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <div class="col-xs-12 center-block editCommentWindowContainer">
-                        @Html.Custom_DivFor(model => model.Body, "form-control comEditorTextArea")
-                        @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+                    <div class="commentInputBlock">
+                        <textarea id="editCommentWindowContainer" class="form-control articleEditor"></textarea>
+                        <input id="bodyCommentEditContainer" type="hidden" value="@Model.Body"/>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.ValidationMessage("EmptyComment", new {@style = "color: red"})
-                    @Html.ValidationMessage("TwoComments", new {@style = "color: red"})
-                    @Html.HiddenFor(model => model.ArticleId)
                 </div>
                     <div class="form-group">
                         <div class="commentEditButtons">
-                            <button type="submit" class="btn btn-info submitEditCommentForm">
+                            <button type="submit" class="btn btn-info submitEditCommentForm" data-id="@Model.Id" data-diary="@Model.IsDiary">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                             </button>
                             <button type="button" class="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>

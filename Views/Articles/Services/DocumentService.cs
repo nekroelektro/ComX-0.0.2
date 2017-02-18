@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
@@ -269,22 +271,22 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return comment;
         }
 
-        public void CreateComment(CommentModelDto comment) {
+        public void CreateComment(string body, Guid articleId, bool isDiary) {
             var newComment = new Comments {
                 Id = Guid.NewGuid(),
-                Body = comment.Body,
+                Body = body,
                 UserId = userHelper.GetCurrentLoggedUserId(),
-                ArticleId = comment.ArticleId,
+                ArticleId = articleId,
                 DateOfCreation = DateTime.Now,
-                IsDiary = comment.IsDiary
+                IsDiary = isDiary
             };
             db.Comments.Add(newComment);
             db.SaveChanges();
         }
 
-        public void UpdateComment(CommentModelDto comment) {
-            var entity = db.Comments.Where(c => c.Id == comment.Id).AsQueryable().FirstOrDefault();
-            if (entity != null) entity.Body = comment.Body;
+        public void UpdateComment(string body, Guid commentId) {
+            var entity = db.Comments.Where(c => c.Id == commentId).AsQueryable().FirstOrDefault();
+            if (entity != null) entity.Body = body;
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
         }
@@ -496,9 +498,38 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return details;
         }
 
+        public CommentDetailsDto GetCommentsDetails(Guid articleId, bool isDiary) {
+            var details = new CommentDetailsDto();
+            var commentList = db.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x=>x.DateOfCreation).ToList();
+            var comments = new List<CommentDto>();
+            foreach (var item in commentList) {
+                var element = new CommentDto {
+                    Id = item.Id,
+                    Body = item.Body,
+                    ArticleId = articleId,
+                    UserId = item.UserId,
+                    UserName = userHelper.GetUserById(item.UserId).UserName,
+                    Date = item.DateOfCreation.ToLongDateString(),
+                    IsDiary = item.IsDiary,
+                    IsEditable = this.IsCommentEditable(item.UserId)
+                };
+                comments.Add(element);
+            }
+            details.Comments = comments;
+            details.Comment = new CommentDto();
+            details.ArticleId = articleId;
+            details.IsDiary = isDiary;
+            return details;
+        }
+
         private string GetArticleName(Guid id) {
             var name = db.Articles.Where(x => x.Id == id).Select(x => x.Name).Single();
             return name;
+        }
+
+        private bool IsCommentEditable(Guid commentAuthorId) {
+            var currentUser = userHelper.GetCurrentLoggedUserId();
+            return currentUser != Guid.Empty && (commentAuthorId == currentUser || userHelper.UserIsSuperAdmin(currentUser));
         }
 
         private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number, bool isConfiguration) {

@@ -57,6 +57,15 @@ namespace ComX_0._0._2.Helpers {
             return null;
         }
 
+        public bool IsCurrentUserBlocked() {
+            var userId = GetCurrentLoggedUserId();
+            if (userId != Guid.Empty){
+                var isBlocked = GetProfileInfoById(userId).IsBlocked;
+                return isBlocked;
+            }
+            return true;
+        }
+
         public UserProfileInfo GetProfileInfoById(Guid id) {
             var userProfile = db.UserProfileInfo.Find(id);
             return userProfile;
