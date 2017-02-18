@@ -144,11 +144,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("_Comments", model);
         }
 
-        public ActionResult CommentEdit(string id) {
-            var articles = documentService.GetCommentDetails(new Guid(id));
-            return PartialView(articles);
-        }
-
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult CommentEdit(string bodyText, string commentId, string articleId, string isDiary) {
