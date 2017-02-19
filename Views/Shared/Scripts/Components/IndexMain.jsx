@@ -107,7 +107,7 @@ var IndexMainDiaries = React.createClass({
                     {diaryNodes}
                 </ul>
                 <div className="moreMusicReviews">
-                    <a className="seeMoreReviewsFromIndex" href={"/Articles/Diary"}>
+                    <a className="seeMoreReviewsFromIndex">
                         <h4>PRZEJDŹ DO PAMIĘTNIKA <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
                     </a>
                 </div>

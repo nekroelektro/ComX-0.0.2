@@ -522,6 +522,20 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return details;
         }
 
+        public List<IndexDiaryDto> GetDiariesDetails() {
+            var details = new List<IndexDiaryDto>();
+            var diaries = db.Diary.OrderByDescending(x => x.DateCreated).ToList();
+            foreach (var item in diaries) {
+                var diary = new IndexDiaryDto {
+                    Name = item.Name,
+                    Code = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id)
+                };
+                details.Add(diary);
+            }
+            return details;
+        }
+
         private string GetArticleName(Guid id) {
             var name = db.Articles.Where(x => x.Id == id).Select(x => x.Name).Single();
             return name;

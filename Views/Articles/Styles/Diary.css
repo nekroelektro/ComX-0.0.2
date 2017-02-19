@@ -1,5 +1,21 @@
 ﻿.categoryArticleTitle {
     padding: 0 1em;
+    font-family: 'Coda', sans-serif;
+}
+
+.categoryArticleTitle h2 {
+    text-transform: uppercase !important;
+    text-align: center;
+    color: crimson;
+    text-shadow: 6px 6px 4px rgba(255, 255, 255, 0.3);
+}
+
+.categoryArticleTitle h3 {
+    text-align: justify;
+}
+
+.categoryArticleTitle hr {
+    border-color: crimson; 
 }
 
 .articlesIndexReviewsContainer {
@@ -61,4 +77,26 @@
 
 .diaryTitle p {
     padding: 0.5em;
+}
+
+.diaryButtonContainer {
+    width: 100% !important;
+    height: 2.7em;
+}
+
+.diarySortButtons {
+    float: left;
+}
+
+.navigationBackButton {
+    float: right;
+}
+
+.mainDiaryContainer {
+    background-color: black !important;
+    color: whitesmoke;
+}
+
+#diaryList {
+    display: none;
 }

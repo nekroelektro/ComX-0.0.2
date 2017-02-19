@@ -869,6 +869,7 @@
     <Content Include="scripts\plugins\scayt\README.md" />
     <Content Include="scripts\plugins\wsc\LICENSE.md" />
     <Content Include="scripts\plugins\wsc\README.md" />
+    <Content Include="Views\Shared\Scripts\Components\Diaries.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />

@@ -177,6 +177,7 @@
     width: 100%; 
     float: left;
     margin-top: 0.1em;
+    margin-bottom: 0 !important;
 }
 
 .indexReviewsContainer {
@@ -244,6 +245,7 @@
     color: #2B823C!important;
     text-decoration: none;
     outline: 0;
+    cursor: pointer;
 }
 
 .indexReviewTitle {

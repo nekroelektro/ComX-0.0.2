@@ -120,7 +120,7 @@ var CommentsReady = React.createClass({
                                 </div>
                             <div className="form-group">
                                 <div className="commentEditButtons">
-                                    <button type="submit" className="btn btn-info submitEditCommentForm">
+                                    <button type="submit" className="btn nekrobutton-green submitEditCommentForm">
                                         <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                                     </button>
                                     <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>

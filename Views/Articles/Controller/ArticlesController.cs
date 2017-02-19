@@ -168,8 +168,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult Diary() {
-            var diaries = documentService.GetDiaries().OrderByDescending(x => x.DateCreated);
-            return View(diaries);
+            var diaries = documentService.GetDiariesDetails();
+            return PartialView(diaries);
         }
 
         public ActionResult GetCategoryName(Guid categoryId) {

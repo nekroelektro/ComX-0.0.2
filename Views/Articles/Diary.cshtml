@@ -1,34 +1,10 @@
-﻿@using ComX_0._0._2.Helpers
-@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.DocumentModelDto>
+﻿@using React.AspNet
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.IndexDiaryDto>
 @{
-    Layout = "~/Views/Articles/_Articles.cshtml";
-    var generalHelper = new GeneralHelper();
-    var articleHelper = new ArticleHelper();
+    var isAjax = Request.IsAjaxRequest();
+    Layout = isAjax ? null : "~/Views/Articles/_Articles.cshtml";
 }
-<div class="categoryArticleTitle">
-    <h2>Witaj w pamiętniku płytoholika, wędrowcze!</h2>
-    <hr/>
-    <p>Pamiętnik to właściwie zapis katalogowy moich muzycznych nabytków. Zdecydowanie jestem nałogowym, płytowym kolekcjonerem, a nałóg ten nasila się w sposób regularny. Witaj w moim świecie, świecie!</p>
-    <hr/>
-</div>
-<div class="diaryContainer">
-    <div class="indexReviewsContainer">
-        @foreach (var review in Model)
-        {
-            <a class="indexSingleReviewAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(review.Name), @isDiary = true}))">
-                <div class="indexSingleReview col-xs-4">
-                    <div class="indexSingleReviewImageContainer">
-                        <img id="reviewIndexImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(review.Id))' />
-                    </div>
-                    <div class="bannerPanelInfoIndex">
-                        <h3 class="bannerArticleNameIndex">#@review.Name</h3>
-                        <hr class="articlesIndexLine" />
-                    </div>
-                </div>
-            </a>
-        }
-    </div>
-</div>
+@Html.React("Diaries", new {model = Model, isIndex = isAjax})
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticleDiary.js"></script>

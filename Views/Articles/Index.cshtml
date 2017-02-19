@@ -2,7 +2,7 @@
 @model ComX_0._0._2.Views.Articles.Models.DtoModels.IndexMainDto
 
 @{
-    Layout = "~/Views/Articles/_Articles.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "NekroPlaza - doświadcz dobroci";
     ViewBag.Description = "Najnowsze smakowitości, dobrocie najbardziej trendy, kontrowersje, wybuchy atomowych laserów i nieumarli - NEKROPLAZA.PL - zakosztuj dobroci.";
 }

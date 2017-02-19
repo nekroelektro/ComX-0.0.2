@@ -23,7 +23,7 @@ p:-moz-selection {
     margin: 0 auto;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: white;
+    /*background-color: white;*/
     min-height: 100%;
     height: auto !important;
     height: 100%;
