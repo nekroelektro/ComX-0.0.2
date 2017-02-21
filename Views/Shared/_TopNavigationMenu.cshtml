@@ -1,75 +1,8 @@
-﻿@using ComX_0._0._2.Helpers
-@{
-    ArticleHelper articleHelper = new ArticleHelper();
-    GeneralHelper generalHelper = new GeneralHelper();
-    var categoryList = articleHelper.GetAllCategories();
-    var subCategoryList = articleHelper.GetAllSubCategories();
-}
-<div class="main">
-    <div class="absoluteLogo">
-        <a href="@Url.Action("Index", "Articles")">
-            <img src='~/Content/images/logoWhiteSMALL.jpg'/>
-        </a>
-    </div>
-    <nav id="cbp-hrmenu" class="cbp-hrmenu">
-        <ul class="topNavigationItemsContainer">
-            @foreach (var item in categoryList) {
-                <li>
-                    <a class="topNavigationItem" href="#">@item.Name</a>
-                    <div class="cbp-hrsub">
-                        <div class="cbp-hrsub-inner">
-                            <h5 style="display: none;">@item.Description</h5>
-                            <div class="subCategoriesNavigation" style="display: none;">
-                                @foreach (var subItem in subCategoryList) {
-                                    if (!articleHelper.SubCategoryIsEmpty(subItem.Id, item.Id)) {
-                                        <div class="subCategoryListNavigation">
-                                            <h4 class="topNavigationNameTitle">@subItem.Name:</h4>
-                                            <ul>
-                                                @foreach (var article in articleHelper.GetArticlesByBothCategories(item.Id, subItem.Id, 3)) {
-                                                    <li>
-                                                        <a class="topNavigationForeachAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(article.Name)}))"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> @article.Name</a>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    }
-                                }
-                            </div>
-                            <div class="lastArticlesFromCategoryTopNavigation">
-                                <h4 class="topNavigationNameTitle">Ostatnie posty z kategorii @item.Name:</h4>
-                                <hr class="topNavigationBigLine"/>
-                                <div class="lastArticlesTop">
-                                    @foreach (var lastArticle in articleHelper.GetLastArticlesFromCategory(4, item.Id, Guid.Empty)) {
-                                        <a class="topNavigationLastAnchor" href="@HttpUtility.UrlDecode(Url.Action("Details", "Articles", new {@id = generalHelper.RemoveSpecialCharsFromString(lastArticle.Name)}))">
-                                            <div class="singleLastArticleTopNavigation">
-                                                <div class="imageOverlayColorNav"></div>
-                                                <div class="bannerPanelImageContainerNav">
-                                                    <img src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
-                                                </div>
-                                                <div class="bannerPanelImageMainNav">
-                                                    <img id="articleTopNavigationImage" src='@Url.Content(articleHelper.GetImageRelativePathByArticleId(lastArticle.Id))'/>
-                                                </div>
-                                                <div class="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
-                                                    <h3 class="bannerArticleNameIndexTopMenu">@lastArticle.Name</h3>
-                                                    <hr class="articlesIndexLine" />
-                                                </div>
-                                            </div>
-                                        </a>
-                                    }
-                                </div>
-                            </div>
-                            <div class="moreFromCategoryTopNavigation">
-                                <a class="seeMoreFromCategoryTopNavigation" href="@Url.Action("Categories", "Articles", new {@id = item.Name})">
-                                    <p>Zobacz wszystkie z kategorii @item.Name <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            }
-        </ul>
-    </nav>
-</div>
-
+﻿@using React.AspNet
+@model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.CategoryDto>
+@Html.React("NavigationMenu", new {model = Model})
 @*SCRIPTS FOR VIEW*@
 <link href="~/Views/Shared/Styles/_TopNavigationMenu.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Views/Shared/Scripts/SharedTopNavigationMenu.js"></script>
+<link href="@Url.Content("~/Content/horizontalMenu.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/cbpHorizontalMenu.min.js")"></script>

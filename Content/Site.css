@@ -505,11 +505,17 @@ a {
     transform: scale(1.6);
 }
 
+/* CONFIG */
+.configContent {
+    background-color: white !important;
+}
+
 /* RESPONSIVES */
 
 @media screen and (max-width: 900px) { 
     .mainBodyContainer {
         width: 100% !important;
+        margin-left: 0 !important;
     }
 
     .recrutation, .absoluteLogo, .mainSideBar, .sliderSection {
@@ -538,5 +544,10 @@ a {
 
     .slideElementUpper {
         height: 20em !important;   
+    }
+
+    .bodyLayout {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
     }
 }

@@ -95,6 +95,7 @@
 .mainDiaryContainer {
     background-color: black !important;
     color: whitesmoke;
+    border-top: 1px solid #2B823C;
 }
 
 #diaryList {

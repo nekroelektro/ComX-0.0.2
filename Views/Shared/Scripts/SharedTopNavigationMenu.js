@@ -64,6 +64,10 @@
         }, 400);
         $(".cbp-hrsub-inner").css("width", "100%");
         $(".cbp-hrmenu").css("padding-left", "8em");
+        $(".cbp-hrmenu > ul > li > a").css({
+            paddingLeft: "1.7em",
+            paddingRight: "1.7em"
+        });
         //$(".main").css("box-shadow", "0 0 10px 10px #222222");
     });
     $('.main').on('sticky-end', function () {
@@ -71,6 +75,10 @@
         $('.absoluteLogo').hide();
         $(".cbp-hrsub-inner").css("width", "80%");
         $(".cbp-hrmenu").css("padding-left", "0em");
+        $(".cbp-hrmenu > ul > li > a").css({
+            paddingLeft: "2em",
+            paddingRight: "2em"
+        });
     });
 
     $('.topNavigationLastAnchor')

@@ -496,6 +496,8 @@
     <Content Include="scripts\ckeditor.js" />
     <Content Include="scripts\config.js" />
     <Content Include="scripts\contents.css" />
+    <Content Include="scripts\Custom\ControlsHelper.js" />
+    <Content Include="scripts\Custom\Utils.js" />
     <Content Include="scripts\draggabilly.pkgd.min.js" />
     <Content Include="Content\less\mixins\wells.less" />
     <Content Include="Content\less\mixins\variables.less" />
@@ -870,6 +872,7 @@
     <Content Include="scripts\plugins\wsc\LICENSE.md" />
     <Content Include="scripts\plugins\wsc\README.md" />
     <Content Include="Views\Shared\Scripts\Components\Diaries.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\NavigationMenu.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
@@ -972,6 +975,7 @@
     <Compile Include="Views\Account\Models\UserMessage.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
     <Compile Include="Views\Articles\Models\Diary.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\CategoryDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CommentDetailsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CommentDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CommentModelDto.cs" />

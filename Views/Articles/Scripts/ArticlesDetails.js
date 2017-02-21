@@ -16,4 +16,14 @@ ga('send', 'pageview');
 
 $(document).ready(function() {
     $(".topDetailPanelButtons").sticky({ topSpacing: 60, zIndex: 15 });
+
+    var currentCategory = $("#categoryNameContainer").val();
+    if (currentCategory == "") {
+        currentCategory = "Pamiętnik";
+    }
+
+    $('.topNavigationItem:contains(' + currentCategory + ')').css({
+            backgroundColor: '#2B823C',
+            color: 'white'
+        });  
 });

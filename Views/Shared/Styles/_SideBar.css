@@ -9,7 +9,11 @@
 
 .sideBarComponent {
     width: 100%;
-    border-bottom: 2px white solid;
+    border-top: 1px solid #2b823c;
+}
+
+.firstSideComponent {
+    border-top: none !important;
 }
 
 .sideRandomPosts {

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Web;
-using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
@@ -484,7 +482,10 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var categoryId = articleHelper.GetCategoryByName(name).Id;
             var articleList = new List<ArticleDto>();
             var categoryElements =
-                db.Articles.Where(x => x.CategoryId == categoryId && x.Id != id).OrderByDescending(x=>x.DateCreated).Take(4).ToList();
+                db.Articles.Where(x => x.CategoryId == categoryId && x.Id != id && x.IsPublished)
+                    .OrderByDescending(x => x.DateCreated)
+                    .Take(4)
+                    .ToList();
             foreach (var item in categoryElements) {
                 var element = new ArticleDto {
                     Name = item.Name,
@@ -500,7 +501,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public CommentDetailsDto GetCommentsDetails(Guid articleId, bool isDiary) {
             var details = new CommentDetailsDto();
-            var commentList = db.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x=>x.DateOfCreation).ToList();
+            var commentList =
+                db.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.DateOfCreation).ToList();
             var comments = new List<CommentDto>();
             foreach (var item in commentList) {
                 var element = new CommentDto {
@@ -511,7 +513,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     UserName = userHelper.GetUserById(item.UserId).UserName,
                     Date = item.DateOfCreation.ToLongDateString(),
                     IsDiary = item.IsDiary,
-                    IsEditable = this.IsCommentEditable(item.UserId)
+                    IsEditable = IsCommentEditable(item.UserId)
                 };
                 comments.Add(element);
             }
@@ -536,6 +538,47 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return details;
         }
 
+        public List<CategoryDto> GetNavigationDetails() {
+            var details = new List<CategoryDto>();
+
+            var categories = db.Categories.OrderByDescending(x=>x.SortCode).ToList();
+            var posts = db.Articles.ToList();
+            foreach (var item in categories) {
+                var category = new CategoryDto();
+                var postsFromCategory =
+                    posts.Where(x => x.CategoryId == item.Id && x.IsPublished)
+                        .OrderByDescending(x => x.DateCreated)
+                        .Take(4)
+                        .ToList();
+                var postList = new List<ArticleDto>();
+                foreach (var post in postsFromCategory) {
+                    var element = new ArticleDto {
+                        Id = post.Id,
+                        Name = post.Name,
+                        CodedName = generalHelper.RemoveSpecialCharsFromString(post.Name),
+                        ImageUrl = articleHelper.GetImageRelativePathByArticleId(post.Id)
+                    };
+                    postList.Add(element);
+                }
+                category.CategoryPosts = postList;
+                category.CategoryName = item.Name;
+
+                details.Add(category);
+            }
+            var diaryCategory = details.First(x => x.CategoryName == "Pamiętnik");
+            foreach (var diary in db.Diary.OrderByDescending(x => x.DateCreated).Take(4)) {
+                var diaryElement = new ArticleDto {
+                    Id = diary.Id,
+                    Name = diary.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(diary.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(diary.Id)
+                };
+                diaryCategory.CategoryPosts.Add(diaryElement);
+            }
+
+            return details;
+        }
+
         private string GetArticleName(Guid id) {
             var name = db.Articles.Where(x => x.Id == id).Select(x => x.Name).Single();
             return name;
@@ -543,7 +586,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         private bool IsCommentEditable(Guid commentAuthorId) {
             var currentUser = userHelper.GetCurrentLoggedUserId();
-            return currentUser != Guid.Empty && (commentAuthorId == currentUser || userHelper.UserIsSuperAdmin(currentUser));
+            return currentUser != Guid.Empty &&
+                   (commentAuthorId == currentUser || userHelper.UserIsSuperAdmin(currentUser));
         }
 
         private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number, bool isConfiguration) {

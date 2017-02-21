@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     // PACKERY
     var $grid = $('.content').packery({
         // options
@@ -12,7 +13,6 @@
     $grid.imagesLoaded().progress(function () {
         $grid.packery();
     });
-
 
     $('#pager').pajinate({
         //num_page_links_to_display: 3,

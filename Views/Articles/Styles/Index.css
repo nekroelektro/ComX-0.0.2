@@ -176,7 +176,7 @@
 .articlesIndexReviewsContainer {
     width: 100%; 
     float: left;
-    margin-top: 0.1em;
+    border-top: 1px solid #2b823c;
     margin-bottom: 0 !important;
 }
 
@@ -303,6 +303,7 @@
 .indexDiaryList {
     color: whitesmoke;
     padding-left: 0;
+    margin-bottom: 0;
 }
 
 .indexSingleDiaryAnchor {

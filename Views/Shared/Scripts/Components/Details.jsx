@@ -4,21 +4,21 @@
         admin: React.PropTypes.bool.isRequired,
         decodedBody: React.PropTypes.string.isRequired
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             model: this.props.model,
             admin: this.props.admin,
             dBody: this.props.decodedBody
         };
     },
-    render: function() {
+    render: function () {
         return (
             <div className="articleDetails">
-                {this.state.admin == 1 && 
+                {this.state.admin == 1 &&
                 <AdminPanel id={this.state.model.Id} isDiary={this.state.model.IsDiary}></AdminPanel>
                 }
-                <TopDetailPanel name={this.state.model.Name} category={this.state.model.Category} subcategory={this.state.model.Subcategory} date={this.state.model.Date} author={this.state.model.UserName} series={this.state.model.Series} imagePath={this.state.model.ImageUrl}></TopDetailPanel>
-                <MainArticleDetails dBody ={this.state.dBody} prelude={this.state.model.Prelude} body={this.state.model.Body} code={this.state.model.CodedName} isDiary={this.state.model.IsDiary} label={this.state.model.Label} genre={this.state.model.Genre} catalog={this.state.model.CatalogueNumber} albumYear={this.state.model.AlbumYear} releaseYear={this.state.model.ReleaseYear}></MainArticleDetails>
+                <TopDetailPanel name={this.state.model.Name} category={this.state.model.Category} subcategory={this.state.model.Subcategory} date={this.state.model.Date} author={this.state.model.UserName} series={this.state.model.Series} imagePath={this.state.model.ImageUrl} isDiary={this.state.model.IsDiary}></TopDetailPanel>
+                <MainArticleDetails dBody={this.state.dBody} prelude={this.state.model.Prelude} body={this.state.model.Body} code={this.state.model.CodedName} isDiary={this.state.model.IsDiary} label={this.state.model.Label} genre={this.state.model.Genre} catalog={this.state.model.CatalogueNumber} albumYear={this.state.model.AlbumYear} releaseYear={this.state.model.ReleaseYear}></MainArticleDetails>
             </div>
 		);
     }
@@ -29,8 +29,8 @@ var AdminPanel = React.createClass({
         id: React.PropTypes.string,
         isDiary: React.PropTypes.bool
     },
-    render: function() {
-        return(
+    render: function () {
+        return (
             <div className="topDetailPanel">
                 <div className="topDetailPanelButtons">
                     <a href={'/'}>
@@ -62,16 +62,17 @@ var TopDetailPanel = React.createClass({
         date: React.PropTypes.string,
         series: React.PropTypes.string,
         author: React.PropTypes.string,
-        imagePath: React.PropTypes.string
+        imagePath: React.PropTypes.string,
+        isDiary: React.PropTypes.bool
     },
-    render: function() {
-        return(
+    render: function () {
+        return (
             <div className="detailsBannerPanel">
                 <div className="bannerPanelImageContainer">
-                    <img src={this.props.imagePath}/>
+                    <img src={this.props.imagePath} />
                 </div>
                 <div className="bannerPanelImageMain">
-                    <img src={this.props.imagePath}/>
+                    <img src={this.props.imagePath} />
                 </div>
                 <div className="imageOverlayColor"></div>
                 <div className="bannerPanelInfo">
@@ -80,10 +81,17 @@ var TopDetailPanel = React.createClass({
                     <div className="datesDetailsArticles">
                         <p>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props
-                                .author} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props
-                                    .date} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-tags" aria-hidden="true"></span> {this.props
-                                        .category}, {this.props.subcategory}
+                            .author} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props
+                            .date} &nbsp;&nbsp;&nbsp;&nbsp;
+                            {this.props.isDiary != 1 &&
+                            <span>
+                                <span className="glyphicon glyphicon-tags" aria-hidden="true"></span> {this.props
+                                .category}
+                                    , {this.props.subcategory}
+                                </span>
+                            }
                         </p>
+                        <input id="categoryNameContainer" type="hidden" value={this.props.category} />
                     </div>
                 </div>
             </div>
@@ -106,7 +114,7 @@ var MainArticleDetails = React.createClass({
     },
     render: function () {
         var isDiary = this.props.isDiary;
-        return(
+        return (
             <div className="detailContainer">
                 <div className="articleDetail">
                     {!isDiary ?
@@ -125,15 +133,13 @@ var MainArticleDetails = React.createClass({
                     <br />
                         </div>
                     )
-}
+                    }
                 <div className="articleDetailsBody">
                     <div dangerouslySetInnerHTML={{__html: this.props.dBody}} />
                 </div>
                 <div className="fb-like" data-href={"/" + this.props.code} data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                </div>
             </div>
-        </div>
         );
-}
+    }
 });
-
-

@@ -65,7 +65,7 @@
         @if (!currentUrl.Contains("Configuration"))
         {
             <div class="containerTop container">
-                @Html.Partial("_TopNavigationMenu")
+                @Html.Action("_TopNavigationMenu", "Articles")
             </div>
         }
         <div class="elementsToPush">

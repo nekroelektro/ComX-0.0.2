@@ -44,6 +44,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView(model);
         }
 
+        public ActionResult _TopNavigationMenu() {
+            var model = documentService.GetNavigationDetails();
+            return PartialView(model);
+        }
+
         public ActionResult DetailDiaryHelper(string id) {
             return RedirectToAction("Details",
                 new {

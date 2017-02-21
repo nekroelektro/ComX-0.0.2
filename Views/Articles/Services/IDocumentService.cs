@@ -31,5 +31,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
         LastFromCategoryDto GetLastFromCategoryDetails(string name, Guid id);
         CommentDetailsDto GetCommentsDetails(Guid articleId, bool isDiary);
         List<IndexDiaryDto> GetDiariesDetails();
+        List<CategoryDto> GetNavigationDetails();
     }
 }

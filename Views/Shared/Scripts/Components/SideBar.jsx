@@ -22,7 +22,7 @@
 var SideContact = React.createClass({
     render: function() {
         return(
-            <div className="sideBarComponent">
+            <div className="sideBarComponent firstSideComponent">
                 <div className="sideTitle">
                     <h3>
                         <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
