@@ -7,34 +7,37 @@
     var articleHelper = new ArticleHelper();
     var userHelper = new UserHelper();
 }
-
-<button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
-</button>
-<h2>Twoje artykuły (@Model.Where(x=>x.IsPublished).Count().ToString()/@Model.Count().ToString() opublikowane):</h2>
-<div class="col-xs-12 center-block">
-    @Html.Grid(Model.Where(x => x.IsDiary == false)).Named("articleGrid").Columns(columns => {
-        columns.Add(o => o.Id, true);
-        columns.Add(x => x.Name).SetWidth(550);
-        columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
-        columns.Add(x => x.Categories).Titled("Category").RenderValueAs(x => articleHelper.GetAllCategories().First(o => o.Id == x.Categories.Value).Name).Filterable(true).SetWidth(130);
-        columns.Add(x => x.SubCategories).Titled("SubCategory").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategories.Value).Name).Filterable(true).SetWidth(130);
-        columns.Add(x => x.DateCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
-    }).WithPaging(10).Sortable(true).Filterable(true)
-</div>
-
-<h2>Pamiętniki:</h2>
-@if (userHelper.UserIsSuperAdmin(userHelper.GetCurrentLoggedUserId())) {
+<div>
+    <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
+    </button>
+    <h2>Twoje artykuły (@Model.Where(x => x.IsPublished).Count().ToString()/@Model.Count().ToString() opublikowane):</h2>
     <div class="col-xs-12 center-block">
-        @Html.Grid(Model.Where(x => x.IsDiary)).Named("diariesGrid").Columns(columns => {
-            columns.Add(o => o.Id, true);
-            columns.Add(x => x.Name).SetWidth(550);
-            columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
-            columns.Add(x => x.DateCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
-        }).WithPaging(10).Sortable(true).Filterable(true)
+        @Html.Grid(Model.Where(x => x.IsDiary == false)).Named("articleGrid").Columns(columns =>
+{
+    columns.Add(o => o.Id, true);
+    columns.Add(x => x.Name).SetWidth(550);
+    columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
+    columns.Add(x => x.Categories).Titled("Category").RenderValueAs(x => articleHelper.GetAllCategories().First(o => o.Id == x.Categories.Value).Name).Filterable(true).SetWidth(130);
+    columns.Add(x => x.SubCategories).Titled("SubCategory").RenderValueAs(x => articleHelper.GetAllSubCategories().First(o => o.Id == x.SubCategories.Value).Name).Filterable(true).SetWidth(130);
+    columns.Add(x => x.DateCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+}).WithPaging(10).Sortable(true).Filterable(true)
     </div>
-}
 
+    <h2>Pamiętniki:</h2>
+    @if (userHelper.UserIsSuperAdmin(userHelper.GetCurrentLoggedUserId()))
+    {
+        <div class="col-xs-12 center-block">
+            @Html.Grid(Model.Where(x => x.IsDiary)).Named("diariesGrid").Columns(columns =>
+   {
+       columns.Add(o => o.Id, true);
+       columns.Add(x => x.Name).SetWidth(550);
+       columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
+       columns.Add(x => x.DateCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+   }).WithPaging(10).Sortable(true).Filterable(true)
+        </div>
+    }
+</div>
 
 
 @*SCRIPTS FOR VIEW*@

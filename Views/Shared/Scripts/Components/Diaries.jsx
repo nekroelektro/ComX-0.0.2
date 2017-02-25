@@ -102,7 +102,7 @@ var DiaryCatalogElement = React.createClass({
     render: function () {
         return (
             <div className="diaryCatalogElement">
-                <a className="indexSingleReviewAnchor" href={"/" + this.props.code}>
+                <a className="indexSingleReviewAnchor" href={"/" + this.props.code + "?isDiary=true"}>
                     <div className="indexSingleReview col-xs-4">
                         <div className="indexSingleReviewImageContainer">
                             <img id="reviewIndexImage" src={this.props.imagePath}/>

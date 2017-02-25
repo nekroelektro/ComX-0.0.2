@@ -506,9 +506,11 @@ a {
 }
 
 /* CONFIG */
-.configContent {
+.configContent, .accountContent {
     background-color: white !important;
 }
+
+/* ACCOUNT */
 
 /* RESPONSIVES */
 

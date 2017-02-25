@@ -30,8 +30,6 @@
             } else {
                 //for pushing elements during top menu displaying
                 $item.addClass('cbp-hropen');
-                var subList = document.getElementsByClassName("cbp-hrsub");
-                //$(".elementsToPush").css("margin-top", $(subList[idx]).height() + 20);
                 current = idx;
                 $body.off('click').on('click', close);
             }

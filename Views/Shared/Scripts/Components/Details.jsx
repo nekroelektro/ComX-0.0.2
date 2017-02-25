@@ -33,6 +33,11 @@ var AdminPanel = React.createClass({
         return (
             <div className="topDetailPanel">
                 <div className="topDetailPanelButtons">
+                    <a href={'/Configuration/Articles'}>
+                        <button type="button" className="btn btn-default btn-sm">
+                            <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO KONFIGURACJI
+                        </button>
+                    </a>
                     <a href={'/'}>
                         <button type="button" className="btn btn-default btn-sm">
                             <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO GÓRY

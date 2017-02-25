@@ -3,6 +3,10 @@
     float: left;
 }
 
+.detailContainer iframe {
+    max-width: 100% !important;
+}
+
 .articleDetail {
     width: 100%; 
     float: left; 

@@ -873,6 +873,7 @@
     <Content Include="scripts\plugins\wsc\README.md" />
     <Content Include="Views\Shared\Scripts\Components\Diaries.jsx" />
     <Content Include="Views\Shared\Scripts\Components\NavigationMenu.jsx" />
+    <Content Include="Views\Account\_Account.cshtml" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
