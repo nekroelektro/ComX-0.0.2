@@ -40,7 +40,7 @@ var CategoryContainer = React.createClass({
     },
     render: function() {
         var categoryNodes = this.state.model.map(function (category) {
-            return <CategoryElement name={category.CategoryName} posts={category.CategoryPosts }></CategoryElement>;
+            return <CategoryElement name={category.CategoryName} posts={category.CategoryPosts } subcategories={category.Subcategories}></CategoryElement>;
         });
 
         return (
@@ -56,12 +56,14 @@ var CategoryContainer = React.createClass({
 var CategoryElement = React.createClass({
     propTypes: {
         name: React.PropTypes.string,
-        posts: React.PropTypes.array
+        posts: React.PropTypes.array,
+        subcategories: React.PropTypes.array
     },
     getInitialState: function () {
         return {
             name: this.props.name,
-            posts: this.props.posts
+            posts: this.props.posts,
+            subcategories: this.props.subcategories
         };
     },
     render: function () {
@@ -73,7 +75,11 @@ var CategoryElement = React.createClass({
             linkString = '/Categories/' + this.state.name;
         }
         var postNodes = this.state.posts.map(function (post) {
-            return <PostElement name={post.Name} code={post.CodedName} imagePath={post.ImageUrl} isDiary={isDiary}></PostElement>;
+            return <PostElement name={post.Name} code={post.CodedName} imagePath={post.ImageUrl} isDiary={isDiary} subcategory={post.Subcategory}></PostElement>;
+        }, true);
+
+        var subcategoryNodes = this.state.subcategories.map(function (post) {
+            return <SubcategoryElement name={post}></SubcategoryElement>;
         }, true);
 
         return (
@@ -82,8 +88,14 @@ var CategoryElement = React.createClass({
                     <div className="cbp-hrsub">
                         <div className="cbp-hrsub-inner">
                             <div className="lastArticlesFromCategoryTopNavigation">
-                                <h4 className="topNavigationNameTitle">Ostatnie posty z kategorii {this.state.name}:</h4>
-                                <hr className="topNavigationBigLine" />
+                                <div className="topNavigationTitlePanel">
+                                    <h4 className="topNavigationNameTitle">Ostatnie posty z kategorii {this.state.name}:</h4>
+                                    <div className="topNavigationSubcategoriesContainer">
+                                        <div className="topNavigationSubcategoriesElement">Wszystkie
+                                        </div>
+                                        {subcategoryNodes}
+                                    </div>
+                                </div>
                                 <div className="lastArticlesTop">
                                     {postNodes}
                                 </div>
@@ -105,7 +117,8 @@ var PostElement = React.createClass({
         name: React.PropTypes.string,
         code: React.PropTypes.string,
         imagePath: React.PropTypes.string,
-        isDiary: React.PropTypes.bool
+        isDiary: React.PropTypes.bool,
+        subcategory: React.PropTypes.string
     },
     render: function () {
         var linkToArticle;
@@ -115,7 +128,7 @@ var PostElement = React.createClass({
             linkToArticle = "/" + this.props.code;
         }
         return (
-            <a className="topNavigationLastAnchor" href={linkToArticle}>
+            <a className="topNavigationLastAnchor" href={linkToArticle} data-sub={this.props.subcategory}>
                 <div className="singleLastArticleTopNavigation">
                     <div className="imageOverlayColorNav"></div>
                         <div className="bannerPanelImageContainerNav">
@@ -131,5 +144,18 @@ var PostElement = React.createClass({
                 </div>
             </a>
         );
+    }
+});
+
+var SubcategoryElement = React.createClass({
+    propTypes: {
+        name: React.PropTypes.string
+    },
+    render: function() {
+        return(
+            <div className="topNavigationSubcategoriesElement">
+                {this.props.name}
+            </div>
+            );
     }
 });

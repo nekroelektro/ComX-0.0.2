@@ -68,7 +68,7 @@
 .cbp-hrsub {   
     text-align: center;
     background: rgba(0, 0, 0, 0.85) !important;
-
+    height: 336px;
     /*-webkit-transition: all 0.6s linear;
     -moz-transition: all 0.6s ease;
     -ms-transition: all 0.6s ease;

@@ -548,7 +548,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 var postsFromCategory =
                     posts.Where(x => x.CategoryId == item.Id && x.IsPublished)
                         .OrderByDescending(x => x.DateCreated)
-                        .Take(4)
                         .ToList();
                 var postList = new List<ArticleDto>();
                 foreach (var post in postsFromCategory) {
@@ -556,17 +555,19 @@ namespace ComX_0._0._2.Views.Articles.Services {
                         Id = post.Id,
                         Name = post.Name,
                         CodedName = generalHelper.RemoveSpecialCharsFromString(post.Name),
-                        ImageUrl = articleHelper.GetImageRelativePathByArticleId(post.Id)
+                        ImageUrl = articleHelper.GetImageRelativePathByArticleId(post.Id),
+                        Subcategory = articleHelper.GetSubCategoryById(post.SubCategoryId).Name
                     };
                     postList.Add(element);
                 }
                 category.CategoryPosts = postList;
                 category.CategoryName = item.Name;
+                category.Subcategories = category.CategoryPosts.Select(x => x.Subcategory).Distinct().ToList();
 
                 details.Add(category);
             }
             var diaryCategory = details.First(x => x.CategoryName == "Pamiętnik");
-            foreach (var diary in db.Diary.OrderByDescending(x => x.DateCreated).Take(4)) {
+            foreach (var diary in db.Diary.OrderByDescending(x => x.DateCreated)) {
                 var diaryElement = new ArticleDto {
                     Id = diary.Id,
                     Name = diary.Name,
@@ -575,7 +576,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 };
                 diaryCategory.CategoryPosts.Add(diaryElement);
             }
-
             return details;
         }
 

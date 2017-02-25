@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    var currentlyActiveSub;
+    var currentAllPosts;
 
     var cbpHorizontalMenu = (function () {
 
@@ -15,16 +17,22 @@
         }
 
         function open(event) {
-            if (current !== -1) {
-                $listItems.eq(current).find('.cbp-hrsub').slideUp("fast");
-                $listItems.eq(current).removeClass('cbp-hropen');
-                $(".elementsToPush").css("margin-top", 0);
-            }
+            $('.moreFromCategoryTopNavigation').hide();
 
             var $item = $(event.currentTarget).parent('li'),
                 idx = $item.index();
 
-            var sliderElementMenu = $item.find('.cbp-hrsub');
+            var sliderElementMenu = $item.find('.cbp-hrsub');           
+            var posts = $item.find('.topNavigationLastAnchor');
+            posts.hide();
+
+            //second click which closes selected menu
+            if (current !== -1) {
+                $listItems.eq(current).find('.cbp-hrsub').slideUp("fast");
+                $listItems.eq(current).removeClass('cbp-hropen');
+                $(".elementsToPush").css("margin-top", 0);
+                posts.hide();
+            }
 
             if (current === idx) {
                 sliderElementMenu.slideUp("slow");
@@ -35,7 +43,14 @@
                 //for pushing elements during top menu displaying
                 $item.addClass('cbp-hropen');
                 sliderElementMenu.hide();
-                sliderElementMenu.slideDown("slow");
+                sliderElementMenu.slideDown("slow", function() {
+                    //posts.slice(0, 4).show('slide', {direction: 'right'}, 500);
+                    //posts.slice(0, 4).fadeIn("slow");
+
+                    //this crap is case-sensitive
+                    $item.find('.topNavigationSubcategoriesElement:contains("Wszystkie")').trigger("click");
+                    $('.moreFromCategoryTopNavigation').fadeIn("slow");
+                });
                 current = idx;
                 $body.off('click').on('click', close);
             }
@@ -87,13 +102,61 @@
 
     $('.topNavigationLastAnchor')
         .mouseover(function () {
-            $(this).find("#articleTopNavigationImage").addClass('transition');
-            $(this).find('.articlesIndexLine').css("border", "1px solid #2B823C");
+                $(this).find("#articleTopNavigationImage").addClass('transition');
+                $(this).find('.articlesIndexLine').css("border", "1px solid #2B823C");
         })
         .mouseout(function () {
-            $(this).find("#articleTopNavigationImage").removeClass('transition');
-            $(this).find('.articlesIndexLine').css("border", "1px solid chocolate");
+                $(this).find("#articleTopNavigationImage").removeClass('transition');
+                $(this).find('.articlesIndexLine').css("border", "1px solid chocolate");
         });
 
-    
+    // Subcategories tweaks
+    var handlePostsAfterSubChange = function (postArray) {
+        $("#detailsCommentSection").empty();
+        $("#detailsCommentSection").html(container);
+    }
+
+    $('.topNavigationSubcategoriesElement').on("click", function () {
+        currentlyActiveSub = $(this);
+        var selectedSubText = currentlyActiveSub.text();
+        var closestContainer = currentlyActiveSub.closest('.lastArticlesFromCategoryTopNavigation');
+        var subElements = closestContainer.find('.topNavigationLastAnchor');
+        var x = 0;
+        subElements.hide();
+        subElements.each(function () {
+            //this crap is case sensitive too
+            if (x <= 3) {
+                if (selectedSubText != "Wszystkie") {
+                    if ($(this).data('sub').toString() != selectedSubText) {
+                        //$(this).fadeOut(500);
+                    } else {
+                        $(this).fadeIn("slow");
+                        x++;
+                    }
+                } else {
+                    $(this).fadeIn("slow");
+                    x++;
+                }
+            }
+        });
+        currentlyActiveSub.addClass('topNavigationSubcategoriesElementHover').siblings().removeClass("topNavigationSubcategoriesElementHover");;
+    });
+
+    $('.topNavigationSubcategoriesElement')
+        .mouseover(function () {
+            if ($(this) != currentlyActiveSub) {
+                $(this).css({
+                    color: "#2B823C",
+                    borderBottom: '#2b823c solid 4px'
+                });
+            }
+        })
+        .mouseout(function () {
+            if ($(this) != currentlyActiveSub) {
+                $(this).css({
+                    color: "white",
+                    borderBottom: 'white solid 4px'
+                });
+            }
+        });
 });

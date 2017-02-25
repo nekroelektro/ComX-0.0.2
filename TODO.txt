@@ -15,3 +15,4 @@ przy zmianie zmieniać kontent wysuwanego paska i link do kategorii
 - informacje o cookies?
 - Dodać pipeprzone private messages
 - siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje
+- LOGOWANIE PRZEZ FACEBOOKA
