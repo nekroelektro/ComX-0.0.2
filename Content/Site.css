@@ -253,6 +253,7 @@ a {
 /*USER PANEL*/
 .userPanelContainer {
     font-family: 'Amarante', sans-serif;
+    background-color: white;
 }
 
 /* RETURN TO TOP ARROW */

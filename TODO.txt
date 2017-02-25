@@ -1,8 +1,10 @@
 ﻿THINGS TO DO:
-- naprawić widoki z zielonym tłem - koniecznie
-- navigation panel - płynne wysuwanie od góry, subkategorie na górze w pasku (tylko te, które istnieją w scopie kategorii), 
+[DONE] naprawić widoki z zielonym tłem - koniecznie
+[DONE] navigation panel - płynne wysuwanie od góry, 
+-navigation panel - subkategorie na górze w pasku (tylko te, które istnieją w scopie kategorii), 
 przy zmianie zmieniać kontent wysuwanego paska i link do kategorii
 - kategorie do REACTa
+- Dopicować widoki zapomnianego hasła, user panel itd
 - Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)
 - KONIECZNIE ZROBI PIĘKNY SEARCH! - do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem
 - trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
@@ -11,3 +13,5 @@ przy zmianie zmieniać kontent wysuwanego paska i link do kategorii
 - dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 - zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
 - informacje o cookies?
+- Dodać pipeprzone private messages
+- siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje

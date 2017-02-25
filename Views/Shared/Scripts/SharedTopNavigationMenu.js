@@ -16,6 +16,7 @@
 
         function open(event) {
             if (current !== -1) {
+                $listItems.eq(current).find('.cbp-hrsub').slideUp("fast");
                 $listItems.eq(current).removeClass('cbp-hropen');
                 $(".elementsToPush").css("margin-top", 0);
             }
@@ -23,13 +24,18 @@
             var $item = $(event.currentTarget).parent('li'),
                 idx = $item.index();
 
+            var sliderElementMenu = $item.find('.cbp-hrsub');
+
             if (current === idx) {
+                sliderElementMenu.slideUp("slow");
                 $item.removeClass('cbp-hropen');
                 $(".elementsToPush").css("margin-top", 0);
                 current = -1;
             } else {
                 //for pushing elements during top menu displaying
                 $item.addClass('cbp-hropen');
+                sliderElementMenu.hide();
+                sliderElementMenu.slideDown("slow");
                 current = idx;
                 $body.off('click').on('click', close);
             }
