@@ -8,12 +8,13 @@
 [DONE] kategorie do REACTa
 - Dopicować widoki zapomnianego hasła, user panel itd
 - Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)
+[DONE] recenzje muzyczne z indexu do ajaxa
 - KONIECZNIE ZROBIć PIĘKNY SEARCH!
 	- searchbar pewnie na toplogo panelu, doczepioną do slicka przy scrollu
 	- ładną ramkę live search odświężającą się na onkeyup
 	- do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem
 - trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
-- w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
+[DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
 - dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 - zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security

@@ -126,7 +126,6 @@ var MainArticleDetails = React.createClass({
                     (
                     <div className="articleDetailsIntro">
                         <div dangerouslySetInnerHTML={{__html: this.props.prelude}} />
-                    <hr className="articleDetailsLine" />
                     </div>
                     ) : (
                         <div className="diaryElementsContainer">

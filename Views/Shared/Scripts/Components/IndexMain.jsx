@@ -107,7 +107,7 @@ var IndexMainDiaries = React.createClass({
                     {diaryNodes}
                 </ul>
                 <div className="moreMusicReviews">
-                    <a className="seeMoreReviewsFromIndex">
+                    <a className="seeMoreReviewsFromIndex" id="indexSeeDiaryCategory">
                         <h4>PRZEJDŹ DO PAMIĘTNIKA <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
                     </a>
                 </div>
@@ -164,7 +164,7 @@ var IndexMainReviews = React.createClass({
                     {reviewNodes}
                 </div>
                 <div className="moreMusicReviews">
-                    <a className="seeMoreReviewsFromIndex" href={"/Categories/Recenzje?subId=Muzyka"}>
+                    <a className="seeMoreReviewsFromIndex" id="indexSeeMusicReviewsCategory">
                         <h4>ZOBACZ WSZYSTKIE RECKI MUZYCZNE <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
                     </a>
                 </div>

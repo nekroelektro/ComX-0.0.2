@@ -1,12 +1,11 @@
 ﻿.topDetailPanel {
-    display: inline-block; 
+    display: block; 
     width: 100%; 
-    height: auto
+    /*height: auto*/
 }
 
-.topDetailPanelButtons {
-    float: right; 
-    margin-top: 1em;
+.topDetailPanelButtons a {
+    padding-right: 1em;
 }
 
 .glyphicon {
@@ -16,7 +15,7 @@
 .detailsBannerPanel {
     height: 45em;
     position: relative; 
-    z-index: 5; 
+    z-index: 4; 
     overflow: hidden;
 }
 

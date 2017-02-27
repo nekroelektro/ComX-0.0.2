@@ -92,6 +92,11 @@
     float: right;
 }
 
+.navigationBackButtonCategory {
+    float: left !important;
+    margin-top: -0.6em !important;
+}
+
 .mainDiaryContainer {
     background-color: black !important;
     color: whitesmoke;

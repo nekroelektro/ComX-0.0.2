@@ -67,7 +67,7 @@ var CategoriesGui = React.createClass({
                             {subcategoryNodes}
                         </div>
                         {this.props.isAjaxRequest &&
-                            <div className="navigationBackButton">
+                            <div className="navigationBackButton navigationBackButtonCategory">
                                 <button type="button" className="btn nekrobutton-green btn-m">
                                     <span className="glyphicon glyphicon-menu-left" aria-hidden="true"></span> POWRÓT
                                 </button>

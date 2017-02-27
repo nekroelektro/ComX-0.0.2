@@ -65,12 +65,24 @@
             //}, 100);
         });
 
-    $('.seeMoreReviewsFromIndex').click(function() {
+    $('#indexSeeDiaryCategory').click(function () {
         $.ajax({
             url: "/Articles/Diary/",
             method: 'GET',
             success: function (data) {
                 $('.mainBodyContainer').html(data);
+                $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+            }
+        });
+    });
+
+    $('#indexSeeMusicReviewsCategory').click(function () {
+        $.ajax({
+            url: "/Categories/Recenzje",
+            method: 'GET',
+            success: function (data) {
+                $('.mainBodyContainer').html(data);
+                $('.categorySubElement:contains("Muzyka")').trigger("click");
                 $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
             }
         });
