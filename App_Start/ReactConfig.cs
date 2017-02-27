@@ -17,7 +17,8 @@ namespace ComX_0._0._2
                 .AddScript("~/Views/Shared/Scripts/Components/LastFromCategory.jsx")
                 .AddScript("~/Views/Shared/Scripts/Components/Comments.jsx")
                 .AddScript("~/Views/Shared/Scripts/Components/Diaries.jsx")
-                .AddScript("~/Views/Shared/Scripts/Components/NavigationMenu.jsx");
+                .AddScript("~/Views/Shared/Scripts/Components/NavigationMenu.jsx")
+                .AddScript("~/Views/Shared/Scripts/Components/Categories.jsx");
 
         }
     }

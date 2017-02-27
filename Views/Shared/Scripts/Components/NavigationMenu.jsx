@@ -40,7 +40,7 @@ var CategoryContainer = React.createClass({
     },
     render: function() {
         var categoryNodes = this.state.model.map(function (category) {
-            return <CategoryElement name={category.CategoryName} posts={category.CategoryPosts } subcategories={category.Subcategories}></CategoryElement>;
+            return <TopNavCategoryElement name={category.CategoryName} posts={category.CategoryPosts } subcategories={category.Subcategories}></TopNavCategoryElement>;
         });
 
         return (
@@ -53,7 +53,7 @@ var CategoryContainer = React.createClass({
     }
 });
 
-var CategoryElement = React.createClass({
+var TopNavCategoryElement = React.createClass({
     propTypes: {
         name: React.PropTypes.string,
         posts: React.PropTypes.array,
@@ -75,11 +75,11 @@ var CategoryElement = React.createClass({
             linkString = '/Categories/' + this.state.name;
         }
         var postNodes = this.state.posts.map(function (post) {
-            return <PostElement name={post.Name} code={post.CodedName} imagePath={post.ImageUrl} isDiary={isDiary} subcategory={post.Subcategory}></PostElement>;
+            return <TopNavPostElement name={post.Name} code={post.CodedName} imagePath={post.ImageUrl} isDiary={isDiary} subcategory={post.Subcategory}></TopNavPostElement>;
         }, true);
 
         var subcategoryNodes = this.state.subcategories.map(function (post) {
-            return <SubcategoryElement name={post}></SubcategoryElement>;
+            return <TopNavSubcategoryElement name={post}></TopNavSubcategoryElement>;
         }, true);
 
         return (
@@ -112,7 +112,7 @@ var CategoryElement = React.createClass({
     }
 });
 
-var PostElement = React.createClass({
+var TopNavPostElement = React.createClass({
     propTypes: {
         name: React.PropTypes.string,
         code: React.PropTypes.string,
@@ -147,7 +147,7 @@ var PostElement = React.createClass({
     }
 });
 
-var SubcategoryElement = React.createClass({
+var TopNavSubcategoryElement = React.createClass({
     propTypes: {
         name: React.PropTypes.string
     },

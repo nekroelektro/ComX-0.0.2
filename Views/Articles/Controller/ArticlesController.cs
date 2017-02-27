@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
 using ComX_0._0._2.Views.Articles.Services;
-using ComX_0._0._2.Views.Configuration.Models;
 
 namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
@@ -55,6 +53,44 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     id,
                     isDiary = true
                 });
+        }
+
+        public ActionResult _Comments(Guid articleId, bool diary) {
+            var model = documentService.GetCommentsDetails(articleId, diary);
+            return PartialView("_Comments", model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult _Comments(string body, Guid articleId, bool isDiary) {
+            documentService.CreateComment(body, articleId, isDiary);
+            var model = documentService.GetCommentsDetails(articleId, isDiary);
+            return PartialView("_Comments", model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CommentEdit(string bodyText, string commentId, string articleId, string isDiary) {
+            documentService.UpdateComment(bodyText, new Guid(commentId));
+            var model = documentService.GetCommentsDetails(new Guid(articleId), Convert.ToBoolean(isDiary));
+            return PartialView("_Comments", model);
+        }
+
+        public ActionResult DeleteComment(string commentId, string articleId, string isDiary) {
+            documentService.DeleteComment(new Guid(commentId));
+            var model = documentService.GetCommentsDetails(new Guid(articleId), Convert.ToBoolean(isDiary));
+            return PartialView("_Comments", model);
+        }
+
+        public ActionResult Diary() {
+            var diaries = documentService.GetDiariesDetails();
+            return PartialView(diaries);
+        }
+
+        public ActionResult Categories(string id, string subId) {
+            var model = documentService.GetCategoryDetails(id);
+            ViewBag.SubId = subId;
+            return View(model);
         }
 
         public ActionResult Create() {
@@ -136,33 +172,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             base.Dispose(disposing);
         }
 
-        public ActionResult _Comments(Guid articleId, bool diary) {
-            var model = documentService.GetCommentsDetails(articleId, diary);
-            return PartialView("_Comments", model);
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult _Comments(string body, Guid articleId, bool isDiary) {
-            documentService.CreateComment(body, articleId, isDiary);
-            var model = documentService.GetCommentsDetails(articleId, isDiary);
-            return PartialView("_Comments", model);
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult CommentEdit(string bodyText, string commentId, string articleId, string isDiary) {
-            documentService.UpdateComment(bodyText, new Guid(commentId));
-            var model = documentService.GetCommentsDetails(new Guid(articleId), Convert.ToBoolean(isDiary));
-            return PartialView("_Comments", model);
-        }
-
-        public ActionResult DeleteComment(string commentId, string articleId, string isDiary) {
-            documentService.DeleteComment(new Guid(commentId));
-            var model = documentService.GetCommentsDetails(new Guid(articleId), Convert.ToBoolean(isDiary));
-            return PartialView("_Comments", model);
-        }
-
         public ActionResult DeleteImage(Guid articleId, bool isDiary) {
             documentService.DeleteImageForGivenDocument(articleId);
             ViewBag.ArticleId = articleId;
@@ -170,32 +179,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 id = articleId,
                 isDiary
             });
-        }
-
-        public ActionResult Diary() {
-            var diaries = documentService.GetDiariesDetails();
-            return PartialView(diaries);
-        }
-
-        public ActionResult GetCategoryName(Guid categoryId) {
-            var cat = articleHelper.GetCategoryById(categoryId);
-            return Content(cat.Name);
-        }
-
-        public ActionResult Categories(string id, string subId) {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var cat = articleHelper.GetCategoryByName(id);
-            var articlesByCategory =
-                documentService.GetDocumentForIndex(true)
-                    .Where(x => x.Categories.Value == cat.Id)
-                    .OrderByDescending(x => x.DateCreation)
-                    .ToList();
-            if (!string.IsNullOrEmpty(subId)) {
-                var subCat = articleHelper.GetSubCategoryByName(subId);
-                articlesByCategory = articlesByCategory.Where(x => x.SubCategories.Value == subCat.Id).ToList();
-            }
-            ViewBag.CategoryIdentificator = cat.Id;
-            return View(articlesByCategory);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     var currentlyActiveSub;
-    var currentAllPosts;
 
     var cbpHorizontalMenu = (function () {
 
@@ -44,15 +43,14 @@
                 $item.addClass('cbp-hropen');
                 sliderElementMenu.hide();
                 sliderElementMenu.slideDown("slow", function() {
-                    //posts.slice(0, 4).show('slide', {direction: 'right'}, 500);
-                    //posts.slice(0, 4).fadeIn("slow");
 
                     //this crap is case-sensitive
                     $item.find('.topNavigationSubcategoriesElement:contains("Wszystkie")').trigger("click");
                     $('.moreFromCategoryTopNavigation').fadeIn("slow");
                 });
                 current = idx;
-                $body.off('click').on('click', close);
+                //this is for when user clicks outside navigation menu
+                //$body.off('click').on('click', close);
             }
 
             return false;
@@ -111,11 +109,6 @@
         });
 
     // Subcategories tweaks
-    var handlePostsAfterSubChange = function (postArray) {
-        $("#detailsCommentSection").empty();
-        $("#detailsCommentSection").html(container);
-    }
-
     $('.topNavigationSubcategoriesElement').on("click", function () {
         currentlyActiveSub = $(this);
         var selectedSubText = currentlyActiveSub.text();
@@ -124,11 +117,11 @@
         var x = 0;
         subElements.hide();
         subElements.each(function () {
-            //this crap is case sensitive too
+            // take first 4 posts
             if (x <= 3) {
+                //this crap is case sensitive too
                 if (selectedSubText != "Wszystkie") {
                     if ($(this).data('sub').toString() != selectedSubText) {
-                        //$(this).fadeOut(500);
                     } else {
                         $(this).fadeIn("slow");
                         x++;

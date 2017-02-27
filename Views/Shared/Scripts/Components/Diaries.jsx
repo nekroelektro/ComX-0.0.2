@@ -26,11 +26,9 @@ var DiariesGui = React.createClass({
     render: function () {
         return (
 			<div className="diaryTitlePanel">
-                {this.props.isAjaxRequest &&
-                    <div className="articlesIndexHeader">
-                        <h3><span className="glyphicon glyphicon-book" aria-hidden="true"></span> Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
-                    </div>
-                }
+                <div className="articlesIndexHeader">
+                    <h3><span className="glyphicon glyphicon-book" aria-hidden="true"></span> Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
+                </div>
                 <div className="categoryArticleTitle">
                     <h2>Witaj w pamiętniku płytoholika, wędrowcze!</h2>
                     <hr />

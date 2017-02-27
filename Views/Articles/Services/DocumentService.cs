@@ -541,31 +541,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
         public List<CategoryDto> GetNavigationDetails() {
             var details = new List<CategoryDto>();
 
-            var categories = db.Categories.OrderByDescending(x=>x.SortCode).ToList();
-            var posts = db.Articles.ToList();
-            foreach (var item in categories) {
-                var category = new CategoryDto();
-                var postsFromCategory =
-                    posts.Where(x => x.CategoryId == item.Id && x.IsPublished)
-                        .OrderByDescending(x => x.DateCreated)
-                        .ToList();
-                var postList = new List<ArticleDto>();
-                foreach (var post in postsFromCategory) {
-                    var element = new ArticleDto {
-                        Id = post.Id,
-                        Name = post.Name,
-                        CodedName = generalHelper.RemoveSpecialCharsFromString(post.Name),
-                        ImageUrl = articleHelper.GetImageRelativePathByArticleId(post.Id),
-                        Subcategory = articleHelper.GetSubCategoryById(post.SubCategoryId).Name
-                    };
-                    postList.Add(element);
-                }
-                category.CategoryPosts = postList;
-                category.CategoryName = item.Name;
-                category.Subcategories = category.CategoryPosts.Select(x => x.Subcategory).Distinct().ToList();
-
-                details.Add(category);
-            }
+            var categories = db.Categories.OrderByDescending(x => x.SortCode).ToList();
+            foreach (var item in categories) details.Add(GetCategoryModelDto(item));
             var diaryCategory = details.First(x => x.CategoryName == "Pamiętnik");
             foreach (var diary in db.Diary.OrderByDescending(x => x.DateCreated)) {
                 var diaryElement = new ArticleDto {
@@ -577,6 +554,36 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 diaryCategory.CategoryPosts.Add(diaryElement);
             }
             return details;
+        }
+
+        public CategoryDto GetCategoryDetails(string id) {
+            var model = db.Categories.First(x => x.Name == id);
+            return GetCategoryModelDto(model);
+        }
+
+        private CategoryDto GetCategoryModelDto(ArticleCategories model) {
+            var category = new CategoryDto();
+            var postsFromCategory =
+                db.Articles.Where(x => x.CategoryId == model.Id && x.IsPublished)
+                    .OrderByDescending(x => x.DateCreated)
+                    .ToList();
+            var postList = new List<ArticleDto>();
+            foreach (var post in postsFromCategory) {
+                var element = new ArticleDto {
+                    Id = post.Id,
+                    Name = post.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(post.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(post.Id),
+                    Subcategory = articleHelper.GetSubCategoryById(post.SubCategoryId).Name
+                };
+                postList.Add(element);
+            }
+            category.CategoryPosts = postList;
+            category.CategoryName = model.Name;
+            category.Description = model.Description;
+            category.Subcategories = category.CategoryPosts.Select(x => x.Subcategory).Distinct().ToList();
+
+            return category;
         }
 
         private string GetArticleName(Guid id) {

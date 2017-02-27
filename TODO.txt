@@ -1,12 +1,17 @@
 ﻿THINGS TO DO:
+
 [DONE] naprawić widoki z zielonym tłem - koniecznie
 [DONE] navigation panel - płynne wysuwanie od góry, 
--navigation panel - subkategorie na górze w pasku (tylko te, które istnieją w scopie kategorii), 
-przy zmianie zmieniać kontent wysuwanego paska i link do kategorii
-- kategorie do REACTa
+[DONE] navigation panel 
+	[DONE] subkategorie na górze w pasku (tylko te, które istnieją w scopie kategorii)
+	[DONE] subkategorie do widoku kategorii
+[DONE] kategorie do REACTa
 - Dopicować widoki zapomnianego hasła, user panel itd
 - Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)
-- KONIECZNIE ZROBI PIĘKNY SEARCH! - do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem
+- KONIECZNIE ZROBIć PIĘKNY SEARCH!
+	- searchbar pewnie na toplogo panelu, doczepioną do slicka przy scrollu
+	- ładną ramkę live search odświężającą się na onkeyup
+	- do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem
 - trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
 - w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas

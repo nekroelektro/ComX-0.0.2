@@ -51,7 +51,7 @@
     display: inline-flex;
 }
 
-.topNavigationSubcategoriesElement {
+.topNavigationSubcategoriesElement, .categorySubElement {
     text-align: center;
     color: white;
     margin: 0 0 1em 1em;

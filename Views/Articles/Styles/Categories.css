@@ -1,11 +1,23 @@
 ﻿.categoryArticleTitle {
     width: 100%; 
     float: left;
+    background-color: black;
 }
 
 .categoryArticleTitle h2 {
-    float: left;
-    font-family: 'Coda', sans-serif;
+    text-transform: uppercase !important;
+    text-align: center;
+    color: crimson;
+    text-shadow: 6px 6px 4px rgba(255, 255, 255, 0.3);
+}
+
+.categoryArticleTitle h3 {
+    text-align: justify;
+    color: white;
+}
+
+.categoryArticleTitle hr {
+    border-color: crimson; 
 }
 
 .categoryViewType {
@@ -149,4 +161,10 @@
     position: absolute; 
     bottom: 0; 
     right: 0;
+}
+
+.categorySubContainer {
+    display: inline-flex;
+    text-transform: uppercase;
+    float: right;
 }
