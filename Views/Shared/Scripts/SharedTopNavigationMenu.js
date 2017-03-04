@@ -75,7 +75,8 @@
     //Sticky top menu:
     $(".main").sticky({ topSpacing: 0, zIndex: 6 });
     $('.main').on('sticky-start', function (e) {
-        $('.absoluteLogo').show();
+        $('.topNavigationSearchIcon').show("slow");
+        $('.absoluteLogo').show("slow");
         $(this).find('.absoluteLogo').animate({
             marginTop: '-1.5em'
         }, 400);
@@ -88,6 +89,10 @@
         //$(".main").css("box-shadow", "0 0 10px 10px #222222");
     });
     $('.main').on('sticky-end', function () {
+        $('.topNavigationSearchIcon').hide();
+        if ($('.searchBarNav').is(":visible")) {
+            $('.searchBarNav').hide();
+        }
         $('.absoluteLogo').css("margin-top", "-6em");
         $('.absoluteLogo').hide();
         $(".cbp-hrsub-inner").css("width", "80%");
@@ -152,4 +157,9 @@
                 });
             }
         });
+
+    //SEARCH
+    var $container = $('.navMenuContainer');
+    var searchIcon = $('.topNavigationSearchIcon');
+    NekroSearch($container, searchIcon);
 });

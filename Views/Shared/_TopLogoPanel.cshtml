@@ -13,8 +13,31 @@
     </div>
     <div class="rightLogoPanel">
         <div class="logoMenu">
-            @if (userHelper.IsAdminUser(User))
-            {
+            <div class="searchBar">
+                <input id="searchBarMain" placeholder="Wyserczuj se..."/>
+                <div class="searchResultsContainer">
+                    <div class="searchResultsElements">
+                        
+                    </div>
+                    <div class="searchResultsMore">
+                        <h4>Pokaż wszystkie wyniki</h4>
+                    </div>
+                    <div class="searchResultsNoMore">
+                        <h4>Wincyj nie znalazłem</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="logoSearch logoComponent">
+                <a class="topLogoLastAnchor logoComponentAnchor">
+                    <div class="logoComponentIcon">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </div>
+                    <div class="logoComponentText">
+                        SZUKAJ
+                    </div>
+                </a>
+            </div>
+            @if (userHelper.IsAdminUser(User)) {
                 <div class="logoConfiguration logoComponent">
                     <a class="topLogoLastAnchor logoComponentAnchor" href="@Url.Action("Articles", "Configuration")">
                         <div class="logoComponentIcon">
@@ -26,10 +49,8 @@
                     </a>
                 </div>
             }
-            @if (Request.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
-                {
+            @if (Request.IsAuthenticated) {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm"})) {
                     @Html.AntiForgeryToken()
                     <div class="logoUserPanel logoComponent">
                         <a class="topLogoLastAnchor logoComponentAnchor" href="@Url.Action("UserPanel", "Account")">

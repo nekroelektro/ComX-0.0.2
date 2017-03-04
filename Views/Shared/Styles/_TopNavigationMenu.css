@@ -177,4 +177,23 @@
     font-size: 1.1em;
 }
 
+.topNavigationSearchIcon {
+    font-size: 1.5em;
+    color: whitesmoke;
+    margin-left: 1em;
+    cursor: pointer;
+    display: none;
+}
+
+.topNavigationSearchIcon:hover {
+    color: #2b823c;
+}
+
+/* Nav search */
+
+.searchBarNav {
+    position: absolute;
+    z-index: 6;
+    right: 0;
+}
 

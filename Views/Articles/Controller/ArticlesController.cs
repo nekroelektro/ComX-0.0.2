@@ -100,6 +100,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View();
         }
 
+        public ActionResult SearchResults(string searchString) {
+            var model = documentService.GetSearchResult(searchString);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(CreateModelDto document, HttpPostedFileBase upload) {

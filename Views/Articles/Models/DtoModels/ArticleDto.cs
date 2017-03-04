@@ -24,5 +24,7 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public string ReleaseYear { get; set; }
         public string Genre { get; set; }
         public string CatalogueNumber { get; set; }
+
+        public int SortCode { get; set; }
     }
 }

@@ -333,7 +333,7 @@ a {
 .rightLogoPanel ul li:hover {
     background: black;
 }
-.logoSection  a{
+.logoSection  a, .navMenuContainer a {
     text-decoration: none;
     outline: 0;
     color: white;
@@ -343,7 +343,7 @@ a {
     width: 100%;
 }
 
-.logoSection  a:hover {
+.logoSection  a:hover, .navMenuContainer a:hover {
     color: #2B823C;
     text-decoration: none;
     outline: 0;    
@@ -512,6 +512,139 @@ a {
 }
 
 /* ACCOUNT */
+
+/* Search bar */
+.logoSearch {
+    cursor: pointer;
+
+    /*display: none;*/
+}
+
+.searchBar {
+    display: none;
+    width: 30em;
+}
+
+.searchBar input{
+    width: 100%;
+    font-size: 1.6em;
+    border-radius: 15px;
+    text-indent: 9px;
+    max-width: none !important;
+}
+
+.searchBar input, textarea {
+    color: #2B823C;
+    background-color: #222;
+    border: none;
+}
+
+.searchResultsContainer {
+    display: none;
+    width: 30em;
+    /*height: 25em;*/
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    z-index: 6;
+    margin-top: 0.3em;
+    border-radius: 5px;
+
+    /*border: solid white 1px;*/
+}
+
+.searchResultsMore, .searchResultsNoMore{
+    display: none;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: whitesmoke;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}
+
+.searchResultsMore h4 {
+       
+}
+
+.searchResultsMore:hover, .searchResultsNoMore:hover {
+    color: #2b823c;
+    background-color: aliceblue;
+}
+
+.searchResultsElements {
+    width: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-bottom: 3em;
+}
+
+
+/* SEARCH jQuery elements*/
+.searchNoResults {
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.searchItemContainer {
+    width: 100%;
+    color: white;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    display: block;
+    height: 6em;
+    width: 100%;
+
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}
+
+.searchItemContainer:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.searchItemContainer:hover > p{
+    color: black !important;
+}
+
+.searchItemImageContainer {
+    height: 100%;
+    width: 20%;
+    text-align: center;
+    float: left;
+}
+
+.searchItemImageContainer img {
+    height: 100%;
+    width: 100%;
+}
+
+.searchItemDetailsContainer {
+    float: right;
+    width: 79%;
+}
+
+.searchItemDetailsName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*float: left;*/
+    text-align: center;
+}
+
+.searchItemDetailsTags {
+    text-align: center;
+    text-transform: none;
+}
 
 /* RESPONSIVES */
 

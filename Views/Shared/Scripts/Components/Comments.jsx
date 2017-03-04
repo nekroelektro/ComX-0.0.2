@@ -115,7 +115,7 @@ var CommentsReady = React.createClass({
                             <div className="form-horizontal">
                                 <div className="form-group">
                                     <div className="commentInputBlock">
-                                        <textarea id="editCommentWindowContainer" class="form-control articleEditor"></textarea>
+                                        <textarea id="editCommentWindowContainer" className="form-control articleEditor"></textarea>
                                     </div>
                                 </div>
                             <div className="form-group">

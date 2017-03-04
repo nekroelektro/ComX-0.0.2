@@ -561,6 +561,49 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return GetCategoryModelDto(model);
         }
 
+        public List<ArticleDto> GetSearchResult(string searchString) {
+            var results = new List<ArticleDto>();
+            var articlesSearch =
+                db.Articles.Where(
+                    x => x.IsPublished &&
+                         (x.Name.Contains(searchString) || x.Body.Contains(searchString) ||
+                          x.Prelude.Contains(searchString))).ToList();
+            foreach (var item in articlesSearch) {
+                var element = new ArticleDto {
+                    Id = item.Id,
+                    Name = item.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
+                    Category = articleHelper.GetCategoryById(item.CategoryId).Name,
+                    Subcategory = articleHelper.GetSubCategoryById(item.SubCategoryId).Name,
+                    Date = item.DateCreated.ToLongDateString(),
+                    SortCode = item.Name.Contains(searchString) ? 1 : 2
+                };
+                results.Add(element);
+            }
+
+            var diariesSearch =
+                db.Diary.Where(
+                        x => x.IsPublished &&
+                             (x.Name.Contains(searchString) || x.Body.Contains(searchString) ||
+                              x.Label.Contains(searchString)))
+                    .ToList();
+            foreach (var diary in diariesSearch) {
+                var diaryElement = new ArticleDto {
+                    Id = diary.Id,
+                    Name = diary.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(diary.Name) + "?isDiary=true",
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(diary.Id),
+                    Category = "Pamiętnik",
+                    Date = diary.DateCreated.ToLongDateString(),
+                    SortCode = diary.Name.Contains(searchString) ? 1 : 2
+                };
+                results.Add(diaryElement);
+            }
+
+            return results.OrderBy(x => x.SortCode).ThenBy(x => x.Name).ToList();
+        }
+
         private CategoryDto GetCategoryModelDto(ArticleCategories model) {
             var category = new CategoryDto();
             var postsFromCategory =

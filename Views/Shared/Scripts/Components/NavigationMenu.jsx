@@ -12,6 +12,9 @@
             <div className="main">
                 <LogoMenu></LogoMenu>
                 <CategoryContainer model={this.state.model}></CategoryContainer>
+                <div className="navMenuContainer">
+                    <TopNavSubcategorySearchBar></TopNavSubcategorySearchBar>
+                </div>
             </div>
 		);
     }
@@ -47,6 +50,11 @@ var CategoryContainer = React.createClass({
             <nav id="cbp-hrmenu" className="cbp-hrmenu">
                 <ul className="topNavigationItemsContainer">
                     {categoryNodes}
+                    <li>
+                        <div className="topNavigationSearchIcon">
+                            <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             );
@@ -155,6 +163,27 @@ var TopNavSubcategoryElement = React.createClass({
         return(
             <div className="topNavigationSubcategoriesElement">
                 {this.props.name}
+            </div>
+            );
+    }
+});
+
+var TopNavSubcategorySearchBar = React.createClass({
+    render: function() {
+        return(
+            <div className="searchBar searchBarNav">
+                <input id="searchBarMain" placeholder="Wyserczuj se..." />
+                <div className="searchResultsContainer">
+                    <div className="searchResultsElements">
+
+                    </div>
+                    <div className="searchResultsMore">
+                        <h4>Pokaż wszystkie wyniki</h4>
+                    </div>
+                    <div className="searchResultsNoMore">
+                        <h4>Wincyj nie znalazłem</h4>
+                    </div>
+                </div>
             </div>
             );
     }

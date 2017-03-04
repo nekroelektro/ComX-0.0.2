@@ -33,5 +33,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         List<IndexDiaryDto> GetDiariesDetails();
         List<CategoryDto> GetNavigationDetails();
         CategoryDto GetCategoryDetails(string id);
+
+        List<ArticleDto> GetSearchResult(string searchString);
     }
 }
