@@ -595,6 +595,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     CodedName = generalHelper.RemoveSpecialCharsFromString(diary.Name) + "?isDiary=true",
                     ImageUrl = articleHelper.GetImageRelativePathByArticleId(diary.Id),
                     Category = "Pamiętnik",
+                    Subcategory = "Pamiętnik",
                     Date = diary.DateCreated.ToLongDateString(),
                     SortCode = diary.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()) ? 1 : 2
                 };
@@ -602,6 +603,20 @@ namespace ComX_0._0._2.Views.Articles.Services {
             }
 
             return results.OrderBy(x => x.SortCode).ThenBy(x => x.Name).ToList();
+        }
+
+        public SearchResultsDto GetSearchResultsDetails(string searchString) {
+            var details = new SearchResultsDto();
+            details.SearchString = searchString;
+            details.SearchPosts = GetSearchResult(searchString);
+            details.Subcategories = details.SearchPosts.Select(x => x.Subcategory).Distinct().ToList();
+
+            //Check if there are any Diary records, if yes - change subCategory to diary
+            //int nullValue = details.Subcategories.IndexOf(null);
+            //if (nullValue != -1) {
+            //    details.Subcategories[nullValue] = "Pamiętnik";
+            //}
+            return details;
         }
 
         private CategoryDto GetCategoryModelDto(ArticleCategories model) {

@@ -859,8 +859,10 @@
     <Content Include="scripts\skins\moono-lisa\images\lock.png" />
     <Content Include="scripts\skins\moono-lisa\images\refresh.png" />
     <Content Include="scripts\skins\moono-lisa\images\spinner.gif" />
+    <Content Include="scripts\NekroSub.js" />
     <Content Include="scripts\styles.js" />
     <Content Include="scripts\tinymce.min.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesSearchResults.js" />
     <Content Include="Views\Shared\Scripts\Components\IndexSlider.jsx" />
     <Content Include="Views\Shared\Scripts\Components\IndexMain.jsx" />
     <Content Include="Views\Shared\Scripts\Components\Details.jsx" />
@@ -878,6 +880,9 @@
     <Content Include="Views\Shared\Scripts\Components\Categories.jsx" />
     <Content Include="Views\Shared\Scripts\Components\LogoPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\SearchPanel.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\SearchResults.jsx" />
+    <Content Include="Views\Articles\SearchResults.cshtml" />
+    <Content Include="Views\Shared\Scripts\Components\SubCategoryPanel.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
@@ -994,6 +999,7 @@
     <Compile Include="Views\Articles\Models\DtoModels\ArticleDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexReviewsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\LastFromCategoryDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\SearchResultsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\SideBarDetailsDto.cs" />
     <Compile Include="Views\Articles\Services\DocumentService.cs" />
     <Compile Include="Views\Articles\Services\IDocumentService.cs" />

@@ -2,6 +2,7 @@
 {
     var request;
     var searchContent;
+    var searchString;
 
     var searchBar = $container.find('.searchBar').hide();
     searchIcon.on("click",
@@ -17,17 +18,19 @@
                 request.abort();
             }
 
-            var searchTxt = this.value;;
+            var searchTxt = this.value;
+            searchString = searchTxt;
             setTimeout(function () {
                 if (searchTxt.length > 2) {
                     request = $.ajax({
                         type: "GET",
-                        url: "/Articles/SearchResults",
+                        url: "/Articles/SearchResultsLive",
                         data: { 'searchString': searchTxt }
                     }).done(function (content) {
                         searchLogic(content);
                     });
                 } else {
+                    searchContent = null;
                     if ($container.find('.searchResultsContainer').is(":visible")) {
                         $container.find('.searchResultsContainer').slideUp("fast");
                     }
@@ -100,7 +103,7 @@
             function (i, item) {
                 //get category and/or subcategory (depends if it's diary or not)
                 var categoryString = item.Category;
-                if (item.Subcategory) {
+                if (item.Subcategory != "Pamiętnik") {
                     categoryString = categoryString + ', ' + item.Subcategory;
                 }
                 // create one node of searchresult
@@ -147,4 +150,9 @@
             }
         }
     });
+
+    $container.find('.searchResultsMore').on("click",
+        function () {
+            window.location.href = "/Articles/SearchResults/" + "?searchString=" + searchString;
+        });
 };

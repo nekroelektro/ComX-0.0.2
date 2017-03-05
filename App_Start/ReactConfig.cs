@@ -20,7 +20,9 @@ namespace ComX_0._0._2
                 .AddScript("~/Views/Shared/Scripts/Components/NavigationMenu.jsx")
                 .AddScript("~/Views/Shared/Scripts/Components/Categories.jsx")
                 .AddScript("~/Views/Shared/Scripts/Components/LogoPanel.jsx")
-                .AddScript("~/Views/Shared/Scripts/Components/SearchPanel.jsx");
+                .AddScript("~/Views/Shared/Scripts/Components/SearchPanel.jsx")
+                .AddScript("~/Views/Shared/Scripts/Components/SubCategoryPanel.jsx")
+                .AddScript("~/Views/Shared/Scripts/Components/SearchResults.jsx");
 
         }
     }

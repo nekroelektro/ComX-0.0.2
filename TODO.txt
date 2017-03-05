@@ -6,7 +6,8 @@
 	[DONE] subkategorie na górze w pasku (tylko te, które istnieją w scopie kategorii)
 	[DONE] subkategorie do widoku kategorii
 [DONE] kategorie do REACTa
-- TopLogo do React
+[DONE] TopLogo do React
+- przerobić IndexSlider w całości na własny - no i do Reacta
 - subcategorie do postów na main-indeksie
 - Dopicować widoki zapomnianego hasła, user panel itd
 - Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)

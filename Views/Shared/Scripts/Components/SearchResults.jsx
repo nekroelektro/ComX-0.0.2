@@ -1,70 +1,54 @@
-﻿var Categories = React.createClass({
+﻿var SearchResults = React.createClass({
     propTypes: {
-        model: React.PropTypes.object.isRequired,
-        isIndex: React.PropTypes.bool.isRequired,
-        sub: React.PropTypes.string
+        model: React.PropTypes.object.isRequired
     },
     getInitialState: function () {
         return {
-            model: this.props.model,
-            isAjaxRequest: this.props.isIndex,
-            sub: this.props.sub
+            model: this.props.model
         };
     },
     render: function () {
         return (
             <div className="mainCategoryContainer">
-                <CategoriesGui name={this.state.model.CategoryName} isAjaxRequest={this.state.isAjaxRequest} sub={this.state.model.Subcategories} description={this.state.model.Description}></CategoriesGui>
-                {this.state.model.CategoryPosts.length > 0 ?
-                    (
-                    <CategoryList model={this.state.model.CategoryPosts}></CategoryList>
-                    ) : (
-                    <div className="noItemsInCategorySection">
-                        <h3>:( <br />Nie bój, nie bój, jeszcze żadnych dobroci tu nie ma. Pewnikiem będą niebawem.</h3>
-                    </div>
-                    )
-                }
+                <SearchGui searchString={this.state.model.SearchString} sub={this.state.model.Subcategories}></SearchGui>
+                <SearchList model={this.state.model.SearchPosts}></SearchList>
             </div>
 		);
     }
 });
 
-var CategoriesGui = React.createClass({
+var SearchGui = React.createClass({
     propTypes: {
-        name: React.PropTypes.string.isRequired,
-        isAjaxRequest: React.PropTypes.bool.isRequired,
-        sub: React.PropTypes.array.isRequired,
-        description: React.PropTypes.string
+        searchString: React.PropTypes.string.isRequired,
+        sub: React.PropTypes.array
     },
     getInitialState: function () {
         return {
-            sub: this.props.sub,
-            isAjaxRequest: this.props.isAjaxRequest
+            searchString: this.props.searchString,
+            sub: this.props.sub
         };
     },
     render: function () {
         return (
 			<div className="categoryTitlePanel">
                 <div className="articlesIndexHeader">
-                    <h3><span className="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp;&nbsp; KATEGORIE:</h3>
+                    <h3><span className="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;&nbsp; Wyszukaj:</h3>
                 </div>
                 <div className="categoryArticleTitle">
                     <div className="categoryArticleTitle">
-                        <h2>Przeglądasz posty z kategorii <b>{this.props.name}</b>:</h2>
+                        <h2>Przeszukujesz Plazę na okoliczność "<b>{this.state.searchString}</b>":</h2>
                     </div>
                     <hr />
-                    <h3>
-                        {this.props.description}
-                    </h3>
                     <hr />
-                    <SubCategoryPanel sub={this.state.sub} isAjaxRequest={this.state.isAjaxRequest}></SubCategoryPanel>
+                    <hr />
+                    <SubCategoryPanel sub={this.state.sub} isAjaxRequest={false}></SubCategoryPanel>
                 </div>
 			</div>
 		);
     }
 });
 
-var CategoryList = React.createClass({
+var SearchList = React.createClass({
     propTypes: {
         model: React.PropTypes.array.isRequired
     },
@@ -75,7 +59,7 @@ var CategoryList = React.createClass({
     },
     render: function () {
         var categoryArticleNodes = this.state.model.map(function (article) {
-            return <CategoryElement name={article.Name} code={article.CodedName} imagePath={article.ImageUrl} isDiary={article.IsDiary} subcategory={article.Subcategory }></CategoryElement>;
+            return <SearchElement name={article.Name} code={article.CodedName} imagePath={article.ImageUrl} isDiary={article.IsDiary} subcategory={article.Subcategory }></SearchElement>;
         });
         return (
 			<div id="pagerCategories">
@@ -89,7 +73,7 @@ var CategoryList = React.createClass({
     }
 });
 
-var CategoryElement = React.createClass({
+var SearchElement = React.createClass({
     propTypes: {
         name: React.PropTypes.string,
         code: React.PropTypes.string,

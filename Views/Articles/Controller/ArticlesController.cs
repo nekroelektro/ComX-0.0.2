@@ -100,9 +100,14 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View();
         }
 
-        public ActionResult SearchResults(string searchString) {
+        public ActionResult SearchResultsLive(string searchString) {
             var model = documentService.GetSearchResult(searchString);
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SearchResults(string searchString) {
+            var model = documentService.GetSearchResultsDetails(searchString);
+            return PartialView(model);
         }
 
         [HttpPost]
