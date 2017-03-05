@@ -1,9 +1,9 @@
 ﻿function NekroSearch($container, searchIcon)
 {
+    var request;
     var searchContent;
 
     var searchBar = $container.find('.searchBar').hide();
-
     searchIcon.on("click",
         function () {
             searchBar.toggle('slide', { direction: 'right' }, 1000);
@@ -12,10 +12,15 @@
 
     $container.find('#searchBarMain').on("keyup",
         function () {
+            // if there is any pending AJAX request - abort it (for fast typing)
+            if (request) {
+                request.abort();
+            }
+
             var searchTxt = this.value;;
             setTimeout(function () {
                 if (searchTxt.length > 2) {
-                    $.ajax({
+                    request = $.ajax({
                         type: "GET",
                         url: "/Articles/SearchResults",
                         data: { 'searchString': searchTxt }
@@ -98,9 +103,6 @@
                 if (item.Subcategory) {
                     categoryString = categoryString + ', ' + item.Subcategory;
                 }
-
-                // Check if coded name got qutes - if it does, then add apostrphes before and after them
-                console.log(item.CodedName);
                 // create one node of searchresult
                 var searchItem =
                     '<div class="searchItemContainer">' +

@@ -7,6 +7,7 @@
 	[DONE] subkategorie do widoku kategorii
 [DONE] kategorie do REACTa
 - TopLogo do React
+- subcategorie do postów na main-indeksie
 - Dopicować widoki zapomnianego hasła, user panel itd
 - Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)
 [DONE] recenzje muzyczne z indexu do ajaxa
@@ -14,7 +15,7 @@
 	[DONE] nowa ikona użytkownika do searcha - po kliknięciu animacja wysuwania searchbara
 	[DONE] searchbar pewnie na toplogo panelu, doczepioną do slicka przy scrollu
 	[DONE] ładną ramkę live search odświężającą się na onkeyup
-	- do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem
+	- do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem - tutaj mają być kategorie
 - trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
 [DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas

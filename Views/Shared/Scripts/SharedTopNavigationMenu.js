@@ -161,5 +161,8 @@
     //SEARCH
     var $container = $('.navMenuContainer');
     var searchIcon = $('.topNavigationSearchIcon');
+
+    $container.find('.searchBar').addClass("searchBarNav");
+
     NekroSearch($container, searchIcon);
 });

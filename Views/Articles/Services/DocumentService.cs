@@ -577,7 +577,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     Category = articleHelper.GetCategoryById(item.CategoryId).Name,
                     Subcategory = articleHelper.GetSubCategoryById(item.SubCategoryId).Name,
                     Date = item.DateCreated.ToLongDateString(),
-                    SortCode = item.Name.Contains(searchString) ? 1 : 2
+                    SortCode = item.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()) ? 1 : 2
                 };
                 results.Add(element);
             }
@@ -596,7 +596,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     ImageUrl = articleHelper.GetImageRelativePathByArticleId(diary.Id),
                     Category = "Pamiętnik",
                     Date = diary.DateCreated.ToLongDateString(),
-                    SortCode = diary.Name.Contains(searchString) ? 1 : 2
+                    SortCode = diary.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()) ? 1 : 2
                 };
                 results.Add(diaryElement);
             }

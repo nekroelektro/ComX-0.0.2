@@ -185,6 +185,11 @@
         $.magnificPopup.close();
     });
 
+    $('#logoImage').on("click",
+        function() {
+            window.location.href = "/";
+        });
+
     
     $(document)
       .ajaxStart(function () {

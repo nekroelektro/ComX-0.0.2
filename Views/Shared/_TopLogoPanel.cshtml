@@ -1,110 +1,11 @@
 ﻿@using ComX_0._0._2.Helpers
-@using Microsoft.AspNet.Identity
+@using React.AspNet
 @{
     UserHelper userHelper = new UserHelper();
-    GeneralHelper generalHelper = new GeneralHelper();
-    var currentUrl = generalHelper.GetCurrentPageUrl();
+    bool isAdmin = userHelper.IsAdminUser(User);
+    bool isAuthenticated = Request.IsAuthenticated;
 }
-<div class="container logoSection">
-    <div class="logo">
-        <a href="@Url.Action("Index", "Articles")">
-            <img src='~/Content/images/logoWhite.jpg' />
-        </a>
-    </div>
-    <div class="rightLogoPanel">
-        <div class="logoMenu">
-            <div class="searchBar">
-                <input id="searchBarMain" placeholder="Wyserczuj se..."/>
-                <div class="searchResultsContainer">
-                    <div class="searchResultsElements">
-                        
-                    </div>
-                    <div class="searchResultsMore">
-                        <h4>Pokaż wszystkie wyniki</h4>
-                    </div>
-                    <div class="searchResultsNoMore">
-                        <h4>Wincyj nie znalazłem</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="logoSearch logoComponent">
-                <a class="topLogoLastAnchor logoComponentAnchor">
-                    <div class="logoComponentIcon">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    </div>
-                    <div class="logoComponentText">
-                        SZUKAJ
-                    </div>
-                </a>
-            </div>
-            @if (userHelper.IsAdminUser(User)) {
-                <div class="logoConfiguration logoComponent">
-                    <a class="topLogoLastAnchor logoComponentAnchor" href="@Url.Action("Articles", "Configuration")">
-                        <div class="logoComponentIcon">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </div>
-                        <div class="logoComponentText">
-                            KONFIGURACJA
-                        </div>
-                    </a>
-                </div>
-            }
-            @if (Request.IsAuthenticated) {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm"})) {
-                    @Html.AntiForgeryToken()
-                    <div class="logoUserPanel logoComponent">
-                        <a class="topLogoLastAnchor logoComponentAnchor" href="@Url.Action("UserPanel", "Account")">
-                            <div class="logoComponentIcon">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            </div>
-                            <div class="logoComponentText">
-                                PROFIL
-                            </div>
-                        </a>
-                    </div>
-                    <div class="logoLogout logoComponent">
-                        <a class="topLogoLastAnchor logoComponentAnchor" href="javascript:document.getElementById('logoutForm').submit()">
-                            <div class="logoComponentIcon">
-                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                            </div>
-                            <div class="logoComponentText">
-                                WYLOGUJ
-                            </div>
-                        </a>
-                    </div>
-                }
-            }
-            else {
-                <div class="logoRegistration logoComponent">
-                    <a class="topLogoLastAnchor popupRegisterModal logoComponentAnchor" href="#login-modal">
-                        <div class="logoComponentIcon">
-                            <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
-                        </div>
-                        <div class="logoComponentText">
-                            ZAREJESTRUJ
-                        </div>
-                    </a>
-                </div>
-                <div class="logoLogin logoComponent">
-                    <a class="topLogoLastAnchor popupLoginModal logoComponentAnchor" href="#login-modal">
-                        <div class="logoComponentIcon">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        </div>
-                        <div class="logoComponentText">
-                            ZALOGUJ
-                        </div>
-                    </a>
-                </div>
-            }
-        </div>
-    </div>
-</div>
-<div id="login-modal" class="mfp-hide white-popup wide-popup">
-    <a class="popupClose"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-    <div id="loader"><img src="../../Content/images/loader.gif" /></div>
-    <div class="loginContentInModal"></div>
-</div>
-
+@Html.React("LogoPanel", new { admin = isAdmin, authenticated = isAuthenticated})
 
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Shared/Scripts/SharedTopLogoPanel.js"></script>
