@@ -26,5 +26,10 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public string CatalogueNumber { get; set; }
 
         public int SortCode { get; set; }
+
+        // For Config
+        public DateTime DateOfCreation { get; set; }
+        public Guid? UserId { get; set; }
+        public bool IsPublished { get; set; }
     }
 }

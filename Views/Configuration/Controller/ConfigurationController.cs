@@ -25,8 +25,8 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
         private readonly UserHelper userHelper = new UserHelper();
 
         public ActionResult Articles() {
-            var documents = documentService.GetDocumentForIndex(false, 0, true);
-            return View(documents.Where(x => x.UserId == userHelper.GetCurrentLoggedUserId()));
+            var model = configurationService.GetConfigurationArticlesDetails();
+            return View(model.Where(x => x.UserId == userHelper.GetCurrentLoggedUserId()));
         }
 
         public ActionResult Users() {

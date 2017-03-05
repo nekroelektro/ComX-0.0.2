@@ -23,7 +23,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             if (document.IsDiary) {
                 var diaryObject = new Diary {
                     Id = documentIdentifier,
-                    Name = document.Name,
+                    Name = document.Name.Replace("'", "`"), //for search to jquery not escape quotes
                     Body = document.Body,
                     DateCreated = DateTime.Now,
                     Label = document.Label,
@@ -39,7 +39,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             else {
                 var articleObject = new Models.Articles {
                     Id = documentIdentifier,
-                    Name = document.Name,
+                    Name = document.Name.Replace("'", "`"), //for search to jquery not escape quotes
                     IndexDescription = document.IndexDescription,
                     Prelude = document.Prelude,
                     Body = document.Body,
@@ -132,24 +132,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
             db.SaveChanges();
         }
 
-        public DetailsModelDto GetDocumentForDetails(string name, bool isDiary, bool isDetailPanel) {
-            var documentObject = new DetailsModelDto();
-            if (isDiary) {
-                var diary = db.Diary.First(x => x.Name == name);
-                documentObject = GetDiary(documentObject, diary, isDetailPanel);
-            }
-            else {
-                var article = db.Articles.First(x => x.Name == name);
-                documentObject = GetArticle(documentObject, article, isDetailPanel);
-            }
-            return documentObject;
-        }
-
-        public List<IndexModelDto> GetDocumentForIndex(bool onlyArticles, int number = 0, bool isConfiguration = false) {
-            var documents = GetIndexDocuments(onlyArticles, number, isConfiguration);
-            return documents;
-        }
-
         public DocumentModelDto GetDocument(Guid id, bool isDiary) {
             var document = new DocumentModelDto();
             if (isDiary) {
@@ -167,20 +149,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 document.IsDiary = false;
             }
             return document;
-        }
-
-        public List<DocumentModelDto> GetDiaries() {
-            var diariesList = new List<DocumentModelDto>();
-            var diaries = db.Diary.Where(x => x.IsPublished).ToList();
-            foreach (var diary in diaries) {
-                var document = new DocumentModelDto();
-                document.Id = diary.Id;
-                document.Name = diary.Name;
-                document.DateCreated = diary.DateCreated;
-                document.IsDiary = true;
-                diariesList.Add(document);
-            }
-            return diariesList;
         }
 
         public void DeleteDocument(Guid id, bool isDiary) {
@@ -236,39 +204,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
             db.SaveChanges();
         }
 
-        public List<CommentModelDto> GetCommentsForDocument(Guid articleId) {
-            var commentList = new List<CommentModelDto>();
-            var document = db.Comments.Where(x => x.ArticleId == articleId);
-            foreach (var item in document) {
-                var comment = new CommentModelDto {
-                    Id = item.Id,
-                    Body = item.Body,
-                    UserId = item.UserId,
-                    DateCreated = item.DateOfCreation,
-                    ArticleId = item.ArticleId,
-                    IsDiary = item.IsDiary
-                };
-                commentList.Add(comment);
-            }
-            if (commentList.Count > 0) commentList.OrderByDescending(x => x.DateCreated).ToList();
-            return commentList;
-        }
-
-        public CommentModelDto GetCommentDetails(Guid commentId) {
-            var comment = new CommentModelDto();
-            var document = db.Comments.Find(commentId);
-            if (document != null)
-                comment = new CommentModelDto {
-                    Id = document.Id,
-                    Body = document.Body,
-                    UserId = document.UserId,
-                    DateCreated = document.DateOfCreation,
-                    ArticleId = document.ArticleId,
-                    IsDiary = document.IsDiary
-                };
-            return comment;
-        }
-
         public void CreateComment(string body, Guid articleId, bool isDiary) {
             var newComment = new Comments {
                 Id = Guid.NewGuid(),
@@ -293,22 +228,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var comment = db.Comments.Find(commentId);
             db.Comments.Remove(comment);
             db.SaveChanges();
-        }
-
-        public List<CommentModelDto> GetComments(int? number) {
-            List<Comments> comments;
-            comments = number != null
-                ? db.Comments.OrderByDescending(x => x.DateOfCreation).Take(number.Value).ToList()
-                : db.Comments.ToList();
-
-            return comments.Select(comment => new CommentModelDto {
-                Id = comment.Id,
-                Body = comment.Body,
-                UserId = comment.UserId,
-                DateCreated = comment.DateOfCreation,
-                ArticleId = comment.ArticleId,
-                IsDiary = comment.IsDiary
-            }).ToList();
         }
 
         public SideBarDetailsDto GetSideBarDetails(int? numberOfComments) {
@@ -649,95 +568,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var currentUser = userHelper.GetCurrentLoggedUserId();
             return currentUser != Guid.Empty &&
                    (commentAuthorId == currentUser || userHelper.UserIsSuperAdmin(currentUser));
-        }
-
-        private List<IndexModelDto> GetIndexDocuments(bool onlyArticles, int number, bool isConfiguration) {
-            var articles = new List<Models.Articles>();
-            if (isConfiguration) articles = db.Articles.ToList();
-            else
-                articles =
-                    (number == 0
-                        ? db.Articles.Where(x => x.IsPublished)
-                        : db.Articles.Where(x => x.IsPublished).Take(number)).OrderByDescending(x => x.DateCreated)
-                    .ToList();
-            var documents = articles.Select(item => new IndexModelDto {
-                Id = item.Id,
-                Name = item.Name,
-                IndexPrologue = item.IndexDescription,
-                Prologue = item.Prelude,
-                DateCreation = item.DateCreated,
-                Series = item.Series,
-                Categories = item.CategoryId,
-                SubCategories = item.SubCategoryId,
-                UserId = item.UserId,
-                IsDiary = false,
-                IsPublished = item.IsPublished
-            }).ToList();
-            if (!onlyArticles) {
-                var diary = new List<Diary>();
-                if (isConfiguration) diary = db.Diary.ToList();
-                else
-                    diary =
-                        (number == 0
-                            ? db.Diary.Where(x => x.IsPublished)
-                            : db.Diary.Where(x => x.IsPublished).Take(number))
-                        .OrderByDescending(x => x.DateCreated).ToList();
-                documents.AddRange(diary.Select(item => new IndexModelDto {
-                    Id = item.Id,
-                    Name = item.Name,
-                    DateCreation = item.DateCreated,
-                    UserId = item.UserId,
-                    IsDiary = true,
-                    IsPublished = item.IsPublished
-                }));
-            }
-            return documents.OrderByDescending(x => x.DateCreation).ToList();
-        }
-
-        private DetailsModelDto GetDiary(DetailsModelDto documentObject, Diary diary, bool isDetailPanel) {
-            if (!isDetailPanel) {
-                documentObject.Id = diary.Id;
-                documentObject.Body = diary.Body;
-                documentObject.Name = diary.Name;
-                documentObject.IsDiary = true;
-                documentObject.AlbumYear = diary.AlbumYear;
-                documentObject.ReleaseYear = diary.ReleaseYear;
-                documentObject.CatalogueNumber = diary.CatalogueNumber;
-                documentObject.Label = diary.Label;
-                documentObject.Genre = diary.Genre;
-            }
-            else {
-                documentObject.Id = diary.Id;
-                documentObject.Name = diary.Name;
-                documentObject.IsDiary = true;
-                documentObject.UserId = diary.UserId;
-                documentObject.DateCreated = diary.DateCreated;
-                documentObject.Series = new Guid("d86d5afe-93c9-4562-a577-4273ecdb1a58");
-            }
-            return documentObject;
-        }
-
-        private DetailsModelDto GetArticle(DetailsModelDto documentObject, Models.Articles article, bool isDetailPanel) {
-            if (!isDetailPanel) {
-                documentObject.Id = article.Id;
-                documentObject.Name = article.Name;
-                documentObject.Body = article.Body;
-                documentObject.IndexDescription = article.IndexDescription;
-                documentObject.CategoryId = article.CategoryId;
-                documentObject.Prelude = article.Prelude;
-                documentObject.IsDiary = false;
-            }
-            else {
-                documentObject.Id = article.Id;
-                documentObject.Name = article.Name;
-                documentObject.CategoryId = article.CategoryId;
-                documentObject.SubCategoryId = article.SubCategoryId;
-                documentObject.UserId = article.UserId;
-                documentObject.DateCreated = article.DateCreated;
-                documentObject.Series = article.Series;
-                documentObject.IsDiary = false;
-            }
-            return documentObject;
         }
     }
 }

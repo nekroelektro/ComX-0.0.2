@@ -1121,6 +1121,7 @@
   <ItemGroup>
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
+    <Folder Include="Views\Configuration\Models\DtoModels\" />
     <Folder Include="Views\Configuration\Styles\" />
     <Folder Include="Views\Nekropedia\Scripts\" />
     <Folder Include="Views\Nekropedia\Styles\" />

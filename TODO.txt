@@ -10,7 +10,9 @@
 [DONE] Naprawić złe wyświetlanie "więcej z kategorii" z navigation top na ekranie detailsów
 - przerobić IndexSlider w całości na własny - no i do Reacta
 - Edit i Create na jednym formularzu, do Reacta
+[DONE] wyczyścić BLL z nieużywanego crapu
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
+- ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 - naprawić paging na ajaxowej liście recek
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
