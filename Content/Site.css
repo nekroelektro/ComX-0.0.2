@@ -8,6 +8,10 @@
     position: relative;
 }
 
+*:focus {
+    outline: none;
+}
+
 p:selection {
     color: white;
     background: #2B823C;
@@ -644,6 +648,13 @@ a {
 .searchItemDetailsTags {
     text-align: center;
     text-transform: none;
+}
+
+/* SUBCATEGORIES */
+.categorySubContainer {
+    display: inline-flex;
+    text-transform: uppercase;
+    float: right;
 }
 
 /* RESPONSIVES */

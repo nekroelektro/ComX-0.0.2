@@ -162,9 +162,3 @@
     bottom: 0; 
     right: 0;
 }
-
-.categorySubContainer {
-    display: inline-flex;
-    text-transform: uppercase;
-    float: right;
-}

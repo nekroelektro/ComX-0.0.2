@@ -7,16 +7,21 @@
 	[DONE] subkategorie do widoku kategorii
 [DONE] kategorie do REACTa
 [DONE] TopLogo do React
+[DONE] Naprawić złe wyświetlanie "więcej z kategorii" z navigation top na ekranie detailsów
 - przerobić IndexSlider w całości na własny - no i do Reacta
+- Edit i Create na jednym formularzu, do Reacta
+[DONE] topNavigation subkategorie zunifikować z pozostałymi
+- naprawić paging na ajaxowej liście recek
 - subcategorie do postów na main-indeksie
+- katalogowy widok postów do oddzielnego komponentu reacta
 - Dopicować widoki zapomnianego hasła, user panel itd
 - Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)
 [DONE] recenzje muzyczne z indexu do ajaxa
-- KONIECZNIE ZROBIć PIĘKNY SEARCH!
+[DONE] KONIECZNIE ZROBIć PIĘKNY SEARCH!
 	[DONE] nowa ikona użytkownika do searcha - po kliknięciu animacja wysuwania searchbara
 	[DONE] searchbar pewnie na toplogo panelu, doczepioną do slicka przy scrollu
 	[DONE] ładną ramkę live search odświężającą się na onkeyup
-	- do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem - tutaj mają być kategorie
+	[DONE] do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem - tutaj mają być kategorie
 - trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
 [DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas

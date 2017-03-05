@@ -415,6 +415,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
             }
             details.Articles = postList;
 
+            details.Subcategories = details.Articles.Select(x => x.Subcategory).Distinct().ToList();
+
             var diaries = db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(5).ToList();
             var diaryList = new List<IndexDiaryDto>();
             foreach (var item in diaries) {
@@ -610,12 +612,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
             details.SearchString = searchString;
             details.SearchPosts = GetSearchResult(searchString);
             details.Subcategories = details.SearchPosts.Select(x => x.Subcategory).Distinct().ToList();
-
-            //Check if there are any Diary records, if yes - change subCategory to diary
-            //int nullValue = details.Subcategories.IndexOf(null);
-            //if (nullValue != -1) {
-            //    details.Subcategories[nullValue] = "Pamiętnik";
-            //}
             return details;
         }
 

@@ -10,7 +10,7 @@
     render: function() {
         return (
             <div className="indexContainer">
-                <IndexMainArticles articles={this.state.model.Articles}></IndexMainArticles>
+                <IndexMainArticles articles={this.state.model.Articles} sub={this.state.model.Subcategories}></IndexMainArticles>
 			    <IndexMainDiaries diaries={this.state.model.Diaries}></IndexMainDiaries>
                 <IndexMainReviews reviews={this.state.model.Reviews}></IndexMainReviews>
             </div>
@@ -20,11 +20,13 @@
 
 var IndexMainArticles = React.createClass({
 	propTypes: {
-		articles: React.PropTypes.array.isRequired
+	    articles: React.PropTypes.array.isRequired,
+        sub: React.PropTypes.array.isRequired
 	},
 	getInitialState: function () {
 	    return {
-	        articles: this.props.articles
+	        articles: this.props.articles,
+            sub: this.props.sub
 	    };
 	},
 	render: function () {

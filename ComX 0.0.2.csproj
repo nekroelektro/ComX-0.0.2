@@ -879,10 +879,10 @@
     <Content Include="Views\Account\_Account.cshtml" />
     <Content Include="Views\Shared\Scripts\Components\Categories.jsx" />
     <Content Include="Views\Shared\Scripts\Components\LogoPanel.jsx" />
-    <Content Include="Views\Shared\Scripts\Components\SearchPanel.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\Global\SearchPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\SearchResults.jsx" />
     <Content Include="Views\Articles\SearchResults.cshtml" />
-    <Content Include="Views\Shared\Scripts\Components\SubCategoryPanel.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\Global\SubCategoryPanel.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />

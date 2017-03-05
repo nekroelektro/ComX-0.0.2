@@ -114,50 +114,7 @@
         });
 
     // Subcategories tweaks
-    $('.topNavigationSubcategoriesElement').on("click", function () {
-        currentlyActiveSub = $(this);
-        var selectedSubText = currentlyActiveSub.text();
-        var closestContainer = currentlyActiveSub.closest('.lastArticlesFromCategoryTopNavigation');
-        var subElements = closestContainer.find('.topNavigationLastAnchor');
-        var x = 0;
-        subElements.hide();
-        subElements.each(function () {
-            // take first 4 posts
-            if (x <= 3) {
-                //this crap is case sensitive too
-                if (selectedSubText != "Wszystkie") {
-                    if ($(this).data('sub').toString() != selectedSubText) {
-                    } else {
-                        $(this).fadeIn("slow");
-                        x++;
-                    }
-                } else {
-                    $(this).fadeIn("slow");
-                    x++;
-                }
-            }
-        });
-        currentlyActiveSub.addClass('topNavigationSubcategoriesElementHover').siblings().removeClass("topNavigationSubcategoriesElementHover");;
-    });
-
-    $('.topNavigationSubcategoriesElement')
-        .mouseover(function () {
-            if ($(this) != currentlyActiveSub) {
-                $(this).css({
-                    color: "#2B823C",
-                    borderBottom: '#2b823c solid 4px'
-                });
-            }
-        })
-        .mouseout(function () {
-            if ($(this) != currentlyActiveSub) {
-                $(this).css({
-                    color: "white",
-                    borderBottom: 'white solid 4px'
-                });
-            }
-        });
-
+    NekroSub(true);
     //SEARCH
     var $container = $('.navMenuContainer');
     var searchIcon = $('.topNavigationSearchIcon');

@@ -32,6 +32,8 @@
         contentSelector: '.singleIndexArticle'
     });
 
+    //NekroSub(false);
+
     $('.indexSingleReviewAnchor')
         .mouseover(function () {
             $(this).find("#reviewIndexImage").addClass('transition');
