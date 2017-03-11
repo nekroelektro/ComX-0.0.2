@@ -53,7 +53,7 @@ namespace ComX_0._0._2.Views.Configuration.Services {
                 };
                 details.Add(diaryElement);
             }
-            return details.OrderByDescending(x=>x.Date).ToList();
+            return details.OrderByDescending(x=>x.DateOfCreation).ToList();
         }
     }
 }

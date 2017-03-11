@@ -883,6 +883,7 @@
     <Content Include="Views\Shared\Scripts\Components\SearchResults.jsx" />
     <Content Include="Views\Articles\SearchResults.cshtml" />
     <Content Include="Views\Shared\Scripts\Components\Global\SubCategoryPanel.jsx" />
+    <Content Include="fonts\Eater-Regular.ttf" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />

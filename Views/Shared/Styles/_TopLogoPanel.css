@@ -35,3 +35,7 @@
 .logoComponentIcon {
     font-size: 3em;
 }
+
+.logoLogout {
+    cursor: pointer;
+}

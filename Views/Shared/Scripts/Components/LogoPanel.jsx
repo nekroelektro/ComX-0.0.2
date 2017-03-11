@@ -90,7 +90,7 @@ var RightLogoPanel = React.createClass({
                                 </a>
                             </div>
                             <div className="logoLogout logoComponent">
-                                <a className="topLogoLastAnchor logoComponentAnchor" href="javascript:document.getElementById('logoutForm').submit()">
+                                <a className="topLogoLastAnchor logoComponentAnchor logoLogoutAnchor">
                                     <div className="logoComponentIcon">
                                         <span className="glyphicon glyphicon-off" aria-hidden="true"></span>
                                     </div>

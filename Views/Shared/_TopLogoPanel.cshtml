@@ -5,6 +5,7 @@
     bool isAdmin = userHelper.IsAdminUser(User);
     bool isAuthenticated = Request.IsAuthenticated;
 }
+@Html.AntiForgeryToken()
 @Html.React("LogoPanel", new { admin = isAdmin, authenticated = isAuthenticated})
 
 @*SCRIPTS FOR VIEW*@

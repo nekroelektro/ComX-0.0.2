@@ -20,7 +20,7 @@
     columns.Add(x => x.IsPublished).Titled("Published").RenderValueAs(x => x.IsPublished ? "Yes" : "No").SetWidth(50);
     columns.Add(x => x.Category).Titled("Category").Filterable(true).SetWidth(130);
     columns.Add(x => x.Subcategory).Titled("SubCategory").Filterable(true).SetWidth(130);
-    columns.Add(x => x.DateOfCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(180);
+    columns.Add(x => x.DateOfCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Descending).SetWidth(180);
 }).WithPaging(10).Sortable(true).Filterable(true)
     </div>
 

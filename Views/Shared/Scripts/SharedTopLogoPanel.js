@@ -45,6 +45,19 @@
             window.location.href = "/";
         });
 
+    //$('.logoLogoutAnchor').attr('href', 'javascript:document.getElementById("logoutForm").submit()');
+    var token = $('[name=__RequestVerificationToken]').val();
+    $('.logoLogoutAnchor').on("click",
+        function() {
+            $.ajax({
+                url: "/Account/LogOff",
+                method: "POST",
+                data: { '__RequestVerificationToken': token },
+                success: function() {
+                    location.reload(true);
+                }
+            });
+        });
     
     $(document)
       .ajaxStart(function () {

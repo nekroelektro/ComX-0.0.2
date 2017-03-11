@@ -456,7 +456,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [ValidateAntiForgeryToken]
         public ActionResult LogOff() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Articles");
+            // return empty result because ajax autamatically reloads current page after logout
+            return new EmptyResult();
         }
 
         //

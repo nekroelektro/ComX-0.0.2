@@ -12,6 +12,7 @@
 - Edit i Create na jednym formularzu, do Reacta
 [DONE] wyczyścić BLL z nieużywanego crapu
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
+- AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
 - ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 - naprawić paging na ajaxowej liście recek
 - subcategorie do postów na main-indeksie
@@ -26,6 +27,10 @@
 	[DONE] do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem - tutaj mają być kategorie
 - trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
 [DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
+KONFIGURACJA:
+	- najpierw dopicować widoki (włącznie z górnym paskiem)
+	- przenieść widoki do REACTA
+	- jako danych używać tych wziętych z własnego service
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
 - dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 - zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
