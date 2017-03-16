@@ -1,72 +1,12 @@
-﻿@model ComX_0._0._2.Views.Account.Models.LoginViewModel
+﻿@using React.AspNet
+@model ComX_0._0._2.Views.Account.Models.LoginViewModel
 @{
     ViewBag.Title = "NekroPlaza - zaloguj się";
     Layout = Request.IsAjaxRequest() ? null : "~/Views/Account/_Account.cshtml";
 }
-<div class="loginContainer">
-    <h2 class="loginTopLabel">Zaloguj się</h2>
-    <p>
-        Podaj swoją nazwę użytkownika i hasło. @Html.ActionLink("Zarejestruj się", "Register") jeśli nie masz konta.
-    </p>
-    <div class="row">
-        <div class="col-md-12">
-            <section id="loginForm loginFormCustom">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })){
-                    @Html.AntiForgeryToken()
-                    <div class="form-horizontal">
-                        <hr/>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UserName, htmlAttributes: new {@class = "control-label col-md-4"})
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.UserName, new {htmlAttributes = new {@class = "form-control"}})
-                                @Html.ValidationMessageFor(model => model.UserName, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Password, htmlAttributes: new {@class = "control-label col-md-4"})
-                            <div class="col-md-8">
-                                @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="checkbox-inline">
-                                    @Html.CheckBoxFor(m => m.RememberMe)
-                                    @Html.LabelFor(m => m.RememberMe)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn nekrobutton-green loginConfirmButton">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Zaloguj!
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                @Html.ValidationMessage("loginError", new {@style = "color: red"})
-                            </div>
-                        </div>
-                    </div>
-                    <div class="forgotPasswordLogin col-md-12">
-                        <h4>
-                            @Html.ActionLink("Choroba, nie pamiętam hasła!", "ForgotPassword")
-                        </h4>
-                    </div>
-                }
-            </section>
-        </div>
-        @*<div class="col-md-4">
-                <section id="socialLoginForm">
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                    @Html.ActionLink("Zalohuj się przez pejsa!", "Facebook", "Account")
-                </section>
-            </div>*@
-    </div>
-</div>
-
+@Html.AntiForgeryToken()
+@Html.React("LoginPanel", new {})
 
 @*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Account/Scripts/AccountLogin.js"></script>
 <link href="~/Views/Account/Styles/Login.css" rel="stylesheet" type="text/css" />

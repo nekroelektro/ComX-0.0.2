@@ -12,8 +12,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly IDocumentService documentService = new DocumentService();
-        private readonly GeneralHelper generalHelper = new GeneralHelper();
-        private readonly UserHelper userHelper = new UserHelper();
 
         public ActionResult Index() {
             var model = documentService.GetIndexDetails();

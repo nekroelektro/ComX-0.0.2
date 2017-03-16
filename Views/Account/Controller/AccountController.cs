@@ -112,7 +112,12 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl) {
+        public async Task<ActionResult> Login(string userName, string password, bool rememberMe) {
+            LoginViewModel model = new LoginViewModel();
+            model.UserName = userName;
+            model.Password = password;
+            model.RememberMe = rememberMe;
+
             if (!ModelState.IsValid) {
                 return View(model);
             }
@@ -123,19 +128,15 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
             switch (result) {
                 case SignInStatus.Success:
-                    if (string.IsNullOrEmpty(returnUrl)) {
-                        return RedirectToAction("Index", "Articles");
-                    }
-                    return Redirect(returnUrl);
+                    return Json(true);
                 case SignInStatus.LockedOut:
-                    return View("_HumanumErrareEst");
+                    return Json(false);
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new {ReturnUrl = returnUrl, model.RememberMe});
+                    return Json(false);
                 case SignInStatus.Failure:
+                    return Json(false);
                 default:
-                    ModelState.AddModelError("LoginError",
-                        "Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!");
-                    return PartialView(model);
+                    return Json(false);
             }
         }
 
