@@ -193,8 +193,28 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model) {
+        public async Task<ActionResult> Register(string userName, string mail, string password, string confirmPassword) {
+            RegisterViewModel model = new RegisterViewModel();
+            model.Username = userName;
+            model.Email = mail;
+            model.Password = password;
+            model.ConfirmPassword = confirmPassword;
+
             if (ModelState.IsValid) {
+                // error handling for ajax request
+                var errorMessage = "";
+                var userDbContext = db.Users;
+                if (userDbContext.Any(x => x.UserName == model.Username)) {
+                    errorMessage += "Podana nazwa użytkownika już istnieje!";
+                }
+                if (userDbContext.Any(x => x.Email == model.Email)) {
+                    errorMessage += "Podany adres e-mail już istnieje!";
+                }
+                if (!string.IsNullOrEmpty(errorMessage)) {
+                    var data = new {Success = false, Message = errorMessage};
+                    return Json(data);
+                }
+
                 var user = new ApplicationUser {UserName = model.Username, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
@@ -224,7 +244,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
                     var emailService = new Helpers.SmtpHelpers.EmailService();
                     var status = emailService.SendEmailMessage(message);
-                    return RedirectToAction("Index", "Articles");
+                    var data = new { Success = true, Message = "" };
+                    return Json(data);
                 }
                 AddErrors(result);
             }
@@ -572,16 +593,16 @@ namespace ComX_0._0._2.Views.Account.Controller {
         }
 
         //To check if user with that username exists during registration
-        [AllowAnonymous]
-        public async Task<JsonResult> UserNameExists(string userName) {
-            var result =
-                await UserManager.FindByNameAsync(userName) ??
-                await UserManager.FindByEmailAsync(userName);
-            return Json(result == null, JsonRequestBehavior.AllowGet);
-            //var user = Membership.GetUser(userName);
-            //var usr = userHelper.GetUserByName(userName);
-            //return Json(usr == null);
-        }
+        //[AllowAnonymous]
+        //public async Task<JsonResult> UserNameExists(string userName) {
+        //    var result =
+        //        await UserManager.FindByNameAsync(userName) ??
+        //        await UserManager.FindByEmailAsync(userName);
+        //    return Json(result == null, JsonRequestBehavior.AllowGet);
+        //    //var user = Membership.GetUser(userName);
+        //    //var usr = userHelper.GetUserByName(userName);
+        //    //return Json(usr == null);
+        //}
 
         #region Helpers
 

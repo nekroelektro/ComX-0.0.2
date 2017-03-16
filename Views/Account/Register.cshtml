@@ -1,9 +1,12 @@
-﻿@model ComX_0._0._2.Views.Account.Models.RegisterViewModel
+﻿@using React.AspNet
+@model ComX_0._0._2.Views.Account.Models.RegisterViewModel
 @{
     ViewBag.Title = "NekroPlaza - zarejestruj się";
     Layout = Request.IsAjaxRequest() ? null : "~/Views/Account/_Account.cshtml";
 }
-<div class="registrationContainer">
+@Html.AntiForgeryToken()
+@Html.React("RegisterPanel", new {})
+@*<div class="registrationContainer">
     <h2 class="registerTopLabel">Zróbmy sobie konto...</h2>
     <p>
         Formularz pod spodem poprowadzi Cię przez żmudny proces rejestracji, doceń.
@@ -58,9 +61,10 @@
             </div>
         </div>
     }
-</div>
+</div>*@
 
 @*SCRIPTS FOR VIEW*@
+<script type="text/javascript" src="~/Views/Account/Scripts/AccountRegister.js"></script>
 <link href="~/Views/Account/Styles/Register.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

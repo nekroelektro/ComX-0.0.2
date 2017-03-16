@@ -69,7 +69,7 @@ namespace ComX_0._0._2.Views.Account.Models {
         [Required]
         [StringLength(25, ErrorMessage = "Twój nick (pol. Mikołajek) musi mieć przynajmniej {2} znaki a do tego nie więcej niż {1}, sory memory.", MinimumLength = 3)]
         [Display(Name = "Nazwa użytkownika")]
-        [Remote("UserNameExists", "Account", ErrorMessage = "Taki ziomek już istnieje! Wybierz inny login...")]
+        //[Remote("UserNameExists", "Account", ErrorMessage = "Taki ziomek już istnieje! Wybierz inny login...")]
         public string Username { get; set; }
 
         [Required]

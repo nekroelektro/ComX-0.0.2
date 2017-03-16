@@ -16,8 +16,3 @@
     margin: 0 auto; 
     text-align: center;
 }
-
-.loginErrorMessageContainer {
-    color: red;
-    display: none;
-}

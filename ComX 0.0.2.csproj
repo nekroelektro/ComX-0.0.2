@@ -862,6 +862,7 @@
     <Content Include="scripts\NekroSub.js" />
     <Content Include="scripts\styles.js" />
     <Content Include="scripts\tinymce.min.js" />
+    <Content Include="Views\Account\Scripts\AccountRegister.js" />
     <Content Include="Views\Account\Scripts\AccountLogin.js" />
     <Content Include="Views\Articles\Scripts\ArticlesSearchResults.js" />
     <Content Include="Views\Shared\Scripts\Components\IndexSlider.jsx" />
@@ -886,6 +887,7 @@
     <Content Include="Views\Shared\Scripts\Components\Global\SubCategoryPanel.jsx" />
     <Content Include="fonts\Eater-Regular.ttf" />
     <Content Include="Views\Shared\Scripts\Components\LoginPanel.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\RegisterPanel.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
