@@ -11,13 +11,18 @@
         }
 
     //Hack for not fetching editor config if user not logged
-        if (!$('#editComment-modal').is(":visible") && $('.logoUserPanel ').is(":visible")) {
+    if (!$('#editComment-modal').is(":visible") && $('.logoUserPanel ').is(":visible")) {
         //var editorInstance = CKEDITOR.instances['commentEditor'];
         //if (editorInstance) {
-        //    editorInstance.destroy(true);
+        //    try {
+        //        editorInstance.destroy(true);
+        //    } catch (e) { }
         //}
-            CKEDITOR.replace('commentEditor');
-        }
+        setTimeout(function() {
+                CKEDITOR.replace('commentEditor');
+            },
+            300);
+    }
 
     //For deleting single comment
         $('.popupCommentDelete').magnificPopup({
@@ -76,7 +81,9 @@
         $(document).on('click', '.btnCancelEdit', function (e) {
             var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
             if (editorInstanceEdit) {
-                editorInstanceEdit.destroy(true);
+                try {
+                    editorInstanceEdit.destroy(true);
+                }catch(e){}
             }
             e.preventDefault();
             $.magnificPopup.close();
@@ -96,7 +103,9 @@
             if ($('#editComment-modal').is(":visible")) {
                 var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
                 if (editorInstanceEdit) {
-                    editorInstanceEdit.destroy(true);
+                    try {
+                        editorInstanceEdit.destroy(true);
+                    }catch(e){}
                 }
                 CKEDITOR.replace('editCommentWindowContainer');
                 CKEDITOR.instances['editCommentWindowContainer'].setData(body);
@@ -111,7 +120,13 @@
                 })
                     .success(function (response) {
                         var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
-                        editorInstanceEdit.destroy(true);
+                        if (editorInstanceEdit) {
+                            try {
+                                // Chrome plugin error fix
+                                editorInstanceEdit.focusManager.blur(true);
+                                editorInstanceEdit.destroy(true);
+                            } catch (e) { }
+                        }
                         $.magnificPopup.close();
                         handleAddAfterEdit(response);
                     });
