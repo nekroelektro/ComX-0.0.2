@@ -74,6 +74,10 @@
         });
         
         $(document).on('click', '.btnCancelEdit', function (e) {
+            var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
+            if (editorInstanceEdit) {
+                editorInstanceEdit.destroy(true);
+            }
             e.preventDefault();
             $.magnificPopup.close();
         });      
@@ -90,10 +94,10 @@
             var diary = $(this).data('diary').toString();
             var body = $(this).data('body').toString();
             if ($('#editComment-modal').is(":visible")) {
-                //var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
-                //if (editorInstanceEdit) {
-                //    editorInstanceEdit.destroy(true);
-                //}
+                var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
+                if (editorInstanceEdit) {
+                    editorInstanceEdit.destroy(true);
+                }
                 CKEDITOR.replace('editCommentWindowContainer');
                 CKEDITOR.instances['editCommentWindowContainer'].setData(body);
             }

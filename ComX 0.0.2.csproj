@@ -888,6 +888,7 @@
     <Content Include="fonts\Eater-Regular.ttf" />
     <Content Include="Views\Shared\Scripts\Components\LoginPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\RegisterPanel.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\Edit.jsx" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <None Include="scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="scripts\gridmvc.js" />
