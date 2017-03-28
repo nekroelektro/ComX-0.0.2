@@ -46,8 +46,9 @@ var LoginForm = React.createClass({
                                 <div className="form-group">
                                     <div className="col-md-12">
                                         <div className="checkbox-inline">
-                                            <input type="checkbox" name="rememberCheckbox" checked={this.state.remember} onChange={this.handleRememberChange} />
-                                            Zapamiętaj mnie!
+                                            <label>
+                                                <input type="checkbox" name="rememberCheckbox" checked={this.state.remember} onChange={this.handleRememberChange} /> Zapamiętaj mnie!
+                                            </label>
                                         </div>
                                     </div>
                                 </div>

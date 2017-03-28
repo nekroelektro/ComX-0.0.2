@@ -18,6 +18,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         void DeleteComment(Guid commentId);
         void UpdateComment(string body, Guid commentId);
 
+        EditDto GetEditDetails(bool createMode, bool isDiary, Guid? id);
         SideBarDetailsDto GetSideBarDetails(int? numberOfComments);
         List<ArticleDto> GetSliderDetails();
         IndexMainDto GetIndexDetails();

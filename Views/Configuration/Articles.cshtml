@@ -8,7 +8,7 @@
     var userHelper = new UserHelper();
 }
 <div>
-    <button type="button" class="btn btn-success btn-m" onclick="location.href = '@Url.Action("Create", "Articles")'">
+    <button type="button" class="btn btn-success btn-m" onclick="location.href = '/Articles/Edit?createMode=true&id=00000000-0000-0000-0000-000000000000&isDiary=false'">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add article
     </button>
     <h2>Twoje artykuły (@Model.Where(x => x.IsPublished).Count().ToString()/@Model.Count().ToString() opublikowane):</h2>

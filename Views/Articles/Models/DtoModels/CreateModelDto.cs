@@ -19,12 +19,12 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public DateTime DateCreated { get; set; }
         public bool IsPublished { get; set; }
         public string Prelude { get; set; }
-        public Guid? UserId { get; set; }
-        public Guid? CategoryId { get; set; }
-        public Guid? SubCategoryId { get; set; }
+        public string UserId { get; set; }
+        public string CategoryId { get; set; }
+        public string SubCategoryId { get; set; }
         public DateTime? DateEdited { get; set; }
         public string IndexDescription { get; set; }
-        public Guid? Series { get; set; }
+        public string Series { get; set; }
         public string CatalogueNumber { get; set; }
     }
 }

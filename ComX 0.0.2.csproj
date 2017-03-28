@@ -471,6 +471,7 @@
     <Content Include="Content\images\logoWhite.jpg" />
     <Content Include="Content\images\logoWhiteSMALL.jpg" />
     <Content Include="Content\images\maintenanceImage.jpg" />
+    <Content Include="Content\images\noAvPlaceHolder.jpg" />
     <Content Include="Content\images\npLogo.png" />
     <Content Include="Content\images\npLogos.jpg" />
     <Content Include="Content\images\npLogos.png" />
@@ -865,6 +866,7 @@
     <Content Include="Views\Account\Scripts\AccountRegister.js" />
     <Content Include="Views\Account\Scripts\AccountLogin.js" />
     <Content Include="Views\Articles\Scripts\ArticlesSearchResults.js" />
+    <Content Include="Views\Articles\Styles\Edit.css" />
     <Content Include="Views\Shared\Scripts\Components\IndexSlider.jsx" />
     <Content Include="Views\Shared\Scripts\Components\IndexMain.jsx" />
     <Content Include="Views\Shared\Scripts\Components\Details.jsx" />
@@ -998,6 +1000,7 @@
     <Compile Include="Views\Articles\Models\DtoModels\CreateModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DetailsModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DocumentModelDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\EditDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexCommentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexDiaryDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexMainDto.cs" />

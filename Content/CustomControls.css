@@ -1,14 +1,26 @@
-﻿.nekrobutton-green {
+﻿.nekrobutton-green, .nekrobutton-red {
     color: whitesmoke;
     background-color: #2B823C;
     border-color: #116321;
     font-family: 'Coda', sans-serif;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .nekrobutton-green:hover {
     color: whitesmoke;
     background-color: #5CAD6C;
     border-color: #116321;
+}
+
+.nekrobutton-red {
+    background-color: darkred;
+    border-color: crimson;
+}
+
+.nekrobutton-red:hover {
+    background-color: red;
+    border-color: orangered
 }
 
 .btn-info:focus,

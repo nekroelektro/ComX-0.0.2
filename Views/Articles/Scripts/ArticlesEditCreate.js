@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    //$('#clearUploadControlButton').hide();
+
     window.tinymce.init({
         selector: '.articleEditor',
         theme: 'modern',
@@ -25,12 +27,58 @@
     });
 
     if ($('#IsDiaryEdit').attr('checked')) {
-        console.log("a");
         $('.diaryCreateComponent').show();
         $('.articleCreateComponent').hide();
     } else {
-        console.log("ab");
         $('.diaryCreateComponent').hide();
         $('.articleCreateComponent').show();
     }
+
+    // Create/Edit handling
+    var name,
+        description,
+        prelude,
+        body,
+        category,
+        subCategory,
+        series,
+        label,
+        genre,
+        albumYear,
+        releaseYear,
+        catalog,
+        isPublished,
+        isDiary,
+        createMode;
+
+    if ($('#imgUp').val() != "") {
+        $('#clearUploadControlButton').show();
+    }
+
+    $('#imgUp').change(function() {
+        if ($('#imgUp').val() != "") {
+            $('#clearUploadControlButton').removeClass('hidden');
+        }
+    });
+
+    var handleSubmitEdit = function () {
+        // przypisz wartości z kontrolek do variablesów
+    }
+
+    $('#clearUploadControlButton').click(function() {
+        $('#imgUp').val('');
+        $('#clearUploadControlButton').addClass('hidden');
+    });
+
+    $('#submitArticleEditCreate').click(function () {
+        handleSubmitEdit();
+            $.ajax({
+                url: "/Articles/CommentEdit/",
+                type: "POST",
+                data: { 'bodyText': body, 'commentId': comIdentificator, 'articleId': artIdentificator, 'isDiary': diary }
+            })
+                .success(function (response) {
+                    handleAddAfterEdit(response);
+        });
+    });
 });

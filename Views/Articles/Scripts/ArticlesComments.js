@@ -8,6 +8,14 @@
         var handleAddAfterEdit = function (container) {
             $("#detailsCommentSection").empty();
             $("#detailsCommentSection").html(container);
+
+            var editorInstance = CKEDITOR.instances['commentEditor'];
+            if (editorInstance) {
+                try {
+                    editorInstance.focusManager.blur(true);
+                    editorInstance.destroy(true);
+                } catch (e) { }
+            }
         }
 
     //Hack for not fetching editor config if user not logged

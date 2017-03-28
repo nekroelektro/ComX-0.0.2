@@ -251,7 +251,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Index", "Articles");
         }
 
         [AllowAnonymous]
@@ -565,6 +565,9 @@ namespace ComX_0._0._2.Views.Account.Controller {
         public ActionResult GetAvatar(Guid userId) {
             try {
                 var avatar = userHelper.GetAvatarByUserId(userId);
+                if (avatar == null) {
+                    avatar = userHelper.GetAvatarByUserId(new Guid("d8bf3a8a-dc63-4f71-bf1c-c2ffe5c30b2d"));
+                }
                 return File(avatar, "image/jpeg");
             }
             catch (Exception ex) {

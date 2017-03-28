@@ -1,21 +1,17 @@
-﻿@using System.Web.UI.WebControls
-@using ComX_0._0._2.Helpers
-@model ComX_0._0._2.Views.Articles.Models.DtoModels.CreateModelDto
+﻿@using ComX_0._0._2.Helpers
+@using React.AspNet
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.EditDto
 
 @{
     Layout = "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "Edit";
-    ArticleHelper articleHelper = new ArticleHelper();
     UserHelper userHelper = new UserHelper();
-    if (Model.Id == Guid.Empty) {
-        Model.Id = ViewBag.ArticleId;
-    }
+    bool panelActive = userHelper.IsSuperAdminUser(User) || (userHelper.IsAdminUser(User) && new Guid(userHelper.GetUserByName(Model.Document.UserId).Id) == userHelper.GetCurrentLoggedUserId());
 }
-@if (userHelper.IsAdminUser(User)) {
-    <h2>Edit</h2>
+@Html.AntiForgeryToken()
+@Html.React("Edit", new {model=Model, isAdmin = panelActive})
 
-
-using (Html.BeginForm("Edit", "Articles", FormMethod.Post,
+@*using (Html.BeginForm("Edit", "Articles", FormMethod.Post,
      new {enctype = "multipart/form-data"})) {
      @Html.AntiForgeryToken()
      <div class="form-horizontal">
@@ -167,15 +163,11 @@ using (Html.BeginForm("Edit", "Articles", FormMethod.Post,
              </div>
          </div>
      </div>
- }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-}
+ }*@
 @*SCRIPTS FOR VIEW*@
 <script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesEditCreate.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="@Url.Content("//cdn.tinymce.com/4/tinymce.min.js")"></script>
+<link href="~/Views/Articles/Styles/Edit.css" rel="stylesheet" type="text/css" />

@@ -279,6 +279,11 @@ namespace ComX_0._0._2.Helpers {
             return series;
         }
 
+        public Series GetSeriesByName(string seriesName){
+            var series = db.Series.First(x=>x.Name == seriesName);
+            return series;
+        }
+
         public List<Articles> GetLastMusicReviews(int numberOfReviews) {
             var reviews = db.Articles.Where(
                 x =>

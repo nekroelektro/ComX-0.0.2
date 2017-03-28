@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models;
@@ -43,9 +44,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     IndexDescription = document.IndexDescription,
                     Prelude = document.Prelude,
                     Body = document.Body,
-                    CategoryId = document.CategoryId.Value,
-                    SubCategoryId = document.SubCategoryId.Value,
-                    Series = document.Series.Value,
+                    CategoryId = articleHelper.GetCategoryByName(document.CategoryId).Id,
+                    SubCategoryId = articleHelper.GetCategoryByName(document.SubCategoryId).Id,
+                    Series = articleHelper.GetSeriesByName(document.Series).Id,
                     DateCreated = DateTime.Now,
                     DateEdited = DateTime.Now,
                     IsPublished = document.IsPublished,
@@ -71,7 +72,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 document.Label = diary.Label;
                 document.IsPublished = diary.IsPublished;
                 document.CatalogueNumber = diary.CatalogueNumber;
-                document.UserId = diary.UserId;
+                document.UserId = userHelper.GetUserById(diary.UserId).UserName;
             }
             else {
                 var article = db.Articles.Find(id);
@@ -81,13 +82,13 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 document.IsDiary = false;
                 document.DateCreated = article.DateCreated;
                 document.IsPublished = article.IsPublished;
-                document.UserId = article.UserId;
+                document.UserId = userHelper.GetUserById(article.UserId).UserName;
                 document.Prelude = article.Prelude;
                 document.IndexDescription = article.IndexDescription;
                 document.DateEdited = article.DateEdited;
-                document.CategoryId = article.CategoryId;
-                document.SubCategoryId = article.SubCategoryId;
-                document.Series = article.Series;
+                document.CategoryId = articleHelper.GetCategoryById(article.CategoryId).Name;
+                document.SubCategoryId = articleHelper.GetSubCategoryById(article.SubCategoryId).Name;
+                document.Series = articleHelper.GetSeriesById(article.Series).Name;
             }
             return document;
         }
@@ -118,9 +119,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     entity.Body = document.Body;
                     entity.Prelude = document.Prelude;
                     entity.DateEdited = DateTime.Now;
-                    entity.CategoryId = document.CategoryId.Value;
-                    entity.SubCategoryId = document.SubCategoryId.Value;
-                    entity.Series = document.Series.Value;
+                    entity.CategoryId = articleHelper.GetCategoryByName(document.CategoryId).Id;
+                    entity.SubCategoryId = articleHelper.GetCategoryByName(document.SubCategoryId).Id;
+                    entity.Series = articleHelper.GetSeriesByName(document.Series).Id;
                     entity.IndexDescription = document.IndexDescription;
                     if (entity.IsPublished != document.IsPublished) {
                         entity.IsPublished = document.IsPublished;
@@ -151,83 +152,19 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return document;
         }
 
-        public void DeleteDocument(Guid id, bool isDiary) {
-            if (isDiary) db.Diary.Remove(db.Diary.Find(id));
-            else db.Articles.Remove(db.Articles.Find(id));
-            DeleteImageForGivenDocument(id);
-            db.SaveChanges();
-        }
+        public EditDto GetEditDetails(bool createMode, bool isDiary, Guid? id){
+            var details = new EditDto();
+            details.Document = createMode ? new CreateModelDto() : this.GetDocumentForEdit(id.Value, isDiary);
 
-        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload, bool isDiary) {
-            var imgToUpload = new Images();
-            if (upload != null) {
-                imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"),
-                    imgToUpload.FileName);
-                upload.SaveAs(path);
+            // Populating edit comboboxes
+            details.Categories = new List<List<SelectListItem>>();
+            details.Categories.Add(articleHelper.GetCategoriesToCombo().OrderBy(x=>x.Text).ToList());
+            details.Categories.Add(articleHelper.GetSubCategoriesToCombo().OrderBy(x => x.Text).ToList());
+            details.Categories.Add(articleHelper.GetSeriesToCombo().OrderBy(x => x.Text).ToList());
 
-                imgToUpload.Id = Guid.NewGuid();
-                imgToUpload.ArticleId = articleIdentifier;
-                imgToUpload.ImagePath = path;
-                imgToUpload.FileSize = upload.ContentLength;
-                imgToUpload.FileFormat = upload.ContentType;
-                imgToUpload.OriginalWidth = 200;
-                imgToUpload.OriginalHeight = 200;
-                imgToUpload.DateOfChange = DateTime.Now;
-                imgToUpload.IsDiary = isDiary;
-            }
-            db.Images.Add(imgToUpload);
-            db.SaveChanges();
-        }
-
-        public void UploadImageForGallery(HttpPostedFileBase upload) {
-            var imgToUpload = new ImagesGallery();
-            if (upload != null) {
-                imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
-                upload.SaveAs(path);
-
-                imgToUpload.Id = Guid.NewGuid();
-                imgToUpload.ImagePath = path;
-                imgToUpload.DateOfCreation = DateTime.Now;
-            }
-            db.ImagesGallery.Add(imgToUpload);
-            db.SaveChanges();
-        }
-
-        public void DeleteImageForGivenDocument(Guid id) {
-            var imageToDelete = db.Images.FirstOrDefault(x => x.ArticleId == id);
-            if (imageToDelete != null && File.Exists(imageToDelete.ImagePath)) {
-                File.Delete(imageToDelete.ImagePath);
-                db.Images.Remove(imageToDelete);
-            }
-            db.SaveChanges();
-        }
-
-        public void CreateComment(string body, Guid articleId, bool isDiary) {
-            var newComment = new Comments {
-                Id = Guid.NewGuid(),
-                Body = body,
-                UserId = userHelper.GetCurrentLoggedUserId(),
-                ArticleId = articleId,
-                DateOfCreation = DateTime.Now,
-                IsDiary = isDiary
-            };
-            db.Comments.Add(newComment);
-            db.SaveChanges();
-        }
-
-        public void UpdateComment(string body, Guid commentId) {
-            var entity = db.Comments.Where(c => c.Id == commentId).AsQueryable().FirstOrDefault();
-            if (entity != null) entity.Body = body;
-            db.Entry(entity).State = EntityState.Modified;
-            db.SaveChanges();
-        }
-
-        public void DeleteComment(Guid commentId) {
-            var comment = db.Comments.Find(commentId);
-            db.Comments.Remove(comment);
-            db.SaveChanges();
+            details.ArticleImage = articleHelper.GetImageRelativePathByArticleId(id.Value);
+            details.IsCreate = createMode;
+            return details;
         }
 
         public SideBarDetailsDto GetSideBarDetails(int? numberOfComments) {
@@ -243,8 +180,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
             foreach (var item in comments) {
                 var comment = new IndexCommentModelDto {
                     UserName = userHelper.GetUserById(item.UserId).UserName,
-                    ArticleName = GetArticleName(item.ArticleId),
-                    ArticleCodedName = generalHelper.RemoveSpecialCharsFromString(GetArticleName(item.ArticleId)),
+                    ArticleName = item.IsDiary? GetDiaryName(item.ArticleId) : GetArticleName(item.ArticleId),
+                    ArticleCodedName = generalHelper.RemoveSpecialCharsFromString(item.IsDiary? GetDiaryName(item.ArticleId) + "?isDiary=true" : GetArticleName(item.ArticleId)),
                     isDiary = item.IsDiary
                 };
                 commentList.Add(comment);
@@ -534,6 +471,85 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return details;
         }
 
+        public void DeleteDocument(Guid id, bool isDiary) {
+            if (isDiary) db.Diary.Remove(db.Diary.Find(id));
+            else db.Articles.Remove(db.Articles.Find(id));
+            DeleteImageForGivenDocument(id);
+            db.SaveChanges();
+        }
+
+        public void UploadImageForArticle(Guid articleIdentifier, HttpPostedFileBase upload, bool isDiary) {
+            var imgToUpload = new Images();
+            if (upload != null) {
+                imgToUpload.FileName = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Container"),
+                    imgToUpload.FileName);
+                upload.SaveAs(path);
+
+                imgToUpload.Id = Guid.NewGuid();
+                imgToUpload.ArticleId = articleIdentifier;
+                imgToUpload.ImagePath = path;
+                imgToUpload.FileSize = upload.ContentLength;
+                imgToUpload.FileFormat = upload.ContentType;
+                imgToUpload.OriginalWidth = 200;
+                imgToUpload.OriginalHeight = 200;
+                imgToUpload.DateOfChange = DateTime.Now;
+                imgToUpload.IsDiary = isDiary;
+            }
+            db.Images.Add(imgToUpload);
+            db.SaveChanges();
+        }
+
+        public void UploadImageForGallery(HttpPostedFileBase upload) {
+            var imgToUpload = new ImagesGallery();
+            if (upload != null) {
+                imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
+                upload.SaveAs(path);
+
+                imgToUpload.Id = Guid.NewGuid();
+                imgToUpload.ImagePath = path;
+                imgToUpload.DateOfCreation = DateTime.Now;
+            }
+            db.ImagesGallery.Add(imgToUpload);
+            db.SaveChanges();
+        }
+
+        public void DeleteImageForGivenDocument(Guid id) {
+            var imageToDelete = db.Images.FirstOrDefault(x => x.ArticleId == id);
+            if (imageToDelete != null && File.Exists(imageToDelete.ImagePath)) {
+                File.Delete(imageToDelete.ImagePath);
+                db.Images.Remove(imageToDelete);
+            }
+            db.SaveChanges();
+        }
+
+        public void CreateComment(string body, Guid articleId, bool isDiary) {
+            var newComment = new Comments {
+                Id = Guid.NewGuid(),
+                Body = body,
+                UserId = userHelper.GetCurrentLoggedUserId(),
+                ArticleId = articleId,
+                DateOfCreation = DateTime.Now,
+                IsDiary = isDiary
+            };
+            db.Comments.Add(newComment);
+            db.SaveChanges();
+        }
+
+        public void UpdateComment(string body, Guid commentId) {
+            var entity = db.Comments.Where(c => c.Id == commentId).AsQueryable().FirstOrDefault();
+            if (entity != null) entity.Body = body;
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void DeleteComment(Guid commentId) {
+            var comment = db.Comments.Find(commentId);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+        }
+
         private CategoryDto GetCategoryModelDto(ArticleCategories model) {
             var category = new CategoryDto();
             var postsFromCategory =
@@ -561,6 +577,11 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         private string GetArticleName(Guid id) {
             var name = db.Articles.Where(x => x.Id == id).Select(x => x.Name).Single();
+            return name;
+        }
+
+        private string GetDiaryName(Guid id) {
+            var name = db.Diary.Where(x => x.Id == id).Select(x => x.Name).Single();
             return name;
         }
 

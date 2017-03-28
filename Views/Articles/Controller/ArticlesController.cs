@@ -132,13 +132,9 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(document);
         }
 
-        public ActionResult Edit(Guid? id, bool isDiary) {
-            var document = documentService.GetDocumentForEdit(id.Value, isDiary);
-            ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
-            ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
-            ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
-            ViewBag.ArticleIdentificator = id;
-            return View(document);
+        public ActionResult Edit(bool createMode, Guid? id, bool isDiary) {
+            var model = documentService.GetEditDetails(createMode, isDiary, id);
+            return View(model);
         }
 
         [HttpPost]

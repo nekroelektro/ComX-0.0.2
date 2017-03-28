@@ -1,73 +1,269 @@
 ﻿var Edit = React.createClass({
+    propTypes: {
+        model: React.PropTypes.object.isRequired,
+        isAdmin: React.PropTypes.bool.isRequired
+    },
+    getInitialState: function () {
+        return {
+            model: this.props.model,
+            isAdmin: this.props.isAdmin
+        };
+    },
     render: function () {
         return (
-            <div className="loginContainer">
-                <LoginForm></LoginForm>
+            <div className="editContainer">
+                {this.state.isAdmin &&
+                    <EditForm model={this.state.model}></EditForm>
+                }
             </div>
 		);
     }
 });
 
-var LoginForm = React.createClass({
-    getInitialState: function() {
-        return {login: '', password: '', remember: false};
+var EditForm = React.createClass({
+    propTypes: {
+        model: React.PropTypes.object.isRequired,
     },
-    handleLoginChange: function(e) {
-        this.setState({login: e.target.value});
+    getInitialState: function () {
+        return {
+            categoryLists: this.props.model.Categories,
+            isCreateMode: this.props.model.IsCreate,
+            isDiary: this.props.model.Document.IsDiary,
+            isPublished: this.props.model.Document.IsPublished,
+            dateEdited: this.props.model.Document.DateEdited,
+            id: this.props.model.Document.Id,
+            name: this.props.model.Document.Name,
+            body: this.props.model.Document.Body,
+            label: this.props.model.Document.Label,
+            albumYear: this.props.model.Document.AlbumYear,
+            releaseYear: this.props.model.Document.ReleaseYear,
+            genre: this.props.model.Document.Genre,
+            catalogue: this.props.model.Document.CatalogueNumber,
+            dateCreated: this.props.model.Document.DateCreated,
+            prelude: this.props.model.Document.Prelude,
+            author: this.props.model.Document.UserId,
+            category: this.props.model.Document.CategoryId,
+            subcategory: this.props.model.Document.SubCategoryId,
+            series: this.props.model.Document.Series,
+            description: this.props.model.Document.IndexDescription,
+            articleImage: this.props.model.ArticleImage
+        };
     },
-    handlePasswordChange: function(e) {
-        this.setState({password: e.target.value});
+    handleDateEditedChange: function (e) {
+        this.setState({ dateEdited: e.target.value });
     },
-    handleRememberChange: function(e) {
-        this.setState({ remember: e.target.value });
+    handleIsPublishedChange: function (e) {
+        this.setState({ isPublished: e.target.value });
+    },
+    handleIsDiaryChange: function (e) {
+        this.setState({ isDiary: e.target.value });
+    },
+    handleNameChange: function (e) {
+        this.setState({ name: e.target.value });
+    },
+    handleBodyChange: function (e) {
+        this.setState({ body: e.target.value });
+    },
+    handleLabelChange: function (e) {
+        this.setState({ label: e.target.value });
+    },
+    handleAlbumYearChange: function (e) {
+        this.setState({ albumYear: e.target.value });
+    },
+    handleReleaseYearChange: function (e) {
+        this.setState({ releaseYear: e.target.value });
+    },
+    handleGenreChange: function (e) {
+        this.setState({ genre: e.target.value });
+    },
+    handleCatalogueChange: function (e) {
+        this.setState({ catalogue: e.target.value });
+    },
+    handleDescriptionChange: function (e) {
+        this.setState({ description: e.target.value });
+    },
+    handlePreludeChange: function (e) {
+        this.setState({ prelude: e.target.value });
+    },
+    handleCategoryChange: function (e) {
+        this.setState({ category: e.target.value });
+    },
+    handleSubcategoryChange: function (e) {
+        this.setState({ subcategory: e.target.value });
+    },
+    handleSeriesChange: function (e) {
+        this.setState({ series: e.target.value });
     },
     render: function () {
+        var categoryNodes = this.state.categoryLists[0].map(function (cat) {
+            return <option value={cat.Text }>{cat.Text}</option>;
+        });
+        var subCategoryNodes = this.state.categoryLists[1].map(function (subCat) {
+            return <option value={subCat.Text }>{subCat.Text}</option>;
+        });
+        var seriesNodes = this.state.categoryLists[2].map(function (ser) {
+            return <option value={ser.Text }>{ser.Text}</option>;
+        });
+        var imagePresent = this.state.articleImage == "default.jpg" ? false : true;
         return (
-            <div className="LoginFormContainer">
-                <h2 className="loginTopLabel">Zaloguj się</h2>
-                <p>
-                    Podaj swoją nazwę użytkownika i hasło. Jeśli nie masz konta <a href="/Account/Register/">ZAREJESTRUJ SIĘ</a>.
-                </p>
-		        <div className="row">
-                    <div className="col-md-12">
-                        <section id="loginForm loginFormCustom">
-                            <div className="form-horizontal">
-                                <hr />
-                                <div className="form-group">
-                                    <div className="col-md-8 col-md-offset-3">
-                                        <input type="text" name="userNameInput" className="form-control" placeholder="Nazwa użytkownika..." value={this.state.login} onchange={this.handleLoginChange} />
-                                    </div>
+            <div className="EditFormContainer">
+                <div className="formCenteredLastElement">
+                    {this.state.isCreateMode ?
+                    (
+                        <h2>Tworzysz teraz nowy artykuł, koleżko!</h2>
+                    ) :
+                    (
+                        <h2>Edytujesz teraz swój artykuł!</h2>
+                    )
+                    }
+                </div>
+                <hr />
+
+                <div className="form-horizontal">
+                    <div className="form-group">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>DATA UTWORZENIA ARTYKUŁU:</b>
+                            <input type="text" name="dateCreatedInput" className="form-control" disabled value={this.state.dateCreated} />
+                        </div>
+                    </div>
+                    <div className="form-group articleCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>DATA OSTATNIEJ EDYCJI ARTYKUŁU:</b>
+                            <input type="text" name="dateEditedInput" className="form-control" disabled value={this.state.dateEdited} onchange={this.handleDateEditedChange} />
+                        </div>
+                    </div>
+                    {this.state.isCreateMode &&
+                    <div className="form-group">
+                        <div className="col-md-offset-1 col-md-10">
+                            <div className="checkbox-inline">
+                                <label>
+                                    <input type="checkbox" name="diaryCheckbox" id="IsDiary" checked={this.state.isDiary} onChange={this.handleIsDiaryChange} /> Czy to wpis do pamiętnika płytoholika?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    <hr />
+                    <div className="form-group">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>OBRAZEK:</b>
+                                <div className="editImage">
+                                    {!imagePresent ?
+                                    (
+                                <div className="editUploadControl">
+                                    <input type="file" id="imgUp" name="upload" />
+                                    <button id="clearUploadControlButton" className="btn nekrobutton-red hidden">
+                                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> Usuń obrazek
+                                    </button>
                                 </div>
-                                <div className="form-group">
-                                    <div className="col-md-8 col-md-offset-3">
-                                        <input type="password" name="passInput" className="form-control" placeholder="Hasło..." value={this.state.password} onchange={this.handlePasswordChange} />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="col-md-12">
-                                        <div className="checkbox-inline">
-                                            <input type="checkbox" name="rememberCheckbox" checked={this.state.remember} onChange={this.handleRememberChange} />
-                                            Zapamiętaj mnie!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="col-md-12">
-                                        <button type="submit" className="btn nekrobutton-green loginConfirmButton">
-                                            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Zaloguj!
+                                    ) : (
+                                <div className="editImageControl">
+                                    <img className="editUploadedImage" src={this.state.articleImage} />
+                                    <div className="buttons">
+                                        <button id="clearImageControlButton" className="btn nekrobutton-red">
+                                            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> Usuń obrazek
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="loginErrorMessageContainer"></div>
-                            <div className="forgotPasswordLogin col-md-12">
-                                <h4>
-                                    <a href="/Account/ForgotPassword">Choroba, nie pamiętam hasła!</a>
-                                </h4>
-                            </div>
-                        </section>
+                                    )
+                                    }
+                                </div>
+                        </div>
                     </div>
-			    </div>
+                    <div className="form-group">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>TYTUŁ:</b>
+                            <input type="text" name="nameInput" className="form-control" value={this.state.name} onchange={this.handleNameChange} />
+                        </div>
+                    </div>
+                    <div className="form-group articleCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>KROTKI OPIS:</b>
+                            <textarea type="text" name="indexDescriptionInput" className="form-control articleEditor" value={this.state.description} onchange={this.handleDescriptionChange} />
+                        </div>
+                    </div>
+                    <div className="form-group articleCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>WSTĘPNIAK:</b>
+                            <textarea type="text" name="preludeInput" className="form-control articleEditor" value={this.state.prelude} onchange={this.handlePreludeChange} />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>TREŚĆ ARTYKUŁU:</b>
+                            <textarea type="text" name="bodyInput" className="form-control articleEditor" value={this.state.body} onchange={this.handleBodyChange} />
+                        </div>
+                    </div>
+                    <div className="form-group articleCreateComponent">
+                        <div className="col-md-offset-1 col-lg-10">
+                            <b>KATEGORIA:</b>
+                            <select name="categoryCombo" className="form-control" value={this.state.category} onChange={this.handleCategoryChange}>
+                                {categoryNodes}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-group articleCreateComponent">
+                        <div className="col-md-offset-1 col-lg-10">
+                            <b>PODKATEGORIA:</b>
+                            <select name="subcategoryCombo" className="form-control" value={this.state.subcategory} onChange={this.handleSubcategoryChange}>
+                                {subCategoryNodes}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-group articleCreateComponent">
+                        <div className="col-md-offset-1 col-lg-10">
+                            <b>CYKL:</b>
+                            <select name="seriesCombo" className="form-control" value={this.state.series} onChange={this.handleSeriesChange}>
+                                {seriesNodes}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-group diaryCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>LABEL:</b>
+                            <input type="text" name="labelInput" className="form-control" value={this.state.label} onchange={this.handleLabelChange} />
+                        </div>
+                    </div>
+                    <div className="form-group diaryCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>GATUNEK:</b>
+                            <input type="text" name="genreInput" className="form-control" value={this.state.genre} onchange={this.handleGenreChange} />
+                        </div>
+                    </div>
+                    <div className="form-group diaryCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>ROK PRODUKCJI:</b>
+                            <input type="text" pattern="[0-9]*" name="albumYearInput" className="form-control" value={this.state.albumYear} onchange={this.handleAlbumYearChange} />
+                        </div>
+                    </div>
+                    <div className="form-group diaryCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>ROK WYDANIA:</b>
+                            <input type="text" pattern="[0-9]*" name="releaseYearInput" className="form-control" value={this.state.releaseYear} onchange={this.handleReleaseYearChange} />
+                        </div>
+                    </div>
+                    <div className="form-group diaryCreateComponent">
+                        <div className="col-md-offset-1 col-md-10">
+                            <b>NR KATALOGOWY:</b>
+                            <input type="text" name="catalogueInput" className="form-control" value={this.state.catalogue} onchange={this.handleCatalogueChange} />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="col-md-offset-1 col-md-10">
+                            <div className="checkbox-inline">
+                                <label>
+                                    <input type="checkbox" name="publishCheckbox" checked={this.state.isPublished} onChange={this.handleIsPublishedChange} /> OPUBLIKUJ
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="form-group formCenteredLastElement">
+                        <button type="submit" className="btn nekrobutton-green" id="submitArticleEditCreate">
+                            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> {this.state.isCreateMode ? ("Dodaj artykuł!") : ("Zaktualizuj artykuł!")}
+                        </button>
+                    </div>
+                </div>
             </div>
 		);
     }
