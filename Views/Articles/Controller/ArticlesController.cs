@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
@@ -122,7 +124,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                     if (!validImageTypes.Contains(upload.ContentType))
                         ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
                 }
-                documentService.CreateDocument(document, upload);
+                //documentService.CreateDocument(document, upload);
                 return RedirectToAction("Details",
                     new {
                         id = document.Name,
@@ -132,26 +134,37 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(document);
         }
 
-        public ActionResult Edit(bool createMode, Guid? id, bool isDiary) {
+        public ActionResult Edit(bool createMode, Guid? id, bool isDiary = false) {
             var model = documentService.GetEditDetails(createMode, isDiary, id);
             return View(model);
         }
 
         [HttpPost]
+        public ActionResult Upload() {
+            System.IO.Stream body = Request.InputStream;
+            System.Text.Encoding encoding = Request.ContentEncoding;
+            System.IO.StreamReader reader = new System.IO.StreamReader(body, encoding);
+            string json = reader.ReadToEnd();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            CreateModelDto myclass = (CreateModelDto)serializer.Deserialize(json, typeof(CreateModelDto));
+            return Content("OK");
+        }
+
+        [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(CreateModelDto document, HttpPostedFileBase upload) {
-            if (upload != null) {
+        public ActionResult Edit(CreateModelDto document) {
+            if (document.File != null) {
                 var validImageTypes = new[] {
                     "image/gif",
                     "image/jpeg",
                     "image/pjpeg",
                     "image/png"
                 };
-                if (!validImageTypes.Contains(upload.ContentType))
+                if (!validImageTypes.Contains(document.File.ContentType))
                     ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
             }
             if (ModelState.IsValid) {
-                documentService.UpdateDocument(document, upload);
+                documentService.UpdateDocument(document);
                 return RedirectToAction("Details",
                     new {
                         id = document.Name,
@@ -178,11 +191,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         public ActionResult DeleteImage(Guid articleId, bool isDiary) {
             documentService.DeleteImageForGivenDocument(articleId);
-            ViewBag.ArticleId = articleId;
-            return RedirectToAction("Edit", new {
-                id = articleId,
-                isDiary
-            });
+            var redirectUrl = new UrlHelper(Request.RequestContext).Action("Edit", "Articles", new { createMode = false, id = articleId, isDiary });
+            return Json(new { Url = redirectUrl });
         }
     }
 }

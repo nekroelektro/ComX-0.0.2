@@ -18,9 +18,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
 
-        public void CreateDocument(CreateModelDto document, HttpPostedFileBase upload) {
+        public void CreateDocument(CreateModelDto document) {
             var documentIdentifier = Guid.NewGuid();
-            if (upload != null) UploadImageForArticle(documentIdentifier, upload, document.IsDiary);
+            if (document.File != null) UploadImageForArticle(documentIdentifier, document.File, document.IsDiary);
             if (document.IsDiary) {
                 var diaryObject = new Diary {
                     Id = documentIdentifier,
@@ -93,8 +93,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return document;
         }
 
-        public void UpdateDocument(CreateModelDto document, HttpPostedFileBase upload) {
-            if (upload != null) UploadImageForArticle(document.Id, upload, document.IsDiary);
+        public void UpdateDocument(CreateModelDto document) {
+            if (document.File != null) UploadImageForArticle(document.Id, document.File, document.IsDiary);
             if (document.IsDiary) {
                 var entity = db.Diary.Where(c => c.Id == document.Id).AsQueryable().FirstOrDefault();
                 if (entity != null) {
@@ -120,7 +120,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     entity.Prelude = document.Prelude;
                     entity.DateEdited = DateTime.Now;
                     entity.CategoryId = articleHelper.GetCategoryByName(document.CategoryId).Id;
-                    entity.SubCategoryId = articleHelper.GetCategoryByName(document.SubCategoryId).Id;
+                    entity.SubCategoryId = articleHelper.GetSubCategoryByName(document.SubCategoryId).Id;
                     entity.Series = articleHelper.GetSeriesByName(document.Series).Id;
                     entity.IndexDescription = document.IndexDescription;
                     if (entity.IsPublished != document.IsPublished) {
@@ -131,6 +131,15 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 db.Entry(entity).State = EntityState.Modified;
             }
             db.SaveChanges();
+        }
+
+        public void EditDocument(CreateModelDto document) {
+            if (document.IsCreate) {
+                this.CreateDocument(document);
+            }
+            else {
+                this.UpdateDocument(document);
+            }
         }
 
         public DocumentModelDto GetDocument(Guid id, bool isDiary) {

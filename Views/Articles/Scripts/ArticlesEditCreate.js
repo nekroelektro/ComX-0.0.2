@@ -1,6 +1,4 @@
 ﻿$(document).ready(function () {
-    //$('#clearUploadControlButton').hide();
-
     window.tinymce.init({
         selector: '.articleEditor',
         theme: 'modern',
@@ -35,50 +33,79 @@
     }
 
     // Create/Edit handling
-    var name,
-        description,
-        prelude,
-        body,
-        category,
-        subCategory,
-        series,
-        label,
-        genre,
-        albumYear,
-        releaseYear,
-        catalog,
-        isPublished,
-        isDiary,
-        createMode;
+    var form;
+    var formData;
+    var handleSubmitEdit = function () {
+        // Serialize form data for injection to .NET
+        form = $('.EditFormContainer');
+        formData = new FormData(form[0]);
+        // Get changes in html editors
+        formData.set('IndexDescription', tinymce.get('IndexDescription').getContent());
+        formData.set('Prelude', tinymce.get('Prelude').getContent());
+        formData.set('Body', tinymce.get('Body').getContent());
+
+        // For hidden and disabled fields
+        formData.set('Id', $('[name=Id]').val());
+        formData.set('IsCreate', $('[name=IsCreate]').is(":checked"));
+        formData.set('IsDiary', $('[name=IsDiary]').is(":checked"));
+        formData.set('DateCreated', $('[name=DateCreated]').val());
+        formData.set('DateEdited', $('[name=DateEdited]').val());
+        formData.set('IsPublished', $('[name=IsPublished]').is(":checked"));
+    }
+
+    var appendUploadControlAfterDelete = function() {
+        var uploadControl = '<div class="editUploadControl">' +
+            '<input type="file" id="imgUp" name="upload" />' +
+            '<button id="clearUploadControlButton" class="btn nekrobutton-red hidden">' +
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Usuń obrazek' +
+            '</button>' +
+            '</div>';
+        $('.editImage').append(uploadControl);
+    }
 
     if ($('#imgUp').val() != "") {
         $('#clearUploadControlButton').show();
     }
 
-    $('#imgUp').change(function() {
+    $('#imgUp').change(function () {
         if ($('#imgUp').val() != "") {
             $('#clearUploadControlButton').removeClass('hidden');
         }
     });
-
-    var handleSubmitEdit = function () {
-        // przypisz wartości z kontrolek do variablesów
-    }
 
     $('#clearUploadControlButton').click(function() {
         $('#imgUp').val('');
         $('#clearUploadControlButton').addClass('hidden');
     });
 
+    $('#clearImageControlButton').click(function() {
+        var articleIdentificator = $('.editArtIdInput').val();
+        var isDiary = $(this).val();
+
+        $.ajax({
+                url: "/Articles/DeleteImage/",
+                type: "POST",
+                data: { 'createMode' : false, 'articleId': articleIdentificator, 'isDiary': isDiary }
+            })
+            .success(function (response) {
+                $('.editImageControl').hide();
+                //$('.editUploadControl').show();
+                appendUploadControlAfterDelete();
+                //window.location.href = response.Url;
+            });
+    });
+
     $('#submitArticleEditCreate').click(function () {
         handleSubmitEdit();
             $.ajax({
-                url: "/Articles/CommentEdit/",
+                url: "/Articles/Edit/",
                 type: "POST",
-                data: { 'bodyText': body, 'commentId': comIdentificator, 'articleId': artIdentificator, 'isDiary': diary }
-            })
+                enctype: 'multipart/form-data',
+                processData: false, contentType: false, //for file upload
+                data: formData
+                })
                 .success(function (response) {
-                    handleAddAfterEdit(response);
-        });
+                    console.log("GOTOWE!");
+                });
     });
 });

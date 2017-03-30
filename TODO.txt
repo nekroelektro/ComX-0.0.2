@@ -14,6 +14,9 @@
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
 - ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
+- zbundlować skrypty
+- różna wielkość górnych ikona na index i na details
+- przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 - naprawić paging na ajaxowej liście recek
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta

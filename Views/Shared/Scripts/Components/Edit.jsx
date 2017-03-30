@@ -106,7 +106,8 @@ var EditForm = React.createClass({
         });
         var imagePresent = this.state.articleImage == "default.jpg" ? false : true;
         return (
-            <div className="EditFormContainer">
+            <div className="editFormSection">
+            <form className="EditFormContainer">
                 <div className="formCenteredLastElement">
                     {this.state.isCreateMode ?
                     (
@@ -118,41 +119,47 @@ var EditForm = React.createClass({
                     }
                 </div>
                 <hr />
-
-                <div className="form-horizontal">
-                    <div className="form-group">
-                        <div className="col-md-offset-1 col-md-10">
-                            <b>DATA UTWORZENIA ARTYKUŁU:</b>
-                            <input type="text" name="dateCreatedInput" className="form-control" disabled value={this.state.dateCreated} />
-                        </div>
-                    </div>
-                    <div className="form-group articleCreateComponent">
-                        <div className="col-md-offset-1 col-md-10">
-                            <b>DATA OSTATNIEJ EDYCJI ARTYKUŁU:</b>
-                            <input type="text" name="dateEditedInput" className="form-control" disabled value={this.state.dateEdited} onchange={this.handleDateEditedChange} />
-                        </div>
-                    </div>
-                    {this.state.isCreateMode &&
+                <input type="text" className="editArtIdInput hidden" disabled name="Id" value={this.state.id} />
+                <input type="checkbox" name="IsCreate" className="hidden" disabled id="IsCreate" checked={this.state.isCreateMode} />
+                <div className="form-horizontal">                   
+                    {this.state.isCreateMode ?
+                    (
                     <div className="form-group">
                         <div className="col-md-offset-1 col-md-10">
                             <div className="checkbox-inline">
                                 <label>
-                                    <input type="checkbox" name="diaryCheckbox" id="IsDiary" checked={this.state.isDiary} onChange={this.handleIsDiaryChange} /> Czy to wpis do pamiętnika płytoholika?
+                                    <input type="checkbox" name="IsDiary" id="IsDiary" checked={this.state.isDiary} onChange={this.handleIsDiaryChange} /> Czy to wpis do pamiętnika płytoholika?
                                 </label>
                             </div>
                         </div>
                     </div>
+                    ):(
+                    <div className="editDatesInputs">
+                        <div className="form-group">
+                            <div className="col-md-offset-1 col-md-10">
+                                <b>DATA UTWORZENIA ARTYKUŁU:</b>
+                                <input type="text" name="DateCreated" className="form-control" disabled value={this.state.dateCreated} />
+                            </div>
+                        </div>
+                        <div className="form-group articleCreateComponent">
+                            <div className="col-md-offset-1 col-md-10">
+                                <b>DATA OSTATNIEJ EDYCJI ARTYKUŁU:</b>
+                                <input type="text" name="DateEdited" className="form-control" disabled value={this.state.dateEdited} onchange={this.handleDateEditedChange} />
+                            </div>
+                        </div>
+                    </div>
+                    )
                     }
                     <hr />
                     <div className="form-group">
                         <div className="col-md-offset-1 col-md-10">
                             <b>OBRAZEK:</b>
                                 <div className="editImage">
-                                    {!imagePresent ?
+                                    {!imagePresent || this.state.isCreateMode ?
                                     (
                                 <div className="editUploadControl">
-                                    <input type="file" id="imgUp" name="upload" />
-                                    <button id="clearUploadControlButton" className="btn nekrobutton-red hidden">
+                                    <input type="file" id="imgUp" name="File" />
+                                    <button type="button" id="clearUploadControlButton" className="btn nekrobutton-red hidden">
                                         <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> Usuń obrazek
                                     </button>
                                 </div>
@@ -160,7 +167,7 @@ var EditForm = React.createClass({
                                 <div className="editImageControl">
                                     <img className="editUploadedImage" src={this.state.articleImage} />
                                     <div className="buttons">
-                                        <button id="clearImageControlButton" className="btn nekrobutton-red">
+                                        <button type="button" id="clearImageControlButton" value={this.state.isDiary} className="btn nekrobutton-red">
                                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> Usuń obrazek
                                         </button>
                                     </div>
@@ -173,31 +180,31 @@ var EditForm = React.createClass({
                     <div className="form-group">
                         <div className="col-md-offset-1 col-md-10">
                             <b>TYTUŁ:</b>
-                            <input type="text" name="nameInput" className="form-control" value={this.state.name} onchange={this.handleNameChange} />
+                            <input type="text" name="Name" className="form-control" value={this.state.name} onchange={this.handleNameChange} />
                         </div>
                     </div>
                     <div className="form-group articleCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
-                            <b>KROTKI OPIS:</b>
-                            <textarea type="text" name="indexDescriptionInput" className="form-control articleEditor" value={this.state.description} onchange={this.handleDescriptionChange} />
+                            <b>KRÓTKI OPIS:</b>
+                            <textarea type="text" name="IndexDescription" id="IndexDescription" className="form-control articleEditor" value={this.state.description} onchange={this.handleDescriptionChange} />
                         </div>
                     </div>
                     <div className="form-group articleCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
                             <b>WSTĘPNIAK:</b>
-                            <textarea type="text" name="preludeInput" className="form-control articleEditor" value={this.state.prelude} onchange={this.handlePreludeChange} />
+                            <textarea type="text" name="Prelude" id="Prelude" className="form-control articleEditor" value={this.state.prelude} onchange={this.handlePreludeChange} />
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="col-md-offset-1 col-md-10">
                             <b>TREŚĆ ARTYKUŁU:</b>
-                            <textarea type="text" name="bodyInput" className="form-control articleEditor" value={this.state.body} onchange={this.handleBodyChange} />
+                            <textarea type="text" name="Body" id="Body" className="form-control articleEditor" value={this.state.body} onchange={this.handleBodyChange} />
                         </div>
                     </div>
                     <div className="form-group articleCreateComponent">
                         <div className="col-md-offset-1 col-lg-10">
                             <b>KATEGORIA:</b>
-                            <select name="categoryCombo" className="form-control" value={this.state.category} onChange={this.handleCategoryChange}>
+                            <select name="CategoryId" className="form-control" value={this.state.category} onChange={this.handleCategoryChange}>
                                 {categoryNodes}
                             </select>
                         </div>
@@ -205,7 +212,7 @@ var EditForm = React.createClass({
                     <div className="form-group articleCreateComponent">
                         <div className="col-md-offset-1 col-lg-10">
                             <b>PODKATEGORIA:</b>
-                            <select name="subcategoryCombo" className="form-control" value={this.state.subcategory} onChange={this.handleSubcategoryChange}>
+                            <select name="SubCategoryId" className="form-control" value={this.state.subcategory} onChange={this.handleSubcategoryChange}>
                                 {subCategoryNodes}
                             </select>
                         </div>
@@ -213,7 +220,7 @@ var EditForm = React.createClass({
                     <div className="form-group articleCreateComponent">
                         <div className="col-md-offset-1 col-lg-10">
                             <b>CYKL:</b>
-                            <select name="seriesCombo" className="form-control" value={this.state.series} onChange={this.handleSeriesChange}>
+                            <select name="Series" className="form-control" value={this.state.series} onChange={this.handleSeriesChange}>
                                 {seriesNodes}
                             </select>
                         </div>
@@ -221,50 +228,51 @@ var EditForm = React.createClass({
                     <div className="form-group diaryCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
                             <b>LABEL:</b>
-                            <input type="text" name="labelInput" className="form-control" value={this.state.label} onchange={this.handleLabelChange} />
+                            <input type="text" name="Label" className="form-control" value={this.state.label} onchange={this.handleLabelChange} />
                         </div>
                     </div>
                     <div className="form-group diaryCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
                             <b>GATUNEK:</b>
-                            <input type="text" name="genreInput" className="form-control" value={this.state.genre} onchange={this.handleGenreChange} />
+                            <input type="text" name="Genre" className="form-control" value={this.state.genre} onchange={this.handleGenreChange} />
                         </div>
                     </div>
                     <div className="form-group diaryCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
                             <b>ROK PRODUKCJI:</b>
-                            <input type="text" pattern="[0-9]*" name="albumYearInput" className="form-control" value={this.state.albumYear} onchange={this.handleAlbumYearChange} />
+                            <input type="text" pattern="[0-9]*" name="AlbumYear" className="form-control" value={this.state.albumYear} onchange={this.handleAlbumYearChange} />
                         </div>
                     </div>
                     <div className="form-group diaryCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
                             <b>ROK WYDANIA:</b>
-                            <input type="text" pattern="[0-9]*" name="releaseYearInput" className="form-control" value={this.state.releaseYear} onchange={this.handleReleaseYearChange} />
+                            <input type="text" pattern="[0-9]*" name="ReleaseYear" className="form-control" value={this.state.releaseYear} onchange={this.handleReleaseYearChange} />
                         </div>
                     </div>
                     <div className="form-group diaryCreateComponent">
                         <div className="col-md-offset-1 col-md-10">
                             <b>NR KATALOGOWY:</b>
-                            <input type="text" name="catalogueInput" className="form-control" value={this.state.catalogue} onchange={this.handleCatalogueChange} />
+                            <input type="text" name="CatalogueNumber" className="form-control" value={this.state.catalogue} onchange={this.handleCatalogueChange} />
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="col-md-offset-1 col-md-10">
                             <div className="checkbox-inline">
                                 <label>
-                                    <input type="checkbox" name="publishCheckbox" checked={this.state.isPublished} onChange={this.handleIsPublishedChange} /> OPUBLIKUJ
+                                    <input type="checkbox" name="IsPublished" checked={this.state.isPublished} onChange={this.handleIsPublishedChange} /> OPUBLIKUJ
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <hr />
+                </div>
+            </form>
+            <hr />
                     <div className="form-group formCenteredLastElement">
-                        <button type="submit" className="btn nekrobutton-green" id="submitArticleEditCreate">
+                        <button className="btn nekrobutton-green" id="submitArticleEditCreate">
                             <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> {this.state.isCreateMode ? ("Dodaj artykuł!") : ("Zaktualizuj artykuł!")}
                         </button>
                     </div>
-                </div>
-            </div>
+        </div>
 		);
     }
 });

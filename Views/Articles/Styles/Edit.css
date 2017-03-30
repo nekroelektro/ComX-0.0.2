@@ -9,3 +9,7 @@
     text-align: center; 
     margin: 0 auto;
 }
+
+.editArtIdInput, .editCreateInput {
+    display: none;
+}

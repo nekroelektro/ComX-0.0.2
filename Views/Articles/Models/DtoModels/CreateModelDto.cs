@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
     public class CreateModelDto {
@@ -26,5 +27,8 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public string IndexDescription { get; set; }
         public string Series { get; set; }
         public string CatalogueNumber { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
+        public bool IsCreate { get; set; }
     }
 }
