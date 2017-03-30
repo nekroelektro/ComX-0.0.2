@@ -39,6 +39,11 @@
         // Serialize form data for injection to .NET
         form = $('.EditFormContainer');
         formData = new FormData(form[0]);
+
+        // Get image from control
+        var fileInput = document.getElementById('imgUp');
+        var file = fileInput.files[0];
+
         // Get changes in html editors
         formData.set('IndexDescription', tinymce.get('IndexDescription').getContent());
         formData.set('Prelude', tinymce.get('Prelude').getContent());
@@ -51,6 +56,9 @@
         formData.set('DateCreated', $('[name=DateCreated]').val());
         formData.set('DateEdited', $('[name=DateEdited]').val());
         formData.set('IsPublished', $('[name=IsPublished]').is(":checked"));
+        formData.set('AlbumYear', $('[name=AlbumYear]').is(":checked"));
+        formData.set('ReleaseYear', $('[name=ReleaseYear]').is(":checked"));
+        formData.set('File', file);
     }
 
     var appendUploadControlAfterDelete = function() {
@@ -105,7 +113,7 @@
                 data: formData
                 })
                 .success(function (response) {
-                    console.log("GOTOWE!");
+                    window.location.href = response.Url;
                 });
     });
 });

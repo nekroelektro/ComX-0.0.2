@@ -12,7 +12,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
         CreateModelDto GetDocumentForEdit(Guid id, bool isDiary);
         void UpdateDocument(CreateModelDto document);
         void DeleteImageForGivenDocument(Guid id);
-        
+        void EditDocument(CreateModelDto document);
+
         void CreateComment(string body, Guid articleId, bool isDiary);
         void DeleteComment(Guid commentId);
         void UpdateComment(string body, Guid commentId);

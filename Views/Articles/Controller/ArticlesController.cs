@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
@@ -93,13 +90,6 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return View(model);
         }
 
-        public ActionResult Create() {
-            ViewBag.CategoryList = articleHelper.GetCategoriesToCombo();
-            ViewBag.SubCategoryList = articleHelper.GetSubCategoriesToCombo();
-            ViewBag.SeriesList = articleHelper.GetSeriesToCombo();
-            return View();
-        }
-
         public ActionResult SearchResultsLive(string searchString) {
             var model = documentService.GetSearchResult(searchString);
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -110,44 +100,9 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView(model);
         }
 
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Create(CreateModelDto document, HttpPostedFileBase upload) {
-            if (ModelState.IsValid) {
-                if (upload != null) {
-                    var validImageTypes = new[] {
-                        "image/gif",
-                        "image/jpeg",
-                        "image/pjpeg",
-                        "image/png"
-                    };
-                    if (!validImageTypes.Contains(upload.ContentType))
-                        ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
-                }
-                //documentService.CreateDocument(document, upload);
-                return RedirectToAction("Details",
-                    new {
-                        id = document.Name,
-                        document.IsDiary
-                    });
-            }
-            return View(document);
-        }
-
         public ActionResult Edit(bool createMode, Guid? id, bool isDiary = false) {
             var model = documentService.GetEditDetails(createMode, isDiary, id);
             return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Upload() {
-            System.IO.Stream body = Request.InputStream;
-            System.Text.Encoding encoding = Request.ContentEncoding;
-            System.IO.StreamReader reader = new System.IO.StreamReader(body, encoding);
-            string json = reader.ReadToEnd();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            CreateModelDto myclass = (CreateModelDto)serializer.Deserialize(json, typeof(CreateModelDto));
-            return Content("OK");
         }
 
         [HttpPost]
@@ -163,15 +118,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 if (!validImageTypes.Contains(document.File.ContentType))
                     ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.");
             }
-            if (ModelState.IsValid) {
-                documentService.UpdateDocument(document);
-                return RedirectToAction("Details",
-                    new {
-                        id = document.Name,
-                        document.IsDiary
-                    });
-            }
-            return View(document);
+            documentService.EditDocument(document);
+            var redirectUrl = new UrlHelper(Request.RequestContext).Action("Details", "Articles",
+                new {id = document.Name, isDiary = document.IsDiary});
+            return Json(new {Url = redirectUrl});
         }
 
         public ActionResult Delete(Guid? id, bool isDiary = false) {
@@ -191,8 +141,9 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         public ActionResult DeleteImage(Guid articleId, bool isDiary) {
             documentService.DeleteImageForGivenDocument(articleId);
-            var redirectUrl = new UrlHelper(Request.RequestContext).Action("Edit", "Articles", new { createMode = false, id = articleId, isDiary });
-            return Json(new { Url = redirectUrl });
+            var redirectUrl = new UrlHelper(Request.RequestContext).Action("Edit", "Articles",
+                new {createMode = false, id = articleId, isDiary});
+            return Json(new {Url = redirectUrl});
         }
     }
 }

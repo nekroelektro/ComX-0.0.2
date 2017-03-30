@@ -45,7 +45,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     Prelude = document.Prelude,
                     Body = document.Body,
                     CategoryId = articleHelper.GetCategoryByName(document.CategoryId).Id,
-                    SubCategoryId = articleHelper.GetCategoryByName(document.SubCategoryId).Id,
+                    SubCategoryId = articleHelper.GetSubCategoryByName(document.SubCategoryId).Id,
                     Series = articleHelper.GetSeriesByName(document.Series).Id,
                     DateCreated = DateTime.Now,
                     DateEdited = DateTime.Now,

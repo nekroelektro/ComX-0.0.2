@@ -996,15 +996,12 @@
     <Compile Include="Views\Articles\Models\DtoModels\CategoryDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CommentDetailsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CommentDto.cs" />
-    <Compile Include="Views\Articles\Models\DtoModels\CommentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CreateModelDto.cs" />
-    <Compile Include="Views\Articles\Models\DtoModels\DetailsModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\DocumentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\EditDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexCommentModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexDiaryDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexMainDto.cs" />
-    <Compile Include="Views\Articles\Models\DtoModels\IndexModelDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\ArticleDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\IndexReviewsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\LastFromCategoryDto.cs" />
@@ -1064,7 +1061,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Views\Articles\Create.cshtml" />
     <Content Include="Views\Articles\Delete.cshtml" />
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
