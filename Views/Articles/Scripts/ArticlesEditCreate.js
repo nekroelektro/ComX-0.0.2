@@ -42,7 +42,10 @@
 
         // Get image from control
         var fileInput = document.getElementById('imgUp');
-        var file = fileInput.files[0];
+        if (fileInput != null) {
+            var file = fileInput.files[0];
+            formData.set('File', file);
+        }
 
         // Get changes in html editors
         formData.set('IndexDescription', tinymce.get('IndexDescription').getContent());
@@ -58,7 +61,37 @@
         formData.set('IsPublished', $('[name=IsPublished]').is(":checked"));
         formData.set('AlbumYear', $('[name=AlbumYear]').is(":checked"));
         formData.set('ReleaseYear', $('[name=ReleaseYear]').is(":checked"));
-        formData.set('File', file);
+    }
+
+    var handleSubmitEditErrors = function () {
+        var errorString = '';
+        if ($('[name=IsDiary]').is(":checked")) {
+            if ($('[name=Name]').val() == '' ||
+                tinymce.get('Body').getContent() == '' ||
+                $('[name=Label]').val() == '' ||
+                $('[name=Genre]').val() == '' ||
+                $('[name=AlbumYear]').val() == '' ||
+                $('[name=ReleaseYear]').val() == '' ||
+                $('[name=CatalogueNumber]').val() == '') {
+                errorString = "<div class='editErrorMessage'><h3>Musisz uzupełnić wszystkie wymagane pola!</h3></div>";
+            }
+        } else {
+            if ($('[name=Name]').val() == '' ||
+                tinymce.get('IndexDescription').getContent() == '' ||
+                tinymce.get('Prelude').getContent() == '' ||
+                tinymce.get('Body').getContent() == '') {
+                errorString = "<div class='editErrorMessage'><h3>Musisz uzupełnić wszystkie wymagane pola!</h3></div>";
+            }
+        }
+        if (errorString != '') {
+            if ($('.editErrorMessage').length > 0) {
+                $('.editErrorMessage').detach();
+            }
+            $('.editErrorContainer').hide().append(errorString).fadeIn("fast");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     var appendUploadControlAfterDelete = function() {
@@ -104,16 +137,21 @@
     });
 
     $('#submitArticleEditCreate').click(function () {
-        handleSubmitEdit();
+        if (handleSubmitEditErrors()) {
+            handleSubmitEdit();
             $.ajax({
-                url: "/Articles/Edit/",
-                type: "POST",
-                enctype: 'multipart/form-data',
-                processData: false, contentType: false, //for file upload
-                data: formData
+                    url: "/Articles/Edit/",
+                    type: "POST",
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false, //for file upload
+                    data: formData
                 })
-                .success(function (response) {
+                .success(function(response) {
                     window.location.href = response.Url;
                 });
+        } else {
+            $("html, body").animate({ scrollTop: 0 }, "fast");
+        }
     });
 });

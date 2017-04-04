@@ -13,6 +13,8 @@
 [DONE] wyczyścić BLL z nieużywanego crapu
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
+- edit button na liście artykułów w konfiguracji
+- na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
 - ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 - zbundlować skrypty
 - różna wielkość górnych ikona na index i na details

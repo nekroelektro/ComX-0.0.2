@@ -13,3 +13,9 @@
 .editArtIdInput, .editCreateInput {
     display: none;
 }
+
+.editErrorContainer {
+    color: red;
+    margin: 0 auto;
+    text-align: center;
+}

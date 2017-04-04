@@ -117,8 +117,12 @@ var EditForm = React.createClass({
                         <h2>Edytujesz teraz swój artykuł!</h2>
                     )
                     }
+                    <h3>INFO:</h3>
+                    <h4>- Musisz uzupełnić WSZYSTKIE pola</h4>
+                    <h4>- Wartości kategorii są domyślne (bierze pierwszą alfabetycznie) więc przed publikacją sprawdź, czy się zgadzają</h4>
                 </div>
                 <hr />
+                <div className="editErrorContainer"></div>
                 <input type="text" className="editArtIdInput hidden" disabled name="Id" value={this.state.id} />
                 <input type="checkbox" name="IsCreate" className="hidden" disabled id="IsCreate" checked={this.state.isCreateMode} />
                 <div className="form-horizontal">                   

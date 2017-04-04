@@ -369,7 +369,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         public CommentDetailsDto GetCommentsDetails(Guid articleId, bool isDiary) {
             var details = new CommentDetailsDto();
             var commentList =
-                db.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.DateOfCreation).ToList();
+                db.Comments.Where(x => x.ArticleId == articleId).OrderBy(x => x.DateOfCreation).ToList();
             var comments = new List<CommentDto>();
             foreach (var item in commentList) {
                 var element = new CommentDto {
