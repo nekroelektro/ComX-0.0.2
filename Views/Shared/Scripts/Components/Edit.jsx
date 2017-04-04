@@ -143,6 +143,7 @@ var EditForm = React.createClass({
                             <div className="col-md-offset-1 col-md-10">
                                 <b>DATA UTWORZENIA ARTYKUŁU:</b>
                                 <input type="text" name="DateCreated" className="form-control" disabled value={this.state.dateCreated} />
+                                <input type="checkbox" name="IsDiary" className="hidden" id="IsDiary" checked={this.state.isDiary} onChange={this.handleIsDiaryChange} />
                             </div>
                         </div>
                         <div className="form-group articleCreateComponent">

@@ -24,7 +24,7 @@
         }
     });
 
-    if ($('#IsDiaryEdit').attr('checked')) {
+    if ($('[name=IsDiary]').is(":checked")) {
         $('.diaryCreateComponent').show();
         $('.articleCreateComponent').hide();
     } else {

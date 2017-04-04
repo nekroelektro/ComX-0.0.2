@@ -99,7 +99,7 @@ a {
     text-align: center;
 }
 
-.page_navigation a, .alt_page_navigation a{
+.page_navigation a, .alt_page_navigation a, .configurationArticlesEditButtonContainer a, .configurationArticlesGoButtonContainer a{
 	padding:1px 5px;
 	margin:2px;
 	color:white;

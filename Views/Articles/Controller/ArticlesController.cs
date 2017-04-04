@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Articles.Models.DtoModels;
 using ComX_0._0._2.Views.Articles.Services;
 
 namespace ComX_0._0._2.Views.Articles.Controller {
     public class ArticlesController : System.Web.Mvc.Controller {
-        private readonly ArticleHelper articleHelper = new ArticleHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly IDocumentService documentService = new DocumentService();
 
