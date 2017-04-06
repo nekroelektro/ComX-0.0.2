@@ -1,4 +1,5 @@
-﻿@using ComX_0._0._2.Helpers
+﻿@using System.Web.Optimization
+@using Microsoft.AspNetCore.Mvc.Rendering
 @{
     string currentUrl = Request.Url?.AbsoluteUri;
 }
@@ -8,20 +9,11 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
-    <link href="~/Content/CustomControls.css" rel="stylesheet" type="text/css"/>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="~/Content/datepicker.css" rel="stylesheet" type="text/css"/>
-    <link href="~/Views/Shared/Styles/_Layout.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/coreStyles")
+    @Scripts.Render("~/scripts/coreScripts")
+    @Styles.Render("~/Content/customStyles")
+    @Scripts.Render("~/scripts/customScripts")
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-    <link href="@Url.Content("~/Content/trumbowyg.min.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/slick-theme.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/slick.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/magnific-popup.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/horizontalMenu.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/jquery.fancybox.css")" rel="stylesheet" type="text/css"/>
-    <link href="@Url.Content("~/Content/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/ico" href="@Url.Content("~/Content/favNp.ico")"/>
     <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Coda&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -32,31 +24,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="~/Views/Shared/Scripts/SharedLayout.js"></script>
-    <script type="text/javascript" src="~/Views/Shared/Scripts/SharedTopNavigationMenu.js"></script>
-    <link href="~/Views/Articles/Styles/Diary.css" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/trumbowyg.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"> </script>
-    <script src="@Url.Content("~/Scripts/jssor.slider.min.js")" type="text/javascript"> </script>
-    <script src="@Url.Content("~/Scripts/jquery.pajinate.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/packery.pkgd.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/imagesloaded.pkgd.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/slick.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.jscroll.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.magnific-popup.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/cbpHorizontalMenu.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.sticky.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.fancybox.pack.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery-ui.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/NekroSearch.js")"></script>
-    <script src="@Url.Content("~/Scripts/NekroSub.js")"></script>
     <script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
     <meta name="description" content="@ViewBag.Description"/>
     <meta name="og:image" content="@ViewBag.MetaImage"/>

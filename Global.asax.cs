@@ -3,6 +3,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using ComX_0._0._2.Views.Account.Models;
@@ -15,6 +16,8 @@ namespace ComX_0._0._2 {
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         public override void Init() {

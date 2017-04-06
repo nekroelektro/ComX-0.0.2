@@ -12,7 +12,7 @@
     outline: none;
 }
 
-p:selection {
+p::selection {
     color: white;
     background: #2B823C;
 }
@@ -143,8 +143,6 @@ a {
     padding-right: 1em;
 }
 
-.indexArticleTitle { 
-}
 .indexArticleTitle h2 {
     font-size: 1.3em !important;
 }
@@ -571,10 +569,6 @@ a {
     -moz-transition: all 0.4s ease-out;
     -o-transition: all 0.4s ease-out;
     transition: all 0.4s ease-out;
-}
-
-.searchResultsMore h4 {
-       
 }
 
 .searchResultsMore:hover, .searchResultsNoMore:hover {
