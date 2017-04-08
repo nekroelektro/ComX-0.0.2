@@ -29,14 +29,14 @@
             if (current !== -1) {
                 $listItems.eq(current).find('.cbp-hrsub').slideUp("fast");
                 $listItems.eq(current).removeClass('cbp-hropen');
-                $(".elementsToPush").css("margin-top", 0);
+                //$(".elementsToPush").css("margin-top", 0);
                 posts.hide();
             }
 
             if (current === idx) {
                 sliderElementMenu.slideUp("slow");
                 $item.removeClass('cbp-hropen');
-                $(".elementsToPush").css("margin-top", 0);
+                //$(".elementsToPush").css("margin-top", 0);
                 current = -1;
             } else {
                 //for pushing elements during top menu displaying

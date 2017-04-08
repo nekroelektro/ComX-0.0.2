@@ -1,6 +1,7 @@
 ﻿.slidersContainer {
     width: 64.9%;
     float: left;
+    height: 100%;
 }
 
 .sliderOne {
@@ -8,10 +9,11 @@
     width: 100%; 
     font-family: 'Coda', sans-serif; 
     color: white;
+    height: 100%;
 }
 
 .slideElementUpper {
-    height: 32em; 
+    height: 100%; 
     display: block;
 }
 
@@ -208,7 +210,8 @@
   width: 100%;
   height: 8px;
   background: black;
-  z-index: 99999;
+  z-index: 3;
+    position: absolute;
 }
 .slider-progress .progress {
   width: 65%;

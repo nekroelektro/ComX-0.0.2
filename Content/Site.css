@@ -696,8 +696,8 @@ a {
         width: 100% !important;
     }
 
-    .slideElementUpper {
-        height: 20em !important;   
+    .elementsToPush {
+        margin-top: 58px !important;
     }
 
     .bodyLayout {
