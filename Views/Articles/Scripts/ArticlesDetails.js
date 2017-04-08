@@ -25,5 +25,25 @@ $(document).ready(function() {
     $('.topNavigationItem:contains(' + currentCategory + ')').css({
             backgroundColor: '#2B823C',
             color: 'white'
-        });  
+    });
+
+    // For wide article image and moving sidebar under article image
+    var bannerPanel = $('.detailsBannerPanel');
+    if (bannerPanel.length > 0) {
+        $('.elementsToPush').css('margin-top', 0);
+        var windowScreen = $(window);
+        bannerPanel.css('height', windowScreen.height() - $('.bottomFooter ').height());
+        windowScreen.on('resize', function () {
+            var win = $(this);
+            bannerPanel.css('width', win.width());
+        });
+
+        $('.bannerPanelInfo').css('width', $('.bodyLayout').width() + 30);
+        var imageHeight = bannerPanel.height();
+        $('.articleDetail').css('margin-top', imageHeight);
+        if ($('.topDetailPanel').length > 0) {
+            imageHeight = imageHeight + $('.topDetailPanel').height();
+        }
+        $('.mainSideBar').css('margin-top', imageHeight);
+    }
 });

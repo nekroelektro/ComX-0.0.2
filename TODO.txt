@@ -1,5 +1,6 @@
 ﻿THINGS TO DO:
 
+- zrobić PUBLISH a nie wrzucać cały kod źródłowy
 [DONE] naprawić widoki z zielonym tłem - koniecznie
 [DONE] navigation panel - płynne wysuwanie od góry, 
 [DONE] navigation panel 
@@ -13,10 +14,12 @@
 [DONE] wyczyścić BLL z nieużywanego crapu
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
-- edit button na liście artykułów w konfiguracji
+[DONE] edit button na liście artykułów w konfiguracji
 - na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
 - ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
-- zbundlować skrypty
+[DONE] zbundlować skrypty i cssy w layoucie
+- HTML5 pushState do one-page application
+	- jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
 - różna wielkość górnych ikona na index i na details
 - przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 - naprawić paging na ajaxowej liście recek

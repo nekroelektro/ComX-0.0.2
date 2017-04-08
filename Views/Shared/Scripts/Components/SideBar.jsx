@@ -33,11 +33,10 @@ var SideContact = React.createClass({
                 </div>
                 <div className="sideSocial">
                     <div className="fb-page"
-                         data-tabs="timeline"
                          data-href="https://www.facebook.com/nekroplaza"
                          data-width="380"
                          data-hide-cover="false"
-                         data-show-facepile="false"
+                         data-show-facepile="true"
                          data-show-posts="false">
                     </div>
                 </div>

@@ -73,13 +73,15 @@ var TopDetailPanel = React.createClass({
     render: function () {
         return (
             <div className="detailsBannerPanel">
-                <div className="bannerPanelImageContainer">
+                <div className="detailsImageAbsoluteBackground">
+                    <div className="bannerPanelImageContainer">
+                        <img src={this.props.imagePath} />
+                    </div>
+                    <div className="imageOverlayColor"></div>
+                </div>
+                <div className="bannerPanelImageMain bannerPanelDetailsMainImage">
                     <img src={this.props.imagePath} />
                 </div>
-                <div className="bannerPanelImageMain">
-                    <img src={this.props.imagePath} />
-                </div>
-                <div className="imageOverlayColor"></div>
                 <div className="bannerPanelInfo">
                     <h3 className="bannerSeriesTitle">{this.props.series}</h3>
                     <h1 className="bannerArticleName">{this.props.name}</h1>

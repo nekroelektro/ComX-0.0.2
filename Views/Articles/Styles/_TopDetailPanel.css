@@ -13,10 +13,15 @@
 }
 
 .detailsBannerPanel {
-    height: 45em;
-    position: relative; 
+    /*height: 45em;*/
+    position: absolute; 
     z-index: 4; 
     overflow: hidden;
+    margin: 0 auto;
+    left: 0;right: 0;
+    -webkit-box-shadow: 0px 0px 8px 2px #000000;
+       -moz-box-shadow: 0px 0px 8px 2px #000000;
+            box-shadow: 0px 0px 8px 2px #000000;
 }
 
 .bannerPanelImageContainer {
@@ -56,6 +61,10 @@
     vertical-align: middle;
 }
 
+.bannerPanelDetailsMainImage img {
+    box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(0, 0, 0, 1), -12px 0 15px -4px rgba(0, 0, 0, 1);
+}
+
 .imageOverlayColor {
     width: 100%; 
     height: 100%; 
@@ -67,7 +76,6 @@
 }
 
 .bannerPanelInfo {
-    width: 100%; 
     font-family: 'Coda', sans-serif; 
     position: absolute; 
     bottom: 0; 
@@ -75,6 +83,10 @@
     padding: 1em;
     background: rgba(255, 255, 255, 0.7); 
     z-index: 4;
+    left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
 }
 
 .bannerSeriesTitle {

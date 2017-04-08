@@ -4,6 +4,24 @@
     margin-bottom: 1px;
 }
 
+.elementsToPush {
+    position: absolute;
+    margin: 0 auto;
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    right: 0;
+    margin-top: 159.7px;
+}
+
+.topMainElementsContainer {
+    z-index: 6;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
 .indexExplicitInfo {
     padding-left: 2em; 
     padding-right: 2em; 
