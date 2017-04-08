@@ -30,19 +30,24 @@ $(document).ready(function() {
     // For wide article image and moving sidebar under article image
     var bannerPanel = $('.detailsBannerPanel');
     if (bannerPanel.length > 0) {
+        //make background image from image container of article details
+        var backgroundImageSrc = $('.bannerPanelDetailsMainImage img').attr('src');
+        $('body').css({ 'background-image': 'url(' + backgroundImageSrc + ')', 'background-repeat' : 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100% 100%' });
         $('.elementsToPush').css('margin-top', 0);
         var windowScreen = $(window);
         bannerPanel.css('height', windowScreen.height() - $('.bottomFooter ').height());
+
         windowScreen.on('resize', function () {
             var win = $(this);
             bannerPanel.css('width', win.width());
+            bannerPanel.css('height', win.height() - $('.bottomFooter ').height());
         });
 
         $('.bannerPanelInfo').css('width', $('.bodyLayout').width() + 30);
         var imageHeight = bannerPanel.height();
         $('.articleDetail').css('margin-top', imageHeight);
         if ($('.topDetailPanel').length > 0) {
-            imageHeight = imageHeight + $('.topDetailPanel').height();
+            $('.topDetailPanel').css('margin-top', $(".topMainElementsContainer").height());
         }
         $('.mainSideBar').css('margin-top', imageHeight);
     }

@@ -33,7 +33,7 @@
 	[DONE] searchbar pewnie na toplogo panelu, doczepioną do slicka przy scrollu
 	[DONE] ładną ramkę live search odświężającą się na onkeyup
 	[DONE] do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem - tutaj mają być kategorie
-- trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka
+[DONE] trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka - na wejściu obrazek i tytuł na cały ekran, dodane cienie
 [DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
 KONFIGURACJA:
 	- najpierw dopicować widoki (włącznie z górnym paskiem)

@@ -40,7 +40,7 @@ var AdminPanel = React.createClass({
                     </a>
                     <a href={'/'}>
                         <button type="button" className="btn btn-default btn-sm">
-                            <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO GÓRY
+                            <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO GŁÓWNEJ
                         </button>
                     </a>
                     <a href={'/Articles/Edit' + '?createMode=false&id=' + this.props.id + '&isDiary=' + this.props.isDiary}>

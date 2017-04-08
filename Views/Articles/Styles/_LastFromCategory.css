@@ -1,10 +1,12 @@
 ﻿.lastFromCategoryPanel {
-    padding-bottom: 2em; 
     padding-top: 1em;
     font-family: 'Coda', sans-serif;
     clear: both;
     width: 100%; 
     float: left;
+    box-shadow: 
+         0px 11px 8px -10px black,
+         0px -11px 8px -10px black;
 }
 
 .lastFromCategoryLabel {
