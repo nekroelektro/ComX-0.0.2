@@ -41,7 +41,6 @@ var LastFromCategoryContainer = React.createClass({
                         <p> Zobacz wszystkie z kategorii {this.props.name} <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></p>
                     </a>
                 </div>
-                <hr className="articleDetailsBottomLine" />
             </div>
 		);
 	}

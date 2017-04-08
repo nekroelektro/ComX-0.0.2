@@ -23,6 +23,11 @@
         arrows: false,
         focusOnSelect: true
     });
+    
+    // reset progressbar when user slide
+    $('.sliderOne').on('swipe', function (event, slick, direction) {
+        startProgressbar();
+    });
 
     $bar = $('.slider-progress .progress');
     $('.sliderOne').on({
