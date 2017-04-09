@@ -1,6 +1,6 @@
 ﻿THINGS TO DO:
 
-- zrobić PUBLISH a nie wrzucać cały kod źródłowy
+[DONE] zrobić PUBLISH a nie wrzucać cały kod źródłowy
 [DONE] naprawić widoki z zielonym tłem - koniecznie
 [DONE] navigation panel - płynne wysuwanie od góry, 
 [DONE] navigation panel 
@@ -19,10 +19,10 @@
 - ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 [DONE] zbundlować skrypty i cssy w layoucie
 - HTML5 pushState do one-page application
-	- jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
+	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
 - różna wielkość górnych ikona na index i na details
-- przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
-- naprawić paging na ajaxowej liście recek
+[DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
+[DONE] naprawić paging na ajaxowej liście recek
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
 - Dopicować widoki zapomnianego hasła, user panel itd
@@ -41,7 +41,7 @@ KONFIGURACJA:
 	- jako danych używać tych wziętych z własnego service
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
 - dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
-- zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
+[DONE] zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
 - informacje o cookies?
 - Dodać pipeprzone private messages
 - siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje

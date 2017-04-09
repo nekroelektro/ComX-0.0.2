@@ -53,8 +53,7 @@
                         $('.categorySubElement:contains("Muzyka")').trigger("click");
                         $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
                     },
-                    300);
-
+                    500);
             }
         });
     });

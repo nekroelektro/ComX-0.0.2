@@ -898,6 +898,7 @@
     <Content Include="Views\Shared\Scripts\Components\LoginPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\RegisterPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\Edit.jsx" />
+    <None Include="Properties\PublishProfiles\Nekroplaza.pubxml" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <Content Include="scripts\gridmvc.js" />
     <Content Include="scripts\gridmvc.lang.ru.js" />

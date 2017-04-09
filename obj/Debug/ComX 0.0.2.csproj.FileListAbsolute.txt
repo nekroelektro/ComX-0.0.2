@@ -212,7 +212,6 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\R
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.Mvc4.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\RouteJs.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\RouteJs.Mvc5.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Antlr3.Runtime.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Optimization.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\WebGrease.dll
@@ -246,3 +245,4 @@ C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\M
 C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.ChakraCore.xml
 C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
 C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.ChakraCore.resources.dll
+C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache

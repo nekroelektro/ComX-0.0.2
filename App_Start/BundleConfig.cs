@@ -8,7 +8,24 @@ namespace ComX_0._0._2 {
                 "~/Content/CustomControls.css",
                 "~/Views/Shared/Styles/_Layout.css",
                 "~/Views/Articles/Styles/Diary.css",
-                "~/Content/horizontalMenu.css"));
+                "~/Content/horizontalMenu.css",
+                "~/Views/Shared/Styles/_IndexSlider.css",
+                "~/Views/Shared/Styles/_SideBar.css",
+                "~/Views/Shared/Styles/_TopLogoPanel.css",
+                "~/Views/Shared/Styles/_TopNavigationMenu.css",
+                "~/Views/Account/Styles/Login.css",
+                "~/Views/Account/Styles/Register.css",
+                "~/Views/Account/Styles/UserPanel.css",
+                "~/Views/Articles/Styles/_Articles.css",
+                "~/Views/Articles/Styles/_Comments.css",
+                "~/Views/Articles/Styles/_LastFromCategory.css",
+                "~/Views/Articles/Styles/Index.css",
+                "~/Views/Articles/Styles/Categories.css",
+                "~/Views/Articles/Styles/Details.css",
+                "~/Views/Articles/Styles/_TopDetailPanel.css",
+                "~/Views/Articles/Styles/Diary.css",
+                "~/Views/Articles/Styles/Edit.css"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/coreStyles").Include(
                 "~/Content/bootstrap.min.css",
@@ -23,7 +40,19 @@ namespace ComX_0._0._2 {
                 "~/Scripts/NekroSearch.js",
                 "~/Scripts/NekroSub.js",
                 "~/Views/Shared/Scripts/SharedLayout.js",
-                "~/Views/Shared/Scripts/SharedTopNavigationMenu.js"
+                "~/Views/Shared/Scripts/SharedTopNavigationMenu.js",
+                "~/Views/Shared/Scripts/SharedIndexSlider.js",
+                "~/Views/Shared/Scripts/SharedSideBar.js",
+                "~/Views/Shared/Scripts/SharedTopLogoPanel.js",
+                "~/Views/Account/Scripts/AccountUserPanel.js",
+                "~/Views/Articles/Scripts/Articles.js",
+                "~/Views/Articles/Scripts/ArticlesComments.js",
+                "~/Views/Articles/Scripts/ArticlesIndex.js",
+                "~/Views/Articles/Scripts/ArticlesDelete.js",
+                "~/Views/Articles/Scripts/ArticlesDetails.js",
+                "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
+                "~/Views/Articles/Scripts/ArticleDiary.js",
+                "~/Views/Articles/Scripts/ArticlesSearchResults.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/coreScripts").Include(
@@ -41,7 +70,8 @@ namespace ComX_0._0._2 {
                 "~/Scripts/cbpHorizontalMenu.min.js",
                 "~/Scripts/jquery.sticky.js",
                 "~/Scripts/jquery.fancybox.pack.js",
-                "~/Scripts/jquery-ui.min.js"
+                "~/Scripts/jquery-ui.min.js",
+                "~/scripts/ckeditor.js"
                 ));
 
             BundleTable.EnableOptimizations = true;

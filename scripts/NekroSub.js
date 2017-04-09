@@ -2,29 +2,11 @@
     var currentlyActiveSubInCategories;
     var detachedList = $(".indexSingleArticleContainer");
 
-    $(".categorySubElement, .topNavigationSubcategoriesElement").on("click",
-        function() {
-            currentlyActiveSubInCategories = $(this);
-            var selectedSubText = currentlyActiveSubInCategories.text();
-            if (!isNavigation) {
-                detachedList.each(function() {
-                    // detach - remove post from dom (and remember it in dom cache - only for one loop)
-                    $(this).detach();
-                    //this crap is case sensitive too
-                    if (selectedSubText != "Wszystkie") {
-                        if ($(this).data("sub").toString() == selectedSubText) {
-                            $(this).hide().appendTo("#content").fadeIn(1000);
-                        }
-                    } else {
-                        $(this).hide().appendTo("#content").fadeIn(1000);
-                    }
-                });
-                // paging of existed posts
-                $("#pagerCategories").pajinate({
-                    num_page_links_to_display: 3,
-                    items_per_page: 10
-                });
-            } else {
+    if (isNavigation) {
+        $(".topNavigationSubcategoriesElement").on("click",
+            function() {
+                currentlyActiveSubInCategories = $(this);
+                var selectedSubText = currentlyActiveSubInCategories.text();
                 var closestContainer = currentlyActiveSubInCategories.closest(".lastArticlesFromCategoryTopNavigation");
                 var subElements = closestContainer.find(".topNavigationLastAnchor");
                 var x = 0;
@@ -45,9 +27,33 @@
                         }
                     }
                 });
-            }
-            makeSubActive(currentlyActiveSubInCategories);
-        });
+                makeSubActive(currentlyActiveSubInCategories);
+            });
+    } else {
+        $(".categorySubElement").on("click",
+            function() {
+                currentlyActiveSubInCategories = $(this);
+                var selectedSubText = currentlyActiveSubInCategories.text();
+                detachedList.each(function() {
+                    // detach - remove post from dom (and remember it in dom cache - only for one loop)
+                    $(this).detach();
+                    //this crap is case sensitive too
+                    if (selectedSubText != "Wszystkie") {
+                        if ($(this).data("sub").toString() == selectedSubText) {
+                            $(this).hide().appendTo("#content").fadeIn(1000);
+                        }
+                    } else {
+                        $(this).hide().appendTo("#content").fadeIn(1000);
+                    }
+                });
+                // paging of existed posts
+                $("#pagerCategories").pajinate({
+                    num_page_links_to_display: 3,
+                    items_per_page: 10
+                });
+                makeSubActive(currentlyActiveSubInCategories);
+            });
+    }
 
     // For categories, NOT for navigation
     var startSubElement = $('.categorySubElement:contains("Wszystkie")');
