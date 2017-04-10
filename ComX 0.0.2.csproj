@@ -873,6 +873,7 @@
     <Content Include="Views\Account\Scripts\AccountRegister.js" />
     <Content Include="Views\Account\Scripts\AccountLogin.js" />
     <Content Include="Views\Articles\Scripts\ArticlesSearchResults.js" />
+    <Content Include="Views\Articles\Scripts\ArticlesTopDetailPanel.js" />
     <Content Include="Views\Articles\Styles\Edit.css" />
     <Content Include="Views\Shared\Scripts\Components\IndexSlider.jsx" />
     <Content Include="Views\Shared\Scripts\Components\IndexMain.jsx" />
@@ -933,11 +934,9 @@
     <Content Include="Views\Articles\Scripts\Articles.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCategories.js" />
     <Content Include="Views\Articles\Scripts\ArticlesComments.js" />
-    <Content Include="Views\Articles\Scripts\ArticlesDelete.js" />
     <Content Include="Views\Articles\Scripts\ArticlesDetails.js" />
     <Content Include="Views\Articles\Scripts\ArticlesEditCreate.js" />
     <Content Include="Views\Articles\Scripts\ArticlesIndex.js" />
-    <Content Include="Views\Articles\Scripts\ArticlesTopDetailPanel.js" />
     <Content Include="Views\Articles\Styles\Details.css" />
     <Content Include="Views\Articles\Styles\Categories.css" />
     <Content Include="Views\Articles\Styles\Diary.css" />
@@ -1060,7 +1059,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Views\Articles\Delete.cshtml" />
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />

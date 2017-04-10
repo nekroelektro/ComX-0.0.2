@@ -20,7 +20,7 @@
 [DONE] zbundlować skrypty i cssy w layoucie
 - HTML5 pushState do one-page application
 	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
-- różna wielkość górnych ikona na index i na details
+[DONE] różna wielkość górnych ikona na index i na details (chyba browser-specific)
 [DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 [DONE] naprawić paging na ajaxowej liście recek
 - subcategorie do postów na main-indeksie

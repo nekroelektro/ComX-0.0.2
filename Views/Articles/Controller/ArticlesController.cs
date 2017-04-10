@@ -122,14 +122,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return Json(new {Url = redirectUrl});
         }
 
-        public ActionResult Delete(Guid? id, bool isDiary = false) {
-            var document = documentService.GetDocument(id.Value, isDiary);
-            return View(document);
-        }
-
-        public ActionResult DeleteConfirmed(string id, bool isDiary) {
+        public ActionResult Delete(string id, bool isDiary = false) {
             documentService.DeleteDocument(new Guid(id), isDiary);
-            return RedirectToAction("Index");
+            var redirectUrl = new UrlHelper(Request.RequestContext).Action("Articles", "Configuration");
+            return Json(new { Url = redirectUrl });
         }
 
         protected override void Dispose(bool disposing) {

@@ -128,7 +128,7 @@
                 type: "POST",
                 data: { 'createMode' : false, 'articleId': articleIdentificator, 'isDiary': isDiary }
             })
-            .success(function (response) {
+            .done(function (response) {
                 $('.editImageControl').hide();
                 //$('.editUploadControl').show();
                 appendUploadControlAfterDelete();
@@ -147,7 +147,7 @@
                     contentType: false, //for file upload
                     data: formData
                 })
-                .success(function(response) {
+                .done(function(response) {
                     window.location.href = response.Url;
                 });
         } else {

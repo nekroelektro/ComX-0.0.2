@@ -8,3 +8,5 @@
     bool isCurrentUserBlocked = userHelper.IsCurrentUserBlocked();
 }
 @Html.React("Comments", new {model=Model, logged=isCurrentUserLoggedIn, blocked=isCurrentUserBlocked})
+<script src="~/scripts/ckeditor.js" type="text/javascript"></script>
+<script src="~/Views/Articles/Scripts/ArticlesComments.js" type="text/javascript"></script>

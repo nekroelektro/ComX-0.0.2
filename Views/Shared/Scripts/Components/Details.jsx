@@ -34,27 +34,40 @@ var AdminPanel = React.createClass({
             <div className="topDetailPanel">
                 <div className="topDetailPanelButtons">
                     <a href={'/Configuration/Articles'}>
-                        <button type="button" className="btn btn-default btn-sm">
+                        <button type="button" className="btn nekrobutton-blue btn-sm">
                             <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO KONFIGURACJI
                         </button>
                     </a>
                     <a href={'/'}>
-                        <button type="button" className="btn btn-default btn-sm">
+                        <button type="button" className="btn nekrobutton-blue btn-sm">
                             <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO GŁÓWNEJ
                         </button>
                     </a>
                     <a href={'/Articles/Edit' + '?createMode=false&id=' + this.props.id + '&isDiary=' + this.props.isDiary}>
-                        <button type="button" className="btn btn-success btn-sm">
-                            <span className="glyphicon glyphicon-edit" aria-hidden="true"></span>EDIT
+                        <button type="button" className="btn nekrobutton-green btn-sm">
+                            <span className="glyphicon glyphicon-edit" aria-hidden="true"></span>EDYTUJ
                         </button>
                     </a>
-                    <a href={'/Articles/Delete/' + this.props.id + '?isDiary=' + this.props.isDiary}>
-                        <button type="button" className="btn btn-danger btn-sm">
-                            <span className="glyphicon glyphicon-erase" aria-hidden="true"></span>DELETE
+                    <a className="popupDocumentDelete" href="#delDoc-modal">
+                        <button type="button" className="btn nekrobutton-red btn-sm">
+                            <span className="glyphicon glyphicon-erase" aria-hidden="true"></span>USUŃ
                         </button>
                     </a>
                 </div>
-            </div>
+                <div id="delDoc-modal" className="mfp-hide white-popup wide-popup">
+                    <h3>Wnimańje! Próbujesz usunąć artykuł!</h3>
+                    <hr />
+                    <p>Czy jesteś pewien? Takaż operacja jest nieodwracalna (no, może bardzo trudno odwracalna).</p>
+                    <div className="form-group">
+                        <div className="delDocButtons">
+                            <button type="submit" className="btn nekrobutton-red submitDeleteDocumentForm" data-id={this.props.id} data-diary={this.props.isDiary}>
+                                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Usuń artykuł!
+                            </button>
+                            <button type="button" className="btn nekrobutton-blue .btn-sm btnCancelDelete">Anuluj</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
         );
     }
 });

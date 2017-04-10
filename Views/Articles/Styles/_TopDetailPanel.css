@@ -18,6 +18,10 @@
     padding-right: 1em;
 }
 
+.delDocButtons button {
+    margin: 0.5em !important;
+}
+
 .glyphicon {
     font-size: 1.1em;
 }

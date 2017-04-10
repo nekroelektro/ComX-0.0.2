@@ -46,12 +46,9 @@ namespace ComX_0._0._2 {
                 "~/Views/Shared/Scripts/SharedTopLogoPanel.js",
                 "~/Views/Account/Scripts/AccountUserPanel.js",
                 "~/Views/Articles/Scripts/Articles.js",
-                "~/Views/Articles/Scripts/ArticlesComments.js",
                 "~/Views/Articles/Scripts/ArticlesIndex.js",
-                "~/Views/Articles/Scripts/ArticlesDelete.js",
                 "~/Views/Articles/Scripts/ArticlesDetails.js",
                 "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
-                "~/Views/Articles/Scripts/ArticleDiary.js",
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js"
                 ));
 
@@ -70,8 +67,8 @@ namespace ComX_0._0._2 {
                 "~/Scripts/cbpHorizontalMenu.min.js",
                 "~/Scripts/jquery.sticky.js",
                 "~/Scripts/jquery.fancybox.pack.js",
-                "~/Scripts/jquery-ui.min.js",
-                "~/scripts/ckeditor.js"
+                "~/Scripts/jquery-ui.min.js"
+                //"~/scripts/ckeditor.js"
                 ));
 
             BundleTable.EnableOptimizations = true;
