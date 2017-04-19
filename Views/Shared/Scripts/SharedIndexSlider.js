@@ -31,14 +31,18 @@
         });
 
     $bar = $(".slider-progress .progress");
-    $(".sliderOne").on({
-        mouseenter: function() {
+    $(".sliderOne").on('click',
+        function() {
             isPause = true;
-        },
-        mouseleave: function() {
-            isPause = false;
-        }
-    });
+        });
+    //$(".sliderOne").on({
+    //    mouseenter: function() {
+    //        isPause = true;
+    //    },
+    //    mouseleave: function() {
+    //        isPause = false;
+    //    }
+    //});
 
     $(document).on("click",
         ".sliderSection",
@@ -83,25 +87,25 @@
         $('body').css({ 'background-image': 'url(../Content/images/backgroundIM.png)', 'background-repeat': 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100% 100%' });
 
         var windowScreenIndex = $(window);
-        var correctSliderSizeWidth = windowScreenIndex.height() -
-            $(".bottomFooter ").height() -
-            $(".topMainElementsContainer").height();
+        var correctSliderSizeHeigth = windowScreenIndex.height() -
+            $(".bottomFooter ").height();
 
-        $(".indexSliders, .slideElementUpper, .sliderSection")
-            .css("height", correctSliderSizeWidth);
-        $(".slideElementDown ").css("height", (correctSliderSizeWidth / 2));
+        $(".indexSliders, .slideElementUpper")
+            .css("height", correctSliderSizeHeigth);
+        //$(".slideElementDown ").css("height", (correctSliderSizeHeigth / 2));
+
+       // $(".sliderLink").find(".bannerPanelImageContainer, .bannerPanelImageContainer img").css({"width" : windowScreenIndex.width(), 'height': windowScreenIndex.height()});
 
         windowScreenIndex.on("resize",
             function() {
                 var winIndex = $(this);
                 var correct = winIndex.height() -
-                    $(".bottomFooter ").height() -
-                    $(".topMainElementsContainer").height();
+                    $(".bottomFooter ").height();
                 $(".indexSliders").css("width", winIndex.width());
-                $(".indexSliders, .slideElementUpper, .sliderSection").css("height",
+                $(".indexSliders, .slideElementUpper").css("height",
                     correct);
 
-                $(".slideElementDown ").css("height", (correct / 2));
+                //$(".slideElementDown ").css("height", (correct / 2));
             });
     }
 });

@@ -103,7 +103,7 @@ var CommentsReady = React.createClass({
                     <p>Potwierdź</p>
                     <hr />
                     <p>Czy na bank chcesz usunąć swój komentarz?</p>
-                    <button type="button" className="btn btn-danger .btn-sm btnConfirmDeletion">
+                    <button type="button" className="btn btn-danger .btn-sm btnConfirmCommentDeletion">
                         Ta!
                     </button>
                     <button type="button" className="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>

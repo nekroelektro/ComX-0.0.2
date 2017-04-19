@@ -92,10 +92,10 @@
 .bannerPanelInfo {
     font-family: 'Coda', sans-serif; 
     position: absolute; 
-    bottom: 0; 
-    color: black; 
+    bottom: 1em; 
+    color: whitesmoke; 
     padding: 1em;
-    background: rgba(255, 255, 255, 0.7); 
+    background: rgba(0, 0, 0, 0.5); 
     z-index: 4;
     left: 0; 
   right: 0; 

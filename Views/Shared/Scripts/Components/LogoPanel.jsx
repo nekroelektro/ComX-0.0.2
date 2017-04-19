@@ -26,7 +26,7 @@ var LogoMainImage = React.createClass({
     render: function() {
         return(
             <div className="logo">
-                <img id="logoImage" src='/Content/images/logoWhite.jpg' />
+                <img id="logoImage" src='/Content/images/logoLogo.png' />
             </div>
             );
     }

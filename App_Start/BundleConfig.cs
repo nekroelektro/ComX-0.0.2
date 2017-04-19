@@ -46,7 +46,6 @@ namespace ComX_0._0._2 {
                 "~/Views/Shared/Scripts/SharedTopLogoPanel.js",
                 "~/Views/Account/Scripts/AccountUserPanel.js",
                 "~/Views/Articles/Scripts/Articles.js",
-                "~/Views/Articles/Scripts/ArticlesIndex.js",
                 "~/Views/Articles/Scripts/ArticlesDetails.js",
                 "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js"

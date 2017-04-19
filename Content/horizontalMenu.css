@@ -1,7 +1,7 @@
 .cbp-hrmenu {
 	width: 100%;
-    text-align: center;   
-    background: black;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 6;
 	/*margin-top: 2em;
 	border-bottom: 4px solid #47a3da;*/

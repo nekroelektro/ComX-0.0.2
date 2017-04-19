@@ -1,20 +1,22 @@
 ﻿.logoSection {
     padding-left: 0; 
     padding-right: 0;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 6;
 
-    -moz-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
+    /*-moz-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
     -webkit-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
-    box-shadow: 2px 2px 3px black, -2px 2px 3px black;
+    box-shadow: 2px 2px 3px black, -2px 2px 3px black;*/
 }
 
 .logo img {
     float: left; 
-    width: 35%; 
+    /*width: 35%;*/ 
     height: auto; 
     text-align: center;
     cursor: pointer;
+    margin-left: 1em;
+    margin-top: 0.2em;
 }
 
 .rightLogoPanel {

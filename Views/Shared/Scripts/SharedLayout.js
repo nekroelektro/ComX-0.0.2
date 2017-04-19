@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-    //$('.elementsToPush').css('margin-top', $('.topMainElementsContainer').height());
+    $(".bannerPanelInfo").css("width", $(".bodyLayout").width() + 30);
 });
 
 // ===== Scroll to Top ==== 

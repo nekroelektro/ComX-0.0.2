@@ -8,11 +8,14 @@
         $('#diaryCatalog').hide(500);
         $('#diaryList').show(500);
     });
-    //$('.singleDiary')
-    //    .mouseover(function () {
-    //        $(this).find('.diaryTitle').stop().fadeTo("slow", 1);
-    //    })
-    //    .mouseout(function () {
-    //        $(this).find('.diaryTitle').stop().fadeTo("slow", 0);
-    //    });
+    $('.navigationBackButton').click(function () {
+        $.ajax({
+            url: "/Articles/Index/",
+            method: 'GET',
+            success: function (data) {
+                $('.mainBodyContainer').html(data);
+                $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+            }
+        });
+    });
 });

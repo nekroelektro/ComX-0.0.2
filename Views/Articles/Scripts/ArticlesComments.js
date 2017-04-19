@@ -67,7 +67,7 @@
             modal: true
         });
     //Deleting the comment       
-        $('.btnConfirmDeletion').click(function () {
+        $('.btnConfirmCommentDeletion').click(function () {
             if (comIdentificator != null && artIdentificator != null && diary != null) {
                 $.ajax({
                         url: "/Articles/DeleteComment/",
@@ -126,7 +126,7 @@
                     type: "POST",
                     data: { 'bodyText': body, 'commentId': comIdentificator,'articleId' : artIdentificator, 'isDiary': diary }
                 })
-                    .success(function (response) {
+                    .done(function (response) {
                         var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
                         if (editorInstanceEdit) {
                             try {

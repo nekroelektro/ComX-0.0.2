@@ -534,16 +534,21 @@ namespace ComX_0._0._2.Views.Articles.Services {
         }
 
         public void CreateComment(string body, Guid articleId, bool isDiary) {
-            var newComment = new Comments {
-                Id = Guid.NewGuid(),
-                Body = body,
-                UserId = userHelper.GetCurrentLoggedUserId(),
-                ArticleId = articleId,
-                DateOfCreation = DateTime.Now,
-                IsDiary = isDiary
-            };
-            db.Comments.Add(newComment);
-            db.SaveChanges();
+            var userId = userHelper.GetCurrentLoggedUserId();
+            if (userId != Guid.Empty)
+            {
+                var newComment = new Comments
+                {
+                    Id = Guid.NewGuid(),
+                    Body = body,
+                    UserId = userId,
+                    ArticleId = articleId,
+                    DateOfCreation = DateTime.Now,
+                    IsDiary = isDiary
+                };
+                db.Comments.Add(newComment);
+                db.SaveChanges();
+            }
         }
 
         public void UpdateComment(string body, Guid commentId) {

@@ -76,13 +76,10 @@ $(document).ready(function() {
         });
         $(".elementsToPush").css("margin-top", 0);
 
-        var topHeight = $(".topMainElementsContainer").height();
         $(".bannerPanelImageMain").animate({
-                height: $(".detailsBannerPanel").height() -
-                    ($(".bannerPanelInfo").height() + topHeight) -
-                    28, // 28 is a height of bannerPanelInfo padding top plus bottom
+                height: $(".detailsBannerPanel").height(),
                 position: "absolute",
-                top: topHeight
+                top: 0
             },
             500);
 
@@ -96,8 +93,6 @@ $(document).ready(function() {
                 bannerPanel.css("height", win.height() - $(".bottomFooter ").height());
                 $(".articleDetail, .mainSideBar").css("margin-top", bannerPanel.height());
             });
-
-        $(".bannerPanelInfo").css("width", $(".bodyLayout").width() + 30);
 
         $(".articleDetail, .mainSideBar").css("margin-top", imageHeight);
         if ($(".topDetailPanel").length > 0) {

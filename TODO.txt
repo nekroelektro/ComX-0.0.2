@@ -16,17 +16,20 @@
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
 [DONE] edit button na liście artykułów w konfiguracji
 - na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
-- ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
+[DONE] ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 [DONE] zbundlować skrypty i cssy w layoucie
 - HTML5 pushState do one-page application
 	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
 [DONE] różna wielkość górnych ikona na index i na details (chyba browser-specific)
 [DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 [DONE] naprawić paging na ajaxowej liście recek
+- komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
+	- prywatna wiadomość z ramki w popupie
+- newsy oddzielnie na stronie głównej
+- kategorie do random postów
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
 - Dopicować widoki zapomnianego hasła, user panel itd
-- Posty zrobić suwające się - można żeby po kolei się przesuwały w bok od góry (i tak są ładowane wszystkie na raz)
 [DONE] recenzje muzyczne z indexu do ajaxa
 [DONE] KONIECZNIE ZROBIć PIĘKNY SEARCH!
 	[DONE] nowa ikona użytkownika do searcha - po kliknięciu animacja wysuwania searchbara

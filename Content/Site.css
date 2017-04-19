@@ -676,9 +676,9 @@ a {
         display: none !important;
     }
 
-    .logo img {
+    /*.logo img {
         width: 65% !important;
-    }
+    }*/
 
     .topNavigationItemsContainer, .sticky-wrapper {
         display: none;
