@@ -23,6 +23,8 @@
 [DONE] różna wielkość górnych ikona na index i na details (chyba browser-specific)
 [DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 [DONE] naprawić paging na ajaxowej liście recek
+- zwijalne części sidemenu - po rozwinięciu jednego zwijać już otwarte. ograniczyć random posty
+[DONE] Nowoczesne widoki gór stron
 - komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
 	- prywatna wiadomość z ramki w popupie
 - newsy oddzielnie na stronie głównej

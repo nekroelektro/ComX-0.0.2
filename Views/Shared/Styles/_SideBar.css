@@ -12,6 +12,10 @@
     border-top: 1px solid #2b823c;
 }
 
+.sideBody {
+    display: none;
+}
+
 .firstSideComponent {
     border-top: none !important;
 }
@@ -54,7 +58,7 @@
 .sideTitle h3 {
     font-weight: bolder !important;
     margin-top: 10px !important;
-    cursor: default;
+    cursor: pointer;
 }
 
 .sideTitle:hover {

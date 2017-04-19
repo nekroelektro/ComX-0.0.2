@@ -21,6 +21,18 @@
             $(this).find("#reviewIndexImage").removeClass('transition');
         });
 
+    // Sizing of index elements
+    var windowScreen = $(window);
+    var containerHeight = windowScreen
+        .height() -
+        $('.articlesIndexHeader').height() -
+        $('.bottomFooter ').height() -
+        58;
+
+    $('.articlesIndexTable').css('height', containerHeight - $('.page_navigation').height());
+
+
+    // Diaries floating windows
     $('.indexSingleArticleContainerDiary')
         .mousemove(function(e) {
             var flyingWindow = $(this).find('.flyingWindow');

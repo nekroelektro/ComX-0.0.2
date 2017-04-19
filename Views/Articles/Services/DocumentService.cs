@@ -202,7 +202,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             // This is shit, cause it fetches all articles at first step, but in other way there is such error:
             // LINQ to Entities does not recognize the method 'Int32 Next()' method, and this method cannot be translated into a store expression.
             var articleList = db.Articles.Where(x => x.IsPublished).ToList();
-            var randomList = articleList.OrderBy(x => rnd.Next()).Take(5); // for now number of posts is fixed
+            var randomList = articleList.OrderBy(x => rnd.Next()).Take(3); // for now number of posts is fixed
             var postList = new List<ArticleDto>();
             foreach (var item in randomList) {
                 var article = new ArticleDto {

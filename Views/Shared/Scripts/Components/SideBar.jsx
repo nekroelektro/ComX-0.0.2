@@ -28,6 +28,7 @@ var SideContact = React.createClass({
                         <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
                     </h3>
                 </div>
+                <div className="sideBody">
                 <div className="sideContactTitle">
                     nekro@nekroplaza.pl
                 </div>
@@ -46,6 +47,7 @@ var SideContact = React.createClass({
                     </a>
                 </div>
                 </div>
+        </div>
             );
     }
 });
@@ -63,8 +65,10 @@ var SidePlazlist = React.createClass({
                         <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
                     </h3>
                 </div>
-                <div className="sidePlazlistTitle">{this.props.name}</div>
-                <iframe className="sidePlazlistWidget" src={this.props.code} frameborder="0" allowtransparency="true"></iframe>
+                <div className="sideBody">
+                    <div className="sidePlazlistTitle">{this.props.name}</div>
+                    <iframe className="sidePlazlistWidget" src={this.props.code} frameborder="0" allowtransparency="true"></iframe>
+                </div>
             </div>
         );
     }
@@ -91,10 +95,12 @@ var SideLastComments = React.createClass({
                         <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
                     </h3>
                 </div>
+                <div className="sideBody">
                 <div className="sideLastCommentsBody">
                     {commentNodes}
                 </div>
                 </div>
+            </div>
             );
     }
 });
@@ -142,10 +148,12 @@ var SideRandomPosts = React.createClass({
                         <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
                     </h3>
                 </div>
+                <div className="sideBody">
                 <div className="sidePostsBody">
                     {postNodes}
                 </div>
                 </div>
+            </div>
             );
     }
 });

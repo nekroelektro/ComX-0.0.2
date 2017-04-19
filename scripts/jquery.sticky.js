@@ -170,9 +170,9 @@
             stickyWrapper.css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
 
-          if (stickyElement.css("float") === "right") {
-            stickyElement.css({"float":"none"}).parent().css({"float":"right"});
-          }
+          //if (stickyElement.css("float") === "right") {
+          //  stickyElement.css({"float":"none"}).parent().css({"float":"right"});
+          //}
 
           o.stickyElement = stickyElement;
           o.stickyWrapper = stickyWrapper;
