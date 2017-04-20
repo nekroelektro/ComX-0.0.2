@@ -140,6 +140,11 @@
     right: 0;
 }
 
+.articlesIndexTable {
+    margin-bottom: 0 !important;
+    background-color: black; 
+}
+
 .articlesIndexHeader {
     color: whitesmoke;
     width: 100%;
@@ -195,7 +200,6 @@
 .indexSingleReview {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    height: 19em; 
 }
 
 .indexSingleReviewImageContainer {
@@ -347,7 +351,6 @@
 }
 
 .indexSingleArticleContainerDiary {
-    height: 4em; 
     padding-left: 0; 
     padding-right: 0; 
     width: 100% !important;
@@ -408,4 +411,8 @@
 
 .indexSingleArticleContainerDiary:hover .imageOverlayColorDiaryIndex {
     background: none;
+}
+
+#Recenzje, #Pamiętnik {
+    clear: both;
 }

@@ -1,13 +1,13 @@
 ﻿$(document).ready(function () {
     $('#pager').pajinate({
         //num_page_links_to_display: 3,
-        items_per_page: 8,
+        items_per_page: 4,
         show_first_last: false
     });
 
     $(".page_navigation a").click(function () {
         $('html, body').animate({
-            scrollTop: $("#content").offset().top - 65
+            scrollTop: $("#pager").offset().top - 59
         }, 600);
     });
 
@@ -29,8 +29,16 @@
         $('.bottomFooter ').height() -
         58;
 
-    $('.articlesIndexTable').css('height', containerHeight - $('.page_navigation').height());
+    var postsheight = containerHeight - $('.page_navigation').height() - 18;
+    $('.articlesIndexTable').css('height', postsheight);
+    $('.indexSingleArticleContainer').css('height', postsheight / 2);
 
+    var reviewHeight = containerHeight - $('.moreMusicReviews').height();
+    $('.indexReviewsContainer').css('height', reviewHeight);
+    $('.indexSingleReview').css('height', reviewHeight / 2);
+
+    $('.indexDiaryList').css('height', reviewHeight);
+    $('.indexSingleArticleContainerDiary').css('height', reviewHeight / 10);
 
     // Diaries floating windows
     $('.indexSingleArticleContainerDiary')
@@ -45,28 +53,35 @@
         });
 
     $('#indexSeeDiaryCategory').click(function () {
-        $.ajax({
-            url: "/Articles/Diary/",
-            method: 'GET',
-            success: function (data) {
-                $('.mainBodyContainer').html(data);
-                $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
-            }
-        });
+        window.location.href = "/Articles/Diary";
+        //$.ajax({
+        //    url: "/Articles/Diary/",
+        //    method: 'GET',
+        //    success: function (data) {
+        //        $('.mainBodyContainer').html(data);
+        //        $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+        //    }
+        //});
     });
 
     $('#indexSeeMusicReviewsCategory').click(function () {
-        $.ajax({
-            url: "/Categories/Recenzje",
-            method: 'GET',
-            success: function (data) {
-                $('.mainBodyContainer').html(data);
-                setTimeout(function() {
-                        $('.categorySubElement:contains("Muzyka")').trigger("click");
-                        $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
-                    },
-                    500);
-            }
-        });
+        window.location.href = "/Categories/Recenzje";
+        setTimeout(function() {
+                            $('.categorySubElement:contains("Muzyka")').trigger("click");
+                            //$("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+                        },
+                        500);
+        //$.ajax({
+        //    url: "/Categories/Recenzje",
+        //    method: 'GET',
+        //    success: function (data) {
+        //        $('.mainBodyContainer').html(data);
+        //        setTimeout(function() {
+        //                $('.categorySubElement:contains("Muzyka")').trigger("click");
+        //                $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+        //            },
+        //            500);
+        //    }
+        //});
     });
 });

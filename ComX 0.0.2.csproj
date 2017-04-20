@@ -696,6 +696,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="scripts\lang\pl.js" />
+    <Content Include="scripts\NekroNavigator.js" />
     <Content Include="scripts\NekroSearch.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\lang\af.js" />

@@ -33,17 +33,18 @@ var IndexMainArticles = React.createClass({
 	    var articleNodes = this.state.articles.map(function (article) {
 	        return <IndexArticle name={article.Name} code={article.CodedName} body={article.Body} imagePath={article.ImageUrl} category={article.Category} subcategory={article.Subcategory}></IndexArticle>;
 	    });
-		return (
-			<div id="pager">
-                <div className="articlesIndexHeader">
-                    <h3><span className="glyphicon glyphicon-th-large" aria-hidden="true"></span> POSTY:</h3>
-                </div>
-                <ul className="content articlesIndexTable" id="content">
-                    {articleNodes}
-                </ul>
-                <hr />
-                <div className="page_navigation"></div>
-			</div>
+	    return (
+            <div id="Posty">
+			    <div id="pager">
+                    <div className="articlesIndexHeader">
+                        <h3><span className="glyphicon glyphicon-th-large" aria-hidden="true"></span> POSTY:</h3>
+                    </div>
+                    <ul className="content articlesIndexTable" id="content">
+                        {articleNodes}
+                    </ul>
+                    <div className="page_navigation"></div>
+			    </div>
+            </div>
 		);
 	}
 });
@@ -101,6 +102,7 @@ var IndexMainDiaries = React.createClass({
             return <IndexDiary name={diary.Name} code={diary.Code} imagePath={diary.ImageUrl }></IndexDiary>;
 	    });
         return (
+            <div id="Pamiętnik">
 			<div className="indexDiary articlesIndexReviewsContainer">
                 <div className="articlesIndexHeader">
                     <h3><span className="glyphicon glyphicon-book" aria-hidden="true"></span> Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
@@ -114,6 +116,7 @@ var IndexMainDiaries = React.createClass({
                     </a>
                 </div>
 			</div>
+            </div>
 		);
     }
 });
@@ -158,6 +161,7 @@ var IndexMainReviews = React.createClass({
             return <IndexReview name={review.Name} code={review.Code} imagePath={review.ImageUrl }></IndexReview>;
         });
         return (
+            <div id="Recenzje">
 			<div className="articlesIndexReviewsContainer">
                 <div className="articlesIndexHeader">
                     <h3><span className="glyphicon glyphicon-cd" aria-hidden="true"></span> OSTATNIE RECKI PŁYTOWE:</h3>
@@ -170,6 +174,7 @@ var IndexMainReviews = React.createClass({
                         <h4>ZOBACZ WSZYSTKIE RECKI MUZYCZNE <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
                     </a>
                 </div>
+            </div>
             </div>
 		);
     }

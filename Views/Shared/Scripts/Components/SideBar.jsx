@@ -25,7 +25,7 @@ var SideContact = React.createClass({
             <div className="sideBarComponent firstSideComponent">
                 <div className="sideTitle">
                     <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt:
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt...
                     </h3>
                 </div>
                 <div className="sideBody">
@@ -35,7 +35,7 @@ var SideContact = React.createClass({
                 <div className="sideSocial">
                     <div className="fb-page"
                          data-href="https://www.facebook.com/nekroplaza"
-                         data-width="380"
+                         data-width="353"
                          data-hide-cover="false"
                          data-show-facepile="true"
                          data-show-posts="false">
@@ -62,7 +62,7 @@ var SidePlazlist = React.createClass({
             <div className="sideBarComponent">
                 <div className="sideTitle">
                     <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista:
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista...
                     </h3>
                 </div>
                 <div className="sideBody">
@@ -92,7 +92,7 @@ var SideLastComments = React.createClass({
             <div className="sideBarComponent">
                 <div className="sideTitle">
                     <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze:
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze...
                     </h3>
                 </div>
                 <div className="sideBody">
@@ -145,7 +145,7 @@ var SideRandomPosts = React.createClass({
             <div className="sideBarComponent sideRandomPosts">
                 <div className="sideTitle">
                     <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty:
+                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty...
                     </h3>
                 </div>
                 <div className="sideBody">

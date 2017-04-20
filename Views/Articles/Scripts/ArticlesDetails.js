@@ -26,6 +26,10 @@ ga("send", "pageview");
 $(document).ready(function() {
     $(".topDetailPanelButtons").sticky({ topSpacing: 60, zIndex: 5 });
 
+    var postsheight = $(window).height()/2;
+    $('.articlesIndexTable').css('height', postsheight);
+    $('.indexSingleArticleContainer').css('height', postsheight / 2);
+
     var currentCategory = $("#categoryNameContainer").val();
     if (currentCategory == "") {
         currentCategory = "Pamiętnik";
@@ -74,7 +78,7 @@ $(document).ready(function() {
             'background-attachment': "fixed",
             'background-size': "100% 100%"
         });
-        $(".elementsToPush").css("margin-top", 0);
+        //$(".elementsToPush").css("margin-top", 0);
 
         $(".bannerPanelImageMain").animate({
                 height: $(".detailsBannerPanel").height(),

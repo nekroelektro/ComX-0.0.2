@@ -267,7 +267,10 @@ namespace ComX_0._0._2.Views.Articles.Services {
             // Cut first 4 articles (they are on slider)
             var posts = articleList;
             for (var i = 0; i < 4; i++) posts.RemoveAt(0);
-            foreach (var item in posts) {
+            foreach (var item in posts.Where(
+                    x =>
+                        x.CategoryId != articleHelper.GetCategoryByName("Recenzje").Id &&
+                        x.SubCategoryId != articleHelper.GetSubCategoryByName("Muzyka").Id)) {
                 var article = new ArticleDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
@@ -282,7 +285,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
             details.Subcategories = details.Articles.Select(x => x.Subcategory).Distinct().ToList();
 
-            var diaries = db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(5).ToList();
+            var diaries = db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(10).ToList();
             var diaryList = new List<IndexDiaryDto>();
             foreach (var item in diaries) {
                 var diary = new IndexDiaryDto {

@@ -30,10 +30,14 @@
 </head>
 <body>
 <div class="bodyContent">
+    <div class="mainNavigatorContainer">
+        <div class="mainNavigatorName">
+            <h3>NAWIGUJ:</h3>
+        </div>
+    </div>
     <div class="topMainElementsContainer">
         @Html.Partial("_TopLogoPanel")
-        @if (!currentUrl.Contains("Configuration"))
-        {
+        @if (!currentUrl.Contains("Configuration")) {
             <div class="containerTop container">
                 @Html.Action("_TopNavigationMenu", "Articles")
             </div>

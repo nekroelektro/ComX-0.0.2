@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    //$(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
+    $('#diarySortList').hide();
     $('#diarySortCatalog').click(function () {
         $('#diaryList').hide(500);
         $('#diaryCatalog').show(500);
