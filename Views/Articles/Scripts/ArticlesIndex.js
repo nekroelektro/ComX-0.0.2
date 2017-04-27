@@ -34,8 +34,8 @@
     $('.indexSingleArticleContainer').css('height', postsheight / 2);
 
     var reviewHeight = containerHeight - $('.moreMusicReviews').height();
-    $('.indexReviewsContainer').css('height', reviewHeight);
-    $('.indexSingleReview').css('height', reviewHeight / 2);
+    $('.indexReviewsContainer').css('height', $('.indexSingleReview').width()*2);
+    $('.indexSingleReview').css('height', $('.indexSingleReview').width());
 
     $('.indexDiaryList').css('height', reviewHeight);
     $('.indexSingleArticleContainerDiary').css('height', reviewHeight / 10);

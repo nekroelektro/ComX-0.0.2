@@ -40,17 +40,17 @@
                     //this crap is case sensitive too
                     if (selectedSubText != "Wszystkie") {
                         if ($(this).data("sub").toString() == selectedSubText) {
-                            $(this).hide().appendTo("#content").fadeIn(1000);
+                            $(this).hide().appendTo("#content");
                         }
                     } else {
-                        $(this).hide().appendTo("#content").fadeIn(1000);
+                        $(this).hide().appendTo("#content");
                     }
                 });
                 // paging of existed posts
-                //$("#pagerCategories").pajinate({
-                //    num_page_links_to_display: 3,
-                //    items_per_page: 10
-                //});
+                $("#pagerCategories").pajinate({
+                    num_page_links_to_display: 3,
+                    items_per_page: 6
+                });
                 makeSubActive(currentlyActiveSubInCategories);
             });
     }
