@@ -395,7 +395,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public List<IndexDiaryDto> GetDiariesDetails() {
             var details = new List<IndexDiaryDto>();
-            var diaries = db.Diary.OrderByDescending(x => x.DateCreated).ToList();
+            var diaries = db.Diary.Where(x=>x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
             foreach (var item in diaries) {
                 var diary = new IndexDiaryDto {
                     Name = item.Name,

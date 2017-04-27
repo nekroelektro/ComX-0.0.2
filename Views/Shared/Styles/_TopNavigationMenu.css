@@ -139,14 +139,14 @@
 }
 
 .bannerPanelImageMainNav {
-   width: 100%; 
-   height: 100%; 
-   text-align: center; 
-   margin: 0 auto; 
-   z-index: 3; 
-   overflow: hidden; 
-   position: absolute; 
-   top: 0; 
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    margin: 0 auto; 
+    z-index: 3; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0; 
 }
 
 .bannerPanelImageMainNav img {
@@ -156,6 +156,12 @@
     margin: 0 auto; 
     z-index: 0; 
     vertical-align: middle;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
 }
 
 .titleTopNavigation {

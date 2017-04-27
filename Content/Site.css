@@ -550,11 +550,13 @@ a {
     transition: all 0.5s ease;
 }
 
-.singleIndexAnchor:hover #articleIndexImage{
+.singleIndexAnchor:hover #articleIndexImage, .topNavigationLastAnchor:hover #articleTopNavigationImage {
     -webkit-transform: scale(1.6); 
     -moz-transform: scale(1.6);
     -o-transform: scale(1.6);
     transform: scale(1.6);
+    top: 0;
+
 }
 
 /* CONFIG */
