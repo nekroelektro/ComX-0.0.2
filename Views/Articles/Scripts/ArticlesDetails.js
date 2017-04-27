@@ -76,7 +76,8 @@ $(document).ready(function() {
             'background-image': "url(" + backgroundImageSrc + ")",
             'background-repeat': "no-repeat",
             'background-attachment': "fixed",
-            'background-size': "100% 100%"
+            'background-size': "100%",
+            'background-position' : "center"
         });
         //$(".elementsToPush").css("margin-top", 0);
 

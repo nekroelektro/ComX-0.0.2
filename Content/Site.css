@@ -785,6 +785,19 @@ a {
     border-radius: 7px;
     padding: 0.2em;
     cursor: pointer;
+
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+.navigatorMenuItem:hover {
+    color: #2b823c;
+}
+
+.navigatorMenuItem:hover > .navigatorIcon {
+    border: 3px solid #2b823c;
 }
 
 .navigatorIcon {

@@ -56,12 +56,14 @@
     });
 
     $('.mainNavigatorHide').click(function() {
-        $('.mainNavigatorContainer').hide('slide', { direction: 'left' }, 'fast');
+        //$('.mainNavigatorContainer').hide('slide', { direction: 'left' }, 'fast');
+        $('.mainNavigatorContainer').animate({ "left": -$('.mainNavigatorContainer').width() }, 'fast');
         $('.mainNavigatorContainerShow').show('slide', { direction: 'right' }, 'fast');
     });
 
     $('.mainNavigatorContainerShow').click(function () {
         $('.mainNavigatorContainerShow').hide('slide', { direction: 'left' }, 'fast');
-        $('.mainNavigatorContainer').show('slide', { direction: 'right' }, 'fast');
+        //$('.mainNavigatorContainer').show('slide', { direction: 'right' }, 'fast');
+        $('.mainNavigatorContainer').animate({ "left": 0 }, 'fast');
     });
 };
