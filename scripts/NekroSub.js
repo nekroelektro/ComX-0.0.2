@@ -47,10 +47,10 @@
                     }
                 });
                 // paging of existed posts
-                $("#pagerCategories").pajinate({
-                    num_page_links_to_display: 3,
-                    items_per_page: 10
-                });
+                //$("#pagerCategories").pajinate({
+                //    num_page_links_to_display: 3,
+                //    items_per_page: 10
+                //});
                 makeSubActive(currentlyActiveSubInCategories);
             });
     }

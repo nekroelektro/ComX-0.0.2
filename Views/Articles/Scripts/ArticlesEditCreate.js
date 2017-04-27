@@ -59,8 +59,8 @@
         formData.set('DateCreated', $('[name=DateCreated]').val());
         formData.set('DateEdited', $('[name=DateEdited]').val());
         formData.set('IsPublished', $('[name=IsPublished]').is(":checked"));
-        formData.set('AlbumYear', $('[name=AlbumYear]').is(":checked"));
-        formData.set('ReleaseYear', $('[name=ReleaseYear]').is(":checked"));
+        formData.set('AlbumYear', $('[name=AlbumYear]').val());
+        formData.set('ReleaseYear', $('[name=ReleaseYear]').val());
     }
 
     var handleSubmitEditErrors = function () {

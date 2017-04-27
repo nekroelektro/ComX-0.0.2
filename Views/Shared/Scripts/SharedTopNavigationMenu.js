@@ -101,7 +101,7 @@
             }
             $(".absoluteLogo").css("margin-top", "-6em");
             $(".absoluteLogo").hide();
-            $(".cbp-hrsub-inner").css("width", "80%");
+            //$(".cbp-hrsub-inner").css("width", "100%");
             $(".cbp-hrmenu").css("padding-left", "0em");
             $(".cbp-hrmenu > ul > li > a").css({
                 paddingLeft: "2em",
@@ -120,15 +120,16 @@
             $(this).find(".articlesIndexLine").css("border", "1px solid chocolate");
         });
 
-    $(".topMainElementsContainer").on({
-        mouseenter: function() {
-            $(this).find(".cbp-hrmenu, .logoSection").animate({ 'background-color': "rgba(0, 0, 0, 0.9)" }, 'fast');
-        },
-        mouseleave: function () {
-            if (!$('.absoluteLogo').is(":visible"))
-            $(this).find(".cbp-hrmenu, .logoSection").animate({ 'background-color': "rgba(0, 0, 0, 0.3)" }, 'fast');
-        }
-    });
+    // If nav menu is open prevent logo pnael from changing color on mouseleave
+    //$(".topMainElementsContainer").on({
+    //    mouseleave: function () {
+    //        if ($('.lastArticlesFromCategoryTopNavigation').is(":visible")) {
+    //            $(".topMainElementsContainer").css('background-color', "rgba(0, 0, 0, 0.8)");
+    //        } else {
+    //            $(".topMainElementsContainer").css('background-color', "transparent");
+    //        }
+    //    }
+    //});
 
     // Subcategories tweaks
     NekroSub(true);

@@ -39,7 +39,7 @@
 
             htmlString = htmlString + itemString;
         });
-    $('.mainNavigatorContainer').hide().append(htmlString).fadeIn("fast");
+    $('.mainNavigatorContainerAllItems').hide().append(htmlString).fadeIn("fast");
 
     //Select first element on start
     $('.navigatorMenuItemName:contains("Start")').parent().addClass('activeNavigatorItem');
@@ -53,5 +53,15 @@
         }, 250, function () {
             $(this).addClass("activeNavigatorItem");          
         });
+    });
+
+    $('.mainNavigatorHide').click(function() {
+        $('.mainNavigatorContainer').hide('slide', { direction: 'left' }, 'fast');
+        $('.mainNavigatorContainerShow').show('slide', { direction: 'right' }, 'fast');
+    });
+
+    $('.mainNavigatorContainerShow').click(function () {
+        $('.mainNavigatorContainerShow').hide('slide', { direction: 'left' }, 'fast');
+        $('.mainNavigatorContainer').show('slide', { direction: 'right' }, 'fast');
     });
 };

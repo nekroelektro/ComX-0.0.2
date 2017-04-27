@@ -1,4 +1,21 @@
-﻿.logoSection {
+﻿.topMainElementsContainer {
+    z-index: 6;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.topMainElementsContainer:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.logoSection {
     padding-left: 0; 
     padding-right: 0;
     background-color: rgba(0, 0, 0, 0.3);

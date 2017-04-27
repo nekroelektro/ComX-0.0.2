@@ -269,8 +269,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             for (var i = 0; i < 4; i++) posts.RemoveAt(0);
             foreach (var item in posts.Where(
                     x =>
-                        x.CategoryId != articleHelper.GetCategoryByName("Recenzje").Id &&
-                        x.SubCategoryId != articleHelper.GetSubCategoryByName("Muzyka").Id)) {
+                        x.CategoryId != articleHelper.GetCategoryByName("Recenzje").Id)) {
                 var article = new ArticleDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),

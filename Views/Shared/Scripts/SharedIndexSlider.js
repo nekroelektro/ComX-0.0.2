@@ -88,9 +88,10 @@
         windowScreenIndex.on("resize",
             function() {
                 var winIndex = $(this);
+                var correctWidth = winIndex.width();
                 var correct = winIndex.height() -
                     $(".bottomFooter ").height();
-                $(".indexSliders").css("width", winIndex.width());
+                $(".indexSliders").css("width", correctWidth);
                 $(".indexSliders, .slideElementUpper").css("height",
                     correct);
 

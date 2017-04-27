@@ -29,6 +29,48 @@ p:-moz-selection {
     background: #2B823C;
 }
 
+#loadingOverlay{
+  position:fixed;
+  z-index:99999;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background:rgba(43, 130, 60, 1);
+  transition: 1s 0.4s;
+}
+
+.loadingOverlayElementsContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%); 
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.loadingOverlayLogo {
+    width: 25em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%); 
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.loadingOverlayGif {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%); 
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 /* Set padding to keep content from hitting the edges */
 .bodyLayout {
     margin: 0 auto;
@@ -672,6 +714,42 @@ a {
     left: 3px; 
     /*background: rgba(0, 0, 0, 0.3);*/ 
     z-index: 6;
+
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}
+
+.mainNavigatorContainerShow {
+    top: 50%;
+    position: fixed; 
+    left: 1em; 
+    /*background: rgba(0, 0, 0, 0.3);*/ 
+    z-index: 6;
+    font-family: 'Eater', sans-serif;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #2b823c;
+    display: none;
+    cursor: pointer;
+
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+.mainNavigatorContainerShow h3:hover {
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.mainNavigatorContainerAllItems {
+    margin-bottom: 0.7em;
 }
 
 .mainNavigatorName {
@@ -682,9 +760,19 @@ a {
     font-family: 'Eater', sans-serif;
 }
 
+.mainNavigatorHide {
+    cursor: pointer;
+}
+
 .mainNavigatorName h3 {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+}
+
+.mainNavigatorContainerShow h3 {
+    transform: rotate(90deg);
+	/*transform-origin: left top 0;*/
+    float: left;
 }
 
 .navigatorMenuItem {

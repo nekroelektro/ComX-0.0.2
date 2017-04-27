@@ -93,7 +93,8 @@ $(document).ready(function() {
         windowScreen.on("resize",
             function() {
                 var win = $(this);
-                bannerPanel.css("width", win.width());
+                var correctWidth = win.width();
+                bannerPanel.css("width", correctWidth);
                 bannerPanel.css("height", win.height() - $(".bottomFooter ").height());
                 $(".articleDetail, .mainSideBar").css("margin-top", bannerPanel.height());
             });

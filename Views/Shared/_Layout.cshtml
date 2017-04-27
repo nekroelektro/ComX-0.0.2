@@ -34,8 +34,16 @@
         <div class="mainNavigatorName">
             <h3>NAWIGUJ:</h3>
         </div>
+        <div class="mainNavigatorContainerAllItems">           
+        </div>
+        <div class="mainNavigatorName mainNavigatorHide">
+            <h3><< SCHOWAJ:</h3>
+        </div>
     </div>
-    <div class="topMainElementsContainer">
+    <div class="mainNavigatorContainerShow">
+        <h3>NAWIGUJ:</h3>
+    </div>
+    <div class="topMainElementsContainer container">
         @Html.Partial("_TopLogoPanel")
         @if (!currentUrl.Contains("Configuration")) {
             <div class="containerTop container">
@@ -56,12 +64,22 @@
             <div class="push"></div>
         </div>
     </div>
+    @*<div id="loadingOverlay">
+        <div class="loadingOverlayElementsContainer">
+            <img class="loadingOverlayGif" src="~/Content/images/ring.gif" alt="Loading" />
+            <img class="loadingOverlayLogo" src="~/Content/images/logoLogo.png" alt="Loading" />
+        </div>
+    </div>*@
     <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
     @Html.Partial("_Footer")
 </div>
 </body>
 </html>
 <script>
+    //$(window).on('load', function () {
+    //    $('#loadingOverlay').fadeOut("slow");
+    //});
+
     $('#return-to-top').click(function() { // When arrow is clicked
         $('body,html').animate({
             scrollTop: 0 // Scroll to top of body

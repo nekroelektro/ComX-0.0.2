@@ -478,6 +478,7 @@
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logoBlack.jpg" />
+    <Content Include="Content\images\logoLogo.png" />
     <Content Include="Content\images\logoWhite.jpg" />
     <Content Include="Content\images\logoWhiteSMALL.jpg" />
     <Content Include="Content\images\maintenanceImage.jpg" />
@@ -487,6 +488,8 @@
     <Content Include="Content\images\npLogos.png" />
     <Content Include="Content\images\npLogosBeta.png" />
     <Content Include="Content\images\rekrutacja.png" />
+    <Content Include="Content\images\ring.gif" />
+    <Content Include="Content\images\wheel.gif" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\magnific-popup.css" />

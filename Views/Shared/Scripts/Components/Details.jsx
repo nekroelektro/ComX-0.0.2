@@ -32,7 +32,7 @@ var AdminPanel = React.createClass({
     render: function () {
         return (
             <div className="topDetailPanel">
-                <div className="topDetailPanelButtons">
+                <div className="topDetailPanelButtons container">
                     <a href={'/Configuration/Articles'}>
                         <button type="button" className="btn nekrobutton-blue btn-sm">
                             <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>DO KONFIGURACJI

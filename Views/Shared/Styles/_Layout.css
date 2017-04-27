@@ -25,14 +25,6 @@
     padding-bottom: 1.4em;
 }
 
-.topMainElementsContainer {
-    z-index: 6;
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-}
-
 .indexExplicitInfo {
     padding-left: 2em; 
     padding-right: 2em; 
