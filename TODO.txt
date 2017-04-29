@@ -10,6 +10,7 @@
 [DONE] TopLogo do React
 [DONE] Naprawić złe wyświetlanie "więcej z kategorii" z navigation top na ekranie detailsów
 - przerobić IndexSlider w całości na własny - no i do Reacta
+[DONE] dostosować body width do viewportu (ze względu na mobile)
 [DONE] Edit i Create na jednym formularzu, do Reacta
 [DONE] wyczyścić BLL z nieużywanego crapu
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
@@ -23,14 +24,21 @@
 [DONE] różna wielkość górnych ikona na index i na details (chyba browser-specific)
 [DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 [DONE] naprawić paging na ajaxowej liście recek
-- zwijalne części sidemenu - po rozwinięciu jednego zwijać już otwarte. ograniczyć random posty
+[DONE] zwijalne części sidemenu - po rozwinięciu jednego zwijać już otwarte. ograniczyć random posty
 [DONE] Nowoczesne widoki gór stron
-- komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
-	- prywatna wiadomość z ramki w popupie
+PRYWATNE WIADOMOŚCI:
+	- komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
+	- prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
+	- w UserPanel przycisk (albo taby dorobić, mogą być takie w formie jak subnav menu) do private messages
+	- w widoku private messages grid z message'ami - podzielić albo na poszczególne wiadomości, albo na wątki (z pokazaną ich liczbą)
+	- na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
 - newsy oddzielnie na stronie głównej
 - kategorie do random postów
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
+- ostatnie komentarze z hashem do komentarzy
+- paging na diariesach, widok listy dopicować na diaries, dodać na reviews i zpagingować
+- searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
 - Dopicować widoki zapomnianego hasła, user panel itd
 [DONE] recenzje muzyczne z indexu do ajaxa
 [DONE] KONIECZNIE ZROBIć PIĘKNY SEARCH!
@@ -48,7 +56,6 @@ KONFIGURACJA:
 - dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 [DONE] zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
 - informacje o cookies?
-- Dodać pipeprzone private messages
-- siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje
+[DONE] siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje
 - LOGOWANIE PRZEZ FACEBOOKA
 - FORUM

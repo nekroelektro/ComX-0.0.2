@@ -36,11 +36,21 @@
     var reviewHeight = containerHeight - $('.moreMusicReviews').height();
     $('.indexReviewsContainer').css('height', $('.indexSingleReview').width()*2);
     $('.indexSingleReview').css('height', $('.indexSingleReview').width());
-
-    $('.indexDiaryList').css('height', reviewHeight);
-    $('.indexSingleArticleContainerDiary').css('height', reviewHeight / 10);
+    if ($('.sliderLatestIndexContainer').length > 0) {
+        $('.indexDiaryList').css('height', reviewHeight);
+        $('.indexSingleArticleContainerDiary').css('height', reviewHeight / 10);
+    }
 
     // Diaries floating windows
+    $('.indexSingleArticleContainerDiary:hover .flyingWindow').css({ 'opacity': 1 });
+    $('.indexSingleArticleContainerDiary')
+        .mouseover(function () {
+            $(this).find(".flyingWindow").css({ 'opacity': 1 });
+        })
+        .mouseleave(function () {
+            $(this).find(".flyingWindow").css({ 'opacity': 0 });
+        });
+
     $('.indexSingleArticleContainerDiary')
         .mousemove(function(e) {
             var flyingWindow = $(this).find('.flyingWindow');
@@ -52,6 +62,8 @@
             });
         });
 
+
+    //Redirections after clicking anchors in indexpage
     $('#indexSeeDiaryCategory').click(function () {
         window.location.href = "/Articles/Diary";
         //$.ajax({

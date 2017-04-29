@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    //if ($('body').width() < $(window).width()) {
+    //    $('body').css({ 'min-width': $(window).width() });
+    //}
     if ($('.sliderLatestIndexContainer').length > 0 || $(".detailsBannerPanel").length > 0) {
         $(".elementsToPush").css("margin-top", 0);
     } else {

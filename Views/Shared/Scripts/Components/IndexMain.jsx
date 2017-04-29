@@ -171,7 +171,7 @@ var IndexMainReviews = React.createClass({
                 </div>
                 <div className="moreMusicReviews">
                     <a className="seeMoreReviewsFromIndex" id="indexSeeMusicReviewsCategory">
-                        <h4>ZOBACZ WSZYSTKIE RECKI MUZYCZNE <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
+                        <h4>ZOBACZ WSZYSTKIE RECKI <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
                     </a>
                 </div>
             </div>

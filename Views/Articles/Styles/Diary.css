@@ -106,3 +106,7 @@
 #diaryList {
     display: none;
 }
+
+.diarylistElementCategoryView {
+    height: 4em !important;
+}

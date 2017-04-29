@@ -9,7 +9,7 @@ body {
     padding-bottom: 20px;
     background-color: #2B823C !important;
     min-height: 100%;
-    min-width: 600px;
+    min-width: 320px;
     height: auto !important;
     height: 100%;
     position: relative;
@@ -835,9 +835,23 @@ a {
         display: none !important;
     }
 
+    #logoImage {
+        width: 40% !important;
+    }
     /*.logo img {
         width: 65% !important;
     }*/
+
+    .bannerPanelInfoIndex {
+        bottom: 0 !important;
+    }
+    .bannerArticleNameIndex {
+        font-size: 0.8em !important;
+    }
+
+    .logoComponentIcon {
+        font-size: 2em;
+    }
 
     .topNavigationItemsContainer, .sticky-wrapper {
         display: none;

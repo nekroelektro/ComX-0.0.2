@@ -81,12 +81,18 @@ var DiariesList = React.createClass({
 		return (
 			<div className="diaryContainer">
                 <div className="indexReviewsContainer" id="diaryCatalog">
-                    {diaryCatalogNodes}
+                    <ul className="content" id="content">
+                        {diaryCatalogNodes}
+                    </ul>
+                    <div className="page_navigation"></div>
                 </div>
-                <ul className="indexDiaryList" id="diaryList">
-                    {diaryListNodes}
-                </ul>
-            </div>
+                <div id="diaryList">
+                    <ul className="indexDiaryList content" id="content">
+                        {diaryListNodes}
+                    </ul>
+                    <div className="page_navigation"></div>
+                </div>
+                </div>
 		);
 	}
 });
@@ -124,7 +130,7 @@ var DiaryListElement = React.createClass({
     },
     render: function () {
         return (
-            <div className="indexSingleArticleContainerDiary col-sm-12">
+            <div className="indexSingleArticleContainerDiary diarylistElementCategoryView col-sm-12">
                     <a className="indexSingleDiaryAnchor" href={"/" + this.props.code + "?isDiary=true"}>
                         <div className="diaryNameContainer">
                             <h4 className="indexDiaryName"># {this.props.name}</h4>

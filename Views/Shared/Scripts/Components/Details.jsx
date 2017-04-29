@@ -145,7 +145,7 @@ var MainArticleDetails = React.createClass({
                     ) : (
                         <div className="diaryElementsContainer">
                             <b>Label: </b>{this.props.label}<br />
-                            <b>Katalog: </b>{this.props.catalog}r<br />
+                            <b>Katalog: </b>{this.props.catalog}<br />
                             <b>Rok produkcji: </b>{this.props.albumYear}<br />
                             <b>Rok wydania: </b>{this.props.releaseYear}<br />
                             <b>Gatunek: </b>{this.props.genre}<br />
