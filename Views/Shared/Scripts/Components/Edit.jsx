@@ -22,7 +22,7 @@
 
 var EditForm = React.createClass({
     propTypes: {
-        model: React.PropTypes.object.isRequired,
+        model: React.PropTypes.object.isRequired
     },
     getInitialState: function () {
         return {

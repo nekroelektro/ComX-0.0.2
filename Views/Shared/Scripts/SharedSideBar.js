@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $(".sideBar").sticky({ topSpacing: 60, zIndex: 4, widthFromWrapper: true });
+    $(".sideBar").sticky({ topSpacing: 58, zIndex: 4, widthFromWrapper: true });
 
     $(".sideBarComponent").on('click',
         function () {

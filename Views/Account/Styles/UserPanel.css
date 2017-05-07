@@ -23,7 +23,7 @@
 }
 
 .userPanelAvatarContainer img {
-    max-width: 50%; 
+    max-width: 100%; 
     text-align: center; 
     margin: 0 auto;
 }
@@ -53,4 +53,13 @@
     max-width: 400px;
     margin: 20px auto;
     text-align: center;
+}
+
+.userPanelAdministratorSection {
+    border-top: red 2px solid;
+    padding-top: 1em;
+}
+
+.profileContainer {
+    padding-top: 1em;
 }

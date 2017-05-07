@@ -17,6 +17,7 @@
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
 [DONE] edit button na liście artykułów w konfiguracji
 - na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
+- enter potwierdza formularz loginu i rejestracji
 [DONE] ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 [DONE] zbundlować skrypty i cssy w layoucie
 - HTML5 pushState do one-page application
@@ -29,6 +30,9 @@
 PRYWATNE WIADOMOŚCI:
 	- komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
 	- prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
+	- rozwijalna ikona profilu na toplogopanel tam opcje: profil, prywatne iadomości i wyloguj
+	- Userpanel - zmienić strukturę - stworzyć layoutpage, obecny widok do komponentu i nowy komponent z private messages
+	- Userpanel zmienić layout, żeby był widoczny dla innych
 	- w UserPanel przycisk (albo taby dorobić, mogą być takie w formie jak subnav menu) do private messages
 	- w widoku private messages grid z message'ami - podzielić albo na poszczególne wiadomości, albo na wątki (z pokazaną ich liczbą)
 	- na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
@@ -39,7 +43,7 @@ PRYWATNE WIADOMOŚCI:
 - ostatnie komentarze z hashem do komentarzy
 - paging na diariesach, widok listy dopicować na diaries, dodać na reviews i zpagingować
 - searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
-- Dopicować widoki zapomnianego hasła, user panel itd
+- Dopicować widoki zapomnianego hasła itd
 [DONE] recenzje muzyczne z indexu do ajaxa
 [DONE] KONIECZNIE ZROBIć PIĘKNY SEARCH!
 	[DONE] nowa ikona użytkownika do searcha - po kliknięciu animacja wysuwania searchbara

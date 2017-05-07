@@ -4,7 +4,8 @@
     UserHelper userHelper = new UserHelper();
     bool isAdmin = userHelper.IsAdminUser(User);
     bool isAuthenticated = Request.IsAuthenticated;
+    Guid userIdentificator = userHelper.GetCurrentLoggedUserId();
 }
 @Html.AntiForgeryToken()
-@Html.React("LogoPanel", new { admin = isAdmin, authenticated = isAuthenticated})
+@Html.React("LogoPanel", new { admin = isAdmin, authenticated = isAuthenticated, userId = userIdentificator})
 

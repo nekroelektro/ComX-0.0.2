@@ -1,12 +1,14 @@
 ﻿var LogoPanel = React.createClass({
     propTypes: {
         admin: React.PropTypes.bool.isRequired,
-        authenticated: React.PropTypes.bool.isRequired
+        authenticated: React.PropTypes.bool.isRequired,
+        userId: React.PropTypes.string
     },
     getInitialState: function() {
         return {
             admin: this.props.admin,
-            auth: this.props.authenticated
+            auth: this.props.authenticated,
+            userId: this.props.userId
         };
     },
     render: function() {
@@ -14,7 +16,7 @@
             <div className="topLogoPanel">
                 <div className="container logoSection">
                     <LogoMainImage></LogoMainImage>
-                    <RightLogoPanel admin={this.state.admin} auth={this.state.auth}></RightLogoPanel>
+                    <RightLogoPanel admin={this.state.admin} auth={this.state.auth} userId={this.state.userId}></RightLogoPanel>
                 </div>
                 <LoginRegisterModal></LoginRegisterModal>
             </div>
@@ -47,7 +49,8 @@ var LoginRegisterModal = React.createClass({
 var RightLogoPanel = React.createClass({
     propTypes: {
         admin: React.PropTypes.bool.isRequired,
-        auth: React.PropTypes.bool.isRequired
+        auth: React.PropTypes.bool.isRequired,
+        userId: React.PropTypes.string
     },
     render: function() {
         return(
@@ -79,10 +82,10 @@ var RightLogoPanel = React.createClass({
                     {this.props.auth == 1 ?
                         (
                         <div className="topPanelLoggingButtons">
-                            <div className="logoUserPanel logoComponent">
+                            <div className="logoUserPanel logoComponent logoProfileImageComponent">
                                 <a className="topLogoLastAnchor logoComponentAnchor" href="/Account/UserPanel">
                                     <div className="logoComponentIcon">
-                                        <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                        <img className="logoProfileImage" src={"/Account/GetAvatar?userId=" + this.props.userId} />
                                     </div>
                                     <div className="logoComponentText">
                                         PROFIL

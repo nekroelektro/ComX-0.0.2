@@ -1,0 +1,15 @@
+﻿@using ComX_0._0._2.Helpers
+@{
+    ViewBag.Title = "Panel użytkownika";
+    Layout = "~/Views/Account/_Account.cshtml";
+}
+<div class="userContainer">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Profil</a></li>
+        @*<li><a href="#">Wiadomości</a></li>*@
+    </ul>
+    <div class="container body-content bodyLayout">
+        @RenderBody()
+        <div class="push"></div>
+    </div>
+</div>

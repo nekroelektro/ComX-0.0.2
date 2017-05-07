@@ -45,7 +45,7 @@ var AddComment = React.createClass({
                 <div className="newComment">
                     {this.props.logged == 1 && this.props.blocked ==0 &&
                         <div>
-                            <h3 className="commentaryHeader">Napisz komentarz trzęsityłku:</h3>
+                            <h3 className="commentaryHeader commentaryHello">Napisz komentarz trzęsityłku:</h3>
                             <div className="newCommentSection">
                                 <div className="form-horizontal">
                                     <div className="form-group commentForm">
@@ -151,7 +151,7 @@ var CommentElement = React.createClass({
                 <div className="col-xs-2 commentFooter">
                     <img src={"/Account/GetAvatar?userId=" + this.props.userId} />
                 </div>
-                <div className="col-xs-9 commentBody">
+                <div className="col-md-9 col-xs-12 commentBody">
                     <div className="readyCommentDetails">
                         <div className="commentDetailsLeftContainer">
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.userName} &nbsp;&nbsp;&nbsp;&nbsp;

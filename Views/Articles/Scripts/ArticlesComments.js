@@ -1,22 +1,35 @@
 ﻿jQuery(document).ready(function ($) {
-        var comIdentificator;
-        var artIdentificator;
-        var diary;
-        var handleEmptyComment = function () {
-            $('.popupCommentEmpty').click();
-        }
-        var handleAddAfterEdit = function (container) {
-            $("#detailsCommentSection").empty();
-            $("#detailsCommentSection").html(container);
+    var comIdentificator;
+    var artIdentificator;
+    var diary;
+    var handleEmptyComment = function () {
+        $('.popupCommentEmpty').click();
+    }
+    var handleAddAfterEdit = function (container) {
+        $("#detailsCommentSection").empty();
+        $("#detailsCommentSection").html(container);
 
-            var editorInstance = CKEDITOR.instances['commentEditor'];
-            if (editorInstance) {
-                try {
-                    editorInstance.focusManager.blur(true);
-                    editorInstance.destroy(true);
-                } catch (e) { }
-            }
+        var editorInstance = CKEDITOR.instances['commentEditor'];
+        if (editorInstance) {
+            try {
+                editorInstance.focusManager.blur(true);
+                editorInstance.destroy(true);
+            } catch (e) { }
         }
+    }
+
+    // sticky comment input
+    $(".newComment").sticky({ topSpacing: 60, zIndex: 4, widthFromWrapper: true });
+    $(".newComment").on("sticky-start",
+        function (e) {
+            $(".commentInputBlock").css({ "width": "100%", "-webkit-box-shadow": "0 4px 4px -2px #000000", "-moz-box-shadow": "0 4px 4px -2px #000000", "box-shadow": "0 4px 4px -2px #000000" });
+            $(".commentaryHello").slideUp("slow");
+        });
+    $(".newComment").on("sticky-end",
+        function () {
+            $(".commentInputBlock").css("width", "90%");
+            $(".commentaryHeader").show();
+        });
 
     //Hack for not fetching editor config if user not logged
     if (!$('#editComment-modal').is(":visible") && $('.logoUserPanel ').is(":visible")) {

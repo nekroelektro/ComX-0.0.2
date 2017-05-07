@@ -31,16 +31,16 @@ namespace ComX_0._0._2.Views.Configuration.Controller {
 
         public ActionResult Users() {
             if (userHelper.IsSuperAdminUser(User)) {
-                var users = new List<UserProfile>();
+                var users = new List<UserProfileDto>();
                 foreach (var item in db.Users) {
                     var userInfo = db.UserProfileInfo.Find(new Guid(item.Id));
-                    var user = new UserProfile();
+                    var user = new UserProfileDto();
                     user.UserId = new Guid(item.Id);
                     user.UserName = item.UserName;
-                    user.UserAvatar = userInfo.Avatar;
-                    user.DateOfCreation = userInfo.DateOfCreation.Value;
+                    //user.UserAvatar = userInfo.Avatar;
+                    user.DateOfCreation = userInfo.DateOfCreation.Value.ToShortDateString();
                     user.IsBlocked = userInfo.IsBlocked;
-                    user.Roles = new Guid(item.Roles.First().RoleId);
+                    //user.Roles = new Guid(item.Roles.First().);
                     users.Add(user);
                 }
                 return View(users.OrderByDescending(x => x.DateOfCreation).ToList());

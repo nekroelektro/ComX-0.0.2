@@ -98,9 +98,20 @@ a {
 }
 
 /*popup buttons from configuration*/
-.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete {
-    padding-top: 1em; 
-    padding-right: 1em;
+.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, 
+.profileHomePage, .profileEditDetails, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar {
+    /*padding-top: 1em; 
+    padding-right: 1em;*/
+    margin: 0.3em 0.5em !important;
+}
+
+.modalPopupButtons {
+    clear: both;
+    padding-top: 1em;
+}
+
+.modalPopupButtons button{
+    /*padding: 0 1em;*/
 }
 
 .white-popup {
@@ -303,7 +314,7 @@ a {
 
 /*USER PANEL*/
 .userPanelContainer {
-    font-family: 'Amarante', sans-serif;
+    font-family: 'Coda', sans-serif;
     background-color: white;
 }
 
@@ -562,6 +573,8 @@ a {
 /* CONFIG */
 .configContent, .accountContent {
     background-color: white !important;
+    margin-left: -1.1em;
+    margin-right: -1.1em;
 }
 
 /* ACCOUNT */
@@ -831,7 +844,7 @@ a {
         margin-left: 0 !important;
     }
 
-    .recrutation, .absoluteLogo, .mainSideBar, .sliderSection, .logoSearch, .mainNavigatorContainer  {
+    .recrutation, .absoluteLogo, .mainSideBar, .sliderSection, .logoSearch, .mainNavigatorContainer, .categoryDetailContainer  {
         display: none !important;
     }
 
@@ -857,9 +870,9 @@ a {
         display: none;
     }
 
-    /*.indexSingleReview {
-        height: 14em !important;
-    }*/
+    .articleDetailsBody, .articleDetailsIntro {
+        font-size: 1em !important;
+    }
 
     .sliderSection {
         display: none !important;

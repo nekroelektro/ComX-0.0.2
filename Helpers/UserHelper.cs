@@ -57,6 +57,10 @@ namespace ComX_0._0._2.Helpers {
             return null;
         }
 
+        public bool IsSameUserScreen(Guid userId) {
+            return GetCurrentLoggedUserId() == userId;
+        }
+
         public bool IsCurrentUserBlocked() {
             var userId = GetCurrentLoggedUserId();
             if (userId != Guid.Empty){
@@ -157,7 +161,7 @@ namespace ComX_0._0._2.Helpers {
 
         public string GetRoleNamesByUserId(Guid userId) {
             var roles = GetRolesByUserId(userId);
-            var roleString = string.Join(",", roles.ToArray());
+            var roleString = string.Join(", ", roles.ToArray());
             return roleString;
         } 
 

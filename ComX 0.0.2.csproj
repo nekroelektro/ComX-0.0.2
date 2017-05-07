@@ -904,6 +904,9 @@
     <Content Include="Views\Shared\Scripts\Components\RegisterPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\Edit.jsx" />
     <None Include="Properties\PublishProfiles\Nekroplaza.pubxml" />
+    <Content Include="Views\Shared\Scripts\Components\PrivateMessages.jsx" />
+    <Content Include="Views\Shared\Scripts\Components\UserProfile.jsx" />
+    <Content Include="Views\Account\_UserPanel.cshtml" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <Content Include="scripts\gridmvc.js" />
     <Content Include="scripts\gridmvc.lang.ru.js" />
@@ -993,6 +996,8 @@
     <Compile Include="Views\Account\Controller\AccountController.cs" />
     <Compile Include="Views\Account\Models\DtoModels\UserMessageDto.cs" />
     <Compile Include="Views\Account\Models\UserMessage.cs" />
+    <Compile Include="Views\Account\Services\AccountService.cs" />
+    <Compile Include="Views\Account\Services\IAccountService.cs" />
     <Compile Include="Views\Articles\Controller\ArticlesController.cs" />
     <Compile Include="Views\Articles\Models\Diary.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\CategoryDto.cs" />
@@ -1035,7 +1040,7 @@
     <Compile Include="Views\Articles\Models\Articles.cs" />
     <Compile Include="Views\Articles\Models\ArticleSubCategories.cs" />
     <Compile Include="Views\Articles\Models\Comments.cs" />
-    <Compile Include="Views\Account\Models\DtoModels\UserProfile.cs" />
+    <Compile Include="Views\Account\Models\DtoModels\UserProfileDto.cs" />
     <Compile Include="Views\Articles\Models\Images.cs" />
     <Compile Include="Views\Configuration\Models\ImagesGallery.cs" />
     <Compile Include="Views\Configuration\Models\Roles.cs" />
@@ -1106,7 +1111,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\UserPanel.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Configuration\_Series.cshtml" />
     <Content Include="Views\Configuration\SeriesCreate.cshtml" />
     <Content Include="Views\Configuration\SeriesDetails.cshtml" />
@@ -1116,7 +1121,6 @@
     <Content Include="Views\Nekropedia\_Nekropedia.cshtml" />
     <Content Include="Views\Articles\Diary.cshtml" />
     <Content Include="Views\Configuration\_Restricted.cshtml" />
-    <Content Include="Views\Account\UserMailBox.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

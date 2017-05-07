@@ -8,6 +8,7 @@ using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Helpers.SmtpHelpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Account.Models.DtoModels;
+using ComX_0._0._2.Views.Account.Services;
 using Facebook;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,7 +16,8 @@ using Microsoft.Owin.Security;
 
 namespace ComX_0._0._2.Views.Account.Controller {
     [Authorize]
-    public class AccountController : global::System.Web.Mvc.Controller {
+    public class AccountController : System.Web.Mvc.Controller {
+        private readonly IAccountService accountService = new AccountService();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
@@ -98,12 +100,11 @@ namespace ComX_0._0._2.Views.Account.Controller {
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl) {
-            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null) {
+            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null)
                 returnUrl = generalHelper.GetPreviousPageUrl();
-            }
-            
+
             ViewBag.ReturnUrl = returnUrl;
-            
+
             return View();
         }
 
@@ -113,14 +114,12 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(string userName, string password, bool rememberMe) {
-            LoginViewModel model = new LoginViewModel();
+            var model = new LoginViewModel();
             model.UserName = userName;
             model.Password = password;
             model.RememberMe = rememberMe;
 
-            if (!ModelState.IsValid) {
-                return View(model);
-            }
+            if (!ModelState.IsValid) return View(model);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -145,9 +144,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe) {
             // Require that the user has already logged in via username/password or external login
-            if (!await SignInManager.HasBeenVerifiedAsync()) {
-                return View("_HumanumErrareEst");
-            }
+            if (!await SignInManager.HasBeenVerifiedAsync()) return View("_HumanumErrareEst");
             return View(new VerifyCodeViewModel {Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe});
         }
 
@@ -157,9 +154,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model) {
-            if (!ModelState.IsValid) {
-                return View(model);
-            }
+            if (!ModelState.IsValid) return View(model);
 
             // The following code protects for brute force attacks against the two factor codes. 
             // If a user enters incorrect codes for a specified amount of time then the user account 
@@ -194,7 +189,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(string userName, string mail, string password, string confirmPassword) {
-            RegisterViewModel model = new RegisterViewModel();
+            var model = new RegisterViewModel();
             model.Username = userName;
             model.Email = mail;
             model.Password = password;
@@ -204,12 +199,9 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 // error handling for ajax request
                 var errorMessage = "";
                 var userDbContext = db.Users;
-                if (userDbContext.Any(x => x.UserName == model.Username)) {
+                if (userDbContext.Any(x => x.UserName == model.Username))
                     errorMessage += "Podana nazwa użytkownika już istnieje!";
-                }
-                if (userDbContext.Any(x => x.Email == model.Email)) {
-                    errorMessage += "Podany adres e-mail już istnieje!";
-                }
+                if (userDbContext.Any(x => x.Email == model.Email)) errorMessage += "Podany adres e-mail już istnieje!";
                 if (!string.IsNullOrEmpty(errorMessage)) {
                     var data = new {Success = false, Message = errorMessage};
                     return Json(data);
@@ -244,7 +236,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
                     var emailService = new Helpers.SmtpHelpers.EmailService();
                     var status = emailService.SendEmailMessage(message);
-                    var data = new { Success = true, Message = "" };
+                    var data = new {Success = true, Message = ""};
                     return Json(data);
                 }
                 AddErrors(result);
@@ -257,6 +249,9 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public async Task<ActionResult> SendConfirmationMail(string userId, string userMail) {
             var message = new EmailMessage();
+            if (string.IsNullOrEmpty(userId)) {
+                userId = userHelper.GetCurrentLoggedUserId().ToString();
+            }
             var code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId, code}, Request.Url.Scheme);
 
@@ -276,9 +271,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code) {
-            if (userId == null || code == null) {
-                return View("_HumanumErrareEst");
-            }
+            if (userId == null || code == null) return View("_HumanumErrareEst");
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
@@ -299,10 +292,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
             if (ModelState.IsValid) {
                 var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
                 //var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !await UserManager.IsEmailConfirmedAsync(user.Id)) {
-                    // Don't reveal that the user does not exist or is not confirmed
+                if (user == null || !await UserManager.IsEmailConfirmedAsync(user.Id))
                     return View("ForgotPasswordConfirmation");
-                }
                 var message = new EmailMessage();
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new {userId = user.Id, code},
@@ -344,19 +335,12 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model) {
-            if (!ModelState.IsValid) {
-                return View(model);
-            }
+            if (!ModelState.IsValid) return View(model);
             var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
             //var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null) {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
+            if (user == null) return RedirectToAction("ResetPasswordConfirmation", "Account");
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded) {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
+            if (result.Succeeded) return RedirectToAction("ResetPasswordConfirmation", "Account");
             AddErrors(result);
             return View();
         }
@@ -384,9 +368,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe) {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null) {
-                return View("_HumanumErrareEst");
-            }
+            if (userId == null) return View("_HumanumErrareEst");
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions =
                 userFactors.Select(purpose => new SelectListItem {Text = purpose, Value = purpose}).ToList();
@@ -400,14 +382,10 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model) {
-            if (!ModelState.IsValid) {
-                return View();
-            }
+            if (!ModelState.IsValid) return View();
 
             // Generate the token and send it
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider)) {
-                return View("_HumanumErrareEst");
-            }
+            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider)) return View("_HumanumErrareEst");
             return RedirectToAction("VerifyCode",
                 new {Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe});
         }
@@ -417,9 +395,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl) {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null) {
-                return RedirectToAction("Login");
-            }
+            if (loginInfo == null) return RedirectToAction("Login");
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, false);
@@ -446,16 +422,12 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model,
             string returnUrl) {
-            if (User.Identity.IsAuthenticated) {
-                return RedirectToAction("Index", "Articles");
-            }
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Articles");
 
             if (ModelState.IsValid) {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null) {
-                    return View("ExternalLoginFailure");
-                }
+                if (info == null) return View("ExternalLoginFailure");
                 var user = new ApplicationUser {UserName = info.DefaultUserName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded) {
@@ -506,47 +478,35 @@ namespace ComX_0._0._2.Views.Account.Controller {
         }
 
         public ActionResult UserPanel(Guid? userId) {
-            ApplicationUser user;
-            if (userId == null) {
-                user = userHelper.GetUserById(userHelper.GetCurrentLoggedUserId());
-            }
-            else {
-                user = userHelper.GetUserById(userId.Value);
-            }
+            var model = accountService.GetProfileDetails(userId);
 
-            var userInfo = db.UserProfileInfo.Find(new Guid(user.Id));
-            var userProfile = new UserProfile();
-            userProfile.UserId = new Guid(user.Id);
-            userProfile.UserName = user.UserName;
-            userProfile.DateOfCreation = userInfo.DateOfCreation.Value;
-            userProfile.IsBlocked = userInfo.IsBlocked;
-            userProfile.Roles = Guid.Empty;
-            userProfile.UserMail = user.Email;
-            userProfile.UserAvatar = userInfo.Avatar;
-            userProfile.AccoutConfirmed = user.EmailConfirmed;
-
-            ViewBag.RoleList = userHelper.GetRolesToCombo();
-            return View(userProfile);
+            ViewBag.RoleList = model.RolesList;
+            return View("Profile", model);
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddAvatar(HttpPostedFileBase avatar) {
             if (avatar != null) {
+                var errorMessage = "";
                 var validImageTypes = new[] {
                     "image/gif",
                     "image/jpeg",
                     "image/pjpeg",
                     "image/png"
                 };
-                if (!validImageTypes.Contains(avatar.ContentType)) {
-                    ModelState.AddModelError("ImageUpload", "Nie ma tak - dostępne rozszerzenia masz u góry.");
-                }
-                else if (avatar.ContentLength > 80000) {
-                    ModelState.AddModelError("ImageUpload", "Za duże!");
+                if (!validImageTypes.Contains(avatar.ContentType))
+                    errorMessage += "Nie ma tak - dostępne rozszerzenia masz u góry!";
+                if (avatar.ContentLength > 70000) errorMessage += "Obrazek jest za duży - znajdź se mniejszy!";
+
+                if (!string.IsNullOrEmpty(errorMessage)) {
+                    var data = new {Success = false, Message = errorMessage};
+                    return Json(data);
                 }
                 else {
                     userHelper.UploadAvatarForUser(userHelper.GetCurrentLoggedUserId(), avatar);
+                    var data = new {Success = true, Message = ""};
+                    return Json(data);
                 }
             }
             return RedirectToAction("UserPanel");
@@ -554,9 +514,9 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ChangeRole(UserProfile user) {
+        public ActionResult ChangeRole(UserProfileDto user) {
             //var userRole = db.Roles.First(x => x.Name == role);
-            userHelper.ChangeUserRole(user.UserId, user.Roles);
+            //userHelper.ChangeUserRole(user.UserId, user.Roles);
             return RedirectToAction("Users", "Configuration");
         }
 
@@ -565,9 +525,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
         public ActionResult GetAvatar(Guid userId) {
             try {
                 var avatar = userHelper.GetAvatarByUserId(userId);
-                if (avatar == null) {
+                if (avatar == null)
                     avatar = userHelper.GetAvatarByUserId(new Guid("d8bf3a8a-dc63-4f71-bf1c-c2ffe5c30b2d"));
-                }
                 return File(avatar, "image/jpeg");
             }
             catch (Exception ex) {
@@ -595,17 +554,13 @@ namespace ComX_0._0._2.Views.Account.Controller {
             return RedirectToAction("Users", "Configuration");
         }
 
-        //To check if user with that username exists during registration
-        //[AllowAnonymous]
-        //public async Task<JsonResult> UserNameExists(string userName) {
-        //    var result =
-        //        await UserManager.FindByNameAsync(userName) ??
-        //        await UserManager.FindByEmailAsync(userName);
-        //    return Json(result == null, JsonRequestBehavior.AllowGet);
-        //    //var user = Membership.GetUser(userName);
-        //    //var usr = userHelper.GetUserByName(userName);
-        //    //return Json(usr == null);
-        //}
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditProfile(string userMail) {
+            var data = new {Success = true};
+            accountService.EditProfile(userMail);
+            return Json(data);
+        }
 
         #region Helpers
 
@@ -617,15 +572,11 @@ namespace ComX_0._0._2.Views.Account.Controller {
         }
 
         private void AddErrors(IdentityResult result) {
-            foreach (var error in result.Errors) {
-                ModelState.AddModelError("", error);
-            }
+            foreach (var error in result.Errors) ModelState.AddModelError("", error);
         }
 
         private ActionResult RedirectToLocal(string returnUrl) {
-            if (Url.IsLocalUrl(returnUrl)) {
-                return Redirect(returnUrl);
-            }
+            if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
             return RedirectToAction("Index", "Articles");
         }
 
@@ -646,9 +597,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
             public override void ExecuteResult(ControllerContext context) {
                 var properties = new AuthenticationProperties {RedirectUri = RedirectUri};
-                if (UserId != null) {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
+                if (UserId != null) properties.Dictionary[XsrfKey] = UserId;
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
