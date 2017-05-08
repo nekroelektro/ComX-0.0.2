@@ -28,20 +28,20 @@
 [DONE] zwijalne części sidemenu - po rozwinięciu jednego zwijać już otwarte. ograniczyć random posty
 [DONE] Nowoczesne widoki gór stron
 PRYWATNE WIADOMOŚCI:
-	- komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
+	[DONE] komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
 	- prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 	- rozwijalna ikona profilu na toplogopanel tam opcje: profil, prywatne iadomości i wyloguj
 	- Userpanel - zmienić strukturę - stworzyć layoutpage, obecny widok do komponentu i nowy komponent z private messages
-	- Userpanel zmienić layout, żeby był widoczny dla innych
-	- w UserPanel przycisk (albo taby dorobić, mogą być takie w formie jak subnav menu) do private messages
+	[DONE] Userpanel zmienić layout, żeby był widoczny dla innych
+	[DONE] w UserPanel przycisk (albo taby dorobić, mogą być takie w formie jak subnav menu) do private messages
 	- w widoku private messages grid z message'ami - podzielić albo na poszczególne wiadomości, albo na wątki (z pokazaną ich liczbą)
 	- na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
 - newsy oddzielnie na stronie głównej
 - kategorie do random postów
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
-- ostatnie komentarze z hashem do komentarzy
-- paging na diariesach, widok listy dopicować na diaries, dodać na reviews i zpagingować
+[DONE] ostatnie komentarze z hashem do komentarzy
+[DONE] paging na diariesach, widok listy dopicować na diaries, dodać na reviews i zpagingować
 - searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
 - Dopicować widoki zapomnianego hasła itd
 [DONE] recenzje muzyczne z indexu do ajaxa

@@ -115,7 +115,7 @@ var Comment = React.createClass({
     render: function () {
         return(
             <div className="singleComment">
-                <a className="sideLastCommentAnchor" href={"/" + this.props.articleCode}>
+                <a className="sideLastCommentAnchor" href={"/" + this.props.articleCode + "#detailsCommentSection"}>
                     <div className="sideLastCommentsBodySingle">
                         <div className="sideLastCommentsArticle"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {this.props.article}</div>
                         <div className="sideLastCommentsUser">

@@ -15,7 +15,7 @@ CKEDITOR.editorConfig = function (config) {
 		{ name: 'about', groups: ['about'] }
     ];
 
-    config.height = '8em';
+    config.height = '6em';
     config.language = 'pl';
     config.removeButtons = 'Source,NewPage,Preview,Save,Print,About,Maximize,ShowBlocks,Styles,Font,FontSize,Flash,Table,SpecialChar,PageBreak,Iframe,Unlink,Anchor,Language,BidiRtl,BidiLtr,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,CreateDiv,Outdent,Indent,BulletedList,NumberedList,CopyFormatting,RemoveFormat,Superscript,Subscript,Strike,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Scayt,SelectAll,Find,Replace,Undo,Redo,Templates,Cut,Copy,Paste,PasteText,PasteFromWord';
 };

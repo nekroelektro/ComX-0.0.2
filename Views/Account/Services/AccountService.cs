@@ -11,10 +11,10 @@ namespace ComX_0._0._2.Views.Account.Services {
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
 
-        public UserProfileDto GetProfileDetails(Guid? userProfileId) {
-            var user = userProfileId == null
+        public UserProfileDto GetProfileDetails(string userProfileId) {
+            var user = string.IsNullOrEmpty(userProfileId)
                 ? userHelper.GetUserById(userHelper.GetCurrentLoggedUserId())
-                : userHelper.GetUserById(userProfileId.Value);
+                : userHelper.GetUserByName(userProfileId);
 
             var userIdentificator = new Guid(user.Id);
             var userInfo = db.UserProfileInfo.Find(userIdentificator);
@@ -27,7 +27,7 @@ namespace ComX_0._0._2.Views.Account.Services {
             userProfile.UserMail = user.Email;
             userProfile.AvatarExists = userInfo.Avatar != null;
             userProfile.AccountConfirmed = user.EmailConfirmed;
-            userProfile.IsOwnAccount = userProfileId == null || userHelper.IsSameUserScreen(userProfileId.Value);
+            userProfile.IsOwnAccount = string.IsNullOrEmpty(userProfileId) || userHelper.IsSameUserScreen(userIdentificator);
             userProfile.RolesList = userHelper.GetRolesToCombo();
             userProfile.CommentsCount = articleHelper.GetCommentsByUser(userIdentificator).Count;
 

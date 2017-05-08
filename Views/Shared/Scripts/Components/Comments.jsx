@@ -4,14 +4,14 @@
         logged: React.PropTypes.bool,
         blocked: React.PropTypes.bool
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             model: this.props.model,
             logged: this.props.logged,
             blocked: this.props.blocked
         };
     },
-    render: function() {
+    render: function () {
         return (
             <div className="commentSection" id="detailsCommentSection">
                 <AddComment logged={this.state.logged} blocked={this.state.blocked} comment={this.state.model.Comment} articleId={this.state.model.ArticleId} isDiary={this.state.model.IsDiary}></AddComment>
@@ -33,7 +33,7 @@ var AddComment = React.createClass({
         articleId: React.PropTypes.string,
         isDiary: React.PropTypes.bool
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             commentBody: this.props.comment.Body,
             articleId: this.props.articleId,
@@ -41,9 +41,9 @@ var AddComment = React.createClass({
         };
     },
     render: function () {
-        return(
+        return (
                 <div className="newComment">
-                    {this.props.logged == 1 && this.props.blocked ==0 &&
+                    {this.props.logged == 1 && this.props.blocked == 0 &&
                         <div>
                             <h3 className="commentaryHeader commentaryHello">Napisz komentarz trzęsityłku:</h3>
                             <div className="newCommentSection">
@@ -53,8 +53,8 @@ var AddComment = React.createClass({
                                             <textarea id="commentEditor" className="form-control articleEditor"></textarea>
                                         </div>
                                     </div>
-                                    <input type="text" className="commentAddFormArtId" name="articleId" value={this.state.articleId}/>
-                                    <div className="form-group">
+                                    <input type="text" className="commentAddFormArtId" name="articleId" value={this.state.articleId} />
+                                    <div>
                                         <div className="addcommentButtonContainer">
                                             <button type="submit" value={this.state.isDiary} className="btn nekrobutton-green addCommentButton">
                                                 <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
@@ -69,36 +69,36 @@ var AddComment = React.createClass({
                                         </div>
                                     </div>
                                 </div>
-                            </div>         
-                        </div>      
-                        }
-                    {this.props.logged != 1 && this.props.blocked !=0 &&
+                            </div>
+                        </div>
+                    }
+                    {this.props.logged != 1 && this.props.blocked != 0 &&
                         <div className="newCommentnotLogged">
                             <h4>Jak chcesz skomentować, to się <a className="popupLoginModal loginComments" href="#login-modal">zaloguj</a> - opłaci Ci się, koleżko!</h4>
                         </div>
                     }
-                    </div>
-        
+                </div>
+
             );
     }
 });
 
 var CommentsReady = React.createClass({
-	propTypes: {
-	    comments: React.PropTypes.array.isRequired
-	},
-	getInitialState: function () {
-	    return {
-	        comments: this.props.comments
-	    };
-	},
-	render: function () {
-	    var commentNodes = this.state.comments.map(function (comment) {
-	        return <CommentElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable}></CommentElement>;
-	    }, this);
-		return (
+    propTypes: {
+        comments: React.PropTypes.array.isRequired
+    },
+    getInitialState: function () {
+        return {
+            comments: this.props.comments
+        };
+    },
+    render: function () {
+        var commentNodes = this.state.comments.map(function (comment) {
+            return <CommentElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable }></CommentElement>;
+        }, this);
+        return (
             <div className="addedCommentsSection col-xs-12" id="commentSection">
-			        {commentNodes}
+                {commentNodes}
                 <div id="test-modal" className="mfp-hide white-popup">
                     <p>Potwierdź</p>
                     <hr />
@@ -126,12 +126,12 @@ var CommentsReady = React.createClass({
                                     <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
                                 </div>
                             </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
-	        </div>
+            </div>
 		);
-	}
+    }
 });
 
 var CommentElement = React.createClass({
@@ -154,21 +154,25 @@ var CommentElement = React.createClass({
                 <div className="col-md-9 col-xs-12 commentBody">
                     <div className="readyCommentDetails">
                         <div className="commentDetailsLeftContainer">
-                            <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.userName} &nbsp;&nbsp;&nbsp;&nbsp;
+                            <div className="commentDetailsProfile">
+                                <a className="commentDetailsProfileModalAnchor">
+                                    <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.userName} &nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                            </div>
                             <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
                         </div>
-                            {this.props.isEditable == 1 &&
+                        {this.props.isEditable == 1 &&
                                 <div className="commentDetailsRightContainer">
                                     <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body} href="#editComment-modal"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 </div>
-                            }
-                        </div>
+                        }
+                    </div>
                         <div className="readyCommentBody">
                             <div dangerouslySetInnerHTML={{__html: this.props.body}} />
                         </div>
-                    </div>
-          </div>
+                </div>
+            </div>
             );
-}
+    }
 });

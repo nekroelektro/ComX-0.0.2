@@ -24,11 +24,13 @@
         function (e) {
             $(".commentInputBlock").css({ "width": "100%", "-webkit-box-shadow": "0 4px 4px -2px #000000", "-moz-box-shadow": "0 4px 4px -2px #000000", "box-shadow": "0 4px 4px -2px #000000" });
             $(".commentaryHello").slideUp("slow");
+            $("#commentsMade").css('padding-top', $('.commentaryHello').height());
         });
     $(".newComment").on("sticky-end",
         function () {
             $(".commentInputBlock").css("width", "90%");
             $(".commentaryHeader").show();
+            $("#commentsMade").css('padding-top', 0);
         });
 
     //Hack for not fetching editor config if user not logged
@@ -44,6 +46,16 @@
             },
             300);
     }
+
+    // HANDLING PROFILE CARD
+    $('.commentDetailsProfileModalAnchor').click(function () {
+        var config = {
+            Element: $(this).parent(),
+            Image: $(this).closest('.singleCommentSection').find('.commentFooter img').attr('src'),
+            User: $(this).text().replace(/\s/g, '')
+    };
+        NekroProfileCard(config);
+    });
 
     //For deleting single comment
         $('.popupCommentDelete').magnificPopup({

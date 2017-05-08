@@ -477,7 +477,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
             base.Dispose(disposing);
         }
 
-        public ActionResult UserPanel(Guid? userId) {
+        public ActionResult UserPanel(string userId) {
             var model = accountService.GetProfileDetails(userId);
 
             ViewBag.RoleList = model.RolesList;
@@ -514,9 +514,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ChangeRole(UserProfileDto user) {
-            //var userRole = db.Roles.First(x => x.Name == role);
-            //userHelper.ChangeUserRole(user.UserId, user.Roles);
+        public ActionResult ChangeRole(string role, Guid userId) {
+            userHelper.ChangeUserRole(role, userId);
             return RedirectToAction("Users", "Configuration");
         }
 

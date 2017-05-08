@@ -1,4 +1,5 @@
 ﻿jQuery(document).ready(function ($) {
+    // USER DELETE/BLOCK HANDLING
     var userIdentificator;
     var blockOrDelete;
     $('.popupUserDelete').magnificPopup({
@@ -16,7 +17,14 @@
         if (blockOrDelete == 'delete') {
             window.location.href = "/Account/DeleteUser/?userId=" + userIdentificator;
         } else {
-            window.location.href = "/Account/BlockingUser/?userId=" + userIdentificator;
+            $.ajax({
+                url: "/Account/BlockingUser/",
+                type: "POST",
+                data: { 'userId': userIdentificator}
+            })
+            .done(function (response) {
+                    location.reload(true);
+                });
         }
     });
     $(document).on('click', '.btnCancelDeletion, .btnCancelEdit', function (e) {
@@ -32,6 +40,44 @@
     $('.popupUserBlock').click(function () {
         userIdentificator = $(this).data('id').toString();
         blockOrDelete = 'block';
+    });
+
+    // Add range handling
+    $('#addUserRangeSubmitButton').click(function() {
+        var userRange = $('[name=RoleId]').val();
+        var user = $('.popupUserBlock').data('id').toString();
+        $.ajax({
+            url: "/Account/ChangeRole/",
+            type: "POST",
+            data: {'role' : userRange, 'userId': user }
+        })
+            .done(function (response) {
+                location.reload(true);
+            });
+    });
+
+    // Degrade user handling
+    $('.popupUserDegrade').magnificPopup({
+        type: 'inline',
+        preloader: false,
+        modal: true
+    });
+
+    $('.popupUserDegrade').click(function () {
+        userIdentificator = $(this).data('id').toString();
+    });
+
+    $(document).on('click', '.btnConfirmDegradation', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+        $.ajax({
+            url: "/Account/DegradeUser/",
+            type: "POST",
+            data: {'userId': userIdentificator }
+        })
+            .done(function (response) {
+                location.reload(true);
+            });
     });
 
     // Re-Sending code to mail handling

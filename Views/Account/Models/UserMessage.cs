@@ -8,6 +8,7 @@ namespace ComX_0._0._2.Views.Account.Models {
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime DateCreated { get; set; }
-        public bool IsRead { get; set; }
+        public bool IsReceived { get; set; }
+        public bool IsSystem { get; set; }
     }
 }

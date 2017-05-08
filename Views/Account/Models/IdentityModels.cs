@@ -19,8 +19,6 @@ namespace ComX_0._0._2.Views.Account.Models {
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
         public DbSet<Articles.Models.Articles> Articles { get; set; }
-        //public DbSet<Users> Users { get; set; }
-        //public DbSet<Roles> Roles { get; set; }
         public DbSet<ArticleCategories> Categories { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Images> Images { get; set; }
@@ -30,6 +28,7 @@ namespace ComX_0._0._2.Views.Account.Models {
         public DbSet<Series> Series { get; set; }
         public DbSet<SiteSettings> SiteSettings { get; set; } 
         public DbSet<Diary> Diary { get; set; }
+        public DbSet<UserMessage> Messages { get; set; }
 
         public ApplicationDbContext(): base("DefaultConnection", false) {
         }

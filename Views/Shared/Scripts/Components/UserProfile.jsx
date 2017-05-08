@@ -200,19 +200,19 @@ var UserProfileAdminPanel = React.createClass({
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                        <input type="submit" value="Dodaj!" className="btn nekrobutton-green" />
+                                        <input type="button" id="addUserRangeSubmitButton" value="Dodaj!" className="btn nekrobutton-green" />
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-offset-2 col-md-12 userPanelBlockSection">
-                            <button type="button" className="btn nekrobutton-red .btn-m">
-                                <span className="glyphicon glyphicon-arrow-up userPanelBackButton" aria-hidden="true"></span> Zdegraduj do usera
+                            <button type="button" className="btn nekrobutton-red .btn-m popupUserDegrade" data-id={this.props.model.UserId} href="#popupUserDegrade">
+                                <span className="glyphicon glyphicon-arrow-down userPanelBackButton" aria-hidden="true"></span> Zdegraduj do usera
                             </button>
-                            <button type="button" className="btn nekrobutton-yellow btn-m popupUserBlock" data-id="@Model.UserId"
+                            <button type="button" className="btn nekrobutton-yellow btn-m popupUserBlock" data-id={this.props.model.UserId}
                                     href="#popupUserBlock">
-                                <span className="glyphicon glyphicon-lock" aria-hidden="true"></span> Zablokuj użykownika
+                                <span className="glyphicon glyphicon-lock" aria-hidden="true"></span> {this.props.model.IsBlocked ? (<span>Odblokuj użykownika</span>):(<span>Zablokuj użykownika</span>)}
                             </button>
-                            <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id="@Model.UserId"
+                            <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id={this.props.model.UserId}
                                     href="#popupUserDelete">
                                 <span className="glyphicon glyphicon-erase" aria-hidden="true"></span> Usuń użytkownika
                             </button>
@@ -221,20 +221,36 @@ var UserProfileAdminPanel = React.createClass({
                             <p>Potwierdź</p>
                             <hr />
                             <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
-                            <button type="button" className="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
-                                Ta!
-                            </button>
-                            <button type="button" className="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+                            <div className="modalPopupButtons">
+                                <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDeletion" id="commId">
+                                    Zapisz
+                                </button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Anuluj</button>
+                            </div>
                         </div>
 
                         <div id="popupUserBlock" className="mfp-hide white-popup">
                             <p>Potwierdź</p>
                             <hr />
                             <p>Czy na bank chcesz zablokować tego użytkownika?</p>
-                            <button type="button" className="btn btn-danger .btn-sm btnConfirmDeletion" id="commId">
-                                Ta!
-                            </button>
-                            <button type="button" className="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+                            <div className="modalPopupButtons">
+                                <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDeletion" id="commId">
+                                    Zapisz
+                                </button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Anuluj</button>
+                            </div>
+                        </div>
+
+                        <div id="popupUserDegrade" className="mfp-hide white-popup">
+                            <p>Potwierdź</p>
+                            <hr />
+                            <p>Czy na bank chcesz zdegradować tego użytkownika do zwykłego usera?</p>
+                            <div className="modalPopupButtons">
+                                <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDegradation" id="commId">
+                                    Zapisz
+                                </button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Anuluj</button>
+                            </div>
                         </div>
                     </div>
                 }

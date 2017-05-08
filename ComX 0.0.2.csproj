@@ -699,6 +699,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="scripts\lang\pl.js" />
+    <Content Include="scripts\NekroProfileCard.js" />
     <Content Include="scripts\NekroNavigator.js" />
     <Content Include="scripts\NekroSearch.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\a11yhelp.js" />
@@ -907,6 +908,7 @@
     <Content Include="Views\Shared\Scripts\Components\PrivateMessages.jsx" />
     <Content Include="Views\Shared\Scripts\Components\UserProfile.jsx" />
     <Content Include="Views\Account\_UserPanel.cshtml" />
+    <Content Include="Views\Account\Messages.cshtml" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <Content Include="scripts\gridmvc.js" />
     <Content Include="scripts\gridmvc.lang.ru.js" />
@@ -994,7 +996,7 @@
       <DependentUpon>201701081208279_np0203.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
-    <Compile Include="Views\Account\Models\DtoModels\UserMessageDto.cs" />
+    <Compile Include="Views\Account\Models\DtoModels\UserMessagesDto.cs" />
     <Compile Include="Views\Account\Models\UserMessage.cs" />
     <Compile Include="Views\Account\Services\AccountService.cs" />
     <Compile Include="Views\Account\Services\IAccountService.cs" />

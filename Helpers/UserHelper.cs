@@ -165,12 +165,12 @@ namespace ComX_0._0._2.Helpers {
             return roleString;
         } 
 
-        public void ChangeUserRole(Guid userId, Guid roleId) {
+        public void ChangeUserRole(string roleName, Guid userId) {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            userManager.RemoveFromRoles(userId.ToString());
-            var role = db.Roles.Find(roleId.ToString());
+            //userManager.RemoveFromRoles(userId.ToString());
+            var role = db.Roles.FirstOrDefault(x=>x.Name == roleName);
             userManager.AddToRole(userId.ToString(), role.Name);
-            userManager.AddToRole(userId.ToString(), "User");
+            //userManager.AddToRole(userId.ToString(), "User");
         }
 
         public List<SelectListItem> GetRolesToCombo() {

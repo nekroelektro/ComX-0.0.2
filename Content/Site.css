@@ -98,8 +98,8 @@ a {
 }
 
 /*popup buttons from configuration*/
-.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, 
-.profileHomePage, .profileEditDetails, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar {
+.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, .popupUserDegrade, .btnConfirmDegradation,
+.profileHomePage, .profileEditDetails, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar, .popupUserBlock {
     /*padding-top: 1em; 
     padding-right: 1em;*/
     margin: 0.3em 0.5em !important;
