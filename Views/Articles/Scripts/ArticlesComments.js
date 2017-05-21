@@ -35,12 +35,6 @@
 
     //Hack for not fetching editor config if user not logged
     if (!$('#editComment-modal').is(":visible") && $('.logoUserPanel ').is(":visible")) {
-        //var editorInstance = CKEDITOR.instances['commentEditor'];
-        //if (editorInstance) {
-        //    try {
-        //        editorInstance.destroy(true);
-        //    } catch (e) { }
-        //}
         setTimeout(function() {
                 CKEDITOR.replace('commentEditor');
             },
@@ -133,6 +127,7 @@
             artIdentificator = $(this).data('art').toString();
             var diary = $(this).data('diary').toString();
             var body = $(this).data('body').toString();
+            //$('#editComment-modal').parent().css('z-index', -1);
             if ($('#editComment-modal').is(":visible")) {
                 var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
                 if (editorInstanceEdit) {
