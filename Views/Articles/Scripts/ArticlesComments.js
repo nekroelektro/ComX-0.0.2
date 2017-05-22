@@ -8,35 +8,26 @@
     var handleAddAfterEdit = function (container) {
         $("#detailsCommentSection").empty();
         $("#detailsCommentSection").html(container);
-
-        var editorInstance = CKEDITOR.instances['commentEditor'];
-        if (editorInstance) {
-            try {
-                editorInstance.focusManager.blur(true);
-                editorInstance.destroy(true);
-            } catch (e) { }
-        }
     }
 
-    // sticky comment input
-    $(".newComment").sticky({ topSpacing: 60, zIndex: 4, widthFromWrapper: true });
-    $(".newComment").on("sticky-start",
-        function (e) {
-            $(".commentInputBlock").css({ "width": "100%", "-webkit-box-shadow": "0 4px 4px -2px #000000", "-moz-box-shadow": "0 4px 4px -2px #000000", "box-shadow": "0 4px 4px -2px #000000" });
-            $(".commentaryHello").slideUp("slow");
-            $("#commentsMade").css('padding-top', $('.commentaryHello').height());
-        });
-    $(".newComment").on("sticky-end",
-        function () {
-            $(".commentInputBlock").css("width", "90%");
-            $(".commentaryHeader").show();
-            $("#commentsMade").css('padding-top', 0);
-        });
-
     //Hack for not fetching editor config if user not logged
-    if (!$('#editComment-modal').is(":visible") && $('.logoUserPanel ').is(":visible")) {
-        setTimeout(function() {
+    if ($('.logoUserPanel ').is(":visible")) {
+        setTimeout(function () {
                 CKEDITOR.replace('commentEditor');
+            //    // sticky comment input
+            //    $(".newComment").sticky({ topSpacing: 60, zIndex: 4, widthFromWrapper: true });
+            //    $(".newComment").on("sticky-start",
+            //        function (e) {
+            //            $(".commentInputBlock").css({ "width": "100%", "-webkit-box-shadow": "0 4px 4px -2px #000000", "-moz-box-shadow": "0 4px 4px -2px #000000", "box-shadow": "0 4px 4px -2px #000000" });
+            //            $(".commentaryHello").slideUp("slow");
+            //            $("#commentsMade").css('padding-top', $('.commentaryHello').height());
+            //        });
+            //    $(".newComment").on("sticky-end",
+            //        function () {
+            //            $(".commentInputBlock").css("width", "90%");
+            //            $(".commentaryHeader").show();
+            //            $("#commentsMade").css('padding-top', 0);
+            //        });
             },
             300);
     }
@@ -47,7 +38,7 @@
             Element: $(this).parent(),
             Image: $(this).closest('.singleCommentSection').find('.commentFooter img').attr('src'),
             User: $(this).text().replace(/\s/g, '')
-    };
+        };
         NekroProfileCard(config);
     });
 
@@ -105,41 +96,28 @@
             $.magnificPopup.close();
         });
         
-        $(document).on('click', '.btnCancelEdit', function (e) {
-            var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
-            if (editorInstanceEdit) {
-                try {
-                    editorInstanceEdit.destroy(true);
-                }catch(e){}
-            }
-            e.preventDefault();
-            $.magnificPopup.close();
-        });      
 
-        //For editing single comment
-        $('.popupCommentEdit').magnificPopup({
-            type: 'inline',
-            preloader: false,
-            modal: true
+        // HANDLING EDIT COMMENT
+        $(document).on('click', '.btnCancelEdit', function (e) {
+            e.preventDefault();
+            CKEDITOR.instances['commentEditor'].setData('');
+            $('.commentsEditButtons').hide();
+            $('.addCommentButton').show();
         });
+
         $('.popupCommentEdit').click(function () {
             comIdentificator = $(this).data('id').toString();
             artIdentificator = $(this).data('art').toString();
             var diary = $(this).data('diary').toString();
             var body = $(this).data('body').toString();
-            //$('#editComment-modal').parent().css('z-index', -1);
-            if ($('#editComment-modal').is(":visible")) {
-                var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
-                if (editorInstanceEdit) {
-                    try {
-                        editorInstanceEdit.destroy(true);
-                    }catch(e){}
-                }
-                CKEDITOR.replace('editCommentWindowContainer');
-                CKEDITOR.instances['editCommentWindowContainer'].setData(body);
-            }
+            CKEDITOR.instances['commentEditor'].setData(body);
+            $("html, body").animate({ scrollTop: $('#detailsCommentSection').offset().top - 60 }, 'slow');
+            $('.commentsEditButtons').show();
+            $('.addCommentButton').hide();
+
+
             $('.submitEditCommentForm').click(function () {
-                body = CKEDITOR.instances['editCommentWindowContainer'].getData();
+                body = CKEDITOR.instances['commentEditor'].getData();
                 if (body != "") {
                 $.ajax({
                     url: "/Articles/CommentEdit/",
@@ -147,7 +125,7 @@
                     data: { 'bodyText': body, 'commentId': comIdentificator,'articleId' : artIdentificator, 'isDiary': diary }
                 })
                     .done(function (response) {
-                        var editorInstanceEdit = CKEDITOR.instances['editCommentWindowContainer'];
+                        var editorInstanceEdit = CKEDITOR.instances['commentEditor'];
                         if (editorInstanceEdit) {
                             try {
                                 // Chrome plugin error fix
@@ -155,7 +133,6 @@
                                 editorInstanceEdit.destroy(true);
                             } catch (e) { }
                         }
-                        $.magnificPopup.close();
                         handleAddAfterEdit(response);
                     });
             } else {
