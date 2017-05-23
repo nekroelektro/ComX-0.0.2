@@ -98,10 +98,9 @@ a {
 }
 
 /*popup buttons from configuration*/
-.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, .popupUserDegrade, .btnConfirmDegradation,
-.profileHomePage, .profileEditDetails, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar, .popupUserBlock {
-    /*padding-top: 1em; 
-    padding-right: 1em;*/
+.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, .popupUserDegrade, .btnConfirmDegradation, .sendPrivateMessage,
+.profileHomePage, .profileEditDetails, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar, .popupUserBlock,
+.btnConfirmSendMessage, .btnCancelSendMessage, .btnSendMessageInThread, .btnSendMessageNewThread {
     margin: 0.3em 0.5em !important;
 }
 
@@ -122,6 +121,7 @@ a {
     max-width: 400px;
     margin: 20px auto;
     text-align: center;
+    font-family: 'Coda', sans-serif;
 }
 
 .wide-popup {
@@ -844,7 +844,7 @@ a {
         margin-left: 0 !important;
     }
 
-    .recrutation, .absoluteLogo, .mainSideBar, .sliderSection, .logoSearch, .mainNavigatorContainer, .categoryDetailContainer  {
+    .recrutation, .absoluteLogo, .mainSideBar, .sliderSection, .logoSearch, .mainNavigatorContainer, .categoryDetailContainer, .logoComponentNotificator  {
         display: none !important;
     }
 
@@ -889,5 +889,9 @@ a {
     .bodyLayout {
         padding-right: 0 !important;
         padding-left: 0 !important;
+    }
+
+    .topLogoLastAnchor {
+        font-size: x-small !important;
     }
 }

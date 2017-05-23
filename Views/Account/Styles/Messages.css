@@ -1,0 +1,111 @@
+﻿.mainMessagesContainer {
+    font-family: "Coda", sans-serif;
+    min-height: 32em;
+}
+
+.threadElementContainer {
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: white;
+
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.threadElementContainer:hover {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.threadElementLeft {
+    float: left;
+    width: 70%;
+}
+
+.threadElementNotificator {
+    position: absolute;
+    left: -25px;
+    top: 10px;
+    background-color: #dc143c;
+    color: #f5f5f5;
+    border-radius: 10px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.threadElementTitle {
+    margin-left: 1.5em !important;
+    width: 90%;
+}
+
+.threadElementTitle h4 {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;   
+}
+
+.threadElementRight {
+    float: right;
+}
+
+.messageElementContainer {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid #222;
+    border-radius: 5px;
+    display: none;
+}
+
+.messageElementLeft {
+    box-shadow: 0 2px 4px 0 #222222, 0 3px 10px 0 whitesmoke;
+    padding-bottom: 1em;
+}
+
+/*.messageElementRight {
+    width: 80%;
+}*/
+
+.messageElementAvatar, .messageElementAuthor {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.messageElementAvatar img{
+    width: 90%;
+}
+
+.threadElementButtons {
+    position: absolute;
+    right: 1em;
+    top: 2.6em;
+    z-index: 2;
+    display: none;
+}
+
+.threadElementButtons .btn {
+    padding: 0 !important;
+}
+
+.messageElementBody img, .messageElementBody iframe {
+    max-width: 90%;
+}
+
+.sendMessageContainer {
+    box-shadow: 0 11px 8px -10px black, 0 -11px 8px -10px;
+    margin-bottom: 2em;
+}
+
+.popupSendMessagePost {
+    color: #2B823C;
+}

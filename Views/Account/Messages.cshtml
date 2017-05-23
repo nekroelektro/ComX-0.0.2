@@ -1,12 +1,17 @@
 ﻿@using ComX_0._0._2.Helpers
 @using React.AspNet
-@model ComX_0._0._2.Views.Account.Models.DtoModels.UserMessagesDto
+@model IEnumerable<ComX_0._0._2.Views.Account.Models.DtoModels.MessageThreadDto>
 @{
     ViewBag.Title = "Messages";
-    Layout = "~/Views/Account/_UserPanel.cshtml";
+    var isAjax = Request.IsAjaxRequest();
+    Layout = isAjax ? null : "~/Views/Account/_UserPanel.cshtml";
     var userHelper = new UserHelper();
     var IsAdmin = userHelper.IsSuperAdminUser(User);
 }
-@Html.React("UserProfile", new { model = Model, IsAdministrator = IsAdmin })
+@Html.React("PrivateMessages", new { model = Model, IsAdministrator = IsAdmin })
 <p class="subConcious">...the horror...the horror...</p>
+<script src="~/scripts/ckeditor.js" type="text/javascript"></script>
+<script src="~/Views/Account/Scripts/AccountMessages.js" type="text/javascript"></script>
+
+
 

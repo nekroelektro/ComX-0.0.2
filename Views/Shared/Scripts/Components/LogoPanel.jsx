@@ -2,21 +2,22 @@
     propTypes: {
         admin: React.PropTypes.bool.isRequired,
         authenticated: React.PropTypes.bool.isRequired,
-        userId: React.PropTypes.string
+        model: React.PropTypes.object.isRequired
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             admin: this.props.admin,
             auth: this.props.authenticated,
-            userId: this.props.userId
+            userId: this.props.model.UserId,
+            messagesCount: this.props.model.MessagesCount
         };
     },
-    render: function() {
+    render: function () {
         return (
             <div className="topLogoPanel">
                 <div className="container logoSection">
                     <LogoMainImage></LogoMainImage>
-                    <RightLogoPanel admin={this.state.admin} auth={this.state.auth} userId={this.state.userId}></RightLogoPanel>
+                    <RightLogoPanel admin={this.state.admin} auth={this.state.auth} userId={this.state.userId} messagesCount={this.state.messagesCount}></RightLogoPanel>
                 </div>
                 <LoginRegisterModal></LoginRegisterModal>
             </div>
@@ -25,8 +26,8 @@
 });
 
 var LogoMainImage = React.createClass({
-    render: function() {
-        return(
+    render: function () {
+        return (
             <div className="logo">
                 <img id="logoImage" src='/Content/images/logoLogo.png' />
             </div>
@@ -35,8 +36,8 @@ var LogoMainImage = React.createClass({
 });
 
 var LoginRegisterModal = React.createClass({
-    render: function() {
-        return(
+    render: function () {
+        return (
             <div id="login-modal" className="mfp-hide white-popup wide-popup">
                 <a className="popupClose"><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                 <div id="loader"><img src="../../Content/images/loader.gif" /></div>
@@ -50,10 +51,11 @@ var RightLogoPanel = React.createClass({
     propTypes: {
         admin: React.PropTypes.bool.isRequired,
         auth: React.PropTypes.bool.isRequired,
-        userId: React.PropTypes.string
+        userId: React.PropTypes.string,
+        messagesCount: React.PropTypes.number
     },
-    render: function() {
-        return(
+    render: function () {
+        return (
             <div className="rightLogoPanel">
                 <div className="logoMenu">
                     <SearchPanel></SearchPanel>
@@ -83,22 +85,22 @@ var RightLogoPanel = React.createClass({
                         (
                         <div className="topPanelLoggingButtons">
                             <div className="logoUserPanel logoComponent logoProfileImageComponent">
-                                <a className="topLogoLastAnchor logoComponentAnchor" href="/Account/UserPanel">
+                                <a className="topLogoLastAnchor logoComponentAnchor logoProfileImageComponentAnchor" href="#">
                                     <div className="logoComponentIcon">
+                                        {this.props.messagesCount != 0 &&
+                                            <div className="logoComponentNotificator">
+                                                {this.props.messagesCount}
+                                            </div>
+                                        }
                                         <img className="logoProfileImage" src={"/Account/GetAvatar?userId=" + this.props.userId} />
                                     </div>
                                     <div className="logoComponentText">
-                                        PROFIL
+                                        <div>PROFIL</div><span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                                     </div>
-                                </a>
-                            </div>
-                            <div className="logoLogout logoComponent">
-                                <a className="topLogoLastAnchor logoComponentAnchor logoLogoutAnchor">
-                                    <div className="logoComponentIcon">
-                                        <span className="glyphicon glyphicon-off" aria-hidden="true"></span>
-                                    </div>
-                                    <div className="logoComponentText">
-                                        WYLOGUJ
+                                    <div className="logoComponentProfileContextMenu">
+                                        <p><a className="" href="/Account/UserPanel">Pokaż profil</a></p>
+                                        <p><a className="" href="/Account/Messages">Prywatne wiadomości</a></p>
+                                        <p><a className="logoLogoutAnchor" href="#">Wyloguj</a></p>
                                     </div>
                                 </a>
                             </div>
@@ -127,9 +129,9 @@ var RightLogoPanel = React.createClass({
                             </div>
                         </div>
                     )
-                }
+                    }
+                </div>
             </div>
-        </div>
             );
     }
 });

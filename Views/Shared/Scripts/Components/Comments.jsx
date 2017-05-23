@@ -59,6 +59,12 @@ var AddComment = React.createClass({
                                             <button type="submit" value={this.state.isDiary} className="btn nekrobutton-green addCommentButton">
                                                 <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
                                             </button>
+                                            <div className="commentsEditButtons">
+                                                <button type="submit" className="btn nekrobutton-green submitEditCommentForm">
+                                                    <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Edytuj komentarz!
+                                                </button>
+                                                <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                                            </div>
                                             <a className="popupCommentEmpty" href="#emptyComment-modal"></a>
                                             <div id="emptyComment-modal" className="mfp-hide white-popup">
                                                 <p>Oszalałeś!</p>
@@ -69,6 +75,15 @@ var AddComment = React.createClass({
                                         </div>
                                     </div>
                                 </div>
+                            </div>                          
+                            <div id="test-modal" className="mfp-hide white-popup">
+                                <p>Potwierdź</p>
+                                <hr />
+                                <p>Czy na bank chcesz usunąć swój komentarz?</p>
+                                <button type="button" className="btn btn-danger .btn-sm btnConfirmCommentDeletion">
+                                    Ta!
+                                </button>
+                                <button type="button" className="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
                             </div>
                         </div>
                     }
@@ -99,15 +114,6 @@ var CommentsReady = React.createClass({
         return (
             <div className="addedCommentsSection col-xs-12" id="commentSection">
                 {commentNodes}
-                <div id="test-modal" className="mfp-hide white-popup">
-                    <p>Potwierdź</p>
-                    <hr />
-                    <p>Czy na bank chcesz usunąć swój komentarz?</p>
-                    <button type="button" className="btn btn-danger .btn-sm btnConfirmCommentDeletion">
-                        Ta!
-                    </button>
-                    <button type="button" className="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
-                </div>
                 <div id="editComment-modal" className="mfp-hide white-popup wide-popup">
                     <h2>Edytuj komentarz:</h2>
                     <hr />
@@ -163,7 +169,7 @@ var CommentElement = React.createClass({
                         </div>
                         {this.props.isEditable == 1 &&
                                 <div className="commentDetailsRightContainer">
-                                    <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body} href="#editComment-modal"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                    <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 </div>
                         }

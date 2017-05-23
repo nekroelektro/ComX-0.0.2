@@ -24,7 +24,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Articles/Styles/Details.css",
                 "~/Views/Articles/Styles/_TopDetailPanel.css",
                 "~/Views/Articles/Styles/Diary.css",
-                "~/Views/Articles/Styles/Edit.css"
+                "~/Views/Articles/Styles/Edit.css",
+                "~/Views/Account/Styles/Messages.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/coreStyles").Include(
@@ -40,13 +41,12 @@ namespace ComX_0._0._2 {
                 "~/Scripts/NekroSearch.js",
                 "~/Scripts/NekroSub.js",
                 "~/Scripts/NekroNavigator.js",
+                "~/Scripts/NekroSlidingBars.js",
                 "~/Scripts/NekroProfileCard.js",
                 "~/Views/Shared/Scripts/SharedLayout.js",
                 "~/Views/Shared/Scripts/SharedTopNavigationMenu.js",
                 "~/Views/Shared/Scripts/SharedIndexSlider.js",
                 "~/Views/Shared/Scripts/SharedSideBar.js",
-                "~/Views/Shared/Scripts/SharedTopLogoPanel.js",
-                "~/Views/Account/Scripts/AccountUserPanel.js",
                 "~/Views/Articles/Scripts/Articles.js",
                 "~/Views/Articles/Scripts/ArticlesDetails.js",
                 "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
@@ -68,8 +68,8 @@ namespace ComX_0._0._2 {
                 "~/Scripts/cbpHorizontalMenu.min.js",
                 "~/Scripts/jquery.sticky.js",
                 "~/Scripts/jquery.fancybox.pack.js",
-                "~/Scripts/jquery-ui.min.js"
-                //"~/scripts/ckeditor.js"
+                "~/Scripts/jquery-ui.min.js",
+                "~/Scripts/dialog-patch.js"
                 ));
 
             BundleTable.EnableOptimizations = true;

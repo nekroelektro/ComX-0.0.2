@@ -2,11 +2,14 @@
 @{
     ViewBag.Title = "Panel użytkownika";
     Layout = "~/Views/Account/_Account.cshtml";
+    UserHelper userHelper = new UserHelper();
 }
 <div class="userContainer">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Profil</a></li>
-        @*<li><a href="#">Wiadomości</a></li>*@
+        <li>@Html.ActionLink("Profil", "UserPanel", "Account")</li>
+        @if (userHelper.IsSameUserScreenByUrl()) {
+            <li>@Html.ActionLink("Wiadomości prywatne", "Messages", "Account")</li>
+        }
     </ul>
     <div class="container body-content bodyLayout">
         @RenderBody()

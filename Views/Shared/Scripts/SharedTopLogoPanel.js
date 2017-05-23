@@ -66,4 +66,19 @@
       .ajaxStop(function () {
           $loading.hide();
       });
+
+    $('.logoProfileImageComponentAnchor').on("click",
+        function () {
+            if (!$('.logoComponentProfileContextMenu').is(":visible")) {
+                $('.logoComponentProfileContextMenu').slideDown('slow');
+            } else {
+                $('.logoComponentProfileContextMenu').slideUp('slow');
+            }
+        });
+
+    $(document).mouseup(function(e) {
+        if ($('.logoComponentProfileContextMenu').is(":visible")) {
+            $('.logoComponentProfileContextMenu').slideUp('slow');
+        }
+    });
 });

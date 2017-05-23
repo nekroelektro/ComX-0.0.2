@@ -31,5 +31,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         List<ArticleDto> GetSearchResult(string searchString);
         SearchResultsDto GetSearchResultsDetails(string searchString);
+
+        TopLogoDto GetTopLogoDetails();
     }
 }

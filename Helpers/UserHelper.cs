@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace ComX_0._0._2.Helpers {
     public class UserHelper : Controller {
         private readonly ArticleHelper articleHelper = new ArticleHelper();
+        private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         public ApplicationUser GetCurrentLoggedUser() {
@@ -59,6 +60,11 @@ namespace ComX_0._0._2.Helpers {
 
         public bool IsSameUserScreen(Guid userId) {
             return GetCurrentLoggedUserId() == userId;
+        }
+
+        public bool IsSameUserScreenByUrl() {
+            var url = generalHelper.GetCurrentPageUrl();
+            return url.EndsWith("/Account/UserPanel") || url.EndsWith("/Account/Messages");
         }
 
         public bool IsCurrentUserBlocked() {
@@ -130,6 +136,10 @@ namespace ComX_0._0._2.Helpers {
             }
             db.Entry(userToBlock).State = EntityState.Modified;
             db.SaveChanges();
+        }
+
+        public List<UserMessage> GetMessages() {
+            return new List<UserMessage>();
         }
 
         //public bool CheckIfLastCommentWasSameUser(Guid userId, Guid articleId) {

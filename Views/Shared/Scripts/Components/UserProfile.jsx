@@ -19,6 +19,7 @@
                                      .isAdmin} ownProfile={this.state.model.IsOwnAccount} userRoles={this.state.model
                                      .Roles}></UserProfileInfo>
                     <UserProfileButtons isAdmin={this.state.isAdmin} model={this.state.model}></UserProfileButtons>
+                    <UserProfileMessage model={this.state.model}></UserProfileMessage>
                     <UserProfileAdminPanel model={this.state.model} isAdmin={this.state
                                            .isAdmin}></UserProfileAdminPanel>
                 </div>
@@ -63,7 +64,56 @@ var UserProfileButtons = React.createClass({
                         </div>
                     </div>
                     }
-</div>
+                {!this.props.model.IsOwnAccount &&
+                    <div>
+                        <button type="button" className="btn nekrobutton-green .btn-sm sendPrivateMessage" href="#popupSendMessage">
+                            <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                             WYŚLIJ WIADOMOŚĆ
+                        </button>
+                        <a className="messageSuccessModalAnchor" href="#messageSuccessModal1"></a>
+                        <div id="messageSuccessModal1" className="mfp-hide white-popup">
+                            <h3>Prywatna wiadomość wysłana!</h3>
+                            <div className="modalPopupButtons">
+                                <button type="button" className="btn nekrobutton-green .btn-sm btnMessageSendConfirmation">Spoko</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+            </div>
+        );
+    }
+});
+
+var UserProfileMessage = React.createClass({
+    propTypes: {
+        model: React.PropTypes.object.isRequired
+    },
+    render: function() {
+        return (
+            <div className="sendMessageContainer hidden col-xs-offset-1 col-xs-10">
+                <div className="popupSendMessageGet">
+                    <h3>Wyślij prywatną wiadomość:</h3>
+                    <hr />
+                    <b>TYTUŁ:</b>
+                    <div className="form-group">
+                        <div className="privateMessageInputBlock">
+                            <input type="text" id="editPrivateMessageTitle" name="editPrivateMessageTitle" maxlength="90" className="form-control" />
+                        </div>
+                    </div>
+                    <b>TREŚĆ:</b>
+                    <div className="form-group">
+                        <div className="privateMessageTextAreaBlock">
+                            <textarea id="editPrivateMessageContainer" name="editPrivateMessageContainer" className="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div className="modalPopupButtons">
+                        <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmSendMessage" data-name={this.props.model.UserName} data-id={this.props.model.UserId}>
+                            Wyślij
+                        </button>
+                        <button type="button" className="btn nekrobutton-red .btn-sm btnCancelSendMessage">Anuluj</button>
+                    </div>
+                </div>
+            </div>
         );
     }
 });

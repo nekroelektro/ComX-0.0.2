@@ -19,6 +19,7 @@
 }
 
 .nekrobutton-red:hover {
+    color: whitesmoke;
     background-color: red;
     border-color: orangered
 }
@@ -29,6 +30,7 @@
 }
 
 .nekrobutton-blue:hover {
+    color: whitesmoke;
     background-color: dodgerblue;
     border-color:darkblue;
 }
@@ -39,6 +41,7 @@
 }
 
 .nekrobutton-yellow:hover {
+    color: whitesmoke;
     background-color: yellow;
     border-color:goldenrod;
 }

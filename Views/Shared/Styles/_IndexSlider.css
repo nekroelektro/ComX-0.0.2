@@ -128,19 +128,19 @@
 
 .sliderSection {
     background-color: black; 
-    width: 24em; 
+    width: 12em; 
     margin: 0 auto;
     float: right;
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 24em;
+    height: 48em;
 }
 
 .slideElementDown {
     height:12em; 
     padding: 0.5em;
-    width: 50% !important;
+    width: 100% !important;
 }
 
 .slideElementDown:focus {

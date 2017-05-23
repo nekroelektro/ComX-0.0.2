@@ -9,6 +9,7 @@ using ComX_0._0._2.Helpers.SmtpHelpers;
 using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Account.Models.DtoModels;
 using ComX_0._0._2.Views.Account.Services;
+using ComX_0._0._2.Views.Articles.Services;
 using Facebook;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -18,6 +19,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
     [Authorize]
     public class AccountController : System.Web.Mvc.Controller {
         private readonly IAccountService accountService = new AccountService();
+        private readonly IDocumentService documentService = new DocumentService();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
@@ -561,6 +563,28 @@ namespace ComX_0._0._2.Views.Account.Controller {
             return Json(data);
         }
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SendMessage(string receiver, string title, string body, bool isNewThread, Guid? threadId, string userName, bool isMessageView = false) {
+            accountService.SendMessage(receiver, title, body, isNewThread, threadId);
+            if (isMessageView) {
+                var modelMessage = accountService.GetMessagesDetails();
+                return PartialView("Messages", modelMessage);
+            }
+            var model = accountService.GetProfileDetails(userName);
+            return PartialView("Profile", model);
+        }
+
+        public ActionResult Messages() {
+            var model = accountService.GetMessagesDetails();
+            return PartialView("Messages", model);
+        }
+
+        public ActionResult MarkThreadMessagesAsReceived(Guid threadId) {
+            accountService.MarkAllThreadMessagesAsReceived(threadId);
+            var model = documentService.GetTopLogoDetails();
+            return PartialView("_TopLogoPanel", model);
+        }
         #region Helpers
 
         // Used for XSRF protection when adding external logins

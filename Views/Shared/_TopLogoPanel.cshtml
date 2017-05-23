@@ -1,11 +1,13 @@
 ﻿@using ComX_0._0._2.Helpers
 @using React.AspNet
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.TopLogoDto
 @{
     UserHelper userHelper = new UserHelper();
     bool isAdmin = userHelper.IsAdminUser(User);
     bool isAuthenticated = Request.IsAuthenticated;
-    Guid userIdentificator = userHelper.GetCurrentLoggedUserId();
 }
 @Html.AntiForgeryToken()
-@Html.React("LogoPanel", new { admin = isAdmin, authenticated = isAuthenticated, userId = userIdentificator})
+@Html.React("LogoPanel", new { admin = isAdmin, authenticated = isAuthenticated, model = Model})
+<script src="~/Views/Shared/Scripts/SharedTopLogoPanel.js" type="text/javascript"></script>
+
 

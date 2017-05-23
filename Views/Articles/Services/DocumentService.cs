@@ -380,7 +380,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     ArticleId = articleId,
                     UserId = item.UserId,
                     UserName = userHelper.GetUserById(item.UserId).UserName,
-                    Date = item.DateOfCreation.ToLongDateString(),
+                    Date = item.DateOfCreation.ToString(),
                     IsDiary = item.IsDiary,
                     IsEditable = IsCommentEditable(item.UserId)
                 };
@@ -479,6 +479,13 @@ namespace ComX_0._0._2.Views.Articles.Services {
             details.SearchString = searchString;
             details.SearchPosts = GetSearchResult(searchString);
             details.Subcategories = details.SearchPosts.Select(x => x.Subcategory).Distinct().ToList();
+            return details;
+        }
+
+        public TopLogoDto GetTopLogoDetails() {
+            var details = new TopLogoDto();
+            details.UserId = userHelper.GetCurrentLoggedUserId();
+            details.MessagesCount = db.Messages.Count(x => x.UserTo == details.UserId && !x.IsReceived);
             return details;
         }
 

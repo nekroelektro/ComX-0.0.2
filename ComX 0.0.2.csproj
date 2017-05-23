@@ -699,6 +699,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="scripts\lang\pl.js" />
+    <Content Include="scripts\NekroSlidingBars.js" />
     <Content Include="scripts\NekroProfileCard.js" />
     <Content Include="scripts\NekroNavigator.js" />
     <Content Include="scripts\NekroSearch.js" />
@@ -770,7 +771,22 @@
     <Content Include="scripts\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
     <Content Include="scripts\plugins\about\dialogs\logo_ckeditor.png" />
     <Content Include="scripts\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="scripts\plugins\colordialog\dialogs\colordialog.css" />
+    <Content Include="scripts\plugins\colordialog\dialogs\colordialog.js" />
     <Content Include="scripts\plugins\dialog\dialogDefinition.js" />
+    <Content Include="scripts\plugins\div\dialogs\div.js" />
+    <Content Include="scripts\plugins\find\dialogs\find.js" />
+    <Content Include="scripts\plugins\flash\dialogs\flash.js" />
+    <Content Include="scripts\plugins\flash\images\placeholder.png" />
+    <Content Include="scripts\plugins\forms\dialogs\button.js" />
+    <Content Include="scripts\plugins\forms\dialogs\checkbox.js" />
+    <Content Include="scripts\plugins\forms\dialogs\form.js" />
+    <Content Include="scripts\plugins\forms\dialogs\hiddenfield.js" />
+    <Content Include="scripts\plugins\forms\dialogs\radio.js" />
+    <Content Include="scripts\plugins\forms\dialogs\select.js" />
+    <Content Include="scripts\plugins\forms\dialogs\textarea.js" />
+    <Content Include="scripts\plugins\forms\dialogs\textfield.js" />
+    <Content Include="scripts\plugins\forms\images\hiddenfield.gif" />
     <Content Include="scripts\plugins\icons.png" />
     <Content Include="scripts\plugins\icons_hidpi.png" />
     <Content Include="scripts\plugins\image\dialogs\image.js" />
@@ -779,14 +795,73 @@
     <Content Include="scripts\plugins\link\dialogs\link.js" />
     <Content Include="scripts\plugins\link\images\anchor.png" />
     <Content Include="scripts\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="scripts\plugins\liststyle\dialogs\liststyle.js" />
     <Content Include="scripts\plugins\magicline\images\hidpi\icon-rtl.png" />
     <Content Include="scripts\plugins\magicline\images\hidpi\icon.png" />
     <Content Include="scripts\plugins\magicline\images\icon-rtl.png" />
     <Content Include="scripts\plugins\magicline\images\icon.png" />
+    <Content Include="scripts\plugins\pagebreak\images\pagebreak.gif" />
     <Content Include="scripts\plugins\pastefromword\filter\default.js" />
+    <Content Include="scripts\plugins\preview\preview.html" />
     <Content Include="scripts\plugins\scayt\dialogs\options.js" />
     <Content Include="scripts\plugins\scayt\dialogs\toolbar.css" />
     <Content Include="scripts\plugins\scayt\skins\moono-lisa\scayt.css" />
+    <Content Include="scripts\plugins\showblocks\images\block_address.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_blockquote.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_div.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_h1.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_h2.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_h3.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_h4.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_h5.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_h6.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_p.png" />
+    <Content Include="scripts\plugins\showblocks\images\block_pre.png" />
+    <Content Include="scripts\plugins\smiley\dialogs\smiley.js" />
+    <Content Include="scripts\plugins\smiley\images\angel_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\angel_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\angry_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\angry_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\broken_heart.gif" />
+    <Content Include="scripts\plugins\smiley\images\broken_heart.png" />
+    <Content Include="scripts\plugins\smiley\images\confused_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\confused_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\cry_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\cry_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\devil_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\devil_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\embaressed_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\embarrassed_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\embarrassed_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\envelope.gif" />
+    <Content Include="scripts\plugins\smiley\images\envelope.png" />
+    <Content Include="scripts\plugins\smiley\images\heart.gif" />
+    <Content Include="scripts\plugins\smiley\images\heart.png" />
+    <Content Include="scripts\plugins\smiley\images\kiss.gif" />
+    <Content Include="scripts\plugins\smiley\images\kiss.png" />
+    <Content Include="scripts\plugins\smiley\images\lightbulb.gif" />
+    <Content Include="scripts\plugins\smiley\images\lightbulb.png" />
+    <Content Include="scripts\plugins\smiley\images\omg_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\omg_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\regular_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\regular_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\sad_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\sad_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\shades_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\shades_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\teeth_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\teeth_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\thumbs_down.gif" />
+    <Content Include="scripts\plugins\smiley\images\thumbs_down.png" />
+    <Content Include="scripts\plugins\smiley\images\thumbs_up.gif" />
+    <Content Include="scripts\plugins\smiley\images\thumbs_up.png" />
+    <Content Include="scripts\plugins\smiley\images\tongue_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\tongue_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\tounge_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\whatchutalkingabout_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\whatchutalkingabout_smile.png" />
+    <Content Include="scripts\plugins\smiley\images\wink_smile.gif" />
+    <Content Include="scripts\plugins\smiley\images\wink_smile.png" />
     <Content Include="scripts\plugins\specialchar\dialogs\lang\af.js" />
     <Content Include="scripts\plugins\specialchar\dialogs\lang\ar.js" />
     <Content Include="scripts\plugins\specialchar\dialogs\lang\az.js" />
@@ -845,6 +920,12 @@
     <Content Include="scripts\plugins\specialchar\dialogs\specialchar.js" />
     <Content Include="scripts\plugins\tabletools\dialogs\tableCell.js" />
     <Content Include="scripts\plugins\table\dialogs\table.js" />
+    <Content Include="scripts\plugins\templates\dialogs\templates.css" />
+    <Content Include="scripts\plugins\templates\dialogs\templates.js" />
+    <Content Include="scripts\plugins\templates\templates\default.js" />
+    <Content Include="scripts\plugins\templates\templates\images\template1.gif" />
+    <Content Include="scripts\plugins\templates\templates\images\template2.gif" />
+    <Content Include="scripts\plugins\templates\templates\images\template3.gif" />
     <Content Include="scripts\plugins\wsc\dialogs\ciframe.html" />
     <Content Include="scripts\plugins\wsc\dialogs\tmpFrameset.html" />
     <Content Include="scripts\plugins\wsc\dialogs\wsc.css" />
@@ -875,8 +956,10 @@
     <Content Include="scripts\NekroSub.js" />
     <Content Include="scripts\styles.js" />
     <Content Include="scripts\tinymce.min.js" />
+    <Content Include="Views\Account\Scripts\AccountMessages.js" />
     <Content Include="Views\Account\Scripts\AccountRegister.js" />
     <Content Include="Views\Account\Scripts\AccountLogin.js" />
+    <Content Include="Views\Account\Styles\Messages.css" />
     <Content Include="Views\Articles\Scripts\ArticlesSearchResults.js" />
     <Content Include="Views\Articles\Scripts\ArticlesTopDetailPanel.js" />
     <Content Include="Views\Articles\Styles\Edit.css" />
@@ -995,7 +1078,17 @@
     <Compile Include="Migrations\201701081208279_np0203.Designer.cs">
       <DependentUpon>201701081208279_np0203.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705081521318_np0204.cs" />
+    <Compile Include="Migrations\201705081521318_np0204.Designer.cs">
+      <DependentUpon>201705081521318_np0204.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705131044487_np0205.cs" />
+    <Compile Include="Migrations\201705131044487_np0205.Designer.cs">
+      <DependentUpon>201705131044487_np0205.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
+    <Compile Include="Views\Account\Models\DtoModels\MessageDto.cs" />
+    <Compile Include="Views\Account\Models\DtoModels\MessageThreadDto.cs" />
     <Compile Include="Views\Account\Models\DtoModels\UserMessagesDto.cs" />
     <Compile Include="Views\Account\Models\UserMessage.cs" />
     <Compile Include="Views\Account\Services\AccountService.cs" />
@@ -1016,6 +1109,7 @@
     <Compile Include="Views\Articles\Models\DtoModels\LastFromCategoryDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\SearchResultsDto.cs" />
     <Compile Include="Views\Articles\Models\DtoModels\SideBarDetailsDto.cs" />
+    <Compile Include="Views\Articles\Models\DtoModels\TopLogoDto.cs" />
     <Compile Include="Views\Articles\Services\DocumentService.cs" />
     <Compile Include="Views\Articles\Services\IDocumentService.cs" />
     <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />
@@ -1147,6 +1241,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701081208279_np0203.resx">
       <DependentUpon>201701081208279_np0203.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705081521318_np0204.resx">
+      <DependentUpon>201705081521318_np0204.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705131044487_np0205.resx">
+      <DependentUpon>201705131044487_np0205.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

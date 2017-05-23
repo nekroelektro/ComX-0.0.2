@@ -245,4 +245,6 @@ C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\M
 C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.ChakraCore.xml
 C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
 C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.ChakraCore.resources.dll
+C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0204.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0205.resources
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache

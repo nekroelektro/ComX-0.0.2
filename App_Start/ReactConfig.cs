@@ -26,7 +26,8 @@ namespace ComX_0._0._2
                 .AddScript("~/Views/Shared/Scripts/Components/LoginPanel.jsx")
                 .AddScript("~/Views/Shared/Scripts/Components/RegisterPanel.jsx")
                 .AddScript("~/Views/Shared/Scripts/Components/Edit.jsx")
-                .AddScript("~/Views/Shared/Scripts/Components/UserProfile.jsx");
+                .AddScript("~/Views/Shared/Scripts/Components/UserProfile.jsx")
+                .AddScript("~/Views/Shared/Scripts/Components/PrivateMessages.jsx");
 
         }
     }

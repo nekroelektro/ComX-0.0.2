@@ -27,7 +27,7 @@
                 });
         }
     });
-    $(document).on('click', '.btnCancelDeletion, .btnCancelEdit', function (e) {
+    $(document).on('click', '.btnCancelDeletion, .btnCancelEdit, .btnCancelSendMessage', function (e) {
         e.preventDefault();
         $.magnificPopup.close();
     });
@@ -205,5 +205,98 @@
             $('.modalPopupButtons').append("<div class='editErrorContainer'>" +
                 "<div class='editErrorMessage'>Coś nie gra - może mail niepoprawny...</div> </div>").fadeIn("fast");
         }
+    });
+
+    //HANDLING SEND PRIVATE MESSAGE
+
+    $('.messageSuccessModalAnchor').magnificPopup({
+        type: 'inline',
+        preloader: false,
+        modal: true
+    });
+
+    $('.sendPrivateMessage').click(function () {
+        $(this).hide('slow');
+        $('.sendMessageContainer').removeClass('hidden');
+        $('.sendMessageContainer').hide().slideDown('slow');
+        var editorInstanceEdit = CKEDITOR.instances['editPrivateMessageContainer'];
+        if (editorInstanceEdit) {
+            try {
+                editorInstanceEdit.destroy(true);
+            } catch (e) {
+            }
+        }
+        CKEDITOR.replace('editPrivateMessageContainer');
+        $('#editPrivateMessageTitle').focus();
+    });
+
+    $(document).on('click', '.btnCancelSendMessage', function (e) {
+        e.preventDefault();
+        var editorInstanceEdit = CKEDITOR.instances['editPrivateMessageContainer'];
+        if (editorInstanceEdit) {
+            try {
+                // Chrome plugin error fix
+                editorInstanceEdit.focusManager.blur(true);
+                editorInstanceEdit.destroy(true);
+            } catch (e) { }
+        }
+        $('.sendMessageContainer').slideUp('slow', function () {
+            $('.sendMessageContainer').addClass('hidden');
+        });
+        $('.sendPrivateMessage').show('slow');
+    });
+
+    var redirectContent;
+    $('.btnConfirmSendMessage').click(function () {
+        var userIdentificator = $(this).data('id').toString();
+        var userName = $(this).data('name').toString();
+        var title = $('[name=editPrivateMessageTitle]').val();
+        var body = CKEDITOR.instances['editPrivateMessageContainer'].getData();
+        if (body != "" && title != "") {
+            $.ajax({
+                url: "/Account/SendMessage/",
+                type: "POST",
+                data: {
+                    'receiver': userIdentificator,
+                    'title': title,
+                    'body': body,
+                    'isNewThread': true,
+                    'threadId': null,
+                    'userName': userName,
+                    'isMessageView': false
+                }
+            })
+                .done(function (response) {
+                    var editorInstanceEdit = CKEDITOR.instances['editPrivateMessageContainer'];
+                    if (editorInstanceEdit) {
+                        try {
+                            // Chrome plugin error fix
+                            editorInstanceEdit.focusManager.blur(true);
+                            editorInstanceEdit.destroy(true);
+                        } catch (e) { }
+                    }
+                    //$.magnificPopup.close();
+                    redirectContent = response;
+                    handleSendMessageSuccess();
+                });
+        } else {
+            if ($('.editErrorMessage').length > 0) {
+                $('.editErrorMessage').detach();
+            }
+            $('.popupSendMessageGet').append("<div class='editErrorContainer'>" +
+                "<div class='editErrorMessage'>Musisz uzupełnić tytuł i treść wiadomości!</div> </div>").fadeIn("fast");
+        }
+    });
+
+    function handleSendMessageSuccess() {
+        $('.sendMessageContainer').addClass('hidden');
+        $('.messageSuccessModalAnchor').click();
+    }
+
+    $('.btnMessageSendConfirmation').click(function () {
+        $.magnificPopup.close();
+        //refresh messages view only
+        $(".profileContainer").empty();
+        $(".profileContainer").html(redirectContent);
     });
 });

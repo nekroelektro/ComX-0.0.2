@@ -50,7 +50,7 @@
         <h3>NAWIGUJ:</h3>
     </div>
     <div class="topMainElementsContainer container">
-        @Html.Partial("_TopLogoPanel")
+        @Html.Action("_TopLogoPanel", "Articles")
         @if (!currentUrl.Contains("Configuration")) {
             <div class="containerTop container">
                 @Html.Action("_TopNavigationMenu", "Articles")

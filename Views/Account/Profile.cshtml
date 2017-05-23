@@ -3,10 +3,13 @@
 @model ComX_0._0._2.Views.Account.Models.DtoModels.UserProfileDto
 @{
     ViewBag.Title = "User Panel";
-    Layout = "~/Views/Account/_UserPanel.cshtml";
+    var isAjax = Request.IsAjaxRequest();
+    Layout = isAjax ? null : "~/Views/Account/_UserPanel.cshtml";
     var userHelper = new UserHelper();
     var IsAdmin = userHelper.IsSuperAdminUser(User);
 }
 @Html.React("UserProfile", new { model = Model, IsAdministrator = IsAdmin })
 <p class="subConcious">...the horror...the horror...</p>
+<script src="~/scripts/ckeditor.js" type="text/javascript"></script>
+<script src="~/Views/Account/Scripts/AccountUserPanel.js" type="text/javascript"></script>
 

@@ -27,7 +27,10 @@ namespace ComX_0._0._2 {
                     OnValidateIdentity =
                         SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                             TimeSpan.FromMinutes(30), (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                },
+                SlidingExpiration = true,
+                //Use this to customize the timeout duration if the default is too short/long
+                ExpireTimeSpan = TimeSpan.FromDays(30)
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 

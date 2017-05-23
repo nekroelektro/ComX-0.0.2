@@ -25,6 +25,11 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("_IndexSlider", model);
         }
 
+        public ActionResult _TopLogoPanel() {
+            var model = documentService.GetTopLogoDetails();
+            return PartialView("_TopLogoPanel", model);
+        }
+
         [ValidateInput(false)]
         public ActionResult Details(string id, bool isDiary = false) {
             var document = documentService.GetArticleDetails(id, isDiary);
