@@ -17,7 +17,7 @@
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
 [DONE] edit button na liście artykułów w konfiguracji
 - na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
-- enter potwierdza formularz loginu i rejestracji
+[DONE] enter potwierdza formularz loginu i rejestracji
 [DONE] ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 [DONE] zbundlować skrypty i cssy w layoucie
 - HTML5 pushState do one-page application
@@ -30,12 +30,14 @@
 PRYWATNE WIADOMOŚCI:
 	[DONE] komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
 	- prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
-	- rozwijalna ikona profilu na toplogopanel tam opcje: profil, prywatne iadomości i wyloguj
-	- Userpanel - zmienić strukturę - stworzyć layoutpage, obecny widok do komponentu i nowy komponent z private messages
+	[DONE] rozwijalna ikona profilu na toplogopanel tam opcje: profil, prywatne iadomości i wyloguj
+	[DONE] Userpanel - zmienić strukturę - stworzyć layoutpage, obecny widok do komponentu i nowy komponent z private messages
 	[DONE] Userpanel zmienić layout, żeby był widoczny dla innych
 	[DONE] w UserPanel przycisk (albo taby dorobić, mogą być takie w formie jak subnav menu) do private messages
-	- w widoku private messages grid z message'ami - podzielić albo na poszczególne wiadomości, albo na wątki (z pokazaną ich liczbą)
-	- na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
+	[DONE] w widoku private messages grid z message'ami - podzielić albo na poszczególne wiadomości, albo na wątki (z pokazaną ich liczbą)
+	[DONE] na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
+- Komentarze podzielone na wątki, dodać kolumne tread
+	- dodać możliwość odpowiadania na komentarze, dopowiedzi wcięte pod pierwszym komentarzem
 - newsy oddzielnie na stronie głównej
 - kategorie do random postów
 - subcategorie do postów na main-indeksie
@@ -55,7 +57,7 @@ PRYWATNE WIADOMOŚCI:
 KONFIGURACJA:
 	- najpierw dopicować widoki (włącznie z górnym paskiem)
 	- przenieść widoki do REACTA
-	- jako danych używać tych wziętych z własnego service
+	[DONE] jako danych używać tych wziętych z własnego service
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
 - dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 [DONE] zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security

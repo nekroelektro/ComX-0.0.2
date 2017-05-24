@@ -18,45 +18,6 @@ namespace ComX_0._0._2.Views.Articles.Services {
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
 
-        public void CreateDocument(CreateModelDto document) {
-            var documentIdentifier = Guid.NewGuid();
-            if (document.File != null) UploadImageForArticle(documentIdentifier, document.File, document.IsDiary);
-            if (document.IsDiary) {
-                var diaryObject = new Diary {
-                    Id = documentIdentifier,
-                    Name = document.Name.Replace("'", "`"), //for search to jquery not escape quotes
-                    Body = document.Body,
-                    DateCreated = DateTime.Now,
-                    Label = document.Label,
-                    ReleaseYear = Convert.ToInt32(document.ReleaseYear),
-                    AlbumYear = Convert.ToInt32(document.AlbumYear),
-                    Genre = document.Genre,
-                    CatalogueNumber = document.CatalogueNumber,
-                    IsPublished = document.IsPublished,
-                    UserId = userHelper.GetCurrentLoggedUserId()
-                };
-                db.Diary.Add(diaryObject);
-            }
-            else {
-                var articleObject = new Models.Articles {
-                    Id = documentIdentifier,
-                    Name = document.Name.Replace("'", "`"), //for search to jquery not escape quotes
-                    IndexDescription = document.IndexDescription,
-                    Prelude = document.Prelude,
-                    Body = document.Body,
-                    CategoryId = articleHelper.GetCategoryByName(document.CategoryId).Id,
-                    SubCategoryId = articleHelper.GetSubCategoryByName(document.SubCategoryId).Id,
-                    Series = articleHelper.GetSeriesByName(document.Series).Id,
-                    DateCreated = DateTime.Now,
-                    DateEdited = DateTime.Now,
-                    IsPublished = document.IsPublished,
-                    UserId = userHelper.GetCurrentLoggedUserId()
-                };
-                db.Articles.Add(articleObject);
-            }
-            db.SaveChanges();
-        }
-
         public CreateModelDto GetDocumentForEdit(Guid id, bool isDiary) {
             var document = new CreateModelDto();
             if (isDiary) {
@@ -134,12 +95,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
         }
 
         public void EditDocument(CreateModelDto document) {
-            if (document.IsCreate) {
-                this.CreateDocument(document);
-            }
-            else {
-                this.UpdateDocument(document);
-            }
+            if (document.IsCreate) CreateDocument(document);
+            else UpdateDocument(document);
         }
 
         public DocumentModelDto GetDocument(Guid id, bool isDiary) {
@@ -161,13 +118,13 @@ namespace ComX_0._0._2.Views.Articles.Services {
             return document;
         }
 
-        public EditDto GetEditDetails(bool createMode, bool isDiary, Guid? id){
+        public EditDto GetEditDetails(bool createMode, bool isDiary, Guid? id) {
             var details = new EditDto();
-            details.Document = createMode ? new CreateModelDto() : this.GetDocumentForEdit(id.Value, isDiary);
+            details.Document = createMode ? new CreateModelDto() : GetDocumentForEdit(id.Value, isDiary);
 
             // Populating edit comboboxes
             details.Categories = new List<List<SelectListItem>>();
-            details.Categories.Add(articleHelper.GetCategoriesToCombo().OrderBy(x=>x.Text).ToList());
+            details.Categories.Add(articleHelper.GetCategoriesToCombo().OrderBy(x => x.Text).ToList());
             details.Categories.Add(articleHelper.GetSubCategoriesToCombo().OrderBy(x => x.Text).ToList());
             details.Categories.Add(articleHelper.GetSeriesToCombo().OrderBy(x => x.Text).ToList());
 
@@ -189,8 +146,10 @@ namespace ComX_0._0._2.Views.Articles.Services {
             foreach (var item in comments) {
                 var comment = new IndexCommentModelDto {
                     UserName = userHelper.GetUserById(item.UserId).UserName,
-                    ArticleName = item.IsDiary? GetDiaryName(item.ArticleId) : GetArticleName(item.ArticleId),
-                    ArticleCodedName = generalHelper.RemoveSpecialCharsFromString(item.IsDiary? GetDiaryName(item.ArticleId) + "?isDiary=true" : GetArticleName(item.ArticleId)),
+                    ArticleName = item.IsDiary ? GetDiaryName(item.ArticleId) : GetArticleName(item.ArticleId),
+                    ArticleCodedName = generalHelper.RemoveSpecialCharsFromString(item.IsDiary
+                        ? GetDiaryName(item.ArticleId) + "?isDiary=true"
+                        : GetArticleName(item.ArticleId)),
                     isDiary = item.IsDiary
                 };
                 commentList.Add(comment);
@@ -221,7 +180,9 @@ namespace ComX_0._0._2.Views.Articles.Services {
         public List<ArticleDto> GetSliderDetails() {
             var articleList =
                 db.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(4).ToList();
-            // Fixed number of articles for slider
+            var diaryList = db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).Take(4).ToList();
+
+            // Fixed number of articles for slider IT NEEDS TO BE REWRITED
             var postList = new List<ArticleDto>();
             foreach (var item in articleList) {
                 var article = new ArticleDto {
@@ -230,16 +191,32 @@ namespace ComX_0._0._2.Views.Articles.Services {
                     ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
                     UserName = userHelper.GetUserById(item.UserId).UserName,
                     Date = item.DateCreated.ToLongDateString(),
+                    DateHelper = item.DateCreated,
                     Category = articleHelper.GetCategoryById(item.CategoryId).Name,
                     Subcategory = articleHelper.GetSubCategoryById(item.SubCategoryId).Name,
                     Series =
                         articleHelper.GetSeriesById(item.Series).Name != "Default"
                             ? articleHelper.GetSeriesById(item.Series).Name
-                            : null
+                            : null,
+                    IsDiary = false
                 };
                 postList.Add(article);
             }
-            return postList;
+
+            foreach (var item in diaryList) {
+                var article = new ArticleDto {
+                    Name = item.Name,
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name)+"?isDiary=true",
+                    ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
+                    UserName = userHelper.GetUserById(item.UserId).UserName,
+                    Date = item.DateCreated.ToLongDateString(),
+                    DateHelper = item.DateCreated,
+                    Series = "Z pamiętnika płytoholika",
+                    IsDiary = true
+                };
+                postList.Add(article);
+            }
+            return postList.OrderByDescending(x=>x.DateHelper).Take(4).ToList();
         }
 
         public IndexMainDto GetIndexDetails() {
@@ -268,8 +245,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var posts = articleList;
             for (var i = 0; i < 4; i++) posts.RemoveAt(0);
             foreach (var item in posts.Where(
-                    x =>
-                        x.CategoryId != articleHelper.GetCategoryByName("Recenzje").Id)) {
+                x =>
+                    x.CategoryId != articleHelper.GetCategoryByName("Recenzje").Id)) {
                 var article = new ArticleDto {
                     Name = item.Name,
                     CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name),
@@ -395,7 +372,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public List<IndexDiaryDto> GetDiariesDetails() {
             var details = new List<IndexDiaryDto>();
-            var diaries = db.Diary.Where(x=>x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
+            var diaries = db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated).ToList();
             foreach (var item in diaries) {
                 var diary = new IndexDiaryDto {
                     Name = item.Name,
@@ -413,7 +390,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var categories = db.Categories.OrderByDescending(x => x.SortCode).ToList();
             foreach (var item in categories) details.Add(GetCategoryModelDto(item));
             var diaryCategory = details.First(x => x.CategoryName == "Pamiętnik");
-            foreach (var diary in db.Diary.OrderByDescending(x => x.DateCreated)) {
+            foreach (var diary in db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated)) {
                 var diaryElement = new ArticleDto {
                     Id = diary.Id,
                     Name = diary.Name,
@@ -522,7 +499,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var imgToUpload = new ImagesGallery();
             if (upload != null) {
                 imgToUpload.Name = generalHelper.GenerateRandomNumber() + "_" + upload.FileName;
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"), imgToUpload.Name);
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/Gallery"),
+                    imgToUpload.Name);
                 upload.SaveAs(path);
 
                 imgToUpload.Id = Guid.NewGuid();
@@ -544,10 +522,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public void CreateComment(string body, Guid articleId, bool isDiary) {
             var userId = userHelper.GetCurrentLoggedUserId();
-            if (userId != Guid.Empty)
-            {
-                var newComment = new Comments
-                {
+            if (userId != Guid.Empty) {
+                var newComment = new Comments {
                     Id = Guid.NewGuid(),
                     Body = body,
                     UserId = userId,
@@ -570,6 +546,45 @@ namespace ComX_0._0._2.Views.Articles.Services {
         public void DeleteComment(Guid commentId) {
             var comment = db.Comments.Find(commentId);
             db.Comments.Remove(comment);
+            db.SaveChanges();
+        }
+
+        public void CreateDocument(CreateModelDto document) {
+            var documentIdentifier = Guid.NewGuid();
+            if (document.File != null) UploadImageForArticle(documentIdentifier, document.File, document.IsDiary);
+            if (document.IsDiary) {
+                var diaryObject = new Diary {
+                    Id = documentIdentifier,
+                    Name = document.Name.Replace("'", "`"), //for search to jquery not escape quotes
+                    Body = document.Body,
+                    DateCreated = DateTime.Now,
+                    Label = document.Label,
+                    ReleaseYear = Convert.ToInt32(document.ReleaseYear),
+                    AlbumYear = Convert.ToInt32(document.AlbumYear),
+                    Genre = document.Genre,
+                    CatalogueNumber = document.CatalogueNumber,
+                    IsPublished = document.IsPublished,
+                    UserId = userHelper.GetCurrentLoggedUserId()
+                };
+                db.Diary.Add(diaryObject);
+            }
+            else {
+                var articleObject = new Models.Articles {
+                    Id = documentIdentifier,
+                    Name = document.Name.Replace("'", "`"), //for search to jquery not escape quotes
+                    IndexDescription = document.IndexDescription,
+                    Prelude = document.Prelude,
+                    Body = document.Body,
+                    CategoryId = articleHelper.GetCategoryByName(document.CategoryId).Id,
+                    SubCategoryId = articleHelper.GetSubCategoryByName(document.SubCategoryId).Id,
+                    Series = articleHelper.GetSeriesByName(document.Series).Id,
+                    DateCreated = DateTime.Now,
+                    DateEdited = DateTime.Now,
+                    IsPublished = document.IsPublished,
+                    UserId = userHelper.GetCurrentLoggedUserId()
+                };
+                db.Articles.Add(articleObject);
+            }
             db.SaveChanges();
         }
 

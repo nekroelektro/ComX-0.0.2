@@ -2,12 +2,12 @@
     propTypes: {
         model: React.PropTypes.array.isRequired
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             model: this.props.model
         };
     },
-    render: function() {
+    render: function () {
         return (
             <div className="indexSliders" id="Start">
                 <SlidersContainer articles={this.state.model}></SlidersContainer>
@@ -26,9 +26,9 @@ var SlidersContainer = React.createClass({
             articles: this.props.articles
         };
     },
-    render: function() {
+    render: function () {
         var articleNodes = this.state.articles.map(function (article) {
-            return <SliderOneElement name={article.Name} code={article.CodedName} author={article.UserName} imagePath={article.ImageUrl} date={article.Date} category={article.Category} subcategory={article.Subcategory} series={article.Series}></SliderOneElement>;
+            return <SliderOneElement name={article.Name} code={article.CodedName} author={article.UserName} imagePath={article.ImageUrl} date={article.Date} category={article.Category} subcategory={article.Subcategory} series={article.Series} isDiary={article.IsDiary }></SliderOneElement>;
         });
 
         return (
@@ -53,12 +53,13 @@ var SliderOneElement = React.createClass({
         author: React.PropTypes.string,
         category: React.PropTypes.string,
         subcategory: React.PropTypes.string,
-        series: React.PropTypes.string
+        series: React.PropTypes.string,
+        isDiary: React.PropTypes.bool
     },
     render: function () {
         return (
             <div className="slideElementUpper">
-                <a href={"/" + this.props.code}>  
+                <a href={"/" + this.props.code}>
                     <div className="sliderLink">
                         <div className="bannerPanelInfo">
                             {this.props.series != null && this.props.series.length > 0 &&
@@ -68,8 +69,13 @@ var SliderOneElement = React.createClass({
                             <hr className="articlesIndexLine" />
                             <div className="datesDetailsArticles">
                                 <p>
-                                    <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.author} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-tags" aria-hidden="true"></span> {this.props.category},
-                                    {this.props.subcategory}
+                                    <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.author} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date} &nbsp;&nbsp;&nbsp;&nbsp;
+                                    {!this.props.isDiary &&
+                                        <span>
+                                            <span className="glyphicon glyphicon-tags" aria-hidden="true"></span> {this.props.category},
+                                            {this.props.subcategory}
+                                        </span>
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -80,11 +86,11 @@ var SliderOneElement = React.createClass({
                         <div className="bannerPanelImageMainSlider">
                             <img src={this.props.imagePath} />
                         </div>
-                    </div>                   
+                    </div>
                 </a>
             </div>
             );
-}
+    }
 });
 
 var SliderSection = React.createClass({
@@ -96,9 +102,9 @@ var SliderSection = React.createClass({
             articles: this.props.articles
         };
     },
-    render: function() {
+    render: function () {
         var articleNodes = this.state.articles.map(function (article) {
-            return <SliderTwoElement name={article.Name} imagePath={article.ImageUrl} ></SliderTwoElement>;
+            return <SliderTwoElement name={article.Name} imagePath={article.ImageUrl }></SliderTwoElement>;
         });
 
         return (
@@ -128,5 +134,5 @@ var SliderTwoElement = React.createClass({
                 </div>
             </div>
             );
-}
+    }
 });

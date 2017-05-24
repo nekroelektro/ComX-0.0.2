@@ -31,5 +31,7 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public DateTime DateOfCreation { get; set; }
         public Guid? UserId { get; set; }
         public bool IsPublished { get; set; }
+        // For ordering in index slider
+        public DateTime? DateHelper { get; set; }
     }
 }
