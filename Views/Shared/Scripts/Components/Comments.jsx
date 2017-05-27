@@ -65,6 +65,12 @@ var AddComment = React.createClass({
                                                 </button>
                                                 <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
                                             </div>
+                                            <div className="commentsResponseButtons">
+                                                <button type="submit" value={this.state.isDiary} className="btn nekrobutton-green addCommentResponseButton">
+                                                    <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Odpowiedz!
+                                                </button>
+                                                <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
+                                            </div>
                                             <a className="popupCommentEmpty" href="#emptyComment-modal"></a>
                                             <div id="emptyComment-modal" className="mfp-hide white-popup">
                                                 <p>Oszalałeś!</p>
@@ -75,7 +81,7 @@ var AddComment = React.createClass({
                                         </div>
                                     </div>
                                 </div>
-                            </div>                          
+                            </div>
                             <div id="test-modal" className="mfp-hide white-popup">
                                 <p>Potwierdź</p>
                                 <hr />
@@ -109,32 +115,11 @@ var CommentsReady = React.createClass({
     },
     render: function () {
         var commentNodes = this.state.comments.map(function (comment) {
-            return <CommentElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable }></CommentElement>;
+            return <CommentElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable } responseComments={comment.ResponseComments}></CommentElement>;
         }, this);
         return (
             <div className="addedCommentsSection col-xs-12" id="commentSection">
                 {commentNodes}
-                <div id="editComment-modal" className="mfp-hide white-popup wide-popup">
-                    <h2>Edytuj komentarz:</h2>
-                    <hr />
-                        <div className="newCommentSection">
-                            <div className="form-horizontal">
-                                <div className="form-group">
-                                    <div className="commentInputBlock">
-                                        <textarea id="editCommentWindowContainer" className="form-control articleEditor"></textarea>
-                                    </div>
-                                </div>
-                            <div className="form-group">
-                                <div className="commentEditButtons">
-                                    <button type="submit" className="btn nekrobutton-green submitEditCommentForm">
-                                        <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj komentarz!
-                                    </button>
-                                    <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                </div>
             </div>
 		);
     }
@@ -149,13 +134,71 @@ var CommentElement = React.createClass({
         articleId: React.PropTypes.string,
         userId: React.PropTypes.string,
         isEditable: React.PropTypes.bool,
+        isDiary: React.PropTypes.bool,
+        responseComments: React.PropTypes.array
+    },
+    getInitialState: function () {
+        return {
+            responses: this.props.responseComments
+        };
+    },
+    render: function () {
+        var responseNodes = this.state.responses.map(function (comment) {
+            return <CommentResponseElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable }></CommentResponseElement>;
+        }, this);
+        return (
+            <div>
+                <div className="singleCommentSection col-xs-11 col-xs-offset-1">
+                    <div className="col-xs-2 commentFooter">
+                        <img src={"/Account/GetAvatar?userId =" + this.props.userId} />
+                    </div>
+                    <div className="col-md-9 col-xs-12 commentBody">
+                        <div className="readyCommentDetails">
+                            <div className="commentDetailsLeftContainer">
+                                <div className="commentDetailsProfile">
+                                    <a className="commentDetailsProfileModalAnchor">
+                                        <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.userName} &nbsp;&nbsp;&nbsp;&nbsp;
+                                    </a>
+                                </div>
+                                <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
+                            </div>
+                            <div className="commentDetailsRightContainer">
+                                <a className="commentThreadResponseAnchor" data-id={this.props.id} data-name={this.props.userName}>ODPOWIEDZ</a>
+                                {this.props.isEditable == 1 &&
+                                <div>
+                                    <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                    <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        <div className="readyCommentBody">
+                            <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+                        </div>
+                    </div>
+                </div>
+                { responseNodes}
+            </div>
+            );
+        }
+    });
+
+var CommentResponseElement = React.createClass({
+    propTypes: {
+        userName: React.PropTypes.string,
+        body: React.PropTypes.string,
+        date: React.PropTypes.string,
+        id: React.PropTypes.string,
+        articleId: React.PropTypes.string,
+        userId: React.PropTypes.string,
+        isEditable: React.PropTypes.bool,
         isDiary: React.PropTypes.bool
     },
     render: function () {
         return (
-            <div className="singleCommentSection col-xs-11 col-xs-offset-1">
+            <div className="col-xs-10 col-xs-offset-2">
                 <div className="col-xs-2 commentFooter">
-                    <img src={"/Account/GetAvatar?userId=" + this.props.userId} />
+                    <img src={"/Account/GetAvatar?userId =" + this.props.userId} />
                 </div>
                 <div className="col-md-9 col-xs-12 commentBody">
                     <div className="readyCommentDetails">
@@ -167,18 +210,21 @@ var CommentElement = React.createClass({
                             </div>
                             <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
                         </div>
-                        {this.props.isEditable == 1 &&
-                                <div className="commentDetailsRightContainer">
+                        <div className="commentDetailsRightContainer">
+                            <a className="commentThreadResponseAnchor" data-id={this.props.id} data-name={this.props.userName}>ODPOWIEDZ</a>
+                            {this.props.isEditable == 1 &&
+                                <div>
                                     <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 </div>
-                        }
-                    </div>
-                        <div className="readyCommentBody">
-                            <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+                            }
                         </div>
+                    </div>
+                    <div className="readyCommentBody">
+                        <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+                    </div>
                 </div>
             </div>
-            );
+        );
     }
 });

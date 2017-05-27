@@ -1007,6 +1007,10 @@
     <Compile Include="Migrations\201705131044487_np0205.Designer.cs">
       <DependentUpon>201705131044487_np0205.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705270838351_np0206.cs" />
+    <Compile Include="Migrations\201705270838351_np0206.Designer.cs">
+      <DependentUpon>201705270838351_np0206.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Controller\AccountController.cs" />
     <Compile Include="Views\Account\Models\DtoModels\MessageDto.cs" />
     <Compile Include="Views\Account\Models\DtoModels\MessageThreadDto.cs" />
@@ -1168,6 +1172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705131044487_np0205.resx">
       <DependentUpon>201705131044487_np0205.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270838351_np0206.resx">
+      <DependentUpon>201705270838351_np0206.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

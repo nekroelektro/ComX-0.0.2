@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
     public class CommentDto {
@@ -10,5 +11,7 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public bool IsDiary { get; set; }
         public string Date { get; set; }
         public bool IsEditable { get; set; }
+        public List<CommentDto> ResponseComments { get; set; }
+        public Guid Thread { get; set; }
     }
 }

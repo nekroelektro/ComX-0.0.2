@@ -29,7 +29,7 @@
     padding-top: 0.2em;
 }
 
-.commentsEditButtons {
+.commentsEditButtons, .commentsResponseButtons {
     display: none;
 }
 
@@ -76,9 +76,19 @@
 
 .commentDetailsRightContainer {
     float: right;
+    display: inline-flex;
 }
 
-.popupCommentEdit {
+.commentDetailsRightContainer a {
+    color: #2b823c !important;
+}
+
+.commentThreadResponseAnchor {
+    cursor: pointer;
+}
+
+.popupCommentEdit {  
+    margin-left: 1em;
     cursor: pointer;
 }
 

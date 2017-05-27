@@ -8,5 +8,6 @@ namespace ComX_0._0._2.Views.Articles.Models {
         public Guid ArticleId { get; set; }
         public DateTime DateOfCreation { get; set; }
         public bool IsDiary { get; set; }
+        public Guid Thread { get; set; }
     }
 }

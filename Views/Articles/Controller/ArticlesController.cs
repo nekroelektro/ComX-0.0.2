@@ -62,8 +62,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult _Comments(string body, Guid articleId, bool isDiary) {
-            documentService.CreateComment(body, articleId, isDiary);
+        public ActionResult _Comments(string body, Guid articleId, bool isDiary, bool isResponse, string thread) {
+            documentService.CreateComment(body, articleId, isDiary, isResponse, thread);
             var model = documentService.GetCommentsDetails(articleId, isDiary);
             return PartialView("_Comments", model);
         }

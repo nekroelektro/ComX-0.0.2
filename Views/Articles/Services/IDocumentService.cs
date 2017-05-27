@@ -14,7 +14,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         void DeleteImageForGivenDocument(Guid id);
         void EditDocument(CreateModelDto document);
 
-        void CreateComment(string body, Guid articleId, bool isDiary);
+        void CreateComment(string body, Guid articleId, bool isDiary, bool isResponse, string thread);
         void DeleteComment(Guid commentId);
         void UpdateComment(string body, Guid commentId);
 

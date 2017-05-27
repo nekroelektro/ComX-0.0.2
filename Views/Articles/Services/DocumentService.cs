@@ -206,7 +206,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             foreach (var item in diaryList) {
                 var article = new ArticleDto {
                     Name = item.Name,
-                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name)+"?isDiary=true",
+                    CodedName = generalHelper.RemoveSpecialCharsFromString(item.Name) + "?isDiary=true",
                     ImageUrl = articleHelper.GetImageRelativePathByArticleId(item.Id),
                     UserName = userHelper.GetUserById(item.UserId).UserName,
                     Date = item.DateCreated.ToLongDateString(),
@@ -216,7 +216,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
                 };
                 postList.Add(article);
             }
-            return postList.OrderByDescending(x=>x.DateHelper).Take(4).ToList();
+            return postList.OrderByDescending(x => x.DateHelper).Take(4).ToList();
         }
 
         public IndexMainDto GetIndexDetails() {
@@ -349,21 +349,29 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var details = new CommentDetailsDto();
             var commentList =
                 db.Comments.Where(x => x.ArticleId == articleId).OrderBy(x => x.DateOfCreation).ToList();
-            var comments = new List<CommentDto>();
-            foreach (var item in commentList) {
-                var element = new CommentDto {
-                    Id = item.Id,
-                    Body = item.Body,
-                    ArticleId = articleId,
-                    UserId = item.UserId,
-                    UserName = userHelper.GetUserById(item.UserId).UserName,
-                    Date = item.DateOfCreation.ToString(),
-                    IsDiary = item.IsDiary,
-                    IsEditable = IsCommentEditable(item.UserId)
-                };
-                comments.Add(element);
+
+            var threadComments = CommentModelToDtoHelper(commentList.Where(x => x.Thread == x.Id).ToList(), articleId);
+            var responseComments =
+                CommentModelToDtoHelper(commentList.Where(x => x.Thread != x.Id).ToList(), articleId);
+
+            //Find thread parent for response comment
+            if (responseComments.Count > 0) {
+                foreach (var response in responseComments) {
+                    if (responseComments.FirstOrDefault(x => x.Id == response.Thread) == null) {
+                        threadComments.FirstOrDefault(x => x.Id == response.Thread).ResponseComments.Add(response);
+                    }
+                    // For nested comments
+                    else {
+                        var parentComment = responseComments.FirstOrDefault(x => x.Id == response.Thread);
+                        while (responseComments.FirstOrDefault(x => x.Id == parentComment.Thread) != null) {
+                            parentComment = responseComments.FirstOrDefault(x => x.Id == response.Thread);
+                        }
+                        threadComments.FirstOrDefault(x => x.Id == parentComment.Thread).ResponseComments.Add(response);
+                    }
+                }
             }
-            details.Comments = comments;
+
+            details.Comments = threadComments;
             details.Comment = new CommentDto();
             details.ArticleId = articleId;
             details.IsDiary = isDiary;
@@ -520,16 +528,18 @@ namespace ComX_0._0._2.Views.Articles.Services {
             db.SaveChanges();
         }
 
-        public void CreateComment(string body, Guid articleId, bool isDiary) {
+        public void CreateComment(string body, Guid articleId, bool isDiary, bool isResponse, string thread) {
             var userId = userHelper.GetCurrentLoggedUserId();
+            var id = Guid.NewGuid();
             if (userId != Guid.Empty) {
                 var newComment = new Comments {
-                    Id = Guid.NewGuid(),
+                    Id = id,
                     Body = body,
                     UserId = userId,
                     ArticleId = articleId,
                     DateOfCreation = DateTime.Now,
-                    IsDiary = isDiary
+                    IsDiary = isDiary,
+                    Thread = isResponse ? new Guid(thread) : id
                 };
                 db.Comments.Add(newComment);
                 db.SaveChanges();
@@ -547,6 +557,28 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var comment = db.Comments.Find(commentId);
             db.Comments.Remove(comment);
             db.SaveChanges();
+        }
+
+        private List<CommentDto> CommentModelToDtoHelper(List<Comments> commentList, Guid articleId) {
+            var comments = new List<CommentDto>();
+            foreach (var item in commentList) {
+                var element = new CommentDto {
+                    Id = item.Id,
+                    Body = item.Body,
+                    ArticleId = articleId,
+                    UserId = item.UserId,
+                    UserName = userHelper.GetUserById(item.UserId).UserName,
+                    Date = item.DateOfCreation.ToString(),
+                    IsDiary = item.IsDiary,
+                    IsEditable = IsCommentEditable(item.UserId),
+                    Thread = item.Thread
+                };
+                if (item.Thread == item.Id) {
+                    element.ResponseComments = new List<CommentDto>();
+                }
+                comments.Add(element);
+            }
+            return comments;
         }
 
         public void CreateDocument(CreateModelDto document) {
