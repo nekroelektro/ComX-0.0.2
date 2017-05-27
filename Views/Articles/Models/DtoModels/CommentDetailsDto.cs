@@ -7,5 +7,6 @@ namespace ComX_0._0._2.Views.Articles.Models.DtoModels {
         public CommentDto Comment { get; set; }
         public bool IsDiary { get; set; }
         public Guid ArticleId { get; set; }
+        public int CommentCount { get; set; }
     }
 }

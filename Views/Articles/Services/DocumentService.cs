@@ -356,18 +356,8 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
             //Find thread parent for response comment
             if (responseComments.Count > 0) {
-                foreach (var response in responseComments) {
-                    if (responseComments.FirstOrDefault(x => x.Id == response.Thread) == null) {
-                        threadComments.FirstOrDefault(x => x.Id == response.Thread).ResponseComments.Add(response);
-                    }
-                    // For nested comments
-                    else {
-                        var parentComment = responseComments.FirstOrDefault(x => x.Id == response.Thread);
-                        while (responseComments.FirstOrDefault(x => x.Id == parentComment.Thread) != null) {
-                            parentComment = responseComments.FirstOrDefault(x => x.Id == response.Thread);
-                        }
-                        threadComments.FirstOrDefault(x => x.Id == parentComment.Thread).ResponseComments.Add(response);
-                    }
+                foreach (var response in responseComments){
+                    threadComments.FirstOrDefault(x => x.Id == response.Thread).ResponseComments.Add(response);
                 }
             }
 
@@ -375,6 +365,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             details.Comment = new CommentDto();
             details.ArticleId = articleId;
             details.IsDiary = isDiary;
+            details.CommentCount = threadComments.Count + responseComments.Count;
             return details;
         }
 

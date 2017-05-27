@@ -36,8 +36,9 @@ PRYWATNE WIADOMOŚCI:
 	[DONE] w UserPanel przycisk (albo taby dorobić, mogą być takie w formie jak subnav menu) do private messages
 	[DONE] w widoku private messages grid z message'ami - podzielić albo na poszczególne wiadomości, albo na wątki (z pokazaną ich liczbą)
 	[DONE] na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
-- Komentarze podzielone na wątki, dodać kolumne tread
-	- dodać możliwość odpowiadania na komentarze, dopowiedzi wcięte pod pierwszym komentarzem
+[DONE] Komentarze podzielone na wątki, dodać kolumne tread
+	[DONE] dodać możliwość odpowiadania na komentarze, dopowiedzi wcięte pod pierwszym komentarzem
+- Dodać zapomniane odzyskiwanie hasła do profilu
 - newsy oddzielnie na stronie głównej
 - kategorie do random postów
 - subcategorie do postów na main-indeksie

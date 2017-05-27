@@ -17,7 +17,7 @@
                 <AddComment logged={this.state.logged} blocked={this.state.blocked} comment={this.state.model.Comment} articleId={this.state.model.ArticleId} isDiary={this.state.model.IsDiary}></AddComment>
                 <hr />
                 <div id="commentsMade">
-                    <h3 className="commentaryHeader">Komentarze({this.state.model.Comments.length})</h3>
+                    <h3 className="commentaryHeader">Komentarze({this.state.model.CommentCount})</h3>
                     <CommentsReady comments={this.state.model.Comments}></CommentsReady>
                 </div>
             </div>
@@ -144,7 +144,7 @@ var CommentElement = React.createClass({
     },
     render: function () {
         var responseNodes = this.state.responses.map(function (comment) {
-            return <CommentResponseElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable }></CommentResponseElement>;
+            return <CommentResponseElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable } threadId={this.props.id}></CommentResponseElement>;
         }, this);
         return (
             <div>
@@ -167,7 +167,9 @@ var CommentElement = React.createClass({
                                 {this.props.isEditable == 1 &&
                                 <div>
                                     <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                    <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                    {this.props.responseComments.length == 0 &&
+                                        <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>                                  
+                                    }
                                 </div>
                                 }
                             </div>
@@ -192,7 +194,8 @@ var CommentResponseElement = React.createClass({
         articleId: React.PropTypes.string,
         userId: React.PropTypes.string,
         isEditable: React.PropTypes.bool,
-        isDiary: React.PropTypes.bool
+        isDiary: React.PropTypes.bool,
+        threadId: React.PropTypes.string
     },
     render: function () {
         return (
@@ -211,7 +214,7 @@ var CommentResponseElement = React.createClass({
                             <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
                         </div>
                         <div className="commentDetailsRightContainer">
-                            <a className="commentThreadResponseAnchor" data-id={this.props.id} data-name={this.props.userName}>ODPOWIEDZ</a>
+                            <a className="commentThreadResponseAnchor" data-id={this.props.threadId} data-name={this.props.userName}>ODPOWIEDZ</a>
                             {this.props.isEditable == 1 &&
                                 <div>
                                     <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
