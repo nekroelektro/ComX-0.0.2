@@ -1,14 +1,16 @@
 ﻿.topMainElementsContainer {
     z-index: 6;
-    position: absolute;
     margin: 0 auto;
     left: 0;
-    right: 0;
     padding-left: 0;
+    padding-right: 0 !important;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+
+    background-color: black;
+    position: fixed;
 }
 
 .topMainElementsContainer:hover {
@@ -20,15 +22,11 @@
     padding-right: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 6;
-
-    /*-moz-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
-    -webkit-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
-    box-shadow: 2px 2px 3px black, -2px 2px 3px black;*/
 }
 
 .logo img {
     float: left; 
-    /*width: 35%;*/ 
+    width: 11%; 
     height: auto; 
     text-align: center;
     cursor: pointer;
@@ -40,6 +38,8 @@
     float: right;
     font-family: 'Coda', sans-serif;
     width: auto;
+
+    display: none;
 }
 
 .logoMenu {

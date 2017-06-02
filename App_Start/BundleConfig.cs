@@ -44,6 +44,7 @@ namespace ComX_0._0._2 {
                 "~/Scripts/NekroSlidingBars.js",
                 "~/Scripts/NekroProfileCard.js",
                 "~/Scripts/NekroEnterClick.js",
+                "~/Scripts/NekroController.js",
                 "~/Views/Shared/Scripts/SharedLayout.js",
                 "~/Views/Shared/Scripts/SharedTopNavigationMenu.js",
                 "~/Views/Shared/Scripts/SharedIndexSlider.js",

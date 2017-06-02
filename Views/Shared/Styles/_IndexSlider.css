@@ -134,13 +134,17 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 48em;
+    height: 99%;
 }
 
 .slideElementDown {
-    height:12em; 
+    height:25%; 
     padding: 0.5em;
     width: 100% !important;
+}
+
+.slick-list, .slick-track {
+    height: 100% !important;
 }
 
 .slideElementDown:focus {

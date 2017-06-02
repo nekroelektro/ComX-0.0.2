@@ -48,6 +48,12 @@ var UserProfileButtons = React.createClass({
                             <span className="glyphicon glyphicon-pencil userPanelEditButton" aria-hidden="true"></span>
                             EDYTUJ
                         </button>
+                        <a href={'/Manage/ChangePassword'}>
+                            <button type="button" className="btn nekrobutton-yellow .btn-sm profilePasswordRecovery">
+                                <span className="glyphicon glyphicon-retweet userPanelPasswordRecoveryButton" aria-hidden="true"></span>
+                                ZAPOMNIAŁEM HASŁO
+                            </button>
+                        </a>
                         <div id="popupEditProfile" className="mfp-hide white-popup">
                             <h3>Edytuj dane profilu</h3>
                             <hr />
@@ -62,7 +68,7 @@ var UserProfileButtons = React.createClass({
                                 <button type="button" className="btn nekrobutton-red .btn-sm btnCancelEdit">Anuluj</button>
                             </div>
                         </div>
-                    </div>
+</div>
                     }
                 {!this.props.model.IsOwnAccount &&
                     <div>

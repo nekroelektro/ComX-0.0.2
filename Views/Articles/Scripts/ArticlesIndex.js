@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('#pager').pajinate({
         num_page_links_to_display: 4,
-        items_per_page: 4,
+        items_per_page: 6,
         show_first_last: false
     });
 

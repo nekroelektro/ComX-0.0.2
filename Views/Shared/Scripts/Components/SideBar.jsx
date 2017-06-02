@@ -10,13 +10,75 @@
 	render: function() {
 		return (
 			<div className="sideBar">
-				<SideContact></SideContact>
-                <SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>
-                <SideLastComments comments={this.state.model.Comments}></SideLastComments>
-                <SideRandomPosts posts={this.state.model.RandomPosts}></SideRandomPosts>
+                <SideNavigation></SideNavigation>
+                <SidePanelMenu model={this.state.model}></SidePanelMenu>
 			</div>
 		);
 	}
+});
+
+var SideProfileActions = React.createClass({
+    propTypes: {
+        model: React.PropTypes.object.isRequired
+    },
+    getInitialState: function() {
+        return {
+            model: this.props.model
+        };
+    },
+    render: function() {
+        return (
+            <div className="sideBar">
+                <div className="sideMenuTitle">
+                    <h4>Menu boczne:</h4>
+                </div>
+                <div className="sideBarComponent">
+                </div>
+            </div>
+        );
+    }
+});
+
+var SideNavigation = React.createClass({
+    render: function() {
+        return (
+            <div className="sideBar">
+                <div className="sideMenuTitle">
+                    <h4>Nawiguj:</h4>
+                </div>
+                <div className="sideBarComponent">                  
+                    <div className="mainNavigatorContainer">
+                        <div className="mainNavigatorContainerAllItems">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+});
+
+var SidePanelMenu = React.createClass({
+    propTypes: {
+        model: React.PropTypes.object.isRequired
+    },
+    getInitialState: function () {
+        return {
+            model: this.props.model
+        };
+    },
+    render: function() {
+        return (
+            <div className="sideBar">               
+                <div className="sideMenuTitle">
+                    <h4>Menu boczne:</h4>
+                </div>
+                <SideContact></SideContact>
+                <SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>
+                <SideLastComments comments={this.state.model.Comments}></SideLastComments>
+                <SideRandomPosts posts={this.state.model.RandomPosts}></SideRandomPosts>
+            </div>
+        );
+    }
 });
 
 var SideContact = React.createClass({
@@ -24,9 +86,9 @@ var SideContact = React.createClass({
         return(
             <div className="sideBarComponent firstSideComponent">
                 <div className="sideTitle">
-                    <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Kontakt...
-                    </h3>
+                    <p>
+                        Kontakt...
+                    </p>
                 </div>
                 <div className="sideBody">
                 <div className="sideContactTitle">
@@ -35,9 +97,9 @@ var SideContact = React.createClass({
                 <div className="sideSocial">
                     <div className="fb-page"
                          data-href="https://www.facebook.com/nekroplaza"
-                         data-width="353"
+                         data-width="200"
                          data-hide-cover="false"
-                         data-show-facepile="true"
+                         data-show-facepile="false"
                          data-show-posts="false">
                     </div>
                 </div>
@@ -61,9 +123,9 @@ var SidePlazlist = React.createClass({
         return (
             <div className="sideBarComponent">
                 <div className="sideTitle">
-                    <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Plazlista...
-                    </h3>
+                    <p>
+                        Plazlista...
+                    </p>
                 </div>
                 <div className="sideBody">
                     <div className="sidePlazlistTitle">{this.props.name}</div>
@@ -91,9 +153,9 @@ var SideLastComments = React.createClass({
         return (
             <div className="sideBarComponent">
                 <div className="sideTitle">
-                    <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Ostatnie komentarze...
-                    </h3>
+                    <p>
+                        Ostatnie komentarze...
+                    </p>
                 </div>
                 <div className="sideBody">
                 <div className="sideLastCommentsBody">
@@ -144,9 +206,9 @@ var SideRandomPosts = React.createClass({
         return(
             <div className="sideBarComponent sideRandomPosts">
                 <div className="sideTitle">
-                    <h3>
-                        <span className="glyphicon glyphicon-fire" aria-hidden="true"></span> Losowe posty...
-                    </h3>
+                    <p>
+                        Losowe posty...
+                    </p>
                 </div>
                 <div className="sideBody">
                 <div className="sidePostsBody">

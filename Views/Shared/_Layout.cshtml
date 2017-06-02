@@ -28,36 +28,28 @@
     <meta name="description" content="@ViewBag.Description"/>
     <meta name="og:image" content="@ViewBag.MetaImage"/>
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="78.75">
 @*<div id="loadingOverlay">
     <div class="loadingOverlayElementsContainer">
         <img class="loadingOverlayGif" src="~/Content/images/ring.gif" alt="Loading" />
         <img class="loadingOverlayLogo" src="~/Content/images/logoLogo.png" alt="Loading" />
     </div>
 </div>*@
-<div class="bodyContent">
-    <div class="mainNavigatorContainer">
-        <div class="mainNavigatorName">
-            <h3>NAWIGUJ:</h3>
-        </div>
-        <div class="mainNavigatorContainerAllItems">
-        </div>
-        <div class="mainNavigatorName mainNavigatorHide">
-            <h3><< SCHOWAJ:</h3>
-        </div>
-    </div>
-    <div class="mainNavigatorContainerShow">
-        <h3>NAWIGUJ:</h3>
-    </div>
-    <div class="topMainElementsContainer container">
+<div class="bodyContent row">
+    <div class="topMainElementsContainer col-sm-10 col-xs-12">
         @Html.Action("_TopLogoPanel", "Articles")
         @if (!currentUrl.Contains("Configuration")) {
-            <div class="containerTop container">
+            <div class="containerTop">
                 @Html.Action("_TopNavigationMenu", "Articles")
             </div>
         }
     </div>
-    <div class="elementsToPush">
+    <div class="nekroPanel col-sm-2">
+        <div class="mainSideBar">
+            @Html.Action("_SideBar", new { number = 6 })
+        </div>
+    </div>
+    <div class="elementsToPush col-sm-10 col-xs-12">
         @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/")) {
             <div class="sliderLatestIndexContainer">
                 <div class="containerMiddle">
@@ -65,7 +57,7 @@
                 </div>
             </div>
         }
-        <div class="container body-content bodyLayout">
+        <div class="body-content bodyLayout">
             @RenderBody()
             <div class="push"></div>
         </div>

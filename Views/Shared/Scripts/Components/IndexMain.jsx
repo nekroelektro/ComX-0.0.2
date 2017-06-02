@@ -60,7 +60,7 @@ var IndexArticle = React.createClass({
     },
     render: function () {
         return (
-            <div className="indexSingleArticleContainer col-md-6 col-sm-12">
+            <div className="indexSingleArticleContainer col-md-4 col-sm-12">
                     <a className="singleIndexAnchor" href={"/" + this.props.code}>
                             <div className="articlesIndexSingleImage sliderRightPanelElement">
                                 <p className="bannerArticleTagsIndex">

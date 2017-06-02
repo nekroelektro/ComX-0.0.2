@@ -75,12 +75,9 @@
 
     //Slider enlargement handling
     if ($(".indexSliders").length > 0) {
-        //dynamic background image
-        $('body').css({ 'background-image': 'url(../Content/images/backgroundIM.png)', 'background-repeat': 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100% 100%' });
-
         var windowScreenIndex = $(window);
         var correctSliderSizeHeigth = windowScreenIndex.height() -
-            $(".bottomFooter ").height();
+            $(".bottomFooter ").height() - $('.topMainElementsContainer').height();
 
         $(".indexSliders, .slideElementUpper")
             .css("height", correctSliderSizeHeigth);

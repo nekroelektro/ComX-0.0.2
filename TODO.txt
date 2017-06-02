@@ -1,5 +1,30 @@
 ﻿THINGS TO DO:
 
+- ZMIANA LAYOUT NA ONE PAGE APP
+	- po prawej pasek ze wszystkim - nawigacją, ikonami z toplogopanelu, sidebar i MOŻE topnavigationmenu
+	- kolumnowanie bootstrapem na bodycontent i sidebar
+	-znaczące odchudzenie toplogopanel, wydłużenie na całą stronę
+- prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
+- przerobić IndexSlider w całości na własny - no i do Reacta
+- na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
+- HTML5 pushState do one-page application
+	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
+- newsy oddzielnie na stronie głównej
+- kategorie do random postów
+- subcategorie do postów na main-indeksie
+- katalogowy widok postów do oddzielnego komponentu reacta
+- searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
+- Dopicować widoki zapomnianego hasła itd
+KONFIGURACJA:
+	- najpierw dopicować widoki (włącznie z górnym paskiem)
+	- przenieść widoki do REACTA
+	[DONE] jako danych używać tych wziętych z własnego service
+- trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
+- dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
+- informacje o cookies?
+- LOGOWANIE PRZEZ FACEBOOKA
+- FORUM
+
 [DONE] zrobić PUBLISH a nie wrzucać cały kod źródłowy
 [DONE] naprawić widoki z zielonym tłem - koniecznie
 [DONE] navigation panel - płynne wysuwanie od góry, 
@@ -9,19 +34,15 @@
 [DONE] kategorie do REACTa
 [DONE] TopLogo do React
 [DONE] Naprawić złe wyświetlanie "więcej z kategorii" z navigation top na ekranie detailsów
-- przerobić IndexSlider w całości na własny - no i do Reacta
 [DONE] dostosować body width do viewportu (ze względu na mobile)
 [DONE] Edit i Create na jednym formularzu, do Reacta
 [DONE] wyczyścić BLL z nieużywanego crapu
 [DONE] topNavigation subkategorie zunifikować z pozostałymi
 [DONE] AUTHORIZATION TOKEN DLA LOGOUT, LOGIN itd - WAŻNE! - dla wszystkich oprócz logout do zrobienia po przeniesieniu do Reacta
 [DONE] edit button na liście artykułów w konfiguracji
-- na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
 [DONE] enter potwierdza formularz loginu i rejestracji
 [DONE] ogarnąć DELETE ARTICLE view, bo to najzaślejsza zaszłość
 [DONE] zbundlować skrypty i cssy w layoucie
-- HTML5 pushState do one-page application
-	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
 [DONE] różna wielkość górnych ikona na index i na details (chyba browser-specific)
 [DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 [DONE] naprawić paging na ajaxowej liście recek
@@ -29,7 +50,6 @@
 [DONE] Nowoczesne widoki gór stron
 PRYWATNE WIADOMOŚCI:
 	[DONE] komentarze - nick jako link, po hooverze pokazać ramkę z możliwością wysłania prywatnej wiadomości
-	- prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 	[DONE] rozwijalna ikona profilu na toplogopanel tam opcje: profil, prywatne iadomości i wyloguj
 	[DONE] Userpanel - zmienić strukturę - stworzyć layoutpage, obecny widok do komponentu i nowy komponent z private messages
 	[DONE] Userpanel zmienić layout, żeby był widoczny dla innych
@@ -38,15 +58,9 @@ PRYWATNE WIADOMOŚCI:
 	[DONE] na górnym pasku oddać notyfikaor czerwony z liczbą private messages jeśli jakieś są
 [DONE] Komentarze podzielone na wątki, dodać kolumne tread
 	[DONE] dodać możliwość odpowiadania na komentarze, dopowiedzi wcięte pod pierwszym komentarzem
-- Dodać zapomniane odzyskiwanie hasła do profilu
-- newsy oddzielnie na stronie głównej
-- kategorie do random postów
-- subcategorie do postów na main-indeksie
-- katalogowy widok postów do oddzielnego komponentu reacta
+[DONE] Dodać zapomniane odzyskiwanie hasła do profilu
 [DONE] ostatnie komentarze z hashem do komentarzy
 [DONE] paging na diariesach, widok listy dopicować na diaries, dodać na reviews i zpagingować
-- searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
-- Dopicować widoki zapomnianego hasła itd
 [DONE] recenzje muzyczne z indexu do ajaxa
 [DONE] KONIECZNIE ZROBIć PIĘKNY SEARCH!
 	[DONE] nowa ikona użytkownika do searcha - po kliknięciu animacja wysuwania searchbara
@@ -55,14 +69,5 @@ PRYWATNE WIADOMOŚCI:
 	[DONE] do tego nowy widok searcha - niekoniecznie pełny, może być partial ładowany AJAXem - tutaj mają być kategorie
 [DONE] trzeba coś pomyśleć, żeby detale były atrakcyjniejsze dla oka - na wejściu obrazek i tytuł na cały ekran, dodane cienie
 [DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
-KONFIGURACJA:
-	- najpierw dopicować widoki (włącznie z górnym paskiem)
-	- przenieść widoki do REACTA
-	[DONE] jako danych używać tych wziętych z własnego service
-- trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
-- dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 [DONE] zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
-- informacje o cookies?
 [DONE] siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje
-- LOGOWANIE PRZEZ FACEBOOKA
-- FORUM

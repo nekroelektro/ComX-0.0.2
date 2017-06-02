@@ -3,20 +3,11 @@
     //    $('body').css({ 'min-width': $(window).width() });
     //}
     if ($('.sliderLatestIndexContainer').length > 0 || $(".detailsBannerPanel").length > 0) {
-        $(".elementsToPush").css("margin-top", 0);
-    } else {
-        $(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
+        //$(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
+        $(".elementsToPush").css("margin-top", $('.topNavigationItemsContainer').height());
     }
 
     $(".bannerPanelInfo").css("width", $(".bodyLayout").width() + 30);
-
-    if ($('.sliderLatestIndexContainer').length > 0 && !$('.navigatorMenuItem').length > 0) {
-        NekroNavigator("Index");
-        $('.mainNavigatorContainer').css('top', $(window).height() / 2 - $('.mainNavigatorContainer').height() / 2);
-    } else {
-        $('.mainNavigatorContainer').hide();
-    }
-
 });
 
 // ===== Scroll to Top ==== 

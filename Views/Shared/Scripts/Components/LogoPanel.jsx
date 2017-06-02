@@ -15,9 +15,8 @@
     render: function () {
         return (
             <div className="topLogoPanel">
-                <div className="container logoSection">
+                <div className="logoSection">
                     <LogoMainImage></LogoMainImage>
-                    <RightLogoPanel admin={this.state.admin} auth={this.state.auth} userId={this.state.userId} messagesCount={this.state.messagesCount}></RightLogoPanel>
                 </div>
                 <LoginRegisterModal></LoginRegisterModal>
             </div>

@@ -74,16 +74,12 @@ p:-moz-selection {
 /* Set padding to keep content from hitting the edges */
 .bodyLayout {
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    /*background-color: white;*/
     min-height: 100%;
     height: auto !important;
     height: 100%;
     padding-bottom: 1.7em;
     padding-top: 0;
     margin-top: 1px;
-    /*box-shadow: 0 2px 4px 0 white, 0 3px 10px 0 whitesmoke;*/
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -99,7 +95,7 @@ a {
 
 /*popup buttons from configuration*/
 .popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, .popupUserDegrade, .btnConfirmDegradation, .sendPrivateMessage,
-.profileHomePage, .profileEditDetails, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar, .popupUserBlock,
+.profileHomePage, .profileEditDetails, .profilePasswordRecovery, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar, .popupUserBlock,
 .btnConfirmSendMessage, .btnCancelSendMessage, .btnSendMessageInThread, .btnSendMessageNewThread {
     margin: 0.3em 0.5em !important;
 }
@@ -720,117 +716,39 @@ a {
     display: none;
 }
 
-/*SIDE NAVIGATION*/
+/*NEKROPANEL*/
 
-.mainNavigatorContainer {
-    width: 12em;
-    height: 50%;
-    position: fixed; 
-    left: 3px; 
-    /*background: rgba(0, 0, 0, 0.3);*/ 
-    z-index: 6;
+.nekroPanel {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 1031;
+    padding-right: 5px;
+    padding-left: 5px;
 
-    -webkit-transition: all 0.7s ease-out;
-    -moz-transition: all 0.7s ease-out;
-    -o-transition: all 0.7s ease-out;
-    transition: all 0.7s ease-out;
+    -webkit-transition: all 0.6s ease-out;
+    -moz-transition: all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
+    transition: all 0.6s ease-out;
 }
 
-.mainNavigatorContainerShow {
-    top: 50%;
-    position: fixed; 
-    left: 1em; 
-    /*background: rgba(0, 0, 0, 0.3);*/ 
-    z-index: 6;
-    font-family: 'Eater', sans-serif;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    color: #2b823c;
-    display: none;
-    cursor: pointer;
-
-    -webkit-transition: all 0.7s ease;
-    -moz-transition: all 0.7s ease;
-    -o-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-}
-
-.mainNavigatorContainerShow h3:hover {
-    -webkit-transition: all 0.7s ease;
-    -moz-transition: all 0.7s ease;
-    -o-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-.mainNavigatorContainerAllItems {
-    margin-bottom: 0.7em;
-}
-
-.mainNavigatorName {
-    text-align: center;
-    width: 100%;
-    color: #2b823c;
-    background-color: rgba(255, 255, 255, 0.6);
-    font-family: 'Eater', sans-serif;
-}
-
-.mainNavigatorHide {
-    cursor: pointer;
-}
-
-.mainNavigatorName h3 {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-.mainNavigatorContainerShow h3 {
-    transform: rotate(90deg);
-	/*transform-origin: left top 0;*/
-    float: left;
-}
-
-.navigatorMenuItem {
-    width: 100%;
-    display: block;
-    color: whitesmoke;
-    overflow: hidden;
-    font-size: 1.6em;
-    font-family: 'Eater', sans-serif;
-    border-radius: 7px;
-    padding: 0.2em;
-    cursor: pointer;
-
-    -webkit-transition: all 0.7s ease;
-    -moz-transition: all 0.7s ease;
-    -o-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-}
-
-.navigatorMenuItem:hover {
-    color: #2b823c;
-}
-
-.navigatorMenuItem:hover > .navigatorIcon {
-    border: 3px solid #2b823c;
-}
-
-.navigatorIcon {
+/*.navigatorIcon {
     float: left;
     top: 4px !important;
     border: 3px solid whitesmoke;
     border-radius: 8px;
     padding: 0.1em;
     font-size: 1.5em !important;
-}
+}*/
 
-.navigatorMenuItemName {
+/*.navigatorMenuItemName {
     overflow: hidden;
     padding-left: 0.4em;
     font-size: 0.8em;
-    /*display: none;*/
+    display: none;
     margin-top: 0.7em;
-}
+}*/
 
 /*.activeNavigatorItem .navigatorMenuItemName {
     display: block !important;

@@ -6,11 +6,6 @@
     <div class="mainBodyContainer">
         @RenderBody()
     </div>
-    @if (!currentUrl.Contains("Create") && !currentUrl.Contains("Edit")) {
-        <div class="mainSideBar">
-            @Html.Action("_SideBar", new {number = 6})
-        </div>
-    }
     <div class="push"></div>
 </div>
 
