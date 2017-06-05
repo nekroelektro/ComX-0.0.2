@@ -135,6 +135,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public SideBarDetailsDto GetSideBarDetails(int? numberOfComments) {
             var details = new SideBarDetailsDto();
+            details.Profile = GetTopLogoDetails();
             details.PlazlistName = generalHelper.GetSettings().ListName;
             details.PlazlistCode = generalHelper.GetSettings().Playlist;
 
@@ -161,7 +162,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             // This is shit, cause it fetches all articles at first step, but in other way there is such error:
             // LINQ to Entities does not recognize the method 'Int32 Next()' method, and this method cannot be translated into a store expression.
             var articleList = db.Articles.Where(x => x.IsPublished).ToList();
-            var randomList = articleList.OrderBy(x => rnd.Next()).Take(3); // for now number of posts is fixed
+            var randomList = articleList.OrderBy(x => rnd.Next()).Take(6); // for now number of posts is fixed
             var postList = new List<ArticleDto>();
             foreach (var item in randomList) {
                 var article = new ArticleDto {
@@ -243,7 +244,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
             var postList = new List<ArticleDto>();
             // Cut first 4 articles (they are on slider)
             var posts = articleList;
-            for (var i = 0; i < 4; i++) posts.RemoveAt(0);
+            for (var i = 0; i < 3; i++) posts.RemoveAt(0);
             foreach (var item in posts.Where(
                 x =>
                     x.CategoryId != articleHelper.GetCategoryByName("Recenzje").Id)) {
@@ -460,8 +461,12 @@ namespace ComX_0._0._2.Views.Articles.Services {
 
         public TopLogoDto GetTopLogoDetails() {
             var details = new TopLogoDto();
-            details.UserId = userHelper.GetCurrentLoggedUserId();
-            details.MessagesCount = db.Messages.Count(x => x.UserTo == details.UserId && !x.IsReceived);
+            var user = userHelper.GetCurrentLoggedUser();
+            if (user != null) {
+                details.UserId = new Guid(user.Id);
+                details.MessagesCount = db.Messages.Count(x => x.UserTo == details.UserId && !x.IsReceived);
+                details.UserName = user.UserName;
+            }
             return details;
         }
 

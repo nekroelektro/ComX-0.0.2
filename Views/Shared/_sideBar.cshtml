@@ -1,6 +1,13 @@
-﻿@using React.AspNet
+﻿@using ComX_0._0._2.Helpers
+@using React.AspNet
 @model ComX_0._0._2.Views.Articles.Models.DtoModels.SideBarDetailsDto
-    @Html.React("SideBarReact", new {model = Model})
+@{
+    UserHelper userHelper = new UserHelper();
+    bool isAdmin = userHelper.IsAdminUser(User);
+    bool isAuthenticated = Request.IsAuthenticated;
+}
+@Html.AntiForgeryToken()
+@Html.React("SideBarReact", new {admin = isAdmin, authenticated = isAuthenticated, model = Model})
 <div id="fb-root"></div>
     <script>
         $(document).ready(function () {

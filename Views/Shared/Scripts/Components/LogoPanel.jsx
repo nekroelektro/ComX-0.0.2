@@ -18,7 +18,6 @@
                 <div className="logoSection">
                     <LogoMainImage></LogoMainImage>
                 </div>
-                <LoginRegisterModal></LoginRegisterModal>
             </div>
 		);
     }

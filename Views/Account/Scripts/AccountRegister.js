@@ -70,5 +70,5 @@
         Scope: '.registrationContainer',
         ElementToClick: '.registerConfirmButton'
     }
-    NekroEnterClick(config);
+    NekroController.NekroEnterClick(config);
 });

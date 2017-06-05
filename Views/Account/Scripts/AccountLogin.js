@@ -37,10 +37,4 @@
         }
         $('.loginErrorMessageContainer').hide().append(messageString).fadeIn("fast");
     }
-
-    var config = {
-        Scope: '.loginContainer',
-        ElementToClick: '.loginConfirmButton'
-    }
-    NekroEnterClick(config);
 });

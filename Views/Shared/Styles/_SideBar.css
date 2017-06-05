@@ -6,6 +6,10 @@
     background-color: #000000;
 }
 
+.sideBarSection {
+    margin-bottom: 1.4em;
+}
+
 .sideBarComponent {
     width: 100%;
 }
@@ -64,6 +68,18 @@
 .sideTitle:hover {
     color: #2B823C;
     text-shadow: 6px 6px 4px rgba(0, 0, 0, 1);
+}
+
+.sideProfileAnchor:hover {
+    color: whitesmoke !important;
+}
+
+.sideBarProfileComponent:hover img{
+    border: 2px solid #2b823c !important;
+}
+
+.sideTitle:hover > p > span {
+    padding-right: 1em;
 }
 
 .sidePlazlistTitle {
@@ -284,6 +300,10 @@
 }
 
 /*SIDE NAVIGATION*/
+.navbar {
+    margin-bottom: 0 !important;
+}
+
 .nav > li > a {
     padding: 0 !important;
     -webkit-transition: all 0.7s ease-out;
@@ -300,7 +320,8 @@
     margin-top: 0 !important;
 }
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover, .nav > li > a:hover {
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover, .nav > li > a:hover, .nav-list > .active > a,
+.nav-list > .active > a:hover {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2b823c+0,7db9e8+100&1+0,0+76 */
     background: -moz-linear-gradient(left, rgba(43,130,60,1) 0%, rgba(105,172,191,0) 76%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(left, rgba(43,130,60,1) 0%,rgba(105,172,191,0) 76%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -349,10 +370,6 @@
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-.mainNavigatorContainerAllItems {
-    margin-bottom: 0.7em;
-}
-
 .mainNavigatorName {
     text-align: center;
     width: 100%;
@@ -389,4 +406,282 @@
 
 .navigatorMenuItemName {
     padding-left: 0.4em;
+}
+
+.navigatorIcon {
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+.leftArrowSideIcon {
+    font-size: 0.9em !important;
+
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+/* SIDE LOGGING*/
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mainSideBar .form-control {
+    font-size: 12px;
+    height: 24px;
+}
+
+.LoginSideFormContainer {
+    background-color: #222;
+    padding-top: 1em;
+}
+
+.loginConfirmButton, .registerConfirmButton {
+    padding: 0 0.3em 0 !important;  
+}
+
+.forgotPasswordLogin {
+    font-size: 0.8em;
+}
+
+.sideRegisterText, .registerErrorMessageContainer, .loginErrorMessageContainer {
+    font-size: .8em !important;
+    text-align: center;
+}
+
+/* Search bar */
+.logoSearch {
+    cursor: pointer;
+}
+
+.searchBar {
+    display: none;
+    max-width: 100%;
+}
+
+.searchBar input{
+    width: 100%;
+    font-size: 1.1em;
+    border-radius: 15px;
+    text-indent: 9px;
+    max-width: none !important;
+}
+
+.searchBar input, textarea {
+    color: #2B823C;
+    background-color: #222;
+    border: none;
+}
+
+.searchResultsContainer {
+    display: none;
+    width: 30em;
+    /*height: 25em;*/
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    z-index: 6;
+    margin-top: 0.3em;
+    border-radius: 5px;
+
+    /*border: solid white 1px;*/
+}
+
+.searchResultsMore, .searchResultsNoMore{
+    display: none;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: whitesmoke;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}
+
+.searchResultsMore:hover, .searchResultsNoMore:hover {
+    color: #2b823c;
+    background-color: aliceblue;
+}
+
+.searchResultsElements {
+    width: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-bottom: 3em;
+}
+
+/* SEARCH jQuery elements*/
+.searchNoResults {
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.searchItemAnchor, .searchItemAnchor, .searchItemAnchor:focus, .searchItemAnchor:active {
+    outline: 0 !important;
+    text-decoration: none !important;
+    color: whitesmoke;
+}
+
+.searchItemAnchor:hover {
+    color: #222;
+}
+
+.searchItemAnchor:hover .articlesIndexLine{
+    border: 1px solid #2b823c;
+}
+
+.searchItemContainer {
+    width: 100%;
+    color: white;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    display: block;
+    height: 6em;
+    width: 100%;
+
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}
+
+.searchItemContainer:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.searchItemContainer:hover > p{
+    color: black !important;
+}
+
+.searchItemImageContainer {
+    height: 100%;
+    width: 20%;
+    text-align: center;
+    float: left;
+}
+
+.searchItemImageContainer img {
+    height: 100%;
+    width: 100%;
+}
+
+.searchItemDetailsContainer {
+    float: right;
+    width: 79%;
+}
+
+.searchItemDetailsName p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*float: left;*/
+    text-align: center;
+}
+
+.searchItemDetailsTags {
+    text-align: center;
+    text-transform: none;
+}
+
+/* Icons for logo panel*/
+
+.logoComponent {
+    text-align: center;
+    display: table-cell;
+    padding: 0.7em;
+}
+
+.logoComponentIcon {
+    font-size: 3em;
+    text-align: right;
+    z-index: 2;
+}
+
+.logoLogout {
+    cursor: pointer;
+}
+
+.logoProfileImageComponent {
+    width: 5em !important;
+}
+
+.logoProfileImage {
+    position: absolute;
+    right: -5px;
+    z-index: 2;
+    width: 30%;
+    border-radius: 0 0 0 35px;
+    border: 2px solid blanchedalmond;
+    overflow: hidden;
+    vertical-align: top;
+
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.topLogoLastAnchor {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.logoComponentNotificator {
+    background-color: crimson;
+    color: whitesmoke;
+    width: 1em;
+    position: absolute;
+    z-index: 9;
+    font-size: medium;
+    border-radius: 5px;
+    top: 0;
+}
+
+.logoComponentText {
+    display: inline-flex;
+}
+
+.logoComponentProfileContextMenu {
+    z-index: 9;
+    text-align: left;
+    font-size: small;
+    background-color: #222;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.logoComponentProfileContextMenu p {
+    margin-bottom: 3px !important;
+    margin-top: 3px !important;
+}
+
+
+/*SIDE PROFILE*/
+.sideBarProfileComponent {
+    height: 60px;
+    position: relative;
+}
+
+.sideProfileAnchor {
+    position: absolute;
+    font-size: 1em;
+    /*margin-top: 0;
+    margin-bottom: 0;*/
+    transform: translateY(-50%);
+    top: 50%;
+    background-color: #2b823c;
 }

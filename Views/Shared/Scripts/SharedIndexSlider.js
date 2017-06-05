@@ -91,8 +91,6 @@
                 $(".indexSliders").css("width", correctWidth);
                 $(".indexSliders, .slideElementUpper").css("height",
                     correct);
-
-                //$(".slideElementDown ").css("height", (correct / 2));
             });
     }
 });

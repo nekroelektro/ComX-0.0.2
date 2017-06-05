@@ -16,7 +16,7 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         }
 
         public ActionResult _SideBar(int? number) {
-            var model = documentService.GetSideBarDetails(7);
+            var model = documentService.GetSideBarDetails(9);
             return PartialView("_SideBar", model);
         }
 

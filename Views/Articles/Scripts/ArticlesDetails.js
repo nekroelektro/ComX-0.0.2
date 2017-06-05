@@ -97,10 +97,10 @@ $(document).ready(function() {
                 var correctWidth = win.width() >= win.innerWidth ? win.width() : win.innerWidth;
                 bannerPanel.css("width", correctWidth);
                 bannerPanel.css("height", win.height() - $(".bottomFooter ").height());
-                $(".articleDetail, .mainSideBar").css("margin-top", bannerPanel.height());
+                $(".articleDetail").css("margin-top", bannerPanel.height());
             });
 
-        $(".articleDetail, .mainSideBar").css("margin-top", imageHeight);
+        $(".articleDetail").css("margin-top", imageHeight);
         if ($(".topDetailPanel").length > 0) {
             $(".topDetailPanel").css("margin-top", $(".topMainElementsContainer").height());
         }

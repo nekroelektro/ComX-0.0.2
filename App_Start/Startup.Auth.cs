@@ -26,7 +26,7 @@ namespace ComX_0._0._2 {
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity =
                         SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                            TimeSpan.FromMinutes(30), (manager, user) => user.GenerateUserIdentityAsync(manager))
+                            TimeSpan.FromDays(30), (manager, user) => user.GenerateUserIdentityAsync(manager))
                 },
                 SlidingExpiration = true,
                 //Use this to customize the timeout duration if the default is too short/long

@@ -1,15 +1,20 @@
 ﻿var SideBarReact = React.createClass({
-	propTypes: {
+    propTypes: {
+        admin: React.PropTypes.bool.isRequired,
+        authenticated: React.PropTypes.bool.isRequired,
 	    model: React.PropTypes.object.isRequired
 	},
 	getInitialState: function() {
-		return {
+	    return {
+	        admin: this.props.admin,
+	        auth: this.props.authenticated,
 		    model: this.props.model
 		};
 	},
 	render: function() {
 		return (
 			<div className="sideBar">
+                <SideProfileActions admin={this.state.admin} authenticated={this.state.auth} model={this.state.model.Profile}></SideProfileActions>
                 <SideNavigation></SideNavigation>
                 <SidePanelMenu model={this.state.model}></SidePanelMenu>
 			</div>
@@ -19,21 +24,214 @@
 
 var SideProfileActions = React.createClass({
     propTypes: {
+        admin: React.PropTypes.bool.isRequired,
+        authenticated: React.PropTypes.bool.isRequired,
         model: React.PropTypes.object.isRequired
     },
     getInitialState: function() {
         return {
+            admin: this.props.admin,
+            auth: this.props.authenticated,
             model: this.props.model
         };
     },
     render: function() {
         return (
-            <div className="sideBar">
-                <div className="sideMenuTitle">
-                    <h4>Menu boczne:</h4>
+            <div className="sideBar sideBarSection">
+                {this.state.auth ? (
+                    <div>
+                        <div className="sideBarComponent sideBarProfileComponent">
+                            <div className="sideTitle sideProfileAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-triangle-bottom leftArrowSideIcon" aria-hidden="true"></span> {this.state.model.UserName}
+                                </p>
+                            </div>
+                            <div className="logoComponentIcon">
+                                {this.state.model.messagesCount != 0 &&
+                                            <div className="logoComponentNotificator">
+                                                {this.props.messagesCount}
+                                            </div>
+                                        }
+                                <img className="logoProfileImage" src={"/Account/GetAvatar?userId=" + this.state.model.UserId} />
+                            </div>
+                        </div>
+                        <div className="sideBody sideProfileBody">
+                            <div className="logoComponentProfileContextMenu">
+                                <div className="sideTitle sideShowProfileAnchor">
+                                    <p>
+                                        <span className="glyphicon glyphicon-user leftArrowSideIcon" aria-hidden="true"></span> Pokaż profil
+                                    </p>
+                                </div>
+                                <div className="sideTitle sideMessagesAnchor">
+                                    <p>
+                                        <span className="glyphicon glyphicon-envelope leftArrowSideIcon" aria-hidden="true"></span> Prywatne wiadomości
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {this.state.admin &&
+                            <div className="sideBarComponent">
+                                <div className="sideTitle sideConfigurationAnchor">
+                                    <p>
+                                        <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Konfiguracja
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideLogoutAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-off leftArrowSideIcon" aria-hidden="true"></span> Wyloguj
+                                </p>
+                            </div>
+                        </div>
+                    </div>     
+                ) : (
+                    <div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideLoginAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-triangle-bottom leftArrowSideIcon" aria-hidden="true"></span> Zaloguj
+                                </p>
+                            </div>
+                            <div className="sideBody sideLoginBody">
+                                <LoginSideForm></LoginSideForm>
+                            </div>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideRegisterAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-triangle-bottom leftArrowSideIcon" aria-hidden="true"></span> Zarejestruj
+                                </p>
+                            </div>
+                            <div className="sideBody sideRegisterBody">
+                                <RegisterSideForm></RegisterSideForm>
+                            </div>
+                        </div>
+                    </div>               
+                )}
+                <div className="sideBarComponent sideBarSearchComponent">
+                    <div className="sideTitle sideSearchAnchor">
+                        <p>
+                            <span className="glyphicon glyphicon-triangle-bottom leftArrowSideIcon" aria-hidden="true"></span> Wyszukaj
+                        </p>
+                    </div>
+                    <SearchPanel></SearchPanel>
                 </div>
-                <div className="sideBarComponent">
+            </div>
+        );
+    }
+});
+
+var LoginSideForm = React.createClass({
+    getInitialState: function() {
+        return {login: '', password: '', remember: false};
+    },
+    handleLoginChange: function(e) {
+        this.setState({login: e.target.value});
+    },
+    handlePasswordChange: function(e) {
+        this.setState({password: e.target.value});
+    },
+    handleRememberChange: function(e) {
+        this.setState({ remember: e.target.value });
+    },
+    render: function () {
+        return (
+            <div className="LoginSideFormContainer col-md-12">
+                <section id="loginForm loginFormCustom">
+                    <div className="form-horizontal loggingForm">
+                        <div className="form-group">
+                            <div className="col-md-9 col-centered">
+                                <input type="text" name="userNameInput" className="form-control" placeholder="Nazwa użytkownika..." value={this.state.login} onchange={this.handleLoginChange} />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="col-md-9 col-centered">
+                                <input type="password" name="passInput" className="form-control" placeholder="Hasło..." value={this.state.password} onchange={this.handlePasswordChange} />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="col-md-12 col-md-9 col-centered">
+                                <div className="checkbox-inline">
+                                    <label>
+                                        <input type="checkbox" name="rememberCheckbox" checked={this.state.remember} onChange={this.handleRememberChange} /> Zapamiętaj mnie!
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="col-md-12 col-centered">
+                                <button type="submit" className="btn nekrobutton-green loginConfirmButton">
+                                    <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Zaloguj!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="forgotPasswordLogin col-md-12">
+                        <p>
+                            <a href="/Account/ForgotPassword">Choroba, nie pamiętam hasła!</a>
+                        </p>
+                    </div>
+                    <div className="loginErrorMessageContainer"></div>
+                </section>
+            </div>
+        );
+    }
+});
+
+var RegisterSideForm = React.createClass({
+    getInitialState: function() {
+        return {login: '', mail: '', password: '', passwordConfirm: ''};
+    },
+    handleLoginRegChange: function(e) {
+        this.setState({login: e.target.value});
+    },
+    handleMailRegChange: function (e) {
+        this.setState({ mail: e.target.value });
+    },
+    handlePasswordRegChange: function(e) {
+        this.setState({password: e.target.value});
+    },
+    handlePasswordConfirmRegChange: function(e) {
+        this.setState({ passwordConfirm: e.target.value });
+    },
+    render: function () {
+        return (
+            <div className="LoginSideFormContainer col-md-12">
+                <div className="sideTitle sideRegisterText">
+                    <p>Po rejestracji potwierdź klikając w link wysłany na podanego przez Ciebie maila.</p>
                 </div>
+                <div className="form-horizontal registrationForm">
+                    <div className="form-group">
+                        <div className="col-md-9 col-centered">
+                            <input type="text" name="userNameRegInput" className="form-control" placeholder="Nazwa użytkownika..." value={this.state.login} onchange={this.handleLoginRegChange} />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="col-md-9 col-centered">
+                            <input type="text" name="mailRegInput" className="form-control" placeholder="Adres e-mail..." value={this.state.mail} onchange={this.handleMailRegChange} />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="col-md-9 col-centered">
+                            <input type="password" name="passwordRegInput" className="form-control" placeholder="Hasło..." value={this.state.password} onchange={this.handlePasswordRegChange} />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="col-md-9 col-centered">
+                            <input type="password" name="confirmPasswordRegInput" className="form-control" placeholder="Potwierdź hasło..." value={this.state.passwordConfirm} onchange={this.handlePasswordConfirmRegChange} />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="col-md-12 col-centered">
+                            <button type="submit" className="btn nekrobutton-green registerConfirmButton">
+                                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Rejestrujemy!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="registerErrorMessageContainer"></div>
             </div>
         );
     }
@@ -42,7 +240,7 @@ var SideProfileActions = React.createClass({
 var SideNavigation = React.createClass({
     render: function() {
         return (
-            <div className="sideBar">
+            <div className="sideBar sideBarSection">
                 <div className="sideMenuTitle">
                     <h4>Nawiguj:</h4>
                 </div>
@@ -68,7 +266,7 @@ var SidePanelMenu = React.createClass({
     },
     render: function() {
         return (
-            <div className="sideBar">               
+            <div className="sideBar sideBarSection sideBarMenuSection">               
                 <div className="sideMenuTitle">
                     <h4>Menu boczne:</h4>
                 </div>
@@ -87,27 +285,27 @@ var SideContact = React.createClass({
             <div className="sideBarComponent firstSideComponent">
                 <div className="sideTitle">
                     <p>
-                        Kontakt...
+                        <span className="glyphicon glyphicon-triangle-left leftArrowSideIcon" aria-hidden="true"></span> Kontakt
                     </p>
                 </div>
                 <div className="sideBody">
-                <div className="sideContactTitle">
-                    nekro@nekroplaza.pl
-                </div>
-                <div className="sideSocial">
-                    <div className="fb-page"
-                         data-href="https://www.facebook.com/nekroplaza"
-                         data-width="200"
-                         data-hide-cover="false"
-                         data-show-facepile="false"
-                         data-show-posts="false">
+                    <div className="sideContactTitle">
+                        nekro@nekroplaza.pl
                     </div>
-                </div>
-                <div className="recrutation">
-                    <a href='/NekroPlaza+rekrutuje!'>
-                        <img src='/Content/images/rekrutacja.png' />
-                    </a>
-                </div>
+                    <div className="sideSocial">
+                        <div className="fb-page"
+                             data-href="https://www.facebook.com/nekroplaza"
+                             data-width="230"
+                             data-hide-cover="true"
+                             data-show-facepile="true"
+                             data-show-posts="true">
+                        </div>
+                    </div>
+                    <div className="recrutation">
+                        <a href='/NekroPlaza+rekrutuje!'>
+                            <img src='/Content/images/rekrutacja.png' />
+                        </a>
+                    </div>
                 </div>
         </div>
             );
@@ -124,7 +322,7 @@ var SidePlazlist = React.createClass({
             <div className="sideBarComponent">
                 <div className="sideTitle">
                     <p>
-                        Plazlista...
+                        <span className="glyphicon glyphicon-triangle-left leftArrowSideIcon" aria-hidden="true"></span> Plazlista
                     </p>
                 </div>
                 <div className="sideBody">
@@ -154,13 +352,13 @@ var SideLastComments = React.createClass({
             <div className="sideBarComponent">
                 <div className="sideTitle">
                     <p>
-                        Ostatnie komentarze...
+                        <span className="glyphicon glyphicon-triangle-left leftArrowSideIcon" aria-hidden="true"></span> Ostatnie komentarze
                     </p>
                 </div>
                 <div className="sideBody">
-                <div className="sideLastCommentsBody">
-                    {commentNodes}
-                </div>
+                    <div className="sideLastCommentsBody">
+                        {commentNodes}
+                    </div>
                 </div>
             </div>
             );
@@ -207,7 +405,7 @@ var SideRandomPosts = React.createClass({
             <div className="sideBarComponent sideRandomPosts">
                 <div className="sideTitle">
                     <p>
-                        Losowe posty...
+                        <span className="glyphicon glyphicon-triangle-left leftArrowSideIcon" aria-hidden="true"></span> Losowe posty
                     </p>
                 </div>
                 <div className="sideBody">
