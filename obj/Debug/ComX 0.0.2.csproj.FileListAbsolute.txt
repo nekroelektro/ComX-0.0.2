@@ -3,6 +3,7 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\r
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csc.exe.config
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csc.rsp
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csi.exe
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csi.exe.config
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csi.rsp
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -14,12 +15,33 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\r
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.AppContext.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Console.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.Compression.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.Pipes.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Claims.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Threading.Thread.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.ValueTuple.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.XPath.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.exe
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.exe.config
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\vbc.rsp
@@ -28,11 +50,13 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\r
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.dll.config
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ComX 0.0.2.pdb
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Antlr3.Runtime.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ClearScript.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.SqlServer.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Facebook.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\GridMvc.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.ChakraCore.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.Core.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.Msie.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.V8.dll
@@ -66,12 +90,14 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\M
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Mvc.DataAnnotations.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Mvc.Formatters.Json.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Routing.Abstractions.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Routing.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.StaticFiles.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.WebUtilities.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.DotNet.InternalAbstractions.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.Extensions.DependencyInjection.dll
@@ -101,6 +127,10 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\n
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Owin.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.AspNet.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Core.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.Mvc4.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\RouteJs.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\RouteJs.Mvc5.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Buffers.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Diagnostics.DiagnosticSource.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.dll
@@ -111,14 +141,19 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\S
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Mvc.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Optimization.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Razor.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Deployment.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.Razor.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\VroomJs.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\WebActivatorEx.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\WebGrease.dll
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Antlr3.Runtime.pdb
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\EntityFramework.SqlServer.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Facebook.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.ChakraCore.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.Core.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.Msie.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.V8.xml
@@ -150,6 +185,7 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\M
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Mvc.DataAnnotations.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Mvc.Formatters.Json.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Mvc.ViewFeatures.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Routing.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.Routing.Abstractions.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.StaticFiles.xml
@@ -181,10 +217,13 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\N
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\nunit.framework.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.AspNet.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Core.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.Mvc4.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Extensions.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Primitives.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Text.Encodings.Web.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Optimization.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\VroomJs.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Razor.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Webpages.xml
@@ -195,56 +234,18 @@ C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\S
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Net.Http.Formatting.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.xml
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Http.WebHost.xml
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.ChakraCore.resources.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\MsieJavaScriptEngine.resources.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0201.resources
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0202.resources
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0203.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0204.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0205.resources
+C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0206.resources
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
 C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.Mvc4.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\WebActivatorEx.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.xml
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\React.Web.Mvc4.xml
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\RouteJs.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\RouteJs.Mvc5.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Antlr3.Runtime.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Optimization.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\WebGrease.dll
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Antlr3.Runtime.pdb
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\System.Web.Optimization.xml
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\csi.exe.config
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Console.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Diagnostics.Process.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.Compression.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.IO.Pipes.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.AccessControl.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Claims.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Security.Principal.Windows.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Threading.Thread.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.ValueTuple.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.XPath.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.ChakraCore.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.DotNet.PlatformAbstractions.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\JavaScriptEngineSwitcher.ChakraCore.xml
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.ChakraCore.resources.dll
-C:\Users\blutt\Documents\Visual Studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0204.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0205.resources
-C:\Users\blutt\documents\visual studio 2015\Projects\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
