@@ -27,8 +27,7 @@ $(document).ready(function() {
     $(".topDetailPanelButtons").sticky({ topSpacing: 60, zIndex: 5 });
 
     var postsheight = $(window).height()/2;
-    $('.articlesIndexTable').css('height', postsheight);
-    $('.indexSingleArticleContainer').css('height', postsheight / 2);
+    $('.indexSingleArticleContainer').css('height', postsheight / 1.5);
 
     var currentCategory = $("#categoryNameContainer").val();
     if (currentCategory == "") {
@@ -41,18 +40,15 @@ $(document).ready(function() {
     });
 
     // Handling of document deletion
-    $(".popupDocumentDelete").magnificPopup({
-        type: "inline",
-        preloader: false,
-        modal: true
-    });
-
-    $(document).on("click",
-        ".btnCancelDelete",
-        function(e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-        });
+    var deletePopConfig = {
+        Title: "USUWANIE ARTYKUŁU",
+        ClickedElement: $(".popupDocumentDelete"),
+        ContainerElement: $('#delDoc-modal'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(deletePopConfig);
 
     $(".submitDeleteDocumentForm").click(function () {
         var artId = $(this).data('id').toString();
@@ -70,16 +66,6 @@ $(document).ready(function() {
     // For wide article image and moving sidebar under article image
     var bannerPanel = $(".detailsBannerPanel");
     if (bannerPanel.length > 0) {
-        //make background image from image container of article details
-        var backgroundImageSrc = $(".bannerPanelDetailsMainImage img").attr("src");
-        $("body").css({
-            'background-image': "url(" + backgroundImageSrc + ")",
-            'background-repeat': "no-repeat",
-            'background-attachment': "fixed",
-            'background-size': "100%",
-            'background-position' : "center"
-        });
-        //$(".elementsToPush").css("margin-top", 0);
 
         $(".bannerPanelImageMain").animate({
                 height: $(".detailsBannerPanel").height(),
@@ -89,14 +75,14 @@ $(document).ready(function() {
             500);
 
         var windowScreen = $(window);
-        bannerPanel.css("height", windowScreen.height() - $(".bottomFooter ").height());
+        bannerPanel.css("height", windowScreen.height() - $(".bottomFooter ").height() - $(".topMainElementsContainer").height());
         var imageHeight = bannerPanel.height();
         windowScreen.on("resize",
             function() {
                 var win = $(this);
                 var correctWidth = win.width() >= win.innerWidth ? win.width() : win.innerWidth;
                 bannerPanel.css("width", correctWidth);
-                bannerPanel.css("height", win.height() - $(".bottomFooter ").height());
+                bannerPanel.css("height", win.height() - $(".bottomFooter ").height() - $(".topMainElementsContainer").height());
                 $(".articleDetail").css("margin-top", bannerPanel.height());
             });
 

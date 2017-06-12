@@ -13,25 +13,11 @@
     position: fixed;
 }
 
-.topMainElementsContainer:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
 .logoSection {
     padding-left: 0; 
     padding-right: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 6;
-}
-
-.logo img {
-    float: left; 
-    width: 11%; 
-    height: auto; 
-    text-align: center;
-    cursor: pointer;
-    margin-left: 1em;
-    margin-top: 0.2em;
 }
 
 .rightLogoPanel {

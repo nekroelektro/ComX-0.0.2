@@ -29,6 +29,15 @@
     display: none;
 }
 
+.sideBodySliderTitle {
+    color: white;
+    font-family: 'Coda', sans-serif;
+    font-size: 1.1em;
+    text-align: center;
+    background-color: #222;
+    margin-bottom:0.5em;
+}
+
 .firstSideComponent {
     border-top: none !important;
 }
@@ -39,7 +48,7 @@
 
 .sideContactTitle {
     text-align: center; 
-    padding-bottom: 0.15em;
+    padding-bottom: 0.4em;
     color: #2B823C;
     font-size: 1.2em;
     font-family: 'Eater', sans-serif;
@@ -649,6 +658,8 @@
     font-size: medium;
     border-radius: 5px;
     top: 0;
+    right: 0;
+    text-align: center;
 }
 
 .logoComponentText {

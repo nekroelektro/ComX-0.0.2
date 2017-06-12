@@ -1,12 +1,58 @@
-﻿jQuery(document).ready(function ($) {
+﻿$(document).ready(function () {
+    // POPUPS
+    var messageSuccessPopConfig = {
+        Title: "STATUS PRYWATNEJ WIADOMOŚCI",
+        ClickedElement: $(".messageSuccessModalAnchor"),
+        ContainerElement: $('#messageSuccessModal1'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(messageSuccessPopConfig);
+
+    var deleteUserPopConfig = {
+        Title: "USUŃ UŻYTKOWNIKA",
+        ClickedElement: $(".popupUserDelete"),
+        ContainerElement: $('#messageSuccessModal1'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(deleteUserPopConfig);
+
+    var blockUserPopConfig = {
+        Title: "ZABLOKUJ UŻYTKOWNIKA",
+        ClickedElement: $(".popupUserBlock"),
+        ContainerElement: $('#messageSuccessModal1'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(blockUserPopConfig);
+
+    var degradeUserPopConfig = {
+        Title: "ZDEGRADUJ UŻYTKOWNIKA",
+        ClickedElement: $(".popupUserDegrade"),
+        ContainerElement: $('#messageSuccessModal1'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(degradeUserPopConfig);
+
+    var degradeUserPopConfig = {
+        Title: "EDYTUJ PROFIL",
+        ClickedElement: $(".profileEditDetails"),
+        ContainerElement: $('#messageSuccessModal1'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(degradeUserPopConfig);
+
     // USER DELETE/BLOCK HANDLING
     var userIdentificator;
     var blockOrDelete;
-    $('.popupUserDelete').magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true
-    });
     $('.popupUserDelete').click(function () {
         userIdentificator = $(this).data('id').toString();
         blockOrDelete = 'delete';
@@ -26,16 +72,6 @@
                     location.reload(true);
                 });
         }
-    });
-    $(document).on('click', '.btnCancelDeletion, .btnCancelEdit, .btnCancelSendMessage', function (e) {
-        e.preventDefault();
-        $.magnificPopup.close();
-    });
-
-    $('.popupUserBlock').magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true
     });
     $('.popupUserBlock').click(function () {
         userIdentificator = $(this).data('id').toString();
@@ -57,12 +93,6 @@
     });
 
     // Degrade user handling
-    $('.popupUserDegrade').magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true
-    });
-
     $('.popupUserDegrade').click(function () {
         userIdentificator = $(this).data('id').toString();
     });
@@ -176,12 +206,6 @@
     });
 
     // HANDLING PROFILE EDIT
-    $('.profileEditDetails').magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true
-    });
-
     function isEmailFormatCorrect(email) {
         var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         return regex.test(email);
@@ -209,11 +233,7 @@
 
     //HANDLING SEND PRIVATE MESSAGE
 
-    $('.messageSuccessModalAnchor').magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true
-    });
+    
 
     $('.sendPrivateMessage').click(function () {
         $(this).hide('slow');

@@ -7,7 +7,7 @@
 
 body {
     padding-bottom: 20px;
-    background-color: #2B823C !important;
+    background-color: whitesmoke !important;
     min-height: 100%;
     min-width: 320px;
     height: auto !important;
@@ -126,6 +126,22 @@ a {
     padding-right: 0 !important;
 }
 
+.mfp-hide {
+    display: none !important; }
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.ui-widget-header {
+    background-color: #222;
+    color: whitesmoke;
+    font-family: 'Coda', sans-serif;
+}
+
+.elementsToPush {
+    margin-top: 58px !important;
+}
 
 /* INDEX PAGINATION*/
 
@@ -263,8 +279,10 @@ a {
     color: #2B823C !important;
 }
 
+#pagerCategories {
+    background: black !important;
+}
 /* COMMENT SECTION */
-
 .addedCommentsSection {
     height: auto;
     width: 100%;
@@ -287,14 +305,15 @@ a {
 }
 
 .bottomFooter {
-    /*position: absolute;
-    bottom: 0;*/
+    position: fixed;
+    bottom: 0;
     width: 100%;
     background-color: black;
     color: whitesmoke;
     text-align: center;
     margin: 0 auto;
     height: 3em;
+    z-index: 999;
     
     font-family: 'Eater', sans-serif;
 }
@@ -316,18 +335,17 @@ a {
 
 /* RETURN TO TOP ARROW */
 #return-to-top {
+    z-index: 10;
     position: fixed;
-    bottom: 5em;
-    right: 5em;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.7);
     width: 50px;
     height: 50px;
     display: block;
     text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
+    -webkit-border-radius: 35px 0 0;
+    -moz-border-radius: 35px 0 0;
+    border-radius: 35px 0 0;
     display: none;
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s ease;
@@ -341,8 +359,8 @@ a {
     color: #fff;
     margin: 0;
     position: relative;
-    left: 15px;
-    top: 13px;
+    left: 17px;
+    top: 16px;
     font-size: 19px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -658,10 +676,6 @@ a {
 
     .slidersContainer {
         width: 100% !important;
-    }
-
-    .elementsToPush {
-        margin-top: 58px !important;
     }
 
     .bodyLayout {

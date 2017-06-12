@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Messages";
     var isAjax = Request.IsAjaxRequest();
-    Layout = isAjax ? null : "~/Views/Account/_UserPanel.cshtml";
+    Layout = isAjax ? null : "~/Views/Shared/_Layout.cshtml";
     var userHelper = new UserHelper();
     var IsAdmin = userHelper.IsSuperAdminUser(User);
 }

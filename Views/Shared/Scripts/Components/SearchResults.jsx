@@ -9,7 +9,7 @@
     },
     render: function () {
         return (
-            <div className="mainCategoryContainer">
+            <div className="mainCategoryContainer" id="Szukaczka" data-isnavpanel="true">
                 <SearchGui searchString={this.state.model.SearchString} sub={this.state.model.Subcategories}></SearchGui>
                 <SearchList model={this.state.model.SearchPosts}></SearchList>
             </div>

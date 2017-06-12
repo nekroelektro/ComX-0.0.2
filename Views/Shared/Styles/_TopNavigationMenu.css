@@ -2,25 +2,29 @@
     width: 100%;
     font-family: 'Coda', sans-serif;
     border-top: 1px solid #3d3f42;
-
     /*-moz-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
     -webkit-box-shadow: 2px 2px 3px black, -2px 2px 3px black;
     box-shadow: 2px 2px 3px black, -2px 2px 3px black;*/
 }
 
-.absoluteLogo {
-    display: none; 
-    margin-top: 0; 
-    z-index: 999; 
+.logo {
     position: absolute;
-    margin-top: -6em;
+    width: 15%;
 }
 
-.absoluteLogo img {
+.logo img {
     float: left;
-    text-align: center;
     width: 75%;
-    border-radius: 10px;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 1em;
+    margin-top: 0.2em;
+}
+
+.cbp-hrmenu {
+    float: right;
+    width: 85%;
 }
 
 .cbp-hrsub-inner {

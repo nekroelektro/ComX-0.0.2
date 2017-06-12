@@ -1,13 +1,15 @@
 ﻿$(document).ready(function () {
-    //if ($('body').width() < $(window).width()) {
-    //    $('body').css({ 'min-width': $(window).width() });
+    //if ($('.sliderLatestIndexContainer').length > 0 || $(".detailsBannerPanel").length > 0) {
+    //    //$(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
+    //    $(".elementsToPush").css("margin-top", $('.topNavigationItemsContainer').height());
     //}
-    if ($('.sliderLatestIndexContainer').length > 0 || $(".detailsBannerPanel").length > 0) {
-        //$(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
-        $(".elementsToPush").css("margin-top", $('.topNavigationItemsContainer').height());
-    }
 
     $(".bannerPanelInfo").css("width", $(".bodyLayout").width() + 30);
+
+    $('#return-to-top').css({
+        'right': $('.nekroPanel').width() + 10,
+        'bottom': $('.bottomFooter').height()
+    });
 });
 
 // ===== Scroll to Top ==== 

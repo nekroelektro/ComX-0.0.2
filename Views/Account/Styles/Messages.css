@@ -102,6 +102,7 @@
 }
 
 .sendMessageContainer {
+    display: none;
     box-shadow: 0 11px 8px -10px black, 0 -11px 8px -10px;
     margin-bottom: 2em;
 }

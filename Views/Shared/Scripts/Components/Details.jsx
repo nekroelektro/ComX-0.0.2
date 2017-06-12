@@ -15,7 +15,7 @@
         return (
             <div className="articleDetails">
                 {this.state.admin == 1 &&
-                <AdminPanel id={this.state.model.Id} isDiary={this.state.model.IsDiary}></AdminPanel>
+                    <AdminPanel id={this.state.model.Id} isDiary={this.state.model.IsDiary}></AdminPanel>
                 }
                 <TopDetailPanel name={this.state.model.Name} category={this.state.model.Category} subcategory={this.state.model.Subcategory} date={this.state.model.Date} author={this.state.model.UserName} series={this.state.model.Series} imagePath={this.state.model.ImageUrl} isDiary={this.state.model.IsDiary}></TopDetailPanel>
                 <MainArticleDetails dBody={this.state.dBody} prelude={this.state.model.Prelude} body={this.state.model.Body} code={this.state.model.CodedName} isDiary={this.state.model.IsDiary} label={this.state.model.Label} genre={this.state.model.Genre} catalog={this.state.model.CatalogueNumber} albumYear={this.state.model.AlbumYear} releaseYear={this.state.model.ReleaseYear}></MainArticleDetails>
@@ -48,14 +48,14 @@ var AdminPanel = React.createClass({
                             <span className="glyphicon glyphicon-edit" aria-hidden="true"></span>EDYTUJ
                         </button>
                     </a>
-                    <a className="popupDocumentDelete" href="#delDoc-modal">
+                    <a className="popupDocumentDelete">
                         <button type="button" className="btn nekrobutton-red btn-sm">
                             <span className="glyphicon glyphicon-erase" aria-hidden="true"></span>USUŃ
                         </button>
                     </a>
                 </div>
-                <div id="delDoc-modal" className="mfp-hide white-popup wide-popup">
-                    <h3>Wnimańje! Próbujesz usunąć artykuł!</h3>
+                <div id="delDoc-modal" className="white-popup wide-popup">
+                    <h4>Wnimańje! Próbujesz usunąć artykuł!</h4>
                     <hr />
                     <p>Czy jesteś pewien? Takaż operacja jest nieodwracalna (no, może bardzo trudno odwracalna).</p>
                     <div className="form-group">
@@ -63,7 +63,7 @@ var AdminPanel = React.createClass({
                             <button type="submit" className="btn nekrobutton-red submitDeleteDocumentForm" data-id={this.props.id} data-diary={this.props.isDiary}>
                                 <span className="glyphicon glyphicon-ok" aria-hidden="true"></span> Usuń artykuł!
                             </button>
-                            <button type="button" className="btn nekrobutton-blue .btn-sm btnCancelDelete">Anuluj</button>
+                            <button type="button" className="btn nekrobutton-blue .btn-sm btnCancelDelete shutNekroPop">Anuluj</button>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ var TopDetailPanel = React.createClass({
     },
     render: function () {
         return (
-            <div className="detailsBannerPanel">
+            <div className="detailsBannerPanel" id="Start" data-isnavpanel="true">
                 <div className="detailsImageAbsoluteBackground">
                     <div className="bannerPanelImageContainer">
                         <img src={this.props.imagePath} />
@@ -139,7 +139,7 @@ var MainArticleDetails = React.createClass({
                 <div className="articleDetail">
                     {!isDiary ?
                     (
-                    <div className="articleDetailsIntro">
+                            <div className="articleDetailsIntro" id="Artykuł" data-isnavpanel="true">
                         <div dangerouslySetInnerHTML={{__html: this.props.prelude}} />
                     </div>
                     ) : (

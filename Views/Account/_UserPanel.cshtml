@@ -1,7 +1,7 @@
 ﻿@using ComX_0._0._2.Helpers
 @{
     ViewBag.Title = "Panel użytkownika";
-    Layout = "~/Views/Account/_Account.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     UserHelper userHelper = new UserHelper();
 }
 <div class="userContainer">
@@ -11,7 +11,7 @@
             <li>@Html.ActionLink("Wiadomości prywatne", "Messages", "Account")</li>
         }
     </ul>
-    <div class="container body-content bodyLayout">
+    <div>
         @RenderBody()
         <div class="push"></div>
     </div>

@@ -12,21 +12,16 @@
             <div className="main">
                 <LogoMenu></LogoMenu>
                 <CategoryContainer model={this.state.model}></CategoryContainer>
-                <div className="navMenuContainer">
-                    <SearchPanel></SearchPanel>
-                </div>
             </div>
 		);
     }
 });
 
 var LogoMenu = React.createClass({
-    render: function() {
-        return(
-            <div className="absoluteLogo">
-                <a href={'/'}>
-                    <img src={'/Content/images/logoWhiteSMALL.jpg'}/>
-                </a>
+    render: function () {
+        return (
+            <div className="logo">
+                <img id="logoImage" src='/Content/images/logoLogo.png' />
             </div>
         );
     }

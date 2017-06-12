@@ -14,11 +14,13 @@
     render: function () {
         return (
             <div className="commentSection" id="detailsCommentSection">
-                <AddComment logged={this.state.logged} blocked={this.state.blocked} comment={this.state.model.Comment} articleId={this.state.model.ArticleId} isDiary={this.state.model.IsDiary}></AddComment>
-                <hr />
-                <div id="commentsMade">
-                    <h3 className="commentaryHeader">Komentarze({this.state.model.CommentCount})</h3>
-                    <CommentsReady comments={this.state.model.Comments}></CommentsReady>
+                <div id="Komentarze" data-isnavpanel="true">
+                    <AddComment logged={this.state.logged} blocked={this.state.blocked} comment={this.state.model.Comment} articleId={this.state.model.ArticleId} isDiary={this.state.model.IsDiary}></AddComment>
+                    <hr />
+                    <div id="commentsMade">
+                        <h3 className="commentaryHeader">Komentarze({this.state.model.CommentCount})</h3>
+                        <CommentsReady comments={this.state.model.Comments}></CommentsReady>
+                    </div>
                 </div>
             </div>
 		);
@@ -71,31 +73,31 @@ var AddComment = React.createClass({
                                                 </button>
                                                 <button type="button" className="btn btn-danger .btn-sm btnCancelEdit">Anuluj</button>
                                             </div>
-                                            <a className="popupCommentEmpty" href="#emptyComment-modal"></a>
-                                            <div id="emptyComment-modal" className="mfp-hide white-popup">
+                                            <a className="popupCommentEmpty"></a>
+                                            <div id="emptyComment-modal" className="white-popup">
                                                 <p>Oszalałeś!</p>
                                                 <hr />
                                                 <p>Nie możesz dodać pustego komentarza!</p>
-                                                <button type="button" className="btn nekrobutton-green .btn-sm btnCancelDeletion">Dobra, już dobra...</button>
+                                                <button type="button" className="btn nekrobutton-green .btn-sm btnCancelDeletion shutNekroPop">Dobra, już dobra...</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="test-modal" className="mfp-hide white-popup">
+                            <div id="test-modal" className="white-popup">
                                 <p>Potwierdź</p>
                                 <hr />
                                 <p>Czy na bank chcesz usunąć swój komentarz?</p>
                                 <button type="button" className="btn btn-danger .btn-sm btnConfirmCommentDeletion">
                                     Ta!
                                 </button>
-                                <button type="button" className="btn btn-info .btn-sm btnCancelDeletion">Nope!</button>
+                                <button type="button" className="btn btn-info .btn-sm btnCancelDeletion shutNekroPop">Nope!</button>
                             </div>
                         </div>
                     }
                     {this.props.logged != 1 && this.props.blocked != 0 &&
                         <div className="newCommentnotLogged">
-                            <h4>Jak chcesz skomentować, to się <a className="popupLoginModal loginComments" href="#login-modal">zaloguj</a> - opłaci Ci się, koleżko!</h4>
+                            <h4>Jak chcesz skomentować, to się <a className="loginComments" href="#">zaloguj</a> - opłaci Ci się, koleżko!</h4>
                         </div>
                     }
                 </div>
@@ -168,7 +170,7 @@ var CommentElement = React.createClass({
                                 <div>
                                     <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     {this.props.responseComments.length == 0 &&
-                                        <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>                                  
+                                        <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>                                  
                                     }
                                 </div>
                                 }
@@ -218,7 +220,7 @@ var CommentResponseElement = React.createClass({
                             {this.props.isEditable == 1 &&
                                 <div>
                                     <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                    <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} href="#test-modal"><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                    <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 </div>
                             }
                         </div>

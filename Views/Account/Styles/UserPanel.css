@@ -61,8 +61,8 @@
 }
 
 .profileContainer {
-    padding-top: 1em;
     min-height: 32em;
+    padding-top: 1em;
 }
 
 #popupSendMessage {

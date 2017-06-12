@@ -30,14 +30,12 @@
             if (current !== -1) {
                 $listItems.eq(current).find(".cbp-hrsub").slideUp("fast");
                 $listItems.eq(current).removeClass("cbp-hropen");
-                //$(".elementsToPush").css("margin-top", 0);
                 posts.hide();
             }
 
             if (current === idx) {
                 sliderElementMenu.slideUp("slow");
                 $item.removeClass("cbp-hropen");
-                //$(".elementsToPush").css("margin-top", 0);
                 current = -1;
             } else {
                 //for pushing elements during top menu displaying
@@ -120,16 +118,10 @@
             $(this).find(".articlesIndexLine").css("border", "1px solid chocolate");
         });
 
-    // If nav menu is open prevent logo pnael from changing color on mouseleave
-    //$(".topMainElementsContainer").on({
-    //    mouseleave: function () {
-    //        if ($('.lastArticlesFromCategoryTopNavigation').is(":visible")) {
-    //            $(".topMainElementsContainer").css('background-color', "rgba(0, 0, 0, 0.8)");
-    //        } else {
-    //            $(".topMainElementsContainer").css('background-color', "transparent");
-    //        }
-    //    }
-    //});
+    $('#logoImage').on("click",
+        function() {
+            window.location.href = "/";
+        });
 
     // Subcategories tweaks
     NekroSub(true);

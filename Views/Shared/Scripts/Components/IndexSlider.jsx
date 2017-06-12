@@ -9,7 +9,7 @@
     },
     render: function () {
         return (
-            <div className="indexSliders" id="Start">
+            <div className="indexSliders" id="Start" data-isnavpanel="true">
                 <SlidersContainer articles={this.state.model}></SlidersContainer>
 			    <SliderSection articles={this.state.model}></SliderSection>
             </div>

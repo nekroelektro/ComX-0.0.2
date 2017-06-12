@@ -13,7 +13,7 @@
     };
 
     //Hack for not fetching editor config if user not logged
-    if ($(".logoUserPanel ").is(":visible")) {
+    if ($("#commentEditor").is(":visible")) {
         setTimeout(function() {
                 CKEDITOR.replace("commentEditor");
                 //    // sticky comment input
@@ -45,16 +45,22 @@
     });
 
     //For deleting single comment
-    $(".popupCommentDelete").magnificPopup({
-        type: "inline",
-        preloader: false,
-        modal: true
-    });
+    var deletePopConfig = {
+        Title: "USUWANIE KOMENTARZA",
+        ClickedElement: $(".popupCommentDelete"),
+        ContainerElement: $('#test-modal'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(deletePopConfig);
+
     $(".popupCommentDelete").click(function() {
         comIdentificator = $(this).data("id").toString();
         artIdentificator = $(this).data("art").toString();
         diary = $(this).data("diary").toString();
     });
+
     //Adding new comment
     $(".commentThreadResponseAnchor").click(function() {
         isResponse = true;
@@ -84,11 +90,17 @@
             handleEmptyComment();
         }
     });
-    $(".popupCommentEmpty").magnificPopup({
-        type: "inline",
-        preloader: false,
-        modal: true
-    });
+
+    var emotyPopConfig = {
+        Title: "PUSTY KOMENTARZ",
+        ClickedElement: $(".popupCommentEmpty"),
+        ContainerElement: $('#emptyComment-modal'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(emotyPopConfig);
+
     //Deleting the comment       
     $(".btnConfirmCommentDeletion").click(function() {
         if (comIdentificator != null && artIdentificator != null && diary != null) {
@@ -98,18 +110,11 @@
                     data: { 'commentId': comIdentificator, 'articleId': artIdentificator, 'isDiary': diary }
                 })
                 .done(function(partialViewResult) {
-                    $.magnificPopup.close();
+                    $('.shutNekroPop').click();
                     handleAddAfterEdit(partialViewResult);
                 });
         }
     });
-
-    $(document).on("click",
-        ".btnCancelDeletion",
-        function(e) {
-            e.preventDefault();
-            $.magnificPopup.close();
-        });
 
 
     // HANDLING EDIT COMMENT
@@ -164,4 +169,9 @@
             }
         });
     });
+
+    $('.loginComments').on("click",
+        function() {
+            $('.sideLoginAnchor').click();
+        });
 });

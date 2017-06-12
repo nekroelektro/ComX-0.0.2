@@ -13,7 +13,7 @@
     },
     render: function () {
         return (
-            <div className="mainCategoryContainer">
+            <div className="mainCategoryContainer" id="Kategoria" data-isnavpanel="true">
                 <CategoriesGui name={this.state.model.CategoryName} isAjaxRequest={this.state.isAjaxRequest} sub={this.state.model.Subcategories} description={this.state.model.Description}></CategoriesGui>
                 {this.state.model.CategoryPosts.length > 0 ?
                     (

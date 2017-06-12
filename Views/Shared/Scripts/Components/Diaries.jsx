@@ -11,7 +11,7 @@
     },
     render: function() {
         return (
-            <div className="mainDiaryContainer">
+            <div className="mainDiaryContainer" id="Pamiętnik" data-isnavpanel="true">
                 <DiariesGui isAjaxRequest={this.state.isAjaxRequest}></DiariesGui>
                 <DiariesList model={this.state.model}></DiariesList>
             </div>
@@ -38,23 +38,6 @@ var DiariesGui = React.createClass({
                         Witaj w moim świecie, świecie!
                     </h3>
                     <hr />
-                    <div className="diaryButtonContainer">
-                        <div className="diarySortButtons">
-                            <button type="button" className="btn nekrobutton-green btn-m" id="diarySortCatalog">
-                                <span className="glyphicon glyphicon-th" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" className="btn nekrobutton-green btn-m" id="diarySortList">
-                                <span className="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        {this.props.isAjaxRequest &&
-                            <div className="navigationBackButton">
-                                <button type="button" className="btn nekrobutton-green btn-m">
-                                    <span className="glyphicon glyphicon-menu-left" aria-hidden="true"></span> POWRÓT
-                                </button>
-                            </div>
-                        }
-                    </div>
                 </div>
             </div>
 		);
@@ -71,21 +54,11 @@ var DiariesList = React.createClass({
 	    };
 	},
 	render: function () {
-	    var diaryCatalogNodes = this.state.model.map(function (diary) {
-	        return <DiaryCatalogElement name={diary.Name} code={diary.Code} imagePath={diary.ImageUrl}></DiaryCatalogElement>;
-	    });
-
 	    var diaryListNodes = this.state.model.map(function (diary) {
 	        return <DiaryListElement name={diary.Name} code={diary.Code} imagePath={diary.ImageUrl}></DiaryListElement>;
 	    });
 		return (
 			<div className="diaryContainer">
-                <div className="indexReviewsContainer" id="diaryCatalog">
-                    <ul className="content" id="content">
-                        {diaryCatalogNodes}
-                    </ul>
-                    <div className="page_navigation"></div>
-                </div>
                 <div id="diaryList">
                     <ul className="indexDiaryList content" id="content">
                         {diaryListNodes}
@@ -95,31 +68,6 @@ var DiariesList = React.createClass({
                 </div>
 		);
 	}
-});
-
-var DiaryCatalogElement = React.createClass({
-    propTypes: {
-        name: React.PropTypes.string,
-        code: React.PropTypes.string,
-        imagePath: React.PropTypes.string
-    },
-    render: function () {
-        return (
-            <div className="diaryCatalogElement">
-                <a className="indexSingleReviewAnchor" href={"/" + this.props.code + "?isDiary=true"}>
-                    <div className="indexSingleReview col-xs-4">
-                        <div className="indexSingleReviewImageContainer">
-                            <img id="reviewIndexImage" src={this.props.imagePath}/>
-                        </div>
-                        <div className="bannerPanelInfoIndex">
-                            <h3 className="bannerArticleNameIndex">{this.props.name}</h3>
-                            <hr className="articlesIndexLine" />
-                        </div>
-                    </div>
-                </a>
-             </div>
-            );
-    }
 });
 
 var DiaryListElement = React.createClass({

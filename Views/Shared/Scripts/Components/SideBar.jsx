@@ -47,9 +47,9 @@ var SideProfileActions = React.createClass({
                                 </p>
                             </div>
                             <div className="logoComponentIcon">
-                                {this.state.model.messagesCount != 0 &&
+                                {this.state.model.MessagesCount != 0 &&
                                             <div className="logoComponentNotificator">
-                                                {this.props.messagesCount}
+                                                {this.props.model.MessagesCount}
                                             </div>
                                         }
                                 <img className="logoProfileImage" src={"/Account/GetAvatar?userId=" + this.state.model.UserId} />
@@ -289,6 +289,9 @@ var SideContact = React.createClass({
                     </p>
                 </div>
                 <div className="sideBody">
+                    <div className="sideBodySliderTitle">
+                        <p>KONTAKT</p>
+                    </div>
                     <div className="sideContactTitle">
                         nekro@nekroplaza.pl
                     </div>
@@ -326,6 +329,9 @@ var SidePlazlist = React.createClass({
                     </p>
                 </div>
                 <div className="sideBody">
+                    <div className="sideBodySliderTitle">
+                        <p>PLAZLISTA</p>
+                    </div>
                     <div className="sidePlazlistTitle">{this.props.name}</div>
                     <iframe className="sidePlazlistWidget" src={this.props.code} frameborder="0" allowtransparency="true"></iframe>
                 </div>
@@ -356,6 +362,9 @@ var SideLastComments = React.createClass({
                     </p>
                 </div>
                 <div className="sideBody">
+                    <div className="sideBodySliderTitle">
+                        <p>OSTATNIE KOMENTARZE</p>
+                    </div>
                     <div className="sideLastCommentsBody">
                         {commentNodes}
                     </div>
@@ -409,9 +418,12 @@ var SideRandomPosts = React.createClass({
                     </p>
                 </div>
                 <div className="sideBody">
-                <div className="sidePostsBody">
-                    {postNodes}
-                </div>
+                    <div className="sideBodySliderTitle">
+                        <p>LOSOWE POSTY</p>
+                    </div>
+                    <div className="sidePostsBody">
+                        {postNodes}
+                    </div>
                 </div>
             </div>
             );

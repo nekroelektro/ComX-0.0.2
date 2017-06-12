@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     NekroSub(false);
-    //$(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
     $('.navigationBackButton').click(function () {
         $.ajax({
             url: "/Articles/Index/",

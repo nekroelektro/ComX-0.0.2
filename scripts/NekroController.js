@@ -2,7 +2,12 @@
 
 NekroController.NekroNavigator = function(config) {
     var htmlString = "";
-    var navigationArray = config.NavigationItems;
+    var navigationElements = $("div[data-isnavpanel=true]");
+    var navigationArray = [];
+    $.each(navigationElements,
+        function() {
+            navigationArray.push($(this).attr("id"));
+        });
 
     //Build navigator html based on navigationArray
     $.each(navigationArray,
@@ -24,6 +29,14 @@ NekroController.NekroNavigator = function(config) {
                 iconString = "comment";
             } else if (item == "Detale") {
                 iconString = "zoom-in";
+            } else if (item == "Kategoria") {
+                iconString = "tags";
+            } else if (item == "Szukaczka") {
+                iconString = "search";
+            } else if (item == "Profil") {
+                iconString = "user";
+            } else if (item == "Wiadomości") {
+                iconString = "envelope";
             }
 
             var itemString =
@@ -89,23 +102,6 @@ config.ElementClicked.on("click",
         }
     });
 };
-
-NekroController.ShowMePopup = function (config) {
-    config.ElementClicked.magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true,
-        closeBtnInside: true,
-        showCloseBtn: true
-    });
-
-    var closeController = config.ClosingElement ? config.ClosingElement : $('.popupClose');
-    console.log(closeController);
-    $(document).on('click', closeController, function (e) {
-        e.preventDefault();
-        $.magnificPopup.close();
-    });
-}
 
 NekroController.NekroSearch = function(config) {
     var request;
@@ -264,4 +260,22 @@ NekroController.NekroSearch = function(config) {
         function () {
             window.location.href = "/Articles/SearchResults/" + "?searchString=" + searchString;
         });
+};
+
+NekroController.NekroPop = function (config) {
+    config.ContainerElement.dialog({
+        title: config.Title,
+        dialogClass: "no-close",
+        modal: config.Modal,
+        autoOpen: config.AutoOpen,
+        width: config.Width
+    });
+
+    config.ClickedElement.click(function () {
+        config.ContainerElement.dialog("open");
+    });
+
+    $('.shutNekroPop').click(function () {
+        config.ContainerElement.dialog("close");
+    });
 };

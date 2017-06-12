@@ -35,14 +35,9 @@
         <img class="loadingOverlayLogo" src="~/Content/images/logoLogo.png" alt="Loading" />
     </div>
 </div>*@
-<div class="bodyContent row">
+<div class="bodyContent">
     <div class="topMainElementsContainer col-sm-10 col-xs-12">
-        @Html.Action("_TopLogoPanel", "Articles")
-        @if (!currentUrl.Contains("Configuration")) {
-            <div class="containerTop">
-                @Html.Action("_TopNavigationMenu", "Articles")
-            </div>
-        }
+        @Html.Action("_TopNavigationMenu", "Articles")
     </div>
     <div class="nekroPanel col-sm-2">
         <div class="mainSideBar">

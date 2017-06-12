@@ -7,6 +7,16 @@
     }
     NekroSlidingBars(config);
 
+    var mesSuccPopConfig = {
+        Title: "STATUS PRYWATNEJ WIADOMOŚCI",
+        ClickedElement: $(".messageSuccessModalAnchor"),
+        ContainerElement: $('#messageSuccessModal2'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(mesSuccPopConfig);
+
     //Message sending handling
     var userTo;
     var isNewThread;
@@ -94,14 +104,7 @@
         });
     });
 
-    $('.messageSuccessModalAnchor').magnificPopup({
-        type: 'inline',
-        preloader: false,
-        modal: true
-    });
-
     $('.btnMessageSendConfirmation').click(function () {
-        $.magnificPopup.close();
         //refresh messages view only
         $("#mainMessagesContainer").empty();
         $("#mainMessagesContainer").html(redirectContent);
@@ -110,7 +113,6 @@
     $(".threadElementNode").click(function () {
         $(this).find('.threadElementNotificator').hide('slow');
         var thread = $(this).data('id');
-        console.log(thread);
         $.ajax({
             url: "/Account/MarkThreadMessagesAsReceived/",
             type: "POST",

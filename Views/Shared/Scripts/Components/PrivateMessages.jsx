@@ -32,10 +32,10 @@ var ThreadList = React.createClass({
             return <ThreadElement model={thread }></ThreadElement>;
         });
         return (
-			<div className="threadsContainer">
+            <div className="threadsContainer" id="Wiadomości" data-isnavpanel="true">
                 <h3>Twoje wiadomości prywatne:</h3>
                 <hr />
-                <div className="sendMessageContainer hidden col-xs-offset-1 col-xs-10">
+                <div className="sendMessageContainer col-xs-offset-1 col-xs-10">
 			        <div className="popupSendMessageGet">
 			            <h3>Odpowiedz na prywatną wiadomość:</h3>
 			            <hr />
@@ -60,11 +60,11 @@ var ThreadList = React.createClass({
 			        </div>
                 </div>
 			    {threadElementsNodes}
-			    <a className="messageSuccessModalAnchor" href="#messageSuccessModal2"></a>
-			    <div id="messageSuccessModal2" className="mfp-hide white-popup">
+			    <a className="messageSuccessModalAnchor"></a>
+			    <div id="messageSuccessModal2" className="white-popup">
 			        <h3>Prywatna wiadomość wysłana!</h3>
 			        <div className="modalPopupButtons">
-			            <button type="button" className="btn nekrobutton-green .btn-sm btnMessageSendConfirmation">Spoko</button>
+                        <button type="button" className="btn nekrobutton-green .btn-sm btnMessageSendConfirmation shutNekroPop">Spoko</button>
 			        </div>
 			    </div>
 			</div>

@@ -16,11 +16,8 @@
         ElementToClick: '.registerConfirmButton'
     }
     NekroController.NekroEnterClick(enterRegisterconfig);
-
-    var navConfig = {
-        NavigationItems: ["Start", "Posty", "Pamiętnik", "Recenzje"]
-    };
-    NekroController.NekroNavigator(navConfig);
+    
+    NekroController.NekroNavigator();
 
     var slideLoginConfig = {
         ElementClicked: $('.sideLoginAnchor'),
@@ -43,6 +40,16 @@
     $('.sideConfigurationAnchor').on("click",
         function() {
             window.location.href = '/Configuration/Articles';
+        });
+
+    $('.sideShowProfileAnchor').on("click",
+        function () {
+            window.location.href = '/Account/UserPanel';
+        });
+
+    $('.sideMessagesAnchor').on("click",
+        function () {
+            window.location.href = '/Account/Messages';
         });
 
     $('.sideBarMenuSection .sideTitle').on("click",

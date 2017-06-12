@@ -1,6 +1,7 @@
 ﻿.detailContainer {
     width: 100%; 
     float: left;
+    background-color: whitesmoke;
 }
 
 .detailContainer iframe {
@@ -14,7 +15,7 @@
 
 .articleDetailsIntro {
     text-align: justify; 
-    font-size: 1.6em; 
+    font-size: 1.9em; 
     text-indent: 0.9em; 
     border-left: 0.5em #559b62 solid;
     border-right: 0.5em #559b62 solid; 
@@ -26,7 +27,7 @@
 
 .articleDetailsBody {
     text-align: justify; 
-    font-size: 1.5em; 
+    font-size: 1.7em; 
     padding: 1em; 
     font-family: 'Coda', sans-serif;
 }
@@ -62,8 +63,9 @@
     background-color: whitesmoke;
 }
 
-.detailsCommentSection {
+#detailsCommentSection {
     width: 100% !important;
     clear: both;
     padding-top: 1em;
+    background-color: whitesmoke;
 }

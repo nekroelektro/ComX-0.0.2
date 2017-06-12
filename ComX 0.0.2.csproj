@@ -900,7 +900,6 @@
     <Content Include="scripts\plugins\wsc\README.md" />
     <Content Include="Views\Shared\Scripts\Components\Diaries.jsx" />
     <Content Include="Views\Shared\Scripts\Components\NavigationMenu.jsx" />
-    <Content Include="Views\Account\_Account.cshtml" />
     <Content Include="Views\Shared\Scripts\Components\Categories.jsx" />
     <Content Include="Views\Shared\Scripts\Components\LogoPanel.jsx" />
     <Content Include="Views\Shared\Scripts\Components\Global\SearchPanel.jsx" />
@@ -1196,6 +1195,8 @@
           <DevelopmentServerPort>56315</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:56314/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:56314/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -83,7 +83,7 @@
     color: #2b823c !important;
 }
 
-.commentThreadResponseAnchor {
+.commentThreadResponseAnchor, .popupCommentDelete {
     cursor: pointer;
 }
 
@@ -93,8 +93,9 @@
 }
 
 .readyCommentBody {
-    width: 100%; 
-    text-align: justify
+    width: 100%;
+    text-align: justify;
+    font-size: 1.2em;
 }
 
 .white-popup {

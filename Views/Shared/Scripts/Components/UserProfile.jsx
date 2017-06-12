@@ -11,7 +11,7 @@
     },
     render: function() {
         return (
-            <div className="profileContainer">
+            <div className="profileContainer" id="Profil" data-isnavpanel="true">
                 <div className="userPanelContainer">
                     <UserProfileAvatar model={this.state.model} isAdmin={this.state.isAdmin}></UserProfileAvatar>
                     <UserProfileInfo userName={this.state.model.UserName} dateRegistered={this.state.model
@@ -44,7 +44,7 @@ var UserProfileButtons = React.createClass({
                 </a>
                     {(this.props.isAdmin || this.props.model.IsOwnAccount) &&
                     <div>
-                        <button type="button" className="btn nekrobutton-green .btn-sm profileEditDetails" href="#popupEditProfile">
+                        <button type="button" className="btn nekrobutton-green .btn-sm profileEditDetails">
                             <span className="glyphicon glyphicon-pencil userPanelEditButton" aria-hidden="true"></span>
                             EDYTUJ
                         </button>
@@ -54,7 +54,7 @@ var UserProfileButtons = React.createClass({
                                 ZAPOMNIAŁEM HASŁO
                             </button>
                         </a>
-                        <div id="popupEditProfile" className="mfp-hide white-popup">
+                        <div id="popupEditProfile" className="white-popup">
                             <h3>Edytuj dane profilu</h3>
                             <hr />
                             <div className="col-xs-12">
@@ -65,22 +65,22 @@ var UserProfileButtons = React.createClass({
                                 <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmEdit" id="commId">
                                     Zapisz
                                 </button>
-                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelEdit">Anuluj</button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelEdit shutNekroPop">Anuluj</button>
                             </div>
                         </div>
-</div>
+                </div>
                     }
                 {!this.props.model.IsOwnAccount &&
                     <div>
-                        <button type="button" className="btn nekrobutton-green .btn-sm sendPrivateMessage" href="#popupSendMessage">
+                        <button type="button" className="btn nekrobutton-green .btn-sm sendPrivateMessage">
                             <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                              WYŚLIJ WIADOMOŚĆ
                         </button>
-                        <a className="messageSuccessModalAnchor" href="#messageSuccessModal1"></a>
-                        <div id="messageSuccessModal1" className="mfp-hide white-popup">
+                        <a className="messageSuccessModalAnchor"></a>
+                        <div id="messageSuccessModal1" className="white-popup">
                             <h3>Prywatna wiadomość wysłana!</h3>
                             <div className="modalPopupButtons">
-                                <button type="button" className="btn nekrobutton-green .btn-sm btnMessageSendConfirmation">Spoko</button>
+                            <button type="button" className="btn nekrobutton-green .btn-sm btnMessageSendConfirmation shutNekroPop">Spoko</button>
                             </div>
                         </div>
                     </div>
@@ -179,18 +179,18 @@ var UserProfileAvatar = React.createClass({
                             {(this.props.isAdmin || this.props.model.IsOwnAccount) &&
                             <div>
                             <div className="col-md-12 userPanelAvatarTitlesContainer">
-                                <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id={this.props.model.UserId} href="#popupAvatarDelete">
+                                <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id={this.props.model.UserId}>
                                     <span className="glyphicon glyphicon-erase" aria-hidden="true"></span> Usuń awatara
                                 </button>
                             </div>
-                            <div id="popupAvatarDelete" className="mfp-hide white-popup">
+                            <div id="popupAvatarDelete" className="white-popup">
                                 <h3>Potwierdź</h3>
                                 <hr />
                                 <p>Jesteś aby pewien, że życzeniem Twym jest usunięcie obecnego awatara?</p>
                                 <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDeletionAvatar" id="commId">
                                     Ta!
                                 </button>
-                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Nope!</button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion shutNekroPop">Nope!</button>
                             </div>
                             </div>
                             }
@@ -261,19 +261,17 @@ var UserProfileAdminPanel = React.createClass({
                             </div>
                         </div>
                         <div className="col-md-offset-2 col-md-12 userPanelBlockSection">
-                            <button type="button" className="btn nekrobutton-red .btn-m popupUserDegrade" data-id={this.props.model.UserId} href="#popupUserDegrade">
+                            <button type="button" className="btn nekrobutton-red .btn-m popupUserDegrade" data-id={this.props.model.UserId}>
                                 <span className="glyphicon glyphicon-arrow-down userPanelBackButton" aria-hidden="true"></span> Zdegraduj do usera
                             </button>
-                            <button type="button" className="btn nekrobutton-yellow btn-m popupUserBlock" data-id={this.props.model.UserId}
-                                    href="#popupUserBlock">
+                            <button type="button" className="btn nekrobutton-yellow btn-m popupUserBlock" data-id={this.props.model.UserId}>
                                 <span className="glyphicon glyphicon-lock" aria-hidden="true"></span> {this.props.model.IsBlocked ? (<span>Odblokuj użykownika</span>):(<span>Zablokuj użykownika</span>)}
                             </button>
-                            <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id={this.props.model.UserId}
-                                    href="#popupUserDelete">
+                            <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id={this.props.model.UserId}>
                                 <span className="glyphicon glyphicon-erase" aria-hidden="true"></span> Usuń użytkownika
                             </button>
                         </div>
-                        <div id="popupUserDelete" className="mfp-hide white-popup">
+                        <div id="popupUserDelete" className="white-popup">
                             <p>Potwierdź</p>
                             <hr />
                             <p>Czy na bank chcesz usunąć tego użytkownika? (użytkownik będzie wypierdolony z bazy!)</p>
@@ -281,11 +279,11 @@ var UserProfileAdminPanel = React.createClass({
                                 <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDeletion" id="commId">
                                     Zapisz
                                 </button>
-                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Anuluj</button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion shutNekroPop">Anuluj</button>
                             </div>
                         </div>
 
-                        <div id="popupUserBlock" className="mfp-hide white-popup">
+                        <div id="popupUserBlock" className="white-popup">
                             <p>Potwierdź</p>
                             <hr />
                             <p>Czy na bank chcesz zablokować tego użytkownika?</p>
@@ -293,11 +291,11 @@ var UserProfileAdminPanel = React.createClass({
                                 <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDeletion" id="commId">
                                     Zapisz
                                 </button>
-                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Anuluj</button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion shutNekroPop">Anuluj</button>
                             </div>
                         </div>
 
-                        <div id="popupUserDegrade" className="mfp-hide white-popup">
+                        <div id="popupUserDegrade" className="white-popup">
                             <p>Potwierdź</p>
                             <hr />
                             <p>Czy na bank chcesz zdegradować tego użytkownika do zwykłego usera?</p>
@@ -305,7 +303,7 @@ var UserProfileAdminPanel = React.createClass({
                                 <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmDegradation" id="commId">
                                     Zapisz
                                 </button>
-                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion">Anuluj</button>
+                                <button type="button" className="btn nekrobutton-red .btn-sm btnCancelDeletion shutNekroPop">Anuluj</button>
                             </div>
                         </div>
                     </div>

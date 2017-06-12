@@ -2,7 +2,7 @@
 @model ComX_0._0._2.Views.Account.Models.RegisterViewModel
 @{
     ViewBag.Title = "NekroPlaza - zarejestruj się";
-    Layout = Request.IsAjaxRequest() ? null : "~/Views/Account/_Account.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
 @Html.AntiForgeryToken()
 @Html.React("RegisterPanel", new {})
