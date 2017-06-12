@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(document).ready(function () {
     // Handling article grid buttons
     $('.configurationArticlesGoButtonContainer').on("click",
         function() {

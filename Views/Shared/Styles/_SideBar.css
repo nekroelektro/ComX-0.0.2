@@ -79,6 +79,12 @@
     text-shadow: 6px 6px 4px rgba(0, 0, 0, 1);
 }
 
+.sideConfigSection {
+    position: fixed;
+    padding-bottom: 2em;
+    bottom: 0;
+}
+
 .sideProfileAnchor:hover {
     color: whitesmoke !important;
 }

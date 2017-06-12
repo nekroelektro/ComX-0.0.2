@@ -42,22 +42,30 @@ var UserProfileButtons = React.createClass({
                             DO GŁÓWNEJ
                     </button>
                 </a>
+                {this.props.isAdmin &&
+                    <a href={'/Configuration/Users'}>
+                        <button type="button" className="btn nekrobutton-blue .btn-sm profileHomePage">
+                            <span className="glyphicon glyphicon-arrow-up userPanelBackButton" aria-hidden="true"></span>
+                            DO USERÓW
+                        </button>
+                    </a>    
+                }
                     {(this.props.isAdmin || this.props.model.IsOwnAccount) &&
                     <div>
                         <button type="button" className="btn nekrobutton-green .btn-sm profileEditDetails">
                             <span className="glyphicon glyphicon-pencil userPanelEditButton" aria-hidden="true"></span>
-                            EDYTUJ
+                            EDYTUJ PROFIL
                         </button>
                         <a href={'/Manage/ChangePassword'}>
                             <button type="button" className="btn nekrobutton-yellow .btn-sm profilePasswordRecovery">
                                 <span className="glyphicon glyphicon-retweet userPanelPasswordRecoveryButton" aria-hidden="true"></span>
-                                ZAPOMNIAŁEM HASŁO
+                                ZMIEŃ HASŁO
                             </button>
                         </a>
                         <div id="popupEditProfile" className="white-popup">
                             <h3>Edytuj dane profilu</h3>
                             <hr />
-                            <div className="col-xs-12">
+                            <div className="col-xs-10 col-centered">
                                 <b>ADRES E-MAIL:</b>
                                 <input type="text" name="userMailInput" className="form-control" value={this.props.model.UserMail} />
                             </div>
@@ -179,7 +187,7 @@ var UserProfileAvatar = React.createClass({
                             {(this.props.isAdmin || this.props.model.IsOwnAccount) &&
                             <div>
                             <div className="col-md-12 userPanelAvatarTitlesContainer">
-                                <button type="button" className="btn nekrobutton-red btn-m popupUserDelete" data-id={this.props.model.UserId}>
+                                <button type="button" className="btn nekrobutton-red btn-m popupAvatarDelete" data-id={this.props.model.UserId}>
                                     <span className="glyphicon glyphicon-erase" aria-hidden="true"></span> Usuń awatara
                                 </button>
                             </div>

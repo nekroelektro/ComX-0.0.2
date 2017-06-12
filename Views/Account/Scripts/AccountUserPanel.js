@@ -13,7 +13,7 @@
     var deleteUserPopConfig = {
         Title: "USUŃ UŻYTKOWNIKA",
         ClickedElement: $(".popupUserDelete"),
-        ContainerElement: $('#messageSuccessModal1'),
+        ContainerElement: $('#popupUserDelete'),
         Modal: true,
         AutoOpen: false,
         Width: 500
@@ -23,7 +23,7 @@
     var blockUserPopConfig = {
         Title: "ZABLOKUJ UŻYTKOWNIKA",
         ClickedElement: $(".popupUserBlock"),
-        ContainerElement: $('#messageSuccessModal1'),
+        ContainerElement: $('#popupUserBlock'),
         Modal: true,
         AutoOpen: false,
         Width: 500
@@ -33,7 +33,7 @@
     var degradeUserPopConfig = {
         Title: "ZDEGRADUJ UŻYTKOWNIKA",
         ClickedElement: $(".popupUserDegrade"),
-        ContainerElement: $('#messageSuccessModal1'),
+        ContainerElement: $('#popupUserDegrade'),
         Modal: true,
         AutoOpen: false,
         Width: 500
@@ -43,7 +43,17 @@
     var degradeUserPopConfig = {
         Title: "EDYTUJ PROFIL",
         ClickedElement: $(".profileEditDetails"),
-        ContainerElement: $('#messageSuccessModal1'),
+        ContainerElement: $('#popupEditProfile'),
+        Modal: true,
+        AutoOpen: false,
+        Width: 500
+    };
+    NekroController.NekroPop(degradeUserPopConfig);
+
+    var degradeUserPopConfig = {
+        Title: "EDYTUJ PROFIL",
+        ClickedElement: $(".popupAvatarDelete"),
+        ContainerElement: $('#popupAvatarDelete'),
         Modal: true,
         AutoOpen: false,
         Width: 500
@@ -59,7 +69,7 @@
     });
     $(document).on('click', '.btnConfirmDeletion', function (e) {
         e.preventDefault();
-        $.magnificPopup.close();
+        $('.shutNekroPop').click();
         if (blockOrDelete == 'delete') {
             window.location.href = "/Account/DeleteUser/?userId=" + userIdentificator;
         } else {
@@ -99,7 +109,7 @@
 
     $(document).on('click', '.btnConfirmDegradation', function (e) {
         e.preventDefault();
-        $.magnificPopup.close();
+        $('.shutNekroPop').click();
         $.ajax({
             url: "/Account/DegradeUser/",
             type: "POST",
@@ -201,7 +211,7 @@
 
     $(document).on('click', '.btnConfirmDeletionAvatar', function (e) {
         e.preventDefault();
-        $.magnificPopup.close();
+        $('.shutNekroPop').click();
         window.location.href = "/Account/DeleteAvatar/?userId=" + userIdentificator;
     });
 
@@ -295,7 +305,6 @@
                             editorInstanceEdit.destroy(true);
                         } catch (e) { }
                     }
-                    //$.magnificPopup.close();
                     redirectContent = response;
                     handleSendMessageSuccess();
                 });
@@ -314,7 +323,6 @@
     }
 
     $('.btnMessageSendConfirmation').click(function () {
-        $.magnificPopup.close();
         //refresh messages view only
         $(".profileContainer").empty();
         $(".profileContainer").html(redirectContent);

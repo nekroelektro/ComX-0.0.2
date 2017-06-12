@@ -4,7 +4,7 @@
 @model IEnumerable<ComX_0._0._2.Views.Articles.Models.ArticleCategories>
 
 @{
-    Layout = "~/Views/Configuration/_Configuration.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     UserHelper userHelper = new UserHelper();
 }
 @if (userHelper.IsSuperAdminUser(User)) {

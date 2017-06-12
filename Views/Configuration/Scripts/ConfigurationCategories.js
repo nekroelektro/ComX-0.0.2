@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(document).ready(function () {
     pageGrids.categoryGrid.onRowSelect(function (e) {
         var rowCategoryId = e.row.Id;
         window.location.href = "/Configuration/CategoriesDetails?categoryId=" + rowCategoryId;

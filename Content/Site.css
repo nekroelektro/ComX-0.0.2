@@ -143,12 +143,14 @@ a {
     margin-top: 58px !important;
 }
 
+.changeUserPasswordContainer, .forgotUserPasswordContainer {
+    padding-left: 1em;
+}
 /* INDEX PAGINATION*/
-
 .page_navigation {
     clear: both;
-    padding-top: 0.6em; 
-    width: 100%; 
+    padding-top: 0.6em;
+    width: 100%;
     float: left;
     border-top: 1px solid #2B823C;
     font-family: 'Eater', sans-serif;

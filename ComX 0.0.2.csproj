@@ -917,7 +917,6 @@
     <Content Include="Views\Account\Messages.cshtml" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <Content Include="scripts\gridmvc.js" />
-    <Content Include="scripts\gridmvc.lang.ru.js" />
     <Content Include="scripts\gridmvc.min.js" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
@@ -1099,7 +1098,6 @@
     <Content Include="Views\Configuration\CategoriesCreate.cshtml" />
     <Content Include="Views\Articles\_Comments.cshtml" />
     <Content Include="Views\Shared\_IndexSlider.cshtml" />
-    <Content Include="Views\Configuration\_Configuration.cshtml" />
     <Content Include="Views\Configuration\Articles.cshtml" />
     <Content Include="Views\Configuration\Users.cshtml" />
     <Content Include="Views\Configuration\RolesCreate.cshtml" />

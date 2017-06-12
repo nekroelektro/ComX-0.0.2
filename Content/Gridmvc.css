@@ -3,7 +3,7 @@
 *   This file contains default styles for Grid.Mvc.
 */
 /* Grid */
-table.grid-table { margin: 0;font-size: 18px;}
+table.grid-table { margin: 0;font-size: 14px;}
     table.grid-table .grid-wrap { padding: 0; position: relative; }
     table.grid-table .grid-empty-text { color: #666; }
 

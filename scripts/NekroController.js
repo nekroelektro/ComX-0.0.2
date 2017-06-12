@@ -3,76 +3,81 @@
 NekroController.NekroNavigator = function(config) {
     var htmlString = "";
     var navigationElements = $("div[data-isnavpanel=true]");
-    var navigationArray = [];
-    $.each(navigationElements,
-        function() {
-            navigationArray.push($(this).attr("id"));
-        });
 
-    //Build navigator html based on navigationArray
-    $.each(navigationArray,
-        function(i, item) {
-            var iconString = "";
-            if (item == "Start") {
-                iconString = "play-circle";
-            } else if (item == "Newsy") {
-                iconString = "globe";
-            } else if (item == "Posty") {
-                iconString = "th-large";
-            } else if (item == "Pamiętnik") {
-                iconString = "book";
-            } else if (item == "Recenzje") {
-                iconString = "cd";
-            } else if (item == "Artykuł") {
-                iconString = "align-left";
-            } else if (item == "Komentarze") {
-                iconString = "comment";
-            } else if (item == "Detale") {
-                iconString = "zoom-in";
-            } else if (item == "Kategoria") {
-                iconString = "tags";
-            } else if (item == "Szukaczka") {
-                iconString = "search";
-            } else if (item == "Profil") {
-                iconString = "user";
-            } else if (item == "Wiadomości") {
-                iconString = "envelope";
-            }
-
-            var itemString =
-                "<li><a href=#" +
-                    item +
-                    ">" +
-                    '<div class="sideTitle navigatorMenuClickItem">' +
-                    '<p><span class="glyphicon glyphicon-' +
-                    iconString +
-                    ' navigatorIcon" aria-hidden="true"></span>' +
-                    '<div class="navigatorMenuItemName">' +
-                    item +
-                    "</div></p>" +
-                    "</div>" +
-                    "</a></li>";
-
-            htmlString = htmlString + itemString;
-        });
-    htmlString = "<nav class='navbar'><ul class='nav nav-pills nav-stacked'>" + htmlString + "</ul></nav>";
-    $(".mainNavigatorContainerAllItems").hide().append(htmlString).fadeIn("fast");
-
-    //Select first element on start
-    $('.navigatorMenuItemName:contains("Start")').parent().addClass("activeNavigatorItem");
-
-    // click on navigator item
-    $(".navigatorMenuClickItem").click(function() {
-        var searchedStringId = $(this).text();
-        var element = $("#" + searchedStringId);
-        $("html, body").animate({
-                scrollTop: element.offset().top - 58
-            },
-            1250,
+    if (navigationElements.length > 0) {
+        var navigationArray = [];
+        $.each(navigationElements,
             function() {
-                $(this).addClass("activeNavigatorItem");
+                navigationArray.push($(this).attr("id"));
             });
-    });
+
+        //Build navigator html based on navigationArray
+        $.each(navigationArray,
+            function(i, item) {
+                var iconString = "";
+                if (item == "Start") {
+                    iconString = "play-circle";
+                } else if (item == "Newsy") {
+                    iconString = "globe";
+                } else if (item == "Posty") {
+                    iconString = "th-large";
+                } else if (item == "Pamiętnik") {
+                    iconString = "book";
+                } else if (item == "Recenzje") {
+                    iconString = "cd";
+                } else if (item == "Artykuł") {
+                    iconString = "align-left";
+                } else if (item == "Komentarze") {
+                    iconString = "comment";
+                } else if (item == "Detale") {
+                    iconString = "zoom-in";
+                } else if (item == "Kategoria") {
+                    iconString = "tags";
+                } else if (item == "Szukaczka") {
+                    iconString = "search";
+                } else if (item == "Profil") {
+                    iconString = "user";
+                } else if (item == "Wiadomości") {
+                    iconString = "envelope";
+                }
+
+                var itemString =
+                    "<li><a href=#" +
+                        item +
+                        ">" +
+                        '<div class="sideTitle navigatorMenuClickItem">' +
+                        '<p><span class="glyphicon glyphicon-' +
+                        iconString +
+                        ' navigatorIcon" aria-hidden="true"></span>' +
+                        '<div class="navigatorMenuItemName">' +
+                        item +
+                        "</div></p>" +
+                        "</div>" +
+                        "</a></li>";
+
+                htmlString = htmlString + itemString;
+            });
+        htmlString = "<nav class='navbar'><ul class='nav nav-pills nav-stacked'>" + htmlString + "</ul></nav>";
+        $(".mainNavigatorContainerAllItems").hide().append(htmlString).fadeIn("fast");
+
+        //Select first element on start
+        $('.navigatorMenuItemName:contains("Start")').parent().addClass("activeNavigatorItem");
+
+        // click on navigator item
+        $(".navigatorMenuClickItem").click(function() {
+            var searchedStringId = $(this).text();
+            var element = $("#" + searchedStringId);
+            $("html, body").animate({
+                    scrollTop: element.offset().top - 58
+                },
+                1250,
+                function() {
+                    $(this).addClass("activeNavigatorItem");
+                });
+        });
+    } else {
+        $('.sideBarNavigationComponent').hide();
+    }
 };
 
 NekroController.NekroEnterClick = function(config) {

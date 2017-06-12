@@ -2,13 +2,15 @@
     propTypes: {
         admin: React.PropTypes.bool.isRequired,
         authenticated: React.PropTypes.bool.isRequired,
-	    model: React.PropTypes.object.isRequired
+        model: React.PropTypes.object.isRequired,
+        isConfig: React.PropTypes.bool.isRequired,
 	},
 	getInitialState: function() {
 	    return {
 	        admin: this.props.admin,
 	        auth: this.props.authenticated,
-		    model: this.props.model
+            model: this.props.model,
+            isConfig: this.props.isConfig
 		};
 	},
 	render: function() {
@@ -17,6 +19,7 @@
                 <SideProfileActions admin={this.state.admin} authenticated={this.state.auth} model={this.state.model.Profile}></SideProfileActions>
                 <SideNavigation></SideNavigation>
                 <SidePanelMenu model={this.state.model}></SidePanelMenu>
+                <ConfigSideBar admin={this.state.admin} authenticated={this.state.auth} isConfig={this.state.isConfig}></ConfigSideBar>
 			</div>
 		);
 	}
@@ -240,7 +243,7 @@ var RegisterSideForm = React.createClass({
 var SideNavigation = React.createClass({
     render: function() {
         return (
-            <div className="sideBar sideBarSection">
+            <div className="sideBar sideBarSection sideBarNavigationComponent">
                 <div className="sideMenuTitle">
                     <h4>Nawiguj:</h4>
                 </div>
@@ -298,7 +301,7 @@ var SideContact = React.createClass({
                     <div className="sideSocial">
                         <div className="fb-page"
                              data-href="https://www.facebook.com/nekroplaza"
-                             data-width="230"
+                             data-width="245"
                              data-hide-cover="true"
                              data-show-facepile="true"
                              data-show-posts="true">
@@ -463,5 +466,68 @@ var RandomPosts = React.createClass({
                         </div>
                     </a>
             );
+    }
+});
+
+var ConfigSideBar = React.createClass({
+    propTypes: {
+        admin: React.PropTypes.bool.isRequired,
+        authenticated: React.PropTypes.bool.isRequired,
+        isConfig: React.PropTypes.bool.isRequired,
+    },
+    render: function () {
+        return (
+            <div>
+                {this.props.admin && this.props.authenticated && this.props.isConfig &&
+                    <div className="sideBar sideBarSection sideConfigSection">
+                        <div className="sideMenuTitle">
+                            <h4>Konfiguracja:</h4>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideConfigurationArticlesAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Artykuły
+                                </p>
+                            </div>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideConfigurationUsersAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Użytkownicy
+                                </p>
+                            </div>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideConfigurationCategoriesAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Kategorie
+                                </p>
+                            </div>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideConfigurationRolesAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Role
+                                </p>
+                            </div>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideConfigurationGalleryAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Galeria
+                                </p>
+                            </div>
+                        </div>
+                        <div className="sideBarComponent">
+                            <div className="sideTitle sideConfigurationSiteSettingsAnchor">
+                                <p>
+                                    <span className="glyphicon glyphicon-cog leftArrowSideIcon" aria-hidden="true"></span> Ustawienia
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }   
+            </div>
+        );
     }
 });

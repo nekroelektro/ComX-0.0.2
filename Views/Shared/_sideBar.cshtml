@@ -3,11 +3,14 @@
 @model ComX_0._0._2.Views.Articles.Models.DtoModels.SideBarDetailsDto
 @{
     UserHelper userHelper = new UserHelper();
+    GeneralHelper generalHelper = new GeneralHelper();
     bool isAdmin = userHelper.IsAdminUser(User);
     bool isAuthenticated = Request.IsAuthenticated;
+    var currentUrl = generalHelper.GetCurrentPageUrl();
+    bool isConfigurationView = currentUrl.StartsWith("http://localhost:56314/Configuration/") || currentUrl.StartsWith("http://nekroplaza.pl/Configuration/");
 }
 @Html.AntiForgeryToken()
-@Html.React("SideBarReact", new {admin = isAdmin, authenticated = isAuthenticated, model = Model})
+@Html.React("SideBarReact", new {admin = isAdmin, authenticated = isAuthenticated, model = Model, isConfig = isConfigurationView})
 <div id="fb-root"></div>
     <script>
         $(document).ready(function () {
