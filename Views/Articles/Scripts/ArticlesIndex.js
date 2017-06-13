@@ -4,6 +4,21 @@
         show_first_last: false
     });
 
+    $(".indexDiaryPreviewWindow").slick({
+        slidesToShow: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: ".indexDiaryList",
+        slide: ".bannerPanelImageContainerIndexDiary"
+    });
+    $(".indexDiaryList").slick({
+        slidesToShow: 7,
+        slide: ".indexSingleArticleContainerDiary",
+        asNavFor: ".indexDiaryPreviewWindow",
+        arrows: false,
+        focusOnSelect: true
+    });
+
     $(".page_navigation a").click(function () {
         $('html, body').animate({
             scrollTop: $("#pager").offset().top - 59
@@ -37,31 +52,8 @@
     $('.indexSingleReview').css('height', $('.indexSingleReview').width());
     if ($('.sliderLatestIndexContainer').length > 0) {
         $('.indexDiaryList').css('height', reviewHeight);
-        $('.indexSingleArticleContainerDiary').css('height', reviewHeight / 10);
+        $('.indexSingleArticleContainerDiary').css('height', reviewHeight / 7);
     }
-
-    // Diaries floating windows
-    $('.indexSingleArticleContainerDiary:hover .flyingWindow').css({ 'opacity': 1 });
-    $('.indexSingleArticleContainerDiary')
-        .mouseover(function () {
-            $(this).find(".flyingWindow").css({ 'opacity': 1 });
-        })
-        .mouseleave(function () {
-            $(this).find(".flyingWindow").css({ 'opacity': 0 });
-        });
-
-    $('.indexSingleArticleContainerDiary')
-        .mousemove(function(e) {
-            var flyingWindow = $(this).find('.flyingWindow');
-            flyingWindow.scrollTop();
-            flyingWindow.scrollLeft();
-            flyingWindow.css({
-                left: e.clientX + 15,
-                top: e.clientY + 15
-            });
-        });
-
-
     //Redirections after clicking anchors in indexpage
     $('#indexSeeDiaryCategory').click(function () {
         window.location.href = "/Articles/Diary";
@@ -79,20 +71,7 @@
         window.location.href = "/Categories/Recenzje";
         setTimeout(function() {
                             $('.categorySubElement:contains("Muzyka")').trigger("click");
-                            //$("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
                         },
                         500);
-        //$.ajax({
-        //    url: "/Categories/Recenzje",
-        //    method: 'GET',
-        //    success: function (data) {
-        //        $('.mainBodyContainer').html(data);
-        //        setTimeout(function() {
-        //                $('.categorySubElement:contains("Muzyka")').trigger("click");
-        //                $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
-        //            },
-        //            500);
-        //    }
-        //});
     });
 });

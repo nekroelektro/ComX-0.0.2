@@ -99,17 +99,26 @@ var IndexMainDiaries = React.createClass({
     },
     render: function () {
         var diaryNodes = this.state.diaries.map(function (diary) {
-            return <IndexDiary name={diary.Name} code={diary.Code} imagePath={diary.ImageUrl }></IndexDiary>;
-	    });
+            return <IndexDiary name={diary.Name} imagePath={diary.ImageUrl }></IndexDiary>;
+        });
+
+        var diaryImageNodes = this.state.diaries.map(function (diary) {
+            return <DiaryImageNodes imagePath={diary.ImageUrl} code={diary.Code} name={diary.Name}></DiaryImageNodes>;
+        });
         return (
             <div id="Pamiętnik" data-isnavpanel="true">
 			<div className="indexDiary articlesIndexReviewsContainer">
                 <div className="articlesIndexHeader">
                     <h3><span className="glyphicon glyphicon-book" aria-hidden="true"></span> Z PAMIĘTNIKA PŁYTOHOLIKA:</h3>
                 </div>
-                <ul className="indexDiaryList">
-                    {diaryNodes}
-                </ul>
+                <div className="indexDiaryContentContainer">
+                        <div className="indexDiaryPreviewWindow">
+                            {diaryImageNodes}
+                        </div>
+                        <ul className="indexDiaryList">
+                            {diaryNodes}
+                        </ul>
+                </div>
                 <div className="moreMusicReviews">
                     <a className="seeMoreReviewsFromIndex" id="indexSeeDiaryCategory">
                         <h4>PRZEJDŹ DO PAMIĘTNIKA <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></h4>
@@ -121,27 +130,41 @@ var IndexMainDiaries = React.createClass({
     }
 });
 
+var DiaryImageNodes = React.createClass({
+    propTypes: {
+        imagePath: React.PropTypes.string,
+        code: React.PropTypes.string,
+        name: React.PropTypes.string,
+    },
+    render: function () {
+        return (
+            <div className="bannerPanelImageContainerIndexDiary">
+                <a className="indexSingleDiaryAnchor" href={"/" + this.props.code + "?isDiary=true"}>
+                    <img src={this.props.imagePath} />
+                    <div className="bannerPanelImageContainerTitleIndexDiary">
+                        <p># {this.props.name}</p>
+                    </div>
+                </a>
+            </div>
+        );
+    }
+});
+
 var IndexDiary = React.createClass({
     propTypes: {
         name: React.PropTypes.string,
-        code: React.PropTypes.string,
         imagePath: React.PropTypes.string
     },
     render: function () {
         return (
             <div className="indexSingleArticleContainerDiary col-sm-12">
-                    <a className="indexSingleDiaryAnchor" href={"/" + this.props.code + "?isDiary=true"}>
-                        <div className="diaryNameContainer">
-                            <h4 className="indexDiaryName"># {this.props.name}</h4>
-                        </div>
-                        <div className="bannerPanelImageContainerIndexDiary">
-                            <img src={this.props.imagePath} />
-                        </div>
-                        <div className="imageOverlayColorDiaryIndex"></div>
-                    </a>
-                    <div className="flyingWindow">
-                        <img src={this.props.imagePath} />
-                    </div>
+                <div className="diaryNameContainer">
+                    <h4 className="indexDiaryName"># {this.props.name}</h4>
+                </div>
+                <div className="bannerPanelImageContainerIndexDiary">
+                    <img src={this.props.imagePath} />
+                </div>
+                <div className="imageOverlayColorDiaryIndex"></div>
             </div>
             );
     }

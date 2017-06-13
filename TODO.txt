@@ -1,12 +1,13 @@
 ﻿THINGS TO DO:
 
-- ZMIANA LAYOUT NA ONE PAGE APP
-	- po prawej pasek ze wszystkim - nawigacją, ikonami z toplogopanelu, sidebar i MOŻE topnavigationmenu
-	- kolumnowanie bootstrapem na bodycontent i sidebar
-	-znaczące odchudzenie toplogopanel, wydłużenie na całą stronę
+[DONE] ZMIANA LAYOUT NA ONE PAGE APP
+	[DONE] po prawej pasek ze wszystkim - nawigacją, ikonami z toplogopanelu, sidebar i MOŻE topnavigationmenu
+	[DONE] kolumnowanie bootstrapem na bodycontent i sidebar
+	[DONE] znaczące odchudzenie toplogopanel, wydłużenie na całą stronę
 - prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 - przerobić IndexSlider w całości na własny - no i do Reacta
 - na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
+- ogarnąć wygląd i podział na katalogi w galerii
 - HTML5 pushState do one-page application
 	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
 - newsy oddzielnie na stronie głównej
@@ -16,7 +17,7 @@
 - searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
 - Dopicować widoki zapomnianego hasła itd
 KONFIGURACJA:
-	- najpierw dopicować widoki (włącznie z górnym paskiem)
+	[DONE] najpierw dopicować widoki (włącznie z górnym paskiem)
 	- przenieść widoki do REACTA
 	[DONE] jako danych używać tych wziętych z własnego service
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas

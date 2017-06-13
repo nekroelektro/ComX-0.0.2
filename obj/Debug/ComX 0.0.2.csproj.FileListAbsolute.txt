@@ -490,7 +490,6 @@ C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.Core.r
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\bin\ru-ru\MsieJavaScriptEngine.resources.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
-C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0201.resources
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0202.resources
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0203.resources
@@ -500,3 +499,4 @@ C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0206.
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
+C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache

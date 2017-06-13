@@ -310,10 +310,74 @@
 
 /*DIARIES*/
 
+.indexDiaryContentContainer {
+    position: relative;
+}
+
+.indexDiaryPreviewWindow {
+    position: absolute !important;
+    left: 3em;
+    z-index: 2;
+    width: 35%;
+    top: 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    transform: translateY(-50%);
+    -webkit-box-shadow: 13px 16px 18px 2px rgba(255,255,255,0.67);
+    -moz-box-shadow: 13px 16px 18px 2px rgba(255,255,255,0.67);
+    box-shadow: 13px 16px 18px 2px rgba(255,255,255,0.67);
+
+    -webkit-transition: all 1.3s ease-out;
+    -moz-transition: all 1.3s ease-out;
+    -o-transition: all 1.3s ease-out;
+    transition: all 1.3s ease-out;
+}
+
+.bannerPanelImageContainerIndexDiary {
+    width: 100%;
+}
+
+.bannerPanelImageContainerIndexDiary img {
+    width: 100%;    
+}
+
+.bannerPanelImageContainerIndexDiary:hover .bannerPanelImageContainerTitleIndexDiary {
+    visibility: visible;
+    opacity: 1;
+    bottom: 0;
+}
+
+.indexDiaryPreviewWindow:hover {
+    /*-webkit-box-shadow: 13px 16px 18px -5px rgba(14,168,9,1);
+    -moz-box-shadow: 13px 16px 18px -5px rgba(14,168,9,1);
+    box-shadow: 13px 16px 18px -5px rgba(14,168,9,1);*/
+    -webkit-box-shadow: 13px 16px 9px -10px rgba(43,130,60,1);
+    -moz-box-shadow: 13px 16px 9px -10px rgba(43,130,60,1);
+    box-shadow: 13px 16px 9px -10px rgba(43,130,60,1);
+}
+
+.bannerPanelImageContainerTitleIndexDiary {
+    visibility: hidden;
+    opacity: 0;
+
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: -10px;
+
+    -webkit-transition: all 1.3s ease-out;
+    -moz-transition: all 1.3s ease-out;
+    -o-transition: all 1.3s ease-out;
+    transition: all 1.3s ease-out;
+}
+
 .indexDiaryList {
     color: whitesmoke;
     padding-left: 0;
+    padding-right: 0;
     margin-bottom: 0;
+    /*width: 65%;*/
+    /*float: right;*/
 }
 
 .indexSingleDiaryAnchor {
@@ -362,9 +426,15 @@
 }
 
 .indexSingleArticleContainerDiary {
-    padding-left: 0; 
-    padding-right: 0; 
+    padding-left: 0;
+    padding-right: 0;
     width: 100% !important;
+    -webkit-transition: background 0.8s ease-out;
+    -moz-transition: background 0.8s ease-out;
+    -ms-transition: background 0.8s ease-out;
+    -o-transition: background 0.8s ease-out;
+    transition: background 0.8s ease-out;
+    cursor: pointer;
 }
 
 .flyingWindow {
@@ -390,7 +460,8 @@
 .indexSingleArticleContainerDiary:hover .indexDiaryName {
     width: 100%;
     max-width: none;
-    text-align: center;
+    text-align: right;
+    right: 1em;
 
     color: black !important;
     text-decoration: none !important;
