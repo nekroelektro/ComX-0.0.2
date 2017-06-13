@@ -1,7 +1,6 @@
 ﻿.commentSection {
     clear: both;
     width: 100%; 
-    float: left;
 }
 
 .commentForm {
@@ -45,6 +44,7 @@
 
 #commentSection {
     padding-bottom: 4em;
+    background-color: whitesmoke;
 }
 
 .commentFooter {

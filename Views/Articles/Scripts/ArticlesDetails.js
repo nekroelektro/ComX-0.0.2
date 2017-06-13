@@ -67,6 +67,17 @@ $(document).ready(function() {
     var bannerPanel = $(".detailsBannerPanel");
     if (bannerPanel.length > 0) {
 
+        //make background image from image container of article details
+        var backgroundImageSrc = $(".bannerPanelDetailsMainImage img").attr("src");
+        $("body").css({
+            'background-image': "url(" + backgroundImageSrc + ")",
+            'background-repeat': "no-repeat",
+            'background-attachment': "fixed",
+            'background-size': "100%",
+            'background-position': "center"
+        });
+        //$(".elementsToPush").css("margin-top", 0);
+
         $(".bannerPanelImageMain").animate({
                 height: $(".detailsBannerPanel").height(),
                 position: "absolute",

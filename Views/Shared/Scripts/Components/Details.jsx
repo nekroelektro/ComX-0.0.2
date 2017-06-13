@@ -97,7 +97,7 @@ var TopDetailPanel = React.createClass({
                 </div>
                 <div className="bannerPanelInfo">
                     <h3 className="bannerSeriesTitle">{this.props.series}</h3>
-                    <h1 className="bannerArticleName">{this.props.name}</h1>
+                    <h2 className="bannerArticleName">{this.props.name}</h2>
                     <div className="datesDetailsArticles">
                         <p>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props
@@ -143,7 +143,7 @@ var MainArticleDetails = React.createClass({
                         <div dangerouslySetInnerHTML={{__html: this.props.prelude}} />
                     </div>
                     ) : (
-                        <div className="diaryElementsContainer">
+                            <div className="diaryElementsContainer" id="Pamiętnik" data-isnavpanel="true">
                             <b>Label: </b>{this.props.label}<br />
                             <b>Katalog: </b>{this.props.catalog}<br />
                             <b>Rok produkcji: </b>{this.props.albumYear}<br />

@@ -1,6 +1,6 @@
 ﻿.detailContainer {
-    width: 100%; 
-    float: left;
+    width: 80%;
+    margin: 0 auto;
     background-color: whitesmoke;
 }
 
@@ -9,8 +9,9 @@
 }
 
 .articleDetail {
-    width: 100%; 
-    float: left; 
+    width: 100%;
+    float: left;
+    background-color: whitesmoke;
 }
 
 .articleDetailsIntro {
@@ -60,12 +61,15 @@
     font-size: large;
     padding: 1em; 
     font-family: 'Coda', sans-serif;
-    background-color: whitesmoke;
+    color: whitesmoke;
+    background-color: #222;
 }
 
 #detailsCommentSection {
-    width: 100% !important;
+    width: 80% !important;
+    margin: 0 auto;
     clear: both;
     padding-top: 1em;
     background-color: whitesmoke;
+    padding-bottom: 4em;
 }
