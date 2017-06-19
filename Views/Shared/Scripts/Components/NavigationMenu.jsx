@@ -21,7 +21,7 @@ var LogoMenu = React.createClass({
     render: function () {
         return (
             <div className="logo">
-                <img id="logoImage" src='/Content/images/logoLogo.png' />
+                <img id="logoImage" src='/Content/images/logoNew17.png' />
             </div>
         );
     }

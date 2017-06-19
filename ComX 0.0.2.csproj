@@ -481,6 +481,8 @@
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logoBlack.jpg" />
     <Content Include="Content\images\logoLogo.png" />
+    <Content Include="Content\images\logoNew17.png" />
+    <Content Include="Content\images\logoNew17green.png" />
     <Content Include="Content\images\logoWhite.jpg" />
     <Content Include="Content\images\logoWhiteSMALL.jpg" />
     <Content Include="Content\images\maintenanceImage.jpg" />

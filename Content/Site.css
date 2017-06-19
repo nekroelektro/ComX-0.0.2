@@ -28,15 +28,25 @@ p:-moz-selection {
     background: #2B823C;
 }
 
-#loadingOverlay{
-  position:fixed;
-  z-index:99999;
-  top:0;
-  left:0;
-  bottom:0;
-  right:0;
-  background:rgba(43, 130, 60, 1);
-  transition: 1s 0.4s;
+.blackenedOverlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 4;
+}
+
+#loadingOverlay {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 1);
+    transition: 1s 0.4s;
 }
 
 .loadingOverlayElementsContainer {
@@ -553,7 +563,6 @@ a {
 .indexSingleArticleContainer {
     padding-left: 0 !important; 
     padding-right: 0 !important; 
-    border: 1px solid #474a4f;
 }
 
 .sliderRightPanelElement {

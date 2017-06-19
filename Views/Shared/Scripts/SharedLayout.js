@@ -1,10 +1,18 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function() {
     //if ($('.sliderLatestIndexContainer').length > 0 || $(".detailsBannerPanel").length > 0) {
     //    //$(".elementsToPush").css("margin-top", $('.topMainElementsContainer').height());
     //    $(".elementsToPush").css("margin-top", $('.topNavigationItemsContainer').height());
     //}
 
-    $(".bannerPanelInfo").css("width", $(".bodyLayout").width() + 30);
+    //$(".bannerPanelInfo").css("width", $(".bodyLayout").width() + 30);
+    $('#logoImage').on({
+            "mouseover": function () {
+                this.src = '/Content/images/logoNew17green.png';
+            },
+            "mouseout": function () {
+                this.src = '/Content/images/logoNew17.png';
+            }
+});
 
     $('#return-to-top').css({
         'right': $('.nekroPanel').width() + 10,

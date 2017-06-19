@@ -214,8 +214,9 @@
     text-align: center; 
     margin: 0 auto; 
     background-color: black; 
-    z-index: 1; 
+    z-index: 3; 
     overflow: hidden;
+    position: absolute;
 }
 .indexSingleReviewImageContainer img{
     width: 100%; 
@@ -369,6 +370,10 @@
     -moz-transition: all 1.3s ease-out;
     -o-transition: all 1.3s ease-out;
     transition: all 1.3s ease-out;
+}
+
+.bannerPanelImageContainerTitleIndexDiary p {
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 1);
 }
 
 .indexDiaryList {

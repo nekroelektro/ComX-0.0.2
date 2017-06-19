@@ -128,19 +128,18 @@
 
 .sliderSection {
     background-color: black; 
-    width: 12em; 
+    width: 100%; 
     margin: 0 auto;
     float: right;
-    position: absolute;
-    right: 0;
+    position: absolute !important;
     bottom: 0;
-    height: 99%;
+    height: 8em;
 }
 
 .slideElementDown {
-    height:25%; 
+    height:100%; 
     padding: 0.5em;
-    width: 100% !important;
+    width: 25% !important;
 }
 
 .slick-list, .slick-track {
@@ -152,10 +151,11 @@
 }
 
 .slideElementDown img {
-    width:100%; 
+    max-width: 100% !important; 
     height: 100%; 
     text-align: center; 
     margin: 0 auto;
+    min-width: unset !important;
 }
 
 .bannerPanelInfo {
@@ -169,8 +169,21 @@
     z-index: 4;
 }
 
+.bannerPanelSlider {
+    bottom: 8em !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    min-width: 45% !important;
+}
+
 .bannerSeriesTitle {
-    background-color: #2B823C; 
+    background-color: #2B823C;
     color: black;
     margin-top: 0;
     font-size: large;

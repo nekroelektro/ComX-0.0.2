@@ -213,6 +213,7 @@ var IndexReview = React.createClass({
         return (
             <a className="indexSingleReviewAnchor" href={"/" + this.props.code}>
                 <div className="indexSingleReview col-xs-4">
+                    <div className="imageOverlayColorIndex"></div>
                     <div className="indexSingleReviewImageContainer">
                         <img id="reviewIndexImage" src={this.props.imagePath} />
                     </div>

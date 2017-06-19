@@ -25,7 +25,19 @@
         }, 600);
     });
 
-    //NekroSub(false);
+    var postsBlackConfig = {
+        Container: $(".articlesIndexTable"),
+        Element: $(".articlesIndexSingleImage"),
+        OverlayElement: $('.imageOverlayColorIndex')
+    }
+    NekroController.NekroBlackened(postsBlackConfig);
+
+    var reviewsBlackConfig = {
+        Container: $(".indexReviewsContainer"),
+        Element: $(".indexSingleReview"),
+        OverlayElement: $('.imageOverlayColorIndex')
+    }
+    NekroController.NekroBlackened(reviewsBlackConfig);
 
     $('.indexSingleReviewAnchor')
         .mouseover(function () {

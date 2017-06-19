@@ -284,3 +284,29 @@ NekroController.NekroPop = function (config) {
         config.ContainerElement.dialog("close");
     });
 };
+
+NekroController.NekroBlackened = function (config) {
+    //var overlayColor = "<div class='blackenedOverlay'></div>";
+    var elements = config.Container.find(config.Element);
+    elements.on({
+        "mouseover": function () {
+            var currentItem = $(this);
+            $.each(elements,
+                function () {
+                    if (!$(this).is(currentItem)) {
+                        $(this).find(config.OverlayElement).css({
+                            'z-index': 4
+                        });
+                    }
+                });
+        },
+        "mouseout" : function() {
+            $.each(elements,
+                function () {
+                    $(this).find(config.OverlayElement).css({
+                        'z-index': 2
+                    });
+                });
+        }
+    });
+};

@@ -61,7 +61,7 @@ var SliderOneElement = React.createClass({
             <div className="slideElementUpper">
                 <a href={"/" + this.props.code}>
                     <div className="sliderLink">
-                        <div className="bannerPanelInfo">
+                        <div className="bannerPanelInfo bannerPanelSlider">
                             {this.props.series != null && this.props.series.length > 0 &&
                                 <h3 className="bannerSeriesTitle">{this.props.series}</h3>
                             }
