@@ -97,7 +97,7 @@ var AddComment = React.createClass({
                     }
                     {this.props.logged != 1 && this.props.blocked != 0 &&
                         <div className="newCommentnotLogged">
-                            <h4>Jak chcesz skomentować, to się <a className="loginComments" href="#">zaloguj</a> - opłaci Ci się, koleżko!</h4>
+                            <h4>Jak chcesz skomentować, to się <a className="loginComments">zaloguj</a> - opłaci Ci się, koleżko!</h4>
                         </div>
                     }
                 </div>

@@ -76,7 +76,6 @@ $(document).ready(function() {
             'background-size': "100%",
             'background-position': "center"
         });
-        //$(".elementsToPush").css("margin-top", 0);
 
         $(".bannerPanelImageMain").animate({
                 height: $(".detailsBannerPanel").height(),

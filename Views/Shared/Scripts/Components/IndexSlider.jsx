@@ -104,7 +104,7 @@ var SliderSection = React.createClass({
     },
     render: function () {
         var articleNodes = this.state.articles.map(function (article) {
-            return <SliderTwoElement name={article.Name} imagePath={article.ImageUrl }></SliderTwoElement>;
+            return <SliderTwoElement article={article}></SliderTwoElement>;
         });
 
         return (
@@ -117,20 +117,35 @@ var SliderSection = React.createClass({
 
 var SliderTwoElement = React.createClass({
     propTypes: {
-        name: React.PropTypes.string,
-        imagePath: React.PropTypes.string
+        article: React.PropTypes.object
     },
     render: function () {
         return (
             <div className="slideElementDown">
                 <div className="articlesIndexSingleImage sliderRightPanelElement">
-                <div className="bannerPanelImageContainerIndex">
-                    <img src={this.props.imagePath} />
-                </div>
-                <div className="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
-                    <h3 className="bannerArticleNameIndexTopMenu">{this.props.name}</h3>
-                    <hr className="articlesIndexLine articlesIndexLineSliderRight" />
-                </div>
+                    {this.props.article.Series != null && this.props.article.Series.length > 0 &&
+                        <h3 className="bannerSeriesTitle currentBottomIndexSlideContent">{this.props.article.Series}</h3>
+                    }
+                    {!this.props.article.IsDiary &&
+                        <p className="bannerArticleTagsIndex currentBottomIndexSlideContent">
+                            <span className="glyphicon glyphicon-tags" aria-hidden="true"></span> {this.props.article.Category},
+                            {this.props.article.Subcategory}
+                        </p>
+                    }
+                    <div className="bannerPanelImageContainerIndex">
+                        <img src={this.props.article.ImageUrl} />
+                    </div>
+                    <div className="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
+                        <h3 className="bannerArticleNameIndexTopMenu">{this.props.article.Name}</h3>
+                        <hr className="articlesIndexLine articlesIndexLineSliderRight" />
+                        <div className="currentBottomIndexSlideContent">
+                            <div className="datesDetailsArticles">
+                                <p>
+                                    <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.article.UserName} &nbsp;&nbsp;&nbsp;&nbsp; <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.article.Date}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             );

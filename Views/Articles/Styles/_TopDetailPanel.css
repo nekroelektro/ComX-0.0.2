@@ -76,7 +76,7 @@
 }
 
 .bannerPanelDetailsMainImage img {
-    box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(43, 130, 60, 0.3), -12px 0 15px -4px rgba(43, 130, 60, 0.3);
+    /*box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(43, 130, 60, 0.3), -12px 0 15px -4px rgba(43, 130, 60, 0.3);*/
 }
 
 .imageOverlayColor {

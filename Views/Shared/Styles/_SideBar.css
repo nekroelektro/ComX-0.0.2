@@ -105,7 +105,7 @@
 
 .sidePlazlistWidget {
     width: 100%; 
-    height: 15em; 
+    height: 25em; 
     overflow: hidden;
 }
 
@@ -289,6 +289,8 @@
 
 .sideSocial {
     margin-bottom: 1em;
+    width: 100%;
+    text-align: center;
 }
 
 .recrutation {

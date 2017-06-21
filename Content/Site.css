@@ -672,7 +672,7 @@ a {
         font-size: 2em;
     }
 
-    .topNavigationItemsContainer, .sticky-wrapper {
+    .topNavigationItemsContainer, .sticky-wrapper, .topMainElementsContainer {
         display: none;
     }
 
@@ -695,5 +695,14 @@ a {
 
     .topLogoLastAnchor {
         font-size: x-small !important;
+    }
+
+    .elementsToPush {
+        margin-top: 0 !important;
+    }
+
+    .bannerPanelSlider {
+        bottom: 0 !important;
+        width: 100%;
     }
 }

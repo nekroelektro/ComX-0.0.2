@@ -116,6 +116,7 @@
     text-decoration: none;
     outline: 0;
     color: #2B823C !important;
+    cursor: pointer;
 }
 
 .commentDetailsProfile {

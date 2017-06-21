@@ -29,12 +29,12 @@
     <meta name="og:image" content="@ViewBag.MetaImage"/>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="78.75">
-@*<div id="loadingOverlay">
+<div id="loadingOverlay">
     <div class="loadingOverlayElementsContainer">
         <img class="loadingOverlayGif" src="~/Content/images/ring.gif" alt="Loading" />
         <img class="loadingOverlayLogo" src="~/Content/images/logoNew17.png" alt="Loading" />
     </div>
-</div>*@
+</div>
 <div class="bodyContent">
     <div class="topMainElementsContainer col-sm-10 col-xs-12">
         @Html.Action("_TopNavigationMenu", "Articles")
@@ -63,9 +63,9 @@
 </body>
 </html>
 <script>
-    //$(window).on('load', function () {
-    //    $('#loadingOverlay').fadeOut("slow");
-    //});
+    $(window).on('load', function () {
+        $('#loadingOverlay').fadeOut("slow");
+    });
 
     $('#return-to-top').click(function() { // When arrow is clicked
         $('body,html').animate({

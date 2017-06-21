@@ -127,19 +127,27 @@
 }
 
 .sliderSection {
-    background-color: black; 
+    /*background-color: black;*/ 
     width: 100%; 
     margin: 0 auto;
     float: right;
     position: absolute !important;
     bottom: 0;
-    height: 8em;
+    height: 15em;
+    text-align: center;
 }
 
 .slideElementDown {
-    height:100%; 
     padding: 0.5em;
     width: 25% !important;
+    position: relative;
+    height: 60% !important;
+    top: 40%;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
 .slick-list, .slick-track {
@@ -180,6 +188,8 @@
     left: auto !important;
     right: auto !important;
     min-width: 45% !important;
+
+    display: none;
 }
 
 .bannerSeriesTitle {
@@ -196,13 +206,19 @@
 }
 
 .datesDetailsArticles {
-    display: inline-block; 
-    float: left; 
+    width: 100%;
     clear: both;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
 .datesDetailsArticles p {
     float: left;
+    font-size: 0.9em;
+    width: 100%;
 }
 
 .sliderArticleCategories > p {
@@ -213,6 +229,10 @@
     /*border-top: 0.7em solid #2B823C;
     border-bottom: 0.7em solid #2B823C;*/
     cursor: pointer;
+}
+
+.currentBottomIndexSlideContent {
+    display: none;
 }
 
 .sliderLink:hover {
@@ -227,15 +247,40 @@
     -webkit-box-shadow: inset 0 0 20px #2B823C;
     -moz-box-shadow: inset 0 0 20px #2B823C;
     box-shadow: inset 0 0 20px #2B823C;
-} 
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
 
+.sliderSection .slick-current {
+    height: 100% !important;
+    top: 0 !important;
+}
+
+.slick-current .currentBottomIndexSlideContent {
+    display: block;
+}
+
+.slick-current .bannerSeriesTitle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    z-index: 4;
+    width: auto !important;
+    max-width: 55%;
+}
+
+.slick-current .bannerArticleTagsIndex {
+    font-size: 0.9em;
+}
 /*PASEK POSTĘPU*/
-
 .slider-progress {
-  width: 100%;
-  height: 8px;
-  background: black;
-  z-index: 3;
+    width: 100%;
+    height: 8px;
+    z-index: 3;
     position: absolute;
 }
 .slider-progress .progress {
