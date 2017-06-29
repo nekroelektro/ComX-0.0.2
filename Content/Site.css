@@ -537,14 +537,6 @@ a {
     background-color: crimson;
 }
 
-.maintenanceImage img {
-    width: 100%; 
-    text-align: center; 
-    margin: 0 auto; 
-    z-index: 0; 
-    vertical-align: middle;
-}
-
 .diaryCreateComponent {
     display: none;
 }

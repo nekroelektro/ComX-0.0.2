@@ -39,7 +39,7 @@
     <div class="topMainElementsContainer col-sm-10 col-xs-12">
         @Html.Action("_TopNavigationMenu", "Articles")
     </div>
-    <div class="nekroPanel col-sm-2">
+    <div class="nekroPanel col-sm-2" id="nekroPanel">
         <div class="mainSideBar">
             @Html.Action("_SideBar", "Articles", new { number = 6 })
         </div>
@@ -58,18 +58,19 @@
         </div>
     </div>
     <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
-    @Html.Partial("_Footer")
+    <footer class="bottomFooter" id="bottomFooter">
+        <p>&copy; @DateTime.Now.Year - Zero Fucks Given by NEKRO</p>
+    </footer>
 </div>
 </body>
 </html>
 <script>
-    $(window).on('load', function () {
-        $('#loadingOverlay').fadeOut("slow");
-    });
-
-    $('#return-to-top').click(function() { // When arrow is clicked
-        $('body,html').animate({
-            scrollTop: 0 // Scroll to top of body
-        }, 500);
-    });
+    var config = {
+        LoadingOverlay: "loadingOverlay",
+        ScrollTopArrow: "return-to-top",
+        LogoImage: "logoImage",
+        NekroPanel: "nekroPanel",
+        IndexFooter: "bottomFooter"
+    };
+    new SharedLayout(config);
 </script>

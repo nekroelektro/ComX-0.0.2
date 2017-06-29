@@ -3,6 +3,6 @@
 @{
     var isAjax = Request.IsAjaxRequest();
     Layout = isAjax ? null : "~/Views/Articles/_Articles.cshtml";
-    ViewBag.Title = string.Format("{0} - NekroPlaza - doświadcz dobroci", "Szukaczka");
+    ViewBag.Title = string.Format("{0} || NekroPlaza - doświadcz dobroci", "Szukaczka");
 }
 @Html.React("SearchResults", new {model = Model})

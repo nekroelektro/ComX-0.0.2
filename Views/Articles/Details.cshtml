@@ -11,12 +11,12 @@
 
     ViewBag.MetaImage = articleHelper.GetImageAbsolutePathByArticleId(Model.Id.Value);
     if (!isDiary) {
-        ViewBag.Title = @Model.Name + " - " + @Model.Category + " - NekroPlaza";
+        ViewBag.Title = @Model.Name + " || " + @Model.Category + " || NekroPlaza";
         ViewBag.Description = Regex.Replace(WebUtility.HtmlDecode(@Model.IndexDescription), "<(.|\\n)*?>", string.Empty);
     }
     else {
         var diaryName = Model.Name.Split('?').First();
-        ViewBag.Title = diaryName + " - Z pamiętnika płytoholika - " + "NekroPlaza";
+        ViewBag.Title = diaryName + " || Z pamiętnika płytoholika || NekroPlaza";
     }
     bool AdminPanel = userHelper.IsSuperAdminUser(User) || (userHelper.IsAdminUser(User) && new Guid(userHelper.GetUserByName(Model.UserName).Id) == userHelper.GetCurrentLoggedUserId());
 }

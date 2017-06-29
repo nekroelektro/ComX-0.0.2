@@ -4,7 +4,7 @@
     var isAjax = Request.IsAjaxRequest();
     Layout = isAjax ? null : "~/Views/Articles/_Articles.cshtml";
     var subId = ViewBag.SubId;
-    ViewBag.Title = string.Format("{0} - NekroPlaza - doświadcz dobroci", Model.CategoryName);
+    ViewBag.Title = string.Format("{0} || NekroPlaza - doświadcz dobroci", Model.CategoryName);
 }
 @Html.React("Categories", new {model = Model, isIndex = isAjax, sub = subId})
 @*SCRIPTS FOR VIEW*@

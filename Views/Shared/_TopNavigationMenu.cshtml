@@ -1,3 +1,9 @@
 ﻿@using React.AspNet
 @model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.CategoryDto>
 @Html.React("NavigationMenu", new {model = Model})
+
+<script>
+    var config = {
+    };
+    new SharedTopNavigationMenu(config);
+</script>

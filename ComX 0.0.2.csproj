@@ -1096,7 +1096,6 @@
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Configuration\CategoriesCreate.cshtml" />
     <Content Include="Views\Articles\_Comments.cshtml" />
     <Content Include="Views\Shared\_IndexSlider.cshtml" />
@@ -1110,19 +1109,15 @@
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Articles\_LastFromCategory.cshtml" />
     <Content Include="Views\Shared\_TopNavigationMenu.cshtml" />
-    <Content Include="Views\Shared\_TopLogoPanel.cshtml" />
     <Content Include="Views\Configuration\_SubCategories.cshtml" />
     <Content Include="Views\Configuration\SubCategoriesCreate.cshtml" />
     <Content Include="Views\Configuration\SubCategoriesDetails.cshtml" />
     <Content Include="Views\Articles\Categories.cshtml" />
     <Content Include="Views\Configuration\Gallery.cshtml" />
     <Content Include="Views\Shared\_HumanumErrareEst.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
@@ -1140,7 +1135,6 @@
     <Content Include="Views\Configuration\SeriesDetails.cshtml" />
     <Content Include="Views\Configuration\SiteSettings.cshtml" />
     <Content Include="Views\Articles\_Articles.cshtml" />
-    <Content Include="Views\Shared\Maintenance.cshtml" />
     <Content Include="Views\Nekropedia\_Nekropedia.cshtml" />
     <Content Include="Views\Articles\Diary.cshtml" />
     <Content Include="Views\Configuration\_Restricted.cshtml" />

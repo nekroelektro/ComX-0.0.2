@@ -2,7 +2,7 @@
 @using React.AspNet
 @model ComX_0._0._2.Views.Account.Models.DtoModels.UserProfileDto
 @{
-    ViewBag.Title = "User Panel";
+    ViewBag.Title = string.Format("Profil {0} || NekroPlaza - doświadcz dobroci", Model.UserName);
     var isAjax = Request.IsAjaxRequest();
     Layout = isAjax ? null : "~/Views/Shared/_Layout.cshtml";
     var userHelper = new UserHelper();
