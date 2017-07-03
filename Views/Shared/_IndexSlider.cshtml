@@ -1,6 +1,15 @@
 ﻿@using React.AspNet
 @model IEnumerable<ComX_0._0._2.Views.Articles.Models.DtoModels.ArticleDto>
 @Html.React("IndexSlider", new {model = Model})
-
+<script>
+    var config = {
+        IndexSliders: "indexSliders",
+        SlideElementUpper: "slideElementUpper",
+        SlideElementDown: "slideElementDown",
+        SliderBig: "sliderOne",
+        SliderSmall: "sliderSection"
+    };
+    new SharedIndexSlider(config);
+</script>
 <link href="~/Content/slick.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/slick-theme.css" rel="stylesheet" type="text/css" />

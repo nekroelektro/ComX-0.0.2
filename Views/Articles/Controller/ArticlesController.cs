@@ -139,5 +139,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
                 new {createMode = false, id = articleId, isDiary});
             return Json(new {Url = redirectUrl});
         }
+
+        public ActionResult ViewPage1()
+        {
+            return View();
+        }
     }
 }

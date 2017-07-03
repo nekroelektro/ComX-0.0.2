@@ -1,4 +1,26 @@
-﻿jQuery(document).ready(function() {
+﻿function SharedIndexSlider(config) {
+    SharedIndexSlider.Control = config;
+    SharedIndexSlider.Init();
+};
+
+SharedIndexSlider.Init = function () {
+    SharedIndexSlider.IndexSliderInitialization();
+
+    setTimeout(function() {
+        var heightSlidersConfig = {
+            Element: $("." + SharedIndexSlider.Control.IndexSliders)
+        }
+        NekroController.NekroDynamicSize(heightSlidersConfig);
+
+        var heightUpperElementsConfig = {
+            Element: $("." + SharedIndexSlider.Control.SlideElementUpper)
+        }
+        NekroController.NekroDynamicSize(heightUpperElementsConfig);
+    }, 1000);
+    
+};
+
+SharedIndexSlider.IndexSliderInitialization = function () {
     //SLICK SLIDER
     var time = 2;
     var $bar,
@@ -6,39 +28,40 @@
         isPause,
         tick,
         percentTime;
-    $slick = $(".sliderSection");
-    $slickOne = $(".sliderOne");
+    $slick = $("." + SharedIndexSlider.Control.SliderSmall);
+    $slickOne = $("." + SharedIndexSlider.Control.SliderBig);
 
-    $(".sliderOne").slick({
+    $("." + SharedIndexSlider.Control.SliderBig).slick({
         slidesToShow: 1,
         arrows: false,
         fade: true,
-        asNavFor: ".sliderSection",
-        slide: ".slideElementUpper"
+        asNavFor: "." + SharedIndexSlider.Control.SliderSmall,
+        slide: "." + SharedIndexSlider.Control.SlideElementUpper
     });
-    $(".sliderSection").slick({
+
+    $("." + SharedIndexSlider.Control.SliderSmall).slick({
         slidesToShow: 4,
-        slide: ".slideElementDown",
-        asNavFor: ".sliderOne",
+        slide: "." + SharedIndexSlider.Control.SlideElementDown,
+        asNavFor: "." + SharedIndexSlider.Control.SliderBig,
         arrows: false,
         focusOnSelect: true
     });
 
     // reset progressbar when user slide
-    $(".sliderOne").on("swipe",
-        function(event, slick, direction) {
+    $("." + SharedIndexSlider.Control.SliderBig).on("swipe",
+        function (event, slick, direction) {
             startProgressbar();
         });
 
     $bar = $(".slider-progress .progress");
-    $(".sliderOne").on('click',
-        function() {
+    $("." + SharedIndexSlider.Control.SliderBig).on('click',
+        function () {
             isPause = true;
         });
 
     $(document).on("click",
-        ".sliderSection",
-        function(e) {
+        "." + SharedIndexSlider.Control.SliderSmall,
+        function (e) {
             startProgressbar();
         });
 
@@ -56,7 +79,7 @@
                 width: percentTime + "%"
             });
             if (percentTime >= 100) {
-                $(".sliderSection").find(".slick-slide").removeClass("slick-current");
+                $("." + SharedIndexSlider.Control.SliderSmall).find(".slick-slide").removeClass("slick-current");
                 $slick.slick("slickNext");
                 $slickOne.slick("slickNext");
                 startProgressbar();
@@ -72,25 +95,4 @@
     }
 
     startProgressbar();
-
-    //Slider enlargement handling
-    if ($(".indexSliders").length > 0) {
-        var windowScreenIndex = $(window);
-        var correctSliderSizeHeigth = windowScreenIndex.height() -
-            $(".bottomFooter ").height() - $('.topMainElementsContainer').height();
-
-        $(".indexSliders, .slideElementUpper")
-            .css("height", correctSliderSizeHeigth);
-
-        windowScreenIndex.on("resize",
-            function() {
-                var winIndex = $(this);
-                var correctWidth = winIndex.width() >= winIndex.innerWidth ? winIndex.width() : winIndex.innerWidth;
-                var correct = winIndex.height() -
-                    $(".bottomFooter ").height();
-                $(".indexSliders").css("width", correctWidth);
-                $(".indexSliders, .slideElementUpper").css("height",
-                    correct);
-            });
-    }
-});
+}

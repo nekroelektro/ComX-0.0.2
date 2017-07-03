@@ -76,7 +76,7 @@ NekroController.NekroNavigator = function(config) {
                 });
         });
     } else {
-        $('.sideBarNavigationComponent').hide();
+        $(".sideBarNavigationComponent").hide();
     }
 };
 
@@ -90,22 +90,22 @@ NekroController.NekroEnterClick = function(config) {
 };
 
 NekroController.ShowDivNicely = function(config) {
-config.ElementClicked.on("click",
-    function () {
-        config.ShowDuration = config.ShowDuration != null ? config.ShowDuration : 1000;
-        config.HideDuration = config.HideDuration != null ? config.HideDuration : 200;
-        config.OnlyMe = config.OnlyMe != null ? config.OnlyMe : true;
+    config.ElementClicked.on("click",
+        function() {
+            config.ShowDuration = config.ShowDuration != null ? config.ShowDuration : 1000;
+            config.HideDuration = config.HideDuration != null ? config.HideDuration : 200;
+            config.OnlyMe = config.OnlyMe != null ? config.OnlyMe : true;
 
-        var existingElement = $('.nicelyVisible');
-        if (existingElement.length > 0) {
-            existingElement.slideUp(config.HideDuration);
-            existingElement.removeClass("nicelyVisible");
-        }
-        if (!config.ElementToShow.is(":visible")) {
-            config.ElementToShow.slideDown(config.ShowDuration);
-            config.ElementToShow.addClass("nicelyVisible");
-        }
-    });
+            var existingElement = $(".nicelyVisible");
+            if (existingElement.length > 0) {
+                existingElement.slideUp(config.HideDuration);
+                existingElement.removeClass("nicelyVisible");
+            }
+            if (!config.ElementToShow.is(":visible")) {
+                config.ElementToShow.slideDown(config.ShowDuration);
+                config.ElementToShow.addClass("nicelyVisible");
+            }
+        });
 };
 
 NekroController.NekroSearch = function(config) {
@@ -113,15 +113,15 @@ NekroController.NekroSearch = function(config) {
     var searchContent;
     var searchString;
 
-    var searchBar = config.Container.find('.searchBar').hide();
+    var searchBar = config.Container.find(".searchBar").hide();
     config.SearchIcon.on("click",
-        function () {
-            searchBar.toggle('slow');
+        function() {
+            searchBar.toggle("slow");
             config.Container.find("#searchBarMain").focus();
         });
 
-    config.Container.find('#searchBarMain').on("keyup",
-        function () {
+    config.Container.find("#searchBarMain").on("keyup",
+        function() {
             // if there is any pending AJAX request - abort it (for fast typing)
             if (request) {
                 request.abort();
@@ -129,19 +129,19 @@ NekroController.NekroSearch = function(config) {
 
             var searchTxt = this.value;
             searchString = searchTxt;
-            setTimeout(function () {
+            setTimeout(function() {
                     if (searchTxt.length > 2) {
                         request = $.ajax({
                             type: "GET",
                             url: "/Articles/SearchResultsLive",
                             data: { 'searchString': searchTxt }
-                        }).done(function (content) {
+                        }).done(function(content) {
                             searchLogic(content);
                         });
                     } else {
                         searchContent = null;
-                        if (config.Container.find('.searchResultsContainer').is(":visible")) {
-                            config.Container.find('.searchResultsContainer').slideUp("fast");
+                        if (config.Container.find(".searchResultsContainer").is(":visible")) {
+                            config.Container.find(".searchResultsContainer").slideUp("fast");
                         }
                     }
                 },
@@ -150,35 +150,35 @@ NekroController.NekroSearch = function(config) {
 
     function searchLogic(content) {
         searchContent = content;
-        var isNoResultsVisible = config.Container.find('.searchNoResults').is(":visible");
-        var resultContainer = config.Container.find('.searchResultsContainer');
+        var isNoResultsVisible = config.Container.find(".searchNoResults").is(":visible");
+        var resultContainer = config.Container.find(".searchResultsContainer");
         // open results
-        resultContainer.css({ 'right': $('.nekroPanel').width() + 10, 'top': $('.topMainElementsContainer').height() });
+        resultContainer.css({ 'right': $(".nekroPanel").width() + 10, 'top': $(".topMainElementsContainer").height() });
         resultContainer.slideDown("fast");
 
         // if there is no result of search - show and hide all previous search results, also hide 'more' link if it is visible
         if (searchContent.length == 0) {
-            if (config.Container.find('.searchNoResults').length == 0) {
-                config.Container.find('.searchItemContainer').detach();
+            if (config.Container.find(".searchNoResults").length == 0) {
+                config.Container.find(".searchItemContainer").detach();
 
-                if (config.Container.find('.searchResultsMore').is(":visible")) {
-                    config.Container.find('.searchResultsMore').hide("fast");
+                if (config.Container.find(".searchResultsMore").is(":visible")) {
+                    config.Container.find(".searchResultsMore").hide("fast");
                 }
 
-                if (config.Container.find('.searchResultsNoMore').is(":visible")) {
-                    config.Container.find('.searchResultsNoMore').hide("fast");
+                if (config.Container.find(".searchResultsNoMore").is(":visible")) {
+                    config.Container.find(".searchResultsNoMore").hide("fast");
                 }
 
                 var noResultsFoundHtmlString =
                     '<div class="searchNoResults">Niczego nie znalazłem...</div>';
-                config.Container.find('.searchResultsElements').append(noResultsFoundHtmlString);
+                config.Container.find(".searchResultsElements").append(noResultsFoundHtmlString);
             }
         }
         // if search returns any result
         else {
             // if no results string is visible - hide it
-            if (config.Container.find('.searchNoResults').length != 0) {
-                config.Container.find('.searchNoResults').detach();
+            if (config.Container.find(".searchNoResults").length != 0) {
+                config.Container.find(".searchNoResults").detach();
             }
 
             // append search results to results container
@@ -186,20 +186,20 @@ NekroController.NekroSearch = function(config) {
 
             // if there are more than 5 results - show more results link (if it is not laready visible)
             if (searchContent.length > 5) {
-                if (!config.Container.find('.searchResultsMore').is(":visible")) {
-                    config.Container.find('.searchResultsMore').show("fast");
+                if (!config.Container.find(".searchResultsMore").is(":visible")) {
+                    config.Container.find(".searchResultsMore").show("fast");
                 }
-                if (config.Container.find('.searchResultsNoMore').is(":visible")) {
-                    config.Container.find('.searchResultsNoMore').hide("fast");
+                if (config.Container.find(".searchResultsNoMore").is(":visible")) {
+                    config.Container.find(".searchResultsNoMore").hide("fast");
                 }
             }
             // if there is already visible more resiult link and there is =< 4 results, hide it and show that's all string
             else {
-                if (config.Container.find('.searchResultsMore').is(":visible")) {
-                    config.Container.find('.searchResultsMore').hide("fast");
+                if (config.Container.find(".searchResultsMore").is(":visible")) {
+                    config.Container.find(".searchResultsMore").hide("fast");
                 }
-                if (!config.Container.find('.searchResultsNoMore').is(":visible")) {
-                    config.Container.find('.searchResultsNoMore').show("fast");
+                if (!config.Container.find(".searchResultsNoMore").is(":visible")) {
+                    config.Container.find(".searchResultsNoMore").show("fast");
                 }
             }
         }
@@ -207,67 +207,76 @@ NekroController.NekroSearch = function(config) {
 
     function handleSearch(content) {
         var selectedSearchItems = content.slice(0, 5);
-        var htmlSearchString = '';
+        var htmlSearchString = "";
 
         $.each(selectedSearchItems,
-            function (i, item) {
+            function(i, item) {
                 //get category and/or subcategory (depends if it's diary or not)
                 var categoryString = item.Category;
                 if (item.Subcategory != "Pamiętnik") {
-                    categoryString = categoryString + ', ' + item.Subcategory;
+                    categoryString = categoryString + ", " + item.Subcategory;
                 }
                 // create one node of searchresult
                 var searchItem =
                     '<div class="searchItemContainer">' +
-                        "<a class='searchItemAnchor' href='/" + item.CodedName + "'>" +
+                        "<a class='searchItemAnchor' href='/" +
+                        item.CodedName +
+                        "'>" +
                         '<div class="searchItemImageContainer">' +
-                        '<img src=' + item.ImageUrl + ' />' +
-                        '</div>' +
+                        "<img src=" +
+                        item.ImageUrl +
+                        " />" +
+                        "</div>" +
                         '<div class="searchItemDetailsContainer">' +
                         '<div class="searchItemDetailsName">' +
-                        '<p>' + item.Name + '</p>' +
-                        '</div>' +
+                        "<p>" +
+                        item.Name +
+                        "</p>" +
+                        "</div>" +
                         '<hr class="articlesIndexLine" />' +
                         '<div class="searchItemDetailsTags">' +
-                        '<p>' +
-                        '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> ' + item.Date + '&nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> ' + categoryString +
-                        '</p>' +
-                        '</div>' +
-                        '</div>' +
-                        '</a>' +
-                        '</div>';
+                        "<p>" +
+                        '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> ' +
+                        item.Date +
+                        '&nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> ' +
+                        categoryString +
+                        "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</a>" +
+                        "</div>";
 
                 htmlSearchString = htmlSearchString + searchItem;
             });
-        config.Container.find('.searchItemContainer').detach();
-        config.Container.find('.searchResultsElements').hide().append(htmlSearchString).fadeIn("fast");
+        config.Container.find(".searchItemContainer").detach();
+        config.Container.find(".searchResultsElements").hide().append(htmlSearchString).fadeIn("fast");
     };
 
     // For clicking outside of search (then close the results)
-    $(document).mouseup(function (e) {
-        if (config.Container.find('.searchResultsContainer').is(":visible")) {
-            var searchResultsPanel = config.Container.find('.searchResultsContainer');
-            var searchBarContainer = config.Container.find('#searchBarMain');
+    $(document).mouseup(function(e) {
+        if (config.Container.find(".searchResultsContainer").is(":visible")) {
+            var searchResultsPanel = config.Container.find(".searchResultsContainer");
+            var searchBarContainer = config.Container.find("#searchBarMain");
             if ((!searchResultsPanel.is(e.target) && searchResultsPanel.has(e.target).length === 0) &&
                 (!searchBarContainer.is(e.target) && searchBarContainer.has(e.target).length === 0)) {
                 searchResultsPanel.slideUp("fast");
             }
         } else {
             if (searchContent) {
-                if (config.Container.find('#searchBarMain').is(e.target) && searchContent.length > 0) {
-                    config.Container.find('.searchResultsContainer').slideDown("slow");
+                if (config.Container.find("#searchBarMain").is(e.target) && searchContent.length > 0) {
+                    config.Container.find(".searchResultsContainer").slideDown("slow");
                 }
             }
         }
     });
 
-    config.Container.find('.searchResultsMore').on("click",
-        function () {
+    config.Container.find(".searchResultsMore").on("click",
+        function() {
             window.location.href = "/Articles/SearchResults/" + "?searchString=" + searchString;
         });
 };
 
-NekroController.NekroPop = function (config) {
+NekroController.NekroPop = function(config) {
     config.ContainerElement.dialog({
         title: config.Title,
         dialogClass: "no-close",
@@ -276,23 +285,23 @@ NekroController.NekroPop = function (config) {
         width: config.Width
     });
 
-    config.ClickedElement.click(function () {
+    config.ClickedElement.click(function() {
         config.ContainerElement.dialog("open");
     });
 
-    $('.shutNekroPop').click(function () {
+    $(".shutNekroPop").click(function() {
         config.ContainerElement.dialog("close");
     });
 };
 
-NekroController.NekroBlackened = function (config) {
-    //var overlayColor = "<div class='blackenedOverlay'></div>";
+// Highlight one element in collection, darker background for the rest
+NekroController.NekroBlackened = function(config) {
     var elements = config.Container.find(config.Element);
     elements.on({
-        "mouseover": function () {
+        "mouseover": function() {
             var currentItem = $(this);
             $.each(elements,
-                function () {
+                function() {
                     if (!$(this).is(currentItem)) {
                         $(this).find(config.OverlayElement).css({
                             'z-index': 4
@@ -300,13 +309,36 @@ NekroController.NekroBlackened = function (config) {
                     }
                 });
         },
-        "mouseout" : function() {
+        "mouseout": function() {
             $.each(elements,
-                function () {
+                function() {
                     $(this).find(config.OverlayElement).css({
                         'z-index': 2
                     });
                 });
         }
     });
+};
+
+// Dynamic element height in addition of window height
+NekroController.NekroDynamicSize = function(config) {
+    var windowSize = NekroParams.GetScreenSize();
+    var correctSliderSizeHeigth = windowSize.Height -
+        $(".bottomFooter ").height() -
+        $(".topMainElementsContainer").height();
+    console.log(correctSliderSizeHeigth);
+    config.Element.css("height", correctSliderSizeHeigth);
+
+    $(window).on("resize",
+        function() {
+            var winIndex = $(this);
+            var correctWidth = winIndex.width() >= winIndex.innerWidth ? winIndex.width() : winIndex.innerWidth;
+            var correct = winIndex.height() -
+                $(".bottomFooter ").height() -
+                $(".topMainElementsContainer").height();
+
+            config.Element.css("width", correctWidth);
+            config.Element.css("height",
+                correct);
+        });
 };

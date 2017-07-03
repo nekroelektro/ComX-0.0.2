@@ -693,8 +693,12 @@ a {
         margin-top: 0 !important;
     }
 
-    .bannerPanelSlider {
+    /*.bannerPanelSlider {
         bottom: 0 !important;
         width: 100%;
+    }*/
+
+    .bannerPanelSlider {
+        display: block !important;
     }
 }

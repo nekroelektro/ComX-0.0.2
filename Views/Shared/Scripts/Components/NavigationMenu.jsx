@@ -131,19 +131,19 @@ var TopNavPostElement = React.createClass({
             linkToArticle = "/" + this.props.code;
         }
         return (
-            <a className="topNavigationLastAnchor" href={linkToArticle} data-sub={this.props.subcategory}>
+            <a className="topNavigationLastAnchor" id="topNavigationLastAnchor" href={linkToArticle} data-sub={this.props.subcategory}>
                 <div className="singleLastArticleTopNavigation">
                     <div className="imageOverlayColorNav"></div>
-                        <div className="bannerPanelImageContainerNav">
-                            <img src={this.props.imagePath} />
-                        </div>
-                        <div className="bannerPanelImageMainNav">
-                            <img id="articleTopNavigationImage" src={this.props.imagePath} />
-                        </div>
-                        <div className="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
-                            <h3 className="bannerArticleNameIndexTopMenu">{this.props.name}</h3>
-                            <hr className="articlesIndexLine" />
-                        </div>
+                    <div className="bannerPanelImageContainerNav">
+                        <img src={this.props.imagePath} />
+                    </div>
+                    <div className="bannerPanelImageMainNav">
+                        <img id="articleTopNavigationImage" src={this.props.imagePath} />
+                    </div>
+                    <div className="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
+                        <h3 className="bannerArticleNameIndexTopMenu">{this.props.name}</h3>
+                        <hr className="articlesIndexLine" id="articlesIndexLine"/>
+                    </div>
                 </div>
             </a>
         );

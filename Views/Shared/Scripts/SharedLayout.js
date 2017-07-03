@@ -9,15 +9,6 @@ SharedLayout.Init = function () {
         $("#" + SharedLayout.Control.LoadingOverlay).fadeOut(1000);
     });
 
-    $("#" + SharedLayout.Control.LogoImage).on({
-        "mouseover": function() {
-            this.src = "/Content/images/logoNew17green.png";
-        },
-        "mouseout": function() {
-            this.src = "/Content/images/logoNew17.png";
-        }
-    });
-
     $("#" + SharedLayout.Control.ScrollTopArrow).css({
         'right': $("#" + SharedLayout.Control.NekroPanel).width() + 10,
         'bottom': $("#" + SharedLayout.Control.IndexFooter).height()
