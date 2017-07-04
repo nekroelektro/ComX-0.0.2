@@ -55,7 +55,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js",
                 "~/Views/Configuration/Scripts/ConfigurationRoles.js",
-                "~/Views/Configuration/Scripts/ConfigurationArticles.js"
+                "~/Views/Configuration/Scripts/ConfigurationArticles.js",
+                "~/Views/Configuration/Scripts/ConfigurationUsers.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/coreScripts").Include(

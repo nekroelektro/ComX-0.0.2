@@ -2,7 +2,7 @@
     SharedSideBar.Control = config;
     SharedSideBar.Init();
 
-    var token = $("[name=__RequestVerificationToken]").val();
+    SharedSideBar.Token = $("[name=__RequestVerificationToken]").val();
 };
 
 SharedSideBar.Init = function () {
@@ -19,8 +19,8 @@ SharedSideBar.Init = function () {
     });
 
     var searchConfig = {
-        Container: "." + SharedSideBar.Control.SideBarSearchComponent,
-        SearchIcon: "." + SharedSideBar.Control.SideSearchAnchor
+        Container: $("." + SharedSideBar.Control.SideBarSearchComponent),
+        SearchIcon: $("." + SharedSideBar.Control.SideSearchAnchor)
     };
     NekroController.NekroSearch(searchConfig);
 
@@ -137,24 +137,22 @@ SharedSideBar.ConfirmLogin = function() {
         SharedSideBar.LoginValidation(false);
         return;
     }
-    $.ajax({
-        url: "/Account/Login",
-        method: "POST",
-        data: {
-            'userName': login,
-            'password': password,
-            'rememberMe': remember,
-            '__RequestVerificationToken': token
-        },
-        success: function(isOk) {
-            if (isOk) {
-                location.reload(true);
-            } else {
-                SharedSideBar.LoginValidation(true);
-                return;
-            }
-        }
-    });
+    var loginAjaxConfig = {
+        Url: "/Account/Login",
+        Method: "POST",
+        Params: { 'userName': login, 'password': password, 'rememberMe': remember, '__RequestVerificationToken': SharedSideBar.Token},
+        SuccessHandler: SharedSideBar.SuccessLoginHandler
+    };
+    NekroController.NekroAjaxAction(loginAjaxConfig);
+};
+
+SharedSideBar.SuccessLoginHandler = function(result) {
+    if (result) {
+        location.reload(true);
+    } else {
+        SharedSideBar.LoginValidation(true);
+        return;
+    }
 };
 
 SharedSideBar.LoginValidation = function (responseError) {
@@ -201,26 +199,22 @@ SharedSideBar.ConfirmRegistration = function() {
         SharedSideBar.RegisterValidation(errorText);
         return;
     }
+    var registertAjaxConfig = {
+        Url: "/Account/Register",
+        Method: "POST",
+        Params: {'userName': login, 'mail': mail, 'password': password, 'confirmPassword': confirmPassword, '__RequestVerificationToken': SharedSideBar.Token},
+        SuccessHandler: SharedSideBar.SuccessRegisterHandler
+    };
+    NekroController.NekroAjaxAction(registertAjaxConfig);
+};
 
-    $.ajax({
-        url: "/Account/Register",
-        method: "POST",
-        data: {
-            'userName': login,
-            'mail': mail,
-            'password': password,
-            'confirmPassword': confirmPassword,
-            '__RequestVerificationToken': token
-        },
-        success: function(results) {
-            if (results.Success) {
-                location.reload(true);
-            } else {
-                SharedSideBar.RegisterValidation(results.Message);
-                return;
-            }
-        }
-    });
+SharedSideBar.SuccessRegisterHandler = function (result) {
+    if (result.Success) {
+        location.reload(true);
+    } else {
+        SharedSideBar.RegisterValidation(result.Message);
+        return;
+    }
 };
 
 SharedSideBar.RegisterValidation = function (errorString) {
@@ -240,26 +234,11 @@ SharedSideBar.RegisterValidation = function (errorString) {
         .append("<div class='registerErrorMessage'>" + messageString + "</div>").fadeIn("fast");
 };
 
-SharedSideBar.LogOut = function() {
-    $.ajax({
-        url: "/Account/LogOff",
-        method: "POST",
-        data: { '__RequestVerificationToken': token },
-        success: function() {
-            location.href = "/";
-        }
-    });
+SharedSideBar.LogOut = function () {
+    var logoutAjaxConfig = {
+        Url: "/Account/LogOff",
+        Method: "POST",
+        Params: { '__RequestVerificationToken': SharedSideBar.Token }
+    };
+    NekroController.NekroAjaxAction(logoutAjaxConfig);
 };
-
-$(document).ready(function() {
-    // HANDLING SIDEBAR LOGGING
-
-
-    // Handling side Register
-    
-    // TO JEST W NEKROPARAMS TERA
-    function isEmailFormatCorrect(email) {
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(email);
-    }
-});

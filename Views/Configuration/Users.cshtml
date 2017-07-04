@@ -14,14 +14,20 @@
 
 <div class="col-xs-12 center-block">
     @Html.Grid(Model).Named("userGrid").Columns(columns => {
-    columns.Add(o => o.UserId, true);
-    columns.Add(x => x.UserName).SetWidth(500);
-    columns.Add(x => x.Roles).Titled("Role").RenderValueAs(x => userHelper.GetRoleNamesByUserId(x.UserId)).Filterable(true).SetWidth(80);
-    columns.Add(x => x.DateOfCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(160);
-    columns.Add(x => x.IsBlocked).Titled("isBlocked").RenderValueAs(x => x.IsBlocked ? "Yes" : "No").SetWidth(50);
-}).WithPaging(20).Sortable(true).Filterable(true)
+        columns.Add(o => o.UserId, true);
+        columns.Add(x => x.UserName).SetWidth(500);
+        columns.Add(x => x.Roles).Titled("Role").RenderValueAs(x => userHelper.GetRoleNamesByUserId(x.UserId)).Filterable(true).SetWidth(80);
+        columns.Add(x => x.DateOfCreation).Titled("Date added").SortInitialDirection(GridSortDirection.Ascending).SetWidth(160);
+        columns.Add(x => x.IsBlocked).Titled("isBlocked").RenderValueAs(x => x.IsBlocked ? "Yes" : "No").SetWidth(50);
+    }).WithPaging(20).Sortable(true).Filterable(true)
 </div>
 
 @*SCRIPTS FOR VIEW*@
-<script type="text/javascript" src="~/Views/Configuration/Scripts/ConfigurationUsers.js"></script>
+<script>
+    var config = {
+        GridRow: "grid-row"
+    };
+    new ConfigurationUsers(config);
+</script>
+
 

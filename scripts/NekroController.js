@@ -326,7 +326,6 @@ NekroController.NekroDynamicSize = function(config) {
     var correctSliderSizeHeigth = windowSize.Height -
         $(".bottomFooter ").height() -
         $(".topMainElementsContainer").height();
-    console.log(correctSliderSizeHeigth);
     config.Element.css("height", correctSliderSizeHeigth);
 
     $(window).on("resize",
@@ -341,4 +340,15 @@ NekroController.NekroDynamicSize = function(config) {
             config.Element.css("height",
                 correct);
         });
+};
+
+NekroController.NekroAjaxAction = function(config) {
+    $.ajax({
+        url: config.Url,
+        method: config.Method,
+        data: config.Params != null ? config.Params : "",
+        success: function (results) {
+            config.SuccessHandler != null ? config.SuccessHandler(results) : location.href = "/";
+        }
+    });
 };
