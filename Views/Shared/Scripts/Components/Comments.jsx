@@ -19,7 +19,7 @@
                     <hr />
                     <div id="commentsMade">
                         <h3 className="commentaryHeader">Komentarze({this.state.model.CommentCount})</h3>
-                        <CommentsReady comments={this.state.model.Comments}></CommentsReady>
+                        <CommentsReady comments={this.state.model.Comments} logged={this.state.logged} blocked={this.state.blocked}></CommentsReady>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,9 @@ var AddComment = React.createClass({
 
 var CommentsReady = React.createClass({
     propTypes: {
-        comments: React.PropTypes.array.isRequired
+        comments: React.PropTypes.array.isRequired,
+        logged: React.PropTypes.bool,
+        blocked: React.PropTypes.bool
     },
     getInitialState: function () {
         return {
@@ -117,7 +119,7 @@ var CommentsReady = React.createClass({
     },
     render: function () {
         var commentNodes = this.state.comments.map(function (comment) {
-            return <CommentElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable } responseComments={comment.ResponseComments}></CommentElement>;
+            return <CommentElement logged={this.props.logged} blocked={this.props.blocked} id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable } responseComments={comment.ResponseComments}></CommentElement>;
         }, this);
         return (
             <div className="addedCommentsSection col-xs-12" id="commentSection">
@@ -137,6 +139,8 @@ var CommentElement = React.createClass({
         userId: React.PropTypes.string,
         isEditable: React.PropTypes.bool,
         isDiary: React.PropTypes.bool,
+        logged: React.PropTypes.bool,
+        blocked: React.PropTypes.bool,
         responseComments: React.PropTypes.array
     },
     getInitialState: function () {
@@ -146,7 +150,7 @@ var CommentElement = React.createClass({
     },
     render: function () {
         var responseNodes = this.state.responses.map(function (comment) {
-            return <CommentResponseElement id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable } threadId={this.props.id}></CommentResponseElement>;
+            return <CommentResponseElement logged={this.props.logged} blocked={this.props.blocked} id={comment.Id} body={comment.Body} userName={comment.UserName} userId={comment.UserId} articleId={comment.ArticleId} date={comment.Date} isDiary={comment.IsDiary} isEditable={comment.IsEditable } threadId={this.props.id}></CommentResponseElement>;
         }, this);
         return (
             <div>
@@ -165,14 +169,18 @@ var CommentElement = React.createClass({
                                 <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
                             </div>
                             <div className="commentDetailsRightContainer">
-                                <a className="commentThreadResponseAnchor" data-id={this.props.id} data-name={this.props.userName}>ODPOWIEDZ</a>
-                                {this.props.isEditable == 1 &&
-                                <div>
-                                    <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                    {this.props.responseComments.length == 0 &&
-                                        <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>                                  
-                                    }
-                                </div>
+                                {this.props.logged == 1 && this.props.blocked == 0 &&
+                                    <div>
+                                        <a className="commentThreadResponseAnchor" data-id={this.props.id} data-name={this.props.userName}>ODPOWIEDZ</a>
+                                        {this.props.isEditable == 1 &&
+                                        <div>
+                                            <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                            {this.props.responseComments.length == 0 &&
+                                                <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>                                  
+                                            }
+                                        </div>
+                                        }
+                                    </div>
                                 }
                             </div>
                         </div>
@@ -197,7 +205,9 @@ var CommentResponseElement = React.createClass({
         userId: React.PropTypes.string,
         isEditable: React.PropTypes.bool,
         isDiary: React.PropTypes.bool,
-        threadId: React.PropTypes.string
+        threadId: React.PropTypes.string,
+        logged: React.PropTypes.bool,
+        blocked: React.PropTypes.bool
     },
     render: function () {
         return (
@@ -216,11 +226,15 @@ var CommentResponseElement = React.createClass({
                             <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
                         </div>
                         <div className="commentDetailsRightContainer">
-                            <a className="commentThreadResponseAnchor" data-id={this.props.threadId} data-name={this.props.userName}>ODPOWIEDZ</a>
-                            {this.props.isEditable == 1 &&
+                            {this.props.logged == 1 && this.props.blocked == 0 &&
                                 <div>
-                                    <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                    <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                    <a className="commentThreadResponseAnchor" data-id={this.props.threadId} data-name={this.props.userName}>ODPOWIEDZ</a>
+                                    {this.props.isEditable == 1 &&
+                                        <div>
+                                            <a className="popupCommentEdit" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary} data-body={this.props.body}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                            <a className="popupCommentDelete" data-id={this.props.id} data-art={this.props.articleId} data-diary={this.props.isDiary}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                        </div>
+                                    }
                                 </div>
                             }
                         </div>
