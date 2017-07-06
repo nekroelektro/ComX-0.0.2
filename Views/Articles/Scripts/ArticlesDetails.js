@@ -34,10 +34,7 @@ $(document).ready(function() {
         currentCategory = "Pamiętnik";
     }
 
-    $(".topNavigationItem:contains(" + currentCategory + ")").css({
-        backgroundColor: "#2B823C",
-        color: "white"
-    });
+    $(".topNavigationItem:contains(" + currentCategory + ")").parent().addClass('topNavigationCategoryActive');
 
     // Handling of document deletion
     var deletePopConfig = {
@@ -62,6 +59,13 @@ $(document).ready(function() {
             window.location.href = response.Url;
         });
     });
+
+    var postsBlackConfig = {
+        Container: $(".articlesIndexTable"),
+        Element: $(".articlesIndexSingleImage"),
+        OverlayElement: $('.imageOverlayColorIndex')
+    }
+    NekroController.NekroBlackened(postsBlackConfig);
 
     // For wide article image and moving sidebar under article image
     var bannerPanel = $(".detailsBannerPanel");

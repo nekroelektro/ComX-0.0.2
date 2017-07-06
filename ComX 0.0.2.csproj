@@ -707,7 +707,6 @@
     <Content Include="scripts\NekroParams.js" />
     <Content Include="scripts\NekroSlidingBars.js" />
     <Content Include="scripts\NekroProfileCard.js" />
-    <Content Include="scripts\NekroNavigator.js" />
     <Content Include="scripts\NekroSearch.js" />
     <Content Include="scripts\NekroEnterClick.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\a11yhelp.js" />

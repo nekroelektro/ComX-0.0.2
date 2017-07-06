@@ -9,7 +9,7 @@
 
 .logo {
     position: absolute;
-    width: 15%;
+    width: 18%;
     height: 100%;
 }
 
@@ -21,9 +21,19 @@
     height: 100%;
 }
 
+.topNavigationItemsContainer {
+    text-align: right;
+}
+
+.topNavigationItemsContainer li {
+    width: 14.1%;
+    text-align: center;
+    float: right;
+}
+    
 .cbp-hrmenu {
     float: right;
-    width: 85%;
+    width: 82%;
 }
 
 .cbp-hrsub-inner {
@@ -204,9 +214,18 @@
 
 /* Nav search */
 
-.searchBarNav {
-    position: absolute;
-    z-index: 6;
-    right: 0;
+.topNavigationCategoryActive {
+    background: #000000;
+    background: -moz-linear-gradient(top, #000000 0%, #2b823c 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, #000000), color-stop(100%, #2b823c));
+    background: -webkit-linear-gradient(top, #000000 0%, #2b823c 100%);
+    background: -o-linear-gradient(top, #000000 0%, #2b823c 100%);
+    background: -ms-linear-gradient(top, #000000 0%, #2b823c 100%);
+    background: linear-gradient(to bottom, #000000 0%, #2b823c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#2b823c', GradientType=0 );
+}
+
+.topNavigationCategoryActive a {
+    color: white !important;
 }
 

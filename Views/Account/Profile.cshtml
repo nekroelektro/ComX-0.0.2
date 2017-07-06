@@ -11,5 +11,39 @@
 @Html.React("UserProfile", new { model = Model, IsAdministrator = IsAdmin })
 <p class="subConcious">...the horror...the horror...</p>
 <script src="~/scripts/ckeditor.js" type="text/javascript"></script>
-<script src="~/Views/Account/Scripts/AccountUserPanel.js" type="text/javascript"></script>
+<script>
+    var config = {
+        ReconfirmationLink: 'reconfirmationLink',
+        MessageSuccessModalAnchor: "messageSuccessModalAnchor",
+        MessageSuccessModal1: "messageSuccessModal1",
+        PopupUserDelete: "popupUserDelete",
+        PopupUserBlock: "popupUserBlock",
+        PopupUserDegrade: "popupUserDegrade",
+        ProfileEditDetails: "profileEditDetails",
+        PopupEditProfile: "popupEditProfile",
+        PopupAvatarDelete: "popupAvatarDelete",
+        UserProfileMailAdress: "userProfileMailAdress",
+        UserProfileOwnSection: "userProfileOwnSection",
+        SucMessageAjaxConfirmationCode: "sucMessageAjaxConfirmationCode",
+        AddUserRangeSubmitButton: "addUserRangeSubmitButton",
+        ProfileContainer: "profileContainer",
+        BtnMessageSendConfirmation: "btnMessageSendConfirmation",
+        BtnConfirmDeletion: "btnConfirmDeletion",
+        BtnConfirmDegradation: "btnConfirmDegradation",
+        SendPrivateMessage: "sendPrivateMessage",
+        BtnCancelSendMessage: "btnCancelSendMessage",
+        BtnConfirmEdit: "btnConfirmEdit",
+        BtnConfirmSendMessage: "btnConfirmSendMessage",
+        BtnConfirmDeletionAvatar: "btnConfirmDeletionAvatar",
+        UserProfileAvatarUp: "userProfileAvatarUp",
+        EditErrorMessage: "editErrorMessage",
+        AvUpFormContainer: "avUpFormContainer",
+        ShutNekroPop: "shutNekroPop",
+        PopupSendMessageGet: "popupSendMessageGet",
+        ModalPopupButtons: "modalPopupButtons",
+        SendMessageContainer: "sendMessageContainer",
+        EditPrivateMessageTitle: "editPrivateMessageTitle"
+    };
+    new AccountUserPanel(config);
+</script>
 

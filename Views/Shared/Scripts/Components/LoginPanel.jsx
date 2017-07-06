@@ -54,7 +54,7 @@ var LoginForm = React.createClass({
                                 </div>
                                 <div className="form-group">
                                     <div className="col-md-12">
-                                        <button type="submit" className="btn nekrobutton-green loginConfirmButton">
+                                        <button type="submit" className="btn nekrobutton-green loginConfirmButtonExternal">
                                             <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Zaloguj!
                                         </button>
                                     </div>

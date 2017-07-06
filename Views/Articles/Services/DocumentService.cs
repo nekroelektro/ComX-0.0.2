@@ -387,7 +387,7 @@ namespace ComX_0._0._2.Views.Articles.Services {
         public List<CategoryDto> GetNavigationDetails() {
             var details = new List<CategoryDto>();
 
-            var categories = db.Categories.OrderByDescending(x => x.SortCode).ToList();
+            var categories = db.Categories.OrderBy(x => x.SortCode).ToList();
             foreach (var item in categories) details.Add(GetCategoryModelDto(item));
             var diaryCategory = details.First(x => x.CategoryName == "Pamiętnik");
             foreach (var diary in db.Diary.Where(x => x.IsPublished).OrderByDescending(x => x.DateCreated)) {

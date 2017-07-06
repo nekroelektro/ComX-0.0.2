@@ -40,7 +40,6 @@ namespace ComX_0._0._2 {
             bundles.Add(new ScriptBundle("~/scripts/customScripts").Include(
                 "~/Scripts/NekroSearch.js",
                 "~/Scripts/NekroSub.js",
-                "~/Scripts/NekroNavigator.js",
                 "~/Scripts/NekroSlidingBars.js",
                 "~/Scripts/NekroProfileCard.js",
                 "~/Scripts/NekroEnterClick.js",
@@ -56,7 +55,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js",
                 "~/Views/Configuration/Scripts/ConfigurationRoles.js",
                 "~/Views/Configuration/Scripts/ConfigurationArticles.js",
-                "~/Views/Configuration/Scripts/ConfigurationUsers.js"
+                "~/Views/Configuration/Scripts/ConfigurationUsers.js",
+                "~/Views/Account/Scripts/AccountUserPanel.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/coreScripts").Include(

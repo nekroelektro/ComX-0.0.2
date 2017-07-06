@@ -36,8 +36,6 @@ SharedSideBar.Init = function () {
     };
     NekroController.NekroEnterClick(enterRegisterconfig);
 
-    NekroController.NekroNavigator();
-
     var slideLoginConfig = {
         ElementClicked: $("." + SharedSideBar.Control.SideLoginAnchor),
         ElementToShow: $("." + SharedSideBar.Control.SideLoginBody)
@@ -59,6 +57,11 @@ SharedSideBar.Init = function () {
     SharedSideBar.AttachLinks();
 
     SharedSideBar.InitializeSideMenu();
+
+    $(window).on('load',
+        function() {
+            NekroController.NekroNavigator();
+        });
 };
 
 SharedSideBar.AttachLinks = function() {

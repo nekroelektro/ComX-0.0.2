@@ -3,7 +3,6 @@
 NekroController.NekroNavigator = function(config) {
     var htmlString = "";
     var navigationElements = $("div[data-isnavpanel=true]");
-
     if (navigationElements.length > 0) {
         var navigationArray = [];
         $.each(navigationElements,
@@ -57,10 +56,11 @@ NekroController.NekroNavigator = function(config) {
 
                 htmlString = htmlString + itemString;
             });
-        htmlString = "<nav class='navbar'><ul class='nav nav-pills nav-stacked'>" + htmlString + "</ul></nav>";
+        htmlString = "<nav class='navbar'><ul class='nav nav-pills nav-stacked sideNavigator'>" + htmlString + "</ul></nav>";
         $(".mainNavigatorContainerAllItems").hide().append(htmlString).fadeIn("fast");
 
         //Select first element on start
+        $('.sideNavigator li:first-child').addClass('active');
         $('.navigatorMenuItemName:contains("Start")').parent().addClass("activeNavigatorItem");
 
         // click on navigator item

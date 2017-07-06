@@ -152,7 +152,7 @@ var CommentElement = React.createClass({
             <div>
                 <div className="singleCommentSection col-xs-11 col-xs-offset-1">
                     <div className="col-xs-2 commentFooter">
-                        <img src={"/Account/GetAvatar?userId =" + this.props.userId} />
+                        <img src={"/Account/GetAvatar?userId=" + this.props.userId} />
                     </div>
                     <div className="col-md-9 col-xs-12 commentBody">
                         <div className="readyCommentDetails">
@@ -203,7 +203,7 @@ var CommentResponseElement = React.createClass({
         return (
             <div className="col-xs-10 col-xs-offset-2">
                 <div className="col-xs-2 commentFooter">
-                    <img src={"/Account/GetAvatar?userId =" + this.props.userId} />
+                    <img src={"/Account/GetAvatar?userId=" + this.props.userId} />
                 </div>
                 <div className="col-md-9 col-xs-12 commentBody">
                     <div className="readyCommentDetails">
