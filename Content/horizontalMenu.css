@@ -34,7 +34,7 @@
 	display: inline-block;
     text-decoration: none;
     outline: 0;
-    text-transform: uppercase !important;
+    /*text-transform: uppercase !important;*/
     font-size: large;
     padding-top: 0.8em !important;
 }

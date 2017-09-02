@@ -16,6 +16,8 @@
 - katalogowy widok postów do oddzielnego komponentu reacta
 - searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
 - Dopicować widoki zapomnianego hasła itd
+- hr na detailsach z ładnym zielonym cieniem
+- "wygaszanie" na czarno obrazków nagłówkowych stron
 KONFIGURACJA:
 	[DONE] najpierw dopicować widoki (włącznie z górnym paskiem)
 	- przenieść widoki do REACTA

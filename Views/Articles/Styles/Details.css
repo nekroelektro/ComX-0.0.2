@@ -8,6 +8,17 @@
     max-width: 100% !important;
 }
 
+    .detailContainer hr {
+        border: none;
+        height: 20px;
+        width: 97%;
+        height: 3em;
+        margin-top: 0;
+        border-bottom: 1px solid #2B823C;
+        box-shadow: 0 20px 20px -20px #2B823C;
+        margin: -50px auto 2em;
+    }
+
 .articleDetail {
     width: 100%;
     float: left;

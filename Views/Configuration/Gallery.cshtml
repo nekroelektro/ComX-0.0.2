@@ -7,25 +7,27 @@
     ArticleHelper articleHelper = new ArticleHelper();
     UserHelper userHelper = new UserHelper();
 }
-@using (Html.BeginForm("Gallery", "Configuration", FormMethod.Post,
-    new {enctype = "multipart/form-data"})) {
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        <div class="form-group">
-            @Html.Label("Upload image", new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                <input type="file" id="imgUp" name="image"/>
-            </div>
-            @*@Html.ValidationMessage("ImageUpload", new {@style = "color: red"})*@
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Upload" class="btn btn-default"/>
-            </div>
-        </div>
-    </div>
+@if (userHelper.IsAdminUser(User)) {
+    using (Html.BeginForm("Gallery", "Configuration", FormMethod.Post,
+     new {enctype = "multipart/form-data"})) {
+     @Html.AntiForgeryToken()
+     <div class="form-horizontal">
+         <hr/>
+         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+         <div class="form-group">
+             @Html.Label("Upload image", new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 <input type="file" id="imgUp" name="image"/>
+             </div>
+             @*@Html.ValidationMessage("ImageUpload", new {@style = "color: red"})*@
+         </div>
+         <div class="form-group">
+             <div class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Upload" class="btn btn-default"/>
+             </div>
+         </div>
+     </div>
+ }
 }
 @if (userHelper.IsSuperAdminUser(User)) {
     <button type="button" class="btn btn-danger btn-sm btnConfirmDeletion">
