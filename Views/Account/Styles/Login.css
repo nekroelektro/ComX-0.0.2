@@ -16,3 +16,8 @@
     margin: 0 auto; 
     text-align: center;
 }
+
+.loginErrorMessageExternal {
+    color: red;
+    font-size: 0.8em;
+}

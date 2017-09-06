@@ -8,4 +8,17 @@
 @Html.React("LoginPanel", new {})
 
 @*SCRIPTS FOR VIEW*@
-<script type="text/javascript" src="~/Views/Account/Scripts/AccountLogin.js"></script>
+<script>
+    var config = {
+        LoggingForm: "loggingFormExternal",
+        LoginNameInput: "userNameInputExternal",
+        LoginPasswordInput: "passInputExternal",
+        LoginRememberCheck: "rememberCheckboxExternal",
+        LoginConfirmButton: "loginConfirmButtonExternal",
+        LoginErrorMessageContainer: "loginErrorMessageContainerExternal",
+        LoginError: "loginErrorMessageExternal",
+        ReturnUrl: '@ViewBag.ReturnUrl'
+    };
+    new AccountLogin(config);
+</script>
+@*<script type="text/javascript" src="~/Views/Account/Scripts/AccountLogin.js"></script>*@

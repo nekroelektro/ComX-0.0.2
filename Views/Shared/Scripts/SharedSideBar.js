@@ -133,9 +133,9 @@ SharedSideBar.InitializeSideMenu = function() {
 };
 
 SharedSideBar.ConfirmLogin = function() {
-    var login = $("[name=userNameInput]").val().trim();
-    var password = $("[name=passInput]").val().trim();
-    var remember = $("[name=rememberCheckbox]").is(":checked") ? true : false;
+    var login = $("[name=" + SharedSideBar.Control.LoginNameInput + "]").val().trim();
+    var password = $("[name=" + SharedSideBar.Control.LoginPasswordInput + "]").val().trim();
+    var remember = $("[name=" + SharedSideBar.Control.LoginRememberCheck + "]").is(":checked") ? true : false;
     if (login.length < 3 || password.length < 3) {
         SharedSideBar.LoginValidation(false);
         return;
@@ -143,15 +143,19 @@ SharedSideBar.ConfirmLogin = function() {
     var loginAjaxConfig = {
         Url: "/Account/Login",
         Method: "POST",
-        Params: { 'userName': login, 'password': password, 'rememberMe': remember, '__RequestVerificationToken': SharedSideBar.Token},
+        Params: { 'userName': login, 'password': password, 'rememberMe': remember, 'returnUrl': window.location.search.substring(1), '__RequestVerificationToken': SharedSideBar.Token},
         SuccessHandler: SharedSideBar.SuccessLoginHandler
     };
     NekroController.NekroAjaxAction(loginAjaxConfig);
 };
 
-SharedSideBar.SuccessLoginHandler = function(result) {
-    if (result) {
-        location.reload(true);
+SharedSideBar.SuccessLoginHandler = function (result) {
+    if (result.Success == true) {
+        if (SharedSideBar.Control.ReturnUrl != "") {
+            window.location.href = SharedSideBar.Control.ReturnUrl;
+        } else {
+            location.reload(true);
+        }
     } else {
         SharedSideBar.LoginValidation(true);
         return;
@@ -176,10 +180,10 @@ SharedSideBar.LoginValidation = function (responseError) {
 
 SharedSideBar.ConfirmRegistration = function() {
     var errorText = "";
-    var login = $("[name=userNameRegInput]").val().trim();
-    var mail = $("[name=mailRegInput]").val().trim();
-    var password = $("[name=passwordRegInput]").val().trim();
-    var confirmPassword = $("[name=confirmPasswordRegInput]").val().trim();
+    var login = $("[name=" + SharedSideBar.Control.RegisterNameInput + "]").val().trim();
+    var mail = $("[name=" + SharedSideBar.Control.RegisterMailInput + "]").val().trim();
+    var password = $("[name=" + SharedSideBar.Control.RegisterPassInput + "]").val().trim();
+    var confirmPassword = $("[name=" + SharedSideBar.Control.RegisterConfirmPassInput + "]").val().trim();
 
     //input error handling for registration
     if (login.length == 0 || mail.length == 0 || password.length == 0 || confirmPassword == 0) {

@@ -11,50 +11,46 @@
 }
 @Html.AntiForgeryToken()
 @Html.React("SideBarReact", new {admin = isAdmin, authenticated = isAuthenticated, model = Model, isConfig = isConfigurationView})
-<div id="fb-root"></div>
-    <script>
-        $(document).ready(function () {
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8&appId=1780363828875340";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        });
-
-        var config = {
-            SideBarSearchComponent: "sideBarSearchComponent",
-            SideSearchAnchor: "sideSearchAnchor",
-            LoggingForm: "loggingForm",
-            LoginConfirmButton: "loginConfirmButton",
-            RegistrationForm: "registrationForm",
-            RegisterConfirmButton: "registerConfirmButton",
-            SideLoginAnchor: "sideLoginAnchor",
-            SideLoginBody: "sideLoginBody",
-            SideRegisterAnchor: "sideRegisterAnchor",
-            SideRegisterBody: "sideRegisterBody",
-            SideProfileAnchor: "sideProfileAnchor",
-            SideProfileBody: "sideProfileBody",
-            LoginError: "loginErrorMessage",
-            RegisterError: "registerErrorMessage",
-            RegisterErrorMessageContainer: "registerErrorMessageContainer",
-            LoginErrorMessageContainer: "loginErrorMessageContainer",
-            SideLogoutAnchor: "sideLogoutAnchor",
-            SideTitle: "sideTitle",
-            SideBarMenuSection: "sideBarMenuSection",
-            SideBody: "sideBody",
-            SideConfigurationAnchor: "sideConfigurationAnchor",
-            SideShowProfileAnchor: "sideShowProfileAnchor",
-            SideMessagesAnchor: "sideMessagesAnchor",
-            SideConfigSection: "sideConfigSection",
-            SideConfigurationArticlesAnchor: "sideConfigurationArticlesAnchor",
-            SideConfigurationUsersAnchor: "sideConfigurationUsersAnchor",
-            SideConfigurationCategoriesAnchor: "sideConfigurationCategoriesAnchor",
-            SideConfigurationRolesAnchor: "sideConfigurationRolesAnchor",
-            SideConfigurationGalleryAnchor: "sideConfigurationGalleryAnchor",
-            SideConfigurationSiteSettingsAnchor: "sideConfigurationSiteSettingsAnchor"
-        };
-        new SharedSideBar(config);
-    </script>
+<script>
+    var config = {
+        SideBarSearchComponent: "sideBarSearchComponent",
+        SideSearchAnchor: "sideSearchAnchor",
+        LoggingForm: "loggingForm",
+        LoginNameInput: "userNameInput",
+        LoginPasswordInput: "passInput",
+        LoginRememberCheck: "rememberCheckbox",
+        LoginConfirmButton: "loginConfirmButton",
+        RegistrationForm: "registrationForm",
+        RegisterNameInput: "userNameRegInput",
+        RegisterMailInput: "mailRegInput",
+        RegisterPassInput: "passwordRegInput",
+        RegisterConfirmPassInput: "confirmPasswordRegInput",
+        RegisterConfirmButton: "registerConfirmButton",
+        SideLoginAnchor: "sideLoginAnchor",
+        SideLoginBody: "sideLoginBody",
+        SideRegisterAnchor: "sideRegisterAnchor",
+        SideRegisterBody: "sideRegisterBody",
+        SideProfileAnchor: "sideProfileAnchor",
+        SideProfileBody: "sideProfileBody",
+        LoginError: "loginErrorMessage",
+        RegisterError: "registerErrorMessage",
+        RegisterErrorMessageContainer: "registerErrorMessageContainer",
+        LoginErrorMessageContainer: "loginErrorMessageContainer",
+        SideLogoutAnchor: "sideLogoutAnchor",
+        SideTitle: "sideTitle",
+        SideBarMenuSection: "sideBarMenuSection",
+        SideBody: "sideBody",
+        SideConfigurationAnchor: "sideConfigurationAnchor",
+        SideShowProfileAnchor: "sideShowProfileAnchor",
+        SideMessagesAnchor: "sideMessagesAnchor",
+        SideConfigSection: "sideConfigSection",
+        SideConfigurationArticlesAnchor: "sideConfigurationArticlesAnchor",
+        SideConfigurationUsersAnchor: "sideConfigurationUsersAnchor",
+        SideConfigurationCategoriesAnchor: "sideConfigurationCategoriesAnchor",
+        SideConfigurationRolesAnchor: "sideConfigurationRolesAnchor",
+        SideConfigurationGalleryAnchor: "sideConfigurationGalleryAnchor",
+        SideConfigurationSiteSettingsAnchor: "sideConfigurationSiteSettingsAnchor",
+        ReturnUrl: '@ViewBag.ReturnUrl'
+    };
+    new SharedSideBar(config);
+</script>

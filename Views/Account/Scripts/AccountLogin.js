@@ -1,40 +1,64 @@
-﻿jQuery(document).ready(function ($) {
-    var token = $('[name=__RequestVerificationToken]').val();
-    $('.loginConfirmButton').click(function () {
-        var login = $('[name=userNameInput]').val().trim();
-        var password = $('[name=passInput]').val().trim();
-        var remember = $('[name=rememberCheckbox]').is(':checked') ? true : false;
-        if (login.length < 3 || password.length < 3) {
-            handleLoginError(false);
-            return;
-        }
-        $.ajax({
-            url: "/Account/Login",
-            method: "POST",
-            data: { 'userName': login, 'password': password, 'rememberMe': remember, '__RequestVerificationToken': token },
-            success: function (isOk) {
-                if (isOk) {
-                    $('.popupClose').click();
-                    location.reload(true);
-                } else {
-                    handleLoginError(true);
-                    return;
-                }
-            }
-        });
+﻿function AccountLogin(config) {
+    AccountLogin.Control = config;
+    AccountLogin.Init();
+
+    AccountLogin.Token = $('[name=__RequestVerificationToken]').val();
+};
+
+AccountLogin.Init = function () {
+    $("." + AccountLogin.Control.LoginConfirmButton).click(function () {
+        AccountLogin.ConfirmLogin();
     });
 
-    function handleLoginError(responseError) {
-        var messageString;
-        if (responseError) {
-            messageString = "<div class='loginErrorMessage'>Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!</div>";
-        } else {
-            messageString = "<div class='loginErrorMessage'>Musisz uzupełnić oba pola. I to na dodatek poprawnie.</div>";
-        }       
-        
-        if ($('.loginErrorMessage').length > 0) {
-            $('.loginErrorMessage').detach();
-        }
-        $('.loginErrorMessageContainer').hide().append(messageString).fadeIn("fast");
+    var enterLoginExternalconfig = {
+        Scope: "." + AccountLogin.Control.LoggingForm,
+        ElementToClick: "." + AccountLogin.Control.LoginConfirmButton
+    };
+    NekroController.NekroEnterClick(enterLoginExternalconfig);
+};
+
+AccountLogin.ConfirmLogin = function() {
+    var login = $("[name=" + AccountLogin.Control.LoginNameInput + "]").val().trim();
+    var password = $("[name=" + AccountLogin.Control.LoginPasswordInput + "]").val().trim();
+    var remember = $("[name=" + AccountLogin.Control.LoginRememberCheck + "]").is(":checked") ? true : false;
+    if (login.length < 3 || password.length < 3) {
+        AccountLogin.LoginValidation(false);
+        return;
     }
-});
+    var loginAjaxConfig = {
+        Url: "/Account/Login",
+        Method: "POST",
+        Params: { 'userName': login, 'password': password, 'rememberMe': remember, 'returnUrl': window.location.search.substring(1), '__RequestVerificationToken': AccountLogin.Token },
+        SuccessHandler: AccountLogin.SuccessLoginHandler
+    };
+    NekroController.NekroAjaxAction(loginAjaxConfig);
+};
+
+AccountLogin.SuccessLoginHandler = function (result) {
+    if (result.Success == true) {
+        if (AccountLogin.Control.ReturnUrl != "") {
+            window.location.href = AccountLogin.Control.ReturnUrl;
+        } else {
+            location.reload(true);
+        }
+    } else {
+        AccountLogin.LoginValidation(true);
+        return;
+    }
+};
+
+AccountLogin.LoginValidation = function (responseError) {
+    var messageString;
+    if (responseError) {
+        messageString =
+            "<div class='loginErrorMessageExternal'>Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!</div>";
+    } else {
+        messageString =
+            "<div class='loginErrorMessageExternal'>Musisz uzupełnić oba pola. I to na dodatek poprawnie.</div>";
+    }
+
+    if ($("." + AccountLogin.Control.LoginError).length > 0) {
+        $("." + AccountLogin.Control.LoginError).detach();
+    }
+    $("." + AccountLogin.Control.LoginErrorMessageContainer).hide().append(messageString).fadeIn("fast");
+};

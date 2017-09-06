@@ -102,9 +102,9 @@ namespace ComX_0._0._2.Views.Account.Controller {
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl) {
-            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null)
+            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null) {
                 returnUrl = generalHelper.GetPreviousPageUrl();
-
+            }
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
@@ -115,29 +115,29 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(string userName, string password, bool rememberMe) {
+        public async Task<ActionResult> Login(string userName, string password, bool rememberMe, string returnUrl) {
             var model = new LoginViewModel();
             model.UserName = userName;
             model.Password = password;
             model.RememberMe = rememberMe;
 
             if (!ModelState.IsValid) return View(model);
-
+            //return Json(new { Success = true, Url = returnUrl });
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result =
                 await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
             switch (result) {
                 case SignInStatus.Success:
-                    return Json(true);
+                    return Json(new { Success = true });
                 case SignInStatus.LockedOut:
-                    return Json(false);
+                    return Json(new { Success = false });
                 case SignInStatus.RequiresVerification:
-                    return Json(false);
+                    return Json(new { Success = false });
                 case SignInStatus.Failure:
-                    return Json(false);
+                    return Json(new { Success = false });
                 default:
-                    return Json(false);
+                    return Json(new { Success = false });
             }
         }
 

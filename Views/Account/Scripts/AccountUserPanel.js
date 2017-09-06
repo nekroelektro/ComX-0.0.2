@@ -237,8 +237,7 @@ AccountUserPanel.OpenProfilePrivateMessage = function () {
     $('#' + AccountUserPanel.Control.EditPrivateMessageTitle).focus();
 };
 
-AccountUserPanel.CancelSendMessage = function (e) {
-    e.preventDefault();
+AccountUserPanel.CancelSendMessage = function () {
     var editorInstanceEdit = CKEDITOR.instances['editPrivateMessageContainer'];
     if (editorInstanceEdit) {
         try {

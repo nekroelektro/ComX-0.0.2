@@ -298,15 +298,6 @@ var SideContact = React.createClass({
                     <div className="sideContactTitle">
                         nekro@nekroplaza.pl
                     </div>
-                    <div className="sideSocial">
-                        <div className="fb-page"
-                             data-href="https://www.facebook.com/nekroplaza"
-                             data-width="245"
-                             data-hide-cover="true"
-                             data-show-facepile="true"
-                             data-show-posts="true">
-                        </div>
-                    </div>
                     <div className="recrutation">
                         <a href='/NekroPlaza+rekrutuje!'>
                             <img src='/Content/images/rekrutacja.png' />
