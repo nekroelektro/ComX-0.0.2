@@ -217,7 +217,7 @@ SharedSideBar.ConfirmRegistration = function() {
 
 SharedSideBar.SuccessRegisterHandler = function (result) {
     if (result.Success) {
-        location.reload(true);
+        window.location.href = "/Account/UserPanel";
     } else {
         SharedSideBar.RegisterValidation(result.Message);
         return;

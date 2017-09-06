@@ -6,3 +6,8 @@
 .registerTopLabel {
     color: #2B823C;
 }
+
+.registerErrorMessageExternal {
+    color: red;
+    font-size: 0.8em;
+}

@@ -57,7 +57,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Configuration/Scripts/ConfigurationArticles.js",
                 "~/Views/Configuration/Scripts/ConfigurationUsers.js",
                 "~/Views/Account/Scripts/AccountUserPanel.js",
-                "~/Views/Account/Scripts/AccountLogin.js"
+                "~/Views/Account/Scripts/AccountLogin.js",
+                "~/Views/Account/Scripts/AccountRegister.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/coreScripts").Include(

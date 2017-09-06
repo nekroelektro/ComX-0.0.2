@@ -8,4 +8,16 @@
 @Html.React("RegisterPanel", new {})
 
 @*SCRIPTS FOR VIEW*@
-<script type="text/javascript" src="~/Views/Account/Scripts/AccountRegister.js"></script>
+<script>
+    var config = {
+        RegistrationForm: "registrationFormExternal",
+        RegisterNameInput: "userNameRegInputExternal",
+        RegisterMailInput: "mailRegInputExternal",
+        RegisterPassInput: "passwordRegInputExternal",
+        RegisterConfirmPassInput: "confirmPasswordRegInputExternal",
+        RegisterConfirmButton: "registerConfirmButtonExternal",
+        RegisterError: "registerErrorMessageExternal",
+        RegisterErrorMessageContainer: "registerErrorMessageContainerExternal",
+    };
+    new AccountRegister(config);
+</script>
