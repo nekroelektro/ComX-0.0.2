@@ -51,7 +51,7 @@ namespace ComX_0._0._2 {
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication("1780363828875340", "f8257a6183b1f5b99a23302dece07449");
+            //app.UseFacebookAuthentication("1780363828875340", "f8257a6183b1f5b99a23302dece07449");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

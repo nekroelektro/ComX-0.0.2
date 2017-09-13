@@ -946,7 +946,6 @@
     <Content Include="Views\Account\Styles\Register.css" />
     <Content Include="Views\Account\Styles\Login.css" />
     <Content Include="Views\Articles\Scripts\ArticleDiary.js" />
-    <Content Include="Views\Articles\Scripts\Articles.js" />
     <Content Include="Views\Articles\Scripts\ArticlesCategories.js" />
     <Content Include="Views\Articles\Scripts\ArticlesComments.js" />
     <Content Include="Views\Articles\Scripts\ArticlesDetails.js" />
@@ -958,7 +957,6 @@
     <Content Include="Views\Articles\Styles\_TopDetailPanel.css" />
     <Content Include="Views\Articles\Styles\_Comments.css" />
     <Content Include="Views\Articles\Styles\_LastFromCategory.css" />
-    <Content Include="Views\Articles\Styles\_Articles.css" />
     <Content Include="Views\Articles\Styles\Index.css" />
     <Content Include="Views\Configuration\Scripts\ConfigurationCategories.js" />
     <Content Include="Views\Configuration\Scripts\ConfigurationArticles.js" />

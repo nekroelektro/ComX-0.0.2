@@ -5,9 +5,9 @@
 };
 
 SharedLayout.Init = function () {
-    $(window).on('load', function () {
-        $("#" + SharedLayout.Control.LoadingOverlay).fadeOut(1000);
-    });
+    //$(window).on('load', function () {
+    //    $("#" + SharedLayout.Control.LoadingOverlay).fadeOut(1000);
+    //});
 
     $("#" + SharedLayout.Control.ScrollTopArrow).css({
         'right': $("#" + SharedLayout.Control.NekroPanel).width() + 10,

@@ -168,9 +168,9 @@ var CommentElement = React.createClass({
                                 </div>
                                 <span className="glyphicon glyphicon-time" aria-hidden="true"></span> {this.props.date}
                             </div>
-                            <div className="commentDetailsRightContainer">
+                            <div>
                                 {this.props.logged == 1 && this.props.blocked == 0 &&
-                                    <div>
+                                    <div className="commentDetailsRightContainer">
                                         <a className="commentThreadResponseAnchor" data-id={this.props.id} data-name={this.props.userName}>ODPOWIEDZ</a>
                                         {this.props.isEditable == 1 &&
                                         <div>

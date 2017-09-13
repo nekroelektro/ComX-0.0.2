@@ -5,8 +5,8 @@
 
 SharedIndexSlider.Init = function () {
     SharedIndexSlider.IndexSliderInitialization();
-    $(window).on('load',
-        function() {
+    //$(window).on('load',
+        //function() {
             setTimeout(function() {
                     var heightSlidersConfig = {
                         Element: $("." + SharedIndexSlider.Control.IndexSliders)
@@ -19,7 +19,7 @@ SharedIndexSlider.Init = function () {
                     NekroController.NekroDynamicSize(heightUpperElementsConfig);
                 },
                 500);
-        });
+        //});
 };
 
 SharedIndexSlider.IndexSliderInitialization = function () {

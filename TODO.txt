@@ -1,12 +1,8 @@
 ﻿THINGS TO DO:
 
-[DONE] ZMIANA LAYOUT NA ONE PAGE APP
-	[DONE] po prawej pasek ze wszystkim - nawigacją, ikonami z toplogopanelu, sidebar i MOŻE topnavigationmenu
-	[DONE] kolumnowanie bootstrapem na bodycontent i sidebar
-	[DONE] znaczące odchudzenie toplogopanel, wydłużenie na całą stronę
+- wyjebać widget facebookowy, zastąpić to normalnym linkiem albo obrazkiem
 - prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 - przerobić IndexSlider w całości na własny - no i do Reacta
-- na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
 - ogarnąć wygląd i podział na katalogi w galerii
 - HTML5 pushState do one-page application
 	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
@@ -14,19 +10,19 @@
 - kategorie do random postów
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
-- searchbar na slicku przenieść na pasek, przyciemnić menu jak jest otwierany
 - Dopicować widoki zapomnianego hasła itd
-- hr na detailsach z ładnym zielonym cieniem
 - "wygaszanie" na czarno obrazków nagłówkowych stron
+- LAZY LOADING obrazków w jQuery + AJAX
 KONFIGURACJA:
 	[DONE] najpierw dopicować widoki (włącznie z górnym paskiem)
 	- przenieść widoki do REACTA
 	[DONE] jako danych używać tych wziętych z własnego service
 - trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
-- dodać "strony zaprzyjaźnione"? JAK JAKIEŚ BEDO
 - informacje o cookies?
 - LOGOWANIE PRZEZ FACEBOOKA
+
 - FORUM
+- PEDIA
 
 [DONE] zrobić PUBLISH a nie wrzucać cały kod źródłowy
 [DONE] naprawić widoki z zielonym tłem - koniecznie
@@ -74,3 +70,9 @@ PRYWATNE WIADOMOŚCI:
 [DONE] w detalach rozwiązać sprawę latajacego wszędzie paska z buttonami dla admina
 [DONE] zamienić widoki loginu i rejestracji na REACT - poczytać jak to rozwiązać od strony security
 [DONE] siakieś latające logo albo co jak strona się ładuje - No w każdym razie nie pokazywać, jak strona się ładuje
+[DONE] hr na detailsach z ładnym zielonym cieniem
+[DONE] na indeksie - hover na którymkolwiek to reszta przyciemniona (a może jeno same obrazki? Cos jak na filmwebie)
+[DONE] ZMIANA LAYOUT NA ONE PAGE APP
+	[DONE] po prawej pasek ze wszystkim - nawigacją, ikonami z toplogopanelu, sidebar i MOŻE topnavigationmenu
+	[DONE] kolumnowanie bootstrapem na bodycontent i sidebar
+	[DONE] znaczące odchudzenie toplogopanel, wydłużenie na całą stronę
