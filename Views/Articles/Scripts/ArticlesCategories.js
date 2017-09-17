@@ -1,13 +1,26 @@
-﻿$(document).ready(function () {
+﻿function ArticlesCategories(config) {
+    ArticlesCategories.Control = config;
+    ArticlesCategories.Init();
+};
+
+ArticlesCategories.Init = function () {
     NekroSub(false);
-    $('.navigationBackButton').click(function () {
-        $.ajax({
-            url: "/Articles/Index/",
-            method: 'GET',
-            success: function (data) {
-                $('.mainBodyContainer').html(data);
-                $("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
-            }
-        });
+
+    $("." + ArticlesCategories.Control.NavigationBackButton).click(function () {
+        ArticlesCategories.BackFromCategory();
     });
-});
+};
+
+ArticlesCategories.BackFromCategory = function() {
+    var categoryBackAjaxConfig = {
+        Url: "/Articles/Index/",
+        Method: "GET",
+        SuccessHandler: ArticlesCategories.SuccessBackHandler
+    };
+    NekroController.NekroAjaxAction(categoryBackAjaxConfig);
+};
+
+ArticlesCategories.SuccessBackHandler = function(result) {
+    $("." + ArticlesCategories.Control.MainContainer).html(result);
+    $("html, body").animate({ scrollTop: $("." + ArticlesCategories.Control.MainContainer).offset().top - 60 }, 'slow');
+}

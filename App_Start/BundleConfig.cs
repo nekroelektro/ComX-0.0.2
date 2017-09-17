@@ -51,6 +51,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Articles/Scripts/ArticlesDetails.js",
                 "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js",
+                "~/Views/Articles/Scripts/ArticlesCategories.js",
+                "~/Views/Articles/Scripts/ArticlesComments.js",
                 "~/Views/Configuration/Scripts/ConfigurationRoles.js",
                 "~/Views/Configuration/Scripts/ConfigurationArticles.js",
                 "~/Views/Configuration/Scripts/ConfigurationUsers.js",

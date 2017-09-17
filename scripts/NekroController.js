@@ -363,7 +363,6 @@ NekroController.NekroLazy = function (config) {
 
     function getLazyList() {
         lazyElements = config.Container.find('.nekroLazy');
-        console.log(lazyElements); 
     }
 
     function loadLazyList() {
@@ -375,7 +374,6 @@ NekroController.NekroLazy = function (config) {
                             if (img.getAttribute('data-src')) {
                                 img.src = img.getAttribute('data-src');
                                 img.removeAttribute('data-src');
-                                console.log("pokazuje!");
                             }
                         }
                     }

@@ -274,7 +274,7 @@ var SidePanelMenu = React.createClass({
                     <h4>Menu boczne:</h4>
                 </div>
                 <SideContact></SideContact>
-                <SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>
+                {/*<SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>*/}
                 <SideLastComments comments={this.state.model.Comments}></SideLastComments>
                 <SideRandomPosts posts={this.state.model.RandomPosts}></SideRandomPosts>
             </div>

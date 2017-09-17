@@ -5,9 +5,9 @@
 };
 
 SharedLayout.Init = function () {
-    $(window).on('load', function () {
-        $("#" + SharedLayout.Control.LoadingOverlay).fadeOut(1000);
-    });
+    //$(window).on('load', function () {
+    //    $("#" + SharedLayout.Control.LoadingOverlay).fadeOut(1000);
+    //});
 
     var lazyConfig = {
         Container: $('.bodyContent')
