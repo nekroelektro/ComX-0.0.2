@@ -39,7 +39,7 @@
     @foreach (var item in Model) {
         <div class="col-xs-3 singleGalleryImage" style="height: 18em;">
             <a class="fancybox" rel="gallery1" href='@Url.Content(articleHelper.GetGalleryImageRelativePathByName(item.Name))'>
-                <img src='@Url.Content(articleHelper.GetGalleryImageRelativePathByName(item.Name))' style="max-height: 100%; max-width: 100%; text-align: center; margin: 0 auto;"/>
+                <img class="nekroLazy" src="/Content/images/ring.gif" data-src='@Url.Content(articleHelper.GetGalleryImageRelativePathByName(item.Name))' style="max-height: 100%; max-width: 100%; text-align: center; margin: 0 auto;"/>
             </a>
 @if (userHelper.IsSuperAdminUser(User)) {
     <input type="checkbox" class="galleryCheck" id="@item.Id" aria-label="Usuń">

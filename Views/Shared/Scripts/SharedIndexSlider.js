@@ -5,21 +5,18 @@
 
 SharedIndexSlider.Init = function () {
     SharedIndexSlider.IndexSliderInitialization();
-    //$(window).on('load',
-        //function() {
-            setTimeout(function() {
-                    var heightSlidersConfig = {
-                        Element: $("." + SharedIndexSlider.Control.IndexSliders)
-                    }
-                    NekroController.NekroDynamicSize(heightSlidersConfig);
+        setTimeout(function() {
+                var heightSlidersConfig = {
+                    Element: $("." + SharedIndexSlider.Control.IndexSliders)
+                }
+                NekroController.NekroDynamicSize(heightSlidersConfig);
 
-                    var heightUpperElementsConfig = {
-                        Element: $("." + SharedIndexSlider.Control.SlideElementUpper)
-                    }
-                    NekroController.NekroDynamicSize(heightUpperElementsConfig);
-                },
-                500);
-        //});
+                var heightUpperElementsConfig = {
+                    Element: $("." + SharedIndexSlider.Control.SlideElementUpper)
+                }
+                NekroController.NekroDynamicSize(heightUpperElementsConfig);
+            },
+            500);
 };
 
 SharedIndexSlider.IndexSliderInitialization = function () {

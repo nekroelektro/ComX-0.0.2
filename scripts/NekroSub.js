@@ -28,6 +28,7 @@
                     }
                 });
                 makeSubActive(currentlyActiveSubInCategories);
+                $('#nekroPanel').click();
             });
     } else {
         $(".categorySubElement").on("click",

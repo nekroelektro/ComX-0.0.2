@@ -352,3 +352,59 @@ NekroController.NekroAjaxAction = function(config) {
         }
     });
 };
+
+NekroController.NekroLazy = function (config) {
+    var lazyElements = [];
+    registerListener('load', getLazyList);
+    registerListener('load', loadLazyList);
+    registerListener('scroll', loadLazyList);
+    registerListener('resize', loadLazyList);
+    registerListener('click', loadLazyList);
+
+    function getLazyList() {
+        lazyElements = config.Container.find('.nekroLazy');
+        console.log(lazyElements); 
+    }
+
+    function loadLazyList() {
+        if (lazyElements.length > 0) {
+            setTimeout(function() {
+                    for (var i = 0; i < lazyElements.length; i++) {
+                        var img = lazyElements[i];
+                        if (img.offsetParent != null && isVisibleOnScreen(img)) {
+                            if (img.getAttribute('data-src')) {
+                                img.src = img.getAttribute('data-src');
+                                img.removeAttribute('data-src');
+                                console.log("pokazuje!");
+                            }
+                        }
+                    }
+                    cleanLazyList();
+                },
+                500);
+        }
+    }
+
+    function cleanLazyList() {
+        lazyElements = Array.prototype.filter.call(lazyElements, function (l) { return l.getAttribute('data-src'); });
+    }
+
+    function isVisibleOnScreen(item) {
+        var rect = item.getBoundingClientRect();
+
+        return (
+            rect.bottom >= 0 &&
+                rect.right >= 0 &&
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function registerListener(event, func) {
+        if (window.addEventListener) {
+            window.addEventListener(event, func);
+        } else {
+            window.attachEvent('on' + event, func);
+        }
+    }
+};

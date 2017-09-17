@@ -105,4 +105,9 @@ $(document).ready(function() {
             $(".topDetailPanel").css("margin-top", $(".topMainElementsContainer").height());
         }
     }
+
+    var lazyConfig = {
+        Container: $('.bodyContent')
+    };
+    NekroController.NekroLazy(lazyConfig);
 });

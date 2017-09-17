@@ -86,20 +86,20 @@ var SearchElement = React.createClass({
             <div className="indexSingleArticleContainer col-md-6 col-sm-12" id="singleCategoryViewItem" data-sub={this.props.subcategory}>
                 <a className="singleIndexAnchor" href={"/" + this.props.code}>
                     <div className="articlesIndexSingleImage sliderRightPanelElement">
-                    <div className="bannerPanelImageContainerIndex">
-                        <img src={this.props.imagePath} />
-                    </div>
-                    <div className="bannerPanelImageMainIndex">
-                        <img id="articleIndexImage" src={this.props.imagePath} />
-                    </div>
-                    <div className="imageOverlayColorIndex"></div>
-                    <div className="bannerPanelInfoIndex">
-                        <h3 className="bannerArticleNameIndex">{this.props.name}</h3>
-                        <hr className="articlesIndexLine" />
-                        <div className="bannerArticlePreludeIndex">
-                            <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+                        <div className="bannerPanelImageContainerIndex">
+                            <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
                         </div>
-                    </div>
+                        <div className="bannerPanelImageMainIndex">
+                            <img id="articleIndexImage" src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
+                        </div>
+                        <div className="imageOverlayColorIndex"></div>
+                        <div className="bannerPanelInfoIndex">
+                            <h3 className="bannerArticleNameIndex">{this.props.name}</h3>
+                            <hr className="articlesIndexLine" />
+                            <div className="bannerArticlePreludeIndex">
+                                <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>

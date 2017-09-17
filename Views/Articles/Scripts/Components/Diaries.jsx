@@ -84,12 +84,12 @@ var DiaryListElement = React.createClass({
                             <h4 className="indexDiaryName"># {this.props.name}</h4>
                         </div>
                         <div className="bannerPanelImageContainerIndexDiary">
-                            <img src={this.props.imagePath} />
+                            <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
                         </div>
                         <div className="imageOverlayColorDiaryIndex"></div>
                     </a>
                     <div className="flyingWindow">
-                        <img src={this.props.imagePath} />
+                        <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
                     </div>
             </div>
             );

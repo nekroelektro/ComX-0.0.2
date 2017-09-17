@@ -135,10 +135,10 @@ var TopNavPostElement = React.createClass({
                 <div className="singleLastArticleTopNavigation">
                     <div className="imageOverlayColorNav"></div>
                     <div className="bannerPanelImageContainerNav">
-                        <img src={this.props.imagePath} />
+                        <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy"/>
                     </div>
                     <div className="bannerPanelImageMainNav">
-                        <img id="articleTopNavigationImage" src={this.props.imagePath} />
+                        <img id="articleTopNavigationImage" src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
                     </div>
                     <div className="bannerPanelInfoIndex bannerPanelInfoIndexTopNavigation">
                         <h3 className="bannerArticleNameIndexTopMenu">{this.props.name}</h3>

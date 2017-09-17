@@ -103,10 +103,10 @@ var CategoryElement = React.createClass({
                 <a className="singleIndexAnchor" href={"/" + this.props.code}>
                     <div className="articlesIndexSingleImage sliderRightPanelElement">
                     <div className="bannerPanelImageContainerIndex">
-                        <img src={this.props.imagePath} />
+                        <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
                     </div>
                     <div className="bannerPanelImageMainIndex">
-                        <img id="articleIndexImage" src={this.props.imagePath} />
+                        <img id="articleIndexImage" src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy" />
                     </div>
                     <div className="imageOverlayColorIndex"></div>
                     <div className="bannerPanelInfoIndex">
