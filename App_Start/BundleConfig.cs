@@ -61,7 +61,7 @@ namespace ComX_0._0._2 {
 
             bundles.Add(new ScriptBundle("~/scripts/coreScripts").Include(
                 "~/Scripts/modernizr-2.8.3.js",
-                "~/Scripts/jquery-3.1.1.min.js",
+                "~/Scripts/jquery-3.2.1.min.js",
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/jquery.validate.min.js",
                 "~/Scripts/jquery.validate.unobtrusive.min.js",
