@@ -18,6 +18,10 @@ SharedSideBar.Init = function () {
         SharedSideBar.ConfirmRegistration();
     });
 
+    $("." + SharedSideBar.Control.SideBarComponentPlazlist).click(function () {
+        SharedSideBar.HandlePlazlistLoadOnClick($(this));
+    });
+
     var searchConfig = {
         Container: $("." + SharedSideBar.Control.SideBarSearchComponent),
         SearchIcon: $("." + SharedSideBar.Control.SideSearchAnchor)
@@ -248,4 +252,12 @@ SharedSideBar.LogOut = function () {
         Params: { '__RequestVerificationToken': SharedSideBar.Token }
     };
     NekroController.NekroAjaxAction(logoutAjaxConfig);
+};
+
+SharedSideBar.HandlePlazlistLoadOnClick = function (control) {
+    var widget = control.parent().find('.' + SharedSideBar.Control.SidePlazlistWidget);
+    if (widget.attr('src') == "") {
+        widget.attr('src', widget.data('src'));
+        widget.data('src', "");
+    }
 };

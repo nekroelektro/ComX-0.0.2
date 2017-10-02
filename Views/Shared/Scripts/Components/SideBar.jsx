@@ -274,7 +274,7 @@ var SidePanelMenu = React.createClass({
                     <h4>Menu boczne:</h4>
                 </div>
                 <SideContact></SideContact>
-                {/*<SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>*/}
+                <SidePlazlist name={this.state.model.PlazlistName} code={this.state.model.PlazlistCode}></SidePlazlist>
                 <SideLastComments comments={this.state.model.Comments}></SideLastComments>
                 <SideRandomPosts posts={this.state.model.RandomPosts}></SideRandomPosts>
             </div>
@@ -317,7 +317,7 @@ var SidePlazlist = React.createClass({
     render: function () {
         return (
             <div className="sideBarComponent">
-                <div className="sideTitle">
+                <div className="sideTitle sideBarComponentPlazlist">
                     <p>
                         <span className="glyphicon glyphicon-triangle-left leftArrowSideIcon" aria-hidden="true"></span> Plazlista
                     </p>
@@ -327,7 +327,7 @@ var SidePlazlist = React.createClass({
                         <p>PLAZLISTA</p>
                     </div>
                     <div className="sidePlazlistTitle">{this.props.name}</div>
-                    <iframe className="sidePlazlistWidget" src={this.props.code} frameborder="0" allowtransparency="true"></iframe>
+                    <iframe className="sidePlazlistWidget" src="" data-src={this.props.code} frameborder="0" allowtransparency="true"></iframe>
                 </div>
             </div>
         );
