@@ -71,7 +71,7 @@ var IndexArticle = React.createClass({
                                     <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy"/>
                                 </div>
                                 <div className="bannerPanelImageMainIndex">
-                            <img id="articleIndexImage" src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy"/>
+                                    <img id="articleIndexImage" src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy"/>
                                 </div>
                                 <div className="imageOverlayColorIndex"></div>
                                 <div className="bannerPanelInfoIndex">
@@ -138,9 +138,9 @@ var DiaryImageNodes = React.createClass({
     },
     render: function () {
         return (
-            <div className="bannerPanelImageContainerIndexDiary">
+            <div className="bannerPanelImageContainerIndexDiary indexPreviewDiaryWindow">
                 <a className="indexSingleDiaryAnchor" href={"/" + this.props.code + "?isDiary=true"}>
-                    <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy"/>
+                    <img src="/Content/images/ring.gif" data-src={this.props.imagePath} className="nekroLazy indexSingleDiaryAnchorImage"/>
                     <div className="bannerPanelImageContainerTitleIndexDiary">
                         <p># {this.props.name}</p>
                     </div>

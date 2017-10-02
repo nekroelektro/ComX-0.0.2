@@ -6,5 +6,13 @@
     ViewBag.Title = string.Format("{0} || NekroPlaza - doświadcz dobroci", "Z Pamiętnika Płytoholika");
 }
 @Html.React("Diaries", new {model = Model, isIndex = isAjax})
-<script type="text/javascript" src="~/Views/Articles/Scripts/ArticleDiary.js"></script>
+
+<script>
+    var config = {
+        NavigationBackButton: "navigationBackButton",
+        MainContainer: 'mainBodyContainer',
+        DiaryList: 'diaryList'
+    };
+    new ArticleDiary(config);
+</script>
 

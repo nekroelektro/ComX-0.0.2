@@ -525,7 +525,7 @@ a {
     text-align: center;
 }
 
-.bannerPanelImageContainerNav img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img, .bannerPanelImageContainerIndex img{
+.bannerPanelImageContainerNav img, .detailsBannerPanel img, .sideArt img, .slideElementUpper img, .bannerPanelImageContainerIndex img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -574,7 +574,11 @@ a {
     transform: scale(1.6);
 }
 
-#reviewIndexImage, #articleIndexImage, #articleTopNavigationImage {
+.transition-overflow {
+    top: 25% !important;
+}
+
+#reviewIndexImage, #articleIndexImage, #articleTopNavigationImage, .seeMoreReviewsFromIndex {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
