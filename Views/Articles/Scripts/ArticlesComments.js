@@ -180,7 +180,7 @@ ArticlesComments.ProfileCardClick = function(item) {
             .attr("src"),
         User: item.text().replace(/\s/g, "")
     };
-    NekroProfileCard(config);
+    NekroController.NekroProfileCard(config);
 };
 
 ArticlesComments.LoginFromCommentsClick = function() {

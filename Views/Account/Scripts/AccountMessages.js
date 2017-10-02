@@ -5,7 +5,7 @@
         IsSticky: true,
         ElementToStick: $('.threadElementContainer')
     }
-    NekroSlidingBars(config);
+    NekroController.NekroSlidingBars(config);
 
     var mesSuccPopConfig = {
         Title: "STATUS PRYWATNEJ WIADOMOŚCI",

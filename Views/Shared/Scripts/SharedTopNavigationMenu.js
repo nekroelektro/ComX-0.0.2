@@ -4,7 +4,7 @@
 };
 
 SharedTopNavigationMenu.Init = function () {
-    NekroSub(true);
+    NekroController.NekroSub(true);
 
     // Elements by class because if id it will be not be unique
     var navBlackConfig = {

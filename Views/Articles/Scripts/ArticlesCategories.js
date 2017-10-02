@@ -4,7 +4,7 @@
 };
 
 ArticlesCategories.Init = function () {
-    NekroSub(false);
+    NekroController.NekroSub(false);
 
     $("." + ArticlesCategories.Control.NavigationBackButton).click(function () {
         ArticlesCategories.BackFromCategory();
