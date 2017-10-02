@@ -710,10 +710,6 @@
     <Content Include="scripts\lang\pl.js" />
     <Content Include="scripts\NekroController.js" />
     <Content Include="scripts\NekroParams.js" />
-    <Content Include="scripts\NekroSlidingBars.js" />
-    <Content Include="scripts\NekroProfileCard.js" />
-    <Content Include="scripts\NekroSearch.js" />
-    <Content Include="scripts\NekroEnterClick.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\lang\af.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\lang\ar.js" />
@@ -884,7 +880,6 @@
     <Content Include="scripts\skins\moono-lisa\images\lock.png" />
     <Content Include="scripts\skins\moono-lisa\images\refresh.png" />
     <Content Include="scripts\skins\moono-lisa\images\spinner.gif" />
-    <Content Include="scripts\NekroSub.js" />
     <Content Include="scripts\styles.js" />
     <Content Include="scripts\tinymce.min.js" />
     <Content Include="Views\Account\Scripts\AccountMessages.js" />

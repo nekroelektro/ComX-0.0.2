@@ -321,25 +321,34 @@ NekroController.NekroBlackened = function(config) {
 };
 
 // Dynamic element height in addition of window height
-NekroController.NekroDynamicSize = function(config) {
-    var windowSize = NekroParams.GetScreenSize();
-    var correctSliderSizeHeigth = windowSize.Height -
-        $(".bottomFooter ").height() -
-        $(".topMainElementsContainer").height();
-    config.Element.css("height", correctSliderSizeHeigth);
-
-    $(window).on("resize",
+NekroController.NekroDynamicSize = function (config) {
+    config.GotNav != null ? config.GotNav : false;
+    $(window).on("load resize",
         function() {
-            var winIndex = $(this);
-            var correctWidth = winIndex.width() >= winIndex.innerWidth ? winIndex.width() : winIndex.innerWidth;
-            var correct = winIndex.height() -
-                $(".bottomFooter ").height() -
-                $(".topMainElementsContainer").height();
-
-            config.Element.css("width", correctWidth);
-            config.Element.css("height",
-                correct);
+            resizeElements();
         });
+    $(document).ready(function() {
+        resizeElements();
+    });
+
+    function resizeElements() {
+        var winIndex = $(this);
+        var correctWidth = winIndex.width() >= winIndex.innerWidth ? winIndex.width() : winIndex.innerWidth;
+        var correctHeight = winIndex.height() -
+            $(".bottomFooter ").height() -
+            $(".topMainElementsContainer").height();
+        if (config.GotNav) correctHeight = (correctHeight - $('.page_navigation').height()) - 20;
+        if (config.ExtraHeightToRemove != null)
+            correctHeight = correctHeight - config.ExtraHeightToRemove;
+
+        config.Element.css("width", correctWidth);
+        config.Element.css("height",
+            correctHeight);
+
+        if (config.RowElement != null) {
+            config.RowElement.css("height", correctHeight / config.RowCount);
+        }
+    };
 };
 
 NekroController.NekroAjaxAction = function(config) {
@@ -405,4 +414,183 @@ NekroController.NekroLazy = function (config) {
             window.attachEvent('on' + event, func);
         }
     }
+};
+
+NekroController.NekroSlidingBars = function(config) {
+    config.ElementClicked.on('click',
+        function() {
+            var activeItem = $('.activeSlideItem');
+            if (activeItem.length > 0) {
+                if (activeItem.is($(this))) {
+                    $(this).find(config.ElementForToggle).slideUp('slow');
+                    activeItem.removeClass('activeSlideItem',
+                        function() {
+                            if (config.IsSticky) {
+                                $(this).find(config.ElementToStick).unstick();
+                            }
+                        });
+                } else {
+                    activeItem.find(config.ElementForToggle).slideUp('slow');
+                    activeItem.removeClass('activeSlideItem',
+                        function() {
+                            if (config.IsSticky) {
+                                $(this).find(config.ElementToStick).unstick();
+                            }
+                        });
+
+                    $(this).find(config.ElementForToggle).slideDown('slow');
+                    $(this).addClass('activeSlideItem',
+                        function() {
+                            if (config.IsSticky) {
+                                $("html, body").animate({ scrollTop: $(this).offset().top - 58 }, 'slow');
+                                $(this).find(config.ElementToStick)
+                                    .sticky({ topSpacing: 58, zIndex: 4, widthFromWrapper: true });
+                                onStickEvents(activeItem, $(this).find(config.ElementToStick));
+                            }
+                        });
+                }
+            } else {
+                $(this).find(config.ElementForToggle).slideDown('slow');
+                $(this).addClass('activeSlideItem',
+                    function() {
+                        if (config.IsSticky) {
+                            $("html, body").animate({ scrollTop: $(this).offset().top - 58 }, 'slow');
+                            $(this).find(config.ElementToStick)
+                                .sticky({ topSpacing: 58, zIndex: 4, widthFromWrapper: true });
+                            onStickEvents(activeItem, $(this).find(config.ElementToStick));
+                        }
+                    });
+            }
+        });
+
+    function onStickEvents(activeItem, element) {
+        element.on("sticky-start",
+            function() {
+                activeItem.find('#sticky-wrapper').css('width', element.width() + 30);
+            });
+        element.on("sticky-end",
+            function() {
+                activeItem.find('#sticky-wrapper').css('width', element.width() - 30);
+            });
+    }
+};
+
+NekroController.NekroProfileCard = function(config) {
+    // if there is any card open - dispose it
+    if ($('.commentProfileCard').length > 0) {
+        var currentCard = $('.commentProfileCard');
+        // if same element is clicked
+        if (currentCard.parent().is(config.Element)) {
+            currentCard.slideUp('slow', function () {
+                currentCard.detach();
+            });
+            return;
+        }
+        currentCard.slideUp('slow', function () {
+            currentCard.detach();
+        });
+    }
+
+    // construct card and append it to html
+    var cardConstructor = "<div class='commentProfileCard'>" +
+        "<div class='commentProfileCardImage'>" + "<img src='" + config.Image + "'>" + "</div>" +
+        "<div class='commentProfileCardInfo'>Pokaż profil " + config.User + "</div>" +
+        "</div>";
+    config.Element.append(cardConstructor);
+    $('.commentProfileCard').hide().slideDown('slow');
+
+    $('.commentProfileCard').click(function () {
+        window.location.href = "/Account/UserPanel?userId=" + config.User;
+    });
+};
+
+NekroController.NekroSub = function(isNavigation) {
+    var currentlyActiveSubInCategories;
+    var detachedList = $(".indexSingleArticleContainer");
+
+    if (isNavigation) {
+        $(".topNavigationSubcategoriesElement").on("click",
+            function() {
+                currentlyActiveSubInCategories = $(this);
+                var selectedSubText = currentlyActiveSubInCategories.text();
+                var closestContainer = currentlyActiveSubInCategories.closest(".lastArticlesFromCategoryTopNavigation");
+                var subElements = closestContainer.find(".topNavigationLastAnchor");
+                var x = 0;
+                subElements.hide();
+                subElements.each(function() {
+                    // take first 4 posts
+                    if (x <= 3) {
+                        //this crap is case sensitive too
+                        if (selectedSubText != "Wszystkie") {
+                            if ($(this).data("sub").toString() != selectedSubText) {
+                            } else {
+                                $(this).fadeIn("slow");
+                                x++;
+                            }
+                        } else {
+                            $(this).fadeIn("slow");
+                            x++;
+                        }
+                    }
+                });
+                makeSubActive(currentlyActiveSubInCategories);
+                $('#nekroPanel').click();
+            });
+    } else {
+        $(".categorySubElement").on("click",
+            function() {
+                currentlyActiveSubInCategories = $(this);
+                var selectedSubText = currentlyActiveSubInCategories.text();
+                detachedList.each(function() {
+                    // detach - remove post from dom (and remember it in dom cache - only for one loop)
+                    $(this).detach();
+                    //this crap is case sensitive too
+                    if (selectedSubText != "Wszystkie") {
+                        if ($(this).data("sub").toString() == selectedSubText) {
+                            $(this).hide().appendTo("#content");
+                        }
+                    } else {
+                        $(this).hide().appendTo("#content");
+                    }
+                });
+                // paging of existed posts
+                $("#pagerCategories").pajinate({
+                    items_per_page: 6
+                });
+                makeSubActive(currentlyActiveSubInCategories);
+                $("#pagerCategories").css('min-width',
+                    $(window).height() - $(".bottomFooter ").height() - $(".topMainElementsContainer").height())
+            });
+    }
+
+    // For categories, NOT for navigation
+    var startSubElement = $('.categorySubElement:contains("Wszystkie")');
+    startSubElement.trigger("click");
+
+
+    // hover over currently NOT active subs
+    var subElement = isNavigation == 1 ? $(".topNavigationSubcategoriesElement") : $(".categorySubElement");
+    subElement
+        .mouseover(function() {
+            if ($(this) != currentlyActiveSubInCategories) {
+                $(this).css({
+                    color: "#2B823C",
+                    borderBottom: "#2b823c solid 4px"
+                });
+            }
+        })
+        .mouseout(function() {
+            if ($(this) != currentlyActiveSubInCategories) {
+                $(this).css({
+                    color: "white",
+                    borderBottom: "white solid 4px"
+                });
+            }
+        });
+
+    // add styles to currently active sub
+    function makeSubActive(activeSub) {
+        activeSub.addClass("topNavigationSubcategoriesElementHover").siblings()
+            .removeClass("topNavigationSubcategoriesElementHover");
+    };
 };

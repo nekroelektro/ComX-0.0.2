@@ -37,11 +37,6 @@ namespace ComX_0._0._2 {
                 "~/Content/jquery-ui.min.css"));
 
             bundles.Add(new ScriptBundle("~/scripts/customScripts").Include(
-                "~/Scripts/NekroSearch.js",
-                "~/Scripts/NekroSub.js",
-                "~/Scripts/NekroSlidingBars.js",
-                "~/Scripts/NekroProfileCard.js",
-                "~/Scripts/NekroEnterClick.js",
                 "~/Scripts/NekroController.js",
                 "~/Scripts/NekroParams.js",
                 "~/Views/Shared/Scripts/SharedLayout.js",
@@ -53,6 +48,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js",
                 "~/Views/Articles/Scripts/ArticlesCategories.js",
                 "~/Views/Articles/Scripts/ArticlesComments.js",
+                "~/Views/Articles/Scripts/ArticleDiary.js",
+                "~/Views/Articles/Scripts/ArticlesIndex.js",
                 "~/Views/Configuration/Scripts/ConfigurationRoles.js",
                 "~/Views/Configuration/Scripts/ConfigurationArticles.js",
                 "~/Views/Configuration/Scripts/ConfigurationUsers.js",
