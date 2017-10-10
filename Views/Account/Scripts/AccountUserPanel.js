@@ -169,7 +169,6 @@ AccountUserPanel.AddUserRange = function() {
 };
 
 AccountUserPanel.ConfirmUserDeletion = function(e) {
-    e.preventDefault();
     $('.' + AccountUserPanel.Control.ShutNekroPop).click();
     if (AccountUserPanel.BlockOrDelete == 'delete') {
         window.location.href = "/Account/DeleteUser/?userId=" + AccountUserPanel.UserId;
@@ -186,7 +185,6 @@ AccountUserPanel.ConfirmUserDeletion = function(e) {
 };
 
 AccountUserPanel.ConfirmUserDegradation = function(e) {
-    e.preventDefault();
     $('.' + AccountUserPanel.Control.ShutNekroPop).click();
     $.ajax({
             url: "/Account/DegradeUser/",
@@ -299,8 +297,7 @@ AccountUserPanel.SendMessageSuccess = function() {
     $('.' + AccountUserPanel.Control.MessageSuccessModalAnchor).click();
 };
 
-AccountUserPanel.ConfirmAvatarDeletion = function(e) {
-    e.preventDefault();
+AccountUserPanel.ConfirmAvatarDeletion = function() {
     $('.' + AccountUserPanel.Control.ShutNekroPop).click();
     window.location.href = "/Account/DeleteAvatar/?userId=" + AccountUserPanel.UserId;
 };
@@ -358,7 +355,7 @@ AccountUserPanel.HandleAvatarUploadErrors = function (isResponse, message) {
         if ($('.' + AccountUserPanel.Control.EditErrorMessage).length > 0) {
             $('.' + AccountUserPanel.Control.EditErrorMessage).detach();
         }
-        $('.' + AccountUserPanel.Control.EditErrorMessage).hide().append("<div class='editErrorMessage'>" + errorString + "</div>").fadeIn("fast");
+        $('.' + AccountUserPanel.Control.EditErrorContainer).hide().append("<div class='editErrorMessage'>" + errorString + "</div>").fadeIn("fast");
         return false;
     } else {
         return true;
