@@ -203,6 +203,10 @@ a {
     text-decoration:none;
 }
 
+.notVisible {
+    display: none;
+}
+
 /* INDEX ARTICLES*/
 
 .singleIndexArticle {

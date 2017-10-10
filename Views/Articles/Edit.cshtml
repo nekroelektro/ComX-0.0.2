@@ -12,4 +12,23 @@
 @Html.React("Edit", new {model=Model, isAdmin = panelActive})
 @*SCRIPTS FOR VIEW*@
 <script src="@Url.Content("//cdn.tinymce.com/4/tinymce.min.js")"></script>
-<script type="text/javascript" src="~/Views/Articles/Scripts/ArticlesEditCreate.js"></script>
+<script>
+    var config = {
+        ClearUploadControlButton: 'clearUploadControlButton',
+        ClearImageControlButton: 'clearImageControlButton',
+        SubmitArticleEditCreate: 'submitArticleEditCreate',
+        IsDiary: 'IsDiary',
+        ImgUp: 'imgUp',
+        ArticleEditor: 'articleEditor',
+        EditFormContainer: 'EditFormContainer',
+        EditErrorMessage: 'editErrorMessage',
+        EditErrorContainer: 'editErrorContainer',
+        DiaryCreateComponent: 'diaryCreateComponent',
+        ArticleCreateComponent: 'articleCreateComponent',
+        EditImage: 'editImage',
+        EditArtIdInput: 'editArtIdInput',
+        EditImageControl: 'editImageControl',
+        IsDiaryMode: '@Model.Document.IsDiary'
+    };
+    new ArticlesEditCreate(config);
+</script>

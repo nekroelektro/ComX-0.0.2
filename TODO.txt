@@ -1,6 +1,7 @@
 ﻿THINGS TO DO:
 
 - rzeczy które nie są w reakcie do reacta, i do nich skrypty w ladny, initowy sposób (amiętać o bundleconfig!)
+- poprawić widok aktywnego pamiętnika, belka u dołu, responsywna wielkość
 - playlista ładuje się dopiero po kliknięciu w jej link
 - dodać do settingsów aktualna wersję serwisu, kolumnę settingsową i wyświetlać to gdzieś
 - wyjebać widget facebookowy, zastąpić to normalnym linkiem albo obrazkiem

@@ -23,4 +23,4 @@ ArticlesCategories.BackFromCategory = function() {
 ArticlesCategories.SuccessBackHandler = function(result) {
     $("." + ArticlesCategories.Control.MainContainer).html(result);
     $("html, body").animate({ scrollTop: $("." + ArticlesCategories.Control.MainContainer).offset().top - 60 }, 'slow');
-}
+};

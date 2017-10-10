@@ -23,7 +23,7 @@ ArticleDiary.BackFromCategory = function () {
     NekroController.NekroAjaxAction(categoryBackAjaxConfig);
 };
 
-ArticleDiary.SuccessBackHandler = function (result) {
+ArticleDiary.SuccessBackHandler = function(result) {
     $("." + ArticleDiary.Control.MainContainer).html(result);
     $("html, body").animate({ scrollTop: $("." + ArticleDiary.Control.MainContainer).offset().top - 60 }, 'slow');
-}
+};

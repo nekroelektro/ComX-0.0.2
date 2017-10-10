@@ -50,6 +50,7 @@ namespace ComX_0._0._2 {
                 "~/Views/Articles/Scripts/ArticlesComments.js",
                 "~/Views/Articles/Scripts/ArticleDiary.js",
                 "~/Views/Articles/Scripts/ArticlesIndex.js",
+                "~/Views/Articles/Scripts/ArticlesEditCreate.js",
                 "~/Views/Configuration/Scripts/ConfigurationRoles.js",
                 "~/Views/Configuration/Scripts/ConfigurationArticles.js",
                 "~/Views/Configuration/Scripts/ConfigurationUsers.js",

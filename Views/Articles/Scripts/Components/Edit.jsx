@@ -124,7 +124,7 @@ var EditForm = React.createClass({
                 <hr />
                 <div className="editErrorContainer"></div>
                 <input type="text" className="editArtIdInput hidden" disabled name="Id" value={this.state.id} />
-                <input type="checkbox" name="IsCreate" className="hidden" disabled id="IsCreate" checked={this.state.isCreateMode} />
+                <input type="checkbox" name="IsCreate" className="notVisible" disabled id="IsCreate" checked={this.state.isCreateMode} />
                 <div className="form-horizontal">                   
                     {this.state.isCreateMode ?
                     (
@@ -143,7 +143,6 @@ var EditForm = React.createClass({
                             <div className="col-md-offset-1 col-md-10">
                                 <b>DATA UTWORZENIA ARTYKUŁU:</b>
                                 <input type="text" name="DateCreated" className="form-control" disabled value={this.state.dateCreated} />
-                                <input type="checkbox" name="IsDiary" className="hidden" id="IsDiary" checked={this.state.isDiary} onChange={this.handleIsDiaryChange} />
                             </div>
                         </div>
                         <div className="form-group articleCreateComponent">
@@ -164,7 +163,7 @@ var EditForm = React.createClass({
                                     (
                                 <div className="editUploadControl">
                                     <input type="file" id="imgUp" name="File" />
-                                    <button type="button" id="clearUploadControlButton" className="btn nekrobutton-red hidden">
+                                    <button type="button" id="clearUploadControlButton" className="btn nekrobutton-red">
                                         <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> Usuń obrazek
                                     </button>
                                 </div>
