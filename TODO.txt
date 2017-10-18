@@ -1,5 +1,6 @@
 ﻿THINGS TO DO:
 
+- usunąć "zaloguj" przy komentarzach dla mobile'u (właściwie trzebaby dodać mobilny login...)
 - rzeczy które nie są w reakcie do reacta, i do nich skrypty w ladny, initowy sposób (pamiętać o bundleconfig!)
 - poprawić widok aktywnego pamiętnika, belka u dołu, responsywna wielkość
 - zrobić porządek z tymi wszystkimi widokami w account, nieużywane wyrzucić a używane dołączyć do innych, ma być jak najmniej
@@ -10,6 +11,7 @@
 - prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 - przerobić IndexSlider w całości na własny - no i do Reacta
 - ogarnąć wygląd i podział na katalogi w galerii
+- WANTLIST - grid z możliwością dodawania, zastanowić się gdzie umieścić (prawdopodobnie w UserPanel)
 - Przerobić search i kategorie
 	- na górnym pasku zamiast wszystkich kategorii tylko jeden link "kategorie"
 	- Po kliknięciu całostronny div z wyborem kategorii i subkategorii

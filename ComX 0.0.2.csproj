@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -914,7 +915,6 @@
     <None Include="Properties\PublishProfiles\Nekroplaza.pubxml" />
     <Content Include="Views\Account\Scripts\Components\PrivateMessages.jsx" />
     <Content Include="Views\Account\Scripts\Components\UserProfile.jsx" />
-    <Content Include="Views\Account\_UserPanel.cshtml" />
     <Content Include="Views\Account\Messages.cshtml" />
     <Content Include="scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="scripts\jquery-3.2.1.min.map" />
@@ -1114,9 +1114,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
