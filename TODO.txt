@@ -1,10 +1,12 @@
 ﻿THINGS TO DO:
 
-- rzeczy które nie są w reakcie do reacta, i do nich skrypty w ladny, initowy sposób (amiętać o bundleconfig!)
+- rzeczy które nie są w reakcie do reacta, i do nich skrypty w ladny, initowy sposób (pamiętać o bundleconfig!)
 - poprawić widok aktywnego pamiętnika, belka u dołu, responsywna wielkość
-- playlista ładuje się dopiero po kliknięciu w jej link
+- zrobić porządek z tymi wszystkimi widokami w account, nieużywane wyrzucić a używane dołączyć do innych, ma być jak najmniej
+- skonstruować własny, jquerowy grid i użyć go wszędzie gdzie trza
+- we widoku detali - dodać strzałki z następnym i poprzednim artykułem, responsywne, tylko na desktop, po hover pokazuje miniature
 - dodać do settingsów aktualna wersję serwisu, kolumnę settingsową i wyświetlać to gdzieś
-- wyjebać widget facebookowy, zastąpić to normalnym linkiem albo obrazkiem
+- wyjebać widget facebookowy, zastąpić to normalnym linkiem albo obrazkiem (albo może zostać, ale ładowany po kliknięciu)
 - prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 - przerobić IndexSlider w całości na własny - no i do Reacta
 - ogarnąć wygląd i podział na katalogi w galerii
@@ -15,19 +17,15 @@
 	- na górnym pasku obok kategorii duży searchbar
 	- po wpisaniu coś w searchbar podobny widok co przy nowych kategoriach, ajax live
 - HTML5 pushState do one-page application
-	[DONE] jak będzie gotowe, będzie można na layoucie zbundlować js i css poszczególnych widoków
 - newsy oddzielnie na stronie głównej
 - kategorie do random postów
 - subcategorie do postów na main-indeksie
 - katalogowy widok postów do oddzielnego komponentu reacta
-- Dopicować widoki zapomnianego hasła itd
 - "wygaszanie" na czarno obrazków nagłówkowych stron
-[DONE] LAZY LOADING obrazków w jQuery + AJAX
 KONFIGURACJA:
 	[DONE] najpierw dopicować widoki (włącznie z górnym paskiem)
 	- przenieść widoki do REACTA
 	[DONE] jako danych używać tych wziętych z własnego service
-[DONE] trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
 - informacje o cookies?
 - LOGOWANIE PRZEZ FACEBOOKA
 
@@ -55,6 +53,11 @@ KONFIGURACJA:
 [DONE] różna wielkość górnych ikona na index i na details (chyba browser-specific)
 [DONE] przy widoku kategorii i przy otwartym górnym menu coś się krzaczy
 [DONE] naprawić paging na ajaxowej liście recek
+[DONE] na layoucie zbundlować js i css poszczególnych widoków
+[DONE] playlista ładuje się dopiero po kliknięciu w jej link
+[DONE] LAZY LOADING obrazków w jQuery + AJAX
+[DONE] Dopicować widoki zapomnianego hasła itd
+[DONE] trzeba zmienić listę diariesów, dodać okienko obok zmieniające kontent co jakiś czas
 [DONE] zwijalne części sidemenu - po rozwinięciu jednego zwijać już otwarte. ograniczyć random posty
 [DONE] Nowoczesne widoki gór stron
 PRYWATNE WIADOMOŚCI:
