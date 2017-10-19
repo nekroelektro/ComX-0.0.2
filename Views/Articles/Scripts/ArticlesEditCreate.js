@@ -91,7 +91,7 @@ ArticlesEditCreate.SubmitEditHandler = function() {
     ArticlesEditCreate.FormData.set('ReleaseYear', $('[name=ReleaseYear]').val()); 
 };
 
-ArticlesEditCreate.HandleSubmitEditErrors = function() {
+ArticlesEditCreate.HandleSubmitEditErrors = function () {
     var errorString = '';
     if (ArticlesEditCreate.Control.IsDiaryMode == 'True') {
         if ($('[name=Name]').val() == '' ||
@@ -162,9 +162,11 @@ ArticlesEditCreate.DeleteImageVisibilityHandler = function() {
 
 ArticlesEditCreate.ModeSelectorHandler = function () {
     if ($('#' + ArticlesEditCreate.Control.IsDiary).prop("checked") || ArticlesEditCreate.Control.IsDiaryMode == "True") {
+        ArticlesEditCreate.Control.IsDiaryMode = "True";
         $('.' + ArticlesEditCreate.Control.DiaryCreateComponent).show();
         $('.' + ArticlesEditCreate.Control.ArticleCreateComponent).hide();
     } else {
+        ArticlesEditCreate.Control.IsDiaryMode = "False";
         $('.' + ArticlesEditCreate.Control.DiaryCreateComponent).hide();
         $('.' + ArticlesEditCreate.Control.ArticleCreateComponent).show();
     }
