@@ -39,6 +39,7 @@ namespace ComX_0._0._2 {
             bundles.Add(new ScriptBundle("~/scripts/customScripts").Include(
                 "~/Scripts/NekroController.js",
                 "~/Scripts/NekroParams.js",
+                "~/Scripts/NekroHelper.js",
                 "~/Views/Shared/Scripts/SharedLayout.js",
                 "~/Views/Shared/Scripts/SharedTopNavigationMenu.js",
                 "~/Views/Shared/Scripts/SharedIndexSlider.js",
