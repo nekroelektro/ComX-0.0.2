@@ -103,6 +103,7 @@ var ThreadElement = React.createClass({
                             <h4>Zaczęty: {this.props.model.Date}</h4>
                         </div>
                     </div>
+                    {!this.props.model.IsUserWithDeleted &&
                     <div className="threadElementButtons">
                         <button type="button" className="btn nekrobutton-green .btn-sm btnSendMessageInThread" href="#popupSendMessage" data-userto={this.props.model.UserWithId} data-isnew={false} data-threadid={this.props.model.Id} data-title={this.props.model.Name}>
                             ODPOWIEDZ W TYM WĄTKU
@@ -110,7 +111,8 @@ var ThreadElement = React.createClass({
                         <button type="button" className="btn nekrobutton-blue .btn-sm btnSendMessageNewThread" href="#popupSendMessage" data-userto={this.props.model.UserWithId} data-isnew={true} data-threadid={null} data-title={this.props.model.Name}>
                             ODPOWIEDZ W NOWYM WĄTKU
                         </button>
-                    </div>
+                        </div>
+                        }
                 </div>
                 {messageElementsNodes}
             </div>

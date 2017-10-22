@@ -9,5 +9,6 @@ namespace ComX_0._0._2.Views.Account.Models.DtoModels {
         public List<MessageDto> Messages { get; set; }
         public bool IsAllRead { get; set; }
         public Guid UserWithId { get; set; }
+        public bool IsUserWithDeleted { get; set; }
     }
 }

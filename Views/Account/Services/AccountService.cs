@@ -62,18 +62,24 @@ namespace ComX_0._0._2.Views.Account.Services {
                     Date = item.DateCreated.ToString(),
                     Body = item.Body,
                     Title = item.Title,
-                    Author = user.UserName,
-                    AuthorId = user.Id,
+                    Author = user != null ? user.UserName : "Użytkownik usunięty",
+                    AuthorId = user != null ? user.Id : new Guid().ToString(),
                     IsReceived = item.UserFrom == userProfileId || item.IsReceived,
                     Thread = item.Thread,
                     IsNewThread = isThreadMessage
                 };
                 var messageThread = details.FirstOrDefault(x => x.Id == item.Thread);
+                messageThread.IsUserWithDeleted = false;
                 messageThread.Messages.Add(message);
                 if (messageThread.UserWithId == Guid.Empty) {
-                    messageThread.UserWithId = new Guid(message.AuthorId) != userProfileId
-                        ? item.UserFrom
-                        : item.UserTo;
+                    if (message.AuthorId != Guid.Empty.ToString()) {
+                        messageThread.UserWithId = new Guid(message.AuthorId) != userProfileId
+                            ? item.UserFrom
+                            : item.UserTo;
+                    }
+                    else {
+                        messageThread.IsUserWithDeleted = true;
+                    }
                 }
             }
 

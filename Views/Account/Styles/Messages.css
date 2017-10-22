@@ -1,4 +1,8 @@
-﻿.mainMessagesContainer {
+﻿.threadsContainer {
+    padding: 0 1em;
+}
+
+.mainMessagesContainer {
     font-family: "Coda", sans-serif;
     min-height: 32em;
 }
