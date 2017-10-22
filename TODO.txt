@@ -1,6 +1,8 @@
 ﻿THINGS TO DO:
 
 - usunąć "zaloguj" przy komentarzach dla mobile'u (właściwie trzebaby dodać mobilny login...)
+- usunąć kompletnie "Manage" - ma nie zostać nawet pył
+- zmiana hasła użytkownika - przenieść do popupa otwieranego z userpanel, usunąć oddzielny widok
 - rzeczy które nie są w reakcie do reacta, i do nich skrypty w ladny, initowy sposób (pamiętać o bundleconfig!)
 - poprawić widok aktywnego pamiętnika, belka u dołu, responsywna wielkość
 - zrobić porządek z tymi wszystkimi widokami w account, nieużywane wyrzucić a używane dołączyć do innych, ma być jak najmniej

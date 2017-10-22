@@ -1,4 +1,4 @@
-﻿var UserProfile = React.createClass({
+﻿var UserPanel = React.createClass({
     propTypes: {
         model: React.PropTypes.object.isRequired,
         IsAdministrator: React.PropTypes.bool.isRequired
@@ -51,17 +51,15 @@ var UserProfileButtons = React.createClass({
                     </a>    
                 }
                     {(this.props.isAdmin || this.props.model.IsOwnAccount) &&
-                    <div>
+                    <div id="userPanelModalPopupsContainer">
                         <button type="button" className="btn nekrobutton-green .btn-sm profileEditDetails">
                             <span className="glyphicon glyphicon-pencil userPanelEditButton" aria-hidden="true"></span>
                             EDYTUJ PROFIL
                         </button>
-                        <a href={'/Manage/ChangePassword'}>
-                            <button type="button" className="btn nekrobutton-yellow .btn-sm profilePasswordRecovery">
-                                <span className="glyphicon glyphicon-retweet userPanelPasswordRecoveryButton" aria-hidden="true"></span>
-                                ZMIEŃ HASŁO
-                            </button>
-                        </a>
+                        <button type="button" className="btn nekrobutton-yellow .btn-sm popupChangePassword">
+                            <span className="glyphicon glyphicon-retweet userPanelPasswordRecoveryButton" aria-hidden="true"></span>
+                            ZMIEŃ HASŁO
+                        </button>
                         <div id="popupEditProfile" className="white-popup">
                             <h3>Edytuj dane profilu</h3>
                             <hr />
@@ -75,6 +73,31 @@ var UserProfileButtons = React.createClass({
                                 </button>
                                 <button type="button" className="btn nekrobutton-red .btn-sm btnCancelEdit shutNekroPop">Anuluj</button>
                             </div>
+                        </div>
+                        <div id="popupChangePassword" className="white-popup">
+                            <form id="changePassFormContainer">
+                                <h3>Zmień hasło do profilu</h3>
+                                <hr />
+                                <div className="col-xs-10 col-centered">
+                                    <b>OBECNE HASŁO:</b>
+                                    <input type="password" id="passChangePresentPass" className="form-control" />
+                                </div>
+                                <div className="col-xs-10 col-centered">
+                                    <b>NOWE HASŁO:</b>
+                                    <input type="password" id="passChangeNewPass" className="form-control" />
+                                </div>
+                                <div className="col-xs-10 col-centered">
+                                    <b>POTWIERDŹ NOWE HASŁO:</b>
+                                    <input type="password" id="passChangeConfirmNewPass" className="form-control" />
+                                </div>
+                                <div className="modalPopupButtons">
+                                    <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmChangePass">
+                                        Zapisz
+                                    </button>
+                                    <button type="button" className="btn nekrobutton-red .btn-sm btnCancelEdit shutNekroPop">Anuluj</button>
+                                </div>
+                                <div id="changePassErrorContainer"></div>
+                            </form>
                         </div>
                 </div>
                     }
@@ -213,7 +236,7 @@ var UserProfileAvatar = React.createClass({
                             </p>
                             <p>- musi mieć rozszerzenie .jpg albo .png albo i .gif</p>
                             <p>- najlepiej, żeby miał rozmiar do... powiedzmy 70kb, żeby nie śmiecił.</p>
-                            <form className="avUpFormContainer form-horizontal">
+                            <form className="avUpFormContainer">
                                 <hr />
                                 <div className="form-group">
                                     ZAŁADUJ FOTĘ:
@@ -256,7 +279,7 @@ var UserProfileAdminPanel = React.createClass({
                 {this.props.isAdmin &&
                     <div>
                         <div className="userPanelAdministratorSection col-md-12">
-                            <div className="form-horizontal">
+                        <div className="userPanelAdministratorSectionOptions">
                                 <div className="form-group">
                                     Dodaj rangę:
                                     <select name="RoleId" className="form-control">

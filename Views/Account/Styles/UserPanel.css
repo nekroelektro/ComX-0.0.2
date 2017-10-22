@@ -65,6 +65,10 @@
     padding-top: 1em;
 }
 
+.userPanelAdministratorSectionOptions {
+    padding: 0 1em;
+}
+
 .profileContainer {
     min-height: 32em;
     padding-top: 1em;

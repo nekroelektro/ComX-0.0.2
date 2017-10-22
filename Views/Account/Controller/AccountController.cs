@@ -10,6 +10,7 @@ using ComX_0._0._2.Views.Account.Models;
 using ComX_0._0._2.Views.Account.Models.DtoModels;
 using ComX_0._0._2.Views.Account.Services;
 using ComX_0._0._2.Views.Articles.Services;
+using ComX_0._0._2.Views.Manage.Controller;
 using Facebook;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -411,7 +412,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
             var model = accountService.GetProfileDetails(userId);
 
             ViewBag.RoleList = model.RolesList;
-            return View("Profile", model);
+            return View("UserPanel", model);
         }
 
         [HttpPost]
@@ -500,7 +501,22 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 return PartialView("Messages", modelMessage);
             }
             var model = accountService.GetProfileDetails(userName);
-            return PartialView("Profile", model);
+            return PartialView("UserPanel", model);
+        }
+        
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model){
+            var result =
+                await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            if (result.Succeeded){
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null) await SignInManager.SignInAsync(user, false, false);
+                return Json(result);
+            }
+            AddErrors(result);
+            return Json(result);
         }
 
         public ActionResult Messages() {

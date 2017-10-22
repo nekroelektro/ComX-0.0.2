@@ -103,9 +103,9 @@ a {
 }
 
 /*popup buttons from configuration*/
-.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, .popupUserDegrade, .btnConfirmDegradation, .sendPrivateMessage,
+.popupCategoryDelete, .popupRoleDelete, .popupSeriesDelete, .popupUserDelete, .popupUserDegrade, .popupChangePassword, .btnConfirmDegradation, .sendPrivateMessage,
 .profileHomePage, .profileEditDetails, .profilePasswordRecovery, .btnConfirmEdit, .btnCancelEdit, .btnCancelDeletion, .btnConfirmDeletionAvatar, .popupUserBlock,
-.btnConfirmSendMessage, .btnCancelSendMessage, .btnSendMessageInThread, .btnSendMessageNewThread {
+.btnConfirmSendMessage, .btnCancelSendMessage, .btnSendMessageInThread, .btnSendMessageNewThread, .btnConfirmChangePass {
     margin: 0.3em 0.5em !important;
 }
 

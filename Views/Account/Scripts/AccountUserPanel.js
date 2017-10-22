@@ -6,6 +6,9 @@
     AccountUserPanel.UserId = "";
     AccountUserPanel.RedirectContent = "";
     AccountUserPanel.FormData = "";
+
+    AccountUserPanel.ChangePassForm = '';
+    AccountUserPanel.ChangePassFormData = '';
 }
 
 AccountUserPanel.Init = function () {
@@ -62,8 +65,12 @@ AccountUserPanel.Init = function () {
         AccountUserPanel.ConfirmProfileEdit();
     });
 
+    $('.' + AccountUserPanel.Control.BtnConfirmChangePass).click(function () {
+        AccountUserPanel.ConfirmChangePassword();
+    });
+
     $('.' + AccountUserPanel.Control.BtnConfirmSendMessage).click(function () {
-        AccountUserPanel.SendProfileMessage();
+        AccountUserPanel.SendProfileMessage($(this));
     });
 
     $('.' + AccountUserPanel.Control.BtnConfirmDeletionAvatar).click(function () {
@@ -73,14 +80,14 @@ AccountUserPanel.Init = function () {
     $('#' + AccountUserPanel.Control.UserProfileAvatarUp).click(function () {
         AccountUserPanel.AvatarUpload();
     });
+
     // POPUPS
     var messageSuccessPopConfig = {
         Title: "STATUS PRYWATNEJ WIADOMOŚCI",
         ClickedElement: $("." + AccountUserPanel.Control.MessageSuccessModalAnchor),
         ContainerElement: $('#' + AccountUserPanel.Control.MessageSuccessModal1),
         Modal: true,
-        AutoOpen: false,
-        Width: 500
+        AutoOpen: false
     };
     NekroController.NekroPop(messageSuccessPopConfig);
 
@@ -89,8 +96,7 @@ AccountUserPanel.Init = function () {
         ClickedElement: $("." + AccountUserPanel.Control.PopupUserDelete),
         ContainerElement: $('#' + AccountUserPanel.Control.PopupUserDelete),
         Modal: true,
-        AutoOpen: false,
-        Width: 500
+        AutoOpen: false
     };
     NekroController.NekroPop(deleteUserPopConfig);
 
@@ -99,8 +105,7 @@ AccountUserPanel.Init = function () {
         ClickedElement: $("." + AccountUserPanel.Control.PopupUserBlock),
         ContainerElement: $('#' + AccountUserPanel.Control.PopupUserBlock),
         Modal: true,
-        AutoOpen: false,
-        Width: 500
+        AutoOpen: false
     };
     NekroController.NekroPop(blockUserPopConfig);
 
@@ -109,8 +114,7 @@ AccountUserPanel.Init = function () {
         ClickedElement: $("." + AccountUserPanel.Control.PopupUserDegrade),
         ContainerElement: $('#' + AccountUserPanel.Control.PopupUserDegrade),
         Modal: true,
-        AutoOpen: false,
-        Width: 500
+        AutoOpen: false
     };
     NekroController.NekroPop(degradeUserPopConfig);
 
@@ -119,20 +123,28 @@ AccountUserPanel.Init = function () {
         ClickedElement: $("." + AccountUserPanel.Control.ProfileEditDetails),
         ContainerElement: $('#' + AccountUserPanel.Control.PopupEditProfile),
         Modal: true,
-        AutoOpen: false,
-        Width: 500
+        AutoOpen: false
     };
     NekroController.NekroPop(editUserPopConfig);
 
     var avatarDeleteUserPopConfig = {
-        Title: "EDYTUJ PROFIL",
+        Title: "USUŃ AWATARA",
         ClickedElement: $("." + AccountUserPanel.Control.PopupAvatarDelete),
         ContainerElement: $('#' + AccountUserPanel.Control.PopupAvatarDelete),
         Modal: true,
-        AutoOpen: false,
-        Width: 500
+        AutoOpen: false
     };
     NekroController.NekroPop(avatarDeleteUserPopConfig);
+
+    var passwordChangeUserPopConfig = {
+        Title: "ZMIEŃ HASŁO",
+        ClickedElement: $("." + AccountUserPanel.Control.PopupChangePassword),
+        ContainerElement: $('#' + AccountUserPanel.Control.PopupChangePassword),
+        Modal: true,
+        AutoOpen: false,
+        ClearBeforeClose: true
+    };
+    NekroController.NekroPop(passwordChangeUserPopConfig);
 };
 
 AccountUserPanel.HandleWelcomeMailReconfirmation = function() {
@@ -168,7 +180,7 @@ AccountUserPanel.AddUserRange = function() {
         });
 };
 
-AccountUserPanel.ConfirmUserDeletion = function(e) {
+AccountUserPanel.ConfirmUserDeletion = function() {
     $('.' + AccountUserPanel.Control.ShutNekroPop).click();
     if (AccountUserPanel.BlockOrDelete == 'delete') {
         window.location.href = "/Account/DeleteUser/?userId=" + AccountUserPanel.UserId;
@@ -184,7 +196,7 @@ AccountUserPanel.ConfirmUserDeletion = function(e) {
     }
 };
 
-AccountUserPanel.ConfirmUserDegradation = function(e) {
+AccountUserPanel.ConfirmUserDegradation = function() {
     $('.' + AccountUserPanel.Control.ShutNekroPop).click();
     $.ajax({
             url: "/Account/DegradeUser/",
@@ -214,6 +226,56 @@ AccountUserPanel.ConfirmProfileEdit = function() {
         $('.' + AccountUserPanel.Control.ModalPopupButtons).append("<div class='editErrorContainer'>" +
             "<div class='editErrorMessage'>Coś nie gra - może mail niepoprawny...</div> </div>").fadeIn("fast");
     }
+};
+
+AccountUserPanel.ConfirmChangePassword = function () {
+    var oldPass = $('#' + AccountUserPanel.Control.PassChangePresentPass).val();
+    var newPass = $('#' + AccountUserPanel.Control.PassChangeNewPass).val();
+    var confPass = $('#' + AccountUserPanel.Control.PassChangeConfirmNewPass).val();
+    if (oldPass.length > 0 && newPass.length >= 6 && newPass === confPass) {
+        AccountUserPanel.GetChangePasswordForm();
+        $.ajax({
+                url: "/Account/ChangePassword/",
+                type: "POST",
+                data: AccountUserPanel.ChangePassFormData,
+                processData: false,
+                contentType: false,
+                dataType: "json"
+            })
+            .done(function (response) {
+                if (response.Succeeded == false) {
+                    AccountUserPanel.HandleChangePassError(true);
+                } else {
+                    NekroHelper.CloseCurrentPopup();
+                    NekroHelper.ShowStatusMessagePopup($('#' + AccountUserPanel.Control.UserPanelModalPopupsContainer), true);
+                }
+            });
+    } else {
+        AccountUserPanel.HandleChangePassError(false);
+    }
+};
+
+AccountUserPanel.GetChangePasswordForm = function() {
+    // Serialize form data for injection to .NET
+    AccountUserPanel.ChangePassForm = $('#' + AccountUserPanel.Control.ChangePassFormContainer);
+    AccountUserPanel.ChangePassFormData = new FormData(AccountUserPanel.ChangePassForm[0]);
+
+    AccountUserPanel.ChangePassFormData.set('OldPassword', $('#' + AccountUserPanel.Control.PassChangePresentPass).val()); 
+    AccountUserPanel.ChangePassFormData.set('NewPassword', $('#' + AccountUserPanel.Control.PassChangeNewPass).val()); 
+    AccountUserPanel.ChangePassFormData.set('ConfirmPassword', $('#' + AccountUserPanel.Control.PassChangeConfirmNewPass).val()); 
+    AccountUserPanel.ChangePassFormData.set('__RequestVerificationToken', SharedSideBar.Token); 
+};
+
+AccountUserPanel.HandleChangePassError = function (isModelValid) {
+    var errorString = '';
+    isModelValid
+        ? errorString = "Obecne hasło podałeś nieprawidłowe, wstyd!"
+        : errorString = "Pamiętaj, że hasło musi mieć przynajmniej 6 znaków i żeby dwa ostatnie pola były takie same!";
+    if ($('.' + AccountUserPanel.Control.EditErrorMessage).length > 0) {
+        $('.' + AccountUserPanel.Control.EditErrorMessage).detach();
+    }
+    $('#' + AccountUserPanel.Control.ChangePassErrorContainer).hide().append("<div class='editErrorContainer'>" +
+        "<div class='editErrorMessage'>" + errorString + "</div> </div>").fadeIn("fast");
 };
 
 AccountUserPanel.RefreshMessages = function () {
@@ -252,9 +314,9 @@ AccountUserPanel.CancelSendMessage = function () {
     $('.' + AccountUserPanel.Control.SendPrivateMessage).show('slow');
 };
 
-AccountUserPanel.SendProfileMessage = function () {
-    var user = $(this).data('id').toString();
-    var userName = $(this).data('name').toString();
+AccountUserPanel.SendProfileMessage = function (control) {
+    var user = control.data('id').toString();
+    var userName = control.data('name').toString();
     var title = $('[name=editPrivateMessageTitle]').val();
     var body = CKEDITOR.instances['editPrivateMessageContainer'].getData();
     if (body != "" && title != "") {

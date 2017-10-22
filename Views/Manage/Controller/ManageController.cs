@@ -87,22 +87,7 @@ namespace ComX_0._0._2.Views.Manage.Controller {
             return View();
         }
 
-        //
-        // POST: /Manage/ChangePassword
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model) {
-            if (!ModelState.IsValid) return View(model);
-            var result =
-                await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded) {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null) await SignInManager.SignInAsync(user, false, false);
-                return RedirectToAction("UserPanel", "Account", new {Message = ManageMessageId.ChangePasswordSuccess});
-            }
-            AddErrors(result);
-            return View(model);
-        }
+        
 
         //
         // GET: /Manage/SetPassword

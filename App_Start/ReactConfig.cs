@@ -28,7 +28,7 @@ namespace ComX_0._0._2
 
                 .AddScript("~/Views/Account/Scripts/Components/LoginPanel.jsx")
                 .AddScript("~/Views/Account/Scripts/Components/RegisterPanel.jsx")
-                .AddScript("~/Views/Account/Scripts/Components/UserProfile.jsx")
+                .AddScript("~/Views/Account/Scripts/Components/UserPanel.jsx")
                 .AddScript("~/Views/Account/Scripts/Components/PrivateMessages.jsx");
 
         }

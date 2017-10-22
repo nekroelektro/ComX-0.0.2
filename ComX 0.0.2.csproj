@@ -710,6 +710,7 @@
     <Content Include="scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="scripts\lang\pl.js" />
     <Content Include="scripts\NekroController.js" />
+    <Content Include="scripts\NekroHelper.js" />
     <Content Include="scripts\NekroParams.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="scripts\plugins\a11yhelp\dialogs\lang\af.js" />
@@ -914,7 +915,7 @@
     <Content Include="Views\Articles\Scripts\Components\Edit.jsx" />
     <None Include="Properties\PublishProfiles\Nekroplaza.pubxml" />
     <Content Include="Views\Account\Scripts\Components\PrivateMessages.jsx" />
-    <Content Include="Views\Account\Scripts\Components\UserProfile.jsx" />
+    <Content Include="Views\Account\Scripts\Components\UserPanel.jsx" />
     <Content Include="Views\Account\Messages.cshtml" />
     <Content Include="scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="scripts\jquery-3.2.1.min.map" />
@@ -1117,7 +1118,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\UserPanel.cshtml" />
     <Content Include="Views\Configuration\_Series.cshtml" />
     <Content Include="Views\Configuration\SeriesCreate.cshtml" />
     <Content Include="Views\Configuration\SeriesDetails.cshtml" />

@@ -282,14 +282,20 @@ NekroController.NekroPop = function(config) {
         dialogClass: "no-close",
         modal: config.Modal,
         autoOpen: config.AutoOpen,
-        width: config.Width
-    });
+        width: config.Width != null ? config.Width : 500
+});
 
-    config.ClickedElement.click(function() {
-        config.ContainerElement.dialog("open");
-    });
+    if (config.ClickedElement != null) {
+        config.ClickedElement.click(function() {
+            config.ContainerElement.dialog("open");
+        });
+    }
 
-    $(".shutNekroPop").click(function() {
+    $(".shutNekroPop").click(function () {
+        if (config.ClearBeforeClose != null && config.ClearBeforeClose == true) {
+            NekroHelper.ClearAllInputs(config.ContainerElement);
+        }
+        config.ContainerElement.find('.editErrorContainer').detach();
         config.ContainerElement.dialog("close");
     });
 };

@@ -8,7 +8,7 @@
     var userHelper = new UserHelper();
     var IsAdmin = userHelper.IsSuperAdminUser(User);
 }
-@Html.React("UserProfile", new { model = Model, IsAdministrator = IsAdmin })
+@Html.React("UserPanel", new { model = Model, IsAdministrator = IsAdmin })
 <p class="subConcious">...the horror...the horror...</p>
 <script src="~/scripts/ckeditor.js" type="text/javascript"></script>
 <script>
@@ -43,7 +43,15 @@
         ModalPopupButtons: "modalPopupButtons",
         SendMessageContainer: "sendMessageContainer",
         EditPrivateMessageTitle: "editPrivateMessageTitle",
-        EditErrorContainer: 'editErrorContainer'
+        EditErrorContainer: 'editErrorContainer',
+        PopupChangePassword: 'popupChangePassword',
+        PassChangePresentPass: 'passChangePresentPass',
+        PassChangeNewPass: 'passChangeNewPass',
+        PassChangeConfirmNewPass: 'passChangeConfirmNewPass',
+        BtnConfirmChangePass: 'btnConfirmChangePass',
+        ChangePassFormContainer: 'changePassFormContainer',
+        ChangePassErrorContainer: 'changePassErrorContainer',
+        UserPanelModalPopupsContainer: 'userPanelModalPopupsContainer'
     };
     new AccountUserPanel(config);
 </script>
