@@ -1035,7 +1035,6 @@
     <Compile Include="Views\Configuration\Controller\ConfigurationController.cs" />
     <Compile Include="Views\Configuration\Services\ConfigurationService.cs" />
     <Compile Include="Views\Configuration\Services\IConfigurationService.cs" />
-    <Compile Include="Views\Manage\Controller\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1107,9 +1106,6 @@
     <Content Include="Views\Articles\Categories.cshtml" />
     <Content Include="Views\Configuration\Gallery.cshtml" />
     <Content Include="Views\Shared\_HumanumErrareEst.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />

@@ -7,10 +7,8 @@ using System.Web.Security;
 using ComX_0._0._2.Helpers;
 using ComX_0._0._2.Helpers.SmtpHelpers;
 using ComX_0._0._2.Views.Account.Models;
-using ComX_0._0._2.Views.Account.Models.DtoModels;
 using ComX_0._0._2.Views.Account.Services;
 using ComX_0._0._2.Views.Articles.Services;
-using ComX_0._0._2.Views.Manage.Controller;
 using Facebook;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -20,8 +18,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
     [Authorize]
     public class AccountController : System.Web.Mvc.Controller {
         private readonly IAccountService accountService = new AccountService();
-        private readonly IDocumentService documentService = new DocumentService();
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IDocumentService documentService = new DocumentService();
         private readonly GeneralHelper generalHelper = new GeneralHelper();
         private readonly UserHelper userHelper = new UserHelper();
         private ApplicationSignInManager _signInManager;
@@ -46,13 +44,13 @@ namespace ComX_0._0._2.Views.Account.Controller {
         }
 
         public ApplicationSignInManager SignInManager {
-            get { return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
-            private set { _signInManager = value; }
+            get => _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            private set => _signInManager = value;
         }
 
         public ApplicationUserManager UserManager {
-            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-            private set { _userManager = value; }
+            get => _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            private set => _userManager = value;
         }
 
         [AllowAnonymous]
@@ -103,9 +101,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl) {
-            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null) {
+            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null)
                 returnUrl = generalHelper.GetPreviousPageUrl();
-            }
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
@@ -130,15 +127,15 @@ namespace ComX_0._0._2.Views.Account.Controller {
                 await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
             switch (result) {
                 case SignInStatus.Success:
-                    return Json(new { Success = true });
+                    return Json(new {Success = true});
                 case SignInStatus.LockedOut:
-                    return Json(new { Success = false });
+                    return Json(new {Success = false});
                 case SignInStatus.RequiresVerification:
-                    return Json(new { Success = false });
+                    return Json(new {Success = false});
                 case SignInStatus.Failure:
-                    return Json(new { Success = false });
+                    return Json(new {Success = false});
                 default:
-                    return Json(new { Success = false });
+                    return Json(new {Success = false});
             }
         }
 
@@ -191,7 +188,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(string userName, string mail, string password, string confirmPassword) {
+        public async Task<ActionResult>
+            Register(string userName, string mail, string password, string confirmPassword) {
             var model = new RegisterViewModel();
             model.Username = userName;
             model.Email = mail;
@@ -252,9 +250,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public async Task<ActionResult> SendConfirmationMail(string userId, string userMail) {
             var message = new EmailMessage();
-            if (string.IsNullOrEmpty(userId)) {
-                userId = userHelper.GetCurrentLoggedUserId().ToString();
-            }
+            if (string.IsNullOrEmpty(userId)) userId = userHelper.GetCurrentLoggedUserId().ToString();
             var code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId, code}, Request.Url.Scheme);
 
@@ -494,7 +490,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SendMessage(string receiver, string title, string body, bool isNewThread, Guid? threadId, string userName, bool isMessageView = false) {
+        public ActionResult SendMessage(string receiver, string title, string body, bool isNewThread, Guid? threadId,
+            string userName, bool isMessageView = false) {
             accountService.SendMessage(receiver, title, body, isNewThread, threadId);
             if (isMessageView) {
                 var modelMessage = accountService.GetMessagesDetails();
@@ -503,14 +500,14 @@ namespace ComX_0._0._2.Views.Account.Controller {
             var model = accountService.GetProfileDetails(userName);
             return PartialView("UserPanel", model);
         }
-        
+
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model){
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model) {
             var result =
                 await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded){
+            if (result.Succeeded) {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null) await SignInManager.SignInAsync(user, false, false);
                 return Json(result);
@@ -529,11 +526,10 @@ namespace ComX_0._0._2.Views.Account.Controller {
             var model = documentService.GetTopLogoDetails();
             return PartialView("_SideBar", model);
         }
+
         #region Helpers
 
-        private IAuthenticationManager AuthenticationManager {
-            get { return HttpContext.GetOwinContext().Authentication; }
-        }
+        private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
         private void AddErrors(IdentityResult result) {
             foreach (var error in result.Errors) ModelState.AddModelError("", error);
