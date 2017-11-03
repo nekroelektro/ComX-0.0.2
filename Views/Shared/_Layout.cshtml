@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
 @{
     string currentUrl = Request.Url?.AbsoluteUri;
+    var isMainSite = currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/")
+                     || currentUrl.Contains("isAfterConfirmation");
 }
 <!DOCTYPE html>
 <html>
@@ -48,7 +50,7 @@
         </div>
     </div>
     <div class="elementsToPush col-sm-10 col-xs-12">
-        @if (currentUrl.EndsWith("localhost:56314/") || currentUrl.EndsWith("nekroplaza.pl/")) {
+        @if (isMainSite) {
             <div class="sliderLatestIndexContainer">
                 <div class="containerMiddle">
                     @Html.Action("_IndexSlider", "Articles")
