@@ -6,7 +6,11 @@
 
 SharedLayout.Init = function () {
     $(window).on('load', function () {
-        $("#" + SharedLayout.Control.LoadingOverlay).fadeOut(1000);
+        $("#" + SharedLayout.Control.LoadingOverlay).hide();
+        console.log(SharedLayout.Control.IsAfterConfirmation);
+        if (SharedLayout.Control.IsAfterConfirmation == "True") {
+            SharedLayout.ShowConfirmationMessage();
+        }
     });
 
     var lazyConfig = {
@@ -34,6 +38,14 @@ SharedLayout.Init = function () {
             500);
     });
 };
+
+SharedLayout.ShowConfirmationMessage = function () {
+    $("." + SharedLayout.Control.ConfirmationOverlayContainer).append("<div>REJESTRACJA ZOSTAŁA POTWIERDZONA</div>");
+    $("#" + SharedLayout.Control.ConfirmationOverlay).removeClass('notVisible');
+    setTimeout(function() {
+        $("#" + SharedLayout.Control.ConfirmationOverlay).addClass('notVisible');
+    }, 2500);
+}
 
 SharedLayout.SubmitGoogleTracking = function() {
     (function(i, s, o, g, r, a, m) {

@@ -153,10 +153,9 @@ var MainArticleDetails = React.createClass({
                         </div>
                     )
                     }
-                <div className="articleDetailsBody">
-                    <div dangerouslySetInnerHTML={{__html: this.props.dBody}} />
-                </div>
-                <div className="fb-like" data-href={"/" + this.props.code} data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                    <div className="articleDetailsBody">
+                        <div dangerouslySetInnerHTML={{__html: this.props.dBody}} />
+                    </div>
                 </div>
             </div>
         );

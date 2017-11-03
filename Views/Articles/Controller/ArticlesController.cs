@@ -10,7 +10,8 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly IDocumentService documentService = new DocumentService();
 
-        public ActionResult Index() {
+        public ActionResult Index(bool isAfterConfirmation = false) {
+            ViewBag.IsAfterConfirmation = isAfterConfirmation;
             var model = documentService.GetIndexDetails();
             return PartialView("Index", model);
         }

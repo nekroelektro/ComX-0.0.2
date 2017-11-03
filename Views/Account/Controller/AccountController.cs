@@ -140,43 +140,6 @@ namespace ComX_0._0._2.Views.Account.Controller {
         }
 
         //
-        // GET: /Account/VerifyCode
-        [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe) {
-            // Require that the user has already logged in via username/password or external login
-            if (!await SignInManager.HasBeenVerifiedAsync()) return View("_HumanumErrareEst");
-            return View(new VerifyCodeViewModel {Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe});
-        }
-
-        //
-        // POST: /Account/VerifyCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model) {
-            if (!ModelState.IsValid) return View(model);
-
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
-            var result =
-                await
-                    SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe,
-                        model.RememberBrowser);
-            switch (result) {
-                case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
-                    return View("_HumanumErrareEst");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid code.");
-                    return View(model);
-            }
-        }
-
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register() {
@@ -272,7 +235,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
         public async Task<ActionResult> ConfirmEmail(string userId, string code) {
             if (userId == null || code == null) return View("_HumanumErrareEst");
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            ViewBag.IsAfterConfirmation = result.Succeeded;
+            return RedirectToAction("Index", "Articles", new{isAfterConfirmation = result.Succeeded});
         }
 
         //
@@ -349,33 +313,6 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation() {
             return View();
-        }
-
-        //
-        // GET: /Account/SendCode
-        [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe) {
-            var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null) return View("_HumanumErrareEst");
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
-            var factorOptions =
-                userFactors.Select(purpose => new SelectListItem {Text = purpose, Value = purpose}).ToList();
-            return
-                View(new SendCodeViewModel {Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe});
-        }
-
-        //
-        // POST: /Account/SendCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendCode(SendCodeViewModel model) {
-            if (!ModelState.IsValid) return View();
-
-            // Generate the token and send it
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider)) return View("_HumanumErrareEst");
-            return RedirectToAction("VerifyCode",
-                new {Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe});
         }
 
         //

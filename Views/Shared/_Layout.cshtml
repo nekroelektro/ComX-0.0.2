@@ -35,6 +35,9 @@
         <img class="loadingOverlayLogo" src="~/Content/images/logoNew17.png" alt="Loading" />
     </div>
 </div>
+<div id="confirmationOverlay" class="notVisible">
+    <div class="confirmationOverlayContainer"></div>
+</div>
 <div class="bodyContent">
     <div class="topMainElementsContainer col-sm-10 col-xs-12">
         @Html.Action("_TopNavigationMenu", "Articles")
@@ -67,9 +70,12 @@
 <script>
     var config = {
         LoadingOverlay: "loadingOverlay",
+        ConfirmationOverlay: "confirmationOverlay",
+        ConfirmationOverlayContainer: "confirmationOverlayContainer",
         ScrollTopArrow: "return-to-top",
         NekroPanel: "nekroPanel",
-        IndexFooter: "bottomFooter"
+        IndexFooter: "bottomFooter",
+        IsAfterConfirmation: "@ViewBag.IsAfterConfirmation"
     };
     new SharedLayout(config);
 </script>

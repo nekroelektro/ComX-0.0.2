@@ -38,7 +38,7 @@ p:-moz-selection {
     z-index: 4;
 }
 
-#loadingOverlay {
+#loadingOverlay, #confirmationOverlay {
     position: fixed;
     z-index: 99999;
     top: 0;
@@ -46,17 +46,33 @@ p:-moz-selection {
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 1);
-    transition: 1s 0.4s;
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
-.loadingOverlayElementsContainer {
+#confirmationOverlay {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.loadingOverlayElementsContainer, .confirmationOverlayContainer {
     position: fixed;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%); 
+    -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+.confirmationOverlayContainer {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    font-weight: 900;
 }
 
 .loadingOverlayLogo {
@@ -64,7 +80,7 @@ p:-moz-selection {
     position: fixed;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%); 
+    -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);

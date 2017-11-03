@@ -1,8 +1,11 @@
 ﻿THINGS TO DO:
 
+- dodać Typescript
+- dodać LESS
+- do widoku detali dodać pasek postępu w czytaniu na górze
 - usunąć "zaloguj" przy komentarzach dla mobile'u (właściwie trzebaby dodać mobilny login...)
 - usunąć kompletnie "Manage" - ma nie zostać nawet pył
-- zmiana hasła użytkownika - przenieść do popupa otwieranego z userpanel, usunąć oddzielny widok
+- zapomniane hasło do popupa, usunąć oddzielne widoki
 - rzeczy które nie są w reakcie do reacta, i do nich skrypty w ladny, initowy sposób (pamiętać o bundleconfig!)
 - poprawić widok aktywnego pamiętnika, belka u dołu, responsywna wielkość
 - zrobić porządek z tymi wszystkimi widokami w account, nieużywane wyrzucić a używane dołączyć do innych, ma być jak najmniej
@@ -13,6 +16,7 @@
 - prywatna wiadomość z ramki w popupie (z poziomu komentarzy pod artykułem)
 - przerobić IndexSlider w całości na własny - no i do Reacta
 - ogarnąć wygląd i podział na katalogi w galerii
+- funkcjonowanie search - wprowadzić szukanie po słowach a nie po całym inpucie
 - WANTLIST - grid z możliwością dodawania, zastanowić się gdzie umieścić (prawdopodobnie w UserPanel)
 - Przerobić search i kategorie
 	- na górnym pasku zamiast wszystkich kategorii tylko jeden link "kategorie"
@@ -93,3 +97,6 @@ PRYWATNE WIADOMOŚCI:
 	[DONE] po prawej pasek ze wszystkim - nawigacją, ikonami z toplogopanelu, sidebar i MOŻE topnavigationmenu
 	[DONE] kolumnowanie bootstrapem na bodycontent i sidebar
 	[DONE] znaczące odchudzenie toplogopanel, wydłużenie na całą stronę
+[DONE] zmiana hasła użytkownika - przenieść do popupa otwieranego z userpanel, usunąć oddzielny widok
+[DONE] confirm email usunąć widoki ma przekierowywać do indexu z wiadomością
+
