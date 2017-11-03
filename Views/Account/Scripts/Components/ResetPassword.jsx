@@ -1,4 +1,4 @@
-﻿var LoginPanel = React.createClass({
+﻿var ResetPassword = React.createClass({
     render: function () {
         return (
             <div className="resetPassContainer">
@@ -23,19 +23,21 @@ var ResetPass = React.createClass({
     },
     render: function () {
         return (
-            <div className="LoginFormContainer">
-                <h2 className="loginTopLabel">Zresetuj haslo do swojego konta.</h2>
-                <p>
-                    Podaj swoją nazwę użytkownika i hasło. Jeśli nie masz konta <a href="/Account/Register/">ZAREJESTRUJ SIĘ</a>.
-                </p>
+            <div className="resetPassFormContainer">
+                <div className="resetPassTopInfo">
+                    <h2 className="resetPassTopLabel">Zresetuj hasło do swojego konta!</h2>
+                    <p>
+                        Jeśli nie masz konta <a href="/Account/Register/">ZAREJESTRUJ SIĘ</a>.
+                    </p>
+                </div>
 		        <div className="row">
                     <div className="col-md-4 col-centered">
-                        <section id="loginForm loginFormCustom">
+                        <section id="loginForm resetPassFormCustom">
                             <div className="form-horizontal loggingFormExternal">
                                 <hr />
                                 <div className="form-group">
                                     <div className="col-md-9 col-centered">
-                                        <input type="text" name="userNameInputExternal" className="form-control" placeholder="Nazwa użytkownika..." value={this.state.mail} onchange={this.handleMailChange} />
+                                        <input type="text" name="userNameInputExternal" className="form-control" placeholder="Adres e-mail..." value={this.state.mail} onchange={this.handleMailChange} />
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -45,23 +47,18 @@ var ResetPass = React.createClass({
                                 </div>
                                 <div className="form-group">
                                     <div className="col-md-9 col-centered">
-                                        <input type="password" name="passInputExternal" className="form-control" placeholder="Hasło..." value={this.state.passwordConfirm} onchange={this.handlePasswordConfirmChange} />
+                                        <input type="password" name="passInputExternal" className="form-control" placeholder="Potwierdź hasło..." value={this.state.passwordConfirm} onchange={this.handlePasswordConfirmChange} />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <div className="col-md-12">
-                                        <button type="submit" className="btn nekrobutton-green loginConfirmButtonExternal">
-                                            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Zaloguj!
+                                        <button type="submit" className="btn nekrobutton-green resetPassConfirmButtonExternal">
+                                            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Resetujemy!
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="loginErrorMessageContainerExternal"></div>
-                            <div className="forgotPasswordLogin col-md-12">
-                                <h4>
-                                    <a href="#" className="externalForgotPasswordAnchor">Choroba, nie pamiętam hasła!</a>
-                                </h4>
-                            </div>
+                            <div className="resetPassErrorMessageContainerExternal"></div>
                         </section>
                     </div>
 			    </div>

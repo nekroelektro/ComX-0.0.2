@@ -16,6 +16,7 @@ namespace ComX_0._0._2 {
                 "~/Views/Account/Styles/Login.css",
                 "~/Views/Account/Styles/Register.css",
                 "~/Views/Account/Styles/UserPanel.css",
+                "~/Views/Account/Styles/ResetPassword.css",
                 "~/Views/Articles/Styles/_Comments.css",
                 "~/Views/Articles/Styles/_LastFromCategory.css",
                 "~/Views/Articles/Styles/Index.css",

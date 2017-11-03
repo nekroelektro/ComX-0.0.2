@@ -283,18 +283,17 @@ namespace ComX_0._0._2.Views.Account.Controller {
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model) {
             if (!ModelState.IsValid) return View(model);
             var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
-            //var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null) return RedirectToAction("ResetPasswordConfirmation", "Account");
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded) return RedirectToAction("ResetPasswordConfirmation", "Account");
-            AddErrors(result);
-            return View();
-        }
 
-        //
-        // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation() {
+            if (user == null) {
+                return Json(false);
+            }
+
+            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded) {
+                return RedirectToAction("Login", "Account");
+            }
+
+            AddErrors(result);
             return View();
         }
 
