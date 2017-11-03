@@ -1,30 +1,30 @@
 ﻿var LoginPanel = React.createClass({
     render: function () {
         return (
-            <div className="loginContainer">
-                <LoginForm></LoginForm>
+            <div className="resetPassContainer">
+                <ResetPass></ResetPass>
             </div>
 		);
     }
 });
 
-var LoginForm = React.createClass({
+var ResetPass = React.createClass({
     getInitialState: function() {
-        return {login: '', password: '', remember: false};
+        return { mail: '', password: '', passwordConfirm: ''};
     },
-    handleLoginChange: function(e) {
-        this.setState({login: e.target.value});
+    handleMailChange: function(e) {
+        this.setState({mail: e.target.value});
     },
     handlePasswordChange: function(e) {
         this.setState({password: e.target.value});
     },
-    handleRememberChange: function(e) {
-        this.setState({ remember: e.target.value });
+    handlePasswordConfirmChange: function(e) {
+        this.setState({ passwordConfirm: e.target.value });
     },
     render: function () {
         return (
             <div className="LoginFormContainer">
-                <h2 className="loginTopLabel">Zaloguj się</h2>
+                <h2 className="loginTopLabel">Zresetuj haslo do swojego konta.</h2>
                 <p>
                     Podaj swoją nazwę użytkownika i hasło. Jeśli nie masz konta <a href="/Account/Register/">ZAREJESTRUJ SIĘ</a>.
                 </p>
@@ -35,7 +35,7 @@ var LoginForm = React.createClass({
                                 <hr />
                                 <div className="form-group">
                                     <div className="col-md-9 col-centered">
-                                        <input type="text" name="userNameInputExternal" className="form-control" placeholder="Nazwa użytkownika..." value={this.state.login} onchange={this.handleLoginChange} />
+                                        <input type="text" name="userNameInputExternal" className="form-control" placeholder="Nazwa użytkownika..." value={this.state.mail} onchange={this.handleMailChange} />
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -44,12 +44,8 @@ var LoginForm = React.createClass({
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <div className="col-md-12">
-                                        <div className="checkbox-inline">
-                                            <label>
-                                                <input type="checkbox" name="rememberCheckboxExternal" checked={this.state.remember} onChange={this.handleRememberChange} /> Zapamiętaj mnie!
-                                            </label>
-                                        </div>
+                                    <div className="col-md-9 col-centered">
+                                        <input type="password" name="passInputExternal" className="form-control" placeholder="Hasło..." value={this.state.passwordConfirm} onchange={this.handlePasswordConfirmChange} />
                                     </div>
                                 </div>
                                 <div className="form-group">

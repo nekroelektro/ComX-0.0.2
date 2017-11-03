@@ -210,7 +210,7 @@ AccountUserPanel.ConfirmUserDegradation = function() {
 
 AccountUserPanel.ConfirmProfileEdit = function() {
     var newMail = $('[name=userMailInput]').val();
-    if (NekroParams.CheckEmail(newMail)) {
+    if (NekroHelper.CheckEmail(newMail)) {
         $.ajax({
                 url: "/Account/EditProfile/",
                 type: "POST",

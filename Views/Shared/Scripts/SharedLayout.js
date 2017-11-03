@@ -7,7 +7,6 @@
 SharedLayout.Init = function () {
     $(window).on('load', function () {
         $("#" + SharedLayout.Control.LoadingOverlay).hide();
-        console.log(SharedLayout.Control.IsAfterConfirmation);
         if (SharedLayout.Control.IsAfterConfirmation == "True") {
             SharedLayout.ShowConfirmationMessage();
         }

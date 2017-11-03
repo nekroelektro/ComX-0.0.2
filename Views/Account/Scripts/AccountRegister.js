@@ -31,7 +31,7 @@ AccountRegister.ConfirmRegistration = function () {
         if (login.length < 3 || login.length > 25) {
             errorText = errorText + "Login musi mieć przynajmniej 3 znaki, ale nie więcej niż 25!";
         }
-        if (!NekroParams.CheckEmail(mail)) {
+        if (!NekroHelper.CheckEmail(mail)) {
             errorText = errorText + "Ten mail wygląda na kaprawy, popraw go lepiej!";
         }
         if (password.length < 6) {

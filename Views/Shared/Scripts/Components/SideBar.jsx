@@ -141,7 +141,7 @@ var LoginSideForm = React.createClass({
     },
     render: function () {
         return (
-            <div className="LoginSideFormContainer col-md-12">
+            <div id="loginSideForm" className="LoginSideFormContainer col-md-12">
                 <section id="loginForm loginFormCustom">
                     <div className="form-horizontal loggingForm">
                         <div className="form-group">
@@ -173,11 +173,28 @@ var LoginSideForm = React.createClass({
                     </div>
                     <div className="forgotPasswordLogin col-md-12">
                         <p>
-                            <a href="/Account/ForgotPassword">Choroba, nie pamiętam hasła!</a>
+                            <a href="#" className="popupForgotPassword">Choroba, nie pamiętam hasła!</a>
                         </p>
                     </div>
                     <div className="loginErrorMessageContainer"></div>
                 </section>
+                <div id="popupForgotPassword" className="white-popup">
+                    <form id="forgotPassFormContainer">
+                        <h3>Zapomniałeś hasło?</h3>
+                        <hr />
+                        <div className="col-xs-10 col-centered">
+                            <b>Podaj adres e-mail:</b>
+                            <input type="text" id="forgotPassMail" className="form-control" />
+                        </div>
+                        <div className="modalPopupButtons">
+                            <button type="button" className="btn nekrobutton-green .btn-sm btnConfirmForgotPass">
+                                Reset!
+                            </button>
+                            <button type="button" className="btn nekrobutton-red .btn-sm btnCancelEdit shutNekroPop">Anuluj</button>
+                        </div>
+                        <div id="forgotPassErrorContainer"></div>
+                    </form>
+                </div>
             </div>
         );
     }

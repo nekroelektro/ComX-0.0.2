@@ -884,9 +884,11 @@
     <Content Include="scripts\skins\moono-lisa\images\spinner.gif" />
     <Content Include="scripts\styles.js" />
     <Content Include="scripts\tinymce.min.js" />
+    <Content Include="Views\Account\Scripts\AccountResetPassword.js" />
     <Content Include="Views\Account\Scripts\AccountMessages.js" />
     <Content Include="Views\Account\Scripts\AccountRegister.js" />
     <Content Include="Views\Account\Scripts\AccountLogin.js" />
+    <Content Include="Views\Account\Scripts\Components\ResetPassword.jsx" />
     <Content Include="Views\Account\Styles\Messages.css" />
     <Content Include="Views\Articles\Scripts\ArticlesSearchResults.js" />
     <Content Include="Views\Articles\Scripts\ArticlesTopDetailPanel.js" />
@@ -1108,8 +1110,6 @@
     <Content Include="Views\Shared\_HumanumErrareEst.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\UserPanel.cshtml" />
     <Content Include="Views\Configuration\_Series.cshtml" />

@@ -1,8 +1,8 @@
-﻿function AccountLogin(config) {
-    AccountLogin.Control = config;
-    AccountLogin.Init();
+﻿function AccountResetPassword(config) {
+    AccountResetPassword.Control = config;
+    AccountResetPassword.Init();
 
-    AccountLogin.Token = $('[name=__RequestVerificationToken]').val();
+    AccountResetPassword.Token = $('[name=__RequestVerificationToken]').val();
 };
 
 AccountLogin.Init = function () {

@@ -240,49 +240,32 @@ namespace ComX_0._0._2.Views.Account.Controller {
         }
 
         //
-        // GET: /Account/ForgotPassword
-        [AllowAnonymous]
-        public ActionResult ForgotPassword() {
-            return View();
-        }
-
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model) {
-            if (ModelState.IsValid) {
-                var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
-                //var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !await UserManager.IsEmailConfirmedAsync(user.Id))
-                    return View("ForgotPasswordConfirmation");
-                var message = new EmailMessage();
-                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new {userId = user.Id, code},
-                    Request.Url.Scheme);
-                message.ToEmail = model.Email;
-                message.Subject = "Przypomnienie hasła na NEKROPLAZA.PL";
-                message.IsHtml = false;
-                message.Body =
-                    string.Format(
-                        "Serwus, {0}!!!\n Jeśli to czytasz, to znaczy, że zapomniałeś hasła do logowania, och Ty bidulo - kliknij w ten link:\n " +
-                        callbackUrl + "\naby przypomnieć hasło!\nPozdrawiam serdecznie!\nNekro", user.UserName);
+        public async Task<ActionResult> ForgotPassword(string mail) {
+            var user = db.Users.SingleOrDefault(x => x.Email == mail);
 
-                var emailService = new Helpers.SmtpHelpers.EmailService();
-                var status = emailService.SendEmailMessage(message);
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            if (user == null || !await UserManager.IsEmailConfirmedAsync(user.Id)) {
+                return Json(false);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+            var message = new EmailMessage();
+            var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new {userId = user.Id, code},
+                Request.Url.Scheme);
+            message.ToEmail = mail;
+            message.Subject = "Resetacja hasła na NEKROPLAZA.PL";
+            message.IsHtml = false;
+            message.Body =
+                string.Format(
+                    "Serwus, {0}!!!\n Jeśli to czytasz, to znaczy, że zapomniałeś hasła do logowania, och Ty bidulo - kliknij w ten link:\n " +
+                    callbackUrl + "\naby zresetować hasło do swojego konta!\nPozdrawiam serdecznie!\nNekro", user.UserName);
 
-        //
-        // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation() {
-            return View();
+            var emailService = new Helpers.SmtpHelpers.EmailService();
+            var status = emailService.SendEmailMessage(message);
+            return Json(true);
         }
 
         //
