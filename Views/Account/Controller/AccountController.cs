@@ -272,6 +272,7 @@ namespace ComX_0._0._2.Views.Account.Controller {
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code) {
+            ViewBag.ResetCode = code;
             return code == null ? View("_HumanumErrareEst") : View();
         }
 
@@ -280,15 +281,14 @@ namespace ComX_0._0._2.Views.Account.Controller {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model) {
-            if (!ModelState.IsValid) return View(model);
-            var user = db.Users.SingleOrDefault(x => x.Email == model.Email);
+        public async Task<ActionResult> ResetPassword(string mail, string password, string code) {
+            var user = db.Users.SingleOrDefault(x => x.Email == mail);
 
             if (user == null) {
                 return Json(false);
             }
 
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await UserManager.ResetPasswordAsync(user.Id, code, password);
             if (result.Succeeded) {
                 return RedirectToAction("Login", "Account");
             }

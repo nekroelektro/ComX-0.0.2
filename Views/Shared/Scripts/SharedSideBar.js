@@ -311,7 +311,3 @@ SharedSideBar.HandleForgotPasswordConfirmation = function (success) {
         SharedSideBar.HandleForgotPasswordError(true);
     }
 };
-
-SharedSideBar.OpenForgotPasswordHelper = function () {
-    
-};

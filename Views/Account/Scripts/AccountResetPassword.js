@@ -5,64 +5,51 @@
     AccountResetPassword.Token = $('[name=__RequestVerificationToken]').val();
 };
 
-AccountLogin.Init = function () {
-    $("." + AccountLogin.Control.LoginConfirmButton).click(function () {
-        AccountLogin.ConfirmLogin();
+AccountResetPassword.Init = function () {
+    $("." + AccountResetPassword.Control.ResetPassConfirmButton).click(function () {
+        AccountResetPassword.ConfirmResetPassword();
     });
 
-    $("." + AccountLogin.Control.ExternalForgotPasswordAnchor).click(function () {
-        $("." + SharedSideBar.Control.PopupForgotPassword).click();
-    });
-
-    var enterLoginExternalconfig = {
-        Scope: "." + AccountLogin.Control.LoggingForm,
-        ElementToClick: "." + AccountLogin.Control.LoginConfirmButton
+    var enterResetPassconfig = {
+        Scope: "." + AccountResetPassword.Control.ResetPassForm,
+        ElementToClick: "." + AccountResetPassword.Control.ResetPassConfirmButton
     };
-    NekroController.NekroEnterClick(enterLoginExternalconfig);
+    NekroController.NekroEnterClick(enterResetPassconfig);
 };
 
-AccountLogin.ConfirmLogin = function() {
-    var login = $("[name=" + AccountLogin.Control.LoginNameInput + "]").val().trim();
-    var password = $("[name=" + AccountLogin.Control.LoginPasswordInput + "]").val().trim();
-    var remember = $("[name=" + AccountLogin.Control.LoginRememberCheck + "]").is(":checked") ? true : false;
-    if (login.length < 3 || password.length < 3) {
-        AccountLogin.LoginValidation(false);
+AccountResetPassword.ConfirmResetPassword = function() {
+    var mail = $("#" + AccountResetPassword.Control.ResetPassMail).val().trim();
+    var password = $("#" + AccountResetPassword.Control.ResetPassNew).val().trim();
+    var confirm = $("#" + AccountResetPassword.Control.ResetPassConfirm).val().trim();
+    if (password.length < 6 || password.length < 6 || mail.length == 0 || !NekroHelper.CheckEmail(mail) || password !== confirm) {
+        AccountResetPassword.HandleForgotPasswordError(false);
         return;
     }
-    var loginAjaxConfig = {
-        Url: "/Account/Login",
+    var resetAjaxConfig = {
+        Url: "/Account/ResetPassword",
         Method: "POST",
-        Params: { 'userName': login, 'password': password, 'rememberMe': remember, 'returnUrl': window.location.search.substring(1), '__RequestVerificationToken': AccountLogin.Token },
-        SuccessHandler: AccountLogin.SuccessLoginHandler
+        Params: { 'mail': mail, 'password': password, 'code': AccountResetPassword.Control.ResetCode, '__RequestVerificationToken': AccountResetPassword.Token },
+        SuccessHandler: AccountResetPassword.SuccessResetPassHandler
     };
-    NekroController.NekroAjaxAction(loginAjaxConfig);
+    NekroController.NekroAjaxAction(resetAjaxConfig);
 };
 
-AccountLogin.SuccessLoginHandler = function (result) {
-    if (result.Success == true) {
-        if (AccountLogin.Control.ReturnUrl != "") {
-            window.location.href = AccountLogin.Control.ReturnUrl;
-        } else {
-            location.reload(true);
-        }
+AccountResetPassword.SuccessResetPassHandler = function (success) {
+    if (success) {
+        location.href = "/Account/UserPanel";
     } else {
-        AccountLogin.LoginValidation(true);
-        return;
+        AccountResetPassword.HandleForgotPasswordError(true);
     }
 };
 
-AccountLogin.LoginValidation = function (responseError) {
-    var messageString;
-    if (responseError) {
-        messageString =
-            "<div class='loginErrorMessageExternal'>Coś się pokiełbasiło. Prawdopodobnie popsułeś - wpisz poprawny login i hasło!</div>";
-    } else {
-        messageString =
-            "<div class='loginErrorMessageExternal'>Musisz uzupełnić oba pola. I to na dodatek poprawnie.</div>";
+AccountResetPassword.HandleForgotPasswordError = function (isModelValid) {
+    var errorString = '';
+    isModelValid
+        ? errorString = "Coś poszło nie tak - nieprawidłowy e-mail lub sesja resetowania hasła wygasła i musisz powtórzyć procedurę."
+        : errorString = "Uzupełnij poprawnie wszystkie pola! Hasło musi mieć przynajmniej 6 znaków!";
+    if ($('.' + AccountResetPassword.Control.ResetPassErrorMessage).length > 0) {
+        $('.' + AccountResetPassword.Control.ResetPassErrorMessage).detach();
     }
-
-    if ($("." + AccountLogin.Control.LoginError).length > 0) {
-        $("." + AccountLogin.Control.LoginError).detach();
-    }
-    $("." + AccountLogin.Control.LoginErrorMessageContainer).hide().append(messageString).fadeIn("fast");
+    $('#' + AccountResetPassword.Control.ResetPassErrorMessageContainer).hide().append("<div class='editErrorContainer'>" +
+        "<div class='resetPassErrorMessage'>" + errorString + "</div> </div>").fadeIn("fast");
 };
