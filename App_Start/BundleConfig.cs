@@ -59,7 +59,8 @@ namespace ComX_0._0._2 {
                 "~/Views/Account/Scripts/AccountUserPanel.js",
                 "~/Views/Account/Scripts/AccountLogin.js",
                 "~/Views/Account/Scripts/AccountRegister.js",
-                "~/Views/Account/Scripts/AccountResetPassword.js"
+                "~/Views/Account/Scripts/AccountResetPassword.js",
+                "~/Views/Account/Scripts/AccountMessages.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/coreScripts").Include(

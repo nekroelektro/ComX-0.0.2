@@ -11,7 +11,30 @@
 @Html.React("PrivateMessages", new { model = Model, IsAdministrator = IsAdmin })
 <p class="subConcious">...the horror...the horror...</p>
 <script src="~/scripts/ckeditor.js" type="text/javascript"></script>
-<script src="~/Views/Account/Scripts/AccountMessages.js" type="text/javascript"></script>
+<script>
+    var config = {
+        BtnSendMessageInThread: "btnSendMessageInThread",
+        BtnSendMessageNewThread: "btnSendMessageNewThread",
+        BtnConfirmSendMessage: "btnConfirmSendMessage",
+        BtnCancelSendMessage: "btnCancelSendMessage",
+        BtnMessageSendConfirmation: "btnMessageSendConfirmation",
+        ThreadElementNode: "threadElementNode",
+        ThreadElementButtons: "threadElementButtons",
+        ThreadElementContainer: "threadElementContainer",
+        ThreadElementNotificator: "threadElementNotificator",
+        MessageElementContainer: "messageElementContainer",
+        MessageSuccessModalAnchor: "messageSuccessModalAnchor",
+        MessageSuccessModal2: "messageSuccessModal2",
+        SendMessageContainer: "sendMessageContainer",
+        MainMessagesContainer: "mainMessagesContainer",
+        EditPrivateMessageTitle: "editPrivateMessageTitle",
+        EditPrivateMessageContainer: "editPrivateMessageContainer",
+        EditErrorMessage: "editErrorMessage",
+        PopupSendMessageGet: "popupSendMessageGet",
+        TopLogoPanel: "topLogoPanel"
+    };
+    new AccountMessages(config);
+</script>
 
 
 
