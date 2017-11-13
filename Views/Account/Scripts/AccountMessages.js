@@ -26,8 +26,14 @@ AccountMessages.Init = function () {
         AccountMessages.HandleSendMessageSuccess();
     });
 
-    $('.' + AccountMessages.Control.ThreadElementNode).click(function () {
-        AccountMessages.ReadThread($(this));
+    $('.' + AccountMessages.Control.ThreadElementNode).click(function (e) {
+        if ($("." + AccountMessages.Control.MessageElementContainer).find($(e.target)).length < 1) {
+            AccountMessages.ReadThread($(this));
+        }
+    });
+
+    $('.' + AccountMessages.Control.MessageElementAuthor).click(function () {
+        AccountMessages.GoToUserProfile($(this));
     });
 
     var config = {
@@ -161,4 +167,10 @@ AccountMessages.ReadThread = function (item) {
 AccountMessages.ReadThreadHandler = function(response) {
 //    $('.' + AccountMessages.Control.TopLogoPanel).empty();
 //    $('.' + AccountMessages.Control.TopLogoPanel).html(response);
+};
+
+AccountMessages.GoToUserProfile = function(item) {
+    var userId = item.data('userid');
+    if (userId == "Użytkownik usunięty") return;
+    window.location.href = "/Account/UserPanel?userId=" + userId;
 };

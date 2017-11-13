@@ -75,9 +75,10 @@ var ThreadElement = React.createClass({
         };
     },
     render: function () {
+        var isUserWithDeleted = this.props.model.IsUserWithDeleted;
         var messageElementsNodes = this.state.messages.map(function (message) {
-            return <MessageElement model={message}></MessageElement>;
-        });
+            return <MessageElement model={message} isUserDeleted={isUserWithDeleted}></MessageElement>;
+        }, true);
         return (
             <div className="threadElementNode col-xs-offset-1 col-xs-10" data-id={this.props.model.Id}>
                 <div className="threadElementContainer col-xs-12" data-id={this.props.model.Id}>
@@ -115,15 +116,21 @@ var ThreadElement = React.createClass({
 
 var MessageElement = React.createClass({
     propTypes: {
-        model: React.PropTypes.object
+        model: React.PropTypes.object,
+        isUserDeleted: React.PropTypes.bool
     },
     render: function () {
         return (
             <div className="messageElementContainer col-xs-12" data-id={this.props.model.Id}>
                 <div className="messageElementLeft col-xs-3">
-                    <div className="messageElementAuthor">
-                        <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.model.Author}
-                    </div>
+                    {this.props.isUserDeleted ?
+                        <div className="messageElementAuthorDeleted" data-userid={this.props.model.Author}>
+                            <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.model.Author}
+                        </div>
+                        :
+                        <div className="messageElementAuthor" data-userid={this.props.model.Author}>
+                            <span className="glyphicon glyphicon-user" aria-hidden="true"></span> {this.props.model.Author}
+                        </div>}
                     <div className="messageElementAvatar">
                         <img src={"/Account/GetAvatar?userId=" + this.props.model.AuthorId}/>
                     </div>

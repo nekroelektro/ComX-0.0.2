@@ -83,9 +83,21 @@
     width: 100%;
     text-align: center;
     margin: 0 auto;
+    color: #2b823c;
+}
+.messageElementAuthor:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.messageElementAvatar img{
+.messageElementAuthorDeleted {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    color: #222222;     
+}
+    
+.messageElementAvatar img {
     width: 90%;
 }
 
