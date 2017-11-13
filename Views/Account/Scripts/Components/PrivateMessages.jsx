@@ -60,13 +60,6 @@ var ThreadList = React.createClass({
 			        </div>
                 </div>
 			    {threadElementsNodes}
-			    <a className="messageSuccessModalAnchor"></a>
-			    <div id="messageSuccessModal2" className="white-popup">
-			        <h3>Prywatna wiadomość wysłana!</h3>
-			        <div className="modalPopupButtons">
-                        <button type="button" className="btn nekrobutton-green .btn-sm btnMessageSendConfirmation shutNekroPop">Spoko</button>
-			        </div>
-			    </div>
 			</div>
 		);
     }

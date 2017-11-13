@@ -442,8 +442,8 @@ namespace ComX_0._0._2.Views.Account.Controller {
 
         public ActionResult MarkThreadMessagesAsReceived(Guid threadId) {
             accountService.MarkAllThreadMessagesAsReceived(threadId);
-            var model = documentService.GetTopLogoDetails();
-            return PartialView("_SideBar", model);
+            //var model = documentService.GetTopLogoDetails();
+            return Json(true);
         }
 
         #region Helpers

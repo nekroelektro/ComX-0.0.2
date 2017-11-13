@@ -422,9 +422,12 @@ NekroController.NekroLazy = function (config) {
     }
 };
 
-NekroController.NekroSlidingBars = function(config) {
+NekroController.NekroSlidingBars = function (config) {
     config.ElementClicked.on('click',
-        function() {
+        function (e) {
+            if ($(config.ElementExcluded).find($(e.target)).length > 0 || $(e.target).is($(config.ElementExcluded))) {
+                return;
+            }
             var activeItem = $('.activeSlideItem');
             if (activeItem.length > 0) {
                 if (activeItem.is($(this))) {

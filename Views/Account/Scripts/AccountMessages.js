@@ -7,24 +7,19 @@
     AccountMessages.ThreadId = '';
     AccountMessages.ResponseContent = '';
 };
-// POPRAWI KLIKNIECIE NA POST BO TERAZ ZWIJA LISTĘ WIADOMOŚCI
+
 AccountMessages.Init = function () {
-    $('.' + AccountMessages.Control.BtnSendMessageInThread, '.' + AccountMessages.Control.BtnSendMessageNewThread).click(function () {
+    $('.' + AccountMessages.Control.BtnSendMessageInThread + ', .' + AccountMessages.Control.BtnSendMessageNewThread).click(function (e) {
         AccountMessages.SendMessageInterfaceHandler();
         AccountMessages.ThreadElementClickHandler(e, $(this)); // BE FOREWARNED!!!
     });
-
-    //Commented because all this is triggered by same buttons as previous click event - this function moved to previous
-    //$('.threadElementButtons button').click(function (e) {
-    //    AccountMessages.ThreadElementClickHandler(e, $(this));
-    //});
 
     $('.' + AccountMessages.Control.BtnConfirmSendMessage).click(function () {
         AccountMessages.SendMessage();
     });
 
     $('.' + AccountMessages.Control.BtnCancelSendMessage).click(function (e) {
-        AccountMessages.HandleSendMessageSuccess(e);
+        AccountMessages.HandleCancelMessage(e);
     });
 
     $('.' + AccountMessages.Control.BtnMessageSendConfirmation).click(function () {
@@ -39,7 +34,8 @@ AccountMessages.Init = function () {
         ElementClicked: $('.' + AccountMessages.Control.ThreadElementNode),
         ElementForToggle: "." + AccountMessages.Control.MessageElementContainer + ", ." + AccountMessages.Control.ThreadElementButtons,
         IsSticky: true,
-        ElementToStick: $('.' + AccountMessages.Control.ThreadElementContainer)
+        ElementToStick: $('.' + AccountMessages.Control.ThreadElementContainer),
+        ElementExcluded: '.' + AccountMessages.Control.MessageElementContainer + ", ." + AccountMessages.Control.ThreadElementButtons
     }
     NekroController.NekroSlidingBars(config);
 
@@ -54,8 +50,8 @@ AccountMessages.Init = function () {
     NekroController.NekroPop(mesSuccPopConfig);
 };
 
-AccountMessages.SendMessageInterfaceHandler = function() {
-    $('.' + AccountMessages.Control.SendMessageContainer).removeClass('hidden');
+AccountMessages.SendMessageInterfaceHandler = function () {
+    $('.' + AccountMessages.Control.SendMessageContainer).css('display', 'block');
     $('.' + AccountMessages.Control.SendMessageContainer).hide().slideDown('slow');
     $("html, body").animate({ scrollTop: $('#' + AccountMessages.Control.MainMessagesContainer).offset().top - 60 }, 'slow'); 
 };
@@ -123,12 +119,7 @@ AccountMessages.SendMessageResponse = function(response) {
     AccountMessages.HandleSendMessageSuccess();
 };
 
-AccountMessages.HandleSendMessageSuccess = function() {
-    $('.' + AccountMessages.Control.SendMessageContainer).addClass('hidden');
-    $('.' + AccountMessages.Control.MessageSuccessModalAnchor).click();
-};
-
-AccountMessages.HandleSendMessageSuccess = function(e) {
+AccountMessages.HandleCancelMessage = function(e) {
     e.preventDefault();
     var editorInstanceEdit = CKEDITOR.instances[AccountMessages.Control.EditPrivateMessageContainer];
     if (editorInstanceEdit) {
@@ -139,17 +130,22 @@ AccountMessages.HandleSendMessageSuccess = function(e) {
         } catch (e) { }
     }
     $('.' + AccountMessages.Control.SendMessageContainer).slideUp('slow', function () {
-        $('.' + AccountMessages.Control.SendMessageContainer).addClass('hidden');
+        $('.' + AccountMessages.Control.SendMessageContainer).css('display', "none");
     });
 };
 
 AccountMessages.HandleSendMessageSuccess = function() {
     //refresh messages view only
+    $('.' + AccountMessages.Control.SendMessageContainer).css('display', "none");
+
     $('#' + AccountMessages.Control.MainMessagesContainer).empty();
     $('#' + AccountMessages.Control.MainMessagesContainer).html(AccountMessages.ResponseContent);
+
+    NekroHelper.ShowStatusMessagePopup($('.' + AccountMessages.Control.ThreadsContainer), true);
 };
 
-AccountMessages.ReadThread = function(item) {
+AccountMessages.ReadThread = function (item) {
+    $("html, body").animate({ scrollTop: $('#' + AccountMessages.Control.MainMessagesContainer).offset().top - 60 }, 'slow');
     item.find('.' + AccountMessages.Control.ThreadElementNotificator).hide('slow');
     var thread = item.data('id');
     var sendMessageAjaxConfig = {
@@ -161,7 +157,8 @@ AccountMessages.ReadThread = function(item) {
     NekroController.NekroAjaxAction(sendMessageAjaxConfig);
 };
 
+//It is for updating red notificator, but its mess
 AccountMessages.ReadThreadHandler = function(response) {
-    $('.' + AccountMessages.Control.TopLogoPanel).empty();
-    $('.' + AccountMessages.Control.TopLogoPanel).html(response);
+//    $('.' + AccountMessages.Control.TopLogoPanel).empty();
+//    $('.' + AccountMessages.Control.TopLogoPanel).html(response);
 };
