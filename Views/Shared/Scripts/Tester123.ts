@@ -1,18 +1,5 @@
-﻿@using ComX_0._0._2.Helpers
-@using React.AspNet
-@model ComX_0._0._2.Views.Articles.Models.DtoModels.SideBarDetailsDto
-@{
-    UserHelper userHelper = new UserHelper();
-    GeneralHelper generalHelper = new GeneralHelper();
-    bool isAdmin = userHelper.IsAdminUser(User);
-    bool isAuthenticated = Request.IsAuthenticated;
-    var currentUrl = generalHelper.GetCurrentPageUrl();
-    bool isConfigurationView = currentUrl.StartsWith("http://localhost:56314/Configuration/") || currentUrl.StartsWith("http://nekroplaza.pl/Configuration/");
-}
-@Html.AntiForgeryToken()
-@Html.React("SideBarReact", new {admin = isAdmin, authenticated = isAuthenticated, model = Model, isConfig = isConfigurationView})
-<script>
-    var config = {
+﻿class Control {
+    Controls = {
         SideBarSearchComponent: "sideBarSearchComponent",
         SideSearchAnchor: "sideSearchAnchor",
         LoginSideForm: "loginSideForm",
@@ -57,10 +44,16 @@
         BtnConfirmForgotPass: "btnConfirmForgotPass",
         ForgotPassMail: "forgotPassMail",
         ForgotPassErrorContainer: "forgotPassErrorContainer",
-        EditErrorMessage: "editErrorMessage",
-        ReturnUrl: '@ViewBag.ReturnUrl'
-    };
-    new SharedSideBar(config);
+        EditErrorMessage: "editErrorMessage"
+    }
+}
 
-    new SharedSideBarTs();
-</script>
+function SharedSideBarTs() {
+    let SharedSideBar = new Control();
+    console.log(SharedSideBar.Controls);
+    hababa();
+}
+
+function hababa() {
+    console.log("UWAŻEJ!" + this.controls);
+}

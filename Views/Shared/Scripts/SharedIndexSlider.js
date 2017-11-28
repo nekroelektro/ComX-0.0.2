@@ -16,7 +16,34 @@ SharedIndexSlider.Init = function () {
                 }
                 NekroController.NekroDynamicSize(heightUpperElementsConfig);
             },
-            500);
+        500);
+
+        //var container = document.querySelector(SharedIndexSlider.Control.SliderOne);
+        //container.addEventListener('click', function(e) {
+        //    if (e.target != e.currentTarget) {
+        //        e.preventDefault;
+        //        console.log(e.target);
+        //    }
+        //    e.stopPropagation();
+        //}, false);
+
+    $("." + SharedIndexSlider.Control.SlideElementUpperAnchor).click(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+
+        $.ajax({
+            url: "/Articles/Details/",
+            method: 'GET',
+            data: { "id": url.substring(1) },
+            success: function (result) {
+                console.log(result);
+                $('.elementsToPush').html(result);
+                //$("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+            }
+        });
+
+        history.pushState(null, null, url);
+    });
 };
 
 SharedIndexSlider.IndexSliderInitialization = function () {

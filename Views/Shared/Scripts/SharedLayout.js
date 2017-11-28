@@ -5,12 +5,12 @@
 };
 
 SharedLayout.Init = function () {
-    $(window).on('load', function () {
-        $("#" + SharedLayout.Control.LoadingOverlay).hide();
-        if (SharedLayout.Control.IsAfterConfirmation == "True") {
-            SharedLayout.ShowConfirmationMessage();
-        }
-    });
+    //$(window).on('load', function () {
+    //    $("#" + SharedLayout.Control.LoadingOverlay).hide();
+    //    if (SharedLayout.Control.IsAfterConfirmation == "True") {
+    //        SharedLayout.ShowConfirmationMessage();
+    //    }
+    //});
 
     var lazyConfig = {
         Container: $('.bodyContent')

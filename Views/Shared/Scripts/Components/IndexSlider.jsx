@@ -59,7 +59,7 @@ var SliderOneElement = React.createClass({
     render: function () {
         return (
             <div className="slideElementUpper">
-                <a href={"/" + this.props.code}>
+                <a className="slideElementUpperAnchor" href={"/" + this.props.code}>
                     <div className="sliderLink">
                         <div className="bannerPanelInfo bannerPanelSlider">
                             <h2 className="bannerArticleName">{this.props.name}</h2>
