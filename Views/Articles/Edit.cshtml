@@ -6,7 +6,7 @@
     Layout = "~/Views/Articles/_Articles.cshtml";
     ViewBag.Title = "Edit";
     UserHelper userHelper = new UserHelper();
-    bool panelActive = userHelper.IsSuperAdminUser(User) || (userHelper.IsAdminUser(User) && new Guid(userHelper.GetUserByName(Model.Document.UserId).Id) == userHelper.GetCurrentLoggedUserId());
+    bool panelActive = userHelper.IsSuperAdminUser(User) || (userHelper.IsAdminUser(User) && Model.Document.UserId != null ? new Guid(userHelper.GetUserByName(Model.Document.UserId).Id) == userHelper.GetCurrentLoggedUserId() : true);
 }
 @Html.AntiForgeryToken()
 @Html.React("Edit", new {model=Model, isAdmin = panelActive})

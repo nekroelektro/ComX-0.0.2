@@ -924,7 +924,6 @@
     <Content Include="Views\Account\Messages.cshtml" />
     <Content Include="scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="scripts\jquery-3.2.1.min.map" />
-    <Content Include="tsconfig.json" />
     <None Include="Views\Shared\Scripts\Components\SideBar.jsx" />
     <Content Include="scripts\gridmvc.js" />
     <Content Include="scripts\gridmvc.min.js" />
@@ -1157,9 +1156,6 @@
     <EmbeddedResource Include="Migrations\201705270838351_np0206.resx">
       <DependentUpon>201705270838351_np0206.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Views\Shared\Scripts\Tester123.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

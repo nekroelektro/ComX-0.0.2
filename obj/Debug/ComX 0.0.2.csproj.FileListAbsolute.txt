@@ -496,7 +496,6 @@ C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\bin\pl\System.Web.Webpages.Razor.resource
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\bin\pl\System.Web.Helpers.resources.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\bin\pl\System.Web.Mvc.resources.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.App.config
-C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0201.resources
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0202.resources
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0203.resources
@@ -504,5 +503,6 @@ C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0204.
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0205.resources
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX_0._0._2.Migrations.np0206.resources
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResource.Cache
+C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.CoreCompileInputs.cache
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb

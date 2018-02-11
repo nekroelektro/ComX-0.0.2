@@ -27,23 +27,23 @@ SharedIndexSlider.Init = function () {
         //    e.stopPropagation();
         //}, false);
 
-    $("." + SharedIndexSlider.Control.SlideElementUpperAnchor).click(function(e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
+    //$("." + SharedIndexSlider.Control.SlideElementUpperAnchor).click(function(e) {
+    //    e.preventDefault();
+    //    var url = $(this).attr('href');
 
-        $.ajax({
-            url: "/Articles/Details/",
-            method: 'GET',
-            data: { "id": url.substring(1) },
-            success: function (result) {
-                console.log(result);
-                $('.elementsToPush').html(result);
-                //$("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
-            }
-        });
+    //    $.ajax({
+    //        url: "/Articles/Details/",
+    //        method: 'GET',
+    //        data: { "id": url.substring(1) },
+    //        success: function (result) {
+    //            console.log(result);
+    //            $('.elementsToPush').html(result);
+    //            //$("html, body").animate({ scrollTop: $('.mainBodyContainer').offset().top - 60 }, 'slow');
+    //        }
+    //    });
 
-        history.pushState(null, null, url);
-    });
+    //    history.pushState(null, null, url);
+    //});
 };
 
 SharedIndexSlider.IndexSliderInitialization = function () {

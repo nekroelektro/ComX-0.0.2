@@ -45,7 +45,6 @@ namespace ComX_0._0._2 {
                 "~/Views/Shared/Scripts/SharedTopNavigationMenu.js",
                 "~/Views/Shared/Scripts/SharedIndexSlider.js",
                 "~/Views/Shared/Scripts/SharedSideBar.js",
-                "~/Views/Shared/Scripts/Tester123.js",
                 "~/Views/Articles/Scripts/ArticlesDetails.js",
                 "~/Views/Articles/Scripts/ArticlesTopDetailPanel.js",
                 "~/Views/Articles/Scripts/ArticlesSearchResults.js",
