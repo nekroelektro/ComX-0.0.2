@@ -506,3 +506,4 @@ C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.GenerateResou
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csproj.CoreCompileInputs.cache
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.dll
 C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.pdb
+C:\NEKROPLAZA\NP\ComX 0.0.2\ComX 0.0.2\obj\Debug\ComX 0.0.2.csprojResolveAssemblyReference.cache
