@@ -461,57 +461,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="APP\.angular-cli.json" />
-    <Content Include="APP\.editorconfig" />
-    <Content Include="APP\.gitignore" />
-    <Content Include="APP\dist\favicon.ico" />
-    <Content Include="APP\dist\index.html" />
-    <Content Include="APP\dist\inline.bundle.js" />
-    <Content Include="APP\dist\inline.bundle.js.map" />
-    <Content Include="APP\dist\main.bundle.js" />
-    <Content Include="APP\dist\main.bundle.js.map" />
-    <Content Include="APP\dist\polyfills.bundle.js" />
-    <Content Include="APP\dist\polyfills.bundle.js.map" />
-    <Content Include="APP\dist\styles.bundle.js" />
-    <Content Include="APP\dist\styles.bundle.js.map" />
-    <Content Include="APP\dist\vendor.bundle.js" />
-    <Content Include="APP\dist\vendor.bundle.js.map" />
-    <Content Include="APP\e2e\tsconfig.e2e.json" />
-    <Content Include="APP\karma.conf.js" />
-    <Content Include="APP\package-lock.json" />
-    <Content Include="APP\package.json" />
-    <Content Include="APP\protractor.conf.js" />
-    <Content Include="APP\README.md" />
-    <Content Include="APP\src\app\app.component.html" />
-    <Content Include="APP\src\app\app.component.less" />
-    <Content Include="APP\src\app\article-details\article-comments\article-comments.component.css" />
-    <Content Include="APP\src\app\article-details\article-comments\article-comments.component.html" />
-    <Content Include="APP\src\app\article-details\article-content\article-content.component.css" />
-    <Content Include="APP\src\app\article-details\article-content\article-content.component.html" />
-    <Content Include="APP\src\app\article-details\article-details-banner\article-details-banner.component.css" />
-    <Content Include="APP\src\app\article-details\article-details-banner\article-details-banner.component.html" />
-    <Content Include="APP\src\app\article-details\article-details.component.html" />
-    <Content Include="APP\src\app\article-details\article-details.component.less" />
-    <Content Include="APP\src\app\article-details\article-last\article-last.component.css" />
-    <Content Include="APP\src\app\article-details\article-last\article-last.component.html" />
-    <Content Include="APP\src\app\configuration\configuration.component.css" />
-    <Content Include="APP\src\app\configuration\configuration.component.html" />
-    <Content Include="APP\src\app\index\index.component.css" />
-    <Content Include="APP\src\app\index\index.component.html" />
-    <Content Include="APP\src\app\index\slider\slider.component.css" />
-    <Content Include="APP\src\app\index\slider\slider.component.html" />
-    <Content Include="APP\src\app\sidenav\sidenav.component.css" />
-    <Content Include="APP\src\app\sidenav\sidenav.component.html" />
-    <Content Include="APP\src\app\topnav\topnav.component.css" />
-    <Content Include="APP\src\app\topnav\topnav.component.html" />
-    <Content Include="APP\src\assets\.gitkeep" />
-    <Content Include="APP\src\favicon.ico" />
-    <Content Include="APP\src\index.html" />
-    <Content Include="APP\src\site.less" />
-    <Content Include="APP\src\tsconfig.app.json" />
-    <Content Include="APP\src\tsconfig.spec.json" />
-    <Content Include="APP\tsconfig.json" />
-    <Content Include="APP\tslint.json" />
     <Content Include="Content\a02.png" />
     <Content Include="Content\bootstrap-combobox.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1181,7 +1130,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="APP\src\app\account-details\" />
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
     <Folder Include="Views\Configuration\Models\DtoModels\" />
@@ -1211,41 +1159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="APP\e2e\app.e2e-spec.ts" />
-    <TypeScriptCompile Include="APP\e2e\app.po.ts" />
-    <TypeScriptCompile Include="APP\src\app\app-routing.module.ts" />
-    <TypeScriptCompile Include="APP\src\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\app.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\app.module.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-comments\article-comments.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-comments\article-comments.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-content\article-content.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-content\article-content.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-details-banner\article-details-banner.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-details-banner\article-details-banner.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-details.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-details.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-details.module.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-last\article-last.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\article-details\article-last\article-last.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\configuration\configuration.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\configuration\configuration.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\index\index.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\index\index.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\index\slider\slider.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\index\slider\slider.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\sidenav\sidenav.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\sidenav\sidenav.component.ts" />
-    <TypeScriptCompile Include="APP\src\app\topnav\topnav.component.spec.ts" />
-    <TypeScriptCompile Include="APP\src\app\topnav\topnav.component.ts" />
-    <TypeScriptCompile Include="APP\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="APP\src\environments\environment.ts" />
-    <TypeScriptCompile Include="APP\src\main.ts" />
-    <TypeScriptCompile Include="APP\src\polyfills.ts" />
-    <TypeScriptCompile Include="APP\src\test.ts" />
-    <TypeScriptCompile Include="APP\src\typings.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
