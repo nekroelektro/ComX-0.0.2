@@ -55,13 +55,12 @@ module.exports = {
   ],
   output: {
     // Add /* filename */ comments to generated require()s in the output.
-    pathinfo: true,
-    // This does not produce a real file. It's just the virtual path that is
-    // served by WebpackDevServer in development. This is the JS bundle
-    // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
-    // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: 'static/js/[name].chunk.js',
+      path: paths.appBuild,
+    // Generated JS file names (with nested folders).
+    // There will be one main bundle, and one file per asynchronous chunk.
+    // We don't currently advertise code splitting but Webpack supports it.
+    filename: '../scripts/bundle.js',
+    chunkFilename: '../scripts/bundle.chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -137,7 +136,7 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: 'static/media/[name].[ext]',
             },
           },
           // Compile .tsx?
@@ -212,7 +211,7 @@ module.exports = {
             exclude: [/\.js$/, /\.html$/, /\.json$/, /\.css$/, /\.scss$/],
             loader: require.resolve('file-loader'),
             options: {
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: 'static/media/[name].[ext]',
             },
           },
         ],

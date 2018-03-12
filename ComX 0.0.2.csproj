@@ -517,7 +517,11 @@
     <Content Include="plaza-x\config\webpackDevServer.config.js" />
     <Content Include="plaza-x\public\favicon.ico" />
     <Content Include="plaza-x\scripts\build.js" />
+    <Content Include="plaza-x\scripts\bundle.js" />
+    <Content Include="plaza-x\scripts\index.html" />
+    <Content Include="plaza-x\scripts\service-worker.js" />
     <Content Include="plaza-x\scripts\start.js" />
+    <Content Include="plaza-x\scripts\static\media\logo.svg" />
     <Content Include="plaza-x\scripts\test.js" />
     <Content Include="plaza-x\src\index.js" />
     <Content Include="plaza-x\src\logo.svg" />
@@ -729,9 +733,14 @@
     <Content Include="plaza-x\tsconfig.json" />
     <Content Include="plaza-x\tsconfig.test.json" />
     <Content Include="plaza-x\tslint.json" />
-    <Content Include="plaza-x\public\index.html" />
     <Content Include="plaza-x\src\App.scss" />
     <Content Include="plaza-x\src\index.scss" />
+    <Content Include="plaza-x\public\index.cshtml" />
+    <Content Include="plaza-x\scripts\bundle.js.map" />
+    <Content Include="plaza-x\scripts\asset-manifest.json" />
+    <Content Include="plaza-x\scripts\static\media\App.scss" />
+    <Content Include="plaza-x\scripts\static\media\Index.cshtml" />
+    <Content Include="plaza-x\scripts\static\media\index.scss" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\jquery-3.2.1.js" />
     <Content Include="scripts\jquery-3.2.1.min.js" />
