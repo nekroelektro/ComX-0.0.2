@@ -1,0 +1,42 @@
+﻿@using React.AspNet
+@model ComX_0._0._2.Views.Articles.Models.DtoModels.IndexMainDto
+
+@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Articles/_Articles.cshtml";
+    ViewBag.Title = "NekroPlaza - doświadcz dobroci";
+    ViewBag.Description = "Najnowsze smakowitości, dobrocie najbardziej trendy, kontrowersje, wybuchy atomowych laserów i nieumarli || NEKROPLAZA.PL - zakosztuj dobroci.";
+}
+@Html.React("IndexMain", new {model = Model})
+
+<link href="~/Content/slick.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/slick-theme.css" rel="stylesheet" type="text/css" />
+<script>
+    var config = {
+        Posty: 'Posty',
+        Pamiętnik: 'Pamiętnik',
+        Recenzje: 'Recenzje',
+        Pager: 'pager',
+        IndexSeeDiaryCategory: 'indexSeeDiaryCategory',
+        PageNavAnchor: 'page_navigation a',
+        ArticlesIndexTable: 'articlesIndexTable',
+        ArticlesIndexSingleImage: 'articlesIndexSingleImage',
+        ImageOverlayColorIndex: 'imageOverlayColorIndex',
+        IndexReviewsContainer: 'indexReviewsContainer',
+        IndexSingleReview: 'indexSingleReview',
+        IndexDiaryPreviewWindow: 'indexDiaryPreviewWindow',
+        IndexDiaryList: 'indexDiaryList',
+        IndexSingleArticleContainer: 'indexSingleArticleContainer',
+        IndexSingleArticleContainerDiary: 'indexSingleArticleContainerDiary',
+        BannerPanelImageContainerIndexDiary: 'bannerPanelImageContainerIndexDiary',
+        IndexSingleReviewAnchor: 'indexSingleReviewAnchor',
+        ArticlesIndexHeader: 'articlesIndexHeader',
+        PageNavigation: 'page_navigation',
+        MoreMusicReviews: 'moreMusicReviews',
+        SliderLatestIndexContainer: 'sliderLatestIndexContainer',
+        ArticlesIndexReviewsContainer: 'articlesIndexReviewsContainer',
+        ReviewIndexImage: 'reviewIndexImage',
+        IndexSingleDiaryAnchorImage: 'indexSingleDiaryAnchorImage',
+        IndexPreviewDiaryWindow: 'indexPreviewDiaryWindow'
+    };
+    new ArticlesIndex(config);
+</script>

@@ -11,9 +11,10 @@ namespace ComX_0._0._2.Views.Articles.Controller {
         private readonly IDocumentService documentService = new DocumentService();
 
         public ActionResult Index(bool isAfterConfirmation = false) {
-            ViewBag.IsAfterConfirmation = isAfterConfirmation;
-            var model = documentService.GetIndexDetails();
-            return PartialView("Index", model);
+            //ViewBag.IsAfterConfirmation = isAfterConfirmation;
+            //var model = documentService.GetIndexDetails();
+            //return PartialView("Index", model);
+            return View("Index");
         }
 
         public ActionResult _SideBar(int? number) {
