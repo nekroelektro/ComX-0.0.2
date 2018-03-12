@@ -1147,6 +1147,7 @@
   <ItemGroup>
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
+    <Folder Include="plaza-x\src\components\" />
     <Folder Include="Views\Configuration\Models\DtoModels\" />
     <Folder Include="Views\Configuration\Styles\" />
     <Folder Include="Views\Nekropedia\Scripts\" />
