@@ -1,0 +1,30 @@
+﻿@font-face {
+    font-family: 'Eater';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../../fonts/Eater-Regular.ttf');
+  }
+
+.bottomFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+    margin: 0 auto;
+    height: 2em;
+    z-index: 999;
+    
+    font-family: 'Eater', sans-serif;
+}
+
+.bottomFooter:hover {
+    color: red;
+    cursor: not-allowed;
+}
+
+.bottomFooter p {
+    /*padding-top: 0.7em;*/
+    margin: 0 auto;
+}

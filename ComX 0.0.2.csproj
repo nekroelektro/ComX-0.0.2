@@ -741,6 +741,8 @@
     <Content Include="plaza-x\scripts\static\media\App.scss" />
     <Content Include="plaza-x\scripts\static\media\Index.cshtml" />
     <Content Include="plaza-x\scripts\static\media\index.scss" />
+    <Content Include="plaza-x\src\components\main\footer\footer.scss" />
+    <Content Include="plaza-x\src\fonts\Eater-Regular.ttf" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\jquery-3.2.1.js" />
     <Content Include="scripts\jquery-3.2.1.min.js" />
@@ -1169,7 +1171,6 @@
   <ItemGroup>
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
-    <Folder Include="plaza-x\src\components\main\" />
     <Folder Include="Views\Configuration\Models\DtoModels\" />
     <Folder Include="Views\Configuration\Styles\" />
     <Folder Include="Views\Nekropedia\Scripts\" />
@@ -1201,6 +1202,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="plaza-x\src\App.test.tsx" />
     <TypeScriptCompile Include="plaza-x\src\App.tsx" />
+    <TypeScriptCompile Include="plaza-x\src\components\main\footer\footer.tsx" />
+    <TypeScriptCompile Include="plaza-x\src\helpers\DataHelper.ts" />
     <TypeScriptCompile Include="plaza-x\src\index.tsx" />
     <TypeScriptCompile Include="plaza-x\src\registerServiceWorker.ts" />
   </ItemGroup>

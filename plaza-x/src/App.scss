@@ -26,3 +26,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body {
+  min-height: 100%;
+  min-width: 320px;
+  height: 100%;
+  position: relative;
+}
