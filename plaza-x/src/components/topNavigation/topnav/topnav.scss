@@ -1,0 +1,80 @@
+.topNavContainer {
+    top: 0;
+    width: 100%;
+    background-color: #222;
+    color: whitesmoke;
+    height: 4em;
+    z-index: 999;
+}
+
+.topNavFeaturesContainer {
+    height: 100%;
+    float: right;
+    width: 75%;
+}
+
+.topNavLogoImage,
+.topNavCategoryContainer,
+.topNavSearchContainer,
+.topNavUserContainer {
+    height: 100%;
+    float: left;
+}
+
+.topNavLogoImage {
+    float: left;
+    margin-left: 1em;
+    height: 100%;
+}
+
+.topNavContainer p {
+    /*padding-top: 0.7em;*/
+    margin: 0 auto;
+}
+
+.topNavCategoryContainer {
+    width: 15%;
+}
+
+.topNavSearchContainer {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    // border: 1px white solid;
+    display: flex;
+}
+
+.topNavSearchBar{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    padding-top: 0.5em;
+}
+
+.topNavSearchInput {
+    box-sizing: border-box;
+    padding: 14px;
+    display: inline-block;
+    background: 0 0;
+    border: none;
+    outline: 0;
+    color: whitesmoke;
+    background: #3F3F3F;
+    font-size: 1.1em;
+    width: 75%;
+}
+
+.topNavUserContainer {
+    width: 25%;
+}
+
+.material-icons, .topNavSearchInput {
+    float: left;
+}
+
+.material-icons {
+    font-size: 48px;
+}

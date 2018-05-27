@@ -1,6 +1,16 @@
+html {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: 'Roboto', sans-serif !important;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
   background: lighten($color: #222, $amount: 20%)
 }

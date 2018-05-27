@@ -27,12 +27,13 @@ namespace ComX_0._0._2.Views.Articles.Controller {
             return PartialView("_IndexSlider", model);
         }
 
-        [ValidateInput(false)]
-        public ActionResult Details(string id, bool isDiary = false) {
-            var document = documentService.GetArticleDetails(id, isDiary);
-            ViewBag.ReturnArticleId = id;
-            return View(document);
-        }
+        //[ValidateInput(false)]
+        //public ActionResult Details(string id, bool isDiary = false) {
+        //    //var document = documentService.GetArticleDetails(id, isDiary);
+        //    //ViewBag.ReturnArticleId = id;
+        //    //return View(document);
+
+        //}
 
         public ActionResult _LastFromCategory(string categoryName, Guid articleId) {
             var model = documentService.GetLastFromCategoryDetails(categoryName, articleId);

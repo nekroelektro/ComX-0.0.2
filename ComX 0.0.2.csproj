@@ -523,6 +523,10 @@
     <Content Include="plaza-x\scripts\start.js" />
     <Content Include="plaza-x\scripts\static\media\logo.svg" />
     <Content Include="plaza-x\scripts\test.js" />
+    <Content Include="plaza-x\src\content\images\ajax-loader.gif" />
+    <Content Include="plaza-x\src\content\images\logoC.png" />
+    <Content Include="plaza-x\src\content\images\logoG.png" />
+    <Content Include="plaza-x\src\fonts\slick.svg" />
     <Content Include="plaza-x\src\index.js" />
     <Content Include="plaza-x\src\logo.svg" />
     <Content Include="plaza-x\src\registerServiceWorker.js" />
@@ -743,6 +747,11 @@
     <Content Include="plaza-x\scripts\static\media\index.scss" />
     <Content Include="plaza-x\src\components\main\footer\footer.scss" />
     <Content Include="plaza-x\src\fonts\Eater-Regular.ttf" />
+    <Content Include="plaza-x\src\components\main\slider\slider.scss" />
+    <Content Include="plaza-x\src\fonts\slick.eot" />
+    <Content Include="plaza-x\src\fonts\slick.ttf" />
+    <Content Include="plaza-x\src\fonts\slick.woff" />
+    <Content Include="plaza-x\src\components\main\topnav\topnav.scss" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\jquery-3.2.1.js" />
     <Content Include="scripts\jquery-3.2.1.min.js" />
@@ -1171,6 +1180,8 @@
   <ItemGroup>
     <Folder Include="Content\images\Container\" />
     <Folder Include="Content\images\Gallery\" />
+    <Folder Include="plaza-x\src\content\images\articles\" />
+    <Folder Include="plaza-x\src\content\images\gallery\" />
     <Folder Include="Views\Configuration\Models\DtoModels\" />
     <Folder Include="Views\Configuration\Styles\" />
     <Folder Include="Views\Nekropedia\Scripts\" />
@@ -1203,6 +1214,8 @@
     <TypeScriptCompile Include="plaza-x\src\App.test.tsx" />
     <TypeScriptCompile Include="plaza-x\src\App.tsx" />
     <TypeScriptCompile Include="plaza-x\src\components\main\footer\footer.tsx" />
+    <TypeScriptCompile Include="plaza-x\src\components\main\slider\slider.tsx" />
+    <TypeScriptCompile Include="plaza-x\src\components\main\topnav\topnav.tsx" />
     <TypeScriptCompile Include="plaza-x\src\helpers\DataHelper.ts" />
     <TypeScriptCompile Include="plaza-x\src\index.tsx" />
     <TypeScriptCompile Include="plaza-x\src\registerServiceWorker.ts" />
