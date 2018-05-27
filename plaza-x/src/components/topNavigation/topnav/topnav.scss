@@ -33,18 +33,41 @@
 }
 
 .topNavCategoryContainer {
-    width: 15%;
+    width: 20%;
+    position: relative;
+    text-align: center;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.topNavCategoryContainer:hover{
+    background-color: #2b823c;
+}
+
+.topNavCategoryItems {
+    padding-top: 1em;
+}
+
+.topNavCategoryContainer span {
+    text-align: center;
+    font-size: 1.3em;
+    letter-spacing: 5px;
+    max-width: 100%;
+    text-shadow: 6px 6px 4px rgba(255,255,255,0.5);
 }
 
 .topNavSearchContainer {
     width: 50%;
     text-align: center;
-    position: relative;
-    // border: 1px white solid;
+    position: relative; // border: 1px white solid;
     display: flex;
 }
 
-.topNavSearchBar{
+.topNavSearchBar {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -52,6 +75,8 @@
     left: 0;
     margin: auto;
     padding-top: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 .topNavSearchInput {
@@ -61,20 +86,28 @@
     background: 0 0;
     border: none;
     outline: 0;
-    color: whitesmoke;
-    background: #3F3F3F;
+    color: whitesmoke; // background: #3F3F3F;
     font-size: 1.1em;
-    width: 75%;
+    width: 80%;
 }
 
 .topNavUserContainer {
     width: 25%;
 }
 
-.material-icons, .topNavSearchInput {
+.material-icons,
+.topNavSearchInput {
     float: left;
 }
 
 .material-icons {
     font-size: 48px;
+    color: #878787;
+}
+
+.categoryIcon{
+    text-align: center;
+    color: whitesmoke !important;
+    font-size: 24px !important;
+    width: 100%;
 }

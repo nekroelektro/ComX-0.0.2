@@ -12,11 +12,10 @@ class Topnav extends React.Component {
     </Link>
     <div className="topNavFeaturesContainer" id="topNavFeaturesContainer">
         <div className="topNavCategoryContainer" id="topNavCategoryContainer">
-            <a className="topNavCategoryAnchor" id="topNavCategoryAnchor">
-                <Link to="/article">
-                    <span>KATEGORIE</span>
-                </Link>
-            </a>
+            <div className="topNavCategoryItems" id="topNavCategoryItems">
+                <span>KATEGORIE</span>
+                <i className="material-icons categoryIcon">arrow_drop_down</i>
+            </div>
         </div>
         <div className="topNavSearchContainer" id="topNavSearchContainer">
             <div className="topNavSearchBar" id="topNavSearchBar">
@@ -25,9 +24,11 @@ class Topnav extends React.Component {
                 <i className="material-icons">cancel</i>
             </div>
         </div>
-        <div className="topNavUserContainer" id="topNavUserContainer">
-            <span>USER</span>
-        </div>
+        <Link to="/article">
+            <div className="topNavUserContainer" id="topNavUserContainer">
+                <span>USER</span>
+            </div>
+        </Link>
     </div>
 </div>
         );
