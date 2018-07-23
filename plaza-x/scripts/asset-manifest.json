@@ -2,7 +2,7 @@
   "main.js": "bundle.js",
   "main.js.map": "bundle.js.map",
   "static\\media\\App.scss": "static/media/App.642d0b47.scss",
-  "static\\media\\Index.cshtml": "static/media/Index.6787cb6c.cshtml",
+  "static\\media\\Index.html": "static/media/Index.6787cb6c.html",
   "static\\media\\index.scss": "static/media/index.49bd00ed.scss",
   "static\\media\\logo.svg": "static/media/logo.5d5d9eef.svg"
 }

@@ -29,7 +29,7 @@
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-any": true,
+        "no-any": false,
         "no-arg": true,
         "no-bitwise": true,
         "no-console": [
@@ -69,7 +69,7 @@
 
         "triple-equals": [ true, "allow-null-check" ],
         "typedef": [
-            true,
+            false,
             "parameter",
             "property-declaration"
         ],

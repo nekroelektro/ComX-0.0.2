@@ -2,13 +2,25 @@ import * as React from 'react';
 import './topnav.scss';
 import { Link } from 'react-router-dom';
 const logo = require('../../../content/images/logoC.png');
+import styled from 'styled-components';
+
+const Guzik = styled.button`
+  background: red;
+  border-radius: 8px;
+  color: white;
+`;
+
+const Logos = styled.img`
+    width: 10em;
+`;
 
 class Topnav extends React.Component {
     render() {
         return (
 <div className="topNavContainer" id="topNavContainer">
+    <Guzik>FUKK ME!</Guzik>
     <Link to="/">
-        <img className="topNavLogoImage" id="topNavLogoImage" src={logo} />
+        <Logos className="topNavLogoImage" id="topNavLogoImage" src={logo} />
     </Link>
     <div className="topNavFeaturesContainer" id="topNavFeaturesContainer">
         <div className="topNavCategoryContainer" id="topNavCategoryContainer">
