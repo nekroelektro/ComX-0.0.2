@@ -1,5 +1,5 @@
 ﻿export class DataHelper {
-    getCurrentYear() {
-        return new Date().getFullYear();
-    }
+  public getCurrentYear() {
+    return new Date().getFullYear();
+  }
 }
